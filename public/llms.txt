@@ -1,0 +1,32 @@
+# Hanzo One
+
+> Unified portal for all Hanzo AI products and services.
+
+## About
+Hanzo One is the single entry point for the entire Hanzo AI ecosystem. It provides unified access to all Hanzo products including the AI platform, cloud infrastructure, developer tools, blockchain services, and enterprise solutions. Users can discover, access, and manage all Hanzo services from one place with a single account.
+
+## Key Features
+- Unified dashboard for all Hanzo products
+- Single sign-on across the Hanzo ecosystem
+- Product discovery and onboarding
+- Centralized billing and subscription management
+- Cross-product integrations and workflows
+- Personalized recommendations based on usage
+- Quick-start templates and tutorials
+
+## Hanzo Products
+- [Hanzo AI](https://hanzo.ai) - AI platform and foundation models
+- [Hanzo App](https://app.hanzo.ai) - Web dashboard
+- [Hanzo Dev](https://dev.hanzo.ai) - AI coding assistant
+- [Hanzo CLI](https://hanzo.sh) - Command-line tools
+- [Hanzo Network](https://hanzo.network) - Decentralized compute
+- [Hanzo ID](https://hanzo.id) - Identity and authentication
+- [Hanzo Industries](https://hanzo.industries) - Enterprise solutions
+
+## Links
+- [Website](https://hanzo.one)
+- [Hanzo AI](https://hanzo.ai)
+- [Documentation](https://docs.hanzo.ai)
+
+## Contact
+- Support: support@hanzo.ai
