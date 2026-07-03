@@ -63,7 +63,7 @@ const HanzoDev = () => {
             size="lg"
             className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all"
           >
-            <a href="/hanzodev">Learn More About Hanzo Dev</a>
+            <a href="/dev">Learn More About Hanzo Dev</a>
           </Button>
         </motion.div>
       </div>

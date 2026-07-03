@@ -75,7 +75,7 @@ const SignUp = () => {
       toast.success('Account created successfully!');
       
       // Redirect to payment method page
-      navigate('/billing#payment-methods');
+      navigate('/account/billing#payment-methods');
     }
   };
   
