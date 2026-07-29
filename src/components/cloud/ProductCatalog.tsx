@@ -1,4 +1,4 @@
-import { Anchor, Box as GuiBox, Grid, H2, H3, Link, MotionBox, Paragraph, XStack } from '@/gui'
+import { Anchor, Box as GuiBox, Grid, H2, H3, Link, MotionBox, Paragraph, XStack, FILL} from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -65,7 +65,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const BRAND_COLOR = "var(--foreground)";
 
 interface Product {
   name: string;
@@ -378,7 +377,7 @@ const ProductCatalog = () => {
             <Link minHeight={44} 
               to="/pricing"
               paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-              style={{ backgroundColor: BRAND_COLOR, color: "#fff" }}
+              style={FILL}
             >
               View Pricing
               <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></GuiBox>

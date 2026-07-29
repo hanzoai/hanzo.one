@@ -1,4 +1,4 @@
-import { Anchor, Box, Button, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
+import { Anchor, Box, Button, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -121,7 +121,7 @@ const Blog = () => {
                 <Anchor minHeight={44} 
                   href="#posts"
                   paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Latest Posts
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -176,7 +176,7 @@ const Blog = () => {
 
                   <XStack minHeight={44}
                     render="button" display="inline-flex" alignItems="center" width="fit-content" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                    style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                    style={FILL}
                   >
                     Read Article
                     <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -285,7 +285,7 @@ const Blog = () => {
               />
               <XStack minHeight={44}
                 render="button" display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
-                style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                style={FILL}
               >
                 Subscribe
               </XStack>

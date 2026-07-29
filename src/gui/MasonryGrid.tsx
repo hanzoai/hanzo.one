@@ -2,11 +2,14 @@ import { Box, XStack, YStack } from '@/gui'
 
 import React, { useEffect, useState } from "react";
 
-interface MasonryGridProps {
+import type { BoxProps } from './primitives'
+
+/* The extra props are forwarded straight onto the Box below, so the type says
+   so: a composition takes the same style vocabulary as a primitive. */
+interface MasonryGridProps extends Omit<BoxProps, 'children'> {
   children: React.ReactNode[];
   columns?: number;
   gap?: number;
-  
 }
 
 export const MasonryGrid: React.FC<MasonryGridProps> = ({

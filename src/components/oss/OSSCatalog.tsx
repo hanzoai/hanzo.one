@@ -38,7 +38,6 @@ import {
   type FeaturedCollection,
 } from '@/data/oss-catalog';
 
-const BRAND_COLOR = 'var(--foreground)';
 
 // =============================================================================
 // QUICK FILTER CHIPS

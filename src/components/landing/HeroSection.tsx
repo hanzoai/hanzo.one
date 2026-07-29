@@ -1,4 +1,4 @@
-import { Anchor, Box, Grid, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
+import { Anchor, Box, Grid, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack, FILL} from '@/gui'
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -446,7 +446,7 @@ const HeroSection = () => {
                 <Link minHeight={44} 
                   to="/products"
                   justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
+                  style={FILL}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -563,7 +563,7 @@ const HeroSection = () => {
                 <Link minHeight={44} 
                   to="/products"
                   justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
+                  style={FILL}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -676,7 +676,7 @@ const HeroSection = () => {
                 <Link minHeight={44} 
                   to="/products"
                   justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
+                  style={FILL}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

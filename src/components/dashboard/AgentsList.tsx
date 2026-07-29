@@ -21,10 +21,6 @@ const AgentsList = ({ viewMode = "grid" }: AgentsListProps) => {
   );
 
   const statusColors = {
-    idle: "bg-gray-500",
-    running: "bg-green-500",
-    paused: "bg-yellow-500",
-    error: "bg-red-500"
   };
 
   const getStatusText = (status: string) => {

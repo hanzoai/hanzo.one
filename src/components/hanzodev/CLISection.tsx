@@ -1,4 +1,4 @@
-import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
+import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -59,8 +59,8 @@ const CLISection = () => {
           </H2>
           <Button
             size="lg"
-            marginTop={16} color="var(--foreground)"
-            style={{ backgroundColor: BRAND_COLOR }}
+            marginTop={16}
+            style={FILL}
             asChild
           >
             <Link minHeight={44} to="/download">

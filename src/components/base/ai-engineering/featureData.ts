@@ -24,9 +24,6 @@ export const featureData: AIFeature[] = [
       { text: "Performance optimization for inference workloads" }
     ],
     delay: 0.1,
-    iconBgClass: "bg-purple-900/30",
-    iconTextClass: "text-purple-400",
-    bulletColor: "text-purple-400"
   },
   {
     icon: React.createElement(Search, { size: 24 }),
@@ -38,9 +35,6 @@ export const featureData: AIFeature[] = [
       { text: "Hybrid search combining vector and traditional queries" }
     ],
     delay: 0.2,
-    iconBgClass: "bg-blue-900/30",
-    iconTextClass: "text-blue-400",
-    bulletColor: "text-blue-400"
   },
   {
     icon: React.createElement(Database, { size: 24 }),
@@ -52,9 +46,6 @@ export const featureData: AIFeature[] = [
       { text: "Scalable batch and stream processing" }
     ],
     delay: 0.3,
-    iconBgClass: "bg-green-900/30",
-    iconTextClass: "text-green-400",
-    bulletColor: "text-green-400"
   },
   {
     icon: React.createElement(Sparkles, { size: 24 }),
@@ -66,8 +57,5 @@ export const featureData: AIFeature[] = [
       { text: "Real-time anomaly detection and predictive analytics" }
     ],
     delay: 0.4,
-    iconBgClass: "bg-amber-900/30",
-    iconTextClass: "text-amber-400",
-    bulletColor: "text-amber-400"
   }
 ];

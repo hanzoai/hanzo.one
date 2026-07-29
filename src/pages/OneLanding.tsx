@@ -1,4 +1,6 @@
 import { Box, Button, Grid, H1, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Users, CreditCard, BarChart3, Calendar, FileText, Mail, MessageSquare, Check } from "lucide-react";
@@ -38,7 +40,8 @@ const plans = [
 
 const OneLanding = () => {
   return (
-    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
+    <Box minHeight="100vh" backgroundColor="var(--background)" color="var(--foreground)">
+      <Navbar />
       {/* Hero */}
       <XStack render="section" position="relative" minHeight="100vh" display="flex" alignItems="center" justifyContent="center" overflow="hidden">
         <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black), rgb(255 255 255 / 0.08))" />
@@ -67,7 +70,7 @@ const OneLanding = () => {
             </Paragraph>
 
             <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" marginBottom={64} $sm={{ flexDirection: "row" }}>
-              <Button size="lg" backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontWeight="600" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-600)" }}>
+              <Button size="lg" variant="default" fontWeight="600" paddingHorizontal={32}>
                 Start Free Trial
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
@@ -146,7 +149,7 @@ const OneLanding = () => {
                   ))}
                 </Box>
                 <Button
-                  width="100%" backgroundColor={plan.popular ? "var(--neutral-500)" : "var(--neutral-800)"} color={plan.popular ? "var(--pure-black)" : undefined} hoverStyle={plan.popular ? { backgroundColor: "var(--neutral-600)" } : { backgroundColor: "var(--neutral-700)" }}
+                  width="100%" variant={plan.popular ? "default" : "secondary"}
                 >
                   Get Started
                 </Button>
@@ -163,11 +166,12 @@ const OneLanding = () => {
           <Paragraph color="var(--neutral-400)" maxWidth="36rem" marginHorizontal="auto" marginBottom={32}>
             Join thousands of businesses running on Hanzo One.
           </Paragraph>
-          <Button size="lg" backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontWeight="600" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-600)" }}>
+          <Button size="lg" variant="default" fontWeight="600" paddingHorizontal={32}>
             Start Free Trial
           </Button>
         </Box>
       </Box>
+      <Footer />
     </Box>
   );
 };

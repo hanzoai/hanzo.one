@@ -1,4 +1,4 @@
-import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
+import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -163,8 +163,8 @@ const MultiAgentSection = () => {
           </Paragraph>
           <Button
             size="lg"
-            marginTop={32} color="var(--foreground)"
-            style={{ backgroundColor: BRAND_COLOR }}
+            marginTop={32}
+            style={FILL}
             asChild
           >
             <Link minHeight={44} to="/signup">
@@ -225,8 +225,7 @@ const MultiAgentSection = () => {
           </Paragraph>
           <Button
             size="lg"
-            color="var(--foreground)"
-            style={{ backgroundColor: BRAND_COLOR }}
+            style={FILL}
             asChild
           >
             <Link minHeight={44} to="/download">

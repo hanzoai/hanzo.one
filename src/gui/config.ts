@@ -17,6 +17,22 @@
 import { defaultConfig } from '@hanzogui/config/v4'
 import { createGui } from '@hanzo/gui'
 
-export const guiConfig = createGui(defaultConfig)
+// The preset's `body` and `heading` families are the OS system stack. Hanzo's
+// typeface is Geist, shipped self-hosted by @hanzo/design as `--font-sans` —
+// body copy already picked it up from the `body` element rule, but gui's H1-H6
+// and Button carry their own family, so a headline and its subhead rendered in
+// two different typefaces. Bind both families to the token here, once, rather
+// than at 141 call sites.
+const fonts = {
+  ...defaultConfig.fonts,
+  body: { ...defaultConfig.fonts.body, family: 'var(--font-sans)' },
+  heading: { ...defaultConfig.fonts.heading, family: 'var(--font-sans)' },
+  mono: {
+    ...defaultConfig.fonts.body,
+    family: 'var(--font-mono)',
+  },
+}
+
+export const guiConfig = createGui({ ...defaultConfig, fonts })
 
 export default guiConfig

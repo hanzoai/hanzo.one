@@ -20,6 +20,7 @@ export {
 } from './primitives'
 export type { BoxProps, LinkProps } from './primitives'
 export { guiConfig } from './config'
+export { FILL, FILL_QUIET } from './surface'
 
 // the Hanzo product layer
 export { BrandMark, HanzoMark, AnimatedLogo, FadeIn, StatusTag, MetricCard } from '@hanzo/ui/product'

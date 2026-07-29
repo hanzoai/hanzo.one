@@ -41,15 +41,6 @@ const labelMap = {
   slack: "Join Slack",
 };
 
-const colorMap = {
-  discord: "hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50",
-  github: "hover:bg-neutral-700",
-  docs: "hover:bg-blue-500/20 hover:border-blue-500/50",
-  discussions: "hover:bg-purple-500/20 hover:border-purple-500/50",
-  twitter: "hover:bg-neutral-700",
-  slack: "hover:bg-[#4A154B]/20 hover:border-[#4A154B]/50",
-};
-
 export function CommunitySection({ productName, links, contributors, stars }: CommunitySectionProps) {
   return (
     <MotionBox
@@ -97,7 +88,6 @@ export function CommunitySection({ productName, links, contributors, stars }: Co
           {links.map((link, index) => {
             const Icon = iconMap[link.type];
             const label = link.label || labelMap[link.type];
-            const colorClass = colorMap[link.type];
 
             return (
               <MotionBox

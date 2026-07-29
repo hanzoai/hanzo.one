@@ -1,4 +1,4 @@
-import { Anchor, Box, Helmet, Link, MotionBox, MotionText, Text } from '@/gui'
+import { Anchor, Box, Helmet, Link, MotionBox, MotionText, Text, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -87,7 +87,7 @@ const OpenSource = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
                   View on GitHub
@@ -179,7 +179,7 @@ const OpenSource = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
-                style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                style={FILL}
               >
                 Start Contributing
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>

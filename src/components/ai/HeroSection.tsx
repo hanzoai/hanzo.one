@@ -1,4 +1,4 @@
-import { Box, Button, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
+import { Box, Button, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack, FILL} from '@/gui'
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -94,7 +94,7 @@ const HeroSection = () => {
               <Button
                 type="submit"
                 position="absolute" right={8} paddingHorizontal={20} paddingVertical={8} borderRadius="var(--radius-lg)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" display="flex" alignItems="center" gap={8}
-                style={{ backgroundColor: BRAND_COLOR }}
+                style={FILL}
               >
                 Ask Hanzo
                 <ArrowUp size={16} />
@@ -175,8 +175,7 @@ const HeroSection = () => {
                     <Link tap to="/dev">
                       <Button
                         size="sm"
-                        color="var(--foreground)"
-                        style={{ backgroundColor: BRAND_COLOR }}
+                        style={FILL}
                       >
                         Learn more
                       </Button>

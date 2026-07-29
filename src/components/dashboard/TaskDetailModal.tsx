@@ -43,9 +43,9 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   };
 
   const priorityOptions = [
-    { value: "low", label: "Low", color: "bg-gray-500" },
-    { value: "medium", label: "Medium", color: "bg-yellow-500" },
-    { value: "high", label: "High", color: "bg-red-500" }
+    { value: "low", label: "Low", },
+    { value: "medium", label: "Medium", },
+    { value: "high", label: "High", }
   ];
 
   const statusOptions = [

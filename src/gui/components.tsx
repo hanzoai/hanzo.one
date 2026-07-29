@@ -18,7 +18,7 @@ import {
   Popover as GuiPopover, Tooltip as GuiTooltip, Select as GuiSelect,
   Sheet as GuiSheet, Spinner, Adapt } from '@hanzo/gui'
 import { Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, X } from 'lucide-react'
-import { Box, Grid } from './primitives'
+import { Box, Grid, asWeb } from './primitives'
 
 export const TOUCH = 44
 
@@ -27,7 +27,7 @@ export const TOUCH = 44
 // ---------------------------------------------------------------------------
 
 /** The one button. Monochrome by design — emphasis comes from fill, not hue. */
-export const Button = styled(GuiButton, {
+export const Button = asWeb<typeof GuiButton, { variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link'; size?: 'default' | 'sm' | 'lg' | 'icon' }>(styled(GuiButton, {
   name: 'Button',
   borderRadius: 'var(--radius-sm)' as never,
   fontWeight: '500',
@@ -83,7 +83,7 @@ export const Button = styled(GuiButton, {
   } as const,
 
   defaultVariants: { variant: 'default', size: 'default' },
-})
+}))
 
 export type ButtonProps = ComponentProps<typeof Button>
 /** Kept for call sites that referenced the old class-variance helper. */
@@ -93,31 +93,31 @@ export const buttonVariants = () => undefined
 // Surfaces
 // ---------------------------------------------------------------------------
 
-export const Card = styled(YStack, {
+export const Card = asWeb<typeof YStack>(styled(YStack, {
   name: 'Card',
   backgroundColor: 'var(--card)' as never,
   borderWidth: 1,
   borderColor: 'var(--border)' as never,
   borderRadius: 'var(--radius-lg)' as never,
   overflow: 'hidden',
-})
-export const CardHeader = styled(YStack, { name: 'CardHeader', padding: 24, gap: 6,
-})
-export const CardTitle = styled(Text, {
+}))
+export const CardHeader = asWeb<typeof YStack>(styled(YStack, { name: 'CardHeader', padding: 24, gap: 6,
+}))
+export const CardTitle = asWeb<typeof Text>(styled(Text, {
   name: 'CardTitle', fontSize: 'var(--text-lg)' as never, fontWeight: '600',
   color: 'var(--card-foreground)' as never,
-})
-export const CardDescription = styled(Text, {
+}))
+export const CardDescription = asWeb<typeof Text>(styled(Text, {
   name: 'CardDescription', fontSize: 'var(--text-sm)' as never,
   color: 'var(--muted-foreground)' as never,
-})
-export const CardContent = styled(Box, { name: 'CardContent', paddingHorizontal: 24, paddingBottom: 24,
-})
-export const CardFooter = styled(XStack, {
+}))
+export const CardContent = asWeb<typeof Box>(styled(Box, { name: 'CardContent', paddingHorizontal: 24, paddingBottom: 24,
+}))
+export const CardFooter = asWeb<typeof XStack>(styled(XStack, {
   name: 'CardFooter', paddingHorizontal: 24, paddingBottom: 24, alignItems: 'center', gap: 8,
-})
+}))
 
-export const Badge = styled(XStack, {
+export const Badge = asWeb<typeof XStack, { variant?: 'default' | 'secondary' | 'destructive' | 'outline' }>(styled(XStack, {
   name: 'Badge',
   alignItems: 'center',
   alignSelf: 'flex-start',
@@ -136,27 +136,27 @@ export const Badge = styled(XStack, {
     },
   } as const,
   defaultVariants: { variant: 'default' },
-})
+}))
 export const badgeVariants = () => undefined
 
-export const Skeleton = styled(Box, {
+export const Skeleton = asWeb<typeof Box>(styled(Box, {
   name: 'Skeleton',
   backgroundColor: 'var(--muted)' as never,
   borderRadius: 'var(--radius-sm)' as never,
   opacity: 0.6,
-})
+}))
 
 export const Separator = GuiSeparator
 export const Progress = GuiProgress
-export const ScrollArea = styled(ScrollView, { name: 'ScrollArea',
-})
+export const ScrollArea = asWeb<typeof ScrollView>(styled(ScrollView, { name: 'ScrollArea',
+}))
 export const ScrollBar = (_: { orientation?: string }) => null
 
 // ---------------------------------------------------------------------------
 // Form controls
 // ---------------------------------------------------------------------------
 
-export const Input = styled(GuiInput, {
+export const Input = asWeb<typeof GuiInput>(styled(GuiInput, {
   name: 'Input',
   height: TOUCH,
   borderRadius: 'var(--radius-sm)' as never,
@@ -164,10 +164,10 @@ export const Input = styled(GuiInput, {
   backgroundColor: 'var(--background)' as never,
   color: 'var(--foreground)' as never,
   fontSize: 'var(--text-sm)' as never,
-})
+}))
 export type InputProps = ComponentProps<typeof Input>
 
-export const Textarea = styled(GuiTextArea, {
+export const Textarea = asWeb<typeof GuiTextArea>(styled(GuiTextArea, {
   name: 'Textarea',
   minHeight: 96,
   borderRadius: 'var(--radius-sm)' as never,
@@ -175,15 +175,15 @@ export const Textarea = styled(GuiTextArea, {
   backgroundColor: 'var(--background)' as never,
   color: 'var(--foreground)' as never,
   fontSize: 'var(--text-sm)' as never,
-})
+}))
 export type TextareaProps = ComponentProps<typeof Textarea>
 
-export const Label = styled(GuiLabel, {
+export const Label = asWeb<typeof GuiLabel>(styled(GuiLabel, {
   name: 'Label',
   fontSize: 'var(--text-sm)' as never,
   color: 'var(--foreground)' as never,
   cursor: 'pointer',
-})
+}))
 
 export const Switch = forwardRef<never, ComponentProps<typeof GuiSwitch> & { onCheckedChange?: (v: boolean) => void }>(
   function Switch({ onCheckedChange, ...rest }, ref) {
@@ -233,8 +233,8 @@ export const RadioGroupItem = forwardRef<never, ComponentProps<typeof GuiRadioGr
 // Avatar
 // ---------------------------------------------------------------------------
 
-export const Avatar = styled(GuiAvatar, { name: 'Avatar', circular: true, size: '$4',
-})
+export const Avatar = asWeb<typeof GuiAvatar>(styled(GuiAvatar, { name: 'Avatar', circular: true, size: '$4',
+}))
 export const AvatarImage = GuiAvatar.Image
 export const AvatarFallback = GuiAvatar.Fallback
 
@@ -243,21 +243,21 @@ export const AvatarFallback = GuiAvatar.Fallback
 // ---------------------------------------------------------------------------
 
 export const Tabs = GuiTabs
-export const TabsList = styled(GuiTabs.List, {
+export const TabsList = asWeb<typeof GuiTabs.List>(styled(GuiTabs.List, {
   name: 'TabsList',
   backgroundColor: 'var(--muted)' as never,
   borderRadius: 'var(--radius-sm)' as never,
   padding: 4,
   gap: 4,
-})
-export const TabsTrigger = styled(GuiTabs.Tab, {
+}))
+export const TabsTrigger = asWeb<typeof GuiTabs.Tab>(styled(GuiTabs.Tab, {
   name: 'TabsTrigger',
   height: 36,
   paddingHorizontal: 14,
   borderRadius: 'var(--radius-sm)' as never,
   backgroundColor: 'transparent',
   cursor: 'pointer',
-})
+}))
 export const TabsContent = GuiTabs.Content
 
 export const Accordion = GuiAccordion
@@ -296,10 +296,10 @@ export const Dialog = GuiDialog
 export const DialogTrigger = GuiDialog.Trigger
 export const DialogPortal = GuiDialog.Portal
 export const DialogClose = GuiDialog.Close
-export const DialogOverlay = styled(GuiDialog.Overlay, {
+export const DialogOverlay = asWeb<typeof GuiDialog.Overlay>(styled(GuiDialog.Overlay, {
   name: 'DialogOverlay',
   backgroundColor: 'var(--surface-scrim)' as never,
-})
+}))
 export const DialogContent = forwardRef<never, { children?: ReactNode } & Record<string, unknown>>(
   function DialogContent({ children, ...rest }, ref) {
     return (
@@ -329,10 +329,10 @@ export const DialogContent = forwardRef<never, { children?: ReactNode } & Record
     )
   },
 )
-export const DialogHeader = styled(YStack, { name: 'DialogHeader', gap: 6,
-})
-export const DialogFooter = styled(XStack, { name: 'DialogFooter', gap: 8, justifyContent: 'flex-end',
-})
+export const DialogHeader = asWeb<typeof YStack>(styled(YStack, { name: 'DialogHeader', gap: 6,
+}))
+export const DialogFooter = asWeb<typeof XStack>(styled(XStack, { name: 'DialogFooter', gap: 8, justifyContent: 'flex-end',
+}))
 export const DialogTitle = GuiDialog.Title
 export const DialogDescription = GuiDialog.Description
 
@@ -377,19 +377,19 @@ export const SheetContent = forwardRef<
 
 export const Popover = GuiPopover
 export const PopoverTrigger = GuiPopover.Trigger
-export const PopoverContent = styled(GuiPopover.Content, {
+export const PopoverContent = asWeb<typeof GuiPopover.Content>(styled(GuiPopover.Content, {
   name: 'PopoverContent',
   padding: 12,
   borderWidth: 1,
   borderColor: 'var(--border)' as never,
   backgroundColor: 'var(--surface-overlay)' as never,
   borderRadius: 'var(--radius-lg)' as never,
-})
+}))
 
 export const TooltipProvider = GuiTooltip.Provider ?? (({ children }: { children?: ReactNode }) => <>{children}</>)
 export const Tooltip = GuiTooltip
 export const TooltipTrigger = GuiTooltip.Trigger
-export const TooltipContent = styled(GuiTooltip.Content, {
+export const TooltipContent = asWeb<typeof GuiTooltip.Content>(styled(GuiTooltip.Content, {
   name: 'TooltipContent',
   paddingHorizontal: 10,
   paddingVertical: 6,
@@ -397,12 +397,12 @@ export const TooltipContent = styled(GuiTooltip.Content, {
   backgroundColor: 'var(--surface-overlay)' as never,
   borderWidth: 1,
   borderColor: 'var(--border)' as never,
-})
+}))
 
 /** A dropdown menu — a popover holding a list of actions. */
 export const DropdownMenu = GuiPopover
 export const DropdownMenuTrigger = GuiPopover.Trigger
-export const DropdownMenuContent = styled(GuiPopover.Content, {
+export const DropdownMenuContent = asWeb<typeof GuiPopover.Content>(styled(GuiPopover.Content, {
   name: 'DropdownMenuContent',
   padding: 4,
   minWidth: 180,
@@ -410,8 +410,8 @@ export const DropdownMenuContent = styled(GuiPopover.Content, {
   borderColor: 'var(--border)' as never,
   backgroundColor: 'var(--surface-overlay)' as never,
   borderRadius: 'var(--radius-lg)' as never,
-})
-export const DropdownMenuItem = styled(XStack, {
+}))
+export const DropdownMenuItem = asWeb<typeof XStack>(styled(XStack, {
   name: 'DropdownMenuItem',
   minHeight: TOUCH,
   alignItems: 'center',
@@ -420,17 +420,17 @@ export const DropdownMenuItem = styled(XStack, {
   borderRadius: 'var(--radius-sm)' as never,
   cursor: 'pointer',
   hoverStyle: { backgroundColor: 'var(--accent)' as never },
-})
-export const DropdownMenuLabel = styled(Text, {
+}))
+export const DropdownMenuLabel = asWeb<typeof Text>(styled(Text, {
   name: 'DropdownMenuLabel', paddingHorizontal: 10, paddingVertical: 6,
   fontSize: 'var(--text-xs)' as never, color: 'var(--muted-foreground)' as never,
-})
-export const DropdownMenuSeparator = styled(GuiSeparator, { name: 'DropdownMenuSeparator', marginVertical: 4,
-})
-export const DropdownMenuShortcut = styled(Text, {
+}))
+export const DropdownMenuSeparator = asWeb<typeof GuiSeparator>(styled(GuiSeparator, { name: 'DropdownMenuSeparator', marginVertical: 4,
+}))
+export const DropdownMenuShortcut = asWeb<typeof Text>(styled(Text, {
   name: 'DropdownMenuShortcut', marginLeft: 'auto',
   fontSize: 'var(--text-xs)' as never, color: 'var(--muted-foreground)' as never,
-})
+}))
 export const DropdownMenuGroup = YStack
 export const DropdownMenuPortal = ({ children }: { children?: ReactNode }) => <>{children}</>
 export const DropdownMenuSub = YStack
@@ -502,29 +502,29 @@ export const SelectItem = forwardRef<never, { children?: ReactNode; value: strin
 // Table — CSS table display, so column widths still behave like a table
 // ---------------------------------------------------------------------------
 
-export const Table = styled(Box, { name: 'Table', render: 'table', display: 'table', width: '100%',
-})
-export const TableHeader = styled(Box, { name: 'TableHeader', render: 'thead', display: 'table-header-group',
-})
-export const TableBody = styled(Box, { name: 'TableBody', render: 'tbody', display: 'table-row-group',
-})
-export const TableFooter = styled(Box, { name: 'TableFooter', render: 'tfoot', display: 'table-footer-group',
-})
-export const TableRow = styled(Box, {
+export const Table = asWeb<typeof Box>(styled(Box, { name: 'Table', render: 'table', display: 'table', width: '100%',
+}))
+export const TableHeader = asWeb<typeof Box>(styled(Box, { name: 'TableHeader', render: 'thead', display: 'table-header-group',
+}))
+export const TableBody = asWeb<typeof Box>(styled(Box, { name: 'TableBody', render: 'tbody', display: 'table-row-group',
+}))
+export const TableFooter = asWeb<typeof Box>(styled(Box, { name: 'TableFooter', render: 'tfoot', display: 'table-footer-group',
+}))
+export const TableRow = asWeb<typeof Box>(styled(Box, {
   name: 'TableRow', render: 'tr', display: 'table-row',
   borderBottomWidth: 1, borderBottomColor: 'var(--border)' as never,
-})
-export const TableHead = styled(Box, {
+}))
+export const TableHead = asWeb<typeof Box>(styled(Box, {
   name: 'TableHead', render: 'th', display: 'table-cell',
   paddingVertical: 12, paddingHorizontal: 16, textAlign: 'left',
   fontSize: 'var(--text-xs)' as never, color: 'var(--muted-foreground)' as never,
-})
-export const TableCell = styled(Box, {
+}))
+export const TableCell = asWeb<typeof Box>(styled(Box, {
   name: 'TableCell', render: 'td', display: 'table-cell',
   paddingVertical: 12, paddingHorizontal: 16, fontSize: 'var(--text-sm)' as never,
-})
-export const TableCaption = styled(Box, { name: 'TableCaption', render: 'caption', display: 'table-caption',
-})
+}))
+export const TableCaption = asWeb<typeof Box>(styled(Box, { name: 'TableCaption', render: 'caption', display: 'table-caption',
+}))
 
 // ---------------------------------------------------------------------------
 // Carousel — a snapping scroller with two 44px controls
@@ -535,11 +535,11 @@ export type CarouselApi = { scrollPrev: () => void; scrollNext: () => void }
 export const Carousel = ({ children, ...rest }: { children?: ReactNode } & Record<string, unknown>) => (
   <Box position="relative" {...rest}>{children}</Box>
 )
-export const CarouselContent = styled(XStack, {
+export const CarouselContent = asWeb<typeof XStack>(styled(XStack, {
   name: 'CarouselContent', overflowX: 'auto', gap: 16, scrollbarWidth: 'none',
-})
-export const CarouselItem = styled(Box, { name: 'CarouselItem', flexShrink: 0,
-})
+}))
+export const CarouselItem = asWeb<typeof Box>(styled(Box, { name: 'CarouselItem', flexShrink: 0,
+}))
 export const CarouselPrevious = (props: Record<string, unknown>) => (
   <Button size="icon" variant="outline" aria-label="Previous" {...props}><ChevronLeft size={18} /></Button>
 )

@@ -1,4 +1,4 @@
-import { Anchor, Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
+import { Anchor, Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
@@ -78,7 +78,7 @@ const OpenPricing = () => {
             <Link minHeight={44} 
               to="/pricing"
               paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" justifyContent="center" hoverStyle={{ opacity: 0.9 }}
-              style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+              style={FILL}
             >
               View Pricing
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

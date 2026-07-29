@@ -1,4 +1,4 @@
-import { Anchor, Box as GuiBox, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
+import { Anchor, Box as GuiBox, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -156,7 +156,7 @@ const Zen = () => {
                   <Link minHeight={44} 
                     to="/zen/models"
                     paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                    style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                    style={FILL}
                   >
                     Explore Models
                     <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
@@ -406,7 +406,7 @@ const Zen = () => {
                 <Link minHeight={44} 
                   to="/zen/models"
                   paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Explore All Models
                   <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>

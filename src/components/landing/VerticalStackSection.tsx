@@ -1,4 +1,4 @@
-import { Box, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
+import { Box, H2, H3, MotionBox, Paragraph, Text, XStack, YStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Database, Brain, Rocket } from "lucide-react";
@@ -166,7 +166,7 @@ const VerticalStackSection = () => {
           {/* Bottom endpoint */}
           <MotionBox
             position="absolute" left="50%" x="-50%" bottom={-16} width={16} height={16} borderRadius="var(--radius-full)" zIndex={20}
-            style={{ backgroundColor: BRAND_COLOR }}
+            style={FILL}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}

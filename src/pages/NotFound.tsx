@@ -1,4 +1,4 @@
-import { Box, H1, H2, Helmet, Link, MotionBox, Paragraph, XStack, YStack } from '@/gui'
+import { Box, H1, H2, Helmet, Link, MotionBox, Paragraph, XStack, YStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -72,7 +72,7 @@ const NotFound = () => {
               <Link minHeight={44} 
                 to="/"
                 paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                style={FILL}
               >
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Home size={16} /></Box>
                 Go to Homepage

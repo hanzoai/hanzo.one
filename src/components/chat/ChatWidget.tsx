@@ -1,9 +1,8 @@
-import { Anchor, Box, MotionBox, XStack } from '@/gui'
+import { Anchor, Box, MotionBox, XStack, FILL} from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, ExternalLink, Bot } from "lucide-react";
 
-const BRAND_COLOR = "var(--foreground)";
 
 // Quick action buttons
 const quickActions = [
@@ -142,7 +141,7 @@ const ChatWidget = () => {
       <MotionBox
         onClick={() => setIsOpen(!isOpen)}
         flexDirection="row" position="fixed" bottom={24} right={24} zIndex={50} width={56} height={56} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
-        style={{ backgroundColor: BRAND_COLOR }}
+        style={FILL}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -182,7 +181,7 @@ const ChatWidget = () => {
             {/* Header */}
             <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-900)">
               <XStack display="flex" alignItems="center" gap={8}>
-                <XStack width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" style={{ backgroundColor: BRAND_COLOR }}>
+                <XStack width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" style={FILL}>
                   <Bot size={16} color="var(--foreground)" />
                 </XStack>
                 <div>
@@ -266,7 +265,7 @@ const ChatWidget = () => {
                   type="submit"
                   disabled={isLoading || !input.trim()}
                   render="button" padding={8} borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" disabledStyle={{ opacity: 0.5 }}
-                  style={{ backgroundColor: BRAND_COLOR }}
+                  style={FILL}
                 >
                   <Send size={16} color="var(--foreground)" />
                 </Box>

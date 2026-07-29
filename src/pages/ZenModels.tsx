@@ -1,4 +1,4 @@
-import { Anchor, Box as GuiBox, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
+import { Anchor, Box as GuiBox, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack, FILL} from '@/gui'
 import React, { useState } from "react";
 
 /** Statuses that read as shipped — the only tonal distinction the badge makes. */
@@ -679,7 +679,7 @@ const ZenModels = () => {
               <Anchor minHeight={44} 
                 href="#models"
                 paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                style={FILL}
               >
                 Explore Models
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
@@ -934,7 +934,7 @@ const ZenModels = () => {
                 <Anchor tap
                   href="mailto:z@hanzo.ai"
                   display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Request Access
                 </Anchor>
@@ -1007,7 +1007,7 @@ const ZenModels = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   display="inline-flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Visit HuggingFace
                 </Anchor>
@@ -1028,7 +1028,7 @@ const ZenModels = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   display="inline-flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   View on GitHub
                 </Anchor>
@@ -1064,7 +1064,7 @@ const ZenModels = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   display="inline-flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Read Papers
                 </Anchor>
@@ -1193,7 +1193,7 @@ const ZenModels = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                  style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                  style={FILL}
                 >
                   Get Started
                   <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>

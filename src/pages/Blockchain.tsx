@@ -31,7 +31,6 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const BRAND_COLOR = "var(--foreground)";
 
 // Web3 capability categories
 const CAPABILITIES = [

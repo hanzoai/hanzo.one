@@ -249,10 +249,6 @@ const SolutionIndustries: React.FC = () => {
 
     const industry = industryData[activeIndustry] || industryData["Financial Services"];
     const colorClasses = {
-      blue: "from-blue-900/30 to-blue-900/10 border-blue-500/20",
-      pink: "from-pink-900/30 to-pink-900/10 border-pink-500/20",
-      green: "from-green-900/30 to-green-900/10 border-green-500/20",
-      indigo: "from-indigo-900/30 to-indigo-900/10 border-indigo-500/20"
     };
     
     return (

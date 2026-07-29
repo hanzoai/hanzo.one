@@ -1,4 +1,4 @@
-import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -203,7 +203,7 @@ const HowItWorks = () => {
                     {i === 0 && (
                       <Box
                         marginTop={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-full)" display="inline-block"
-                        style={{ backgroundColor: BRAND_COLOR, color: "#fff" }}
+                        style={FILL}
                       >
                         Best result
                       </Box>

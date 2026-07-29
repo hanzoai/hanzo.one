@@ -1,4 +1,4 @@
-import { Anchor, Box, H2, Link, MotionBox, Paragraph, YStack } from '@/gui'
+import { Anchor, Box, H2, Link, MotionBox, Paragraph, YStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -36,8 +36,8 @@ const FooterCTA = () => {
               href="https://hanzo.app"
               target="_blank"
               rel="noreferrer noopener"
-              justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
-              style={{ backgroundColor: BRAND_COLOR }}
+              justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
+              style={FILL}
             >
               Open hanzo.app
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>

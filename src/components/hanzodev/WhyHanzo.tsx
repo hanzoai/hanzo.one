@@ -16,7 +16,6 @@ import {
   Copy,
 } from "lucide-react";
 
-const BRAND_COLOR = "var(--foreground)";
 
 const VALUE_PROPS = [
   {

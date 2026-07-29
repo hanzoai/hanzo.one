@@ -10,37 +10,31 @@ const Templates = () => {
       title: "Stripe Subscriptions Starter",
       description: "Complete SaaS subscription management with Stripe integration",
       icon: CreditCard,
-      color: "from-purple-500 to-purple-700"
     },
     {
       title: "Next.js App Router with Authentication",
       description: "Secure, fast Next.js application with built-in authentication",
       icon: Globe,
-      color: "from-blue-500 to-blue-700"
     },
     {
       title: "AI Chatbot Template",
       description: "Intelligent chatbot with natural language processing capabilities",
       icon: MessageSquare,
-      color: "from-green-500 to-green-700"
     },
     {
       title: "LangChain and Next.js Starter",
       description: "LLM-powered application with LangChain and Next.js integration",
       icon: RefreshCw,
-      color: "from-amber-500 to-amber-700"
     },
     {
       title: "Flutter User Management",
       description: "Cross-platform Flutter app with complete user management",
       icon: Phone,
-      color: "from-cyan-500 to-cyan-700"
     },
     {
       title: "Expo React Native Starter",
       description: "Mobile-first React Native application with Expo framework",
       icon: Code,
-      color: "from-rose-500 to-rose-700"
     }
   ];
 

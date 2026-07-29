@@ -16,7 +16,6 @@ const TunnelSegments: React.FC = () => {
         style={{
           width: `${size}%`,
           height: `${size}%`,
-          boxSizing: "border-box",
           top: `${(100 - size) / 2}%`,
           left: `${(100 - size) / 2}%`,
           boxShadow: `0 0 10px 1px rgba(149, 76, 233, 0.1)`,

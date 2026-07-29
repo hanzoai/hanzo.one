@@ -24,7 +24,6 @@ import {
   Command,
 } from "lucide-react";
 
-const BRAND_COLOR = "var(--foreground)";
 
 interface CommandItem {
   id: string;

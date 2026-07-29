@@ -1,4 +1,4 @@
-import { Anchor, Box, Grid, Link, MotionBox, MotionText, Text, XStack } from '@/gui'
+import { Anchor, Box, Grid, Link, MotionBox, MotionText, Text, XStack, FILL} from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -201,7 +201,7 @@ const HeroSection = () => {
               <Link minHeight={44} 
                 to="/signup"
                 paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
-                style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+                style={FILL}
               >
                 Start building
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

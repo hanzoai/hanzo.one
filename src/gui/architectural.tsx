@@ -1,4 +1,5 @@
 import { Box } from '@/gui'
+import type { BoxProps } from './primitives'
 
 import React from "react";
 
@@ -120,7 +121,7 @@ export const ArchitecturalCorner: React.FC<ArchitecturalCornerProps> = ({ positi
   );
 };
 
-export const ArchitecturalBox: React.FC<{
+export const ArchitecturalBox: React.FC<Omit<BoxProps, 'children'> & {
   children: React.ReactNode;
   
   showCorners?: boolean;

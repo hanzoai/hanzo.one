@@ -36,3 +36,13 @@ body {
   background: var(--white-20);
   color: var(--foreground);
 }
+
+/* Form controls do not inherit the document typeface — the user agent sets
+   `font: 400 13.33px Arial` on them. Every control on this site is a control,
+   so the correction belongs here, once, not on each of them. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

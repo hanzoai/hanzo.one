@@ -1,4 +1,4 @@
-import { Anchor, Box, Button, Grid, H1, H2, H3, Helmet, Link, MotionBox, Paragraph, XStack } from '@/gui'
+import { Anchor, Box, Button, Grid, H1, H2, H3, Helmet, Link, MotionBox, Paragraph, XStack, FILL} from '@/gui'
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -58,21 +58,18 @@ const logoAssets = [
     name: "Logo - Dark Background",
     description: "White logo for use on dark backgrounds",
     format: "SVG, PNG",
-    preview: "bg-black",
     logoColor: "white",
   },
   {
     name: "Logo - Light Background",
     description: "Black logo for use on light backgrounds",
     format: "SVG, PNG",
-    preview: "bg-white",
     logoColor: "black",
   },
   {
     name: "Icon Only",
     description: "Standalone icon without wordmark",
     format: "SVG, PNG, ICO",
-    preview: "bg-neutral-900",
     logoColor: "white",
   },
 ];
@@ -249,7 +246,7 @@ const Press = () => {
             </Grid>
 
             <XStack display="flex" flexWrap="wrap" gap={16}>
-              <Button gap={8} style={{ backgroundColor: BRAND_COLOR }}>
+              <Button gap={8} style={FILL}>
                 <Download size={16} />
                 Download Press Kit (ZIP)
               </Button>
@@ -348,7 +345,7 @@ const Press = () => {
                   </Button>
                 </Link>
                 <a href="mailto:press@hanzo.ai">
-                  <Button gap={8} style={{ backgroundColor: BRAND_COLOR }}>
+                  <Button gap={8} style={FILL}>
                     <Mail size={16} />
                     Request Executive Bios
                   </Button>

@@ -1,4 +1,4 @@
-import { Box, Button, H2, H3, Link, MotionBox, Paragraph, YStack } from '@/gui'
+import { Box, Button, H2, H3, Link, MotionBox, Paragraph, YStack, FILL} from '@/gui'
 import React from "react";
 
 import { motion } from "framer-motion";
@@ -38,9 +38,8 @@ const CallToAction = () => {
 
           <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={64} $sm={{ flexDirection: "row" }}>
             <Button
-              size="lg"
-              color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}
-              style={{ backgroundColor: BRAND_COLOR }}
+              size="lg" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}
+              style={FILL}
               asChild
             >
               <Link minHeight={44} to="/signup">
@@ -74,9 +73,8 @@ const CallToAction = () => {
                 placeholder="Enter your email"
                 render="input" flex={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
               />
-              <Button
-                color="var(--foreground)" paddingHorizontal={24}
-                style={{ backgroundColor: BRAND_COLOR }}
+              <Button paddingHorizontal={24}
+                style={FILL}
               >
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Mail size={16} /></Box>
                 Subscribe

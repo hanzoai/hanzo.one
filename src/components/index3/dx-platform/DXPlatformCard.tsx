@@ -19,58 +19,22 @@ interface DXPlatformCardProps {
 const getColorClasses = (color: string = "indigo", isHovered: boolean) => {
   const colorMap: Record<string, { bg: string, hoverBg: string, text: string, hoverText: string }> = {
     indigo: { 
-      bg: "bg-indigo-900/30", 
-      hoverBg: "bg-indigo-600/30", 
-      text: "text-indigo-400", 
-      hoverText: "text-indigo-300" 
     },
     purple: { 
-      bg: "bg-purple-900/30", 
-      hoverBg: "bg-purple-600/30", 
-      text: "text-purple-400", 
-      hoverText: "text-purple-300" 
     },
     blue: { 
-      bg: "bg-blue-900/30", 
-      hoverBg: "bg-blue-600/30", 
-      text: "text-blue-400", 
-      hoverText: "text-blue-300" 
     },
     green: { 
-      bg: "bg-green-900/30", 
-      hoverBg: "bg-green-600/30", 
-      text: "text-green-400", 
-      hoverText: "text-green-300" 
     },
     amber: { 
-      bg: "bg-amber-900/30", 
-      hoverBg: "bg-amber-600/30", 
-      text: "text-amber-400", 
-      hoverText: "text-amber-300" 
     },
     teal: { 
-      bg: "bg-teal-900/30", 
-      hoverBg: "bg-teal-600/30", 
-      text: "text-teal-400", 
-      hoverText: "text-teal-300" 
     },
     rose: { 
-      bg: "bg-rose-900/30", 
-      hoverBg: "bg-rose-600/30", 
-      text: "text-rose-400", 
-      hoverText: "text-rose-300" 
     },
     cyan: { 
-      bg: "bg-cyan-900/30", 
-      hoverBg: "bg-cyan-600/30", 
-      text: "text-cyan-400", 
-      hoverText: "text-cyan-300" 
     },
     gray: { 
-      bg: "bg-gray-900/30", 
-      hoverBg: "bg-gray-700/30", 
-      text: "text-neutral-400", 
-      hoverText: "text-neutral-300" 
     }
   };
 

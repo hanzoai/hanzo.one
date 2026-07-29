@@ -1,4 +1,4 @@
-import { Box, Link, MotionBox, MotionText } from '@/gui'
+import { Box, Link, MotionBox, MotionText, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -62,8 +62,8 @@ const FinalCTASection = () => {
           >
             <Link minHeight={44} 
               to="/get-started"
-              width="100%" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
-              style={{ backgroundColor: BRAND_COLOR }}
+              width="100%" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
+              style={FILL}
             >
               Start free
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>

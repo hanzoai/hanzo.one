@@ -1,4 +1,4 @@
-import { Box, Button, Grid, H2, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
+import { Box, Button, Grid, H2, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -87,8 +87,8 @@ const PricingSection = () => {
             >
               {plan.highlight && (
                 <Box
-                  position="absolute" top={-12} left="50%" x="-50%" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--foreground)"
-                  style={{ backgroundColor: BRAND_COLOR }}
+                  position="absolute" top={-12} left="50%" x="-50%" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500"
+                  style={FILL}
                 >
                   Most Popular
                 </Box>
@@ -108,7 +108,7 @@ const PricingSection = () => {
 
               <Button
                 width="100%" marginBottom={24} color={plan.highlight ? "var(--foreground)" : "var(--foreground)"} backgroundColor={plan.highlight ? undefined : "rgb(255 255 255 / 0.1)"} hoverStyle={plan.highlight ? undefined : { backgroundColor: "rgb(255 255 255 / 0.2)" }}
-                style={plan.highlight ? { backgroundColor: BRAND_COLOR } : {}}
+                style={plan.highlight ? FILL : {}}
                 asChild
               >
                 <Link minHeight={44} to="/signup">

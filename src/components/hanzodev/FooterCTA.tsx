@@ -1,4 +1,4 @@
-import { Anchor, Box, Link, MotionBox, MotionText, Text, XStack } from '@/gui'
+import { Anchor, Box, Link, MotionBox, MotionText, Text, XStack, FILL} from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -9,7 +9,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const BRAND_COLOR = "var(--foreground)";
 
 const FooterCTA = () => {
   const [copied, setCopied] = useState(false);
@@ -54,7 +53,7 @@ const FooterCTA = () => {
           <Link minHeight={44} 
             to="/get-started"
             paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
-            style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
+            style={FILL}
           >
             Start free
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>

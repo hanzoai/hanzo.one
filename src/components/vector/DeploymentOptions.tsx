@@ -60,33 +60,6 @@ const DeploymentOptions = () => {
     }
   ];
 
-  const getColorClasses = (color: string, isHovered: boolean = false) => {
-    const colorMap: Record<string, { bg: string, text: string, border: string }> = {
-      blue: { 
-        bg: isHovered ? "bg-blue-900/40" : "bg-blue-900/20", 
-        text: "text-blue-400", 
-        border: isHovered ? "border-blue-500/50" : "border-blue-800/50" 
-      },
-      indigo: { 
-        bg: isHovered ? "bg-indigo-900/40" : "bg-indigo-900/20", 
-        text: "text-indigo-400", 
-        border: isHovered ? "border-indigo-500/50" : "border-indigo-800/50" 
-      },
-      purple: { 
-        bg: isHovered ? "bg-purple-900/40" : "bg-purple-900/20", 
-        text: "text-purple-400", 
-        border: isHovered ? "border-purple-500/50" : "border-purple-800/50" 
-      },
-      teal: { 
-        bg: isHovered ? "bg-teal-900/40" : "bg-teal-900/20", 
-        text: "text-teal-400", 
-        border: isHovered ? "border-teal-500/50" : "border-teal-800/50" 
-      }
-    };
-
-    return colorMap[color] || colorMap.indigo;
-  };
-
   return (
     <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
@@ -108,7 +81,6 @@ const DeploymentOptions = () => {
 
         <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {deploymentOptions.map((option, index) => {
-            const { bg, text, border } = getColorClasses(option.color);
             return (
               <MotionBox
                 key={index}

@@ -1,4 +1,4 @@
-import { Box, Grid, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
+import { Box, Grid, H3, H4, MotionBox, Paragraph, Text, XStack, FILL} from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { GitBranch, GitPullRequest, Zap } from "lucide-react";
@@ -23,8 +23,8 @@ const CodebaseDemo = () => {
         {/* AI response */}
         <XStack display="flex" gap={12}>
           <XStack
-            width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" flexShrink={0}
-            style={{ backgroundColor: BRAND_COLOR }}
+            width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" flexShrink={0}
+            style={FILL}
           >
             ⏺
           </XStack>
