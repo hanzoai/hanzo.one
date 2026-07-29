@@ -148,4 +148,9 @@ correction and can be dropped.
   `fonts.googleapis.com` / `fonts.gstatic.com`.
 - `/shadcn-v4` is a marketing page *about* shadcn; its copy still names Tailwind
   and Radix. That is page content, not a dependency — the site itself ships
-  neither.
+  neither (`grep radix dist/assets/*.js` → 0).
+- `@hanzo/ui` is pinned `^8.0.26`, and the site imports only `@hanzo/ui/product`
+  — the gui-backend half, which pulls no Radix into the bundle. 8.0.27 (the
+  release that drops the shadcn backend and all 18 Radix deps from the package
+  itself) is on `hanzoai/ui@blue2/gui-backend-flip` and not yet published; the
+  caret range picks it up on the next install with no change here.
