@@ -38,7 +38,6 @@ const IndustriesSection: React.FC = () => {
     <Box marginBottom={64}>
       <SectionHeader
         badge="Industry Solutions"
-        badgeColor="bg-purple-900/30 border border-purple-500/30 text-purple-300"
         title="AI-Powered Solutions for Every Industry"
         description="Transform your business operations with tailored AI solutions designed for your industry's unique challenges."
       />
@@ -57,7 +56,6 @@ const IndustriesSection: React.FC = () => {
       <ViewAllButton 
         href="/solutions"
         text="View all industries"
-        hoverColor="purple"
       />
     </Box>
   );

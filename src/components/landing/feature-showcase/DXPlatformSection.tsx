@@ -15,7 +15,6 @@ const DXPlatformSection: React.FC<DXPlatformSectionProps> = ({ products }) => {
     <Box marginBottom={80}>
       <SectionHeader
         badge="DX Platform"
-        badgeColor="bg-purple-900/30 border border-purple-500/30 text-purple-300"
         title="Developer Experience Tools for AI Engineering"
         description="Supercharge your AI development workflow with purpose-built tools for engineers."
       />
@@ -37,8 +36,6 @@ const DXPlatformSection: React.FC<DXPlatformSectionProps> = ({ products }) => {
                     icon={<product.icon color="var(--foreground)" />}
                     title={product.name}
                     description={product.description}
-                    color="bg-purple-900/30"
-                    hoverColor="bg-purple-600/40"
                     link={product.link || "#"}
                   />
                 </Box>
@@ -62,8 +59,6 @@ const DXPlatformSection: React.FC<DXPlatformSectionProps> = ({ products }) => {
                   icon={<product.icon color="var(--foreground)" />}
                   title={product.name}
                   description={product.description}
-                  color="bg-purple-900/30"
-                  hoverColor="bg-purple-600/40"
                   link={product.link || "#"}
                 />
               </Box>
@@ -75,7 +70,6 @@ const DXPlatformSection: React.FC<DXPlatformSectionProps> = ({ products }) => {
       <ViewAllButton 
         href="/platform"
         text="View all DX Platform tools"
-        hoverColor="purple"
       />
     </Box>
   );

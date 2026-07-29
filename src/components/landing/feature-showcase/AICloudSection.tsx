@@ -15,7 +15,6 @@ const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
     <Box marginBottom={80}>
       <SectionHeader
         badge="AI Cloud"
-        badgeColor="bg-blue-900/30 border border-blue-500/30 text-blue-300"
         title="Scalable Infrastructure for AI Applications"
         description="Build high-performance AI applications with our suite of cloud services designed for AI workloads."
       />
@@ -37,8 +36,6 @@ const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
                     icon={<product.icon color="var(--foreground)" />}
                     title={product.name}
                     description={product.description}
-                    color="bg-blue-900/30"
-                    hoverColor="bg-blue-600/40"
                     link={product.link || "#"}
                   />
                 </Box>
@@ -62,8 +59,6 @@ const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
                   icon={<product.icon color="var(--foreground)" />}
                   title={product.name}
                   description={product.description}
-                  color="bg-blue-900/30"
-                  hoverColor="bg-blue-600/40"
                   link={product.link || "#"}
                 />
               </Box>
@@ -75,7 +70,6 @@ const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
       <ViewAllButton 
         href="/ai"
         text="View all AI Cloud services"
-        hoverColor="blue"
       />
     </Box>
   );

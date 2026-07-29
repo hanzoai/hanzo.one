@@ -9,8 +9,6 @@ interface ProductCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  color?: string;
-  hoverColor?: string;
   link?: string;
 }
 
@@ -18,8 +16,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   icon, 
   title, 
   description, 
-  color = "bg-blue-900/30", 
-  hoverColor = "bg-blue-600/40",
   link = "#"
 }) => {
   return (
