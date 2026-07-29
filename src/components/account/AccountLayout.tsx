@@ -88,7 +88,7 @@ const AccountLayout = ({ children }: { children?: React.ReactNode }) => {
               <Box gridColumn="span 1 / span 1">
                 <Box backdropFilter="blur(24px)" WebkitBackdropFilter="blur(24px)" backgroundColor="rgb(0 0 0 / 0.4)" borderWidth={1} borderColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} rowGap={4}>
                   {accountNavItems.map((item) => (
-                    <Link minHeight={44} display="inline-flex" alignItems="center" 
+                    <Link minHeight={44} 
                       key={item.path} 
                       to={item.path}
                       display="flex" alignItems="center" columnGap={12} padding={12} borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isActive(item.path) ? "rgb(255 255 255 / 0.05)" : undefined} color={isActive(item.path) ? "var(--white)" : "var(--neutral-400)"} hoverStyle={isActive(item.path) ? undefined : { backgroundColor: "rgb(255 255 255 / 0.05)", color: "var(--white)" }}

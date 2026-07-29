@@ -562,7 +562,7 @@ const ModelCard = ({ model }: { model: any }) => {
       </GuiBox>
 
       {model.huggingface && (
-        <Anchor minHeight={44} display="inline-flex" alignItems="center"
+        <Anchor minHeight={44} 
           href={model.huggingface}
           target="_blank"
           rel="noopener noreferrer"
@@ -959,7 +959,7 @@ const ZenModels = () => {
               {Object.entries(MODEL_FAMILIES).map(([key, family]) => {
                 const Icon = family.icon;
                 return (
-                  <Anchor minHeight={44} display="inline-flex" alignItems="center"
+                  <Anchor minHeight={44} 
                     key={key}
                     href={`#${key}`}
                     display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" hoverStyle={{ borderColor: "var(--border-strong)", color: "var(--foreground)" }}
