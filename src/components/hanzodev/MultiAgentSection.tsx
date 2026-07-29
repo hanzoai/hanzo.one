@@ -167,7 +167,7 @@ const MultiAgentSection = () => {
             style={{ backgroundColor: BRAND_COLOR }}
             asChild
           >
-            <Link to="/signup">
+            <Link minHeight={44} to="/signup">
               Get Started Now
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>
@@ -229,7 +229,7 @@ const MultiAgentSection = () => {
             style={{ backgroundColor: BRAND_COLOR }}
             asChild
           >
-            <Link to="/download">
+            <Link minHeight={44} to="/download">
               Get Started Now
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>

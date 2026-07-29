@@ -40,7 +40,7 @@ const CloudServiceGrid: React.FC<CloudServiceGridProps> = ({ isHovered, setIsHov
         {/* Special "Learn More" card as the last item */}
         <Link
           to="/cloud"
-          backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
+          backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" display="flex" flexDirection="column" justifyContent="center" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
           onMouseEnter={() => setIsHovered("learn-more")}
           onMouseLeave={() => setIsHovered(null)}
         >

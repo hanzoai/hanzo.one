@@ -58,7 +58,7 @@ const CallToAction = () => {
             variant="outline" 
             borderColor="var(--neutral-700)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} $sm={{ width: "auto" }}
           >
-            <Anchor href="https://docs.hanzo.ai" display="flex" alignItems="center">
+            <Anchor minHeight={44} href="https://docs.hanzo.ai" display="flex" >
               Documentation <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
             </Anchor>
           </Button>

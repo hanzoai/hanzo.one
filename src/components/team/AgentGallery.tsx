@@ -115,9 +115,9 @@ const AgentDetailModal: React.FC<AgentDetailModalProps> = ({ agent, isOpen, onCl
             </Grid>
             
             <XStack display="flex" justifyContent="center">
-              <Link 
+              <Link minHeight={44} 
                 to={`/team/${agent.name.toLowerCase()}`}
-                display="inline-flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-xl)" color="var(--foreground)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))"
+                paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-xl)" color="var(--foreground)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))"
               >
                 View Full Profile
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

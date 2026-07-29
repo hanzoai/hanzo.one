@@ -26,7 +26,7 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ titleAnimationComplete }) => 
         radius="full"
         color="var(--foreground)" borderColor="rgb(255 255 255 / 0.1)" backgroundColor="transparent" height={40} minWidth="140px" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
       >
-        <Anchor href="/ai" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent" display="flex" alignItems="center">
+        <Anchor minHeight={44} href="/ai" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent" display="flex" >
           <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Sparkles size={16} /></Box>
           Our models
         </Anchor>
@@ -38,7 +38,7 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ titleAnimationComplete }) => 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Anchor href="/zen" display="flex" alignItems="center">
+        <Anchor minHeight={44} href="/zen" display="flex" >
           <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Zap size={16} /></Box>
           Our principles
         </Anchor>

@@ -136,7 +136,7 @@ export const CategoryPageTemplate: React.FC<CategoryPageTemplateProps> = ({
                 backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
                 asChild
               >
-                <Link to="/pricing">
+                <Link minHeight={44} to="/pricing">
                   Get Started Free
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
                 </Link>
@@ -234,7 +234,7 @@ export const CategoryPageTemplate: React.FC<CategoryPageTemplateProps> = ({
               backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
               asChild
             >
-              <Link to="/pricing">
+              <Link minHeight={44} to="/pricing">
                 Start Building
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Link>
@@ -266,7 +266,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
     >
-      <Link to={product.href}>
+      <Link minHeight={44} to={product.href}>
         <Card group backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" cursor="pointer" hoverStyle={{ borderColor: "var(--neutral-600)", backgroundColor: "var(--surface-card-emphasis)" }}>
           <CardHeader>
             <XStack display="flex" alignItems="flex-start" justifyContent="space-between">

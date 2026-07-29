@@ -8,7 +8,7 @@ const ExploreAllButton: React.FC = () => {
   return (
     <Box textAlign="center" marginTop={32}>
       <Button variant="outline" group asChild>
-        <Link to="/cloud">
+        <Link minHeight={44} to="/cloud">
           View all Cloud 
           <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ExternalLink size={16} /></Box>
         </Link>

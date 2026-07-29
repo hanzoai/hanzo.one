@@ -67,7 +67,7 @@ const BuildForGrowth = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           marginTop={64} textAlign="center"
         >
-          <Anchor href="#learn-more" display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+          <Anchor minHeight={44} href="#learn-more" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
             Learn how our customers achieved growth <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
           </Anchor>
         </MotionBox>

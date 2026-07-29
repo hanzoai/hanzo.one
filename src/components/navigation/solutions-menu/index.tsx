@@ -21,18 +21,18 @@ export const SolutionsMenu = () => {
               <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" textTransform="uppercase" letterSpacing="0.05em" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>Featured Solutions</Text>
             </XStack>
             <XStack display="flex" flexWrap="wrap" gap={8}>
-              <Link
+              <Link minHeight={44} 
                 to="/agency"
                 onClick={closeMenu}
-                group display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
+                group display="flex" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
               >
                 <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><Shield size={14} /></Box>
                 <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"}>Hanzo Agency</Text>
               </Link>
-              <Link
+              <Link minHeight={44} 
                 to="/enterprise"
                 onClick={closeMenu}
-                group display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
+                group display="flex" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
               >
                 <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><Building2 size={14} /></Box>
                 <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"}>Enterprise</Text>
@@ -204,7 +204,7 @@ export const SolutionsMenu = () => {
                 backgroundColor="var(--neutral-800)" color="var(--foreground)" height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                 asChild
               >
-                <Link to="/solutions" onClick={closeMenu}>
+                <Link minHeight={44} to="/solutions" onClick={closeMenu}>
                   All Solutions
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ArrowRight size={12} /></Box>
                 </Link>

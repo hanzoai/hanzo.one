@@ -111,7 +111,7 @@ const PricingSection = () => {
                 style={plan.highlight ? { backgroundColor: BRAND_COLOR } : {}}
                 asChild
               >
-                <Link to="/signup">
+                <Link minHeight={44} to="/signup">
                   Try Hanzo
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>

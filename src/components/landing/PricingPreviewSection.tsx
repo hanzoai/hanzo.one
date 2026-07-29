@@ -81,9 +81,9 @@ const PricingPreviewSection = () => {
 
               {/* Right: CTAs */}
               <YStack display="flex" flexDirection="column" alignItems="center" gap={16} $md={{ alignItems: "flex-end" }}>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://iam.hanzo.ai/sign-up"
-                  width="100%" display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $md={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
+                  width="100%" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $md={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: "var(--neutral-800)" }}
                 >
                   Start Building Free

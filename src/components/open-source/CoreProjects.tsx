@@ -63,7 +63,7 @@ const CoreProjects = () => {
                 flex={1} backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                 size="sm"
               >
-                <Anchor href="https://github.com/hanzoai/platform" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Anchor minHeight={44} href="https://github.com/hanzoai/platform" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> Repository
                 </Anchor>
               </Button>
@@ -72,7 +72,7 @@ const CoreProjects = () => {
                 variant="outline"
                 size="sm"
               >
-                <Anchor href="/platform" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Anchor minHeight={44} href="/platform" display="flex" justifyContent="center" width="100%">
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={16} /></Box> Learn More
                 </Anchor>
               </Button>
@@ -118,7 +118,7 @@ const CoreProjects = () => {
                 flex={1} backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                 size="sm"
               >
-                <Anchor href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Anchor minHeight={44} href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> Repository
                 </Anchor>
               </Button>
@@ -127,7 +127,7 @@ const CoreProjects = () => {
                 variant="outline"
                 size="sm"
               >
-                <Anchor href="/bot" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Anchor minHeight={44} href="/bot" display="flex" justifyContent="center" width="100%">
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={16} /></Box> Learn More
                 </Anchor>
               </Button>

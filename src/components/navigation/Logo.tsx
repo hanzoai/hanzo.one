@@ -155,7 +155,7 @@ const Logo = () => {
     <>
       <Link tap
         to="/"
-        group position="relative" display="flex" alignItems="center"
+        group position="relative" display="flex" 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onContextMenu={handleContextMenu}

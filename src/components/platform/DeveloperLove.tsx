@@ -68,11 +68,11 @@ const DeveloperLove = () => {
         >
           <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>…and loved by developers</H2>
           <XStack display="flex" justifyContent="center">
-            <Anchor 
+            <Anchor minHeight={44} 
               href="https://twitter.com/search?q=hanzo" 
               target="_blank" 
               rel="noopener noreferrer"
-              display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
+              color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
             >
               Join nearly 1M developers building with Hanzo <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Anchor>

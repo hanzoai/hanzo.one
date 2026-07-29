@@ -100,7 +100,7 @@ const TeamMemberPage = ({ memberId }: TeamMemberPageProps) => {
                     Work with Hanzo Agency
                     <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
                   </Button>
-                  <Anchor href="/contact" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
+                  <Anchor minHeight={44} display="inline-flex" alignItems="center" href="/contact" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
                     <span>Learn more</span>
                     <Mail size={14} />
                   </Anchor>
@@ -125,7 +125,7 @@ const TeamMemberPage = ({ memberId }: TeamMemberPageProps) => {
                     Contact Sensei Group
                     <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
                   </Button>
-                  <Anchor href="tel:+1234567890" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
+                  <Anchor minHeight={44} display="inline-flex" alignItems="center" href="tel:+1234567890" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
                     <span>Schedule a call</span>
                     <Phone size={14} />
                   </Anchor>

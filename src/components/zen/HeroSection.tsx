@@ -41,9 +41,9 @@ const HeroSection = () => {
           transition={{ delay: 0.6, duration: 0.5 }}
           flexDirection="row" display="flex" justifyContent="center"
         >
-          <Anchor 
+          <Anchor minHeight={44} 
             href="#principles" 
-            group display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
+            group display="flex" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
           >
             <span>Explore Principles</span>
             <Box display="inline-block" 

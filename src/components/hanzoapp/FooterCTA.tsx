@@ -32,19 +32,19 @@ const FooterCTA = () => {
           </Paragraph>
 
           <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://hanzo.app"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
+              justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR }}
             >
               Open hanzo.app
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Anchor>
-            <Link
+            <Link minHeight={44} 
               to="/download"
-              display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+              justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={20} /></Box>
               Download desktop

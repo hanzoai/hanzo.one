@@ -134,9 +134,9 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                 })}
               </Grid>
 
-              <Link
+              <Link minHeight={44} 
                 to="/blockchain"
-                display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
+                gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <Box render="span" display="inline-flex" alignItems="center" rotate="180deg"><ArrowRight size={16} /></Box>
                 Back to Web3 Overview

@@ -32,7 +32,7 @@ const HanzoExtensionHero = () => {
               size="lg"
               color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Anchor href="#browsers" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="#browsers" display="flex" >
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Chrome size={20} /></Box>
                 Add to Chrome
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
@@ -44,7 +44,7 @@ const HanzoExtensionHero = () => {
               variant="outline"
               borderColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <Anchor href="#browsers" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="#browsers" display="flex" >
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={20} /></Box>
                 Get Firefox Add-on
               </Anchor>

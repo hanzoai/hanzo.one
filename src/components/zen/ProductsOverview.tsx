@@ -153,9 +153,9 @@ const EcosystemDetail: React.FC<EcosystemDetailProps> = ({ isOpen, onClose, type
                   <GuiBox color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     Unified AI infrastructure for the enlightened engineer
                   </GuiBox>
-                  <Link 
+                  <Link minHeight={44} 
                     to="/ai" 
-                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}
+                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" hoverStyle={{ color: "var(--foreground)" }}
                   >
                     <span>Learn more about AI Cloud</span>
                     <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></GuiBox>
@@ -240,9 +240,9 @@ const EcosystemDetail: React.FC<EcosystemDetailProps> = ({ isOpen, onClose, type
                   <GuiBox color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     Build with tranquility, deploy with confidence
                   </GuiBox>
-                  <Link 
+                  <Link minHeight={44} 
                     to="/platform" 
-                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}
+                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" hoverStyle={{ color: "var(--foreground)" }}
                   >
                     <span>Learn more about DX Platform</span>
                     <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></GuiBox>
@@ -429,9 +429,9 @@ const ProductsOverview = () => {
               </XStack>
               <Paragraph color="var(--neutral-400)" marginBottom={16}>{product.description}</Paragraph>
               <GuiBox color="var(--neutral-600)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontStyle="italic" marginBottom={24}>"{product.principle}"</GuiBox>
-              <Link 
+              <Link minHeight={44} 
                 to={product.path} 
-                color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
+                color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
               >
                 <Text $group-hover={{ textDecorationLine: "underline" }}>Learn more</Text>
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={12} /></GuiBox>

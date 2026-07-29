@@ -51,19 +51,19 @@ const FooterCTA = () => {
           transition={{ delay: 0.2 }}
           flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16} marginBottom={32}
         >
-          <Link
+          <Link minHeight={44} 
             to="/get-started"
-            display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
+            paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
             style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
           >
             Start free
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Link>
-          <Anchor
+          <Anchor minHeight={44} 
             href="https://marketplace.visualstudio.com/items?itemName=hanzo.hanzo-dev"
             target="_blank"
             rel="noreferrer noopener"
-            display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+            paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
             Install VS Code extension
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={20} /></Box>

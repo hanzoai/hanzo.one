@@ -341,7 +341,7 @@ const Blockchain = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.03 }}
                 >
-                  <Link
+                  <Link minHeight={44} 
                     to={product.href}
                     group display="block" padding={20} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)", borderColor: "var(--neutral-700)" }}
                   >

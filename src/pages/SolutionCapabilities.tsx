@@ -73,13 +73,13 @@ const SolutionCapabilities: React.FC = () => {
                     </Paragraph>
                     
                     <XStack display="flex" flexWrap="wrap" gap={8} marginTop={16}>
-                      <Link to={`/solutions/${item.toLowerCase().replace(/\s+/g, '-')}`} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+                      <Link minHeight={44} to={`/solutions/${item.toLowerCase().replace(/\s+/g, '-')}`} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
                         <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><LinkIcon size={12} /></Box> Learn more
                       </Link>
-                      <Anchor href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+                      <Anchor minHeight={44} href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
                         <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><FileText size={12} /></Box> Case study
                       </Anchor>
-                      <Anchor href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+                      <Anchor minHeight={44} href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
                         <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><BookOpen size={12} /></Box> White paper
                       </Anchor>
                     </XStack>
@@ -258,21 +258,21 @@ const SolutionCapabilities: React.FC = () => {
             See how we've helped organizations like yours achieve their goals through innovative solutions.
           </Paragraph>
           <Box rowGap={16}>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">Financial Services Digital Transformation</Text>
               </XStack>
               <ExternalLink size={16} color="var(--neutral-400)" />
             </Anchor>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">Healthcare AI Implementation</Text>
               </XStack>
               <ExternalLink size={16} color="var(--neutral-400)" />
             </Anchor>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">Retail Analytics Platform</Text>
@@ -293,21 +293,21 @@ const SolutionCapabilities: React.FC = () => {
             Access our thought leadership and research on the latest industry trends and technologies.
           </Paragraph>
           <Box rowGap={16}>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">The Future of AI in Enterprise</Text>
               </XStack>
               <ExternalLink size={16} color="var(--neutral-400)" />
             </Anchor>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">Cloud Security Best Practices</Text>
               </XStack>
               <ExternalLink size={16} color="var(--neutral-400)" />
             </Anchor>
-            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+            <Anchor minHeight={44} href="#" display="flex" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
                 <Text color="var(--white)">Digital Transformation Playbook</Text>
@@ -343,7 +343,7 @@ const SolutionCapabilities: React.FC = () => {
             content, and marketing strategies powered by artificial intelligence.
           </Paragraph>
           <XStack display="flex" flexWrap="wrap" gap={16}>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -352,7 +352,7 @@ const SolutionCapabilities: React.FC = () => {
               <span>Visit Hanzo Agency</span>
               <ExternalLink size={14} />
             </Anchor>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="/contact" 
               display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
@@ -371,7 +371,7 @@ const SolutionCapabilities: React.FC = () => {
             technology solutions and drive strategic growth initiatives.
           </Paragraph>
           <XStack display="flex" flexWrap="wrap" gap={16}>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -380,7 +380,7 @@ const SolutionCapabilities: React.FC = () => {
               <span>Visit Sensei Group</span>
               <ExternalLink size={14} />
             </Anchor>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="tel:+1234567890" 
               display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
@@ -401,7 +401,7 @@ const SolutionCapabilities: React.FC = () => {
         <Box maxWidth="var(--container-max)" marginHorizontal="auto">
           <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
             <Box display="inline-block" marginBottom={16}>
-              <Link to="/solutions" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" display="flex" alignItems="center" gap={4} hoverStyle={{ color: "var(--white)" }}>
+              <Link minHeight={44} to="/solutions" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" display="flex" gap={4} hoverStyle={{ color: "var(--white)" }}>
                 <Box render="span" display="inline-flex" alignItems="center" rotate="180deg"><ChevronRight size={16} /></Box> Back to Solutions
               </Link>
             </Box>
@@ -462,16 +462,16 @@ const SolutionCapabilities: React.FC = () => {
                 Connect with our team to learn how our capabilities can help you achieve your goals.
               </Paragraph>
               <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="/contact"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-600)" color="var(--white)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-600)" color="var(--white)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
                 </Anchor>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="tel:+1234567890"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-500)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-500)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
                 >
                   Schedule a Call
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Phone size={20} /></Box>

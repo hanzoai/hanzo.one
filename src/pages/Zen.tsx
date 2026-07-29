@@ -153,19 +153,19 @@ const Zen = () => {
                   transition={{ duration: 0.4, delay: 0.15 }}
                   flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" gap={16} marginBottom={32}
                 >
-                  <Link
+                  <Link minHeight={44} 
                     to="/zen/models"
-                    display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                    paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                     style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                   >
                     Explore Models
                     <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
                   </Link>
-                  <Anchor
+                  <Anchor minHeight={44} 
                     href="https://zenlm.org/research"
                     target="_blank"
                     rel="noopener noreferrer"
-                    display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+                    paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                   >
                     <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={16} /></GuiBox>
                     Read Research
@@ -379,7 +379,7 @@ const Zen = () => {
                 
                 padding={24} backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", y: -4 }}
               >
-                <Link to="/zen/models" display="block">
+                <Link minHeight={44} to="/zen/models" display="block">
                   <GuiBox fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" marginBottom={16}>📚</GuiBox>
                   <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>Models</H3>
                   <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Full catalog with specs and downloads</Paragraph>
@@ -403,9 +403,9 @@ const Zen = () => {
                 All models are open source under Apache 2.0 or MIT license. Start building today.
               </Paragraph>
               <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
-                <Link
+                <Link minHeight={44} 
                   to="/zen/models"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                 >
                   Explore All Models
@@ -417,11 +417,11 @@ const Zen = () => {
                 >
                   Try Hanzo Dev
                 </Link>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://zenlm.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
                   <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={16} /></GuiBox>
                   Visit zenlm.org

@@ -41,11 +41,11 @@ const OpenModels = () => {
             </Paragraph>
 
             <XStack display="flex" flexWrap="wrap" gap={16}>
-              <Anchor
+              <Anchor minHeight={44} 
                 href="https://hanzo.ai/leaderboard"
                 target="_blank"
                 rel="noreferrer noopener"
-                display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 View leaderboard

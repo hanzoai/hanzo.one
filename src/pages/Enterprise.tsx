@@ -56,7 +56,7 @@ const Enterprise = () => {
             
             <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
               <Button size="lg" backgroundColor="var(--foreground)" color="var(--pure-black)" paddingHorizontal={32} paddingVertical={12} hoverStyle={{ backgroundColor: "var(--neutral-100)" }}>
-                <Anchor href="/contact" display="flex" alignItems="center">
+                <Anchor minHeight={44} href="/contact" display="flex" >
                   <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Phone size={20} /></Box>
                   Contact Sales
                 </Anchor>

@@ -230,9 +230,9 @@ const Privacy = () => {
               transition={{ delay: 0.2 }}
               flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16}
             >
-              <Link
+              <Link minHeight={44} 
                 to="/contact"
-                display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
+                paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Contact Us

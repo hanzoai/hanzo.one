@@ -31,10 +31,10 @@ export const SolutionCategory = ({ title, items, onItemClick }: SolutionCategory
           const Icon = getIcon(item);
           const itemSlug = item.toLowerCase().replace(/\s+/g, '-');
           return (
-            <Link 
+            <Link minHeight={44} 
               to={`/solutions/${itemSlug}`} 
               key={item} 
-              group display="flex" alignItems="center" columnGap={12}
+              group display="flex" columnGap={12}
               onClick={onItemClick}
             >
               <XStack width={40} height={40} display="flex" alignItems="center" justifyContent="center" flexShrink={0}>

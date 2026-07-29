@@ -188,7 +188,7 @@ const RelatedProductCard: React.FC<{ product: Product; index: number }> = ({ pro
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
     >
-      <Link to={product.href}>
+      <Link minHeight={44} to={product.href}>
         <Card group backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" cursor="pointer" hoverStyle={{ borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card-emphasis)" }}>
           <CardHeader paddingBottom={12}>
             <XStack display="flex" alignItems="flex-start" justifyContent="space-between">
@@ -545,7 +545,7 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ produc
             <Paragraph color="var(--neutral-500)" textAlign="center" marginBottom={40}>Learn more about {product.shortName}</Paragraph>
 
             <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
-              <Anchor
+              <Anchor minHeight={44} 
                 href={product.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -566,7 +566,7 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ produc
               </Anchor>
 
               {product.docs && (
-                <Anchor
+                <Anchor minHeight={44} 
                   href={product.docs}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -587,7 +587,7 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ produc
                 </Anchor>
               )}
 
-              <Link to="/pricing" group>
+              <Link minHeight={44} to="/pricing" group>
                 <Card backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" hoverStyle={{ borderColor: "var(--border-strong)" }}>
                   <CardHeader>
                     <CardTitle display="flex" alignItems="center" gap={8} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">
@@ -621,9 +621,9 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ produc
                   <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>Related Products</H2>
                   <Paragraph color="var(--neutral-500)">More from Hanzo {product.category.charAt(0).toUpperCase() + product.category.slice(1)}</Paragraph>
                 </div>
-                <Link
+                <Link minHeight={44} 
                   to={`/products/${product.category}`}
-                  group color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" display="flex" alignItems="center" gap={4} hoverStyle={{ color: "rgb(255 255 255 / 0.8)" }}
+                  group color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" display="flex" gap={4} hoverStyle={{ color: "rgb(255 255 255 / 0.8)" }}
                 >
                   View all
                   <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
@@ -674,7 +674,7 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ produc
                 backgroundColor="var(--neutral-800)" color="var(--foreground)" borderWidth={0} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                 asChild
               >
-                <Link to="/pricing">
+                <Link minHeight={44} to="/pricing">
                   Start Free
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
                 </Link>

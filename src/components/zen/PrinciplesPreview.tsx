@@ -65,9 +65,9 @@ const WisdomDialog: React.FC<WisdomDialogProps> = ({ principle, isOpen, onClose 
             </Box>
             
             <Box marginTop={24} paddingTop={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" textAlign="center">
-              <Link 
+              <Link minHeight={44} 
                 to="/philosophy" 
-                color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" justifyContent="center" hoverStyle={{ color: "var(--foreground)" }}
+                color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" justifyContent="center" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <span>Explore more principles</span>
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></Box>
@@ -192,7 +192,7 @@ const PrinciplesPreview = () => {
         </Grid>
         
         <Box textAlign="center" marginTop={48}>
-          <Link to="/philosophy" group display="inline-flex" alignItems="center" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+          <Link minHeight={44} to="/philosophy" group color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
             <Text $group-hover={{ textDecorationLine: "underline" }}>Learn more principles</Text>
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
           </Link>

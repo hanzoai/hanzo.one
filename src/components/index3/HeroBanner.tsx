@@ -52,7 +52,7 @@ const HeroBanner = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           marginTop={64}
         >
-          <Anchor href="#platform" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" justifyContent="center" hoverStyle={{ color: "var(--white)" }}>
+          <Anchor minHeight={44} href="#platform" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" justifyContent="center" hoverStyle={{ color: "var(--white)" }}>
             Scroll to explore
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowDown size={20} /></Box>
           </Anchor>

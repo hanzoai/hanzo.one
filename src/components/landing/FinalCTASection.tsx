@@ -60,18 +60,18 @@ const FinalCTASection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}
           >
-            <Link
+            <Link minHeight={44} 
               to="/get-started"
-              width="100%" display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
+              width="100%" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR }}
             >
               Start free
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>
 
-            <Link
+            <Link minHeight={44} 
               to="/contact"
-              width="100%" display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
+              width="100%" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $sm={{ width: "auto" }} hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessageSquare size={20} /></Box>
               Talk to sales

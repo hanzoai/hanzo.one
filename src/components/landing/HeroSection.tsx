@@ -443,19 +443,19 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 display="flex" flexDirection="row" alignItems="center" gap={16} flexWrap="wrap" marginBottom={32}
               >
-                <Link
+                <Link minHeight={44} 
                   to="/products"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
@@ -560,19 +560,19 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 display="flex" flexDirection="row" alignItems="center" justifyContent="center" gap={16} flexWrap="wrap" marginBottom={24}
               >
-                <Link
+                <Link minHeight={44} 
                   to="/products"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
@@ -673,19 +673,19 @@ const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 display="flex" flexDirection="column" alignItems="center" gap={12} marginBottom={16}
               >
-                <Link
+                <Link minHeight={44} 
                   to="/products"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ opacity: 0.9 }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
+                  justifyContent="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>

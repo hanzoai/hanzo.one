@@ -287,7 +287,7 @@ const Products = () => {
                   flex={1} backgroundColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                   size="sm"
                 >
-                  <Anchor href={product.github} target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                  <Anchor minHeight={44} href={product.github} target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> GitHub
                   </Anchor>
                 </Button>

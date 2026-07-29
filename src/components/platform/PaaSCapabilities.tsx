@@ -272,19 +272,19 @@ const PaaSCapabilities = () => {
           marginTop={48} textAlign="center"
         >
           <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://docs.hanzo.ai/platform/quickstart"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+              paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#fff" }}
             >
               Get Started
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>
             </Anchor>
-            <Link
+            <Link minHeight={44} 
               to="/cloud"
-              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+              paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               Compare to Cloud
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>

@@ -176,7 +176,7 @@ export default function Products() {
                 backgroundColor="var(--neutral-800)" color="var(--foreground)" hoverStyle={{ backgroundColor: "#e03333" }}
                 asChild
               >
-                <Link to="/pricing">
+                <Link minHeight={44} to="/pricing">
                   Start Free
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
                 </Link>
@@ -228,7 +228,7 @@ export default function Products() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  <Link to={category.href}>
+                  <Link minHeight={44} to={category.href}>
                     <Card group backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" cursor="pointer" hoverStyle={{ borderColor: "var(--neutral-600)", backgroundColor: "var(--surface-card-emphasis)" }}>
                       <CardHeader>
                         <XStack display="flex" alignItems="flex-start" justifyContent="space-between">
@@ -289,7 +289,7 @@ export default function Products() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, delay: idx * 0.03 }}
                     >
-                      <Link to={product.href}>
+                      <Link minHeight={44} to={product.href}>
                         <Box group padding={16} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" height="100%" hoverStyle={{ borderColor: "var(--neutral-600)", backgroundColor: "var(--surface-card-emphasis)" }}>
                           <XStack display="flex" alignItems="flex-start" gap={12}>
                             <Box padding={8} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.05)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ borderColor: "rgb(255 255 255 / 0.2)" }}>
@@ -338,7 +338,7 @@ export default function Products() {
             borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
             asChild
           >
-            <Link to="/zen">
+            <Link minHeight={44} to="/zen">
               Learn about Zen
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Link>
@@ -361,7 +361,7 @@ export default function Products() {
               backgroundColor="var(--neutral-800)" color="var(--foreground)" hoverStyle={{ backgroundColor: "#e03333" }}
               asChild
             >
-              <Link to="/pricing">
+              <Link minHeight={44} to="/pricing">
                 Start Building
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Link>

@@ -63,11 +63,11 @@ const DeploymentOptions = () => {
                 <Text color="var(--foreground)">✓</Text> No external dependencies
               </XStack>
             </Box>
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://github.com/hanzoai/platform"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "#fd6666" }}
+              marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "#fd6666" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               View on GitHub
@@ -103,9 +103,9 @@ const DeploymentOptions = () => {
                 <Text color="var(--neutral-500)">✓</Text> 99.99% SLA
               </XStack>
             </Box>
-            <Link
+            <Link minHeight={44} 
               to="/cloud"
-              display="inline-flex" alignItems="center" marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
+              marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
             >
               Explore Cloud
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -141,9 +141,9 @@ const DeploymentOptions = () => {
                 <Text color="var(--neutral-500)">✓</Text> Unified management
               </XStack>
             </Box>
-            <Link
+            <Link minHeight={44} 
               to="/enterprise"
-              display="inline-flex" alignItems="center" marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
+              marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
             >
               Contact Sales
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
@@ -200,11 +200,11 @@ const OpenSourceBenefits = () => {
           </Grid>
 
           <Box marginTop={32} paddingTop={32} borderTopWidth={1} borderColor="var(--neutral-700)" textAlign="center">
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://github.com/hanzoai/platform"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-600)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
+              paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-600)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               Star on GitHub

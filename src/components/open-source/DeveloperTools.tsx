@@ -57,7 +57,7 @@ const DeveloperTools = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/dev" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/dev" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>
@@ -96,7 +96,7 @@ const DeveloperTools = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/team" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/team" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>
@@ -135,7 +135,7 @@ const DeveloperTools = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/cli" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/cli" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>
@@ -144,7 +144,7 @@ const DeveloperTools = () => {
 
         <Box textAlign="center" marginTop={48}>
           <Button size="lg" variant="outline" borderColor="var(--border-strong)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
-            <Anchor href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center">
+            <Anchor minHeight={44} href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" display="flex" >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box> View All Projects
             </Anchor>
           </Button>

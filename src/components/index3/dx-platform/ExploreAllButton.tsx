@@ -13,7 +13,7 @@ const ExploreAllButton: React.FC = () => {
         radius="full"
         asChild
       >
-        <Link to="/platform">
+        <Link minHeight={44} to="/platform">
           Explore All Platform Tools
           <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ExternalLink size={16} /></Box>
         </Link>

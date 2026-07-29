@@ -62,9 +62,9 @@ const Documentation = () => {
               <Box render="ul" rowGap={8}>
                 {section.items.map((item, i) => (
                   <li key={i}>
-                    <Anchor 
+                    <Anchor minHeight={44} 
                       href="#" 
-                      color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" paddingVertical={4} hoverStyle={{ color: "var(--foreground)" }}
+                      color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" paddingVertical={4} hoverStyle={{ color: "var(--foreground)" }}
                     >
                       <Box width={4} height={4} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-full)" marginRight={8}></Box>
                       {item}
@@ -83,9 +83,9 @@ const Documentation = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           marginTop={40} textAlign="center"
         >
-          <Anchor 
+          <Anchor minHeight={44} 
             href="#" 
-            display="inline-flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
+            color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
           >
             <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Book size={20} /></Box>
             View Complete Documentation

@@ -275,7 +275,7 @@ const Press = () => {
             </H2>
             <Box rowGap={16}>
               {pressReleases.map((release) => (
-                <Link
+                <Link minHeight={44} 
                   key={release.title}
                   to={release.link}
                   group display="block" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-50)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--neutral-700)" } : { borderColor: "var(--neutral-300)" }}
@@ -310,7 +310,7 @@ const Press = () => {
             </H2>
             <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
               {socialLinks.map((social) => (
-                <Anchor
+                <Anchor minHeight={44} 
                   key={social.name}
                   href={social.href}
                   target="_blank"

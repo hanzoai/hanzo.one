@@ -71,7 +71,7 @@ const SenseiMethod = () => {
             <Button 
               color="var(--white)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Anchor href="https://sensei.group" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="https://sensei.group" target="_blank" rel="noopener noreferrer" display="flex" >
                 Visit Sensei Group
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Anchor>

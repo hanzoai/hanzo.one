@@ -562,7 +562,7 @@ const ModelCard = ({ model }: { model: any }) => {
       </GuiBox>
 
       {model.huggingface && (
-        <Anchor
+        <Anchor minHeight={44} display="inline-flex" alignItems="center"
           href={model.huggingface}
           target="_blank"
           rel="noopener noreferrer"
@@ -676,26 +676,26 @@ const ZenModels = () => {
               transition={{ duration: 0.4, delay: 0.15 }}
               flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" gap={16} marginBottom={32}
             >
-              <Anchor
+              <Anchor minHeight={44} 
                 href="#models"
-                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Explore Models
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
               </Anchor>
-              <Anchor
+              <Anchor minHeight={44} 
                 href="#dataset"
-                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Database size={16} /></GuiBox>
                 Training Data
               </Anchor>
-              <Anchor
+              <Anchor minHeight={44} 
                 href="https://zenlm.org/research"
                 target="_blank"
                 rel="noopener noreferrer"
-                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><BookOpen size={16} /></GuiBox>
                 Research Papers
@@ -959,7 +959,7 @@ const ZenModels = () => {
               {Object.entries(MODEL_FAMILIES).map(([key, family]) => {
                 const Icon = family.icon;
                 return (
-                  <Anchor
+                  <Anchor minHeight={44} display="inline-flex" alignItems="center"
                     key={key}
                     href={`#${key}`}
                     display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" hoverStyle={{ borderColor: "var(--border-strong)", color: "var(--foreground)" }}
@@ -1188,11 +1188,11 @@ const ZenModels = () => {
                 building today.
               </Paragraph>
               <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://huggingface.co/zenlm"
                   target="_blank"
                   rel="noopener noreferrer"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                 >
                   Get Started
@@ -1204,11 +1204,11 @@ const ZenModels = () => {
                 >
                   Try Hanzo Dev
                 </Link>
-                <Anchor
+                <Anchor minHeight={44} 
                   href="https://zenlm.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
                   <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={16} /></GuiBox>
                   Visit zenlm.org

@@ -101,7 +101,7 @@ export const ProductsMenu = () => {
                 backgroundColor="var(--neutral-800)" color="var(--foreground)" height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                 asChild
               >
-                <Link to="/products" onClick={closeMenu}>
+                <Link minHeight={44} to="/products" onClick={closeMenu}>
                   All Products
                   <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ArrowRight size={12} /></Box>
                 </Link>

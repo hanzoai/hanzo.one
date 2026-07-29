@@ -40,21 +40,21 @@ const OpenSource = () => {
           </Paragraph>
 
           <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={32}>
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://github.com/hanzoai/hanzo-dev"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+              paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               Star on GitHub
             </Anchor>
-            <Anchor
+            <Anchor minHeight={44} 
               href="https://discord.gg/hanzo"
               target="_blank"
               rel="noreferrer noopener"
-              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
+              paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
               <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessageCircle size={16} /></Box>
               Join Discord

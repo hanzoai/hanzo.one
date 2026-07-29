@@ -208,11 +208,11 @@ const PlatformHero = () => {
               transition={{ duration: 0.4, delay: 0.15 }}
               flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" gap={16} marginBottom={24}
             >
-              <Anchor
+              <Anchor minHeight={44} 
                 href="https://github.com/hanzoai/platform"
                 target="_blank"
                 rel="noreferrer noopener"
-                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>

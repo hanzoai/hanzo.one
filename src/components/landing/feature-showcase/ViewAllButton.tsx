@@ -44,7 +44,7 @@ const ViewAllButton: React.FC<ViewAllButtonProps> = ({ href, text, hoverColor })
           group borderColor="var(--neutral-700)" transition="all 300ms cubic-bezier(.4,0,.2,1)"
           asChild
         >
-          <Anchor href={href} display="flex" alignItems="center" gap={8}>
+          <Anchor minHeight={44} href={href} display="flex" gap={8}>
             <span>{text}</span>
             <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
           </Anchor>

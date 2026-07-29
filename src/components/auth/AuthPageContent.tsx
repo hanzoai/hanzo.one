@@ -19,7 +19,7 @@ const AuthPageContent: React.FC<AuthPageContentProps> = ({
     <XStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" alignItems="center" justifyContent="center" padding={16}>
       <Box width="100%" maxWidth="28rem" rowGap={24}>
         <Box textAlign="center" marginBottom={24}>
-          <Anchor href="/" display="inline-block" marginBottom={32}>
+          <Anchor minHeight={44} href="/" display="inline-block" marginBottom={32}>
             <Box display="inline-block" 
               src="/placeholder.svg" 
               alt="Hanzo Logo" 

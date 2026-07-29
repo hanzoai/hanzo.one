@@ -153,9 +153,9 @@ const PlatformOverviewSection = () => {
             })}
           </Grid>
 
-          <Link
+          <Link minHeight={44} 
             to="/dev"
-            display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+            paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
             Run your first task
             <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

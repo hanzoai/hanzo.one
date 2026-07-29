@@ -10,11 +10,11 @@ const RegCFBanner = () => {
         <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
           Invest in the Future of AI Collaboration—Join Our $5M Reg CF Campaign on Republic.com
         </Paragraph>
-        <Link
+        <Link minHeight={44} 
           to="https://republic.com/hanzo" 
           target="_blank"
           rel="noopener noreferrer"
-          display="inline-flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
+          fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
         >
           <span>Learn More / Invest</span>
           <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ArrowRight size={12} /></Box>

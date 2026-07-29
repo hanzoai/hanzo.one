@@ -101,9 +101,9 @@ const UnifiedAISection = () => {
             </Box>
             
             <Box marginTop={40}>
-              <Link
+              <Link minHeight={44} 
                 to="/platform"
-                display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
+                color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
                 Explore the platform
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>

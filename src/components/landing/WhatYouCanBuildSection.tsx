@@ -105,9 +105,9 @@ const WhatYouCanBuildSection: React.FC = () => {
                   </Box>
 
                   {/* Link */}
-                  <Anchor
+                  <Anchor minHeight={44} 
                     href={card.linkHref}
-                    display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.8 }}
+                    gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.8 }}
                     style={{ color: "var(--foreground)" }}
                   >
                     {card.linkText}

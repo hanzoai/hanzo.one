@@ -100,12 +100,12 @@ const OpenSourceSection = () => {
           flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={48}
         >
           {githubOrgs.map((org) => (
-            <Anchor
+            <Anchor minHeight={44} 
               key={org.name}
               href={org.url}
               target="_blank"
               rel="noopener noreferrer"
-              group display="flex" alignItems="center" gap={12} paddingHorizontal={20} paddingVertical={12} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-700)" }}
+              group display="flex" gap={12} paddingHorizontal={20} paddingVertical={12} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-700)" }}
             >
               <Github size={20} color="var(--neutral-400)" />
               <div>

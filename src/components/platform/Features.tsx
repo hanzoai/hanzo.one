@@ -85,7 +85,7 @@ const Features = () => {
               <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={16}>{feature.description}</Paragraph>
               <Paragraph color="var(--neutral-400)" marginBottom={24}>{feature.details}</Paragraph>
               
-              <Anchor href="#learn-more" display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+              <Anchor minHeight={44} href="#learn-more" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
                 Learn More <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
               </Anchor>
               

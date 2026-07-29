@@ -28,7 +28,7 @@ const ServiceCards: React.FC = () => {
         <Paragraph color="var(--neutral-300)" marginBottom={24}>
           Elevate your brand with our AI-powered creative agency. We craft cutting-edge digital experiences that captivate audiences and deliver measurable business results.
         </Paragraph>
-        <Anchor href="/agency" group display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+        <Anchor minHeight={44} href="/agency" group color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
           <Text marginRight={8}>Learn more</Text>
           <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
         </Anchor>
@@ -54,7 +54,7 @@ const ServiceCards: React.FC = () => {
         <Paragraph color="var(--neutral-300)" marginBottom={24}>
           Accelerate enterprise transformation with our elite collective of CXOs and technology experts. We guide organizations through digital evolution with strategic implementation.
         </Paragraph>
-        <Anchor href="/sensei" group display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+        <Anchor minHeight={44} href="/sensei" group color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
           <Text marginRight={8}>Learn more</Text>
           <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
         </Anchor>

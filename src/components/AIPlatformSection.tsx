@@ -95,7 +95,7 @@ const AIPlatformSection = () => {
             size="lg"
             borderRadius="var(--radius-full)" backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-700))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--neutral-600))" }}
           >
-            <Anchor href="/ai" display="flex" alignItems="center">
+            <Anchor minHeight={44} href="/ai" display="flex" >
               Explore the Platform <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Anchor>
           </Button>

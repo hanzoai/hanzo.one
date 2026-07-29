@@ -57,7 +57,7 @@ const InfrastructureComponents = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/vector-db" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/vector-db" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>
@@ -96,7 +96,7 @@ const InfrastructureComponents = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/llm-runtime" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/llm-runtime" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>
@@ -135,7 +135,7 @@ const InfrastructureComponents = () => {
               size="sm" 
               width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <Anchor href="https://github.com/hanzoai/gateway" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+              <Anchor minHeight={44} href="https://github.com/hanzoai/gateway" target="_blank" rel="noopener noreferrer" display="flex" justifyContent="center" width="100%">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
               </Anchor>
             </Button>

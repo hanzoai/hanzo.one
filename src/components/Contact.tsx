@@ -139,32 +139,32 @@ const Contact = () => {
                 </Paragraph>
                 
                 <Box rowGap={16}>
-                  <Anchor href="https://discord.gg/XthHQQj" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://discord.gg/XthHQQj" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><MessageSquare size={20} color="var(--foreground)" /></Box>
                     <span>Join our Discord Community</span>
                   </Anchor>
                   
-                  <Anchor href="https://github.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://github.com/hanzoai" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Github size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on GitHub</span>
                   </Anchor>
                   
-                  <Anchor href="https://twitter.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://twitter.com/hanzoai" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Twitter size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on Twitter</span>
                   </Anchor>
 
-                  <Anchor href="https://linkedin.com/company/hanzo-ai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://linkedin.com/company/hanzo-ai" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Linkedin size={20} color="var(--foreground)" /></Box>
                     <span>Connect on LinkedIn</span>
                   </Anchor>
 
-                  <Anchor href="https://facebook.com/hanzo-inc" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://facebook.com/hanzo-inc" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Facebook size={20} color="var(--foreground)" /></Box>
                     <span>Like us on Facebook</span>
                   </Anchor>
 
-                  <Anchor href="https://instagram.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Anchor minHeight={44} href="https://instagram.com/hanzoai" display="flex" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                     <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Instagram size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on Instagram</span>
                   </Anchor>

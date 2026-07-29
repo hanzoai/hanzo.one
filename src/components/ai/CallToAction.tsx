@@ -62,7 +62,7 @@ const CallToAction = () => {
             <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Comprehensive guides, tutorials, and API references to help you build with Hanzo AI.
             </Paragraph>
-            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+            <Anchor minHeight={44} href="#" group display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Explore Docs
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
             </Anchor>
@@ -76,7 +76,7 @@ const CallToAction = () => {
             <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Get up and running quickly with our step-by-step quickstart guides and example projects.
             </Paragraph>
-            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+            <Anchor minHeight={44} href="#" group display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Try Quickstart
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
             </Anchor>
@@ -90,7 +90,7 @@ const CallToAction = () => {
             <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Join our growing community of AI engineers, get support, and share your experiences.
             </Paragraph>
-            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+            <Anchor minHeight={44} href="#" group display="flex" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Join Community
               <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
             </Anchor>

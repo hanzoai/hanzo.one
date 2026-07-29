@@ -14,9 +14,6 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 
-// Hanzo is monochrome: the accent is the foreground, not a hue.
-const BRAND_COLOR = "var(--foreground)";
-
 // Footer navigation data matching the design
 const footerLinks = {
   products: {
@@ -220,10 +217,11 @@ const Footer = () => {
                 />
                 <XStack
                   type="submit"
-                  render="button" position="absolute" right={8} top="50%" y="-50%" width={24} height={24} borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="center" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.8 }}
-                  style={{ backgroundColor: BRAND_COLOR }}
+                  aria-label="Send"
+                  render="button" position="absolute" right={4} top="50%" y="-50%" width={44} height={44} borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="center" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.8 }}
+                  backgroundColor="transparent"
                 >
-                  <Send size={12} color="var(--foreground)" />
+                  <Send size={16} color="var(--foreground)" />
                 </XStack>
               </Box>
 

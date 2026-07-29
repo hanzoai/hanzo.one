@@ -49,7 +49,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           marginTop={64}
         >
-          <Anchor href="#features" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" justifyContent="center" hoverStyle={{ color: "var(--white)" }}>
+          <Anchor minHeight={44} href="#features" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" justifyContent="center" hoverStyle={{ color: "var(--white)" }}>
             Scroll to explore
             <MotionBox render="svg" animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={20} height={20} marginLeft={8} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

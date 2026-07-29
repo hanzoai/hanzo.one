@@ -69,7 +69,7 @@ const UnifiedAICloud: React.FC = () => {
       
       <Box textAlign="center">
         <Button asChild size="lg" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}>
-          <Link to="/cloud">
+          <Link minHeight={44} to="/cloud">
             Explore Our AI Cloud Platform <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
           </Link>
         </Button>

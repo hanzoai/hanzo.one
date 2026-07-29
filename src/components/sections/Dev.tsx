@@ -84,7 +84,7 @@ const Dev = () => {
               
               <Box render="nav" display="none" rowGap={4} $lg={{ display: "block" }}>
                 {sidebarItems.map((item, index) => (
-                  <Anchor 
+                  <Anchor minHeight={44} display="inline-flex" alignItems="center" 
                     key={index}
                     href={`#${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                     group display="flex" alignItems="center" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" borderRadius="var(--radius-md)" backgroundColor={item.active ? "rgb(255 255 255 / 0.2)" : undefined} color={item.active ? "var(--foreground)" : "var(--neutral-300)"} hoverStyle={item.active ? undefined : { backgroundColor: "var(--surface-card)" }}

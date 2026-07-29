@@ -36,7 +36,7 @@ const AboutHero = () => {
               size="lg"
               color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Anchor href="#timeline" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="#timeline" display="flex" >
                 Explore Our Timeline
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Anchor>
@@ -47,7 +47,7 @@ const AboutHero = () => {
               variant="outline"
               borderColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <Anchor href="/zen" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="/zen" display="flex" >
                 The Zen of Hanzo
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Anchor>

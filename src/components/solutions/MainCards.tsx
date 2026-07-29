@@ -42,7 +42,7 @@ const MainCards: React.FC = () => {
             </Text>
           </XStack>
           <Button asChild width="100%" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
-            <Link to="/solutions/capabilities">
+            <Link minHeight={44} to="/solutions/capabilities">
               Explore Our Capabilities <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
             </Link>
           </Button>
@@ -83,7 +83,7 @@ const MainCards: React.FC = () => {
             </Text>
           </XStack>
           <Button asChild width="100%" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
-            <Link to="/solutions/industries">
+            <Link minHeight={44} to="/solutions/industries">
               Explore Our Industry Solutions <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
             </Link>
           </Button>

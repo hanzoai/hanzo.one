@@ -37,11 +37,11 @@ const SenseiMethodSection = () => {
           </Paragraph>
           
           <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginTop={48} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-            <Anchor 
+            <Anchor minHeight={44} 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
-              group display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
+              group display="flex" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
             >
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
@@ -53,11 +53,11 @@ const SenseiMethodSection = () => {
               <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={20} /></Box>
             </Anchor>
             
-            <Anchor 
+            <Anchor minHeight={44} 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
-              group display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
+              group display="flex" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
             >
               <XStack display="flex" alignItems="center">
                 <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><HexagonIcon size={20} color="var(--foreground)" /></Box>

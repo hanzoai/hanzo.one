@@ -61,7 +61,7 @@ const HeroSection = () => {
             <a href="#start-free-trial">Start Free Trial</a>
           </Button>
           <Button size="lg" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}>
-            <Anchor href="#request-demo" display="flex" alignItems="center">
+            <Anchor minHeight={44} href="#request-demo" display="flex" >
               Request Demo <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Anchor>
           </Button>

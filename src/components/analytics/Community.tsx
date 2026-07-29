@@ -207,7 +207,7 @@ const Community = () => {
                     link: "#support" 
                   }
                 ].map((resource, i) => (
-                  <Anchor 
+                  <Anchor minHeight={44} display="inline-flex" alignItems="center" 
                     key={i} 
                     href={resource.link} 
                     display="block" padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}

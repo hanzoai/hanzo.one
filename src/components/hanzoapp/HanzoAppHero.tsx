@@ -47,7 +47,7 @@ const HanzoAppHero = () => {
               size="lg"
               color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Anchor href="#" display="flex" alignItems="center">
+              <Anchor minHeight={44} href="#" display="flex" >
                 Get Started 
                 <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Anchor>

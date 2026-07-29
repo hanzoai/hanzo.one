@@ -133,9 +133,9 @@ const DeveloperExperienceSection = () => {
             <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32}>
               Hanzo reads your repo structure first, edits across files coherently, and executes tasks step-by-step—locally or in isolated remote sandboxes.
             </Paragraph>
-            <Link
+            <Link minHeight={44} 
               to="/extensions"
-              display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--neutral-800)" color="var(--foreground)" hoverStyle={{ opacity: 0.9 }}
+              paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--neutral-800)" color="var(--foreground)" hoverStyle={{ opacity: 0.9 }}
             >
               Install the IDE extension
               <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
@@ -317,9 +317,9 @@ const DeveloperExperienceSection = () => {
           </Grid>
 
           <GuiBox textAlign="center">
-            <Link
+            <Link minHeight={44} 
               to="/remote"
-              display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
+              paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               Enable Remote Agents
               <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
@@ -349,11 +349,11 @@ const DeveloperExperienceSection = () => {
               <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={24}>
                 Streaming, tool calling, and agent execution behind a single endpoint. Compatible with existing OpenAI SDKs by switching the base URL.
               </Paragraph>
-              <Anchor
+              <Anchor minHeight={44} 
                 href="https://docs.hanzo.ai/api"
                 target="_blank"
                 rel="noreferrer noopener"
-                display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
+                paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
               >
                 View API reference
                 <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></GuiBox>

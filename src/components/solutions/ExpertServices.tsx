@@ -18,7 +18,7 @@ const ExpertServices: React.FC = () => {
             content, and marketing strategies powered by artificial intelligence.
           </Paragraph>
           <XStack display="flex" flexWrap="wrap" gap={16}>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -27,7 +27,7 @@ const ExpertServices: React.FC = () => {
               <span>Visit Hanzo Agency</span>
               <ExternalLink size={14} />
             </Anchor>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="/contact" 
               display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
@@ -46,7 +46,7 @@ const ExpertServices: React.FC = () => {
             technology solutions and drive strategic growth initiatives.
           </Paragraph>
           <XStack display="flex" flexWrap="wrap" gap={16}>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -55,7 +55,7 @@ const ExpertServices: React.FC = () => {
               <span>Visit Sensei Group</span>
               <ExternalLink size={14} />
             </Anchor>
-            <Anchor 
+            <Anchor minHeight={44} display="inline-flex" alignItems="center" 
               href="tel:+1234567890" 
               display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >

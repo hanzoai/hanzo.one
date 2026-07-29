@@ -112,7 +112,7 @@ const Integrations = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               textAlign="center" marginTop={32}
             >
-              <Anchor href="#integrations" display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ color: "var(--foreground)" }}>
+              <Anchor minHeight={44} href="#integrations" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ color: "var(--foreground)" }}>
                 View all integrations <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><Code size={16} /></Box>
               </Anchor>
             </MotionBox>

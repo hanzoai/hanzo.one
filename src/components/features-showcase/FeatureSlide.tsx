@@ -64,9 +64,9 @@ const FeatureSlide: React.FC<FeatureSlideProps> = ({
         {description}
       </Paragraph>
       
-      <Anchor 
+      <Anchor minHeight={44} 
         href={link} 
-        display="inline-flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
+        fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
       >
         Learn More
         <Box display="inline-block" 
