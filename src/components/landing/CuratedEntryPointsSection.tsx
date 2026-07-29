@@ -1,6 +1,7 @@
+import { Box, Grid, H2, H3, Link, MotionBox, Paragraph, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Bot, Cloud, Rocket, Database, ArrowRight } from "lucide-react";
 
 const entryPoints = [
@@ -36,47 +37,47 @@ const entryPoints = [
 
 const CuratedEntryPointsSection = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" overflow="hidden" $md={{ paddingHorizontal: 32 }}>
       {/* Background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
+      <Box
+        position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.02}
         style={{
-          backgroundImage: `radial-gradient(circle at center, #fd4444 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle at center, var(--foreground) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl md:text-5xl font-medium text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Start building
-          </h2>
-          <p className="text-lg text-neutral-400">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)">
             Four paths into the platform.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Entry Points Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {entryPoints.map((entry, index) => {
             const Icon = entry.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={entry.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Link to={entry.link} className="block h-full group">
-                  <motion.div
-                    className="h-full p-6 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:border-[#fd4444]/50 transition-all duration-300 relative overflow-hidden"
+                <Link to={entry.link} group display="block" height="100%">
+                  <MotionBox
+                    height="100%" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" position="relative" overflow="hidden" hoverStyle={{ borderColor: "var(--border-strong)" }}
                     whileHover={{
                       y: -4,
                       boxShadow: "0 0 40px -10px rgba(253, 68, 68, 0.3)",
@@ -84,64 +85,64 @@ const CuratedEntryPointsSection = () => {
                     transition={{ duration: 0.2 }}
                   >
                     {/* Icon */}
-                    <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                    <XStack
+                      width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                       style={{ backgroundColor: "rgba(253, 68, 68, 0.1)" }}
                     >
                       <Icon
-                        className="w-6 h-6"
-                        style={{ color: "#fd4444" }}
+                        width={24} height={24}
+                        style={{ color: "var(--foreground)" }}
                       />
-                    </div>
+                    </XStack>
 
                     {/* Title */}
-                    <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#fd4444] transition-colors">
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={4} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                       {entry.title}
-                    </h3>
+                    </H3>
 
                     {/* Tagline */}
-                    <p className="text-xs font-medium text-neutral-500 mb-3">
+                    <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--neutral-500)" marginBottom={12}>
                       {entry.tagline}
-                    </p>
+                    </Paragraph>
 
                     {/* Description */}
-                    <p className="text-sm text-neutral-400 leading-relaxed">
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)">
                       {entry.description}
-                    </p>
+                    </Paragraph>
 
                     {/* Hover accent line */}
-                    <motion.div
-                      className="absolute bottom-0 left-0 h-[2px] rounded-full"
-                      style={{ backgroundColor: "#fd4444" }}
+                    <MotionBox
+                      position="absolute" bottom={0} left={0} height="2px" borderRadius="var(--radius-full)"
+                      style={{ backgroundColor: "var(--neutral-800)" }}
                       initial={{ width: 0 }}
                       whileHover={{ width: "100%" }}
                       transition={{ duration: 0.3 }}
                     />
-                  </motion.div>
+                  </MotionBox>
                 </Link>
-              </motion.div>
+              </MotionBox>
             );
           })}
-        </div>
+        </Grid>
 
         {/* View All Products Link */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center mt-10"
+          textAlign="center" marginTop={40}
         >
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-400 hover:text-[#fd4444] transition-colors"
+            display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
           >
             View all products
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
           </Link>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

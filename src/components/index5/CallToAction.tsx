@@ -1,46 +1,45 @@
+import { Box, Button, ChromeText, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import ChromeText from "@/components/ui/chrome-text";
 
 const CallToAction: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-blue-900/20 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div 
-          className="text-center"
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox 
+          textAlign="center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6 mx-auto text-center">
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} marginHorizontal="auto" textAlign="center" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Start Building Today
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Join thousands of developers building the future with Hanzo AI Cloud and DX Platform.
             Get started for free and scale as you grow.
-          </p>
+          </Paragraph>
           
           <Button 
             size="lg"
-            className="bg-[var(--white)] hover:bg-gray-100 text-black px-10 py-7 rounded-lg text-xl font-medium shadow-lg hover:shadow-xl transition-all"
+            backgroundColor="var(--white)" color="var(--pure-black)" paddingHorizontal={40} paddingVertical={28} borderRadius="var(--radius-lg)" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-100)", boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)" }}
             onClick={() => navigate('/signup')}
           >
-            Start Building for Free <ArrowRight className="ml-2 h-5 w-5" />
+            Start Building for Free <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

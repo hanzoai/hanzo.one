@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -11,39 +12,36 @@ interface ModelCardProps {
 
 const ModelCard = ({ model, index }: ModelCardProps) => {
   return (
-    <motion.div
+    <MotionBox
       key={index}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`
-        bg-gray-900/30 border rounded-xl p-6 hover:bg-gray-900/50 transition-colors relative
-        ${model.recommended ? 'border-purple-500/50' : 'border-gray-800'}
-      `}
+      
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" position="relative" hoverStyle={{ backgroundColor: "var(--surface-card)" }} borderColor={model.recommended ? "rgb(255 255 255 / 0.5)" : "var(--neutral-800)"}
     >
       {model.recommended && (
-        <span className="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-purple-600 text-[var(--white)] text-xs font-semibold rounded-full">
+        <Text position="absolute" top={0} right={24} y="-50%" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-600)" color="var(--white)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="600" borderRadius="var(--radius-full)">
           Recommended
-        </span>
+        </Text>
       )}
       
-      <h3 className="text-xl font-semibold text-[var(--white)] mb-1">{model.name}</h3>
-      <p className="text-sm text-neutral-400 mb-4">by {model.provider}</p>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={4}>{model.name}</H3>
+      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16}>by {model.provider}</Paragraph>
       
-      <ul className="space-y-2 mb-6">
+      <Box render="ul" rowGap={8} marginBottom={24}>
         {model.features.map((feature, i) => (
-          <li key={i} className="flex items-start">
-            <Check className="h-5 w-5 text-purple-400 mr-2 flex-shrink-0 mt-0.5" />
-            <span className="text-neutral-300 text-sm">{feature}</span>
-          </li>
+          <XStack key={i} render="li" display="flex" alignItems="flex-start">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8} marginTop={2}><Check size={20} color="var(--foreground)" /></Box>
+            <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+          </XStack>
         ))}
-      </ul>
+      </Box>
       
-      <div className="pt-2 mt-auto">
-        <p className="text-sm text-neutral-400 font-mono">{model.command}</p>
-      </div>
-    </motion.div>
+      <Box paddingTop={8} marginTop="auto">
+        <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" fontFamily="var(--font-mono)">{model.command}</Paragraph>
+      </Box>
+    </MotionBox>
   );
 };
 

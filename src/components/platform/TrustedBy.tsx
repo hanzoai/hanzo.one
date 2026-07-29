@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -69,72 +70,72 @@ const TrustedBy = () => {
   }, []);
 
   return (
-    <section 
+    <Box 
       ref={containerRef} 
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)]"
+      render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
     >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          textAlign="center" marginBottom={80}
         >
-          <h2 
-            className="text-3xl md:text-4xl font-medium mb-6 chrome-text"
+          <H2 
+            fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" marginBottom={24} backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
             style={{
               backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
             }}
           >
             Trusted by the best in business
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Industry leaders across various sectors rely on Hanzo for their technological needs. Here's what they have to say.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={testimonial.company}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[var(--black)]/50 backdrop-blur-sm rounded-xl p-8 border border-neutral-800/20"
+              backgroundColor="rgb(0 0 0 / 0.5)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)"
             >
-              <div className="mb-4">
-                <h3 
-                  className="text-xl font-medium chrome-text"
+              <Box marginBottom={16}>
+                <H3 
+                  fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent"
                   style={{
                     backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
                   }}
                 >
                   {testimonial.company}
-                </h3>
-              </div>
+                </H3>
+              </Box>
               
-              <p className="text-neutral-300 mb-6 leading-relaxed">"{testimonial.quote}"</p>
+              <Paragraph color="var(--neutral-300)" marginBottom={24} lineHeight="var(--leading-relaxed)">"{testimonial.quote}"</Paragraph>
               
-              <div className="flex items-center">
-                <div className="mr-4">
-                  <img
+              <XStack display="flex" alignItems="center">
+                <Box marginRight={16}>
+                  <Box display="inline-block"
                     src={testimonial.avatar}
                     alt={testimonial.author}
-                    className="h-12 w-12 rounded-full object-cover bg-neutral-900"
+                    render="img" height={48} width={48} borderRadius="var(--radius-full)" objectFit="cover" backgroundColor="var(--neutral-900)"
                   />
-                </div>
+                </Box>
                 <div>
-                  <h4 className="font-medium text-[var(--white)]">{testimonial.author}</h4>
-                  <p className="text-sm text-neutral-400">{testimonial.role}</p>
+                  <H4 fontWeight="500" color="var(--white)">{testimonial.author}</H4>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{testimonial.role}</Paragraph>
                 </div>
-              </div>
-            </motion.div>
+              </XStack>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

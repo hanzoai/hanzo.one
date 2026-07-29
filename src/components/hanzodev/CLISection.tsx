@@ -1,10 +1,10 @@
+import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, Terminal, Sparkles, Bug, Rocket, Layers } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const BRAND_COLOR = "#fd4444";
+import { ArrowRight, Terminal, Sparkles, Bug, Rocket, Layers } from "lucide-react";
+
+const BRAND_COLOR = "var(--foreground)";
 
 const features = [
   {
@@ -36,94 +36,94 @@ const tools = [
 
 const CLISection = () => {
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-neutral-900/30 to-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-6"
+          <XStack
+            display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} marginBottom={24}
             style={{ borderColor: `${BRAND_COLOR}4d` }}
           >
-            <Terminal className="w-4 h-4" style={{ color: BRAND_COLOR }} />
-            <span className="text-sm" style={{ color: BRAND_COLOR }}>Hanzo CLI</span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            <Terminal size={16} style={{ color: BRAND_COLOR }} />
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" style={{ color: BRAND_COLOR }}>Hanzo CLI</Text>
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             AI-powered development,
             <br />
             right from your terminal.
-          </h2>
+          </H2>
           <Button
             size="lg"
-            className="mt-4 text-white"
+            marginTop={16} color="var(--foreground)"
             style={{ backgroundColor: BRAND_COLOR }}
             asChild
           >
             <Link to="/download">
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>
           </Button>
-        </motion.div>
+        </MotionBox>
 
         {/* Feature cards */}
-        <div className="grid md:grid-cols-2 gap-6 mb-24">
+        <Grid display="grid" gap={24} marginBottom={96} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/30 transition-colors"
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                <XStack
+                  width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                   style={{ backgroundColor: `${BRAND_COLOR}20` }}
                 >
-                  <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-neutral-400">{feature.description}</p>
-              </motion.div>
+                  <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
+        </Grid>
 
         {/* Tools Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          textAlign="center"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
             Connects with your favorite command line tools
-          </h3>
-          <p className="text-neutral-400 mb-8 max-w-2xl mx-auto">
+          </H3>
+          <Paragraph color="var(--neutral-400)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto">
             Your terminal is where real work happens. Hanzo Dev connects with the tools that power development—deployment, databases, monitoring, version control. Rather than adding another interface to juggle, it enhances your existing stack.
-          </p>
+          </Paragraph>
 
           {/* Tool logos marquee */}
-          <div className="flex justify-center gap-6 flex-wrap">
+          <XStack display="flex" justifyContent="center" gap={24} flexWrap="wrap">
             {tools.map((tool) => (
-              <div
+              <Box
                 key={tool}
-                className="px-4 py-2 bg-neutral-900/50 border border-neutral-800 rounded-lg text-neutral-400 text-sm"
+                paddingHorizontal={16} paddingVertical={8} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
               >
                 {tool}
-              </div>
+              </Box>
             ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

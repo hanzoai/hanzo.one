@@ -1,9 +1,7 @@
+import { Badge, Box, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Grid, H1, H2, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Database,
@@ -55,7 +53,7 @@ import {
 import type { Product, CategoryInfo } from "@/data/product-taxonomy";
 
 // Icon mapping
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{  }>> = {
   Database, Cpu, Clock, Brain, Activity, Layers, LayoutGrid, Key, Search,
   HardDrive, FileJson, BarChart3, Boxes, Shield, ListTodo, ListOrdered,
   Radio, BookOpen, GitBranch, Dumbbell, SlidersHorizontal, Rocket, Archive,
@@ -72,14 +70,15 @@ interface CategoryPageTemplateProps {
 
 const StatusBadge = ({ status }: { status: Product['status'] }) => {
   const variants = {
-    ga: { label: 'GA', className: 'bg-green-500/20 text-green-400 border-green-500/30' },
-    beta: { label: 'Beta', className: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30' },
-    alpha: { label: 'Alpha', className: 'bg-orange-500/20 text-orange-400 border-orange-500/30' },
-    coming: { label: 'Coming Soon', className: 'bg-neutral-500/20 text-neutral-400 border-neutral-500/30' }
+    ga: { label: 'GA', color: 'var(--foreground)', borderColor: 'var(--border-strong)' },
+    beta: { label: 'Beta', color: 'var(--neutral-300)', borderColor: 'var(--border)' },
+    alpha: { label: 'Alpha', color: 'var(--neutral-400)', borderColor: 'var(--border)' },
+    coming: { label: 'Coming Soon', color: 'var(--neutral-500)', borderColor: 'var(--border-hairline)' }
   };
+  const { label, ...tone } = variants[status];
   return (
-    <Badge variant="outline" className={`${variants[status].className} text-xs`}>
-      {variants[status].label}
+    <Badge variant="outline" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" {...tone}>
+      {label}
     </Badge>
   );
 };
@@ -100,67 +99,67 @@ export const CategoryPageTemplate: React.FC<CategoryPageTemplateProps> = ({
     : { all: products };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
+      <Box render="section" position="relative" paddingVertical={96} paddingHorizontal={16} overflow="hidden">
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" />
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="radial-gradient(circle at center,rgba(255,255,255,0.03) 0%,transparent 70%)" />
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            textAlign="center"
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                <CategoryIcon className="h-10 w-10 text-white" />
-              </div>
-            </div>
+            <XStack display="flex" alignItems="center" justifyContent="center" gap={12} marginBottom={24}>
+              <Box padding={16} borderRadius="var(--radius-2xl)" backgroundColor="rgb(255 255 255 / 0.05)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)">
+                <CategoryIcon height={40} width={40} color="var(--foreground)" />
+              </Box>
+            </XStack>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
               Hanzo {category.name}
-            </h1>
+            </H1>
 
-            <p className="text-xl md:text-2xl text-neutral-400 mb-6">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" marginBottom={24} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
               {category.tagline}
-            </p>
+            </Paragraph>
 
-            <p className="text-lg text-neutral-500 max-w-3xl mx-auto mb-10">
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-500)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
               {category.description}
-            </p>
+            </Paragraph>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-neutral-200"
+                backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
                 asChild
               >
                 <Link to="/pricing">
                   Get Started Free
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 hover:bg-white/5"
+                borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
                 asChild
               >
                 <a href="https://docs.hanzo.ai" target="_blank" rel="noopener noreferrer">
                   View Documentation
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
                 </a>
               </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </YStack>
+          </MotionBox>
+        </Box>
+      </Box>
 
       {/* Products Grid */}
-      <section className="py-16 px-4 border-t border-white/10">
-        <div className="max-w-6xl mx-auto">
+      <Box render="section" paddingVertical={64} paddingHorizontal={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)">
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
           {subcategories ? (
             // Render grouped by subcategory (for ML products)
             subcategories.map((subcategory, subIndex) => {
@@ -168,13 +167,13 @@ export const CategoryPageTemplate: React.FC<CategoryPageTemplateProps> = ({
               if (subProducts.length === 0) return null;
 
               return (
-                <div key={subcategory} className="mb-16 last:mb-0">
-                  <h2 className="text-2xl font-bold mb-2">{subcategory}</h2>
-                  <p className="text-neutral-500 mb-8">
+                <Box key={subcategory} marginBottom={64}>
+                  <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8}>{subcategory}</H2>
+                  <Paragraph color="var(--neutral-500)" marginBottom={32}>
                     {getSubcategoryDescription(subcategory)}
-                  </p>
+                  </Paragraph>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                     {subProducts.map((product, index) => (
                       <ProductCard
                         key={product.id}
@@ -182,78 +181,78 @@ export const CategoryPageTemplate: React.FC<CategoryPageTemplateProps> = ({
                         index={subIndex * 10 + index}
                       />
                     ))}
-                  </div>
-                </div>
+                  </Grid>
+                </Box>
               );
             })
           ) : (
             // Render flat grid
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {products.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
               ))}
-            </div>
+            </Grid>
           )}
-        </div>
-      </section>
+        </Box>
+      </Box>
 
       {/* Quick Start Section */}
-      <section className="py-16 px-4 border-t border-white/10 bg-neutral-900/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-6">Quick Start</h2>
-          <p className="text-neutral-400 mb-8">
+      <Box render="section" paddingVertical={64} paddingHorizontal={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" backgroundColor="var(--surface-card-emphasis)">
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Quick Start</H2>
+          <Paragraph color="var(--neutral-400)" marginBottom={32}>
             Install the Hanzo CLI to get started with any {category.name} product
-          </p>
+          </Paragraph>
 
-          <div className="bg-black rounded-xl p-6 max-w-2xl mx-auto">
-            <div className="flex items-center justify-between font-mono text-sm">
-              <code className="text-green-400">curl -fsSL hanzo.sh/install.sh | sh</code>
-              <Button variant="ghost" size="sm" className="text-neutral-400 hover:text-white">
+          <Box backgroundColor="var(--pure-black)" borderRadius="var(--radius-xl)" padding={24} maxWidth="42rem" marginHorizontal="auto">
+            <XStack display="flex" alignItems="center" justifyContent="space-between" fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+              <Text render="code" color="var(--foreground)">curl -fsSL hanzo.sh/install.sh | sh</Text>
+              <Button variant="ghost" size="sm" color="var(--neutral-400)" hoverStyle={{ color: "var(--foreground)" }}>
                 Copy
               </Button>
-            </div>
-          </div>
+            </XStack>
+          </Box>
 
-          <p className="text-neutral-500 mt-6 text-sm">
-            Then run <code className="bg-neutral-800 px-2 py-1 rounded">hanzo --help</code> to see available commands
-          </p>
-        </div>
-      </section>
+          <Paragraph color="var(--neutral-500)" marginTop={24} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            Then run <Text render="code" backgroundColor="var(--neutral-800)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)">hanzo --help</Text> to see available commands
+          </Paragraph>
+        </Box>
+      </Box>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 border-t border-white/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)">
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Build with Hanzo {category.name}
-          </h2>
-          <p className="text-lg text-neutral-400 mb-10">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={40}>
             Open source, self-hostable, and available on Hanzo Cloud.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </Paragraph>
+          <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-neutral-200"
+              backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
               asChild
             >
               <Link to="/pricing">
                 Start Building
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white/20 hover:bg-white/5"
+              borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
               asChild
             >
-              <Link to="/contact">
+              <Link tap to="/contact">
                 Talk to Sales
               </Link>
             </Button>
-          </div>
-        </div>
-      </section>
-    </div>
+          </YStack>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
@@ -262,48 +261,48 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
   const IconComponent = iconMap[product.icon] || Database;
 
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
     >
       <Link to={product.href}>
-        <Card className="bg-neutral-900/50 border-neutral-800 hover:border-neutral-600 transition-all duration-300 h-full group cursor-pointer hover:bg-neutral-900/80">
+        <Card group backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" cursor="pointer" hoverStyle={{ borderColor: "var(--neutral-600)", backgroundColor: "var(--surface-card-emphasis)" }}>
           <CardHeader>
-            <div className="flex items-start justify-between">
-              <div className="p-2 rounded-lg bg-white/5 border border-white/10 group-hover:border-white/20 transition-colors">
-                <IconComponent className="h-5 w-5 text-white" />
-              </div>
+            <XStack display="flex" alignItems="flex-start" justifyContent="space-between">
+              <Box padding={8} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.05)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ borderColor: "rgb(255 255 255 / 0.2)" }}>
+                <IconComponent height={20} width={20} color="var(--foreground)" />
+              </Box>
               <StatusBadge status={product.status} />
-            </div>
-            <CardTitle className="text-lg mt-4 group-hover:text-white transition-colors flex items-center gap-2">
+            </XStack>
+            <CardTitle fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginTop={16} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" gap={8} $group-hover={{ color: "var(--foreground)" }}>
               {product.shortName}
-              <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Box render="span" display="inline-flex" alignItems="center" opacity={0} $group-hover={{ opacity: 1 }}><ArrowRight size={16} /></Box>
             </CardTitle>
-            <CardDescription className="text-neutral-400">
+            <CardDescription color="var(--neutral-400)">
               {product.tagline}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-neutral-500 line-clamp-2">
+            <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" WebkitLineClamp={2} display="-webkit-box" WebkitBoxOrient="vertical" overflow="hidden">
               {product.description}
-            </p>
+            </Paragraph>
 
-            <div className="flex flex-wrap gap-2 mt-4">
+            <XStack display="flex" flexWrap="wrap" gap={8} marginTop={16}>
               {product.features.slice(0, 3).map((feature) => (
                 <Badge
                   key={feature}
                   variant="outline"
-                  className="bg-neutral-800/50 border-neutral-700 text-neutral-400 text-xs"
+                  backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-700)" color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)"
                 >
                   {feature}
                 </Badge>
               ))}
-            </div>
+            </XStack>
           </CardContent>
         </Card>
       </Link>
-    </motion.div>
+    </MotionBox>
   );
 };
 

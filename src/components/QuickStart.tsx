@@ -1,29 +1,29 @@
+import { Box, Button, H2, MotionBox, MotionText, Paragraph } from '@/gui'
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AppWindow, Rocket, Bot, ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 
 const quickApps = [{
-  icon: <Bot className="h-6 w-6 text-[var(--white)]" />,
+  icon: <Bot size={24} color="var(--white)" />,
   title: "AI Chat Assistant",
   description: "Launch your own ChatGPT-style AI assistant",
   glowColor: "group-hover:shadow-[0_0_30px_-5px_rgba(96,165,250,0.3)]",
   borderColor: "group-hover:border-blue-400/30"
 }, {
-  icon: <ShoppingCart className="h-6 w-6 text-[var(--white)]" />,
+  icon: <ShoppingCart size={24} color="var(--white)" />,
   title: "E-commerce Store",
   description: "Start selling products online in minutes",
   glowColor: "group-hover:shadow-[0_0_30px_-5px_rgba(74,222,128,0.3)]",
   borderColor: "group-hover:border-green-400/30"
 }, {
-  icon: <AppWindow className="h-6 w-6 text-[var(--white)]" />,
+  icon: <AppWindow size={24} color="var(--white)" />,
   title: "Web3 dApp",
   description: "Build a decentralized application",
   glowColor: "group-hover:shadow-[0_0_30px_-5px_rgba(167,139,250,0.3)]",
   borderColor: "group-hover:border-purple-400/30"
 }, {
-  icon: <Rocket className="h-6 w-6 text-[var(--white)]" />,
+  icon: <Rocket size={24} color="var(--white)" />,
   title: "Custom App",
   description: "Start from scratch with our App Builder",
   glowColor: "group-hover:shadow-[0_0_30px_-5px_rgba(251,146,60,0.3)]",
@@ -44,18 +44,18 @@ const QuickStart = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   
   return (
-    <section 
+    <Box 
       ref={sectionRef} 
-      className="py-12 relative overflow-hidden bg-[var(--black)]"
+      render="section" paddingVertical={48} position="relative" overflow="hidden" backgroundColor="var(--black)"
     >
       {/* Parallax background */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black bg-[#000a00]/[0.12] z-0"
+      <MotionBox 
+        position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="#000a00]/[0.12" zIndex={0} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08), var(--pure-black))"
         style={{ y: backgroundY }}
       />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[128px] relative z-10">
-        <motion.div 
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} paddingVertical="128px" position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <MotionBox 
           initial={{
             opacity: 0,
             y: 20
@@ -67,25 +67,25 @@ const QuickStart = () => {
           viewport={{
             once: true
           }} 
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
           style={{ y: titleY }}
         >
-          <h2 className="text-3xl font-display text-[var(--white)] mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontFamily="var(--font-display)" color="var(--white)" marginBottom={16}>
             Quick Launch Apps
-          </h2>
-          <motion.p 
-            className="text-lg text-neutral-400"
+          </H2>
+          <MotionText 
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)"
             style={{ y: descriptionY }}
           >
             Get started quickly with our pre-built templates
-          </motion.p>
-        </motion.div>
+          </MotionText>
+        </MotionBox>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        <MotionBox 
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}
           style={{ y: cardsY }}
         >
-          {quickApps.map((app, index) => <motion.div 
+          {quickApps.map((app, index) => <MotionBox 
             key={app.title} 
             initial={{
               opacity: 0,
@@ -98,9 +98,7 @@ const QuickStart = () => {
             viewport={{
               once: true
             }} 
-            transition={{
-              delay: index * 0.1
-            }} 
+            
             whileHover={{
               scale: 1.08,
               rotate: 2,
@@ -121,22 +119,20 @@ const QuickStart = () => {
                 duration: 0.02
               }
             }} 
-            className={`group relative p-6 bg-gradient-to-br from-gray-900/50 via-black to-gray-900/30 backdrop-blur-sm rounded-xl 
-                border border-white/5 transition-all duration-50 hover:border-white/10 ${app.glowColor} ${app.borderColor}`}>
-              <div className="p-3 rounded-lg w-fit bg-[var(--white)]/5 text-[var(--white)] mx-auto">
+            group position="relative" padding={24} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.05)" transition="all 50ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "rgb(255 255 255 / 0.1)" }}>
+              <Box padding={12} borderRadius="var(--radius-lg)" width="fit-content" backgroundColor="rgb(255 255 255 / 0.05)" color="var(--white)" marginHorizontal="auto">
                 {app.icon}
-              </div>
+              </Box>
               
-              <p className="mt-2 text-neutral-400 text-center">{app.description}</p>
-              <Button className="mt-4 w-full bg-[var(--white)]/5 hover:bg-[var(--white)]/10 text-[var(--white)] border border-white/10
-                  transition-all duration-300 hover:border-white/20" variant="outline">
+              <Paragraph marginTop={8} color="var(--neutral-400)" textAlign="center">{app.description}</Paragraph>
+              <Button marginTop={16} width="100%" backgroundColor="rgb(255 255 255 / 0.05)" color="var(--white)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)", borderColor: "rgb(255 255 255 / 0.2)" }} variant="outline">
                 Launch App
-                <Rocket className="ml-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Rocket size={16} /></Box>
               </Button>
-            </motion.div>)}
-        </motion.div>
-      </div>
-    </section>
+            </MotionBox>)}
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

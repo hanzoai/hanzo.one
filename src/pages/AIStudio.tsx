@@ -1,3 +1,4 @@
+import { YStack } from '@/gui'
 
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
@@ -46,10 +47,10 @@ const AIStudio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex flex-col">
+    <YStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" flexDirection="column">
       <Navbar />
       
-      <main className="flex-1 flex flex-col mt-16">
+      <YStack render="main" flex={1} display="flex" flexDirection="column" marginTop={64}>
         <Hero />
         
         <StudioLayout 
@@ -65,10 +66,10 @@ const AIStudio = () => {
           setPromptText={setPromptText}
           handleSubmit={handleSubmit}
         />
-      </main>
+      </YStack>
       
       <Footer />
-    </div>
+    </YStack>
   );
 };
 

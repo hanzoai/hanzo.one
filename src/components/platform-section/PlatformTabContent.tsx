@@ -1,3 +1,4 @@
+import { Grid } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -16,7 +17,7 @@ interface PlatformTabContentProps {
 
 const PlatformTabContent: React.FC<PlatformTabContentProps> = ({ features }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
       {features.map((feature, index) => (
         <PlatformFeatureCard
           key={feature.title}
@@ -26,7 +27,7 @@ const PlatformTabContent: React.FC<PlatformTabContentProps> = ({ features }) => 
           index={index}
         />
       ))}
-    </div>
+    </Grid>
   );
 };
 

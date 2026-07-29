@@ -1,5 +1,6 @@
+import { Box, Link, MotionBox, Text, XStack } from '@/gui'
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import { useTheme } from "@/contexts/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -152,25 +153,25 @@ const Logo = () => {
 
   return (
     <>
-      <Link
+      <Link tap
         to="/"
-        className="relative flex items-center group"
+        group position="relative" display="flex" alignItems="center"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onContextMenu={handleContextMenu}
       >
-        <motion.div
+        <MotionBox
           initial="initial"
           animate="animate"
           variants={logoVariants}
-          className="w-6 h-6 relative flex-shrink-0"
+          width={24} height={24} position="relative" flexShrink={0}
           onAnimationComplete={() => setAnimationComplete(true)}
           style={{ transformOrigin: "center center" }}
         >
-          <svg
+          <Box display="inline-block"
             viewBox="0 0 67 67"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-full"
+            render="svg" width="100%" height="100%"
           >
             <motion.path
               custom={1}
@@ -214,65 +215,55 @@ const Logo = () => {
               d="M66.7198 67V44.6369H44.5098V67H66.7198Z"
               fill={fillColor}
             />
-          </svg>
-        </motion.div>
+          </Box>
+        </MotionBox>
 
         {/* Wordmark - absolute positioned so it doesn't shift other content */}
-        <div className="absolute left-8 overflow-hidden">
-          <span
-            className={`font-bold text-xl ${isDarkMode ? "text-white" : "text-neutral-900"} whitespace-nowrap block transition-transform duration-300 ease-out ${
-              shouldShowWordmark ? "translate-x-0" : "-translate-x-full"
-            }`}
+        <Box position="absolute" left={32} overflow="hidden">
+          <Text
+            fontWeight="700" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" whiteSpace="nowrap" display="block" transition="transform 300ms ease-out" color={isDarkMode ? "var(--foreground)" : "var(--neutral-900)"} x={shouldShowWordmark ? 0 : "-100%"}
           >
             Hanzo
-          </span>
-        </div>
+          </Text>
+        </Box>
       </Link>
 
       {/* Right-click context menu */}
       <AnimatePresence>
         {contextMenu && (
-          <motion.div
+          <MotionBox
             ref={menuRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.1 }}
-            className={`fixed z-[200] rounded-lg shadow-2xl py-1 min-w-[180px] border ${
-              isDarkMode
-                ? "bg-black border-neutral-800"
-                : "bg-white border-neutral-200"
-            }`}
+            position="fixed" zIndex={200} borderRadius="var(--radius-lg)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" paddingVertical={4} minWidth="180px" borderWidth={1} backgroundColor={isDarkMode ? "var(--pure-black)" : "var(--foreground)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}
             style={{ left: contextMenu.x, top: contextMenu.y }}
           >
             {contextMenuItems.map((item, index) =>
               'divider' in item ? (
-                <div key={index} className={`border-t my-1 ${isDarkMode ? "border-neutral-800" : "border-neutral-200"}`} />
+                <Box key={index} borderTopWidth={1} marginVertical={4} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} />
               ) : (
-                <button
+                <XStack minHeight={44}
                   key={item.label}
                   onClick={() => handleMenuItemClick(item)}
-                  className={`w-full text-left px-3 py-2 text-sm transition-colors flex items-center justify-between ${
-                    isDarkMode
-                      ? "text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                      : "text-neutral-700 hover:bg-neutral-100 hover:text-black"
-                  }`}
+                  render="button" width="100%" textAlign="left" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" justifyContent="space-between" color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"} hoverStyle={isDarkMode ? { backgroundColor: "var(--neutral-800)", color: "var(--foreground)" } : { backgroundColor: "var(--neutral-100)", color: "var(--pure-black)" }}
                 >
                   {item.label}
                   {'action' in item && item.action === 'copy-svg' && (
-                    <svg className={`w-3 h-3 ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Box display="inline-block" render="svg" width={12} height={12} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
+                    </Box>
                   )}
                   {'external' in item && item.external && (
-                    <svg className={`w-3 h-3 ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Box display="inline-block" render="svg" width={12} height={12} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    </Box>
                   )}
-                </button>
+                </XStack>
               )
             )}
-          </motion.div>
+          </MotionBox>
         )}
       </AnimatePresence>
     </>

@@ -1,3 +1,4 @@
+import { Box, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Database, Brain, Rocket } from "lucide-react";
@@ -25,48 +26,48 @@ const layers = [
   },
 ];
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const VerticalStackSection = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" overflow="hidden" $md={{ paddingHorizontal: 32 }}>
       {/* Background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
+      <Box
+        position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.02}
         style={{
           backgroundImage: `radial-gradient(circle at center, ${BRAND_COLOR} 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <Box maxWidth="56rem" marginHorizontal="auto" position="relative" zIndex={10}>
         {/* Header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
             style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
           >
             Architecture
-          </p>
-          <h2 className="text-3xl md:text-5xl font-medium text-white mb-6">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             The vertically integrated stack
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Identity to production in one platform.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Vertical Stack Diagram */}
-        <div className="relative">
+        <Box position="relative">
           {/* Vertical connecting line */}
-          <motion.div
-            className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 z-0"
+          <MotionBox
+            position="absolute" left="50%" top={0} bottom={0} width={1} x="-50%" zIndex={0}
             style={{ backgroundColor: `${BRAND_COLOR}30` }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
@@ -75,23 +76,23 @@ const VerticalStackSection = () => {
           />
 
           {/* Layer Cards */}
-          <div className="relative z-10 flex flex-col gap-6">
+          <YStack position="relative" zIndex={10} display="flex" flexDirection="column" gap={24}>
             {layers.map((layer, index) => {
               const Icon = layer.icon;
               const isLast = index === layers.length - 1;
 
               return (
-                <motion.div
+                <MotionBox
                   key={layer.name}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
-                  className="relative"
+                  position="relative"
                 >
                   {/* Connection dot */}
-                  <motion.div
-                    className="absolute left-1/2 -translate-x-1/2 -top-3 w-3 h-3 rounded-full border-2 bg-black z-20"
+                  <MotionBox
+                    position="absolute" left="50%" x="-50%" top={-12} width={12} height={12} borderRadius="var(--radius-full)" borderWidth={2} backgroundColor="var(--pure-black)" zIndex={20}
                     style={{ borderColor: BRAND_COLOR }}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -100,93 +101,93 @@ const VerticalStackSection = () => {
                   />
 
                   {/* Card */}
-                  <motion.div
-                    className="relative p-6 rounded-xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-sm hover:border-neutral-700 transition-all duration-300"
+                  <MotionBox
+                    position="relative" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--neutral-700)" }}
                     whileHover={{
                       boxShadow: `0 0 40px -10px ${BRAND_COLOR}40`,
                       borderColor: `${BRAND_COLOR}40`,
                     }}
                   >
                     {/* Layer Header */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
+                    <XStack display="flex" alignItems="center" gap={16} marginBottom={16}>
+                      <XStack
+                        width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}
                         style={{ backgroundColor: `${BRAND_COLOR}20` }}
                       >
-                        <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">
+                        <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                      </XStack>
+                      <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
                         {layer.name}
-                      </h3>
-                    </div>
+                      </H3>
+                    </XStack>
 
                     {/* Items */}
-                    <div className="flex flex-wrap gap-2 ml-16">
+                    <XStack display="flex" flexWrap="wrap" gap={8} marginLeft={64}>
                       {layer.items.map((item) => (
-                        <span
+                        <Text
                           key={item}
-                          className="px-3 py-1.5 text-sm font-medium rounded-lg bg-neutral-800/80 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors cursor-default"
+                          paddingHorizontal={12} paddingVertical={6} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" borderRadius="var(--radius-lg)" backgroundColor="var(--surface-overlay)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" cursor="default" hoverStyle={{ backgroundColor: "var(--neutral-700)", color: "var(--foreground)" }}
                         >
                           {item}
-                        </span>
+                        </Text>
                       ))}
-                    </div>
+                    </XStack>
 
                     {/* Flow arrow indicator */}
                     {!isLast && (
-                      <motion.div
-                        className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-neutral-600"
+                      <MotionBox
+                        position="absolute" bottom={-24} left="50%" x="-50%" color="var(--neutral-600)"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.15 + 0.3 }}
                       >
-                        <svg
+                        <Box display="inline-block"
                           width="12"
                           height="12"
                           viewBox="0 0 12 12"
                           fill="none"
-                          className="rotate-180"
+                          render="svg" rotate="180deg"
                         >
                           <path
                             d="M6 0L12 8H0L6 0Z"
                             fill={BRAND_COLOR}
                             fillOpacity="0.5"
                           />
-                        </svg>
-                      </motion.div>
+                        </Box>
+                      </MotionBox>
                     )}
-                  </motion.div>
-                </motion.div>
+                  </MotionBox>
+                </MotionBox>
               );
             })}
-          </div>
+          </YStack>
 
           {/* Bottom endpoint */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-1/2 -bottom-4 w-4 h-4 rounded-full z-20"
+          <MotionBox
+            position="absolute" left="50%" x="-50%" bottom={-16} width={16} height={16} borderRadius="var(--radius-full)" zIndex={20}
             style={{ backgroundColor: BRAND_COLOR }}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: 0.8 }}
           />
-        </div>
+        </Box>
 
         {/* Bottom tagline */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.9 }}
-          className="text-center mt-16"
+          textAlign="center" marginTop={64}
         >
-          <p className="text-neutral-500 text-sm">
+          <Paragraph color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
             From identity management to edge deployment, every layer works together seamlessly.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+          </Paragraph>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

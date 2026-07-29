@@ -1,3 +1,4 @@
+import { Anchor, Box, H1, Paragraph, XStack } from '@/gui'
 
 import React, { ReactNode } from 'react';
 
@@ -15,33 +16,33 @@ const AuthPageContent: React.FC<AuthPageContentProps> = ({
   footer
 }) => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center mb-6">
-          <a href="/" className="inline-block mb-8">
-            <img 
+    <XStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" alignItems="center" justifyContent="center" padding={16}>
+      <Box width="100%" maxWidth="28rem" rowGap={24}>
+        <Box textAlign="center" marginBottom={24}>
+          <Anchor href="/" display="inline-block" marginBottom={32}>
+            <Box display="inline-block" 
               src="/placeholder.svg" 
               alt="Hanzo Logo" 
-              className="h-10 mx-auto"
+              render="img" height={40} marginHorizontal="auto"
             />
-          </a>
-          <h1 className="text-3xl font-bold">{title}</h1>
+          </Anchor>
+          <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">{title}</H1>
           {subtitle && (
-            <p className="text-neutral-400 mt-2">{subtitle}</p>
+            <Paragraph color="var(--neutral-400)" marginTop={8}>{subtitle}</Paragraph>
           )}
-        </div>
+        </Box>
         
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
           {children}
-        </div>
+        </Box>
         
         {footer && (
-          <div className="text-center text-sm text-neutral-400">
+          <Box textAlign="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
             {footer}
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </XStack>
   );
 };
 

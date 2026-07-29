@@ -1,7 +1,7 @@
+import { Anchor, Box, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   CheckCircle,
   Server,
@@ -38,7 +38,7 @@ const StatusPage = () => {
   const allOperational = services.every((s) => s.status === "operational");
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>System Status - Hanzo AI</title>
         <meta
@@ -51,252 +51,248 @@ const StatusPage = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+        <Box render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+            <Box
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </Box>
 
-          <div className="max-w-5xl mx-auto relative z-10">
-            <div className="text-center">
-              <motion.div
+          <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+            <Box textAlign="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6 ${
-                  allOperational
-                    ? "bg-green-500/20 text-green-400"
-                    : "bg-yellow-500/20 text-yellow-400"
-                }`}
+                flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24} backgroundColor={allOperational ? "rgb(255 255 255 / 0.2)" : "rgb(255 255 255 / 0.2)"} color={allOperational ? "var(--foreground)" : "var(--foreground)"}
               >
-                <CheckCircle className="w-4 h-4" />
+                <CheckCircle size={16} />
                 {allOperational ? "All Systems Operational" : "Partial Outage"}
-              </motion.div>
+              </MotionBox>
 
-              <motion.h1
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
               >
-                <span className="text-white">System</span>
+                <Text color="var(--foreground)">System</Text>
                 <br />
-                <span className="text-neutral-400">Status.</span>
-              </motion.h1>
+                <Text color="var(--neutral-400)">Status.</Text>
+              </MotionText>
 
-              <motion.p
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-10 max-w-3xl mx-auto"
+                fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
               >
                 Real-time status of Hanzo AI infrastructure and services.
                 Subscribe to updates or check our incident history.
-              </motion.p>
+              </MotionText>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="flex flex-wrap items-center justify-center gap-4"
+                flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16}
               >
-                <button className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all text-sm bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30">
-                  <Bell className="w-4 h-4 mr-2" />
+                <XStack minHeight={44} render="button" display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bell size={16} /></Box>
                   Subscribe to Updates
-                </button>
-                <a
+                </XStack>
+                <Anchor
                   href="https://docs.hanzo.ai/status"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
                   API Status Endpoint
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
+                </Anchor>
+              </MotionBox>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Services Status */}
-        <section className="py-16 px-4 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <h2 className="text-2xl font-bold text-white mb-2">Services</h2>
-              <p className="text-neutral-400">Current status of all Hanzo AI services</p>
-            </motion.div>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8}>Services</H2>
+              <Paragraph color="var(--neutral-400)">Current status of all Hanzo AI services</Paragraph>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-neutral-900/80 border border-neutral-800 rounded-xl overflow-hidden"
+              backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden"
             >
-              <div className="divide-y divide-neutral-800">
+              <Box >
                 {services.map((service, index) => (
-                  <motion.div
+                  <MotionBox
                     key={service.name}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="px-6 py-4 flex items-center justify-between hover:bg-neutral-800/50 transition-colors"
+                    
+                    flexDirection="row" paddingHorizontal={24} paddingVertical={16} display="flex" alignItems="center" justifyContent="space-between" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
                   >
-                    <div className="flex items-center gap-4">
-                      <Server className="h-5 w-5 text-neutral-500" />
-                      <span className="font-medium text-white">{service.name}</span>
-                    </div>
-                    <div className="flex items-center gap-6">
-                      <span className="text-sm text-neutral-500 hidden sm:block">
+                    <XStack display="flex" alignItems="center" gap={16}>
+                      <Server size={20} color="var(--neutral-500)" />
+                      <Text fontWeight="500" color="var(--foreground)">{service.name}</Text>
+                    </XStack>
+                    <XStack display="flex" alignItems="center" gap={24}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" display="none" $sm={{ display: "block" }}>
                         {service.latency} avg
-                      </span>
-                      <span className="text-sm text-neutral-400 hidden md:block">
+                      </Text>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" display="none" $md={{ display: "block" }}>
                         {service.uptime} uptime
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span className="text-sm text-green-400">Operational</span>
-                      </div>
-                    </div>
-                  </motion.div>
+                      </Text>
+                      <XStack display="flex" alignItems="center" gap={8}>
+                        <CheckCircle size={16} color="var(--neutral-500)" />
+                        <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">Operational</Text>
+                      </XStack>
+                    </XStack>
+                  </MotionBox>
                 ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              </Box>
+            </MotionBox>
+          </Box>
+        </Box>
 
         {/* Regions Status */}
-        <section className="py-16 px-4 md:px-8 bg-gradient-to-b from-black to-neutral-900/30">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <h2 className="text-2xl font-bold text-white mb-2">Global Regions</h2>
-              <p className="text-neutral-400">Status across all deployment regions</p>
-            </motion.div>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8}>Global Regions</H2>
+              <Paragraph color="var(--neutral-400)">Status across all deployment regions</Paragraph>
+            </MotionBox>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
               {regions.map((region, index) => (
-                <motion.div
+                <MotionBox
                   key={region.code}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6"
+                  backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <Globe className="h-5 w-5 text-neutral-500" />
-                    <span className="font-medium text-white">{region.name}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-neutral-500 font-mono">{region.code}</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                      <span className="text-xs text-green-400">Active</span>
-                    </div>
-                  </div>
-                </motion.div>
+                  <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+                    <Globe size={20} color="var(--neutral-500)" />
+                    <Text fontWeight="500" color="var(--foreground)">{region.name}</Text>
+                  </XStack>
+                  <XStack display="flex" alignItems="center" justifyContent="space-between">
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" fontFamily="var(--font-mono)">{region.code}</Text>
+                    <XStack display="flex" alignItems="center" gap={8}>
+                      <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Active</Text>
+                    </XStack>
+                  </XStack>
+                </MotionBox>
               ))}
-            </div>
-          </div>
-        </section>
+            </Grid>
+          </Box>
+        </Box>
 
         {/* Recent Incidents */}
-        <section className="py-16 px-4 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <h2 className="text-2xl font-bold text-white mb-2">Recent Incidents</h2>
-              <p className="text-neutral-400">Incident history for the past 90 days</p>
-            </motion.div>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8}>Recent Incidents</H2>
+              <Paragraph color="var(--neutral-400)">Incident history for the past 90 days</Paragraph>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-8 text-center"
+              backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} textAlign="center"
             >
-              <Activity className="h-12 w-12 text-green-500 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">No Recent Incidents</h3>
-              <p className="text-neutral-400">
+              <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={16}><Activity size={48} color="var(--neutral-500)" /></Box>
+              <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--foreground)" marginBottom={8}>No Recent Incidents</H3>
+              <Paragraph color="var(--neutral-400)">
                 All systems have been operating normally for the past 90 days.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+              </Paragraph>
+            </MotionBox>
+          </Box>
+        </Box>
 
         {/* CTA Section */}
-        <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/30 to-black relative overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
+        <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+          <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
+          <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.h2
+          <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10}>
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-white mb-4"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
             >
               Need help with an issue?
-            </motion.h2>
+            </MotionText>
 
-            <motion.p
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto"
+              fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto"
             >
               Our support team is available 24/7 to help you resolve any issues.
-            </motion.p>
+            </MotionText>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex flex-wrap items-center justify-center gap-4"
+              flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16}
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-all hover:opacity-90 text-base bg-green-500 text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" backgroundColor="var(--neutral-500)" color="var(--foreground)" hoverStyle={{ opacity: 0.9 }}
               >
                 Contact Support
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Link>
-              <a
+              <Anchor tap
                 href="https://docs.hanzo.ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-base text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 View Documentation
-              </a>
-            </motion.div>
-          </div>
-        </section>
+              </Anchor>
+            </MotionBox>
+          </Box>
+        </Box>
       </main>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

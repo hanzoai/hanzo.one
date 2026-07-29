@@ -1,54 +1,54 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, LineChart } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/30 to-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent opacity-70"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), transparent, transparent)" opacity={0.7}></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex items-center justify-center bg-purple-900/30 p-3 rounded-full border border-purple-500/30 text-purple-400 mb-6">
-            <LineChart className="h-10 w-10" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Start Analyzing Smarter, Today</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          <XStack display="inline-flex" alignItems="center" justifyContent="center" backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" marginBottom={24}>
+            <LineChart size={40} />
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Start Analyzing Smarter, Today</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Empower your business decisions with Hanzo Analytics—start for free and scale effortlessly.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <motion.div
+          <YStack display="flex" flexDirection="column" gap={24} justifyContent="center" $sm={{ flexDirection: "row" }}>
+            <MotionBox
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-600 hover:to-purple-400 border-none">
+              <Button size="lg" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={40} paddingVertical={24} borderStyle="none" backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--foreground))" }}>
                 Start Free Trial
               </Button>
-            </motion.div>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <Button size="lg" variant="outline" className="text-lg px-10 py-6">
-                <span className="flex items-center">
-                  Request Demo <ArrowRight className="ml-2 h-5 w-5" />
-                </span>
+              <Button size="lg" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={40} paddingVertical={24}>
+                <Text display="flex" alignItems="center">
+                  Request Demo <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+                </Text>
               </Button>
-            </motion.div>
-          </div>
-        </motion.div>
+            </MotionBox>
+          </YStack>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {[
             {
               title: "Rapid Implementation",
@@ -63,31 +63,31 @@ const CallToAction = () => {
               description: "Our expert team and vibrant community are always ready to help."
             }
           ].map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/20 p-6 rounded-xl border border-gray-800 hover:border-purple-900/30 transition-colors"
+              
+              backgroundColor="rgb(255 255 255 / 0.2)" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-neutral-400">{feature.description}</p>
-            </motion.div>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={12}>{feature.title}</H3>
+              <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 text-center text-neutral-400 text-sm"
+          marginTop={64} textAlign="center" color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
         >
           No credit card required. Free trial includes all premium features for 14 days.
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,59 +1,59 @@
+import { Badge, Box, Grid, H3, MotionBox, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Video, Bot } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 const VideoMeetingsCard = () => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-gray-900/30 border border-purple-900/20 rounded-xl overflow-hidden shadow-xl"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)"
     >
-      <div className="border-b border-gray-800 p-3 flex items-center">
-        <Video className="h-5 w-5 text-purple-400 mr-2" />
-        <span className="font-medium">Video Meetings</span>
-        <Badge variant="outline" className="ml-auto bg-purple-900/30 border-purple-500/30 text-purple-300">
+      <XStack borderBottomWidth={1} borderColor="var(--neutral-800)" padding={12} display="flex" alignItems="center">
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Video size={20} color="var(--foreground)" /></Box>
+        <Text fontWeight="500">Video Meetings</Text>
+        <Badge variant="outline" marginLeft="auto" backgroundColor="var(--surface-card-emphasis)" borderColor="var(--border-strong)" color="var(--foreground)">
           Zoom-style
         </Badge>
-      </div>
-      <div className="p-4">
-        <div className="bg-[var(--black)]/60 rounded-lg p-4">
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-medium text-[var(--white)]">Weekly Sprint Planning</h3>
-            <Badge className="bg-green-600/30 text-green-400 border-green-500/30">Live</Badge>
-          </div>
+      </XStack>
+      <Box padding={16}>
+        <Box backgroundColor="rgb(0 0 0 / 0.6)" borderRadius="var(--radius-lg)" padding={16}>
+          <XStack marginBottom={16} display="flex" alignItems="center" justifyContent="space-between">
+            <H3 fontWeight="500" color="var(--white)">Weekly Sprint Planning</H3>
+            <Badge backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)" borderColor="var(--border-strong)">Live</Badge>
+          </XStack>
           
-          <div className="grid grid-cols-2 gap-2 mb-3">
-            <div className="aspect-video bg-gray-800 rounded-md relative">
-              <div className="absolute bottom-2 left-2 bg-[var(--black)]/60 px-2 py-1 rounded text-xs">Sarah Johnson</div>
-            </div>
-            <div className="aspect-video bg-gray-800 rounded-md relative">
-              <div className="absolute bottom-2 left-2 bg-[var(--black)]/60 px-2 py-1 rounded text-xs">John Doe</div>
-            </div>
-            <div className="aspect-video bg-purple-900/30 rounded-md relative border border-purple-700/50">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Bot className="h-10 w-10 text-purple-400" />
-              </div>
-              <div className="absolute bottom-2 left-2 bg-purple-900/60 px-2 py-1 rounded text-xs">DevBot</div>
-            </div>
-            <div className="aspect-video bg-purple-900/30 rounded-md relative border border-purple-700/50">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Bot className="h-10 w-10 text-purple-400" />
-              </div>
-              <div className="absolute bottom-2 left-2 bg-purple-900/60 px-2 py-1 rounded text-xs">AnalyticsBot</div>
-            </div>
-          </div>
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={8} marginBottom={12}>
+            <Box aspectRatio={1.7777777777777777} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" position="relative">
+              <Box position="absolute" bottom={8} left={8} backgroundColor="rgb(0 0 0 / 0.6)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">Sarah Johnson</Box>
+            </Box>
+            <Box aspectRatio={1.7777777777777777} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" position="relative">
+              <Box position="absolute" bottom={8} left={8} backgroundColor="rgb(0 0 0 / 0.6)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">John Doe</Box>
+            </Box>
+            <Box aspectRatio={1.7777777777777777} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" position="relative" borderWidth={1} borderColor="var(--border-strong)">
+              <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center">
+                <Bot size={40} color="var(--foreground)" />
+              </XStack>
+              <Box position="absolute" bottom={8} left={8} backgroundColor="var(--surface-overlay)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">DevBot</Box>
+            </Box>
+            <Box aspectRatio={1.7777777777777777} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" position="relative" borderWidth={1} borderColor="var(--border-strong)">
+              <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center">
+                <Bot size={40} color="var(--foreground)" />
+              </XStack>
+              <Box position="absolute" bottom={8} left={8} backgroundColor="var(--surface-overlay)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">AnalyticsBot</Box>
+            </Box>
+          </Grid>
 
-          <div className="text-center text-xs text-neutral-400 py-1">
+          <Box textAlign="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" paddingVertical={4}>
             AI agents are learning from this meeting and will automatically implement the discussed tasks
-          </div>
-        </div>
-      </div>
-    </motion.div>
+          </Box>
+        </Box>
+      </Box>
+    </MotionBox>
   );
 };
 

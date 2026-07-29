@@ -1,3 +1,4 @@
+import { Box, MotionBox } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -27,25 +28,24 @@ const InteractiveHexagram: React.FC<InteractiveHexagramProps> = ({
   isSelected = false
 }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: index * 0.02 }}
-      className={`p-3 border ${isSelected ? 'border-purple-500/50 bg-purple-900/20' : 'border-gray-800/50 bg-gray-900/30'} 
-                 rounded-md cursor-pointer hover:bg-gray-800/40 transition-all duration-200 flex flex-col items-center justify-center`}
+      
+      padding={12} borderWidth={1} borderRadius="var(--radius-md)" cursor="pointer" transition="all 200ms cubic-bezier(.4,0,.2,1)" display="flex" flexDirection="column" alignItems="center" justifyContent="center" hoverStyle={{ backgroundColor: "var(--surface-card)" }} borderColor={isSelected ? "rgb(255 255 255 / 0.5)" : "rgb(255 255 255 / 0.5)"} backgroundColor={isSelected ? "rgb(255 255 255 / 0.2)" : "rgb(255 255 255 / 0.3)"}
       onClick={() => onClick(hexagram)}
       whileHover={{ y: -2 }}
     >
-      <div className="text-xs text-neutral-500 mb-1">{hexagram.id}</div>
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>{hexagram.id}</Box>
       <IChingHexagram 
         lines={hexagram.lines} 
         size={32} 
-        className={`${isSelected ? 'text-purple-400' : 'text-[var(--white)]/80'} mb-2`} 
+        marginBottom={8} color={isSelected ? "var(--foreground)" : "rgb(255 255 255 / 0.8)"} 
       />
-      <div className="text-center text-xs text-neutral-400">
+      <Box textAlign="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">
         {hexagram.chineseName}
-      </div>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

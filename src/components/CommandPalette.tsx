@@ -1,3 +1,4 @@
+import { Box, MotionBox, Text, XStack } from '@/gui'
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,7 +24,7 @@ import {
   Command,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 interface CommandItem {
   id: string;
@@ -173,125 +174,117 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+            position="fixed" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(0 0 0 / 0.6)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" zIndex={100}
           />
 
           {/* Command palette */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.15 }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-xl z-[101]"
+            position="fixed" top="15%" left="50%" x="-50%" width="100%" maxWidth="36rem" zIndex={101}
           >
-            <div className="bg-neutral-900 border border-neutral-700 rounded-xl shadow-2xl overflow-hidden">
+            <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden">
               {/* Search input */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-800">
-                <Search className="w-5 h-5 text-neutral-500" />
-                <input
+              <XStack display="flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)">
+                <Search size={20} color="var(--neutral-500)" />
+                <Box display="inline-block" minHeight={44}
                   ref={inputRef}
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Search pages, products, docs..."
-                  className="flex-1 bg-transparent text-white text-sm placeholder-neutral-500 outline-none"
+                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" placeholderTextColor="var(--neutral-500)" outlineStyle="none"
                 />
-                <kbd className="px-2 py-1 text-[10px] font-mono bg-neutral-800 rounded text-neutral-500">
+                <Text paddingHorizontal={8} paddingVertical={4} fontSize="10px" fontFamily="var(--font-mono)" backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" color="var(--neutral-500)">
                   ESC
-                </kbd>
-              </div>
+                </Text>
+              </XStack>
 
               {/* Results */}
-              <div className="max-h-[400px] overflow-y-auto py-2">
+              <Box maxHeight="400px" overflowY="auto" paddingVertical={8}>
                 {Object.keys(groupedCommands).length === 0 ? (
-                  <div className="px-4 py-8 text-center text-neutral-500 text-sm">
+                  <Box paddingHorizontal={16} paddingVertical={32} textAlign="center" color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     No results found for "{search}"
-                  </div>
+                  </Box>
                 ) : (
                   Object.entries(groupedCommands).map(([category, items]) => (
                     <div key={category}>
-                      <div className="px-4 py-2 text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">
+                      <Box paddingHorizontal={16} paddingVertical={8} fontSize="10px" fontWeight="600" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em">
                         {category}
-                      </div>
+                      </Box>
                       {items.map((cmd) => {
                         const Icon = cmd.icon;
                         const index = flatCommands.findIndex((c) => c.id === cmd.id);
                         const isSelected = index === selectedIndex;
 
                         return (
-                          <button
+                          <XStack minHeight={44}
                             key={cmd.id}
                             onClick={() => handleSelect(cmd)}
                             onMouseEnter={() => setSelectedIndex(index)}
-                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                              isSelected
-                                ? "bg-neutral-800 text-white"
-                                : "text-neutral-300 hover:bg-neutral-800/50"
-                            }`}
+                            render="button" width="100%" display="flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={10} textAlign="left" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isSelected ? "var(--neutral-800)" : undefined} color={isSelected ? "var(--foreground)" : "var(--neutral-300)"} hoverStyle={isSelected ? undefined : { backgroundColor: "var(--surface-card)" }}
                           >
-                            <div
-                              className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                                isSelected ? "bg-[#fd4444]/20" : "bg-neutral-800"
-                              }`}
+                            <XStack
+                              width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" backgroundColor={isSelected ? "rgb(255 255 255 / 0.2)" : "var(--neutral-800)"}
                             >
                               <Icon
-                                className={`w-4 h-4 ${
-                                  isSelected ? "text-[#fd4444]" : "text-neutral-500"
-                                }`}
+                                width={16} height={16} color={isSelected ? "var(--foreground)" : "var(--neutral-500)"}
                               />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium truncate">
+                            </XStack>
+                            <Box flex={1} minWidth={0}>
+                              <XStack display="flex" alignItems="center" gap={8}>
+                                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                                   {cmd.title}
-                                </span>
+                                </Text>
                                 {cmd.external && (
-                                  <ExternalLink className="w-3 h-3 text-neutral-500" />
+                                  <ExternalLink size={12} color="var(--neutral-500)" />
                                 )}
-                              </div>
+                              </XStack>
                               {cmd.description && (
-                                <div className="text-xs text-neutral-500 truncate">
+                                <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                                   {cmd.description}
-                                </div>
+                                </Box>
                               )}
-                            </div>
+                            </Box>
                             {isSelected && (
-                              <ArrowRight className="w-4 h-4 text-neutral-500" />
+                              <ArrowRight size={16} color="var(--neutral-500)" />
                             )}
-                          </button>
+                          </XStack>
                         );
                       })}
                     </div>
                   ))
                 )}
-              </div>
+              </Box>
 
               {/* Footer */}
-              <div className="px-4 py-2 border-t border-neutral-800 flex items-center justify-between">
-                <div className="flex items-center gap-4 text-[10px] text-neutral-500">
-                  <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-neutral-800 rounded">↑</kbd>
-                    <kbd className="px-1.5 py-0.5 bg-neutral-800 rounded">↓</kbd>
+              <XStack paddingHorizontal={16} paddingVertical={8} borderTopWidth={1} borderColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="space-between">
+                <XStack display="flex" alignItems="center" gap={16} fontSize="10px" color="var(--neutral-500)">
+                  <Text display="flex" alignItems="center" gap={4}>
+                    <Text paddingHorizontal={6} paddingVertical={2} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)">↑</Text>
+                    <Text paddingHorizontal={6} paddingVertical={2} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)">↓</Text>
                     Navigate
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-neutral-800 rounded">↵</kbd>
+                  </Text>
+                  <Text display="flex" alignItems="center" gap={4}>
+                    <Text paddingHorizontal={6} paddingVertical={2} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)">↵</Text>
                     Select
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 text-[10px] text-neutral-500">
-                  <Command className="w-3 h-3" />
+                  </Text>
+                </XStack>
+                <XStack display="flex" alignItems="center" gap={4} fontSize="10px" color="var(--neutral-500)">
+                  <Command size={12} />
                   <span>K to toggle</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+                </XStack>
+              </XStack>
+            </Box>
+          </MotionBox>
         </>
       )}
     </AnimatePresence>

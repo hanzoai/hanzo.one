@@ -1,3 +1,4 @@
+import { YStack } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -8,17 +9,17 @@ import ChatFeatures from "./ChatFeatures";
 
 const TeamChatLayout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex flex-col">
+    <YStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" flexDirection="column">
       <Navbar />
       
-      <main className="flex-1 flex flex-col pt-16">
+      <YStack render="main" flex={1} display="flex" flexDirection="column" paddingTop={64}>
         <TeamChatHero />
         <ChatInterface />
         <ChatFeatures />
-      </main>
+      </YStack>
       
       <Footer />
-    </div>
+    </YStack>
   );
 };
 

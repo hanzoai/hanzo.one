@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,12 +6,12 @@ import { Paintbrush, Code2, TestTube, FileCheck, Bug, Workflow } from "lucide-re
 
 const UseCases = () => {
   const useCases = [
-    { name: "Design & Research", icon: <Paintbrush className="h-6 w-6" /> },
-    { name: "Everyday Coding", icon: <Code2 className="h-6 w-6" /> },
-    { name: "Automated Testing", icon: <TestTube className="h-6 w-6" /> },
-    { name: "Automated Code Reviews", icon: <FileCheck className="h-6 w-6" /> },
-    { name: "Bug-fixing", icon: <Bug className="h-6 w-6" /> },
-    { name: "Self-healing CI/CD", icon: <Workflow className="h-6 w-6" /> }
+    { name: "Design & Research", icon: <Paintbrush size={24} /> },
+    { name: "Everyday Coding", icon: <Code2 size={24} /> },
+    { name: "Automated Testing", icon: <TestTube size={24} /> },
+    { name: "Automated Code Reviews", icon: <FileCheck size={24} /> },
+    { name: "Bug-fixing", icon: <Bug size={24} /> },
+    { name: "Self-healing CI/CD", icon: <Workflow size={24} /> }
   ];
 
   const container = {
@@ -29,81 +30,81 @@ const UseCases = () => {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox 
+          textAlign="center" marginBottom={64}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Use cases</h2>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-2xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-200">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Use cases</H2>
+          <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
+            <Paragraph fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={8} color="transparent" backgroundClip="text" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))">
               The Ultimate Developer Experience, Powered by AI
-            </p>
-            <p className="text-lg text-neutral-300">
+            </Paragraph>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)">
               Hanzo is redefining the developer experience with AI-powered assistance for design, research, coding, reviews, debugging, and CI/CD. Let AI handle the mundane tasks and unlock your full potential.
-            </p>
-          </div>
-        </motion.div>
+            </Paragraph>
+          </Box>
+        </MotionBox>
 
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16"
+        <MotionBox 
+          display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 24 }}
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
           {useCases.map((useCase, index) => (
-            <motion.div 
+            <MotionBox 
               key={index}
-              className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-4 flex items-center gap-3 hover:bg-gray-800/50 transition-colors"
+              flexDirection="row" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={16} display="flex" alignItems="center" gap={12} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
               variants={item}
             >
-              <div className="p-2 bg-purple-900/30 rounded-lg text-purple-300">
+              <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" color="var(--foreground)">
                 {useCase.icon}
-              </div>
-              <span className="font-medium">{useCase.name}</span>
-            </motion.div>
+              </Box>
+              <Text fontWeight="500">{useCase.name}</Text>
+            </MotionBox>
           ))}
-        </motion.div>
+        </MotionBox>
 
-        <div className="grid md:grid-cols-2 gap-12 my-16">
-          <motion.div 
-            className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-6"
+        <Grid display="grid" gap={48} marginVertical={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox 
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={24}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold mb-4">Integrated AI Across the Software Development Lifecycle.</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>Integrated AI Across the Software Development Lifecycle.</H3>
+            <Paragraph color="var(--neutral-300)">
               Reduce cycle times with the help of AI workflows throughout the entire software development lifecycle. Hanzo's AI Agents support teams at every stage from coding and testing, analyzing production errors and troubleshooting CI/CD pipelines.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div 
-            className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-6"
+          <MotionBox 
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={24}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold mb-4">One AI Platform for All Dev Tasks.</h3>
-            <p className="text-neutral-300 mb-6">
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>One AI Platform for All Dev Tasks.</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Included in one subscription are dozens of built-in AI agentic workflows, carefully planned to perform developer tasks for you. Full-stack engineer? Of course. Bug fixes? Sure. Adding tests to existing code? No problem. UX/UI Improvements? Included. Generating user docs? That too.
-            </p>
-            <div className="text-right">
-              <a href="#learn-more" className="text-purple-400 hover:text-purple-300 inline-flex items-center">
-                Learn more <span className="ml-1">→</span>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </Paragraph>
+            <Box textAlign="right">
+              <Anchor tap href="#learn-more" color="var(--foreground)" display="inline-flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}>
+                Learn more <Text marginLeft={4}>→</Text>
+              </Anchor>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

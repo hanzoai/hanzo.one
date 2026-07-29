@@ -1,23 +1,23 @@
+import { Box, ChromeText, Grid, H3, Paragraph, Text, XStack } from '@/gui'
 
 import React from 'react';
-import ChromeText from "@/components/ui/chrome-text";
 
 const UseCaseCard = ({ title, description, features }) => {
   return (
-    <div className="bg-green-900/10 border border-green-500/20 rounded-xl p-8">
-      <h3 className="text-2xl font-bold mb-4">{title}</h3>
-      <p className="text-neutral-300 mb-4">
+    <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+      <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>{title}</H3>
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>
         {description}
-      </p>
-      <ul className="space-y-2 text-neutral-300">
+      </Paragraph>
+      <Box render="ul" rowGap={8} color="var(--neutral-300)">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-green-400 mr-2">•</span>
+          <XStack key={index} render="li" display="flex" alignItems="flex-start">
+            <Text color="var(--foreground)" marginRight={8}>•</Text>
             <span>{feature}</span>
-          </li>
+          </XStack>
         ))}
-      </ul>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
@@ -62,18 +62,18 @@ const MachinesUseCases = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-black to-green-950/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl font-bold mb-4">
+    <Box render="section" paddingVertical={80} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
             Designed for AI Workloads
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Optimized infrastructure for every stage of machine learning and AI development
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => (
             <UseCaseCard
               key={index}
@@ -82,9 +82,9 @@ const MachinesUseCases = () => {
               features={useCase.features}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

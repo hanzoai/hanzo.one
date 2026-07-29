@@ -1,21 +1,22 @@
+import { H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 const AIEngineeringHeader = () => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="text-center mb-16"
+      textAlign="center" marginBottom={64}
     >
-      <h2 className="text-3xl font-bold text-[var(--white)] mb-4">Built for AI Engineers</h2>
-      <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+      <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16}>Built for AI Engineers</H2>
+      <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
         Powerful features specifically designed for AI-powered applications
-      </p>
-    </motion.div>
+      </Paragraph>
+    </MotionBox>
   );
 };
 

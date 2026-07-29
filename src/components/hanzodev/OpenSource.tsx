@@ -1,73 +1,74 @@
+import { Anchor, Box, H2, MotionBox, Paragraph, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, MessageCircle } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const OpenSource = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-neutral-900 to-neutral-800/50 rounded-xl p-8 md:p-12 border border-neutral-700 text-center"
+          borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-700)" textAlign="center" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), rgb(255 255 255 / 0.08))" $md={{ padding: 48 }}
         >
-          <div className="flex justify-center mb-6">
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center"
+          <XStack display="flex" justifyContent="center" marginBottom={24}>
+            <XStack
+              width={64} height={64} borderRadius="var(--radius-2xl)" display="flex" alignItems="center" justifyContent="center"
               style={{ backgroundColor: `${BRAND_COLOR}20` }}
             >
-              <Github className="w-8 h-8" style={{ color: BRAND_COLOR }} />
-            </div>
-          </div>
+              <Github size={32} style={{ color: BRAND_COLOR }} />
+            </XStack>
+          </XStack>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Open Source
-          </h2>
-          <p className="text-xl text-neutral-300 mb-6">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
             Inspect, control, contribute
-          </p>
+          </Paragraph>
 
-          <p className="text-neutral-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <Paragraph color="var(--neutral-400)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto" lineHeight="var(--leading-relaxed)">
             The complete plugin is open-source and licensed under Apache-2.0.
             You can see, control, and modify how Hanzo works. Hanzo does not
             have an auto model, so you always know exactly what model is being
             used. No silent context compression or cut-off. You can see the
             context window size on each request, along with the full prompts.
-          </p>
+          </Paragraph>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <a
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={32}>
+            <Anchor
               href="https://github.com/hanzoai/hanzo-dev"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
             >
-              <Github className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               Star on GitHub
-            </a>
-            <a
+            </Anchor>
+            <Anchor
               href="https://discord.gg/hanzo"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-800 text-sm text-white"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
-              <MessageCircle className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessageCircle size={16} /></Box>
               Join Discord
-            </a>
-          </div>
+            </Anchor>
+          </XStack>
 
-          <p className="text-sm text-neutral-500">
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
             Join our community on Discord and contribute to help shape Hanzo's
             future.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

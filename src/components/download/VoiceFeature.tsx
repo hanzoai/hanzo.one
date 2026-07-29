@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,43 +6,43 @@ import { Mic, Command } from "lucide-react";
 
 const VoiceFeature = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]/50">
-      <div className="max-w-6xl mx-auto">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="rgb(0 0 0 / 0.5)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox 
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="order-2 md:order-1 rounded-xl overflow-hidden shadow-2xl border border-gray-800">
-            <div className="relative pb-[120%] h-0 bg-gray-900">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-neutral-400">Voice input preview</span>
-              </div>
-            </div>
-          </div>
+          <Box order={2} borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" borderWidth={1} borderColor="var(--neutral-800)" $md={{ order: 1 }}>
+            <Box position="relative" paddingBottom="120%" height={0} backgroundColor="var(--neutral-900)">
+              <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center">
+                <Text color="var(--neutral-400)">Voice input preview</Text>
+              </XStack>
+            </Box>
+          </Box>
           
-          <div className="order-1 md:order-2">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-[var(--white)]">
+          <Box order={1} $md={{ order: 2 }}>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} color="var(--white)" $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Hold command anywhere to talk
-            </h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Control apps, dictate content, and ask questions completely hands-free
-            </p>
+            </Paragraph>
             
-            <div className="flex items-center space-x-4 text-neutral-400">
-              <Command className="h-6 w-6 text-purple-500" />
+            <XStack display="flex" alignItems="center" columnGap={16} color="var(--neutral-400)">
+              <Command size={24} color="var(--neutral-500)" />
               <span>Use system-wide keyboard shortcuts</span>
-            </div>
-            <div className="flex items-center space-x-4 text-neutral-400 mt-3">
-              <Mic className="h-6 w-6 text-purple-500" />
+            </XStack>
+            <XStack display="flex" alignItems="center" columnGap={16} color="var(--neutral-400)" marginTop={12}>
+              <Mic size={24} color="var(--neutral-500)" />
               <span>Seamless voice recognition</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            </XStack>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

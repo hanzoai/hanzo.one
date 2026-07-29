@@ -1,10 +1,10 @@
+import { Box, Button, Grid, H2, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const BRAND_COLOR = "#fd4444";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
+
+const BRAND_COLOR = "var(--foreground)";
 
 const plans = [
   {
@@ -52,101 +52,93 @@ const plans = [
 
 const PricingSection = () => {
   return (
-    <section className="py-24 px-4 bg-black">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
             style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
           >
             Pricing
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Choose your plan
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Start building with Hanzo Dev today. Scale as your needs grow.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {plans.map((plan, index) => (
-            <motion.div
+            <MotionBox
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`relative rounded-2xl p-8 ${
-                plan.highlight
-                  ? "bg-gradient-to-b from-[#fd4444]/20 to-transparent border-2"
-                  : "bg-neutral-900/50 border"
-              } border-neutral-800`}
+              position="relative" borderRadius="var(--radius-2xl)" padding={32} borderColor="var(--neutral-800)" borderWidth={plan.highlight ? 2 : 1} backgroundImage={plan.highlight ? "linear-gradient(to bottom, rgb(255 255 255 / 0.2), transparent)" : undefined} backgroundColor={plan.highlight ? undefined : "rgb(255 255 255 / 0.5)"}
               style={plan.highlight ? { borderColor: BRAND_COLOR } : {}}
             >
               {plan.highlight && (
-                <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-medium text-white"
+                <Box
+                  position="absolute" top={-12} left="50%" x="-50%" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--foreground)"
                   style={{ backgroundColor: BRAND_COLOR }}
                 >
                   Most Popular
-                </div>
+                </Box>
               )}
 
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
-                <p className="text-sm text-neutral-400">{plan.description}</p>
-              </div>
+              <Box marginBottom={24}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{plan.name}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{plan.description}</Paragraph>
+              </Box>
 
-              <div className="mb-6">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                </div>
-                <p className="text-xs text-neutral-500 mt-2">{plan.period}</p>
-              </div>
+              <Box marginBottom={24}>
+                <XStack display="flex" alignItems="baseline" gap={4}>
+                  <Text fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" color="var(--foreground)">{plan.price}</Text>
+                </XStack>
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={8}>{plan.period}</Paragraph>
+              </Box>
 
               <Button
-                className={`w-full mb-6 ${
-                  plan.highlight
-                    ? "text-white"
-                    : "bg-white/10 hover:bg-white/20 text-white"
-                }`}
+                width="100%" marginBottom={24} color={plan.highlight ? "var(--foreground)" : "var(--foreground)"} backgroundColor={plan.highlight ? undefined : "rgb(255 255 255 / 0.1)"} hoverStyle={plan.highlight ? undefined : { backgroundColor: "rgb(255 255 255 / 0.2)" }}
                 style={plan.highlight ? { backgroundColor: BRAND_COLOR } : {}}
                 asChild
               >
                 <Link to="/signup">
                   Try Hanzo
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
               </Button>
 
-              <ul className="space-y-3">
+              <Box render="ul" rowGap={12}>
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-neutral-300">{feature}</span>
-                  </li>
+                  <XStack key={feature} render="li" display="flex" alignItems="flex-start" gap={12}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><Check size={20} color="var(--neutral-500)" /></Box>
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">{feature}</Text>
+                  </XStack>
                 ))}
-              </ul>
-            </motion.div>
+              </Box>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
 
-        <motion.p
+        <MotionText
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-sm text-neutral-500 mt-8"
+          textAlign="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginTop={32}
         >
           Extra usage limits apply. Prices shown don't include applicable tax.
-        </motion.p>
-      </div>
-    </section>
+        </MotionText>
+      </Box>
+    </Box>
   );
 };
 

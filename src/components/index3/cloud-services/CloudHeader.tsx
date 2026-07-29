@@ -1,8 +1,7 @@
+import { Box, Button, ChromeText, MotionBox, Paragraph, Text, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 
 interface CloudHeaderProps {
   mousePosition: { x: number; y: number };
@@ -11,20 +10,20 @@ interface CloudHeaderProps {
 
 const CloudHeader: React.FC<CloudHeaderProps> = ({ mousePosition, containerRef }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-      <div className="max-w-2xl">
-        <motion.div
+    <YStack display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start" marginBottom={64} $md={{ flexDirection: "row" }}>
+      <Box maxWidth="42rem">
+        <MotionBox
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-4"
+          marginBottom={16}
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-[var(--black)] border border-white/10 text-[var(--white)] text-sm font-medium">
+          <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--black)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
             Infinitely Scalable, Globally Distributed
-          </span>
-        </motion.div>
-        <motion.div
+          </Text>
+        </MotionBox>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -32,31 +31,31 @@ const CloudHeader: React.FC<CloudHeaderProps> = ({ mousePosition, containerRef }
         >
           <ChromeText 
             as="h2" 
-            className="text-3xl md:text-5xl font-bold mb-4 text-left"
+            fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} textAlign="left" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             style={{
               backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
             }}
           >
             AI Cloud
           </ChromeText>
-          <p className="text-xl text-neutral-300 mt-4">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginTop={16}>
             Global, infinitely scalable, sustainable compute infrastructure specifically optimized for AI applications
-          </p>
-        </motion.div>
-      </div>
+          </Paragraph>
+        </MotionBox>
+      </Box>
       
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-8 md:mt-0"
+        marginTop={32} $md={{ marginTop: 0 }}
       >
-        <Button size="lg" variant="outline" className="text-[var(--white)] border-white/10 bg-[var(--black)] hover:bg-neutral-900 whitespace-nowrap">
+        <Button size="lg" variant="outline" color="var(--white)" borderColor="rgb(255 255 255 / 0.1)" backgroundColor="var(--black)" whiteSpace="nowrap" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}>
           <a href="/cloud">Explore Cloud</a>
         </Button>
-      </motion.div>
-    </div>
+      </MotionBox>
+    </YStack>
   );
 };
 

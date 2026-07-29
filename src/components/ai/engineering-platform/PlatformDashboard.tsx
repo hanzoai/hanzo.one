@@ -1,3 +1,4 @@
+import { Box, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -9,46 +10,46 @@ const PlatformDashboard = () => {
   const [activeSection, setActiveSection] = useState("models");
 
   return (
-    <div className="relative w-full bg-gray-900/70 rounded-xl overflow-hidden border border-gray-800 shadow-xl">
+    <Box position="relative" width="100%" backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)">
       {/* Dashboard header */}
-      <div className="bg-gray-800/90 p-3 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <div className="flex space-x-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-          <div className="text-xs text-neutral-400">Hanzo AI Engineering Platform</div>
-        </div>
-        <div className="flex space-x-3">
-          <button 
-            className={`px-3 py-1 rounded-md text-xs ${activeSection === "models" ? "bg-purple-900/60 text-purple-200" : "bg-gray-800 text-neutral-400"}`} 
+      <XStack backgroundColor="var(--surface-overlay)" padding={12} display="flex" alignItems="center" justifyContent="space-between">
+        <XStack display="flex" alignItems="center" columnGap={8}>
+          <XStack display="flex" columnGap={6}>
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+          </XStack>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">Hanzo AI Engineering Platform</Box>
+        </XStack>
+        <XStack display="flex" columnGap={12}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" backgroundColor={activeSection === "models" ? "rgb(255 255 255 / 0.6)" : "var(--neutral-800)"} color={activeSection === "models" ? "var(--foreground)" : "var(--neutral-400)"} 
             onClick={() => setActiveSection("models")}
           >
             AI Models
-          </button>
-          <button 
-            className={`px-3 py-1 rounded-md text-xs ${activeSection === "observability" ? "bg-purple-900/60 text-purple-200" : "bg-gray-800 text-neutral-400"}`} 
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" backgroundColor={activeSection === "observability" ? "rgb(255 255 255 / 0.6)" : "var(--neutral-800)"} color={activeSection === "observability" ? "var(--foreground)" : "var(--neutral-400)"} 
             onClick={() => setActiveSection("observability")}
           >
             Observability
-          </button>
-          <button 
-            className={`px-3 py-1 rounded-md text-xs ${activeSection === "analytics" ? "bg-purple-900/60 text-purple-200" : "bg-gray-800 text-neutral-400"}`} 
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" backgroundColor={activeSection === "analytics" ? "rgb(255 255 255 / 0.6)" : "var(--neutral-800)"} color={activeSection === "analytics" ? "var(--foreground)" : "var(--neutral-400)"} 
             onClick={() => setActiveSection("analytics")}
           >
             Analytics
-          </button>
-        </div>
-      </div>
+          </Box>
+        </XStack>
+      </XStack>
 
       {/* Dashboard content */}
-      <div className="p-4 h-[340px] overflow-auto">
+      <Box padding={16} height="340px" overflow="auto">
         {activeSection === "models" && <AIModelsView />}
         {activeSection === "observability" && <ObservabilityView />}
         {activeSection === "analytics" && <AnalyticsView />}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

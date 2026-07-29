@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -65,69 +66,69 @@ const CloudServices: React.FC<CloudServicesProps> = ({ onDeploymentEvent }) => {
   }, []);
 
   return (
-    <section 
+    <Box 
       ref={containerRef}
       id="cloud" 
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden"
+      render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
     >
       <BackgroundEffects scanPoints={scanPoints} />
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
         <CloudHeader mousePosition={mousePosition} containerRef={containerRef} />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center"
+            display="flex" flexDirection="column" justifyContent="center"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[var(--white)]">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24} color="var(--white)" $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
               Intelligent Architecture Canvas
-            </h3>
-            <p className="text-neutral-300 mb-8 text-lg">
+            </H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={32} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">
               Visually compose and deploy entire cloud architectures with our drag-and-drop canvas. 
               Connect services, configure dependencies, and deploy with a single click.
-            </p>
-            <ul className="space-y-4 text-neutral-400">
-              <li className="flex items-start">
-                <div className="mr-2 mt-1 text-blue-400">•</div>
+            </Paragraph>
+            <Box render="ul" rowGap={16} color="var(--neutral-400)">
+              <XStack render="li" display="flex" alignItems="flex-start">
+                <Box marginRight={8} marginTop={4} color="var(--foreground)">•</Box>
                 <span>Automatic resource provisioning and configuration</span>
-              </li>
-              <li className="flex items-start">
-                <div className="mr-2 mt-1 text-blue-400">•</div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="flex-start">
+                <Box marginRight={8} marginTop={4} color="var(--foreground)">•</Box>
                 <span>Real-time deployment status and monitoring</span>
-              </li>
-              <li className="flex items-start">
-                <div className="mr-2 mt-1 text-blue-400">•</div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="flex-start">
+                <Box marginRight={8} marginTop={4} color="var(--foreground)">•</Box>
                 <span>AI-powered recommendations for optimizing your architecture</span>
-              </li>
-              <li className="flex items-start">
-                <div className="mr-2 mt-1 text-blue-400">•</div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="flex-start">
+                <Box marginRight={8} marginTop={4} color="var(--foreground)">•</Box>
                 <span>Version control and rollback capabilities</span>
-              </li>
-            </ul>
-          </motion.div>
+              </XStack>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center"
+            flexDirection="row" display="flex" alignItems="center" justifyContent="center"
           >
-            <div className="w-full max-w-lg mx-auto">
+            <Box width="100%" maxWidth="32rem" marginHorizontal="auto">
               <CloudDeploymentAnimation />
-            </div>
-          </motion.div>
-        </div>
+            </Box>
+          </MotionBox>
+        </Grid>
         
         <GlobalNetwork />
         
         <CloudServiceGrid isHovered={isHovered} setIsHovered={setIsHovered} />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

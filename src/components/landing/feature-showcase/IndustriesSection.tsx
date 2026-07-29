@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -34,7 +35,7 @@ const IndustriesSection: React.FC = () => {
   ];
 
   return (
-    <div className="mb-16">
+    <Box marginBottom={64}>
       <SectionHeader
         badge="Industry Solutions"
         badgeColor="bg-purple-900/30 border border-purple-500/30 text-purple-300"
@@ -42,7 +43,7 @@ const IndustriesSection: React.FC = () => {
         description="Transform your business operations with tailored AI solutions designed for your industry's unique challenges."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {industryCards.map((industry, index) => (
           <IndustryCard 
             key={index}
@@ -51,14 +52,14 @@ const IndustriesSection: React.FC = () => {
             index={index}
           />
         ))}
-      </div>
+      </Grid>
 
       <ViewAllButton 
         href="/solutions"
         text="View all industries"
         hoverColor="purple"
       />
-    </div>
+    </Box>
   );
 };
 

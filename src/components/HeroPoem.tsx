@@ -1,27 +1,28 @@
+import { H1, MotionBox, Paragraph, Text } from '@/gui'
 
 import { motion } from "framer-motion";
 
 const HeroPoem = () => {
   return (
-    <motion.div 
+    <MotionBox 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="text-center max-w-4xl mx-auto mb-16 space-y-6"
+      textAlign="center" maxWidth="56rem" marginHorizontal="auto" marginBottom={64} rowGap={24}
     >
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-display tracking-tight text-[var(--white)] leading-tight relative z-50 text-center">
+      <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-tight)" fontFamily="var(--font-display)" letterSpacing="var(--tracking-tight)" color="var(--white)" position="relative" zIndex={50} textAlign="center" $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
         In the age of endless dreams,
-        <span className="block bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent py-1 leading-relaxed">
+        <Text display="block" backgroundClip="text" color="transparent" paddingVertical={4} lineHeight="var(--leading-relaxed)" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))">
           Ideas take flight on digital wings
-        </span>
-      </h1>
-      <p className="text-xl sm:text-2xl text-neutral-400 font-light leading-relaxed text-center">
+        </Text>
+      </H1>
+      <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" fontWeight="300" textAlign="center" $sm={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
         Through circuits of light and streams of code,<br />
         Hanzo weaves your visions into reality untold.<br />
         With algorithms crafted and AI refined,<br />
         We transform the dreams of your design.
-      </p>
-    </motion.div>
+      </Paragraph>
+    </MotionBox>
   );
 };
 

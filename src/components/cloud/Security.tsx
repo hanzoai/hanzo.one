@@ -1,39 +1,39 @@
+import { Box, Button, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Lock, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Security = () => {
   return (
-    <section id="security" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
+    <Box id="security" render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <Shield className="w-16 h-16 text-purple-400 mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={24}><Shield size={64} color="var(--foreground)" /></Box>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Enterprise-Ready
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Apps running on Hanzo Machines are KVM hardware-isolated, built on a memory-safe stack and running directly on our own metal.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="flex flex-col md:flex-row gap-16 items-start">
-          <motion.div
+        <YStack display="flex" flexDirection="column" gap={64} alignItems="flex-start" $md={{ flexDirection: "row" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex-1"
+            flex={1}
           >
-            <h3 className="text-2xl font-bold mb-6">Enterprise Features</h3>
-            <ul className="space-y-4">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Enterprise Features</H3>
+            <Box render="ul" rowGap={16}>
               {[
                 "Single Sign-On",
                 "Guaranteed Support Response Times",
@@ -41,51 +41,51 @@ const Security = () => {
                 "Memory-safe Rust and Go stack",
                 "CI/CD Integration"
               ].map((feature, index) => (
-                <li key={index} className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-purple-400 mr-3 mt-1" />
-                  <span className="text-neutral-300">{feature}</span>
-                </li>
+                <XStack key={index} render="li" display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12} marginTop={4}><CheckCircle size={20} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-300)">{feature}</Text>
+                </XStack>
               ))}
-            </ul>
-          </motion.div>
+            </Box>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex-1"
+            flex={1}
           >
-            <div className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-xl p-8 border border-purple-800/30">
-              <Lock className="w-12 h-12 text-purple-400 mb-6" />
-              <h3 className="text-xl font-bold mb-4">Hanzo.io Security</h3>
-              <p className="text-neutral-300 mb-8">
+            <Box borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--border-strong)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={24}><Lock size={48} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>Hanzo.io Security</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={32}>
                 Our security team works around the clock to ensure your applications and data are protected. We employ industry-leading practices and regularly undergo independent security audits.
-              </p>
-              <Button variant="outline" className="bg-transparent text-[var(--white)] hover:bg-[var(--white)] hover:text-black border border-white">
+              </Paragraph>
+              <Button variant="outline" backgroundColor="transparent" color="var(--white)" borderWidth={1} borderColor="var(--foreground)" hoverStyle={{ backgroundColor: "var(--white)", color: "var(--pure-black)" }}>
                 <a href="https://hanzo.ai/security">Security Details</a>
               </Button>
-            </div>
-          </motion.div>
-        </div>
+            </Box>
+          </MotionBox>
+        </YStack>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-20 text-center"
+          marginTop={80} textAlign="center"
         >
-          <p className="text-xl font-semibold mb-8">Trusted by teams at</p>
-          <div className="flex flex-wrap justify-center items-center gap-12">
-            <div className="h-12 w-32 bg-gray-800/50 rounded-md"></div>
-            <div className="h-12 w-32 bg-gray-800/50 rounded-md"></div>
-            <div className="h-12 w-32 bg-gray-800/50 rounded-md"></div>
-            <div className="h-12 w-32 bg-gray-800/50 rounded-md"></div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={32}>Trusted by teams at</Paragraph>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" gap={48}>
+            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
+            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
+            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
+            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

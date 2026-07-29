@@ -1,8 +1,7 @@
+import { Box, Button, Dialog, DialogTrigger, H3, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/radix-button";
 import { Check } from "lucide-react";
-import { Dialog, DialogTrigger } from "@/components/ui/radix-dialog";
 
 interface PricingPlanProps {
   name: string;
@@ -47,7 +46,7 @@ const PricingPlan = ({
     if (githubLink || name === "Dev") {
       return (
         <Button
-          className={`w-full mb-8 ${buttonClass}`}
+          width="100%" marginBottom={32}
           onClick={() => {
             window.open('https://github.com/hanzoai/', '_blank');
           }}
@@ -58,7 +57,7 @@ const PricingPlan = ({
     } else if (name === "Team" && showDetails) {
       return (
         <Button
-          className={`w-full mb-8 ${buttonClass}`}
+          width="100%" marginBottom={32}
           onClick={() => {
             const teamConfigSection = document.getElementById('team-config-section');
             if (teamConfigSection) {
@@ -72,7 +71,7 @@ const PricingPlan = ({
     } else if (name === "Pro" && showDetails) {
       return (
         <Button
-          className={`w-full mb-8 ${buttonClass}`}
+          width="100%" marginBottom={32}
           onClick={() => {
             const teamConfigSection = document.getElementById('team-config-section');
             if (teamConfigSection) {
@@ -86,7 +85,7 @@ const PricingPlan = ({
       );
     } else {
       return (
-        <Button className={`w-full mb-8 ${buttonClass}`}>
+        <Button width="100%" marginBottom={32}>
           Get Started
         </Button>
       );
@@ -94,43 +93,43 @@ const PricingPlan = ({
   };
 
   return (
-    <div 
-      className={`relative rounded-2xl border ${borderColor} ${bgColor} p-8 backdrop-blur-sm transition-all duration-300 hover:border-gray-700 hover:bg-gray-900/20`}
+    <Box 
+      position="relative" borderRadius="var(--radius-2xl)" borderWidth={1} padding={32} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--neutral-700)", backgroundColor: "rgb(255 255 255 / 0.2)" }}
     >
       {popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <div className="bg-[var(--white)] text-black px-3 py-1 rounded-full text-sm font-medium">
+        <Box position="absolute" top={-16} left="50%" x="-50%">
+          <Box backgroundColor="var(--white)" color="var(--pure-black)" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
             Most Popular
-          </div>
-        </div>
+          </Box>
+        </Box>
       )}
 
-      <div className="flex items-center gap-3 mb-4">
+      <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
         {icon}
-        <h3 className="text-xl font-semibold">{name}</h3>
-      </div>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600">{name}</H3>
+      </XStack>
       
-      <div className="mb-6">
-        <div className="flex items-baseline gap-1 mb-2">
-          <span className="text-4xl font-bold">{price}</span>
+      <Box marginBottom={24}>
+        <XStack display="flex" alignItems="baseline" gap={4} marginBottom={8}>
+          <Text fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700">{price}</Text>
           {billingPeriod && (
-            <span className="text-neutral-400">{billingPeriod}</span>
+            <Text color="var(--neutral-400)">{billingPeriod}</Text>
           )}
-        </div>
-        <p className="text-neutral-400">{description}</p>
-      </div>
+        </XStack>
+        <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+      </Box>
 
       {renderButton()}
 
-      <ul className="space-y-4">
+      <Box render="ul" rowGap={16}>
         {features.map((feature) => (
-          <li key={feature} className="flex items-start gap-3">
-            <Check className="h-5 w-5 text-neutral-400 mt-0.5 flex-shrink-0" />
-            <span className="text-neutral-300">{feature}</span>
-          </li>
+          <XStack key={feature} render="li" display="flex" alignItems="flex-start" gap={12}>
+            <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><Check size={20} color="var(--neutral-400)" /></Box>
+            <Text color="var(--neutral-300)">{feature}</Text>
+          </XStack>
         ))}
-      </ul>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

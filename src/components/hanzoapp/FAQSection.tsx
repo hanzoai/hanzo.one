@@ -1,9 +1,10 @@
+import { Box, H2, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
 
-const BRAND_COLOR = "#fd4444";
+
+const BRAND_COLOR = "var(--foreground)";
 
 const faqs = [
   {
@@ -34,36 +35,34 @@ const faqs = [
 
 const FAQItem = ({ faq, isOpen, onClick }: { faq: typeof faqs[0]; isOpen: boolean; onClick: () => void }) => {
   return (
-    <div className="border-b border-neutral-800">
-      <button
+    <Box borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack minHeight={44}
         onClick={onClick}
-        className="w-full py-6 flex items-center justify-between text-left group"
+        render="button" group width="100%" paddingVertical={24} display="flex" alignItems="center" justifyContent="space-between" textAlign="left"
       >
-        <span className="text-lg text-white group-hover:text-[#fd4444] transition-colors pr-4">
+        <Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" paddingRight={16} $group-hover={{ color: "var(--foreground)" }}>
           {faq.question}
-        </span>
+        </Text>
         <ChevronDown
-          className={`w-5 h-5 text-neutral-500 transition-transform flex-shrink-0 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          size={20} color="var(--neutral-500)"
         />
-      </button>
+      </XStack>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <MotionBox
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden"
+            overflow="hidden"
           >
-            <p className="pb-6 text-neutral-400 leading-relaxed">
+            <Paragraph paddingBottom={24} color="var(--neutral-400)" lineHeight="var(--leading-relaxed)">
               {faq.answer}
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
         )}
       </AnimatePresence>
-    </div>
+    </Box>
   );
 };
 
@@ -71,30 +70,30 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/50 to-black">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Frequently asked questions
-          </h2>
-          <p className="text-neutral-400">
+          </H2>
+          <Paragraph color="var(--neutral-400)">
             Have another question?{" "}
-            <Link to="/contact" className="hover:underline" style={{ color: BRAND_COLOR }}>
+            <Link tap to="/contact" hoverStyle={{ textDecorationLine: "underline" }} style={{ color: BRAND_COLOR }}>
               Contact us
             </Link>
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="border-t border-neutral-800"
+          borderTopWidth={1} borderColor="var(--neutral-800)"
         >
           {faqs.map((faq, index) => (
             <FAQItem
@@ -104,9 +103,9 @@ const FAQSection = () => {
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             />
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

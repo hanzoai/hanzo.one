@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -8,31 +9,31 @@ interface MainSectionProps {
 
 const MainSection: React.FC<MainSectionProps> = ({ children }) => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-block px-4 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-sm font-medium mb-6">
+            <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
               Open Source AI Engineering
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--white)] mb-6">
+            </Box>
+            <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               Build the Future with AI
-            </h2>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
               A complete platform for developers to build, deploy, and scale AI
               applications with unprecedented speed and complete control.
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
 
         {children}
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

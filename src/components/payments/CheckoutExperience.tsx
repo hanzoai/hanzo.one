@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,135 +6,135 @@ import { Globe, Smartphone, Paintbrush } from "lucide-react";
 
 const CheckoutExperience = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Customizable Checkout Experiences</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Customizable Checkout Experiences</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Create beautiful, high-converting checkout flows that drive revenue growth and customer satisfaction.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-lg overflow-hidden"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden"
           >
-            <div className="p-6">
-              <h3 className="text-2xl font-bold mb-4">Global Payment Methods</h3>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+            <Box padding={24}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Global Payment Methods</H3>
+              <Box render="ul" rowGap={12} marginBottom={24}>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Over 200 currencies and local payment methods</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Optimized global payment acceptance with Adaptive Acceptance</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Smart routing for higher authorization rates</span>
-                </li>
-              </ul>
+                </XStack>
+              </Box>
 
-              <div className="flex flex-wrap gap-2 mt-4">
+              <XStack display="flex" flexWrap="wrap" gap={8} marginTop={16}>
                 {['Visa', 'Mastercard', 'Amex', 'PayPal', 'Apple Pay', 'Google Pay', 'iDEAL', 'Bancontact', 'SOFORT', '+190 more'].map((method, index) => (
-                  <span key={index} className="inline-block px-3 py-1 bg-gray-800 rounded-full text-sm text-neutral-300">
+                  <Text key={index} display="inline-block" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
                     {method}
-                  </span>
+                  </Text>
                 ))}
-              </div>
-            </div>
-          </motion.div>
+              </XStack>
+            </Box>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-between bg-gray-900/30 border border-gray-800 rounded-lg overflow-hidden"
+            display="flex" flexDirection="column" justifyContent="space-between" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden"
           >
-            <div className="p-6">
-              <h3 className="text-2xl font-bold mb-4">Checkout Interface</h3>
-              <p className="text-neutral-400 mb-6">
+            <Box padding={24}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Checkout Interface</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Fully customizable checkout UI that matches your brand and maximizes conversions.
-              </p>
+              </Paragraph>
               
-              <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-4">
-                <div className="h-8 w-32 bg-gray-800 rounded mb-3"></div>
-                <div className="grid grid-cols-2 gap-3 mb-3">
-                  <div className="h-10 bg-gray-800 rounded"></div>
-                  <div className="h-10 bg-gray-800 rounded"></div>
-                </div>
-                <div className="h-10 bg-gray-800 rounded mb-3"></div>
-                <div className="h-10 bg-purple-600 rounded"></div>
-              </div>
+              <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" padding={16} marginBottom={16}>
+                <Box height={32} width={128} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" marginBottom={12}></Box>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12} marginBottom={12}>
+                  <Box height={40} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)"></Box>
+                  <Box height={40} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)"></Box>
+                </Grid>
+                <Box height={40} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" marginBottom={12}></Box>
+                <Box height={40} backgroundColor="var(--neutral-600)" borderRadius="var(--radius)"></Box>
+              </Box>
               
-              <div className="text-sm text-neutral-400 mt-2 text-center">Customizable checkout flow</div>
-            </div>
-          </motion.div>
-        </div>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={8} textAlign="center">Customizable checkout flow</Box>
+            </Box>
+          </MotionBox>
+        </Grid>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <Globe className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Global Reach</h3>
-            <p className="text-neutral-400">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <Globe size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Global Reach</H3>
+            <Paragraph color="var(--neutral-400)">
               Accept payments in 200+ countries and territories with localized experiences for each market.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <Smartphone className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Mobile Optimized</h3>
-            <p className="text-neutral-400">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <Smartphone size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Mobile Optimized</H3>
+            <Paragraph color="var(--neutral-400)">
               Responsive checkout flows designed for high conversion on all devices and screen sizes.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <Paintbrush className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Fully Customizable</h3>
-            <p className="text-neutral-400">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <Paintbrush size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Fully Customizable</H3>
+            <Paragraph color="var(--neutral-400)">
               Customize every aspect of the checkout experience to match your brand identity.
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </Paragraph>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

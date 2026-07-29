@@ -1,35 +1,35 @@
+import { Box, Button, Grid, H2, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const TweetCard = ({ username, handle, content, date, replies }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-colors"
+      
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
     >
-      <div className="flex items-center mb-4">
-        <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-[var(--white)] text-xl font-bold">
+      <XStack display="flex" alignItems="center" marginBottom={16}>
+        <XStack width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700">
           {username[0]}
-        </div>
-        <div className="ml-3">
-          <div className="font-bold">{username}</div>
-          <div className="text-neutral-500">@{handle}</div>
-        </div>
-      </div>
-      <div className="text-neutral-300 mb-4">{content}</div>
-      <div className="flex items-center justify-between text-sm text-neutral-500">
+        </XStack>
+        <Box marginLeft={12}>
+          <Box fontWeight="700">{username}</Box>
+          <Box color="var(--neutral-500)">@{handle}</Box>
+        </Box>
+      </XStack>
+      <Box color="var(--neutral-300)" marginBottom={16}>{content}</Box>
+      <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
         <div>{date}</div>
-        <div className="flex items-center">
-          <MessageSquare className="h-4 w-4 mr-1" /> {replies}
-        </div>
-      </div>
-    </motion.div>
+        <XStack display="flex" alignItems="center">
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><MessageSquare size={16} /></Box> {replies}
+        </XStack>
+      </XStack>
+    </MotionBox>
   );
 };
 
@@ -80,28 +80,28 @@ const HanzoAppCommunity = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Community 🫶</h2>
-          <p className="text-xl text-neutral-300 mb-8">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Community 🫶</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
             Open source community is the heart of Hanzo AI. See why developers love and build using Hanzo AI
-          </p>
+          </Paragraph>
           <Button 
             size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-[var(--white)]"
+            backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
           >
             Join Discord
           </Button>
-        </motion.div>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {tweets.map((tweet, index) => (
             <TweetCard 
               key={index}
@@ -112,9 +112,9 @@ const HanzoAppCommunity = () => {
               replies={tweet.replies}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

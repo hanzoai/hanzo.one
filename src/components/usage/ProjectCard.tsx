@@ -1,3 +1,4 @@
+import { Box, Grid, MotionBox, Text, XStack, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -5,7 +6,6 @@ import { motion } from "framer-motion";
 import { Project } from "./models/project";
 import ResourceUsageSection from "./ResourceUsageSection";
 import ProjectCostSection from "./ProjectCostSection";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
 
 const cardAnimation = createAnimationVariant("fadeInBlur", {
   duration: 0.4,
@@ -20,43 +20,43 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, onToggleExpand }: ProjectCardProps) => {
   return (
-    <motion.div 
+    <MotionBox 
       variants={cardAnimation}
-      className="rounded-xl border border-gray-800 bg-gray-900/20 overflow-hidden"
+      borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(255 255 255 / 0.2)" overflow="hidden"
     >
-      <div 
-        className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-800/30"
+      <XStack 
+        padding={16} display="flex" alignItems="center" justifyContent="space-between" cursor="pointer" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
         onClick={() => onToggleExpand(project.id)}
       >
-        <div className="flex items-center gap-4">
+        <XStack display="flex" alignItems="center" gap={16}>
           {project.expanded ? (
-            <ChevronUp className="h-5 w-5 text-neutral-400" />
+            <ChevronUp size={20} color="var(--neutral-400)" />
           ) : (
-            <ChevronDown className="h-5 w-5 text-neutral-400" />
+            <ChevronDown size={20} color="var(--neutral-400)" />
           )}
-          <span className="font-medium">{project.name}</span>
-        </div>
-        <div className="flex items-center gap-8">
+          <Text fontWeight="500">{project.name}</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" gap={32}>
           <div>
-            <div className="text-sm text-neutral-400">Current Cost</div>
-            <div className="font-medium">{project.currentCost}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Current Cost</Box>
+            <Box fontWeight="500">{project.currentCost}</Box>
           </div>
           <div>
-            <div className="text-sm text-neutral-400">Estimated</div>
-            <div className="font-medium">{project.estimatedCost}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Estimated</Box>
+            <Box fontWeight="500">{project.estimatedCost}</Box>
           </div>
-        </div>
-      </div>
+        </XStack>
+      </XStack>
       
       {project.expanded && (
-        <div className="p-6 border-t border-gray-800">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Box padding={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <ResourceUsageSection resources={project.resources} />
             <ProjectCostSection costs={project.costs} currentCost={project.currentCost} />
-          </div>
-        </div>
+          </Grid>
+        </Box>
       )}
-    </motion.div>
+    </MotionBox>
   );
 };
 

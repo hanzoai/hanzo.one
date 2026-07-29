@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Bot, Globe, Link2, ArrowRight } from "lucide-react";
@@ -40,85 +41,85 @@ const buildCards: BuildCard[] = [
 
 const WhatYouCanBuildSection: React.FC = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Section Header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-5xl font-medium text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             What you can build
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Templates and primitives for any stack.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {buildCards.map((card, index) => {
             const Icon = card.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={card.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group"
+                group
               >
-                <div className="h-full p-8 rounded-2xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900/50 transition-all duration-300 hover:border-neutral-700">
+                <Box height="100%" padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--surface-card)", borderColor: "var(--neutral-700)" }}>
                   {/* Icon */}
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                  <XStack
+                    width={48} height={48} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center" marginBottom={24}
                     style={{ backgroundColor: "rgba(253, 68, 68, 0.1)" }}
                   >
-                    <Icon className="w-6 h-6" style={{ color: "#fd4444" }} />
-                  </div>
+                    <Icon width={24} height={24} style={{ color: "var(--foreground)" }} />
+                  </XStack>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={12}>
                     {card.title}
-                  </h3>
+                  </H3>
 
                   {/* Sentence */}
-                  <p className="text-neutral-400 mb-6 leading-relaxed">
+                  <Paragraph color="var(--neutral-400)" marginBottom={24} lineHeight="var(--leading-relaxed)">
                     {card.sentence}
-                  </p>
+                  </Paragraph>
 
                   {/* Bullets */}
-                  <ul className="space-y-2.5 mb-8">
+                  <Box render="ul" rowGap={10} marginBottom={32}>
                     {card.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-center gap-3 text-sm">
-                        <div
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: "#fd4444" }}
+                      <XStack key={bullet} render="li" display="flex" alignItems="center" gap={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                        <Box
+                          width={6} height={6} borderRadius="var(--radius-full)" flexShrink={0}
+                          style={{ backgroundColor: "var(--neutral-800)" }}
                         />
-                        <span className="text-neutral-300">{bullet}</span>
-                      </li>
+                        <Text color="var(--neutral-300)">{bullet}</Text>
+                      </XStack>
                     ))}
-                  </ul>
+                  </Box>
 
                   {/* Link */}
-                  <a
+                  <Anchor
                     href={card.linkHref}
-                    className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
-                    style={{ color: "#fd4444" }}
+                    display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.8 }}
+                    style={{ color: "var(--foreground)" }}
                   >
                     {card.linkText}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
-              </motion.div>
+                    <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
+                  </Anchor>
+                </Box>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

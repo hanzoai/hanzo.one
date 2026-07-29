@@ -1,61 +1,61 @@
+import { Anchor, Box, Button, H1, H3, MotionBox, Paragraph, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const HanzoAppHero = () => {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <Box render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          textAlign="center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Build LLM Apps <span className="text-purple-400">Easily</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto mb-12">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+            Build LLM Apps <Text color="var(--foreground)">Easily</Text>
+          </H1>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={48} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
             Build. Deploy. Scale.
-          </p>
+          </Paragraph>
           
-          <div className="mb-12">
-            <p className="text-neutral-400 text-lg mb-4">Trusted and used by teams around the globe</p>
-          </div>
+          <Box marginBottom={48}>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={16}>Trusted and used by teams around the globe</Paragraph>
+          </Box>
           
-          <div className="max-w-xl mx-auto bg-gray-900/30 border border-gray-800 rounded-xl p-6 mb-12">
-            <h3 className="text-2xl font-semibold mb-4">Iterate, fast</h3>
-            <p className="text-neutral-300 mb-6">
+          <Box maxWidth="36rem" marginHorizontal="auto" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} marginBottom={48}>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Iterate, fast</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Developing LLM apps takes countless iterations. With AI engineering approach, we enable quick iterations to go from testing to production
-            </p>
+            </Paragraph>
             
-            <div className="bg-gray-950 rounded-lg p-4 font-mono text-sm text-neutral-300 text-left mb-6">
+            <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-lg)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" textAlign="left" marginBottom={24}>
               <pre>
                 $ npm install -g flowise<br/>
                 $ npx flowise start
               </pre>
-            </div>
+            </Box>
             
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium"
+              color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <a href="#" className="flex items-center">
+              <Anchor href="#" display="flex" alignItems="center">
                 Get Started 
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+              </Anchor>
             </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

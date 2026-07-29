@@ -1,73 +1,73 @@
+import { Anchor, Box, Button, Grid, H2, MotionBox, Paragraph, Text, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, Twitter, ExternalLink } from "lucide-react";
 
 const OperativeCTA = () => {
   return (
-    <section className="py-16 relative overflow-hidden">
+    <Box render="section" paddingVertical={64} position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-purple-950/20"></div>
-      <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-gray-950 to-transparent"></div>
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-purple-600/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))"></Box>
+      <Box position="absolute" top={0} left={0} width="100%" height="33.333333%" backgroundImage="linear-gradient(to bottom, var(--neutral-950), transparent)"></Box>
+      <Box position="absolute" top="33.333333%" left="50%" x="-50%" y="-50%" width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="mx-auto px-4 py-6 relative z-10 max-w-1618px">
-        <div className="text-center max-w-3xl mx-auto">
-          <motion.div
+      <Box marginHorizontal="auto" paddingHorizontal={16} paddingVertical={24} position="relative" zIndex={10} maxWidth="1618px">
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--white)] ">
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
               Ready to Experience Self-Operating Computing?
-            </h2>
-            <p className="text-xl text-neutral-300 -6">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               Join the community of developers, researchers, and enthusiasts 
               pioneering the future of human-AI collaboration.
-            </p>
+            </Paragraph>
             
-            <div className="flex flex-col sm:flex-row justify-center">
-              <Button size="sm" className="text-lg px-4 py-2">
-                <a href="https://github.com/hanzoai/operative" className="flex items-center gap-2">
-                  <Github className="h-5 w-5" />
+            <YStack display="flex" flexDirection="column" justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button size="sm" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={16} paddingVertical={8}>
+                <Anchor tap href="https://github.com/hanzoai/operative" display="flex" alignItems="center" gap={8}>
+                  <Github size={20} />
                   Star on GitHub
-                </a>
+                </Anchor>
               </Button>
-              <Button size="sm" variant="outline" className="text-lg px-4 py-2 text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10">
-                <a href="https://discord.gg/XthHQQj" className="flex items-center gap-2">
+              <Button size="sm" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={16} paddingVertical={8} color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+                <Anchor tap href="https://discord.gg/XthHQQj" display="flex" alignItems="center" gap={8}>
                   Join Discord Community
-                </a>
+                </Anchor>
               </Button>
-            </div>
+            </YStack>
             
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 max-w-2xl mx-auto">
-              <a 
+            <Grid marginTop={32} display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" maxWidth="42rem" marginHorizontal="auto" $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+              <Anchor tap 
                 href="https://blog.hanzo.ai/operative"
-                className="flex flex-col items-center p-4 rounded-xl hover:bg-gray-900/30 transition-colors"
+                display="flex" flexDirection="column" alignItems="center" padding={16} borderRadius="var(--radius-xl)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
               >
-                <ExternalLink className="h-6 w-6 text-purple-400 " />
-                <span className="text-[var(--white)] font-medium">Read the Blog</span>
-              </a>
-              <a 
+                <ExternalLink size={24} color="var(--foreground)" />
+                <Text color="var(--white)" fontWeight="500">Read the Blog</Text>
+              </Anchor>
+              <Anchor tap 
                 href="https://twitter.com/hanzoai"
-                className="flex flex-col items-center p-4 rounded-xl hover:bg-gray-900/30 transition-colors"
+                display="flex" flexDirection="column" alignItems="center" padding={16} borderRadius="var(--radius-xl)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
               >
-                <Twitter className="h-6 w-6 text-purple-400 " />
-                <span className="text-[var(--white)] font-medium">Follow Updates</span>
-              </a>
-              <a 
+                <Twitter size={24} color="var(--foreground)" />
+                <Text color="var(--white)" fontWeight="500">Follow Updates</Text>
+              </Anchor>
+              <Anchor tap 
                 href="https://github.com/hanzoai/operative/contribute"
-                className="flex flex-col items-center p-4 rounded-xl hover:bg-gray-900/30 transition-colors"
+                display="flex" flexDirection="column" alignItems="center" padding={16} borderRadius="var(--radius-xl)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
               >
-                <Github className="h-6 w-6 text-purple-400 " />
-                <span className="text-[var(--white)] font-medium">Contribute</span>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                <Github size={24} color="var(--foreground)" />
+                <Text color="var(--white)" fontWeight="500">Contribute</Text>
+              </Anchor>
+            </Grid>
+          </MotionBox>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

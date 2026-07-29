@@ -1,57 +1,57 @@
+import { Box as GuiBox, Button, Grid, H3, H4, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, MessageSquare, Box, Database } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const AdditionalFeatures = () => {
   return (
-    <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 rounded-2xl p-8 border border-purple-500/30 mt-12">
-      <h3 className="text-2xl font-bold text-[var(--white)] mb-4">Single API for Everything</h3>
-      <p className="text-lg text-neutral-300 mb-8">
+    <GuiBox borderRadius="var(--radius-2xl)" padding={32} borderWidth={1} borderColor="var(--border-strong)" marginTop={48} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+      <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={16}>Single API for Everything</H3>
+      <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32}>
         Our unified API provides seamless access to all AI capabilities through a consistent, developer-friendly interface
-      </p>
+      </Paragraph>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-[var(--black)]/30 p-4 rounded-lg">
-          <Brain className="h-8 w-8 text-purple-400 mb-3" />
-          <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Model Routing</h4>
-          <p className="text-sm text-neutral-300">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+        <GuiBox backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)">
+          <GuiBox render="span" display="inline-flex" alignItems="center" marginBottom={12}><Brain size={32} color="var(--foreground)" /></GuiBox>
+          <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Model Routing</H4>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
             Smart routing to optimal models based on task, cost, and performance requirements
-          </p>
-        </div>
+          </Paragraph>
+        </GuiBox>
         
-        <div className="bg-[var(--black)]/30 p-4 rounded-lg">
-          <MessageSquare className="h-8 w-8 text-purple-400 mb-3" />
-          <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Document Processing</h4>
-          <p className="text-sm text-neutral-300">
+        <GuiBox backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)">
+          <GuiBox render="span" display="inline-flex" alignItems="center" marginBottom={12}><MessageSquare size={32} color="var(--foreground)" /></GuiBox>
+          <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Document Processing</H4>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
             Built-in document parsing, chunking, and semantic analysis capabilities
-          </p>
-        </div>
+          </Paragraph>
+        </GuiBox>
         
-        <div className="bg-[var(--black)]/30 p-4 rounded-lg">
-          <Box className="h-8 w-8 text-purple-400 mb-3" />
-          <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Vector Search</h4>
-          <p className="text-sm text-neutral-300">
+        <GuiBox backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)">
+          <GuiBox render="span" display="inline-flex" alignItems="center" marginBottom={12}><Box size={32} color="var(--foreground)" /></GuiBox>
+          <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Vector Search</H4>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
             Integrated vector database for semantic search and retrieval augmented generation
-          </p>
-        </div>
+          </Paragraph>
+        </GuiBox>
         
-        <div className="bg-[var(--black)]/30 p-4 rounded-lg">
-          <Database className="h-8 w-8 text-purple-400 mb-3" />
-          <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Knowledge Base</h4>
-          <p className="text-sm text-neutral-300">
+        <GuiBox backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)">
+          <GuiBox render="span" display="inline-flex" alignItems="center" marginBottom={12}><Database size={32} color="var(--foreground)" /></GuiBox>
+          <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Knowledge Base</H4>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
             Create, manage and query custom knowledge bases for your AI applications
-          </p>
-        </div>
-      </div>
+          </Paragraph>
+        </GuiBox>
+      </Grid>
 
-      <div className="mt-8 text-center">
-        <Button className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-6 py-2 text-lg">
+      <GuiBox marginTop={32} textAlign="center">
+        <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={24} paddingVertical={8} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
           Explore the API
         </Button>
-      </div>
-    </div>
+      </GuiBox>
+    </GuiBox>
   );
 };
 

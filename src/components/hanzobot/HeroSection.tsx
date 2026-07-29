@@ -1,70 +1,69 @@
+import { Anchor, Box, Button, ChromeText, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, Star, ArrowRight } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const HeroSection = () => {
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/10 to-black"></div>
-      <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+    <Box render="section" paddingTop={128} paddingBottom={64} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), var(--pure-black))"></Box>
+      <Box position="absolute" top={80} right={40} width={288} height={288} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={80} left={40} width={288} height={288} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          textAlign="center"
         >
-          <div className="inline-block px-4 py-1 mb-6 rounded-full bg-purple-900/30 border border-purple-500/50 text-purple-300 text-sm font-medium">
+          <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} marginBottom={24} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
             Multi-Agent Simulation Framework
-          </div>
+          </Box>
           
-          <ChromeText as="h1" className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <ChromeText as="h1" fontSize="var(--text-5xl)" lineHeight="var(--leading-tight)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} $lg={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
             Hanzo Bot
           </ChromeText>
           
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             A powerful framework for creating, deploying, and managing autonomous AI agents.
             Build intelligent systems that can interact across multiple platforms while maintaining 
             consistent personalities and knowledge.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={32}>
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-[var(--white)] rounded-lg"
+              color="var(--white)" borderRadius="var(--radius-lg)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--neutral-500))" }}
             >
               Get Started
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Button>
             
             <Button 
               variant="outline" 
               size="lg"
-              className="text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10"
+              color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <Github className="mr-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box>
               GitHub
-              <div className="ml-2 flex items-center">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
-                <span className="text-neutral-300 text-sm">Star</span>
-              </div>
+              <XStack marginLeft={8} display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Star size={16} color="var(--foreground)" /></Box>
+                <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Star</Text>
+              </XStack>
             </Button>
-          </div>
+          </XStack>
           
-          <div className="text-neutral-500 text-sm">
+          <Box color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
             As seen powering 
-            <a href="https://twitter.com/DegenSpartanAI" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 mx-1">@DegenSpartanAI</a> 
+            <Anchor tap href="https://twitter.com/DegenSpartanAI" target="_blank" rel="noopener noreferrer" color="var(--foreground)" marginHorizontal={4} hoverStyle={{ color: "var(--foreground)" }}>@DegenSpartanAI</Anchor> 
             and 
-            <a href="https://twitter.com/aixvc_agent" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 mx-1">@aixvc_agent</a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            <Anchor tap href="https://twitter.com/aixvc_agent" target="_blank" rel="noopener noreferrer" color="var(--foreground)" marginHorizontal={4} hoverStyle={{ color: "var(--foreground)" }}>@aixvc_agent</Anchor>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

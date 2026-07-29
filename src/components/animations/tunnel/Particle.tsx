@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -21,9 +22,9 @@ const Particle: React.FC<ParticleProps> = ({
 }) => {
   // Create laser-like particles that converge to the center (vanishing point)
   return (
-    <motion.div
+    <MotionBox
       key={`particle-${index}`}
-      className="absolute rounded-full"
+      position="absolute" borderRadius="var(--radius-full)"
       style={{
         width: `${size}px`,
         height: `${size}px`,

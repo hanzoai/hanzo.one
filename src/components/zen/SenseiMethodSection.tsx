@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,72 +6,72 @@ import { ArrowRight, BookOpen, HexagonIcon } from "lucide-react";
 
 const SenseiMethodSection = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)]/50">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="rgb(0 0 0 / 0.5)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">The Sensei Method</h2>
-          <div className="h-px w-20 bg-purple-500 mx-auto"></div>
-        </motion.div>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>The Sensei Method</H2>
+          <Box height={1} width={80} backgroundColor="var(--neutral-500)" marginHorizontal="auto"></Box>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[var(--black)]/20 backdrop-blur-sm border border-purple-500/10 rounded-lg p-10 mb-10"
+          backgroundColor="rgb(0 0 0 / 0.2)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-lg)" padding={40} marginBottom={40}
         >
-          <div className="flex justify-center mb-8">
-            <HexagonIcon className="h-16 w-16 text-purple-500 opacity-70" />
-          </div>
+          <XStack display="flex" justifyContent="center" marginBottom={32}>
+            <Box render="span" display="inline-flex" alignItems="center" opacity={0.7}><HexagonIcon size={64} color="var(--neutral-500)" /></Box>
+          </XStack>
           
-          <p className="text-neutral-300 md:text-lg leading-relaxed mb-10 max-w-3xl mx-auto text-center">
+          <Paragraph color="var(--neutral-300)" lineHeight="var(--leading-relaxed)" marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" textAlign="center" $md={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>
             Our principles come alive through the Sensei Method, a framework that brings these 64 hexagrams
             into practice. It combines wisdom from ancient philosophies with modern engineering practices
             to create technology that is both powerful and humane.
-          </p>
+          </Paragraph>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
-            <a 
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginTop={48} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <Anchor 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between px-8 py-6 bg-gradient-to-r from-purple-900/30 to-purple-700/20 hover:from-purple-800/40 hover:to-purple-600/30 rounded-lg text-[var(--white)] transition-all group"
+              group display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
             >
-              <div className="flex items-center">
-                <BookOpen className="h-5 w-5 text-purple-400 mr-3" />
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
                 <div>
-                  <h3 className="text-xl font-medium mb-2">Hanzo Agency</h3>
-                  <p className="text-sm text-neutral-300">AI-powered creative & marketing</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={8}>Hanzo Agency</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">AI-powered creative & marketing</Paragraph>
                 </div>
-              </div>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+              </XStack>
+              <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={20} /></Box>
+            </Anchor>
             
-            <a 
+            <Anchor 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-between px-8 py-6 bg-gradient-to-r from-green-900/30 to-green-700/20 hover:from-green-800/40 hover:to-green-600/30 rounded-lg text-[var(--white)] transition-all group"
+              group display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" color="var(--white)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ backgroundImage: "linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" }}
             >
-              <div className="flex items-center">
-                <HexagonIcon className="h-5 w-5 text-green-400 mr-3" />
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><HexagonIcon size={20} color="var(--foreground)" /></Box>
                 <div>
-                  <h3 className="text-xl font-medium mb-2">Sensei Group</h3>
-                  <p className="text-sm text-neutral-300">Enterprise transformation experts</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={8}>Sensei Group</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">Enterprise transformation experts</Paragraph>
                 </div>
-              </div>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              </XStack>
+              <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={20} /></Box>
+            </Anchor>
+          </Grid>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,10 +1,7 @@
+import { Box, Button, H3, Input, Label, Paragraph, XStack, toast } from '@/gui'
 
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 import { useBilling } from '@/contexts/BillingContext';
 
 interface AddCreditsDialogProps {
@@ -42,53 +39,51 @@ const AddCreditsDialog = ({ isOpen, onClose }: AddCreditsDialogProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-medium">Add Credits to Your Account</h3>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+        <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">Add Credits to Your Account</H3>
         <Button variant="ghost" size="sm" onClick={onClose}>
-          <X className="h-4 w-4" />
+          <X size={16} />
         </Button>
-      </div>
+      </XStack>
       
-      <form onSubmit={handlePurchaseCredits} className="space-y-4">
-        <div className="space-y-2">
+      <Box onSubmit={handlePurchaseCredits} render="form" rowGap={16}>
+        <Box rowGap={8}>
           <Label htmlFor="creditAmount">Amount (USD)</Label>
-          <div className="relative">
-            <div className="absolute left-3 top-3 text-neutral-400">$</div>
+          <Box position="relative">
+            <Box position="absolute" left={12} top={12} color="var(--neutral-400)">$</Box>
             <Input
               id="creditAmount"
               name="creditAmount"
               placeholder="50"
               value={creditAmount}
               onChange={handleCreditAmountChange}
-              className="bg-gray-800 border-gray-700 pl-8"
+              backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)" paddingLeft={32}
             />
-          </div>
-          <p className="text-sm text-neutral-400">Minimum amount: $10</p>
-        </div>
+          </Box>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Minimum amount: $10</Paragraph>
+        </Box>
         
         {/* Preset amounts */}
-        <div className="flex flex-wrap gap-2 mt-2">
+        <XStack display="flex" flexWrap="wrap" gap={8} marginTop={8}>
           {['10', '25', '50', '100', '500'].map(amount => (
             <Button
               key={amount}
               type="button"
               variant="outline"
-              className={`${
-                creditAmount === amount ? 'border-purple-500 bg-purple-900/20' : ''
-              }`}
+              borderColor={creditAmount === amount ? "var(--neutral-500)" : undefined} backgroundColor={creditAmount === amount ? "rgb(255 255 255 / 0.2)" : undefined}
               onClick={() => setCreditAmount(amount)}
             >
               ${amount}
             </Button>
           ))}
-        </div>
+        </XStack>
         
-        <Button type="submit" className="w-full mt-4">
+        <Button type="submit" width="100%" marginTop={16}>
           Purchase Credits
         </Button>
-      </form>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

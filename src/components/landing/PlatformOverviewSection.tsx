@@ -1,6 +1,7 @@
+import { Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Zap,
   Users,
@@ -16,7 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const BRAND_COLOR = "#e11633";
+const BRAND_COLOR = "var(--foreground)";
 
 // AI providers we support for multi-agent execution
 const aiProviders = [
@@ -84,170 +85,164 @@ const PlatformOverviewSection = () => {
   const [activeMode, setActiveMode] = useState("plan");
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Multi-Agent Remote Execution */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-32"
+          marginBottom={128}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
-            style={{ color: BRAND_COLOR, borderColor: `#e116334d` }}
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
+            style={{ color: BRAND_COLOR, borderColor: `var(--foreground)4d` }}
           >
             Core Differentiator
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Parallel execution. One best outcome.
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mb-8">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginBottom={32}>
             Dispatch the same task to multiple agents (Hanzo + external), then pick the winner based on diff quality + test evidence, not vibes.
-          </p>
+          </Paragraph>
 
           {/* AI Provider logos */}
-          <div className="flex flex-wrap items-center gap-6 mb-12 p-4 rounded-xl bg-neutral-900/30 border border-neutral-800">
-            <span className="text-xs text-neutral-500 uppercase tracking-wider font-medium">Supported agents:</span>
+          <XStack display="flex" flexWrap="wrap" alignItems="center" gap={24} marginBottom={48} padding={16} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em" fontWeight="500">Supported agents:</Text>
             {aiProviders.map((provider) => (
-              <div
+              <XStack
                 key={provider.name}
-                className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
+                display="flex" alignItems="center" gap={8} color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 title={provider.name}
               >
-                <img
+                <Box display="inline-block"
                   src={provider.logo}
                   alt={provider.name}
-                  className="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity"
+                  render="img" width={20} height={20} opacity={0.6} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 1 }}
                   style={{ filter: 'grayscale(100%) brightness(2)' }}
                 />
-                <span className="text-xs hidden sm:inline">{provider.name}</span>
-              </div>
+                <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="none" $sm={{ display: "inline" }}>{provider.name}</Text>
+              </XStack>
             ))}
-          </div>
+          </XStack>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Grid display="grid" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {multiAgentFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={feature.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-5 rounded-xl border border-neutral-800 bg-neutral-900/50"
+                  padding={20} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)"
                 >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `#e1163315` }}
+                  <XStack
+                    width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
+                    style={{ backgroundColor: `var(--foreground)15` }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: BRAND_COLOR }} />
-                  </div>
-                  <h3 className="text-base font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-sm text-neutral-400">{feature.description}</p>
-                </motion.div>
+                    <Icon width={20} height={20} style={{ color: BRAND_COLOR }} />
+                  </XStack>
+                  <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+                </MotionBox>
               );
             })}
-          </div>
+          </Grid>
 
           <Link
             to="/dev"
-            className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-colors border border-neutral-700 hover:bg-neutral-900 text-white"
+            display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
             Run your first task
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
           </Link>
-        </motion.div>
+        </MotionBox>
 
         {/* Controllable Autonomy */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
-            style={{ color: BRAND_COLOR, borderColor: `#e116334d` }}
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
+            style={{ color: BRAND_COLOR, borderColor: `var(--foreground)4d` }}
           >
             Your Wedge
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Autonomy you can dial. Evidence you can trust.
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mb-12">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginBottom={48}>
             Move fast without giving agents the keys. Every step is explicit, reviewable, and enforceable.
-          </p>
+          </Paragraph>
 
           {/* Mode Selector */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <Grid display="grid" gap={16} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {autonomyModes.map((mode, index) => {
               const Icon = mode.icon;
               const isActive = activeMode === mode.id;
               return (
-                <motion.button
+                <MotionBox
                   key={mode.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  
                   onClick={() => setActiveMode(mode.id)}
-                  className={`p-5 rounded-xl border text-left transition-all ${
-                    isActive
-                      ? "border-[#e11633] bg-[#e11633]/10"
-                      : "border-neutral-800 bg-neutral-900/50 hover:border-neutral-700"
-                  }`}
+                  padding={20} borderRadius="var(--radius-xl)" borderWidth={1} textAlign="left" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderColor={isActive ? "var(--foreground)" : "var(--neutral-800)"} backgroundColor={isActive ? "rgb(255 255 255 / 0.1)" : "rgb(255 255 255 / 0.5)"} hoverStyle={isActive ? undefined : { borderColor: "var(--neutral-700)" }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                        isActive ? "bg-[#e11633]/20" : "bg-neutral-800"
-                      }`}
+                  <XStack display="flex" alignItems="flex-start" gap={12}>
+                    <XStack
+                      width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0} backgroundColor={isActive ? "rgb(255 255 255 / 0.2)" : "var(--neutral-800)"}
                     >
-                      <Icon className={`w-4 h-4 ${isActive ? "text-[#e11633]" : "text-neutral-400"}`} />
-                    </div>
+                      <Icon width={16} height={16} color={isActive ? "var(--foreground)" : "var(--neutral-400)"} />
+                    </XStack>
                     <div>
-                      <h3 className={`text-sm font-semibold mb-1 ${isActive ? "text-white" : "text-neutral-300"}`}>
+                      <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="600" marginBottom={4} color={isActive ? "var(--foreground)" : "var(--neutral-300)"}>
                         {mode.title}
-                      </h3>
-                      <p className="text-xs text-neutral-500">{mode.description}</p>
+                      </H3>
+                      <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{mode.description}</Paragraph>
                     </div>
-                  </div>
+                  </XStack>
                   {isActive && (
-                    <motion.div
+                    <MotionBox
                       layoutId="activeIndicator"
-                      className="mt-3 flex items-center text-[#e11633] text-xs font-medium"
+                      flexDirection="row" marginTop={12} display="flex" alignItems="center" color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500"
                     >
-                      <ChevronRight className="w-3 h-3 mr-1" />
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><ChevronRight size={12} /></Box>
                       Selected
-                    </motion.div>
+                    </MotionBox>
                   )}
-                </motion.button>
+                </MotionBox>
               );
             })}
-          </div>
+          </Grid>
 
           {/* Signature line */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center gap-3 p-4 rounded-xl border border-neutral-800 bg-neutral-900/30 max-w-md"
+            flexDirection="row" display="flex" alignItems="center" gap={12} padding={16} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" maxWidth="28rem"
           >
-            <div className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center">
-              <Lock className="w-5 h-5 text-neutral-400" />
-            </div>
-            <p className="text-sm text-neutral-300">
-              <span className="font-medium text-white">Agents don't get admin.</span>{" "}
+            <XStack width={40} height={40} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+              <Lock size={20} color="var(--neutral-400)" />
+            </XStack>
+            <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
+              <Text fontWeight="500" color="var(--foreground)">Agents don't get admin.</Text>{" "}
               They get policies.
-            </p>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+            </Paragraph>
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

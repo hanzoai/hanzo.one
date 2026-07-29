@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useRef } from "react";
 import AITunnelGrid from "./AITunnelGrid";
@@ -19,9 +20,9 @@ const AITunnelAnimation: React.FC<AITunnelAnimationProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div 
+    <Box 
       ref={containerRef}
-      className="relative w-full h-[100vh] overflow-hidden bg-[var(--black)]"
+      position="relative" width="100%" height="100vh" overflow="hidden" backgroundColor="var(--black)"
       style={{ border: "none" }} // Explicitly remove any border
     >
       {/* 3D Container */}
@@ -39,7 +40,7 @@ const AITunnelAnimation: React.FC<AITunnelAnimationProps> = ({
           showButtons={showButtons}
         />
       </TunnelContainer>
-    </div>
+    </Box>
   );
 };
 

@@ -1,8 +1,9 @@
+import { Box, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Download, Settings, Rocket, ArrowRight } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const steps = [
   {
@@ -30,74 +31,74 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Get started in minutes
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Three steps to productive AI-assisted development.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="space-y-12">
+        <Box rowGap={48}>
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isEven = index % 2 === 1;
 
             return (
-              <motion.div
+              <MotionBox
                 key={step.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="grid lg:grid-cols-2 gap-8 items-center"
+                display="grid" gap={32} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
               >
-                <div className={isEven ? "lg:order-2" : ""}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center"
+                <Box $lg={isEven ? { order: 2 } : undefined}>
+                  <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+                    <XStack
+                      width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center"
                       style={{ backgroundColor: `${BRAND_COLOR}20` }}
                     >
-                      <span className="text-sm font-bold" style={{ color: BRAND_COLOR }}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="700" style={{ color: BRAND_COLOR }}>
                         {step.number}
-                      </span>
-                    </div>
-                    <Icon className="w-5 h-5 text-neutral-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-neutral-400 mb-4">{step.description}</p>
-                </div>
+                      </Text>
+                    </XStack>
+                    <Icon width={20} height={20} color="var(--neutral-400)" />
+                  </XStack>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={12}>{step.title}</H3>
+                  <Paragraph color="var(--neutral-400)" marginBottom={16}>{step.description}</Paragraph>
+                </Box>
 
-                <div className={isEven ? "lg:order-1" : ""}>
-                  <div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                      </div>
-                      <span className="text-xs text-neutral-500 font-mono">terminal</span>
-                    </div>
-                    <div className="font-mono text-sm">
-                      <span className="text-neutral-500">$ </span>
-                      <span className="text-green-400">{step.code}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                <Box $lg={isEven ? { order: 1 } : undefined}>
+                  <Box backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={16}>
+                    <XStack display="flex" alignItems="center" gap={8} marginBottom={12}>
+                      <XStack display="flex" gap={6}>
+                        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                      </XStack>
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)">terminal</Text>
+                    </XStack>
+                    <Box fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                      <Text color="var(--neutral-500)">$ </Text>
+                      <Text color="var(--foreground)">{step.code}</Text>
+                    </Box>
+                  </Box>
+                </Box>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

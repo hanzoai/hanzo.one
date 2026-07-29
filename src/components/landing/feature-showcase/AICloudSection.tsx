@@ -1,11 +1,10 @@
+import { Box, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, ScrollArea, XStack } from '@/gui'
 
 import React from "react";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
 import ViewAllButton from "./ViewAllButton";
 import { ProductItem } from "@/components/navigation/products-menu/types";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface AICloudSectionProps {
   products: ProductItem[];
@@ -13,7 +12,7 @@ interface AICloudSectionProps {
 
 const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
   return (
-    <div className="mb-20">
+    <Box marginBottom={80}>
       <SectionHeader
         badge="AI Cloud"
         badgeColor="bg-blue-900/30 border border-blue-500/30 text-blue-300"
@@ -22,63 +21,63 @@ const AICloudSection: React.FC<AICloudSectionProps> = ({ products }) => {
       />
 
       {/* Desktop layout - Carousel for larger screens */}
-      <div className="hidden md:block relative mb-8">
+      <Box display="none" position="relative" marginBottom={32} $md={{ display: "block" }}>
         <Carousel
           opts={{
             align: "start",
             loop: false,
           }}
-          className="w-full"
+          width="100%"
         >
-          <CarouselContent className="-ml-4">
+          <CarouselContent marginLeft={-16}>
             {products.map((product, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                <div className="h-full">
+              <CarouselItem key={index} paddingLeft={16} $md={{ flexBasis: "50%" }} $lg={{ flexBasis: "33.333333%" }} $xl={{ flexBasis: "25%" }}>
+                <Box height="100%">
                   <ProductCard
-                    icon={<product.icon className="text-blue-400" />}
+                    icon={<product.icon color="var(--foreground)" />}
                     title={product.name}
                     description={product.description}
                     color="bg-blue-900/30"
                     hoverColor="bg-blue-600/40"
                     link={product.link || "#"}
                   />
-                </div>
+                </Box>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="hidden md:flex items-center justify-end gap-2 mt-6">
-            <CarouselPrevious className="relative -top-0 -left-0 bg-gray-800/50 hover:bg-gray-700/70 border-gray-700" />
-            <CarouselNext className="relative -top-0 -right-0 bg-gray-800/50 hover:bg-gray-700/70 border-gray-700" />
-          </div>
+          <Box display="none" alignItems="center" justifyContent="flex-end" gap={8} marginTop={24} $md={{ display: "flex" }}>
+            <CarouselPrevious position="relative" top={0} left={0} backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }} />
+            <CarouselNext position="relative" top={0} right={0} backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }} />
+          </Box>
         </Carousel>
-      </div>
+      </Box>
 
       {/* Mobile layout - Scrollable horizontal list for smaller screens */}
-      <div className="md:hidden mb-8">
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex space-x-4 pb-4 px-1">
+      <Box marginBottom={32} $md={{ display: "none" }}>
+        <ScrollArea width="100%" whiteSpace="nowrap">
+          <XStack display="flex" columnGap={16} paddingBottom={16} paddingHorizontal={4}>
             {products.map((product, index) => (
-              <div key={index} className="w-[300px] flex-shrink-0">
+              <Box key={index} width="300px" flexShrink={0}>
                 <ProductCard
-                  icon={<product.icon className="text-blue-400" />}
+                  icon={<product.icon color="var(--foreground)" />}
                   title={product.name}
                   description={product.description}
                   color="bg-blue-900/30"
                   hoverColor="bg-blue-600/40"
                   link={product.link || "#"}
                 />
-              </div>
+              </Box>
             ))}
-          </div>
+          </XStack>
         </ScrollArea>
-      </div>
+      </Box>
       
       <ViewAllButton 
         href="/ai"
         text="View all AI Cloud services"
         hoverColor="blue"
       />
-    </div>
+    </Box>
   );
 };
 

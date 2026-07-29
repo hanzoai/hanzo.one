@@ -1,3 +1,4 @@
+import { Box, MotionBox, MotionText } from '@/gui'
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
@@ -51,20 +52,20 @@ const HeroTitle: React.FC<HeroTitleProps> = ({
 
   return (
     <>
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-4 text-center"
+        marginBottom={16} textAlign="center"
       >
-        <div className="inline-block px-4 py-1.5 rounded-full bg-purple-900/20 border border-purple-500/20 text-purple-300 text-sm font-medium mb-4">
+        <Box display="inline-block" paddingHorizontal={16} paddingVertical={6} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={16}>
           AI Engineering Platform
-        </div>
-      </motion.div>
+        </Box>
+      </MotionBox>
       
-      <motion.h1 
+      <MotionText 
         ref={headingRef}
-        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans tracking-tight font-medium text-[var(--white)] leading-[1.1] pb-4"
+        fontSize="var(--text-5xl)" lineHeight="1.1" fontFamily="var(--font-sans)" letterSpacing="var(--tracking-tight)" fontWeight="500" color="var(--white)" paddingBottom={16} $sm={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} $md={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }} $lg={{ fontSize: "var(--text-8xl)", lineHeight: "var(--leading-8xl)" }}
         initial="hidden" 
         animate="visible" 
         variants={titleVariants} 
@@ -73,20 +74,20 @@ const HeroTitle: React.FC<HeroTitleProps> = ({
           backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
         }}
       >
-        <motion.span className="inline-flex items-center chrome-text font-bold mb-4 overflow-visible">
+        <MotionText display="inline-flex" alignItems="center" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent" fontWeight="700" marginBottom={16} overflow="visible">
           Accelerating AI
-        </motion.span>
+        </MotionText>
         
-        <motion.span 
-          className="block text-[var(--white)] mt-6 pb-4 overflow-visible chrome-text font-bold" 
+        <MotionText 
+          display="block" color="transparent" marginTop={24} paddingBottom={16} overflow="visible" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" fontWeight="700" 
           initial="hidden" 
           animate={animationComplete ? "visible" : "hidden"} 
           variants={titleVariants} 
           onAnimationComplete={onTitleAnimationComplete}
         >
           For a Better Future
-        </motion.span>
-      </motion.h1>
+        </MotionText>
+      </MotionText>
     </>
   );
 };

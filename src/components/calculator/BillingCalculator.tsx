@@ -1,7 +1,6 @@
+import { Box, Button, Grid, Slider, XStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
-import { Slider } from "@/components/ui/slider";
-import { Button } from "@/components/ui/button";
 import { Server, Database, HardDrive, Globe, Shield, HeadsetIcon, Activity, FileText } from "lucide-react";
 import ResourceSection from "./ResourceSection";
 import CostSummary from "./CostSummary";
@@ -28,11 +27,11 @@ const BillingCalculator = () => {
                     analyticsEventsCost + observabilityLogsCost + complianceCost + supportCost;
 
   return (
-    <div className="space-y-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-8">
+    <Box rowGap={32}>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <Box rowGap={32}>
           <ResourceSection
-            icon={<Server className="h-5 w-5" />}
+            icon={<Server size={20} />}
             title="Compute Resources"
             description="Performance machines (4 vCPU, 8GB RAM)"
             value={compute}
@@ -44,7 +43,7 @@ const BillingCalculator = () => {
           />
 
           <ResourceSection
-            icon={<Database className="h-5 w-5" />}
+            icon={<Database size={20} />}
             title="Hanzo Base Replicas"
             description="Database & cache instances (2 vCPU, 4GB RAM)"
             value={replicas}
@@ -56,7 +55,7 @@ const BillingCalculator = () => {
           />
 
           <ResourceSection
-            icon={<HardDrive className="h-5 w-5" />}
+            icon={<HardDrive size={20} />}
             title="Persistent Storage"
             description="Total storage needed for your applications"
             value={storage}
@@ -68,7 +67,7 @@ const BillingCalculator = () => {
           />
 
           <ResourceSection
-            icon={<Globe className="h-5 w-5" />}
+            icon={<Globe size={20} />}
             title="Monthly Bandwidth"
             description="Estimated outgoing traffic (North America)"
             value={bandwidth}
@@ -80,7 +79,7 @@ const BillingCalculator = () => {
           />
           
           <ResourceSection
-            icon={<Activity className="h-5 w-5" />}
+            icon={<Activity size={20} />}
             title="Analytics Events"
             description="Monthly tracked events (first 1M free)"
             value={analyticsEvents}
@@ -92,7 +91,7 @@ const BillingCalculator = () => {
           />
           
           <ResourceSection
-            icon={<FileText className="h-5 w-5" />}
+            icon={<FileText size={20} />}
             title="Observability Logs"
             description="Monthly log storage for monitoring"
             value={observabilityLogs}
@@ -102,7 +101,7 @@ const BillingCalculator = () => {
             cost={observabilityLogsCost}
             unit="GB"
           />
-        </div>
+        </Box>
 
         <CostSummary
           costs={{
@@ -121,14 +120,14 @@ const BillingCalculator = () => {
           compliance={compliance}
           support={support}
         />
-      </div>
+      </Grid>
 
-      <div className="flex justify-center pt-8">
-        <Button className="bg-[var(--white)] hover:bg-gray-200 text-black px-8">
+      <XStack display="flex" justifyContent="center" paddingTop={32}>
+        <Button backgroundColor="var(--white)" color="var(--pure-black)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-200)" }}>
           Contact Sales
         </Button>
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

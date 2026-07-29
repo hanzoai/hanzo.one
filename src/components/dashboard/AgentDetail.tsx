@@ -1,6 +1,6 @@
+import { Box, Button, Dialog, DialogContent, DialogHeader, DialogTitle, Grid, H3, H4, Input, Paragraph, Progress, Text, Textarea, XStack, YStack } from '@/gui'
 
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/radix-dialog";
 import { 
   Bot, Activity, Database, 
   FileText, Globe, Trash2, 
@@ -9,10 +9,6 @@ import {
   PlayCircle, StopCircle,
   Save, X
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Progress } from "@/components/ui/progress";
 import { Agent } from "./data";
 
 interface AgentDetailProps {
@@ -96,207 +92,208 @@ const AgentDetail: React.FC<AgentDetailProps> = ({ agent, onClose, onUpdate }) =
 
   return (
     <Dialog open={!!agent} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+      <DialogContent maxWidth="56rem" maxHeight="90vh" overflow="hidden" display="flex" flexDirection="column">
         <DialogHeader>
-          <DialogTitle className="flex items-center">
-            <div className="w-8 h-8 rounded-md bg-blue-900/30 border border-blue-800/50 flex items-center justify-center mr-3">
-              <Bot className="h-4 w-4 text-blue-400" />
-            </div>
+          <DialogTitle display="flex" alignItems="center">
+            <XStack width={32} height={32} borderRadius="var(--radius-md)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
+              <Bot size={16} color="var(--foreground)" />
+            </XStack>
             <Input 
               name="name"
               value={editedAgent.name}
               onChange={handleInputChange}
-              className="text-xl font-semibold bg-transparent border-none focus:ring-0 px-0 h-auto"
+              fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" backgroundColor="transparent" borderStyle="none" paddingHorizontal={0} height="auto" focusStyle={{ outlineWidth: 0 }}
             />
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex border-b border-gray-800 mt-2">
-          <button 
-            className={`px-4 py-2 text-sm font-medium ${activeTab === 'overview' ? 'text-[var(--white)] border-b-2 border-blue-500' : 'text-neutral-400 hover:text-[var(--white)]'}`}
+        <XStack display="flex" borderBottomWidth={1} borderColor="var(--neutral-800)" marginTop={8}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color={activeTab === 'overview' ? "var(--white)" : "var(--neutral-400)"} borderBottomWidth={activeTab === 'overview' ? 2 : undefined} borderColor={activeTab === 'overview' ? "var(--neutral-500)" : undefined} hoverStyle={activeTab === 'overview' ? undefined : { color: "var(--white)" }}
             onClick={() => setActiveTab('overview')}
           >
             Overview
-          </button>
-          <button 
-            className={`px-4 py-2 text-sm font-medium ${activeTab === 'rag' ? 'text-[var(--white)] border-b-2 border-blue-500' : 'text-neutral-400 hover:text-[var(--white)]'}`}
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color={activeTab === 'rag' ? "var(--white)" : "var(--neutral-400)"} borderBottomWidth={activeTab === 'rag' ? 2 : undefined} borderColor={activeTab === 'rag' ? "var(--neutral-500)" : undefined} hoverStyle={activeTab === 'rag' ? undefined : { color: "var(--white)" }}
             onClick={() => setActiveTab('rag')}
           >
             RAG Sources
-          </button>
-          <button 
-            className={`px-4 py-2 text-sm font-medium ${activeTab === 'settings' ? 'text-[var(--white)] border-b-2 border-blue-500' : 'text-neutral-400 hover:text-[var(--white)]'}`}
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color={activeTab === 'settings' ? "var(--white)" : "var(--neutral-400)"} borderBottomWidth={activeTab === 'settings' ? 2 : undefined} borderColor={activeTab === 'settings' ? "var(--neutral-500)" : undefined} hoverStyle={activeTab === 'settings' ? undefined : { color: "var(--white)" }}
             onClick={() => setActiveTab('settings')}
           >
             Settings
-          </button>
-        </div>
+          </Box>
+        </XStack>
 
-        <div className="flex-1 overflow-auto py-4">
+        <Box flex={1} overflow="auto" paddingVertical={16}>
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <Box rowGap={24}>
               <div>
-                <label className="block text-sm font-medium text-neutral-400 mb-1">Description</label>
+                <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Description</Text>
                 <Textarea 
                   name="description"
                   value={editedAgent.description || ""}
                   onChange={handleInputChange}
                   placeholder="Agent description..."
-                  className="min-h-24 bg-gray-900 border-gray-800"
+                  minHeight={96} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 <div>
-                  <label className="block text-sm font-medium text-neutral-400 mb-1">Status</label>
-                  <div className="flex items-center justify-between p-3 bg-gray-900 border border-gray-800 rounded-md">
-                    <div className="flex items-center">
-                      <div className={`h-2 w-2 rounded-full mr-2 ${
-                        editedAgent.status === 'running' ? 'bg-green-500' : 
-                        editedAgent.status === 'paused' ? 'bg-yellow-500' : 
-                        editedAgent.status === 'error' ? 'bg-red-500' : 'bg-gray-500'
-                      }`}></div>
+                  <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Status</Text>
+                  <XStack display="flex" alignItems="center" justifyContent="space-between" padding={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)">
+                    <XStack display="flex" alignItems="center">
+                      <Box
+                        height={8}
+                        width={8}
+                        borderRadius="var(--radius-full)"
+                        marginRight={8}
+                        opacity={editedAgent.status === 'running' ? 1 : editedAgent.status === 'paused' ? 0.6 : editedAgent.status === 'error' ? 0.35 : 0.2}
+                        backgroundColor="var(--foreground)"
+                      />
                       <span>{
                         editedAgent.status.charAt(0).toUpperCase() + editedAgent.status.slice(1)
                       }</span>
-                    </div>
+                    </XStack>
                     {editedAgent.status === 'running' ? (
-                      <Button size="sm" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]">
-                        <StopCircle className="h-4 w-4" />
+                      <Button size="sm" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+                        <StopCircle size={16} />
                       </Button>
                     ) : (
-                      <Button size="sm" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]">
-                        <PlayCircle className="h-4 w-4" />
+                      <Button size="sm" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+                        <PlayCircle size={16} />
                       </Button>
                     )}
-                  </div>
+                  </XStack>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-400 mb-1">Model</label>
-                  <div className="flex items-center p-3 bg-gray-900 border border-gray-800 rounded-md">
+                  <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Model</Text>
+                  <XStack display="flex" alignItems="center" padding={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)">
                     <Input 
                       name="model"
                       value={editedAgent.model}
                       onChange={handleInputChange}
-                      className="bg-transparent border-none p-0 focus:ring-0"
+                      backgroundColor="transparent" borderStyle="none" padding={0} focusStyle={{ outlineWidth: 0 }}
                     />
-                  </div>
+                  </XStack>
                 </div>
+              </Grid>
+
+              <div>
+                <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Resource Usage</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <div>
+                    <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">CPU</Text>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{editedAgent.cpu || 0}%</Text>
+                    </XStack>
+                    <Progress value={editedAgent.cpu || 0} height={8} />
+                  </div>
+                  <div>
+                    <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">GPU</Text>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{editedAgent.gpu || 0}%</Text>
+                    </XStack>
+                    <Progress value={editedAgent.gpu || 0} height={8} />
+                  </div>
+                  <div>
+                    <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Memory</Text>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{editedAgent.memory}%</Text>
+                    </XStack>
+                    <Progress value={editedAgent.memory} height={8} />
+                  </div>
+                  <div>
+                    <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Storage</Text>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{editedAgent.storage || 0}%</Text>
+                    </XStack>
+                    <Progress value={editedAgent.storage || 0} height={8} />
+                  </div>
+                </Grid>
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-neutral-400 mb-2">Resource Usage</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-neutral-400">CPU</span>
-                      <span className="text-sm">{editedAgent.cpu || 0}%</span>
-                    </div>
-                    <Progress value={editedAgent.cpu || 0} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-neutral-400">GPU</span>
-                      <span className="text-sm">{editedAgent.gpu || 0}%</span>
-                    </div>
-                    <Progress value={editedAgent.gpu || 0} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-neutral-400">Memory</span>
-                      <span className="text-sm">{editedAgent.memory}%</span>
-                    </div>
-                    <Progress value={editedAgent.memory} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm text-neutral-400">Storage</span>
-                      <span className="text-sm">{editedAgent.storage || 0}%</span>
-                    </div>
-                    <Progress value={editedAgent.storage || 0} className="h-2" />
-                  </div>
-                </div>
+                <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Usage Statistics</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+                  <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={12}>
+                    <H4 fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Tokens Used</H4>
+                    <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{editedAgent.tokens.toLocaleString()}</Paragraph>
+                  </Box>
+                  <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={12}>
+                    <H4 fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Cost</H4>
+                    <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">${editedAgent.cost.toFixed(2)}</Paragraph>
+                  </Box>
+                  <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={12}>
+                    <H4 fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Tasks Assigned</H4>
+                    <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{editedAgent.tasks}</Paragraph>
+                  </Box>
+                  <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={12}>
+                    <H4 fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Last Active</H4>
+                    <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{editedAgent.lastActive}</Paragraph>
+                  </Box>
+                </Grid>
               </div>
-
-              <div>
-                <h3 className="text-sm font-medium text-neutral-400 mb-2">Usage Statistics</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div className="bg-gray-900 border border-gray-800 rounded-md p-3">
-                    <h4 className="text-xs text-neutral-500 mb-1">Tokens Used</h4>
-                    <p className="text-lg font-medium">{editedAgent.tokens.toLocaleString()}</p>
-                  </div>
-                  <div className="bg-gray-900 border border-gray-800 rounded-md p-3">
-                    <h4 className="text-xs text-neutral-500 mb-1">Cost</h4>
-                    <p className="text-lg font-medium">${editedAgent.cost.toFixed(2)}</p>
-                  </div>
-                  <div className="bg-gray-900 border border-gray-800 rounded-md p-3">
-                    <h4 className="text-xs text-neutral-500 mb-1">Tasks Assigned</h4>
-                    <p className="text-lg font-medium">{editedAgent.tasks}</p>
-                  </div>
-                  <div className="bg-gray-900 border border-gray-800 rounded-md p-3">
-                    <h4 className="text-xs text-neutral-500 mb-1">Last Active</h4>
-                    <p className="text-lg font-medium">{editedAgent.lastActive}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </Box>
           )}
 
           {activeTab === 'rag' && (
-            <div className="grid grid-cols-3 gap-6 h-[400px]">
-              <div className="col-span-1 border-r border-gray-800 pr-4">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-sm font-medium">Knowledge Sources</h3>
+            <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24} height="400px">
+              <Box gridColumn="span 1 / span 1" borderRightWidth={1} borderColor="var(--neutral-800)" paddingRight={16}>
+                <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+                  <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Knowledge Sources</H3>
                   <Button size="sm" variant="ghost" onClick={handleAddRagSource}>
-                    <PlusCircle className="h-4 w-4" />
+                    <PlusCircle size={16} />
                   </Button>
-                </div>
-                <div className="space-y-1">
+                </XStack>
+                <Box rowGap={4}>
                   {editedAgent.ragSources?.map(source => (
-                    <div 
+                    <XStack 
                       key={source.id}
-                      className={`p-2 rounded flex items-center justify-between cursor-pointer ${
-                        selectedRagSource?.id === source.id ? 'bg-gray-800' : 'hover:bg-gray-900'
-                      }`}
+                      padding={8} borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="space-between" cursor="pointer" backgroundColor={selectedRagSource?.id === source.id ? "var(--neutral-800)" : undefined} hoverStyle={selectedRagSource?.id === source.id ? undefined : { backgroundColor: "var(--neutral-900)" }}
                       onClick={() => setSelectedRagSource(source)}
                     >
-                      <div className="flex items-center">
-                        {source.type === 'database' && <Database className="h-4 w-4 text-blue-400 mr-2" />}
-                        {source.type === 'vector' && <Activity className="h-4 w-4 text-purple-400 mr-2" />}
-                        {source.type === 'file' && <FileText className="h-4 w-4 text-yellow-400 mr-2" />}
-                        {source.type === 'api' && <Globe className="h-4 w-4 text-green-400 mr-2" />}
-                        <span className="text-sm truncate">{source.name}</span>
-                      </div>
-                      <ChevronRight className="h-4 w-4 text-neutral-500" />
-                    </div>
+                      <XStack display="flex" alignItems="center">
+                        {source.type === 'database' && <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Database size={16} color="var(--foreground)" /></Box>}
+                        {source.type === 'vector' && <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Activity size={16} color="var(--foreground)" /></Box>}
+                        {source.type === 'file' && <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><FileText size={16} color="var(--foreground)" /></Box>}
+                        {source.type === 'api' && <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={16} color="var(--foreground)" /></Box>}
+                        <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{source.name}</Text>
+                      </XStack>
+                      <ChevronRight size={16} color="var(--neutral-500)" />
+                    </XStack>
                   ))}
                   {!editedAgent.ragSources?.length && (
-                    <div className="text-sm text-neutral-500 p-2">
+                    <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" padding={8}>
                       No knowledge sources added
-                    </div>
+                    </Box>
                   )}
-                </div>
-              </div>
+                </Box>
+              </Box>
 
-              <div className="col-span-2">
+              <Box gridColumn="span 2 / span 2">
                 {selectedRagSource ? (
-                  <div className="space-y-4">
-                    <div className="flex justify-between">
-                      <h3 className="text-sm font-medium">Source Details</h3>
+                  <Box rowGap={16}>
+                    <XStack display="flex" justifyContent="space-between">
+                      <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Source Details</H3>
                       <Button 
                         size="sm" 
                         variant="ghost" 
-                        className="text-red-400 hover:text-red-300"
+                        color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
                         onClick={() => handleRemoveRagSource(selectedRagSource.id)}
                       >
-                        <Trash2 className="h-4 w-4 mr-1" />
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Trash2 size={16} /></Box>
                         Remove
                       </Button>
-                    </div>
+                    </XStack>
 
                     <div>
-                      <label className="block text-xs text-neutral-400 mb-1">Name</label>
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Name</Text>
                       <Input 
                         value={selectedRagSource.name}
                         onChange={(e) => {
@@ -304,39 +301,35 @@ const AgentDetail: React.FC<AgentDetailProps> = ({ agent, onClose, onUpdate }) =
                           handleRagSourceChange(updated);
                           setSelectedRagSource(updated);
                         }}
-                        className="bg-gray-900 border-gray-800"
+                        backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs text-neutral-400 mb-1">Type</label>
-                      <div className="grid grid-cols-4 gap-2">
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Type</Text>
+                      <Grid display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))" gap={8}>
                         {(['database', 'vector', 'file', 'api'] as const).map(type => (
-                          <div 
+                          <YStack 
                             key={type}
-                            className={`p-2 border rounded flex flex-col items-center justify-center cursor-pointer ${
-                              selectedRagSource.type === type 
-                                ? 'border-blue-500 bg-blue-900/20' 
-                                : 'border-gray-800 hover:border-gray-700'
-                            }`}
+                            padding={8} borderWidth={1} borderRadius="var(--radius)" display="flex" flexDirection="column" alignItems="center" justifyContent="center" cursor="pointer" borderColor={selectedRagSource.type === type ? "var(--neutral-500)" : "var(--neutral-800)"} backgroundColor={selectedRagSource.type === type ? "rgb(255 255 255 / 0.2)" : undefined} hoverStyle={selectedRagSource.type === type ? undefined : { borderColor: "var(--neutral-700)" }}
                             onClick={() => {
                               const updated = { ...selectedRagSource, type };
                               handleRagSourceChange(updated);
                               setSelectedRagSource(updated);
                             }}
                           >
-                            {type === 'database' && <Database className="h-5 w-5 text-blue-400 mb-1" />}
-                            {type === 'vector' && <Activity className="h-5 w-5 text-purple-400 mb-1" />}
-                            {type === 'file' && <FileText className="h-5 w-5 text-yellow-400 mb-1" />}
-                            {type === 'api' && <Globe className="h-5 w-5 text-green-400 mb-1" />}
-                            <span className="text-xs capitalize">{type}</span>
-                          </div>
+                            {type === 'database' && <Box render="span" display="inline-flex" alignItems="center" marginBottom={4}><Database size={20} color="var(--foreground)" /></Box>}
+                            {type === 'vector' && <Box render="span" display="inline-flex" alignItems="center" marginBottom={4}><Activity size={20} color="var(--foreground)" /></Box>}
+                            {type === 'file' && <Box render="span" display="inline-flex" alignItems="center" marginBottom={4}><FileText size={20} color="var(--foreground)" /></Box>}
+                            {type === 'api' && <Box render="span" display="inline-flex" alignItems="center" marginBottom={4}><Globe size={20} color="var(--foreground)" /></Box>}
+                            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" textTransform="capitalize">{type}</Text>
+                          </YStack>
                         ))}
-                      </div>
+                      </Grid>
                     </div>
 
                     <div>
-                      <label className="block text-xs text-neutral-400 mb-1">Connection String</label>
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Connection String</Text>
                       <Input 
                         value={selectedRagSource.connection}
                         onChange={(e) => {
@@ -344,7 +337,7 @@ const AgentDetail: React.FC<AgentDetailProps> = ({ agent, onClose, onUpdate }) =
                           handleRagSourceChange(updated);
                           setSelectedRagSource(updated);
                         }}
-                        className="bg-gray-900 border-gray-800 font-mono text-xs"
+                        backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)" fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)"
                         placeholder={
                           selectedRagSource.type === 'database' ? 'postgres://user:pass@host/db' :
                           selectedRagSource.type === 'vector' ? 'pinecone://index' :
@@ -353,33 +346,33 @@ const AgentDetail: React.FC<AgentDetailProps> = ({ agent, onClose, onUpdate }) =
                         }
                       />
                     </div>
-                  </div>
+                  </Box>
                 ) : (
-                  <div className="h-full flex items-center justify-center text-neutral-500 text-sm">
+                  <XStack height="100%" display="flex" alignItems="center" justifyContent="center" color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     Select a knowledge source or add a new one
-                  </div>
+                  </XStack>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Grid>
           )}
 
           {activeTab === 'settings' && (
-            <div className="space-y-6">
+            <Box rowGap={24}>
               <div>
-                <label className="block text-sm font-medium text-neutral-400 mb-1">Agent Type</label>
+                <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Agent Type</Text>
                 <Input 
                   name="type"
                   value={editedAgent.type}
                   onChange={handleInputChange}
-                  className="bg-gray-900 border-gray-800"
+                  backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
                 />
               </div>
 
               <div>
-                <h3 className="text-sm font-medium text-neutral-400 mb-2">Advanced Settings</h3>
-                <div className="space-y-4 bg-gray-900 border border-gray-800 rounded-md p-4">
+                <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Advanced Settings</H3>
+                <Box rowGap={16} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
                   <div>
-                    <label className="block text-xs text-neutral-400 mb-1">Memory Limit (%)</label>
+                    <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Memory Limit (%)</Text>
                     <Input 
                       type="number"
                       name="memory"
@@ -387,42 +380,42 @@ const AgentDetail: React.FC<AgentDetailProps> = ({ agent, onClose, onUpdate }) =
                       onChange={handleInputChange}
                       min="0"
                       max="100"
-                      className="bg-gray-900 border-gray-800"
+                      backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-xs text-neutral-400 mb-1">Execution Priority</label>
-                    <select className="w-full bg-gray-900 border-gray-800 rounded-md p-2 text-sm">
+                    <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Execution Priority</Text>
+                    <Box display="inline-block" minHeight={44} render="select" width="100%" backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       <option>Normal</option>
                       <option>High</option>
                       <option>Low</option>
-                    </select>
+                    </Box>
                   </div>
 
                   <div>
-                    <label className="block text-xs text-neutral-400 mb-1">Execution Mode</label>
-                    <select className="w-full bg-gray-900 border-gray-800 rounded-md p-2 text-sm">
+                    <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Execution Mode</Text>
+                    <Box display="inline-block" minHeight={44} render="select" width="100%" backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       <option>Automatic</option>
                       <option>Manual</option>
                       <option>Scheduled</option>
-                    </select>
+                    </Box>
                   </div>
-                </div>
+                </Box>
               </div>
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
 
-        <div className="flex justify-end gap-2 pt-4 border-t border-gray-800 mt-4">
+        <XStack display="flex" justifyContent="flex-end" gap={8} paddingTop={16} borderTopWidth={1} borderColor="var(--neutral-800)" marginTop={16}>
           <Button variant="ghost" onClick={onClose}>
             Cancel
           </Button>
           <Button onClick={handleSave}>
-            <Save className="h-4 w-4 mr-2" />
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Save size={16} /></Box>
             Save Agent
           </Button>
-        </div>
+        </XStack>
       </DialogContent>
     </Dialog>
   );

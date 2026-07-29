@@ -1,7 +1,6 @@
+import { Box, Button, Grid, H2, H3, H4, MotionBox, Paragraph, ScrollArea, XStack, YStack } from '@/gui'
 
 import { motion } from "framer-motion";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const testimonials = [{
@@ -67,19 +66,19 @@ const caseStudies = [{
 }];
 
 const Testimonials = () => {
-  return <section className="py-20 bg-[var(--black)]/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-display text-[var(--white)]">Our Impact</h2>
-          <p className="mt-4 text-lg text-neutral-300">Transforming businesses through innovation.</p>
-        </div>
+  return <Box render="section" paddingVertical={80} backgroundColor="rgb(0 0 0 / 0.5)">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontFamily="var(--font-display)" color="var(--white)">Our Impact</H2>
+          <Paragraph marginTop={16} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)">Transforming businesses through innovation.</Paragraph>
+        </Box>
 
         {/* Brand Logos Scroll Area */}
-        <div className="mb-16">
-          <h3 className="text-xl font-display text-[var(--white)] mb-6">Trusted By Industry Leaders</h3>
-          <ScrollArea className="w-full whitespace-nowrap rounded-lg">
-            <div className="flex space-x-8 p-4">
-              {brandLogos.map((brand, index) => <motion.div key={index} initial={{
+        <Box marginBottom={64}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontFamily="var(--font-display)" color="var(--white)" marginBottom={24}>Trusted By Industry Leaders</H3>
+          <ScrollArea width="100%" whiteSpace="nowrap" borderRadius="var(--radius-lg)">
+            <XStack display="flex" columnGap={32} padding={16}>
+              {brandLogos.map((brand, index) => <MotionBox key={index} initial={{
               opacity: 0,
               y: 20
             }} whileInView={{
@@ -90,54 +89,54 @@ const Testimonials = () => {
             }} transition={{
               duration: 0.5,
               delay: index * 0.1
-            }} className="flex-shrink-0">
-                  <img src={brand.logo} alt={brand.name} className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" />
-                </motion.div>)}
-            </div>
+            }} flexShrink={0}>
+                  <Box display="inline-block" src={brand.logo} alt={brand.name} render="img" height={48} width="auto" objectFit="contain" opacity={0.7} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 1 }} />
+                </MotionBox>)}
+            </XStack>
           </ScrollArea>
-        </div>
+        </Box>
 
         {/* Case Studies */}
-        <div className="mb-16">
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="text-xl font-display text-[var(--white)]">Featured Case Studies</h3>
-            <Button variant="ghost" className="text-[var(--white)]">
-              View All Case Studies <ArrowRight className="ml-2 h-4 w-4" />
+        <Box marginBottom={64}>
+          <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={32}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontFamily="var(--font-display)" color="var(--white)">Featured Case Studies</H3>
+            <Button variant="ghost" color="var(--white)">
+              View All Case Studies <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
-          </div>
+          </XStack>
           
           {/* Number milestone section - modified to use numbers and responsive layout */}
-          <div className="flex flex-col md:flex-row justify-between mb-8">
-            <div className="flex md:items-center md:space-x-6 mb-6 md:mb-0">
-              <div className="flex flex-col md:flex-row md:items-center">
-                <div className="flex items-center mb-4 md:mb-0">
-                  <div className="w-8 h-8 rounded-full bg-[var(--white)]/10 flex items-center justify-center text-[var(--white)] font-semibold mr-3">1</div>
-                  <h4 className="text-lg font-medium text-[var(--white)]">Analyze</h4>
-                </div>
-              </div>
-            </div>
+          <YStack display="flex" flexDirection="column" justifyContent="space-between" marginBottom={32} $md={{ flexDirection: "row" }}>
+            <XStack display="flex" marginBottom={24} $md={{ alignItems: "center", columnGap: 24, marginBottom: 0 }}>
+              <YStack display="flex" flexDirection="column" $md={{ flexDirection: "row", alignItems: "center" }}>
+                <XStack display="flex" alignItems="center" marginBottom={16} $md={{ marginBottom: 0 }}>
+                  <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontWeight="600" marginRight={12}>1</XStack>
+                  <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">Analyze</H4>
+                </XStack>
+              </YStack>
+            </XStack>
             
-            <div className="flex md:items-center md:space-x-6 mb-6 md:mb-0">
-              <div className="flex flex-col md:flex-row md:items-center">
-                <div className="flex items-center mb-4 md:mb-0">
-                  <div className="w-8 h-8 rounded-full bg-[var(--white)]/10 flex items-center justify-center text-[var(--white)] font-semibold mr-3">2</div>
-                  <h4 className="text-lg font-medium text-[var(--white)]">Optimize</h4>
-                </div>
-              </div>
-            </div>
+            <XStack display="flex" marginBottom={24} $md={{ alignItems: "center", columnGap: 24, marginBottom: 0 }}>
+              <YStack display="flex" flexDirection="column" $md={{ flexDirection: "row", alignItems: "center" }}>
+                <XStack display="flex" alignItems="center" marginBottom={16} $md={{ marginBottom: 0 }}>
+                  <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontWeight="600" marginRight={12}>2</XStack>
+                  <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">Optimize</H4>
+                </XStack>
+              </YStack>
+            </XStack>
             
-            <div className="flex md:items-center md:space-x-6">
-              <div className="flex flex-col md:flex-row md:items-center">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-[var(--white)]/10 flex items-center justify-center text-[var(--white)] font-semibold mr-3">3</div>
-                  <h4 className="text-lg font-medium text-[var(--white)]">Scale</h4>
-                </div>
-              </div>
-            </div>
-          </div>
+            <XStack display="flex" $md={{ alignItems: "center", columnGap: 24 }}>
+              <YStack display="flex" flexDirection="column" $md={{ flexDirection: "row", alignItems: "center" }}>
+                <XStack display="flex" alignItems="center">
+                  <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontWeight="600" marginRight={12}>3</XStack>
+                  <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">Scale</H4>
+                </XStack>
+              </YStack>
+            </XStack>
+          </YStack>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {caseStudies.map((study, index) => <motion.div key={index} initial={{
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            {caseStudies.map((study, index) => <MotionBox key={index} initial={{
             opacity: 0,
             y: 20
           }} whileInView={{
@@ -148,30 +147,30 @@ const Testimonials = () => {
           }} transition={{
             duration: 0.5,
             delay: index * 0.1
-          }} className="bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden">
-                <div className="aspect-video w-full">
-                  <iframe src={study.videoUrl} className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                </div>
-                <div className="p-6">
-                  <h4 className="text-[var(--white)] mb-2 text-3xl font-normal">{study.title}</h4>
-                  <p className="text-neutral-300 mb-4">{study.description}</p>
-                  <div className="grid grid-cols-3 gap-4 mb-4">
-                    {Object.entries(study.stats).map(([key, value], i) => <div key={i} className="text-center">
-                        <div className="text-2xl font-bold text-[var(--white)]">{value}</div>
-                        <div className="text-sm text-neutral-400">{key}</div>
-                      </div>)}
-                  </div>
-                  <Button variant="outline" className="w-full" onClick={() => window.open(study.learnMoreUrl, '_blank')}>
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+          }} backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" overflow="hidden">
+                <Box aspectRatio={1.7777777777777777} width="100%">
+                  <Box display="inline-block" src={study.videoUrl} render="iframe" width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></Box>
+                </Box>
+                <Box padding={24}>
+                  <H4 color="var(--white)" marginBottom={8} fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="400">{study.title}</H4>
+                  <Paragraph color="var(--neutral-300)" marginBottom={16}>{study.description}</Paragraph>
+                  <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16} marginBottom={16}>
+                    {Object.entries(study.stats).map(([key, value], i) => <Box key={i} textAlign="center">
+                        <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)">{value}</Box>
+                        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{key}</Box>
+                      </Box>)}
+                  </Grid>
+                  <Button variant="outline" width="100%" onClick={() => window.open(study.learnMoreUrl, '_blank')}>
+                    Learn More <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                   </Button>
-                </div>
-              </motion.div>)}
-          </div>
-        </div>
+                </Box>
+              </MotionBox>)}
+          </Grid>
+        </Box>
         
         {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => <motion.div key={index} initial={{
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          {testimonials.map((testimonial, index) => <MotionBox key={index} initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -182,16 +181,16 @@ const Testimonials = () => {
         }} transition={{
           duration: 0.5,
           delay: index * 0.1
-        }} className="p-6 bg-gray-900/50 backdrop-blur-sm rounded-xl ring-1 ring-white/10">
-              <p className="text-neutral-300 italic">{testimonial.quote}</p>
-              <div className="mt-4">
-                <p className="text-[var(--white)] font-semibold">{testimonial.author}</p>
-                <p className="text-neutral-400">{testimonial.role}</p>
-              </div>
-            </motion.div>)}
-        </div>
-      </div>
-    </section>;
+        }} padding={24} backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid">
+              <Paragraph color="var(--neutral-300)" fontStyle="italic">{testimonial.quote}</Paragraph>
+              <Box marginTop={16}>
+                <Paragraph color="var(--white)" fontWeight="600">{testimonial.author}</Paragraph>
+                <Paragraph color="var(--neutral-400)">{testimonial.role}</Paragraph>
+              </Box>
+            </MotionBox>)}
+        </Grid>
+      </Box>
+    </Box>;
 };
 
 export default Testimonials;

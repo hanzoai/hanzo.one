@@ -1,8 +1,8 @@
+import { Box, Helmet } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Helmet } from "react-helmet";
 import OperativeHero from "@/components/operator/OperativeHero";
 import OperativeFeatures from "@/components/operator/OperativeFeatures";
 import OperativeDemo from "@/components/operator/OperativeDemo";
@@ -23,14 +23,14 @@ const Operator = () => {
       
       <Navbar />
       
-      <main className="bg-[var(--black)] pt-16">
+      <Box render="main" backgroundColor="var(--black)" paddingTop={64}>
         <OperativeHero />
         <OperativeFeatures />
         <OperativeDemo />
         <OperativeUsage />
         <OperativeModels />
         <OperativeCTA />
-      </main>
+      </Box>
       
       <Footer />
     </>

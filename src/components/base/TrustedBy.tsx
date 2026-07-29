@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -10,37 +11,37 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          textAlign="center" marginBottom={40}
         >
-          <h2 className="text-2xl font-semibold text-[var(--white)] mb-2">Trusted Worldwide</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
-        </motion.div>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Trusted Worldwide</H2>
+          <Box width={80} height={4} backgroundColor="var(--neutral-500)" marginHorizontal="auto"></Box>
+        </MotionBox>
         
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-x-8 gap-y-4"
+          flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" columnGap={32} rowGap={16}
         >
           {companies.map((company, index) => (
-            <div 
+            <Box 
               key={index} 
-              className="text-neutral-400 font-medium text-lg transition-colors hover:text-blue-400"
+              color="var(--neutral-400)" fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
             >
               {company}
-            </div>
+            </Box>
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

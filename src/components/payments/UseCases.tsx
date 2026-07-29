@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,22 +6,22 @@ import { ShoppingCart, Repeat, LayoutGrid, CreditCard } from "lucide-react";
 
 const useCases = [
   {
-    icon: <ShoppingCart className="h-6 w-6 text-purple-400" />,
+    icon: <ShoppingCart size={24} color="var(--foreground)" />,
     title: "Ecommerce",
     description: "Sell directly to consumers worldwide with optimized, secure checkout experiences."
   },
   {
-    icon: <Repeat className="h-6 w-6 text-purple-400" />,
+    icon: <Repeat size={24} color="var(--foreground)" />,
     title: "SaaS & Subscription",
     description: "Automate recurring billing and manage complex pricing tiers."
   },
   {
-    icon: <LayoutGrid className="h-6 w-6 text-purple-400" />,
+    icon: <LayoutGrid size={24} color="var(--foreground)" />,
     title: "Marketplaces",
     description: "Integrate multi-party payments and payouts for buyers and sellers."
   },
   {
-    icon: <CreditCard className="h-6 w-6 text-purple-400" />,
+    icon: <CreditCard size={24} color="var(--foreground)" />,
     title: "Embedded Finance",
     description: "Seamlessly embed financial services into your product, from cards to loans."
   }
@@ -28,79 +29,79 @@ const useCases = [
 
 const UseCases = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Use Cases</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Use Cases</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hanzo Payments powers diverse business models across industries with flexible, scalable solutions.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/30 border border-gray-800 rounded-lg p-6"
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}
             >
-              <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
+              <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
                 {useCase.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-3">{useCase.title}</h3>
-              <p className="text-neutral-400 mb-4">{useCase.description}</p>
+              </Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>{useCase.title}</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={16}>{useCase.description}</Paragraph>
               
-              <div className="mt-6 pt-6 border-t border-gray-800">
-                <h4 className="text-lg font-medium mb-3">Key Features</h4>
-                <div className="grid grid-cols-2 gap-3">
+              <Box marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={12}>Key Features</H4>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12}>
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-                      <span className="text-sm text-neutral-400">
+                    <XStack key={i} display="flex" alignItems="center" gap={8}>
+                      <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)"></Box>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                         {index === 0 && ['Optimized checkout', 'Global shipping', 'Inventory sync', 'Tax compliance'][i]}
                         {index === 1 && ['Recurring billing', 'Trials & coupons', 'Revenue recovery', 'Usage metering'][i]}
                         {index === 2 && ['Split payments', 'Escrow', 'KYC verification', 'Seller onboarding'][i]} 
                         {index === 3 && ['Card issuing', 'Lending', 'Account connectivity', 'Balance management'][i]}
-                      </span>
-                    </div>
+                      </Text>
+                    </XStack>
                   ))}
-                </div>
-              </div>
-            </motion.div>
+                </Grid>
+              </Box>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-16 p-8 bg-gradient-to-r from-gray-900/50 to-purple-900/20 border border-gray-800 rounded-lg text-center"
+          marginTop={64} padding={32} borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" textAlign="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
         >
-          <h3 className="text-2xl font-bold mb-4">Start Quickly, Scale Instantly</h3>
-          <p className="text-neutral-300 max-w-2xl mx-auto mb-6">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Start Quickly, Scale Instantly</H3>
+          <Paragraph color="var(--neutral-300)" maxWidth="42rem" marginHorizontal="auto" marginBottom={24}>
             No-code solutions available, with setup completed in minutes. Scalable from startup to enterprise-level with consistent reliability.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-md transition duration-200">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" paddingHorizontal={24} paddingVertical={12} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" transition="all 200ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
               Get Started
-            </button>
-            <button className="px-6 py-3 bg-transparent border border-gray-600 hover:border-gray-400 rounded-md transition duration-200">
+            </Box>
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" paddingHorizontal={24} paddingVertical={12} backgroundColor="transparent" borderWidth={1} borderColor="var(--neutral-600)" borderRadius="var(--radius-md)" transition="all 200ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--neutral-400)" }}>
               View Documentation
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            </Box>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

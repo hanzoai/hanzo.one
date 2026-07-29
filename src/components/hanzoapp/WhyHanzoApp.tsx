@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -74,64 +75,64 @@ const modes = [
 
 const WhyHanzoApp = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-black to-neutral-900/50">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Four ways to Hanzo
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Choose how you want to work. All modes sync seamlessly when connected.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {modes.map((mode, index) => {
             const Icon = mode.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={mode.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-colors group"
+                
+                group backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
               >
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                <XStack display="flex" alignItems="flex-start" gap={16}>
+                  <XStack
+                    width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}
                     style={{ backgroundColor: `${mode.color}20` }}
                   >
-                    <Icon className="w-6 h-6" style={{ color: mode.color }} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-1">{mode.title}</h3>
-                    <p className="text-sm mb-3" style={{ color: mode.color }}>{mode.tagline}</p>
-                    <p className="text-sm text-neutral-400 mb-4">{mode.description}</p>
-                    <div className="space-y-2">
+                    <Icon width={24} height={24} style={{ color: mode.color }} />
+                  </XStack>
+                  <Box flex={1}>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={4}>{mode.title}</H3>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={12} style={{ color: mode.color }}>{mode.tagline}</Paragraph>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16}>{mode.description}</Paragraph>
+                    <Box rowGap={8}>
                       {mode.features.map((feature) => {
                         const FeatureIcon = feature.icon;
                         return (
-                          <div key={feature.text} className="flex items-center gap-2 text-sm text-neutral-400">
-                            <FeatureIcon className="w-4 h-4 text-neutral-500" />
+                          <XStack key={feature.text} display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
+                            <FeatureIcon width={16} height={16} color="var(--neutral-500)" />
                             <span>{feature.text}</span>
-                          </div>
+                          </XStack>
                         );
                       })}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                    </Box>
+                  </Box>
+                </XStack>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

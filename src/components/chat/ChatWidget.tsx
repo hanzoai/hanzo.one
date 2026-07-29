@@ -1,8 +1,9 @@
+import { Anchor, Box, MotionBox, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, ExternalLink, Bot } from "lucide-react";
 
-const BRAND_COLOR = "#e11633";
+const BRAND_COLOR = "var(--foreground)";
 
 // Quick action buttons
 const quickActions = [
@@ -138,144 +139,140 @@ const ChatWidget = () => {
   return (
     <>
       {/* Chat toggle button */}
-      <motion.button
+      <MotionBox
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-colors"
+        flexDirection="row" position="fixed" bottom={24} right={24} zIndex={50} width={56} height={56} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
         style={{ backgroundColor: BRAND_COLOR }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.div
+            <MotionBox
               key="close"
               initial={{ opacity: 0, rotate: -90 }}
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: 90 }}
             >
-              <X className="w-6 h-6 text-white" />
-            </motion.div>
+              <X size={24} color="var(--foreground)" />
+            </MotionBox>
           ) : (
-            <motion.div
+            <MotionBox
               key="chat"
               initial={{ opacity: 0, rotate: 90 }}
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: -90 }}
             >
-              <MessageSquare className="w-6 h-6 text-white" />
-            </motion.div>
+              <MessageSquare size={24} color="var(--foreground)" />
+            </MotionBox>
           )}
         </AnimatePresence>
-      </motion.button>
+      </MotionBox>
 
       {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] h-[500px] max-h-[calc(100vh-8rem)] rounded-2xl border border-neutral-800 bg-neutral-950 shadow-2xl flex flex-col overflow-hidden"
+            position="fixed" bottom={96} right={24} zIndex={50} width="380px" maxWidth="calc(100vw-3rem)" height="500px" maxHeight="calc(100vh-8rem)" borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" display="flex" flexDirection="column" overflow="hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-800 bg-neutral-900">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: BRAND_COLOR }}>
-                  <Bot className="w-4 h-4 text-white" />
-                </div>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-900)">
+              <XStack display="flex" alignItems="center" gap={8}>
+                <XStack width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" style={{ backgroundColor: BRAND_COLOR }}>
+                  <Bot size={16} color="var(--foreground)" />
+                </XStack>
                 <div>
-                  <div className="text-sm font-medium text-white">Hanzo AI</div>
-                  <div className="text-[10px] text-neutral-500">Ask me anything</div>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">Hanzo AI</Box>
+                  <Box fontSize="10px" color="var(--neutral-500)">Ask me anything</Box>
                 </div>
-              </div>
-              <a
+              </XStack>
+              <Anchor tap
                 href="https://hanzo.chat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-neutral-500 hover:text-white transition-colors flex items-center gap-1"
+                fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" gap={4} hoverStyle={{ color: "var(--foreground)" }}
               >
                 Full chat
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
+                <ExternalLink size={12} />
+              </Anchor>
+            </XStack>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <Box flex={1} overflowY="auto" padding={16} rowGap={16}>
               {messages.map((message, idx) => (
-                <div
+                <XStack
                   key={idx}
-                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                  display="flex" justifyContent={message.role === "user" ? "flex-end" : "flex-start"}
                 >
-                  <div
-                    className={`max-w-[85%] rounded-xl px-3 py-2 text-sm ${
-                      message.role === "user"
-                        ? "bg-[#fd4444] text-white"
-                        : "bg-neutral-900 text-neutral-300 border border-neutral-800"
-                    }`}
+                  <Box
+                    maxWidth="85%" borderRadius="var(--radius-xl)" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor={message.role === "user" ? "var(--foreground)" : "var(--neutral-900)"} color={message.role === "user" ? "var(--foreground)" : "var(--neutral-300)"} borderWidth={message.role === "user" ? undefined : 1} borderColor={message.role === "user" ? undefined : "var(--neutral-800)"}
                   >
                     {message.content}
-                  </div>
-                </div>
+                  </Box>
+                </XStack>
               ))}
               {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-2">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-neutral-600 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <div className="w-2 h-2 bg-neutral-600 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <div className="w-2 h-2 bg-neutral-600 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </div>
+                <XStack display="flex" justifyContent="flex-start">
+                  <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" paddingHorizontal={16} paddingVertical={8}>
+                    <XStack display="flex" gap={4}>
+                      <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-full)" style={{ animationDelay: "0ms" }} />
+                      <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-full)" style={{ animationDelay: "150ms" }} />
+                      <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-full)" style={{ animationDelay: "300ms" }} />
+                    </XStack>
+                  </Box>
+                </XStack>
               )}
-            </div>
+            </Box>
 
             {/* Quick actions */}
             {messages.length <= 1 && (
-              <div className="px-4 pb-2">
-                <div className="flex flex-wrap gap-2">
+              <Box paddingHorizontal={16} paddingBottom={8}>
+                <XStack display="flex" flexWrap="wrap" gap={8}>
                   {quickActions.map((action) => (
-                    <button
+                    <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                       key={action.label}
                       onClick={() => handleQuickAction(action.value)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-neutral-800 text-neutral-400 hover:bg-neutral-900 hover:text-white transition-colors"
+                      render="button" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--foreground)" }}
                     >
                       {action.label}
-                    </button>
+                    </Box>
                   ))}
-                </div>
-              </div>
+                </XStack>
+              </Box>
             )}
 
             {/* Input */}
-            <div className="p-4 border-t border-neutral-800">
-              <form
+            <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <XStack
                 onSubmit={(e) => {
                   e.preventDefault();
                   handleSend();
                 }}
-                className="flex gap-2"
+                render="form" display="flex" gap={8}
               >
-                <input
+                <Box display="inline-block" minHeight={44}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything..."
-                  className="flex-1 bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-neutral-700"
+                  render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
                   disabled={isLoading}
                 />
-                <button
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="p-2 rounded-lg transition-colors disabled:opacity-50"
+                  render="button" padding={8} borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" disabledStyle={{ opacity: 0.5 }}
                   style={{ backgroundColor: BRAND_COLOR }}
                 >
-                  <Send className="w-4 h-4 text-white" />
-                </button>
-              </form>
-            </div>
-          </motion.div>
+                  <Send size={16} color="var(--foreground)" />
+                </Box>
+              </XStack>
+            </Box>
+          </MotionBox>
         )}
       </AnimatePresence>
     </>

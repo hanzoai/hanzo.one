@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -16,103 +17,103 @@ const securityFeatures = [
 
 const Security = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-900/10 via-transparent to-transparent opacity-70"></div>
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.1), transparent, transparent)" opacity={0.7}></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center mb-6 bg-green-900/30 p-3 rounded-full">
-              <Shield className="h-7 w-7 text-green-400" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Enterprise-Grade Security & Compliance</h2>
-            <p className="text-lg text-neutral-300 mb-8">
+            <XStack display="inline-flex" alignItems="center" justifyContent="center" marginBottom={24} backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)">
+              <Shield size={28} color="var(--foreground)" />
+            </XStack>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Enterprise-Grade Security & Compliance</H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32}>
               Hanzo Observability is engineered with enterprise-grade security, compliance, and privacy at its foundation.
-            </p>
+            </Paragraph>
             
-            <div className="grid grid-cols-2 gap-4">
+            <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16}>
               {securityFeatures.map((feature, index) => (
-                <motion.div
+                <MotionBox
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="flex items-center"
+                  flexDirection="row" display="flex" alignItems="center"
                 >
-                  <CheckCircle className="h-5 w-5 text-green-400 mr-2 flex-shrink-0" />
-                  <span className="text-neutral-300">{feature}</span>
-                </motion.div>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={20} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-300)">{feature}</Text>
+                </MotionBox>
               ))}
-            </div>
-          </motion.div>
+            </Grid>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative"
+            position="relative"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-xl blur opacity-75"></div>
-            <div className="relative bg-[var(--black)] rounded-xl border border-gray-800 p-8">
-              <div className="space-y-6">
-                <div className="flex items-center">
-                  <div className="p-2 bg-green-900/30 rounded-md mr-4">
-                    <Shield className="h-6 w-6 text-green-400" />
-                  </div>
+            <Box position="absolute" top={-2} right={-2} bottom={-2} left={-2} borderRadius="var(--radius-xl)" filter="blur(8px)" opacity={0.75} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
+            <Box position="relative" backgroundColor="var(--black)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={32}>
+              <Box rowGap={24}>
+                <XStack display="flex" alignItems="center">
+                  <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" marginRight={16}>
+                    <Shield size={24} color="var(--foreground)" />
+                  </Box>
                   <div>
-                    <h3 className="text-lg font-semibold">Data Encryption</h3>
-                    <p className="text-neutral-400 text-sm">All data encrypted at rest and in transit</p>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600">Data Encryption</H3>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">All data encrypted at rest and in transit</Paragraph>
                   </div>
-                </div>
+                </XStack>
                 
-                <div className="bg-gray-900/50 rounded-lg p-4">
-                  <div className="mb-3 text-sm text-neutral-400">Security Certifications</div>
-                  <div className="grid grid-cols-2 gap-3">
+                <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16}>
+                  <Box marginBottom={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Security Certifications</Box>
+                  <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12}>
                     {["SOC 2", "ISO 27001", "GDPR", "HIPAA"].map((cert, idx) => (
-                      <div key={idx} className="bg-gray-800/50 p-2 rounded flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
-                        <span className="text-sm">{cert}</span>
-                      </div>
+                      <XStack key={idx} backgroundColor="var(--surface-card-emphasis)" padding={8} borderRadius="var(--radius)" display="flex" alignItems="center">
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={16} color="var(--foreground)" /></Box>
+                        <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{cert}</Text>
+                      </XStack>
                     ))}
-                  </div>
-                </div>
+                  </Grid>
+                </Box>
                 
-                <div className="bg-gray-900/50 rounded-lg p-4">
-                  <div className="mb-3 text-sm text-neutral-400">Data Privacy Controls</div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Data Retention</span>
-                      <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div className="w-5/6 h-full bg-green-500"></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Access Controls</span>
-                      <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div className="w-full h-full bg-green-500"></div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Audit Logging</span>
-                      <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div className="w-5/6 h-full bg-green-500"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16}>
+                  <Box marginBottom={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Data Privacy Controls</Box>
+                  <Box rowGap={12}>
+                    <XStack display="flex" alignItems="center" justifyContent="space-between">
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Data Retention</Text>
+                      <Box width={96} height={8} backgroundColor="var(--neutral-700)" borderRadius="var(--radius-full)" overflow="hidden">
+                        <Box width="83.333333%" height="100%" backgroundColor="var(--neutral-500)"></Box>
+                      </Box>
+                    </XStack>
+                    <XStack display="flex" alignItems="center" justifyContent="space-between">
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Access Controls</Text>
+                      <Box width={96} height={8} backgroundColor="var(--neutral-700)" borderRadius="var(--radius-full)" overflow="hidden">
+                        <Box width="100%" height="100%" backgroundColor="var(--neutral-500)"></Box>
+                      </Box>
+                    </XStack>
+                    <XStack display="flex" alignItems="center" justifyContent="space-between">
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Audit Logging</Text>
+                      <Box width={96} height={8} backgroundColor="var(--neutral-700)" borderRadius="var(--radius-full)" overflow="hidden">
+                        <Box width="83.333333%" height="100%" backgroundColor="var(--neutral-500)"></Box>
+                      </Box>
+                    </XStack>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -35,58 +36,58 @@ const ExpandableFeatureCard: React.FC<ExpandableFeatureCardProps> = ({
   };
 
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gray-900/20 border border-gray-800 rounded-2xl p-6 h-full"
+      backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" padding={24} height="100%"
     >
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <div className={`w-12 h-12 rounded-xl ${iconBgClass} flex items-center justify-center mr-4`}>
-            <div className={iconTextClass}>{icon}</div>
-          </div>
-          <h3 className="text-xl font-bold">{title}</h3>
-        </div>
-        <button 
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+        <XStack display="flex" alignItems="center">
+          <XStack width={48} height={48} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center" marginRight={16}>
+            <Box >{icon}</Box>
+          </XStack>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700">{title}</H3>
+        </XStack>
+        <XStack 
           onClick={toggleExpand}
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isExpanded ? 'bg-purple-600/30' : 'bg-gray-800/50 hover:bg-gray-700/50'}`}
+          render="button" width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isExpanded ? "rgb(255 255 255 / 0.3)" : "rgb(255 255 255 / 0.5)"} hoverStyle={isExpanded ? undefined : { backgroundColor: "var(--surface-card)" }}
         >
           {isExpanded ? (
-            <Minus className="h-4 w-4 text-purple-300" />
+            <Minus size={16} color="var(--foreground)" />
           ) : (
-            <Plus className="h-4 w-4 text-neutral-300" />
+            <Plus size={16} color="var(--neutral-300)" />
           )}
-        </button>
-      </div>
+        </XStack>
+      </XStack>
       
-      <p className="text-neutral-300 mb-4">{description}</p>
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>{description}</Paragraph>
       
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden"
+            overflow="hidden"
           >
-            <div className="pt-2 border-t border-gray-800">
-              <h4 className="font-medium text-[var(--white)] mb-3 mt-3">Key Features:</h4>
-              <ul className="space-y-2">
+            <Box paddingTop={8} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <H4 fontWeight="500" color="var(--white)" marginBottom={12} marginTop={12}>Key Features:</H4>
+              <Box render="ul" rowGap={8}>
                 {featurePoints.map((point, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className={`${bulletColor} mr-2 text-lg`}>•</span>
-                    <span className="text-sm text-neutral-300">{point.text}</span>
-                  </li>
+                  <XStack key={index} render="li" display="flex" alignItems="flex-start">
+                    <Text marginRight={8} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">•</Text>
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">{point.text}</Text>
+                  </XStack>
                 ))}
-              </ul>
-            </div>
-          </motion.div>
+              </Box>
+            </Box>
+          </MotionBox>
         )}
       </AnimatePresence>
-    </motion.div>
+    </MotionBox>
   );
 };
 

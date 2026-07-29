@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useState } from 'react';
 import { useAccount } from '@/contexts/AccountContext';
@@ -35,7 +36,7 @@ const ReferralProgram = () => {
 
   return (
     <AccountLayout>
-      <div className="space-y-8">
+      <Box rowGap={32}>
         {/* Header */}
         <ReferralHeader />
         
@@ -50,7 +51,7 @@ const ReferralProgram = () => {
         
         {/* How It Works */}
         <HowItWorks />
-      </div>
+      </Box>
     </AccountLayout>
   );
 };

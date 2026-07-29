@@ -1,11 +1,10 @@
+import { Anchor, Box, Button, Grid, H1, H2, H3, Helmet, Link, MotionBox, Paragraph, XStack } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Link } from "react-router-dom";
+
 import {
   Download,
   Mail,
@@ -21,7 +20,7 @@ import {
   Phone,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Company facts
 const companyFacts = [
@@ -88,7 +87,7 @@ const socialLinks = [
 ];
 
 const LogoPreview = ({ isDark }: { isDark: boolean }) => (
-  <svg viewBox="0 0 67 67" className="w-8 h-8">
+  <Box display="inline-block" viewBox="0 0 67 67" render="svg" width={32} height={32}>
     <path d="M22.21 67V44.6369H0V67H22.21Z" fill={isDark ? "#ffffff" : "#000000"} />
     <path d="M0 44.6369L22.21 46.8285V44.6369H0Z" fill="#DDDDDD" />
     <path d="M66.7038 22.3184H22.2534L0.0878906 44.6367H44.4634L66.7038 22.3184Z" fill={isDark ? "#ffffff" : "#000000"} />
@@ -96,14 +95,14 @@ const LogoPreview = ({ isDark }: { isDark: boolean }) => (
     <path d="M66.7198 0H44.5098V22.3184H66.7198V0Z" fill={isDark ? "#ffffff" : "#000000"} />
     <path d="M66.6753 22.3185L44.5098 20.0822V22.3185H66.6753Z" fill="#DDDDDD" />
     <path d="M66.7198 67V44.6369H44.5098V67H66.7198Z" fill={isDark ? "#ffffff" : "#000000"} />
-  </svg>
+  </Box>
 );
 
 const Press = () => {
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`}>
+    <Box minHeight="100vh" backgroundColor={isDarkMode ? "var(--pure-black)" : "var(--foreground)"} color={isDarkMode ? "var(--foreground)" : "var(--pure-black)"}>
       <Helmet>
         <title>Press - Hanzo Industries Inc</title>
         <meta name="description" content="Press resources, media kit, and contact information for Hanzo Industries Inc. Download logos, brand assets, and find press contacts." />
@@ -111,289 +110,257 @@ const Press = () => {
 
       <Navbar />
 
-      <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <Box render="main" paddingTop={128} paddingBottom={96} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
           {/* Header */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            textAlign="center" marginBottom={64}
           >
-            <div className={`inline-block px-4 py-1 rounded-full text-sm font-medium mb-4 ${
-              isDarkMode ? "bg-neutral-900 text-neutral-300" : "bg-neutral-100 text-neutral-600"
-            }`}>
+            <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={16} backgroundColor={isDarkMode ? "var(--neutral-900)" : "var(--neutral-100)"} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-600)"}>
               Press & Media
-            </div>
-            <h1 className={`text-4xl md:text-6xl font-bold mb-6 ${
-              isDarkMode
-                ? "bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70"
-                : "text-black"
-            }`}>
+            </Box>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} backgroundClip={isDarkMode ? "text" : undefined} color={isDarkMode ? "transparent" : "var(--pure-black)"} backgroundImage={isDarkMode ? "linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.7))" : undefined}>
               Press Resources
-            </h1>
-            <p className={`text-xl max-w-3xl mx-auto ${isDarkMode ? "text-neutral-400" : "text-neutral-600"}`}>
+            </H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" maxWidth="var(--container-prose)" marginHorizontal="auto" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
               Everything you need to write about Hanzo Industries Inc. Download our press kit, access brand assets, and find media contacts.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
           {/* Company Overview */}
-          <motion.section
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-20"
+            marginBottom={80}
           >
-            <div className={`p-8 rounded-2xl border ${
-              isDarkMode
-                ? "bg-gradient-to-b from-neutral-900 to-black border-neutral-800"
-                : "bg-gradient-to-b from-neutral-50 to-white border-neutral-200"
-            }`}>
-              <div className="flex items-center gap-3 mb-6">
-                <Building2 className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
-                <h2 className="text-2xl font-bold">About Hanzo Industries Inc</h2>
-              </div>
-              <p className={`text-lg mb-8 leading-relaxed ${isDarkMode ? "text-neutral-300" : "text-neutral-600"}`}>
+            <Box padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} backgroundImage={isDarkMode ? "linear-gradient(to bottom, var(--neutral-900), var(--pure-black))" : "linear-gradient(to bottom, var(--neutral-50), var(--foreground))"}>
+              <XStack display="flex" alignItems="center" gap={12} marginBottom={24}>
+                <Building2 size={24} />
+                <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">About Hanzo Industries Inc</H2>
+              </XStack>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-relaxed)" marginBottom={32} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-600)"}>
                 Hanzo Industries Inc is an AI technology company building the infrastructure for the next generation of intelligent applications. Founded in 2016 and headquartered in Los Angeles, Hanzo provides enterprise-grade AI platforms, developer tools, and cloud services to companies worldwide. Our mission is to make AI accessible, safe, and beneficial for everyone.
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              </Paragraph>
+              <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
                 {companyFacts.map((fact) => (
-                  <div key={fact.label} className="text-center">
-                    <div className="text-3xl font-bold mb-1" style={{ color: BRAND_COLOR }}>
+                  <Box key={fact.label} textAlign="center">
+                    <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={4} style={{ color: BRAND_COLOR }}>
                       {fact.value}
-                    </div>
-                    <div className={`text-sm ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`}>
+                    </Box>
+                    <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                       {fact.label}
-                    </div>
-                  </div>
+                    </Box>
+                  </Box>
                 ))}
-              </div>
-            </div>
-          </motion.section>
+              </Grid>
+            </Box>
+          </MotionBox>
 
           {/* Press Contact */}
-          <motion.section
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-20"
+            marginBottom={80}
           >
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Mail className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} display="flex" alignItems="center" gap={12}>
+              <Mail size={24} />
               Press Contact
-            </h2>
-            <div className={`p-8 rounded-2xl border ${
-              isDarkMode
-                ? "bg-neutral-900/50 border-neutral-800"
-                : "bg-neutral-50 border-neutral-200"
-            }`}>
-              <div className="grid md:grid-cols-2 gap-8">
+            </H2>
+            <Box padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-50)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+              <Grid display="grid" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 <div>
-                  <h3 className="font-semibold mb-4">Media Inquiries</h3>
-                  <div className="space-y-3">
-                    <a
+                  <H3 fontWeight="600" marginBottom={16}>Media Inquiries</H3>
+                  <Box rowGap={12}>
+                    <Anchor tap
                       href="mailto:press@hanzo.ai"
-                      className={`flex items-center gap-2 transition-colors ${
-                        isDarkMode ? "text-neutral-300 hover:text-white" : "text-neutral-600 hover:text-black"
-                      }`}
+                      display="flex" alignItems="center" gap={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-600)"} hoverStyle={isDarkMode ? { color: "var(--foreground)" } : { color: "var(--pure-black)" }}
                     >
-                      <Mail className="w-4 h-4" />
+                      <Mail size={16} />
                       press@hanzo.ai
-                    </a>
-                    <div className={`flex items-center gap-2 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
-                      <Phone className="w-4 h-4" />
+                    </Anchor>
+                    <XStack display="flex" alignItems="center" gap={8} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
+                      <Phone size={16} />
                       +1 (424) 335-0550
-                    </div>
-                  </div>
+                    </XStack>
+                  </Box>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-4">Headquarters</h3>
-                  <div className={`space-y-1 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
-                    <p className="font-medium">Hanzo Industries Inc</p>
+                  <H3 fontWeight="600" marginBottom={16}>Headquarters</H3>
+                  <Box rowGap={4} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
+                    <Paragraph fontWeight="500">Hanzo Industries Inc</Paragraph>
                     <p>Los Angeles, California</p>
                     <p>United States</p>
-                  </div>
+                  </Box>
                 </div>
-              </div>
-              <div className="mt-8 pt-6 border-t border-neutral-800/50">
-                <p className={`text-sm ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`}>
+              </Grid>
+              <Box marginTop={32} paddingTop={24} borderTopWidth={1} borderColor="var(--border-strong)">
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                   For urgent press inquiries, please include "URGENT" in your email subject line. We typically respond within 24 hours.
-                </p>
-              </div>
-            </div>
-          </motion.section>
+                </Paragraph>
+              </Box>
+            </Box>
+          </MotionBox>
 
           {/* Brand Assets */}
-          <motion.section
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-20"
+            marginBottom={80}
           >
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold flex items-center gap-3">
-                <Palette className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
+            <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={32}>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" display="flex" alignItems="center" gap={12}>
+                <Palette size={24} />
                 Brand Assets
-              </h2>
-              <Link to="/brand">
-                <Button variant="outline" size="sm" className="gap-2">
-                  <FileText className="w-4 h-4" />
+              </H2>
+              <Link tap to="/brand">
+                <Button variant="outline" size="sm" gap={8}>
+                  <FileText size={16} />
                   Brand Guidelines
                 </Button>
               </Link>
-            </div>
+            </XStack>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <Grid display="grid" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {logoAssets.map((asset, index) => (
-                <div
+                <Box
                   key={asset.name}
-                  className={`rounded-xl border overflow-hidden ${
-                    isDarkMode ? "border-neutral-800" : "border-neutral-200"
-                  }`}
+                  borderRadius="var(--radius-xl)" borderWidth={1} overflow="hidden" borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}
                 >
-                  <div className={`h-32 flex items-center justify-center ${asset.preview}`}>
+                  <XStack height={128} display="flex" alignItems="center" justifyContent="center">
                     <LogoPreview isDark={asset.logoColor === "white"} />
-                  </div>
-                  <div className={`p-4 ${isDarkMode ? "bg-neutral-900" : "bg-neutral-50"}`}>
-                    <h3 className="font-semibold mb-1">{asset.name}</h3>
-                    <p className={`text-sm mb-2 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
+                  </XStack>
+                  <Box padding={16} backgroundColor={isDarkMode ? "var(--neutral-900)" : "var(--neutral-50)"}>
+                    <H3 fontWeight="600" marginBottom={4}>{asset.name}</H3>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={8} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
                       {asset.description}
-                    </p>
-                    <p className={`text-xs ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`}>
+                    </Paragraph>
+                    <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                       {asset.format}
-                    </p>
-                  </div>
-                </div>
+                    </Paragraph>
+                  </Box>
+                </Box>
               ))}
-            </div>
+            </Grid>
 
-            <div className="flex flex-wrap gap-4">
-              <Button className="gap-2" style={{ backgroundColor: BRAND_COLOR }}>
-                <Download className="w-4 h-4" />
+            <XStack display="flex" flexWrap="wrap" gap={16}>
+              <Button gap={8} style={{ backgroundColor: BRAND_COLOR }}>
+                <Download size={16} />
                 Download Press Kit (ZIP)
               </Button>
-              <Link to="/brand">
-                <Button variant="outline" className="gap-2">
-                  <Palette className="w-4 h-4" />
+              <Link tap to="/brand">
+                <Button variant="outline" gap={8}>
+                  <Palette size={16} />
                   View Brand Guidelines
                 </Button>
               </Link>
-            </div>
-          </motion.section>
+            </XStack>
+          </MotionBox>
 
           {/* Recent News */}
-          <motion.section
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-20"
+            marginBottom={80}
           >
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Calendar className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} display="flex" alignItems="center" gap={12}>
+              <Calendar size={24} />
               Recent News
-            </h2>
-            <div className="space-y-4">
+            </H2>
+            <Box rowGap={16}>
               {pressReleases.map((release) => (
                 <Link
                   key={release.title}
                   to={release.link}
-                  className={`block p-6 rounded-xl border transition-all group ${
-                    isDarkMode
-                      ? "bg-neutral-900/50 border-neutral-800 hover:border-neutral-700"
-                      : "bg-neutral-50 border-neutral-200 hover:border-neutral-300"
-                  }`}
+                  group display="block" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-50)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--neutral-700)" } : { borderColor: "var(--neutral-300)" }}
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <XStack display="flex" alignItems="flex-start" justifyContent="space-between" gap={16}>
                     <div>
-                      <div className={`text-sm mb-2 ${isDarkMode ? "text-neutral-500" : "text-neutral-400"}`}>
+                      <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                         {release.date}
-                      </div>
-                      <h3 className="font-semibold mb-2 group-hover:underline">{release.title}</h3>
-                      <p className={`text-sm ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
+                      </Box>
+                      <H3 fontWeight="600" marginBottom={8} $group-hover={{ textDecorationLine: "underline" }}>{release.title}</H3>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
                         {release.description}
-                      </p>
+                      </Paragraph>
                     </div>
-                    <ExternalLink className={`w-5 h-5 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ${
-                      isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                    }`} />
-                  </div>
+                    <Box render="span" display="inline-flex" alignItems="center" opacity={0} $group-hover={{ opacity: 1 }}><ExternalLink size={20} /></Box>
+                  </XStack>
                 </Link>
               ))}
-            </div>
-          </motion.section>
+            </Box>
+          </MotionBox>
 
           {/* Social Media */}
-          <motion.section
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mb-20"
+            marginBottom={80}
           >
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Globe className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} display="flex" alignItems="center" gap={12}>
+              <Globe size={24} />
               Connect With Us
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            </H2>
+            <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
               {socialLinks.map((social) => (
-                <a
+                <Anchor
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-4 rounded-xl border text-center transition-all ${
-                    isDarkMode
-                      ? "bg-neutral-900/50 border-neutral-800 hover:border-neutral-700"
-                      : "bg-neutral-50 border-neutral-200 hover:border-neutral-300"
-                  }`}
+                  padding={16} borderRadius="var(--radius-xl)" borderWidth={1} textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-50)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--neutral-700)" } : { borderColor: "var(--neutral-300)" }}
                 >
-                  <div className="font-semibold mb-1">{social.name}</div>
-                  <div className={`text-sm ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
+                  <Box fontWeight="600" marginBottom={4}>{social.name}</Box>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
                     {social.handle}
-                  </div>
-                </a>
+                  </Box>
+                </Anchor>
               ))}
-            </div>
-          </motion.section>
+            </Grid>
+          </MotionBox>
 
           {/* Executive Team */}
-          <motion.section
+          <MotionBox render="section"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
-              <Users className={`w-6 h-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`} />
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} display="flex" alignItems="center" gap={12}>
+              <Users size={24} />
               Leadership
-            </h2>
-            <div className={`p-8 rounded-2xl border text-center ${
-              isDarkMode
-                ? "bg-neutral-900/50 border-neutral-800"
-                : "bg-neutral-50 border-neutral-200"
-            }`}>
-              <p className={`mb-6 ${isDarkMode ? "text-neutral-400" : "text-neutral-500"}`}>
+            </H2>
+            <Box padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} textAlign="center" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-50)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+              <Paragraph marginBottom={24} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>
                 For executive bios and headshots, please visit our team page or contact our press team.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link to="/team">
-                  <Button variant="outline" className="gap-2">
-                    <Users className="w-4 h-4" />
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" gap={16} justifyContent="center">
+                <Link tap to="/team">
+                  <Button variant="outline" gap={8}>
+                    <Users size={16} />
                     View Team
                   </Button>
                 </Link>
                 <a href="mailto:press@hanzo.ai">
-                  <Button className="gap-2" style={{ backgroundColor: BRAND_COLOR }}>
-                    <Mail className="w-4 h-4" />
+                  <Button gap={8} style={{ backgroundColor: BRAND_COLOR }}>
+                    <Mail size={16} />
                     Request Executive Bios
                   </Button>
                 </a>
-              </div>
-            </div>
-          </motion.section>
-        </div>
-      </main>
+              </XStack>
+            </Box>
+          </MotionBox>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

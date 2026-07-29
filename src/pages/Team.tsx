@@ -1,6 +1,6 @@
+import { Badge, Box, Helmet } from '@/gui'
 
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,7 +27,6 @@ import WorkspaceIntegration from "@/components/team/WorkspaceIntegration";
 import AuditFeatures from "@/components/team/AuditFeatures";
 import EnterpriseReadiness from "@/components/team/EnterpriseReadiness";
 import CallToAction from "@/components/team/CallToAction";
-import { Badge } from "@/components/ui/badge";
 
 const Team = () => {
   useEffect(() => {
@@ -35,7 +34,7 @@ const Team = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Hanzo Team | AI + Human Integration | Enterprise AI Solutions</title>
         <meta 
@@ -57,7 +56,7 @@ const Team = () => {
       </main>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
+import { Box, Button, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Terminal, ArrowUp } from "lucide-react";
 
 const HanzoDev = () => {
@@ -26,47 +26,47 @@ const HanzoDev = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-blue-900/20 opacity-30"></div>
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div 
-          className="text-center"
+    <Box ref={containerRef} render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox 
+          textAlign="center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 
-            className="text-3xl md:text-5xl font-bold mb-6 text-gradient-steel"
+          <H2 
+            fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             style={{
               backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
             }}
           >
             For Developers
-          </h2>
+          </H2>
           
-          <p className="text-xl text-neutral-300 mb-10 max-w-2xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto">
             Install Hanzo Dev directly in your terminal and supercharge your development workflow.
-          </p>
+          </Paragraph>
           
-          <div className="flex justify-center mb-10">
-            <div className="bg-gray-900 border border-gray-800 rounded-lg px-6 py-4 flex items-center">
-              <Terminal className="h-5 w-5 text-purple-500 mr-3" />
-              <code className="text-neutral-300 font-mono">pip install hanzo-dev</code>
-              <Button variant="ghost" size="sm" className="ml-4 text-neutral-400 hover:text-[var(--white)]">
+          <XStack display="flex" justifyContent="center" marginBottom={40}>
+            <XStack backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={24} paddingVertical={16} display="flex" alignItems="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Terminal size={20} color="var(--neutral-500)" /></Box>
+              <Text render="code" color="var(--neutral-300)" fontFamily="var(--font-mono)">pip install hanzo-dev</Text>
+              <Button variant="ghost" size="sm" marginLeft={16} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
                 Copy
               </Button>
-            </div>
-          </div>
+            </XStack>
+          </XStack>
           
           <Button 
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all"
+            color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
           >
             <a href="/hanzodev">Learn More About Hanzo Dev</a>
           </Button>
-        </motion.div>
-      </div>
+        </MotionBox>
+      </Box>
 
       <style>
         {`
@@ -92,7 +92,7 @@ const HanzoDev = () => {
         }
         `}
       </style>
-    </section>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
+import { Box, Helmet, MotionBox } from '@/gui'
 
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -38,7 +38,7 @@ const ZenOfHanzo = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] overflow-x-hidden">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" overflowX="hidden">
       <Helmet>
         <title>The Zen of Hanzo - Principles of AI Engineering</title>
         <meta name="description" content="Our guiding principles that shape everything we build. Simplicity, clarity, elegance—our AI engineering manifesto." />
@@ -52,7 +52,7 @@ const ZenOfHanzo = () => {
         
         <AnimatePresence>
           {showContent && (
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -60,13 +60,13 @@ const ZenOfHanzo = () => {
               <ZenOfHanzoPrinciples />
               <SenseiMethodSection />
               <FinalQuoteSection />
-            </motion.div>
+            </MotionBox>
           )}
         </AnimatePresence>
       </main>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

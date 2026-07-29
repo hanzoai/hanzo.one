@@ -1,7 +1,7 @@
+import { Box, H3, Link, XStack } from '@/gui'
 
-import { Link } from "react-router-dom";
+
 import { ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
   title: string;
@@ -11,22 +11,20 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, link, linkText }: SectionHeaderProps) => {
   return (
-    <div className="flex items-center justify-between mb-4">
+    <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
       <Link to={link}>
-        <h3 className="text-xl font-semibold text-[var(--white)] hover:text-neutral-300 transition-colors">
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--neutral-300)" }}>
           {title}
-        </h3>
+        </H3>
       </Link>
       <Link 
         to={link} 
-        className={cn(
-          "text-sm text-purple-400 hover:text-purple-300 flex items-center group"
-        )}
+        group fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" display="flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}
       >
         {linkText}
-        <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-0.5 transition-transform" />
+        <Box render="span" display="inline-flex" alignItems="center" marginLeft={4} $group-hover={{ x: 2 }}><ChevronRight size={16} /></Box>
       </Link>
-    </div>
+    </XStack>
   );
 };
 

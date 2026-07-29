@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -15,7 +16,7 @@ import {
   Copy,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const VALUE_PROPS = [
   {
@@ -115,27 +116,27 @@ const VALUE_PROPS = [
 
 const WhyHanzo = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Section header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Why Hanzo
-          </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             The all-in-one agentic engineering platform
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Value Props */}
-        <div className="space-y-20">
+        <Box rowGap={80}>
           {VALUE_PROPS.map((prop, propIndex) => (
-            <motion.div
+            <MotionBox
               key={prop.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -143,50 +144,50 @@ const WhyHanzo = () => {
               transition={{ delay: propIndex * 0.1 }}
             >
               {/* Prop Header */}
-              <div className="mb-8">
-                <h3
-                  className="text-2xl md:text-3xl font-bold mb-2"
+              <Box marginBottom={32}>
+                <H3
+                  fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}
                   style={{ color: prop.color }}
                 >
                   {prop.title}
-                </h3>
-                <p className="text-neutral-400">{prop.subtitle}</p>
-              </div>
+                </H3>
+                <Paragraph color="var(--neutral-400)">{prop.subtitle}</Paragraph>
+              </Box>
 
               {/* Features Grid */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {prop.features.map((feature, featureIndex) => {
                   const Icon = feature.icon;
                   return (
-                    <motion.div
+                    <MotionBox
                       key={feature.title}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: featureIndex * 0.05 }}
-                      className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-neutral-700 transition-colors"
+                      
+                      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
+                      <XStack
+                        width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                         style={{ backgroundColor: `${prop.color}20` }}
                       >
-                        <Icon className="w-5 h-5" style={{ color: prop.color }} />
-                      </div>
-                      <h4 className="text-lg font-semibold text-white mb-2">
+                        <Icon width={20} height={20} style={{ color: prop.color }} />
+                      </XStack>
+                      <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>
                         {feature.title}
-                      </h4>
-                      <p className="text-sm text-neutral-400">
+                      </H4>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                         {feature.description}
-                      </p>
-                    </motion.div>
+                      </Paragraph>
+                    </MotionBox>
                   );
                 })}
-              </div>
-            </motion.div>
+              </Grid>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,10 +1,10 @@
+import { Box, Button, MotionBox, XStack } from '@/gui'
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import FeatureShowcaseHeader from "./FeatureShowcaseHeader";
 import FeatureShowcaseSlider from "./FeatureShowcaseSlider";
 import { features, aiCloudFeatures_export, dxPlatformFeatures_export } from "./data/features";
-import { Button } from "@/components/ui/button";
 
 const FeatureShowcase: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -62,58 +62,58 @@ const FeatureShowcase: React.FC = () => {
   ); 
 
   return (
-    <section className="py-24 bg-[var(--black)] relative overflow-hidden" id="features-showcase" ref={scrollRef}>
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-black/80"></div>
-      </div>
+    <Box render="section" paddingVertical={96} backgroundColor="var(--black)" position="relative" overflow="hidden" id="features-showcase" ref={scrollRef}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} zIndex={-10}>
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(0 0 0 / 0.8))"></Box>
+      </Box>
       
-      <motion.div 
-        className="container px-4 mx-auto"
+      <MotionBox 
+        paddingHorizontal={16} marginHorizontal="auto"
         style={{ opacity, y }}
       >
         <FeatureShowcaseHeader />
         
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-full bg-gray-900/50 p-1.5 backdrop-blur-sm">
+        <XStack display="flex" justifyContent="center" marginBottom={40}>
+          <XStack display="inline-flex" borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" padding={6} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)">
             <Button
               variant={activeTab === 'all' ? 'default' : 'ghost'}
-              className={`rounded-full px-6 ${activeTab === 'all' ? 'bg-purple-600 hover:bg-purple-700' : 'text-neutral-300 hover:text-[var(--white)] hover:bg-gray-800/50'}`}
+              borderRadius="var(--radius-full)" paddingHorizontal={24} backgroundColor={activeTab === 'all' ? "var(--neutral-600)" : undefined} color={activeTab === 'all' ? undefined : "var(--neutral-300)"} hoverStyle={activeTab === 'all' ? { backgroundColor: "var(--neutral-700)" } : { color: "var(--white)", backgroundColor: "var(--surface-card)" }}
               onClick={() => setActiveTab('all')}
             >
               All
             </Button>
             <Button
               variant={activeTab === 'ai-cloud' ? 'default' : 'ghost'}
-              className={`rounded-full px-6 ${activeTab === 'ai-cloud' ? 'bg-blue-600 hover:bg-blue-700' : 'text-neutral-300 hover:text-[var(--white)] hover:bg-gray-800/50'}`}
+              borderRadius="var(--radius-full)" paddingHorizontal={24} backgroundColor={activeTab === 'ai-cloud' ? "var(--neutral-600)" : undefined} color={activeTab === 'ai-cloud' ? undefined : "var(--neutral-300)"} hoverStyle={activeTab === 'ai-cloud' ? { backgroundColor: "var(--neutral-700)" } : { color: "var(--white)", backgroundColor: "var(--surface-card)" }}
               onClick={() => setActiveTab('ai-cloud')}
             >
               AI Cloud
             </Button>
             <Button
               variant={activeTab === 'dx-platform' ? 'default' : 'ghost'}
-              className={`rounded-full px-6 ${activeTab === 'dx-platform' ? 'bg-emerald-600 hover:bg-emerald-700' : 'text-neutral-300 hover:text-[var(--white)] hover:bg-gray-800/50'}`}
+              borderRadius="var(--radius-full)" paddingHorizontal={24} backgroundColor={activeTab === 'dx-platform' ? "var(--neutral-600)" : undefined} color={activeTab === 'dx-platform' ? undefined : "var(--neutral-300)"} hoverStyle={activeTab === 'dx-platform' ? { backgroundColor: "var(--neutral-700)" } : { color: "var(--white)", backgroundColor: "var(--surface-card)" }}
               onClick={() => setActiveTab('dx-platform')}
             >
               DX Platform
             </Button>
-          </div>
-        </div>
+          </XStack>
+        </XStack>
         
         <AnimatePresence mode="wait">
-          <motion.div 
+          <MotionBox 
             key={activeTab}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
             style={{ x }}
-            className="overflow-visible" // Ensure content doesn't get clipped
+            overflow="visible" // Ensure content doesn't get clipped
           >
             <FeatureShowcaseSlider features={activeFeatures} />
-          </motion.div>
+          </MotionBox>
         </AnimatePresence>
-      </motion.div>
-    </section>
+      </MotionBox>
+    </Box>
   );
 };
 

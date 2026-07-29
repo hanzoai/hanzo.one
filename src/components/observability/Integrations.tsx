@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -22,103 +23,103 @@ const integrationGroups = [
 
 const Integrations = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20 relative">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto text-center mb-20"
+          maxWidth="var(--container-prose)" marginHorizontal="auto" textAlign="center" marginBottom={80}
         >
-          <div className="inline-flex items-center justify-center mb-6 bg-blue-900/30 p-3 rounded-full">
-            <Braces className="h-7 w-7 text-blue-400" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Integrated Across Your Development Workflow</h2>
-          <p className="text-xl text-neutral-300">
+          <XStack display="inline-flex" alignItems="center" justifyContent="center" marginBottom={24} backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)">
+            <Braces size={28} color="var(--foreground)" />
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Integrated Across Your Development Workflow</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
             Hanzo Observability seamlessly integrates with your existing stack, supporting your AI operations from prototype to production.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden border border-gray-800 p-8"
+            borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" padding={32} backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
           >
-            <div className="flex items-center mb-6">
-              <Code className="h-6 w-6 text-blue-400 mr-3" />
-              <h3 className="text-2xl font-bold">Import & Initialize</h3>
-            </div>
+            <XStack display="flex" alignItems="center" marginBottom={24}>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Code size={24} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Import & Initialize</H3>
+            </XStack>
             
-            <div className="bg-[var(--black)]/50 rounded-lg p-6 font-mono text-sm">
-              <div className="mb-4">
-                <span className="text-blue-400">import</span> <span className="text-green-400">{'{'}</span> <span className="text-yellow-300">HanzoObservability</span> <span className="text-green-400">{'}'}</span> <span className="text-blue-400">from</span> <span className="text-orange-400">'hanzo-observability'</span>
-              </div>
-              <div className="mb-4">
-                <span className="text-purple-400">// Initialize with your project token</span>
-              </div>
-              <div className="mb-4">
-                <span className="text-blue-400">const</span> observability <span className="text-[var(--white)]">=</span> <span className="text-blue-400">new</span> <span className="text-yellow-300">HanzoObservability</span><span className="text-[var(--white)]">(</span><span className="text-orange-400">'YOUR_PROJECT_TOKEN'</span><span className="text-[var(--white)]">);</span>
-              </div>
-              <div className="mb-4">
-                <span className="text-purple-400">// Trace AI model calls</span>
-              </div>
+            <Box backgroundColor="rgb(0 0 0 / 0.5)" borderRadius="var(--radius-lg)" padding={24} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+              <Box marginBottom={16}>
+                <Text color="var(--foreground)">import</Text> <Text color="var(--foreground)">{'{'}</Text> <Text color="var(--foreground)">HanzoObservability</Text> <Text color="var(--foreground)">{'}'}</Text> <Text color="var(--foreground)">from</Text> <Text color="var(--foreground)">'hanzo-observability'</Text>
+              </Box>
+              <Box marginBottom={16}>
+                <Text color="var(--foreground)">// Initialize with your project token</Text>
+              </Box>
+              <Box marginBottom={16}>
+                <Text color="var(--foreground)">const</Text> observability <Text color="var(--white)">=</Text> <Text color="var(--foreground)">new</Text> <Text color="var(--foreground)">HanzoObservability</Text><Text color="var(--white)">(</Text><Text color="var(--foreground)">'YOUR_PROJECT_TOKEN'</Text><Text color="var(--white)">);</Text>
+              </Box>
+              <Box marginBottom={16}>
+                <Text color="var(--foreground)">// Trace AI model calls</Text>
+              </Box>
               <div>
-                <span className="text-blue-400">await</span> observability.<span className="text-yellow-300">trace</span><span className="text-[var(--white)]">(</span><span className="text-orange-400">'chatCompletion'</span><span className="text-[var(--white)]">, {'async () => {'}</span>
-                <div className="pl-5 text-[var(--white)]">
-                  <span className="text-blue-400">const</span> response <span className="text-[var(--white)]">=</span> <span className="text-blue-400">await</span> openai.<span className="text-yellow-300">createChatCompletion</span><span className="text-[var(--white)]">({'{...}'})</span>
-                  <div><span className="text-blue-400">return</span> response</div>
-                </div>
-                <span className="text-[var(--white)]">{'}'})</span>
+                <Text color="var(--foreground)">await</Text> observability.<Text color="var(--foreground)">trace</Text><Text color="var(--white)">(</Text><Text color="var(--foreground)">'chatCompletion'</Text><Text color="var(--white)">, {'async () => {'}</Text>
+                <Box paddingLeft={20} color="var(--white)">
+                  <Text color="var(--foreground)">const</Text> response <Text color="var(--white)">=</Text> <Text color="var(--foreground)">await</Text> openai.<Text color="var(--foreground)">createChatCompletion</Text><Text color="var(--white)">({'{...}'})</Text>
+                  <div><Text color="var(--foreground)">return</Text> response</div>
+                </Box>
+                <Text color="var(--white)">{'}'})</Text>
               </div>
-            </div>
-          </motion.div>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {integrationGroups.map((group, groupIndex) => (
-              <div key={groupIndex} className="mb-10">
-                <h3 className="text-xl font-bold mb-6 text-neutral-300">{group.title}</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <Box key={groupIndex} marginBottom={40}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={24} color="var(--neutral-300)">{group.title}</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12} $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                   {group.items.map((item, index) => (
-                    <motion.div
+                    <MotionBox
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: 0.1 + (index * 0.05) }}
-                      className="flex items-center p-3 bg-gray-800/30 rounded-lg border border-gray-700/40"
+                      flexDirection="row" display="flex" alignItems="center" padding={12} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)"
                     >
-                      <CheckCircle className="h-4 w-4 text-blue-400 mr-2 flex-shrink-0" />
-                      <span className="text-neutral-300 text-sm">{item}</span>
-                    </motion.div>
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={16} color="var(--foreground)" /></Box>
+                      <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{item}</Text>
+                    </MotionBox>
                   ))}
-                </div>
-              </div>
+                </Grid>
+              </Box>
             ))}
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-center mt-8"
+              textAlign="center" marginTop={32}
             >
-              <a href="#integrations" className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm">
-                View all integrations <Code className="ml-1 h-4 w-4" />
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              <Anchor href="#integrations" display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ color: "var(--foreground)" }}>
+                View all integrations <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><Code size={16} /></Box>
+              </Anchor>
+            </MotionBox>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,13 +1,10 @@
+import { Box, Button, ChromeText, Grid, H2, H3, Helmet, MotionBox, Paragraph, Text, Toaster, XStack } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Briefcase, Globe, Clock, MapPin, Users, Sparkles } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
-import { Toaster } from "@/components/ui/toaster";
 
 const jobOpenings = [
   {
@@ -70,22 +67,22 @@ const jobOpenings = [
 
 const benefits = [
   {
-    icon: <Globe className="h-6 w-6 text-purple-400" />,
+    icon: <Globe size={24} color="var(--foreground)" />,
     title: "Remote-First Culture",
     description: "Work from anywhere in the world with our distributed team."
   },
   {
-    icon: <Clock className="h-6 w-6 text-blue-400" />,
+    icon: <Clock size={24} color="var(--foreground)" />,
     title: "Flexible Hours",
     description: "Set your own schedule and work when you're most productive."
   },
   {
-    icon: <Users className="h-6 w-6 text-green-400" />,
+    icon: <Users size={24} color="var(--foreground)" />,
     title: "Collaborative Environment",
     description: "Work with talented individuals from diverse backgrounds."
   },
   {
-    icon: <Sparkles className="h-6 w-6 text-amber-400" />,
+    icon: <Sparkles size={24} color="var(--foreground)" />,
     title: "Cutting-Edge Tech",
     description: "Access to the latest AI technologies and resources."
   }
@@ -93,170 +90,170 @@ const benefits = [
 
 const Careers = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)">
       <Helmet>
         <title>Careers - Hanzo AI</title>
         <meta name="description" content="Join the Hanzo AI team and help build the future of AI. Explore current job openings and benefits." />
       </Helmet>
       <Navbar />
       <main>
-        <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-purple-900/5 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl"></div>
+        <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box position="absolute" top={80} right={80} width={256} height={256} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+          <Box position="absolute" bottom={-128} left={-128} width={384} height={384} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
           
-          <div className="max-w-7xl mx-auto">
-            <motion.div
+          <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-16"
+              textAlign="center" marginBottom={64}
             >
-              <div className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
+              <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
                 Join Our Team
-              </div>
+              </Box>
               <ChromeText 
                 as="h1" 
-                className="text-4xl md:text-6xl font-bold mb-6"
+                fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
               >
                 Build the Future of AI
               </ChromeText>
-              <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Join a team passionate about democratizing access to AI and creating technology that empowers developers worldwide.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-24"
+              marginBottom={96}
             >
-              <h2 className="text-3xl font-bold mb-8 text-center">Open Positions</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={32} textAlign="center">Open Positions</H2>
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {jobOpenings.map((job, index) => (
-                  <motion.div
+                  <MotionBox
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 * index }}
-                    className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 hover:border-purple-500/30 transition-colors"
+                    
+                    backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-purple-900/20">
-                        <Briefcase className="h-6 w-6 text-purple-400" />
-                      </div>
+                    <XStack display="flex" alignItems="flex-start" gap={16}>
+                      <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)">
+                        <Briefcase size={24} color="var(--foreground)" />
+                      </Box>
                       <div>
-                        <h3 className="text-xl font-bold mb-1">{job.title}</h3>
-                        <div className="flex flex-wrap gap-3 mb-3">
-                          <span className="inline-flex items-center text-sm text-neutral-400">
-                            <MapPin className="h-4 w-4 mr-1" /> {job.location}
-                          </span>
-                          <span className="inline-flex items-center text-sm text-neutral-400">
-                            <Clock className="h-4 w-4 mr-1" /> {job.type}
-                          </span>
-                          <span className="inline-flex items-center text-sm text-neutral-400">
-                            <Users className="h-4 w-4 mr-1" /> {job.department}
-                          </span>
-                        </div>
-                        <p className="text-neutral-300 mb-4">{job.description}</p>
-                        <Button variant="outline" className="text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10">
+                        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={4}>{job.title}</H3>
+                        <XStack display="flex" flexWrap="wrap" gap={12} marginBottom={12}>
+                          <Text display="inline-flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
+                            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><MapPin size={16} /></Box> {job.location}
+                          </Text>
+                          <Text display="inline-flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
+                            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Clock size={16} /></Box> {job.type}
+                          </Text>
+                          <Text display="inline-flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
+                            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Users size={16} /></Box> {job.department}
+                          </Text>
+                        </XStack>
+                        <Paragraph color="var(--neutral-300)" marginBottom={16}>{job.description}</Paragraph>
+                        <Button variant="outline" color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
                           Apply Now
                         </Button>
                       </div>
-                    </div>
-                  </motion.div>
+                    </XStack>
+                  </MotionBox>
                 ))}
-              </div>
+              </Grid>
               
-              <div className="mt-8 text-center">
-                <p className="text-neutral-400 mb-4">Don't see a position that fits your skills?</p>
+              <Box marginTop={32} textAlign="center">
+                <Paragraph color="var(--neutral-400)" marginBottom={16}>Don't see a position that fits your skills?</Paragraph>
                 <Button 
                   variant="outline" 
-                  className="text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10"
+                  color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
                 >
                   Submit Open Application
                 </Button>
-              </div>
-            </motion.div>
+              </Box>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-24"
+              marginBottom={96}
             >
-              <h2 className="text-3xl font-bold mb-8 text-center">Benefits & Perks</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={32} textAlign="center">Benefits & Perks</H2>
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
                 {benefits.map((benefit, index) => (
-                  <motion.div
+                  <MotionBox
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.05 * index }}
-                    className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 text-center"
+                    backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} textAlign="center"
                   >
-                    <div className="w-12 h-12 mx-auto rounded-full bg-gray-800/50 flex items-center justify-center mb-4">
+                    <XStack width={48} height={48} marginHorizontal="auto" borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
                       {benefit.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{benefit.title}</h3>
-                    <p className="text-neutral-400">{benefit.description}</p>
-                  </motion.div>
+                    </XStack>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700" marginBottom={8}>{benefit.title}</H3>
+                    <Paragraph color="var(--neutral-400)">{benefit.description}</Paragraph>
+                  </MotionBox>
                 ))}
-              </div>
-            </motion.div>
+              </Grid>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-center bg-gray-900/20 border border-gray-800 rounded-xl p-8"
+              textAlign="center" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}
             >
-              <h2 className="text-2xl font-bold mb-4">Our Hiring Process</h2>
-              <p className="text-neutral-300 mb-6 max-w-3xl mx-auto">
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Our Hiring Process</H2>
+              <Paragraph color="var(--neutral-300)" marginBottom={24} maxWidth="var(--container-prose)" marginHorizontal="auto">
                 We've designed our hiring process to be straightforward, respectful of your time, and focused on finding the right match for both you and Hanzo.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div className="p-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-[var(--white)] font-medium">1</span>
-                  </div>
-                  <h3 className="font-medium mb-1">Application Review</h3>
-                  <p className="text-sm text-neutral-400">We review your resume and application materials</p>
-                </div>
-                <div className="p-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-[var(--white)] font-medium">2</span>
-                  </div>
-                  <h3 className="font-medium mb-1">Initial Interview</h3>
-                  <p className="text-sm text-neutral-400">Get to know you and your experience</p>
-                </div>
-                <div className="p-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-[var(--white)] font-medium">3</span>
-                  </div>
-                  <h3 className="font-medium mb-1">Technical Assessment</h3>
-                  <p className="text-sm text-neutral-400">Showcase your skills (no whiteboarding)</p>
-                </div>
-                <div className="p-4">
-                  <div className="w-10 h-10 rounded-full bg-purple-900/30 flex items-center justify-center mb-3 mx-auto">
-                    <span className="text-[var(--white)] font-medium">4</span>
-                  </div>
-                  <h3 className="font-medium mb-1">Final Interview</h3>
-                  <p className="text-sm text-neutral-400">Meet the team and discuss next steps</p>
-                </div>
-              </div>
+              </Paragraph>
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={32} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+                <Box padding={16}>
+                  <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12} marginHorizontal="auto">
+                    <Text color="var(--white)" fontWeight="500">1</Text>
+                  </XStack>
+                  <H3 fontWeight="500" marginBottom={4}>Application Review</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">We review your resume and application materials</Paragraph>
+                </Box>
+                <Box padding={16}>
+                  <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12} marginHorizontal="auto">
+                    <Text color="var(--white)" fontWeight="500">2</Text>
+                  </XStack>
+                  <H3 fontWeight="500" marginBottom={4}>Initial Interview</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Get to know you and your experience</Paragraph>
+                </Box>
+                <Box padding={16}>
+                  <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12} marginHorizontal="auto">
+                    <Text color="var(--white)" fontWeight="500">3</Text>
+                  </XStack>
+                  <H3 fontWeight="500" marginBottom={4}>Technical Assessment</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Showcase your skills (no whiteboarding)</Paragraph>
+                </Box>
+                <Box padding={16}>
+                  <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12} marginHorizontal="auto">
+                    <Text color="var(--white)" fontWeight="500">4</Text>
+                  </XStack>
+                  <H3 fontWeight="500" marginBottom={4}>Final Interview</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Meet the team and discuss next steps</Paragraph>
+                </Box>
+              </Grid>
               <Button 
-                className="bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-600 hover:to-purple-400"
+                backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--foreground))" }}
               >
                 <a href="#open-positions">Browse Open Positions</a>
               </Button>
-            </motion.div>
-          </div>
-        </section>
+            </MotionBox>
+          </Box>
+        </Box>
       </main>
       <Footer />
       <Toaster />
-    </div>
+    </Box>
   );
 };
 

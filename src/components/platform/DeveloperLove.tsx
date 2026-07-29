@@ -1,8 +1,8 @@
+import { Anchor, Box, Button, Grid, H2, H4, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const tweets = [
   {
@@ -57,55 +57,55 @@ const tweets = [
 
 const DeveloperLove = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">…and loved by developers</h2>
-          <div className="flex justify-center">
-            <a 
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>…and loved by developers</H2>
+          <XStack display="flex" justifyContent="center">
+            <Anchor 
               href="https://twitter.com/search?q=hanzo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+              display="inline-flex" alignItems="center" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
             >
-              Join nearly 1M developers building with Hanzo <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </div>
-        </motion.div>
+              Join nearly 1M developers building with Hanzo <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+            </Anchor>
+          </XStack>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {tweets.map((tweet, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="bg-gray-900/50 rounded-xl p-4 border border-gray-800"
+              backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="var(--neutral-800)"
             >
-              <div className="flex items-center mb-3">
-                <img
+              <XStack display="flex" alignItems="center" marginBottom={12}>
+                <Box display="inline-block"
                   src={tweet.avatar}
                   alt={tweet.name}
-                  className="h-10 w-10 rounded-full object-cover mr-3"
+                  render="img" height={40} width={40} borderRadius="var(--radius-full)" objectFit="cover" marginRight={12}
                 />
                 <div>
-                  <h4 className="font-semibold text-[var(--white)]">{tweet.name}</h4>
-                  <p className="text-sm text-neutral-400">{tweet.handle}</p>
+                  <H4 fontWeight="600" color="var(--white)">{tweet.name}</H4>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{tweet.handle}</Paragraph>
                 </div>
-              </div>
-              <p className="text-neutral-300 text-sm">{tweet.content}</p>
-            </motion.div>
+              </XStack>
+              <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{tweet.content}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

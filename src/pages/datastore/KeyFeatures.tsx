@@ -1,8 +1,8 @@
+import { Box, ChromeText, Grid as GuiGrid, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Zap, Scale, Shield, Grid, DatabaseIcon, Activity } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const FeatureCard = ({ 
   icon: Icon, 
@@ -15,23 +15,23 @@ const FeatureCard = ({
   description: string; 
   delay: number;
 }) => (
-  <motion.div
+  <MotionBox
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.4, delay }}
-    className="bg-gray-900/20 border border-gray-800 rounded-xl p-8"
+    backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}
   >
-    <div className="h-12 w-12 bg-purple-900/30 rounded-lg flex items-center justify-center mb-6">
-      <Icon className="h-6 w-6 text-purple-400" />
-    </div>
-    <ChromeText as="h3" className="text-xl font-bold mb-4">
+    <XStack height={48} width={48} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={24}>
+      <Icon height={24} width={24} color="var(--foreground)" />
+    </XStack>
+    <ChromeText as="h3" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>
       {title}
     </ChromeText>
-    <p className="text-neutral-400">
+    <Paragraph color="var(--neutral-400)">
       {description}
-    </p>
-  </motion.div>
+    </Paragraph>
+  </MotionBox>
 );
 
 const KeyFeatures = () => {
@@ -69,18 +69,18 @@ const KeyFeatures = () => {
   ];
 
   return (
-    <section id="features" className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+    <Box id="features" render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={80}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Key Features
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             A powerful datastore built for modern analytical applications
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <GuiGrid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
             <FeatureCard 
               key={feature.title}
@@ -90,9 +90,9 @@ const KeyFeatures = () => {
               delay={0.1 * (index + 1)}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </GuiGrid>
+      </Box>
+    </Box>
   );
 };
 

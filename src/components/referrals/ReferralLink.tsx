@@ -1,10 +1,7 @@
+import { Box, Button, H2, H3, Input, Label, YStack, toast } from '@/gui'
 
 import React, { useState } from 'react';
 import { Copy, Check, Share2, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 
 interface ReferralLinkProps {
   referralLink: string;
@@ -33,50 +30,50 @@ const ReferralLink = ({ referralLink, referralCode }: ReferralLinkProps) => {
   };
 
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <h2 className="text-xl font-medium mb-4">Your Referral Link</h2>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative flex-1">
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Your Referral Link</H2>
+      <YStack display="flex" flexDirection="column" gap={16} $md={{ flexDirection: "row" }}>
+        <Box position="relative" flex={1}>
           <Input 
             value={referralLink} 
             readOnly 
-            className="pr-12 bg-gray-900 border-gray-700"
+            paddingRight={48} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-700)"
           />
           <Button 
             variant="ghost" 
             size="sm" 
-            className="absolute right-0 top-0 h-full"
+            position="absolute" right={0} top={0} height="100%"
             onClick={handleCopyLink}
           >
-            {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+            {isCopied ? <Check size={16} /> : <Copy size={16} />}
           </Button>
-        </div>
-        <Button className="flex items-center gap-2">
-          <Share2 className="h-4 w-4" />
+        </Box>
+        <Button display="flex" alignItems="center" gap={8}>
+          <Share2 size={16} />
           Share Link
         </Button>
-      </div>
+      </YStack>
       
-      <div className="mt-6 pt-6 border-t border-gray-800">
-        <h3 className="text-lg font-medium mb-4">Send Invites via Email</h3>
-        <form onSubmit={handleSendInvites} className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1">
-            <Label htmlFor="emails" className="sr-only">Email Addresses</Label>
+      <Box marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+        <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Send Invites via Email</H3>
+        <YStack onSubmit={handleSendInvites} render="form" display="flex" flexDirection="column" gap={16} $md={{ flexDirection: "row" }}>
+          <Box flex={1}>
+            <Label htmlFor="emails" position="absolute" width={1} height={1} overflow="hidden" opacity={0}>Email Addresses</Label>
             <Input 
               id="emails"
               placeholder="Enter email addresses, separated by commas" 
               value={emailInput}
               onChange={(e) => setEmailInput(e.target.value)}
-              className="bg-gray-900 border-gray-700"
+              backgroundColor="var(--neutral-900)" borderColor="var(--neutral-700)"
             />
-          </div>
-          <Button type="submit" className="flex items-center gap-2">
-            <Mail className="h-4 w-4" />
+          </Box>
+          <Button type="submit" display="flex" alignItems="center" gap={8}>
+            <Mail size={16} />
             Send Invites
           </Button>
-        </form>
-      </div>
-    </div>
+        </YStack>
+      </Box>
+    </Box>
   );
 };
 

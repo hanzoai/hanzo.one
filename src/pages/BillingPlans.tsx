@@ -1,19 +1,9 @@
-
+import { AnimatedHeading, AnimatedSection, Box, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Grid, H2, H3, Paragraph, Text, XStack, toast } from '@/gui'
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
 import { ArrowLeft, Check, CreditCard } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 import { useBilling } from '@/contexts/BillingContext';
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
-} from '@/components/ui/card';
-import AnimatedSection, { AnimatedHeading } from '@/components/ui/animated-section';
+
 
 const BillingPlans = () => {
   const navigate = useNavigate();
@@ -97,59 +87,55 @@ const BillingPlans = () => {
 
   return (
     <AnimatedSection>
-      <div className="space-y-6">
-        <div className="flex items-center mb-4">
-          <Button variant="ghost" onClick={() => navigate('/account/billing')} className="mr-4">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+      <Box rowGap={24}>
+        <XStack display="flex" alignItems="center" marginBottom={16}>
+          <Button variant="ghost" onClick={() => navigate('/account/billing')} marginRight={16}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ArrowLeft size={16} /></Box>
             Back to Billing
           </Button>
-        </div>
+        </XStack>
         
         <AnimatedHeading>
-          <h2 className="text-2xl font-bold mb-6">Choose a Plan</h2>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Choose a Plan</H2>
         </AnimatedHeading>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {plans.map(plan => (
             <Card 
               key={plan.id} 
-              className={`bg-gray-900/30 border ${
-                plan.popular ? 'border-purple-500' : 'border-gray-800'
-              } relative`}
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} position="relative" borderColor={plan.popular ? "var(--neutral-500)" : "var(--neutral-800)"}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-purple-600 text-[var(--white)] px-3 py-1 rounded-full text-xs font-medium">
+                <Box position="absolute" top={-12} left="50%" x="-50%">
+                  <Text backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500">
                     Most Popular
-                  </span>
-                </div>
+                  </Text>
+                </Box>
               )}
               
               <CardHeader>
                 <CardTitle>{plan.name}</CardTitle>
-                <CardDescription className="text-neutral-400">{plan.description}</CardDescription>
-                <div className="mt-4">
-                  <span className="text-3xl font-bold">${plan.price}</span>
-                  <span className="text-neutral-400">/{plan.interval}</span>
-                </div>
+                <CardDescription color="var(--neutral-400)">{plan.description}</CardDescription>
+                <Box marginTop={16}>
+                  <Text fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">${plan.price}</Text>
+                  <Text color="var(--neutral-400)">/{plan.interval}</Text>
+                </Box>
               </CardHeader>
               
               <CardContent>
-                <ul className="space-y-2">
+                <Box render="ul" rowGap={8}>
                   {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <Check className="h-5 w-5 text-green-500 mr-2 shrink-0" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
+                    <XStack key={index} render="li" display="flex" alignItems="flex-start">
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Check size={20} color="var(--neutral-500)" /></Box>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+                    </XStack>
                   ))}
-                </ul>
+                </Box>
               </CardContent>
               
               <CardFooter>
                 <Button 
-                  className={`w-full ${
-                    plan.popular ? 'bg-purple-600 hover:bg-purple-700' : ''
-                  }`}
+                  width="100%" backgroundColor={plan.popular ? "var(--neutral-600)" : undefined} hoverStyle={plan.popular ? { backgroundColor: "var(--neutral-700)" } : undefined}
                   variant={plan.popular ? 'default' : 'outline'}
                   onClick={() => handleUpgrade(plan.id)}
                   disabled={isUpgrading}
@@ -159,17 +145,17 @@ const BillingPlans = () => {
               </CardFooter>
             </Card>
           ))}
-        </div>
+        </Grid>
         
-        <div className="mt-8 bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-          <h3 className="text-xl font-medium mb-4">Enterprise Plan</h3>
-          <p className="text-neutral-400 mb-4">
+        <Box marginTop={32} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Enterprise Plan</H3>
+          <Paragraph color="var(--neutral-400)" marginBottom={16}>
             Need a custom solution for your organization? Our Enterprise plan offers custom pricing, 
             dedicated support, and tailored features for your specific needs.
-          </p>
+          </Paragraph>
           <Button variant="outline">Contact Sales</Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </AnimatedSection>
   );
 };

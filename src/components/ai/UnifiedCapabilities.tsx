@@ -1,3 +1,4 @@
+import { Box, ChromeText, Grid, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,7 +6,6 @@ import {
   Code, Brain, Database, Bot, Search, FileText, Workflow, 
   BarChart3, Lock, MessageSquare, Layers, Zap
 } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const capabilities = [
   {
@@ -72,45 +72,45 @@ const capabilities = [
 
 const UnifiedCapabilities = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-950/10 to-purple-950/10"></div>
+    <Box render="section" paddingVertical={80} position="relative" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <ChromeText as="h2" className="text-3xl md:text-4xl font-bold mb-6">
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Unified AI Platform
             </ChromeText>
-            <p className="text-xl text-neutral-300">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               A complete suite of AI capabilities accessible through a single, 
               consistent API with everything you need to build powerful AI applications
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {capabilities.map((capability, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/20 rounded-xl p-6"
+              borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={24} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
             >
-              <capability.icon className="h-8 w-8 text-purple-400 mb-4" />
-              <h3 className="text-xl font-bold text-[var(--white)] mb-2">{capability.title}</h3>
-              <p className="text-neutral-300">{capability.description}</p>
-            </motion.div>
+              <capability.icon height={32} width={32} color="var(--foreground)" marginBottom={16} />
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" marginBottom={8}>{capability.title}</H3>
+              <Paragraph color="var(--neutral-300)">{capability.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

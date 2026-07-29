@@ -1,11 +1,7 @@
+import { Anchor, Box, Button, Checkbox, H1, Input, Label, Paragraph, XStack, toast } from '@/gui'
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { toast } from 'sonner';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 
 const SignUp = () => {
@@ -80,23 +76,23 @@ const SignUp = () => {
   };
   
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Create Account</h1>
-          <p className="text-neutral-400 mt-2">
+    <XStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" alignItems="center" justifyContent="center" padding={16}>
+      <Box width="100%" maxWidth="28rem" rowGap={24}>
+        <Box textAlign="center">
+          <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">Create Account</H1>
+          <Paragraph color="var(--neutral-400)" marginTop={8}>
             {step === 1 ? 'Enter your details to get started' : 'Set up your profile'}
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <Box onSubmit={handleSubmit} render="form" rowGap={16}>
             {step === 1 ? (
               <>
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="email">Email</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+                  <Box position="relative">
+                    <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><Mail size={16} color="var(--neutral-400)" /></Box>
                     <Input
                       id="email"
                       name="email"
@@ -104,15 +100,15 @@ const SignUp = () => {
                       placeholder="you@example.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="pl-10"
+                      paddingLeft={40}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="password">Password</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+                  <Box position="relative">
+                    <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><Lock size={16} color="var(--neutral-400)" /></Box>
                     <Input
                       id="password"
                       name="password"
@@ -120,15 +116,15 @@ const SignUp = () => {
                       placeholder="••••••••"
                       value={formData.password}
                       onChange={handleChange}
-                      className="pl-10"
+                      paddingLeft={40}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="confirmPassword">Confirm Password</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+                  <Box position="relative">
+                    <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><Lock size={16} color="var(--neutral-400)" /></Box>
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -136,42 +132,42 @@ const SignUp = () => {
                       placeholder="••••••••"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className="pl-10"
+                      paddingLeft={40}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 
-                <div className="flex items-center space-x-2 pt-2">
+                <XStack display="flex" alignItems="center" columnGap={8} paddingTop={8}>
                   <Checkbox 
                     id="terms" 
                     checked={formData.agreeToTerms}
                     onCheckedChange={handleCheckboxChange}
                   />
-                  <Label htmlFor="terms" className="text-sm">
-                    I agree to the <a href="/terms" className="text-purple-400 hover:underline">Terms of Service</a> and <a href="/privacy" className="text-purple-400 hover:underline">Privacy Policy</a>
+                  <Label htmlFor="terms" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                    I agree to the <Anchor tap href="/terms" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>Terms of Service</Anchor> and <Anchor tap href="/privacy" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>Privacy Policy</Anchor>
                   </Label>
-                </div>
+                </XStack>
               </>
             ) : (
               <>
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="name">Full Name</Label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+                  <Box position="relative">
+                    <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><User size={16} color="var(--neutral-400)" /></Box>
                     <Input
                       id="name"
                       name="name"
                       placeholder="John Doe"
                       value={formData.name}
                       onChange={handleChange}
-                      className="pl-10"
+                      paddingLeft={40}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="organization">Organization Name</Label>
-                  <div className="relative">
+                  <Box position="relative">
                     <Input
                       id="organization"
                       name="organization"
@@ -179,12 +175,12 @@ const SignUp = () => {
                       value={formData.organization}
                       onChange={handleChange}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 
-                <div className="space-y-2">
+                <Box rowGap={8}>
                   <Label htmlFor="role">Your Role (Optional)</Label>
-                  <div className="relative">
+                  <Box position="relative">
                     <Input
                       id="role"
                       name="role"
@@ -192,29 +188,29 @@ const SignUp = () => {
                       value={formData.role}
                       onChange={handleChange}
                     />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
               </>
             )}
             
             <Button 
               type="submit" 
-              className="w-full mt-6 bg-purple-600 hover:bg-purple-700 text-[var(--white)]"
+              width="100%" marginTop={24} backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
               {step === 1 ? 'Continue' : 'Create Account'}
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
-          </form>
-        </div>
+          </Box>
+        </Box>
         
-        <div className="text-center text-sm text-neutral-400">
+        <Box textAlign="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
           Already have an account?{" "}
-          <a href="/login" className="text-purple-400 hover:underline">
+          <Anchor tap href="/login" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>
             Sign in
-          </a>
-        </div>
-      </div>
-    </div>
+          </Anchor>
+        </Box>
+      </Box>
+    </XStack>
   );
 };
 

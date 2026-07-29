@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useState } from 'react';
 import CurrentPlan from './overview/CurrentPlan';
@@ -14,7 +15,7 @@ const BillingOverview = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <Box rowGap={32}>
       {/* Current Plan */}
       <CurrentPlan />
       
@@ -32,7 +33,7 @@ const BillingOverview = () => {
       
       {/* Recent Invoices */}
       <RecentInvoices />
-    </div>
+    </Box>
   );
 };
 

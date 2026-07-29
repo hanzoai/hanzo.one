@@ -1,6 +1,6 @@
+import { Box, Button, H3, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Plus, MoreHorizontal } from "lucide-react";
 import TaskCard from "../TaskCard";
 import KanbanAddTaskButton from "./KanbanAddTaskButton";
@@ -29,42 +29,42 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({
   onAddTask
 }) => {
   return (
-    <div 
+    <YStack 
       key={column.id} 
-      className="w-72 flex flex-col bg-[var(--black)] rounded-lg"
+      width={288} display="flex" flexDirection="column" backgroundColor="var(--black)" borderRadius="var(--radius-lg)"
       onDragOver={onDragOver}
       onDrop={onDrop}
     >
-      <div className="flex items-center justify-between p-3 border-b border-gray-800">
-        <div className="flex items-center">
+      <XStack display="flex" alignItems="center" justifyContent="space-between" padding={12} borderBottomWidth={1} borderColor="var(--neutral-800)">
+        <XStack display="flex" alignItems="center">
           {column.icon}
-          <h3 className="font-medium ml-2">{column.title}</h3>
-          <span className="text-sm text-neutral-500 ml-1">{column.tasks.length}</span>
-        </div>
-        <div className="flex items-center">
-          <Button size="icon" variant="ghost" className="h-6 w-6 text-neutral-400 hover:text-[var(--white)]" onClick={() => onAddTask(column.id)}>
-            <Plus className="h-4 w-4" />
+          <H3 fontWeight="500" marginLeft={8}>{column.title}</H3>
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginLeft={4}>{column.tasks.length}</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center">
+          <Button size="icon" variant="ghost" height={24} width={24} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }} onClick={() => onAddTask(column.id)}>
+            <Plus size={16} />
           </Button>
-          <Button size="icon" variant="ghost" className="h-6 w-6 text-neutral-400 hover:text-[var(--white)]">
-            <MoreHorizontal className="h-4 w-4" />
+          <Button size="icon" variant="ghost" height={24} width={24} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+            <MoreHorizontal size={16} />
           </Button>
-        </div>
-      </div>
-      <div className="flex-1 overflow-y-auto p-2 space-y-2">
+        </XStack>
+      </XStack>
+      <Box flex={1} overflowY="auto" padding={8} rowGap={8}>
         {column.tasks.map((task) => (
-          <div
+          <Box
             key={task.id}
             draggable
             onDragStart={() => onDragStart(task)}
             onClick={() => onTaskClick(task)}
-            className="cursor-pointer"
+            cursor="pointer"
           >
             <TaskCard task={task} />
-          </div>
+          </Box>
         ))}
         <KanbanAddTaskButton onAddTask={() => onAddTask(column.id)} />
-      </div>
-    </div>
+      </Box>
+    </YStack>
   );
 };
 

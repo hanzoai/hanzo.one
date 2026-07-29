@@ -1,107 +1,107 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, FileText, Server } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Start & Grow with Hanzo Balancer</h2>
-        </motion.div>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Start & Grow with Hanzo Balancer</H2>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            textAlign="center"
           >
             <Button 
               size="lg" 
               variant="outline"
-              className="w-full gap-2 border-purple-600 text-[var(--white)] hover:bg-purple-800/20"
+              width="100%" gap={8} borderColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
             >
-              <Github className="h-5 w-5" />
+              <Github size={20} />
               View on GitHub
             </Button>
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center"
+            textAlign="center"
           >
             <Button 
               size="lg" 
               variant="outline"
-              className="w-full gap-2 border-purple-600 text-[var(--white)] hover:bg-purple-800/20"
+              width="100%" gap={8} borderColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
             >
-              <FileText className="h-5 w-5" />
+              <FileText size={20} />
               Learn more in Docs
             </Button>
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-center"
+            textAlign="center"
           >
             <Button 
               size="lg" 
               variant="outline"
-              className="w-full gap-2 border-purple-600 text-[var(--white)] hover:bg-purple-800/20"
+              width="100%" gap={8} borderColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
             >
-              <Server className="h-5 w-5" />
+              <Server size={20} />
               Get Commercial Support
             </Button>
-          </motion.div>
-        </div>
+          </MotionBox>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-md mx-auto text-center"
+          maxWidth="28rem" marginHorizontal="auto" textAlign="center"
         >
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-3">Subscribe to our newsletter</h3>
-            <div className="flex gap-2">
-              <input 
+          <Box marginBottom={24}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Subscribe to our newsletter</H3>
+            <XStack display="flex" gap={8}>
+              <Box display="inline-block" minHeight={44} 
                 type="email" 
                 placeholder="Enter your email" 
-                className="w-full px-4 py-2 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                render="input" width="100%" paddingHorizontal={16} paddingVertical={8} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--neutral-700)" focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
               />
-              <Button className="bg-purple-600 hover:bg-purple-700">
+              <Button backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Subscribe
               </Button>
-            </div>
-            <div className="mt-2 text-left">
-              <label className="inline-flex items-center">
-                <input type="checkbox" className="rounded bg-gray-800 border-gray-700 text-purple-600" />
-                <span className="ml-2 text-sm text-neutral-400">
+            </XStack>
+            <Box marginTop={8} textAlign="left">
+              <Text render="label" display="inline-flex" alignItems="center">
+                <Box display="inline-block" minHeight={44} type="checkbox" render="input" borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)" color="var(--neutral-600)" />
+                <Text marginLeft={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                   I agree to receive communications from Hanzo
-                </span>
-              </label>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                </Text>
+              </Text>
+            </Box>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -87,69 +88,69 @@ const WebAnalytics = () => {
   };
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative">
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-800 via-transparent to-transparent"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.2} backgroundImage="linear-gradient(to right, var(--neutral-800), transparent, transparent)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Comprehensive Web Analytics</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Comprehensive Web Analytics</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hanzo Analytics delivers real-time insights into every interaction, from clicks to conversions.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
-          <div className="space-y-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} marginBottom={80} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <Box rowGap={32}>
             {features.map((feature, index) => (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex"
+                flexDirection="row" display="flex"
               >
-                <div className="mr-4 mt-1 bg-purple-900/30 p-2 rounded-lg text-purple-400">
+                <Box marginRight={16} marginTop={4} backgroundColor="var(--surface-card-emphasis)" padding={8} borderRadius="var(--radius-lg)" color="var(--foreground)">
                   {feature.icon}
-                </div>
+                </Box>
                 <div>
-                  <h3 className="text-xl font-bold text-[var(--white)] mb-2">{feature.title}</h3>
-                  <p className="text-neutral-400">{feature.description}</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" marginBottom={8}>{feature.title}</H3>
+                  <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
                 </div>
-              </motion.div>
+              </MotionBox>
             ))}
-          </div>
+          </Box>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative"
+            position="relative"
             ref={chartRef}
           >
-            <div className="bg-gray-900/30 rounded-xl p-6 border border-gray-800">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium">Live User Activity</h3>
-                <div className="bg-green-500 animate-pulse h-2 w-2 rounded-full"></div>
-              </div>
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={24} borderWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">Live User Activity</H3>
+                <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} backgroundColor="var(--neutral-500)" height={8} width={8} borderRadius="var(--radius-full)"></MotionBox>
+              </XStack>
               
-              <div className="h-80 w-full relative">
+              <Box height={320} width="100%" position="relative">
                 {/* Chart grid */}
-                <div className="absolute inset-0 grid grid-cols-6 grid-rows-5">
+                <Grid position="absolute" top={0} right={0} bottom={0} left={0} display="grid" gridTemplateColumns="repeat(6, minmax(0, 1fr))" gridTemplateRows="repeat(5, minmax(0, 1fr))">
                   {Array(30).fill(0).map((_, i) => (
-                    <div key={i} className="border-b border-r border-gray-800 opacity-30"></div>
+                    <Box key={i} borderBottomWidth={1} borderRightWidth={1} borderColor="var(--neutral-800)" opacity={0.3}></Box>
                   ))}
-                </div>
+                </Grid>
                 
                 {/* Chart area */}
-                <div className="absolute inset-0 p-4">
+                <Box position="absolute" top={0} right={0} bottom={0} left={0} padding={16}>
                   <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
                     {/* Chart lines */}
                     <motion.path
@@ -193,11 +194,11 @@ const WebAnalytics = () => {
                       />
                     ))}
                   </svg>
-                </div>
+                </Box>
                 
                 {/* Tooltip */}
-                <motion.div
-                  className="absolute bg-gray-800 rounded p-2 text-xs w-32 shadow-lg border border-gray-700"
+                <MotionBox
+                  position="absolute" backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" padding={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" width={128} boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" borderWidth={1} borderColor="var(--neutral-700)"
                   style={{ top: "30%", left: "60%" }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={controls}
@@ -209,30 +210,30 @@ const WebAnalytics = () => {
                     }
                   }}
                 >
-                  <div className="flex justify-between">
+                  <XStack display="flex" justifyContent="space-between">
                     <span>Pageviews</span>
-                    <span className="font-bold">1,240</span>
-                  </div>
-                  <div className="flex justify-between mt-1">
+                    <Text fontWeight="700">1,240</Text>
+                  </XStack>
+                  <XStack display="flex" justifyContent="space-between" marginTop={4}>
                     <span>Users</span>
-                    <span className="font-bold">876</span>
-                  </div>
-                  <div className="text-green-400 text-right mt-1">+24.5%</div>
-                </motion.div>
-              </div>
+                    <Text fontWeight="700">876</Text>
+                  </XStack>
+                  <Box color="var(--foreground)" textAlign="right" marginTop={4}>+24.5%</Box>
+                </MotionBox>
+              </Box>
               
-              <div className="flex justify-between text-sm text-neutral-400 mt-2">
+              <XStack display="flex" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={8}>
                 <span>00:00</span>
                 <span>06:00</span>
                 <span>12:00</span>
                 <span>18:00</span>
                 <span>24:00</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </XStack>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

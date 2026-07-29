@@ -1,6 +1,7 @@
+import { Anchor, Box, Link, MotionBox, MotionText, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Copy,
@@ -8,7 +9,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const FooterCTA = () => {
   const [copied, setCopied] = useState(false);
@@ -20,97 +21,97 @@ const FooterCTA = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/30 to-black">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h2
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+        <MotionText
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-white mb-4"
+          fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
         >
           Ship faster. Keep control.
-        </motion.h2>
+        </MotionText>
 
-        <motion.p
+        <MotionText
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto"
+          fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto"
         >
           All coding agents in one workspace. Parallel execution, evidence-driven output,
           and policies you control.
-        </motion.p>
+        </MotionText>
 
         {/* CTAs */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-8"
+          flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16} marginBottom={32}
         >
           <Link
             to="/get-started"
-            className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-all hover:opacity-90 text-base"
+            display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
             style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
           >
             Start free
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Link>
-          <a
+          <Anchor
             href="https://marketplace.visualstudio.com/items?itemName=hanzo.hanzo-dev"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-base text-white"
+            display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
             Install VS Code extension
-            <ExternalLink className="ml-2 h-5 w-5" />
-          </a>
-        </motion.div>
+            <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={20} /></Box>
+          </Anchor>
+        </MotionBox>
 
         {/* Install command */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mb-6"
+          marginBottom={24}
         >
-          <div className="inline-flex items-center gap-3 px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800">
-            <code className="text-sm font-mono text-neutral-300">
+          <XStack display="inline-flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)" color="var(--neutral-300)">
               curl -fsSL hanzo.sh/install.sh | sh
-            </code>
-            <button
+            </Text>
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
               onClick={handleCopy}
-              className="text-neutral-500 hover:text-white transition-colors"
+              render="button" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
             >
               {copied ? (
-                <Check className="h-4 w-4 text-green-500" />
+                <Check size={16} color="var(--neutral-500)" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy size={16} />
               )}
-            </button>
-          </div>
-        </motion.div>
+            </Box>
+          </XStack>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <a
+          <Anchor tap
             href="https://docs.hanzo.ai/dev"
             target="_blank"
             rel="noreferrer noopener"
-            className="text-sm text-neutral-500 hover:text-white transition-colors"
+            fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
           >
             Read the documentation
-          </a>
-        </motion.div>
-      </div>
-    </section>
+          </Anchor>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

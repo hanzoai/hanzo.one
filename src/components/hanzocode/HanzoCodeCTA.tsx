@@ -1,79 +1,79 @@
+import { Anchor, Box, Button, Grid, H2, H3, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Download, ExternalLink, Github } from "lucide-react";
 
 const HanzoCodeCTA = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold mb-8">Upgrade Your Editor Today</h2>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={32}>Upgrade Your Editor Today</H2>
           
-          <p className="text-xl text-neutral-300 mb-12 max-w-2xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={48} maxWidth="42rem" marginHorizontal="auto">
             Transform your VS Code, Cursor, Windsurf, or Void experience with the most advanced AI coding tools available.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16">
+          <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="center" rowGap={16} marginBottom={64} $sm={{ flexDirection: "row", rowGap: 0, columnGap: 16 }}>
             <Button 
               size="sm"
-              className="bg-purple-600 hover:bg-purple-500 text-[var(--white)] w-full sm:w-auto"
+              backgroundColor="var(--neutral-600)" color="var(--white)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-500)" }} $sm={{ width: "auto" }}
             >
-              <Download className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
               Download Hanzo Code
             </Button>
             
             <Button 
               size="sm" 
               variant="outline"
-              className="bg-transparent border-purple-500/30 text-[var(--white)] hover:bg-purple-900/20 w-full sm:w-auto"
+              backgroundColor="transparent" borderColor="var(--border-strong)" color="var(--white)" width="100%" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }} $sm={{ width: "auto" }}
             >
-              <ExternalLink className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={16} /></Box>
               VS Code Extension
             </Button>
             
             <Button 
               size="sm" 
               variant="outline"
-              className="bg-transparent border-gray-600 text-[var(--white)] hover:bg-gray-800 w-full sm:w-auto"
+              backgroundColor="transparent" borderColor="var(--neutral-600)" color="var(--white)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} $sm={{ width: "auto" }}
             >
-              <Github className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               GitHub
             </Button>
-          </div>
+          </YStack>
           
-          <div className="bg-[var(--black)]/40 rounded-xl p-8 border border-gray-800 mb-12">
-            <h3 className="text-xl font-semibold mb-4">Already Using Cursor or Windsurf?</h3>
-            <p className="text-neutral-300 mb-6">
+          <Box backgroundColor="rgb(0 0 0 / 0.4)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-800)" marginBottom={48}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>Already Using Cursor or Windsurf?</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Install Hanzo Code alongside your current editor and supercharge it with our agentic capabilities. No need to switch or change your workflow.
-            </p>
+            </Paragraph>
             <Button 
               size="sm"
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-[var(--white)]"
+              color="var(--white)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--neutral-500))" }}
             >
               One-Click Integration
             </Button>
-          </div>
+          </Box>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-neutral-400">
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Pricing</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Downloads</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Docs</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Forum</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Careers</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Company</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Security</a>
-            <a href="#" className="hover:text-[var(--white)] transition-colors">Privacy</a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Pricing</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Downloads</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Docs</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Forum</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Careers</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Company</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Security</Anchor>
+            <Anchor tap href="#" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>Privacy</Anchor>
+          </Grid>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

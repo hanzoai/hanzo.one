@@ -1,3 +1,4 @@
+import { Box, Grid, H3 } from '@/gui'
 import { LucideIcon } from "lucide-react";
 import TeamMemberCard from "./TeamMemberCard";
 
@@ -17,9 +18,9 @@ interface TeamGroupProps {
 
 const TeamGroup = ({ title, members, onMemberClick }: TeamGroupProps) => {
   return (
-    <div className="mb-16">
-      <h3 className="text-2xl font-bold mb-6 text-center text-purple-400">{title}</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <Box marginBottom={64}>
+      <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24} textAlign="center" color="var(--foreground)">{title}</H3>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
         {members.map((member) => (
           <TeamMemberCard 
             key={member.name} 
@@ -27,8 +28,8 @@ const TeamGroup = ({ title, members, onMemberClick }: TeamGroupProps) => {
             onClick={onMemberClick ? () => onMemberClick(member) : undefined}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 

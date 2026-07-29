@@ -1,15 +1,9 @@
+import { AnimatedHeading, AnimatedSection, Avatar, AvatarFallback, AvatarImage, Box, Button, Grid, H2, H3, Input, Label, Link, Textarea, XStack, YStack, toast } from '@/gui'
 
 import React, { useState, useEffect } from 'react';
 import { useAccount } from '@/contexts/AccountContext';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { toast } from 'sonner';
 import { Mail, Key, Shield, UserCircle, MapPin, Phone, Globe, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import AnimatedSection, { AnimatedHeading } from '@/components/ui/animated-section';
+
 
 const Account = () => {
   const { user, updateUserProfile } = useAccount();
@@ -52,128 +46,128 @@ const Account = () => {
 
   return (
     <AnimatedSection>
-      <div className="space-y-10">
+      <Box rowGap={40}>
         <AnimatedHeading>
-          <h2 className="text-2xl font-medium mb-8">Profile Settings</h2>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" marginBottom={32}>Profile Settings</H2>
         </AnimatedHeading>
 
-        <div className="flex flex-col md:flex-row md:items-center gap-8">
-          <Avatar className="h-24 w-24">
+        <YStack display="flex" flexDirection="column" gap={32} $md={{ flexDirection: "row", alignItems: "center" }}>
+          <Avatar height={96} width={96}>
             <AvatarImage src={user.avatar} />
-            <AvatarFallback className="text-2xl bg-neutral-900">{user.name.charAt(0)}</AvatarFallback>
+            <AvatarFallback fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" backgroundColor="var(--neutral-900)">{user.name.charAt(0)}</AvatarFallback>
           </Avatar>
           
           <div>
-            <h2 className="text-2xl font-medium mb-2">{user.name}</h2>
-            <div className="flex items-center text-neutral-400">
-              <Mail className="h-4 w-4 mr-2" />
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" marginBottom={8}>{user.name}</H2>
+            <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Mail size={16} /></Box>
               {user.email}
-            </div>
+            </XStack>
             
-            <div className="mt-5 space-x-4">
-              <Button variant="outline" size="sm" className="bg-[var(--black)] border-white/10 hover:bg-[var(--white)]/5">
+            <Box marginTop={20} columnGap={16}>
+              <Button variant="outline" size="sm" backgroundColor="var(--black)" borderColor="rgb(255 255 255 / 0.1)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}>
                 Upload New Picture
               </Button>
-              <Button variant="outline" size="sm" className="bg-[var(--black)] border-white/10 hover:bg-[var(--white)]/5 text-red-400 hover:text-red-300 hover:bg-red-900/10">
+              <Button variant="outline" size="sm" backgroundColor="var(--black)" borderColor="rgb(255 255 255 / 0.1)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)", color: "var(--foreground)" }}>
                 Remove
               </Button>
-            </div>
+            </Box>
           </div>
-        </div>
+        </YStack>
         
-        <div className="border-t border-neutral-800/20 pt-8">
-          <h3 className="text-xl font-medium mb-6">Personal Information</h3>
+        <Box borderTopWidth={1} borderColor="rgb(255 255 255 / 0.2)" paddingTop={32}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={24}>Personal Information</H3>
           
-          <form onSubmit={handleProfileSubmit} className="space-y-8 max-w-xl">
-            <div className="space-y-2">
-              <Label htmlFor="fullName" className="text-[var(--white)]">Full Name</Label>
+          <Box onSubmit={handleProfileSubmit} render="form" rowGap={32} maxWidth="36rem">
+            <Box rowGap={8}>
+              <Label htmlFor="fullName" color="var(--white)">Full Name</Label>
               <Input
                 id="fullName"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="bg-[var(--black)]/40 border-white/10 focus:border-white/20"
+                backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-[var(--white)]">Email Address</Label>
+            <Box rowGap={8}>
+              <Label htmlFor="email" color="var(--white)">Email Address</Label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-[var(--black)]/40 border-white/10 focus:border-white/20"
+                backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
-              <Label htmlFor="bio" className="text-[var(--white)]">Bio</Label>
+            <Box rowGap={8}>
+              <Label htmlFor="bio" color="var(--white)">Bio</Label>
               <Textarea
                 id="bio"
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                className="bg-[var(--black)]/40 border-white/10 focus:border-white/20 min-h-24"
+                backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" minHeight={96} focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
                 placeholder="Tell us about yourself"
               />
-            </div>
+            </Box>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <Label htmlFor="location" className="text-[var(--white)]">Location</Label>
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+              <Box rowGap={8}>
+                <Label htmlFor="location" color="var(--white)">Location</Label>
                 <Input
                   id="location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="bg-[var(--black)]/40 border-white/10 focus:border-white/20"
+                  backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
                   placeholder="City, Country"
                 />
-              </div>
+              </Box>
               
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-[var(--white)]">Phone Number</Label>
+              <Box rowGap={8}>
+                <Label htmlFor="phone" color="var(--white)">Phone Number</Label>
                 <Input
                   id="phone"
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="bg-[var(--black)]/40 border-white/10 focus:border-white/20"
+                  backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
                   placeholder="+1 (555) 123-4567"
                 />
-              </div>
-            </div>
+              </Box>
+            </Grid>
             
-            <div className="space-y-2">
-              <Label htmlFor="website" className="text-[var(--white)]">Website</Label>
+            <Box rowGap={8}>
+              <Label htmlFor="website" color="var(--white)">Website</Label>
               <Input
                 id="website"
                 type="url"
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
-                className="bg-[var(--black)]/40 border-white/10 focus:border-white/20"
+                backgroundColor="rgb(0 0 0 / 0.4)" borderColor="rgb(255 255 255 / 0.1)" focusStyle={{ borderColor: "rgb(255 255 255 / 0.2)" }}
                 placeholder="https://example.com"
               />
-            </div>
+            </Box>
             
-            <div className="flex gap-4 pt-2">
+            <XStack display="flex" gap={16} paddingTop={8}>
               <Button 
                 type="submit" 
-                className="bg-[var(--black)] hover:bg-neutral-900 border border-white/10"
+                backgroundColor="var(--black)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Update Profile
               </Button>
-              <Link to="/user-profile">
+              <Link tap to="/user-profile">
                 <Button 
                   type="button" 
                   variant="outline" 
-                  className="bg-[var(--black)] border-white/10 hover:bg-[var(--white)]/5"
+                  backgroundColor="var(--black)" borderColor="rgb(255 255 255 / 0.1)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
                 >
                   View Public Profile
                 </Button>
               </Link>
-            </div>
-          </form>
-        </div>
-      </div>
+            </XStack>
+          </Box>
+        </Box>
+      </Box>
     </AnimatedSection>
   );
 };

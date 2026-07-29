@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -44,44 +45,44 @@ const Templates = () => {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold text-[var(--white)] mb-4">Ready-to-Use Templates</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16}>Ready-to-Use Templates</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Jump-start your development with production-ready templates
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {templates.map((template, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800/50 rounded-lg overflow-hidden border border-gray-700/50 hover:border-gray-600/50 transition-colors group"
+              
+              group backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" overflow="hidden" borderWidth={1} borderColor="var(--border-strong)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
-              <div className={`h-2 bg-gradient-to-r ${template.color}`}></div>
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <template.icon className="w-6 h-6 mr-3 text-neutral-400 group-hover:text-[var(--white)] transition-colors" />
-                  <h3 className="text-xl font-semibold text-[var(--white)]">{template.title}</h3>
-                </div>
-                <p className="text-neutral-300">{template.description}</p>
-              </div>
-            </motion.div>
+              <Box height={8}></Box>
+              <Box padding={24}>
+                <XStack display="flex" alignItems="center" marginBottom={16}>
+                  <template.icon width={24} height={24} marginRight={12} color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--white)" }} />
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">{template.title}</H3>
+                </XStack>
+                <Paragraph color="var(--neutral-300)">{template.description}</Paragraph>
+              </Box>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

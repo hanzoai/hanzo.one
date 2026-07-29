@@ -1,3 +1,4 @@
+import { Box, Grid, H2, MotionBox, Paragraph } from '@/gui'
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,39 +26,39 @@ const HexagramsGrid: React.FC<HexagramsGridProps> = ({
   };
   
   return (
-    <div className="py-16" id="hexagrams">
-      <motion.div
+    <Box paddingVertical={64} id="hexagrams">
+      <MotionBox
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-center mb-12"
+        textAlign="center" marginBottom={48}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--white)]">{title}</h2>
-        <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+        <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} color="var(--white)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>{title}</H2>
+        <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
           {description}
-        </p>
-        <div className="h-px w-20 bg-gray-800 mx-auto mt-6"></div>
-      </motion.div>
+        </Paragraph>
+        <Box height={1} width={80} backgroundColor="var(--neutral-800)" marginHorizontal="auto" marginTop={24}></Box>
+      </MotionBox>
       
       <AnimatePresence mode="wait">
         {selectedHexagram && (
-          <div className="mb-10 max-w-3xl mx-auto px-4">
+          <Box marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" paddingHorizontal={16}>
             <HexagramDetail hexagram={selectedHexagram} />
-          </div>
+          </Box>
         )}
       </AnimatePresence>
       
-      <div className="relative px-4">
-        <div className="overflow-x-auto">
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8 gap-2 md:gap-3 min-w-[320px] p-4 md:p-6 bg-gray-900/20 border border-gray-800/50 rounded-lg mx-auto max-w-5xl">
+      <Box position="relative" paddingHorizontal={16}>
+        <Box overflowX="auto">
+          <Grid display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))" gap={8} minWidth="320px" padding={16} backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" marginHorizontal="auto" maxWidth="64rem" $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $md={{ gridTemplateColumns: "repeat(8, minmax(0, 1fr))", gap: 12, padding: 24 }}>
             {Array.from({ length: rows }).map((_, rowIndex) => (
               <React.Fragment key={`row-${rowIndex}`}>
                 {Array.from({ length: columns }).map((_, colIndex) => {
                   const index = rowIndex * columns + colIndex;
                   const hexagram = ichingPrinciples[index] || null;
                   
-                  if (!hexagram) return <div key={`empty-${index}`} className="aspect-square"></div>;
+                  if (!hexagram) return <Box key={`empty-${index}`} aspectRatio={1}></Box>;
                   
                   return (
                     <InteractiveHexagram 
@@ -71,14 +72,14 @@ const HexagramsGrid: React.FC<HexagramsGridProps> = ({
                 })}
               </React.Fragment>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Box>
         
-        <div className="mt-6 text-center text-sm text-neutral-500">
+        <Box marginTop={24} textAlign="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
           Click on a hexagram to view its meaning and principle
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

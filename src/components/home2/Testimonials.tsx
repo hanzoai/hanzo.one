@@ -1,3 +1,4 @@
+import { Box, Grid, H2, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -22,48 +23,48 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <Box render="section" paddingVertical={80} position="relative" overflow="hidden">
+      <Box marginHorizontal="auto" paddingHorizontal={16}>
+        <Box textAlign="center" marginBottom={64}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Trusted by Leading Teams
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             See what our customers are saying about our platform
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6"
+              borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
             >
-              <div className="mb-6">
-                <svg className="h-8 w-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+              <Box marginBottom={24}>
+                <Box display="inline-block" render="svg" height={32} width={32} color="var(--foreground)" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
-              <p className="text-neutral-300 mb-6">{testimonial.quote}</p>
+                </Box>
+              </Box>
+              <Paragraph color="var(--neutral-300)" marginBottom={24}>{testimonial.quote}</Paragraph>
               <div>
-                <p className="font-bold">{testimonial.author}</p>
-                <p className="text-neutral-400 text-sm">{testimonial.title}</p>
+                <Paragraph fontWeight="700">{testimonial.author}</Paragraph>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{testimonial.title}</Paragraph>
               </div>
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <div className="flex flex-wrap justify-center gap-8 mt-20">
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={32} marginTop={80}>
           {['Acme Inc', 'GlobalTech', 'FutureCorp', 'DataStream', 'TechVision'].map((company, index) => (
-            <div key={index} className="text-neutral-400 text-xl font-bold opacity-70">{company}</div>
+            <Box key={index} color="var(--neutral-400)" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" opacity={0.7}>{company}</Box>
           ))}
-        </div>
-      </div>
-    </section>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

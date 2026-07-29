@@ -1,6 +1,6 @@
+import { Anchor, Box as GuiBox, Button, Grid, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+
 import { Search, ChevronDown, ExternalLink, Brain, Video, Music, Box, Cpu, Sparkles, Zap } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -98,115 +98,115 @@ const AuthButtons = ({ user, onOpenCommandPalette }: AuthButtonsProps) => {
   }, [isDropdownOpen]);
 
   return (
-    <div className="hidden md:flex items-center space-x-3">
+    <GuiBox display="none" alignItems="center" columnGap={12} $md={{ display: "flex" }}>
       {/* Search / Command palette trigger - unified widget */}
-      <button
+      <XStack minHeight={44}
         onClick={onOpenCommandPalette}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-800/50 border border-neutral-700/50 text-neutral-400 hover:text-white hover:bg-neutral-800 hover:border-neutral-600 transition-all text-sm"
+        render="button" display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--neutral-400)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)", borderColor: "var(--neutral-600)" }}
         aria-label="Search (⌘K)"
       >
-        <Search className="h-4 w-4" />
-        <span className="hidden lg:inline text-neutral-500 text-xs">Search...</span>
-        <kbd className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono bg-neutral-900/80 border border-neutral-700/50 rounded text-neutral-500">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </button>
+        <Search size={16} />
+        <Text display="none" color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" $lg={{ display: "inline" }}>Search...</Text>
+        <Text display="inline-flex" alignItems="center" gap={2} paddingHorizontal={6} paddingVertical={2} fontSize="10px" fontFamily="var(--font-mono)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius)" color="var(--neutral-500)">
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">⌘</Text>K
+        </Text>
+      </XStack>
 
       {/* Contact sales button */}
-      <Link to="/contact">
+      <Link tap to="/contact">
         <Button
           variant="ghost"
           size="sm"
-          className="text-neutral-300 hover:text-white hover:bg-transparent text-sm font-medium h-9"
+          color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" height={36} hoverStyle={{ color: "var(--foreground)", backgroundColor: "transparent" }}
         >
           Contact sales
         </Button>
       </Link>
 
       {/* Try Hanzo dropdown - hover activated */}
-      <div
-        className="relative"
+      <GuiBox
+        position="relative"
         ref={dropdownRef}
         onMouseEnter={() => setIsDropdownOpen(true)}
         onMouseLeave={() => setIsDropdownOpen(false)}
       >
-        <button
-          className="inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-neutral-200 active:bg-neutral-300 rounded-full h-9 px-4 text-sm font-medium transition-all duration-200"
+        <XStack
+          render="button" display="inline-flex" alignItems="center" justifyContent="center" gap={8} backgroundColor="var(--foreground)" color="var(--pure-black)" borderRadius="var(--radius-full)" height={36} paddingHorizontal={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all 200ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }} pressStyle={{ backgroundColor: "var(--neutral-300)" }}
         >
           Try Hanzo
-          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-        </button>
+          <ChevronDown size={16} />
+        </XStack>
 
         <AnimatePresence>
           {isDropdownOpen && (
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 8, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.96 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 mt-2 w-[420px] bg-neutral-900/95 backdrop-blur-xl border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden z-[100]"
+              position="absolute" right={0} marginTop={8} width="420px" backgroundColor="var(--surface-overlay)" backdropFilter="blur(24px)" WebkitBackdropFilter="blur(24px)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" zIndex={100}
             >
               {/* Zen AI Models - Featured Section */}
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-amber-400" />
-                    <span className="text-xs font-semibold text-white uppercase tracking-wider">
+              <GuiBox padding={16}>
+                <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={12}>
+                  <XStack display="flex" alignItems="center" gap={8}>
+                    <Zap size={16} color="var(--foreground)" />
+                    <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="600" color="var(--foreground)" textTransform="uppercase" letterSpacing="0.05em">
                       Zen AI Models
-                    </span>
-                  </div>
-                  <Link
+                    </Text>
+                  </XStack>
+                  <Link tap
                     to="/zen"
                     onClick={() => setIsDropdownOpen(false)}
-                    className="text-xs text-neutral-400 hover:text-white transition-colors"
+                    fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                   >
                     View all →
                   </Link>
-                </div>
+                </XStack>
 
-                <div className="grid grid-cols-2 gap-2">
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={8}>
                   {zenModels.map((model) => {
                     const ModelIcon = model.icon;
                     return (
-                      <a
+                      <Anchor tap
                         key={model.name}
                         href={model.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setIsDropdownOpen(false)}
-                        className="group flex items-start gap-3 p-3 rounded-xl bg-neutral-800/50 hover:bg-neutral-800 transition-colors"
+                        group display="flex" alignItems="flex-start" gap={12} padding={12} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                       >
-                        <div className="w-8 h-8 rounded-lg bg-neutral-700/50 flex items-center justify-center flex-shrink-0">
-                          <ModelIcon className="w-4 h-4 text-neutral-300 group-hover:text-white transition-colors" />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-white">{model.name}</span>
-                            <span className="text-[10px] font-mono text-neutral-500">{model.params}</span>
-                          </div>
-                          <p className="text-xs text-neutral-400 truncate">{model.description}</p>
-                        </div>
-                      </a>
+                        <XStack width={32} height={32} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                          <ModelIcon width={16} height={16} color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} />
+                        </XStack>
+                        <GuiBox minWidth={0}>
+                          <XStack display="flex" alignItems="center" gap={8}>
+                            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">{model.name}</Text>
+                            <Text fontSize="10px" fontFamily="var(--font-mono)" color="var(--neutral-500)">{model.params}</Text>
+                          </XStack>
+                          <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{model.description}</Paragraph>
+                        </GuiBox>
+                      </Anchor>
                     );
                   })}
-                </div>
-              </div>
+                </Grid>
+              </GuiBox>
 
-              <div className="border-t border-neutral-800" />
+              <GuiBox borderTopWidth={1} borderColor="var(--neutral-800)" />
 
               {/* Quick Access */}
-              <div className="py-2">
-                <div className="px-4 py-1.5">
-                  <span className="text-[10px] font-medium text-neutral-500 uppercase tracking-wider">
+              <GuiBox paddingVertical={8}>
+                <GuiBox paddingHorizontal={16} paddingVertical={6}>
+                  <Text fontSize="10px" fontWeight="500" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em">
                     Quick Access
-                  </span>
-                </div>
+                  </Text>
+                </GuiBox>
                 {quickAccess.map((item) => {
                   const content = (
-                    <div className="flex items-center justify-between w-full py-2 px-4 text-white hover:bg-neutral-800/50 transition-colors">
-                      <span className="text-sm">{item.label}</span>
-                      {item.external && <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />}
-                    </div>
+                    <XStack display="flex" alignItems="center" justifyContent="space-between" width="100%" paddingVertical={8} paddingHorizontal={16} color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{item.label}</Text>
+                      {item.external && <ExternalLink size={14} color="var(--neutral-500)" />}
+                    </XStack>
                   );
 
                   if (item.external) {
@@ -224,41 +224,41 @@ const AuthButtons = ({ user, onOpenCommandPalette }: AuthButtonsProps) => {
                   }
 
                   return (
-                    <Link key={item.label} to={item.href} onClick={() => setIsDropdownOpen(false)}>
+                    <Link tap key={item.label} to={item.href} onClick={() => setIsDropdownOpen(false)}>
                       {content}
                     </Link>
                   );
                 })}
-              </div>
+              </GuiBox>
 
-              <div className="border-t border-neutral-800" />
+              <GuiBox borderTopWidth={1} borderColor="var(--neutral-800)" />
 
               {/* Login Section */}
-              <div className="py-2">
-                <div className="px-4 py-1.5">
-                  <span className="text-[10px] font-medium text-neutral-500 uppercase tracking-wider">
+              <GuiBox paddingVertical={8}>
+                <GuiBox paddingHorizontal={16} paddingVertical={6}>
+                  <Text fontSize="10px" fontWeight="500" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em">
                     Log in
-                  </span>
-                </div>
+                  </Text>
+                </GuiBox>
                 {loginItems.map((item) => (
-                  <a
+                  <Anchor tap
                     key={item.label}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-center justify-between w-full py-2 px-4 text-white hover:bg-neutral-800/50 transition-colors"
+                    display="flex" alignItems="center" justifyContent="space-between" width="100%" paddingVertical={8} paddingHorizontal={16} color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
                   >
-                    <span className="text-sm">{item.label}</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
-                  </a>
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{item.label}</Text>
+                    <ExternalLink size={14} color="var(--neutral-500)" />
+                  </Anchor>
                 ))}
-              </div>
-            </motion.div>
+              </GuiBox>
+            </MotionBox>
           )}
         </AnimatePresence>
-      </div>
-    </div>
+      </GuiBox>
+    </GuiBox>
   );
 };
 

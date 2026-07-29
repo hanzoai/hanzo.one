@@ -1,6 +1,6 @@
+import { Box, H3, Paragraph, Slider, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Slider } from "@/components/ui/radix-slider";
 
 interface ResourceSectionProps {
   icon: React.ReactNode;
@@ -26,22 +26,22 @@ const ResourceSection = ({
   unit
 }: ResourceSectionProps) => {
   return (
-    <div className="p-6 rounded-xl border border-[#333] bg-gray-900/50 hover:border-gray-700">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="text-neutral-400">
+    <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="#333" backgroundColor="var(--surface-card-emphasis)" hoverStyle={{ borderColor: "var(--neutral-700)" }}>
+      <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+        <Box color="var(--neutral-400)">
           {icon}
-        </div>
+        </Box>
         <div>
-          <h3 className="font-medium">{title}</h3>
-          <p className="text-sm text-neutral-400">{description}</p>
+          <H3 fontWeight="500">{title}</H3>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{description}</Paragraph>
         </div>
-      </div>
+      </XStack>
 
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-neutral-400">{value} {unit}</span>
-          <span className="font-semibold">${cost.toFixed(2)}/mo</span>
-        </div>
+      <Box rowGap={16}>
+        <XStack display="flex" justifyContent="space-between" alignItems="center">
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{value} {unit}</Text>
+          <Text fontWeight="600">${cost.toFixed(2)}/mo</Text>
+        </XStack>
 
         <Slider
           value={[value]}
@@ -49,15 +49,15 @@ const ResourceSection = ({
           min={min}
           max={max}
           step={1}
-          className="my-4"
+          marginVertical={16}
         />
 
-        <div className="flex justify-between text-xs text-neutral-500">
+        <XStack display="flex" justifyContent="space-between" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">
           <span>{min}</span>
           <span>{max}</span>
-        </div>
-      </div>
-    </div>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

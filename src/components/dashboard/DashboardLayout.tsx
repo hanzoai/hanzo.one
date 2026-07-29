@@ -1,7 +1,7 @@
+import { Box, Button, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { 
   Home, 
   LayoutDashboard, 
@@ -29,169 +29,169 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-screen bg-[var(--black)] text-[var(--white)] overflow-hidden">
+    <XStack display="flex" height="100vh" backgroundColor="var(--black)" color="var(--white)" overflow="hidden">
       {/* Sidebar */}
-      <div className="w-56 border-r border-gray-900 flex flex-col">
+      <YStack width={224} borderRightWidth={1} borderColor="var(--neutral-900)" display="flex" flexDirection="column">
         {/* User/Team Selector */}
-        <div className="p-3 border-b border-gray-900 flex items-center">
-          <div className="w-6 h-6 bg-green-600 rounded-md flex items-center justify-center text-xs font-bold mr-2">H</div>
-          <span className="font-medium">Hanzo AI</span>
-          <ChevronDown className="w-4 h-4 ml-auto" />
-        </div>
+        <XStack padding={12} borderBottomWidth={1} borderColor="var(--neutral-900)" display="flex" alignItems="center">
+          <XStack width={24} height={24} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="700" marginRight={8}>H</XStack>
+          <Text fontWeight="500">Hanzo AI</Text>
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft="auto"><ChevronDown size={16} /></Box>
+        </XStack>
         
         {/* Search */}
-        <div className="px-3 py-2 border-b border-gray-900">
-          <Button variant="outline" className="w-full justify-start text-neutral-400 bg-[var(--black)] border-gray-800">
-            <Search className="w-4 h-4 mr-2" />
+        <Box paddingHorizontal={12} paddingVertical={8} borderBottomWidth={1} borderColor="var(--neutral-900)">
+          <Button variant="outline" width="100%" justifyContent="flex-start" color="var(--neutral-400)" backgroundColor="var(--black)" borderColor="var(--neutral-800)">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Search size={16} /></Box>
             <span>Search...</span>
-            <div className="ml-auto flex items-center text-xs text-neutral-500">
-              <Command className="w-3 h-3 mr-1" />
+            <XStack marginLeft="auto" display="flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Command size={12} /></Box>
               <span>K</span>
-            </div>
+            </XStack>
           </Button>
-        </div>
+        </Box>
         
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto py-3 px-3">
-          <div className="mb-6">
-            <div className="text-neutral-400 text-xs font-medium mb-2 px-2">WORKSPACE</div>
-            <ul className="space-y-1">
+        <Box render="nav" flex={1} overflowY="auto" paddingVertical={12} paddingHorizontal={12}>
+          <Box marginBottom={24}>
+            <Box color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={8} paddingHorizontal={8}>WORKSPACE</Box>
+            <Box render="ul" rowGap={4}>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]" onClick={() => navigate("/dashboard")}>
-                  <LayoutDashboard className="w-4 h-4 mr-2" /> 
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }} onClick={() => navigate("/dashboard")}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><LayoutDashboard size={16} /></Box> 
                   Dashboard
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <FileCog className="w-4 h-4 mr-2" /> 
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><FileCog size={16} /></Box> 
                   Projects
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <Bot className="w-4 h-4 mr-2" /> 
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} /></Box> 
                   AI Agents
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <Database className="w-4 h-4 mr-2" /> 
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Database size={16} /></Box> 
                   Data Sources
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <Server className="w-4 h-4 mr-2" /> 
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Server size={16} /></Box> 
                   Infrastructure
                 </Button>
               </li>
-            </ul>
-          </div>
+            </Box>
+          </Box>
           
-          <div className="mb-6">
-            <div className="flex items-center justify-between text-neutral-400 text-xs font-medium mb-2 px-2">
+          <Box marginBottom={24}>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={8} paddingHorizontal={8}>
               <span>MODELS</span>
-              <Button size="icon" variant="ghost" className="h-4 w-4 text-neutral-400 hover:text-[var(--white)] hover:bg-gray-900">
-                <PlusCircle className="h-3 w-3" />
+              <Button size="icon" variant="ghost" height={16} width={16} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)", backgroundColor: "var(--neutral-900)" }}>
+                <PlusCircle size={12} />
               </Button>
-            </div>
-            <ul className="space-y-1">
+            </XStack>
+            <Box render="ul" rowGap={4}>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-blue-600 rounded-sm flex items-center justify-center text-[10px] mr-2">G</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>G</XStack>
                   GPT-4o
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-purple-600 rounded-sm flex items-center justify-center text-[10px] mr-2">C</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>C</XStack>
                   Claude 3
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-green-600 rounded-sm flex items-center justify-center text-[10px] mr-2">L</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>L</XStack>
                   Llama 3
                 </Button>
               </li>
-            </ul>
-          </div>
+            </Box>
+          </Box>
           
-          <div className="mb-6">
-            <div className="flex items-center justify-between text-neutral-400 text-xs font-medium mb-2 px-2">
+          <Box marginBottom={24}>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={8} paddingHorizontal={8}>
               <span>TEAMS</span>
-              <Button size="icon" variant="ghost" className="h-4 w-4 text-neutral-400 hover:text-[var(--white)] hover:bg-gray-900">
-                <PlusCircle className="h-3 w-3" />
+              <Button size="icon" variant="ghost" height={16} width={16} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)", backgroundColor: "var(--neutral-900)" }}>
+                <PlusCircle size={12} />
               </Button>
-            </div>
-            <ul className="space-y-1">
+            </XStack>
+            <Box render="ul" rowGap={4}>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-green-600 rounded-sm flex items-center justify-center text-[10px] mr-2">E</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>E</XStack>
                   Engineering
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-blue-600 rounded-sm flex items-center justify-center text-[10px] mr-2">D</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>D</XStack>
                   Design
                 </Button>
               </li>
               <li>
-                <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                  <div className="w-4 h-4 bg-yellow-600 rounded-sm flex items-center justify-center text-[10px] mr-2">M</div>
+                <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                  <XStack width={16} height={16} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-sm)" display="flex" alignItems="center" justifyContent="center" fontSize="10px" marginRight={8}>M</XStack>
                   Marketing
                 </Button>
               </li>
-            </ul>
-          </div>
-        </nav>
+            </Box>
+          </Box>
+        </Box>
         
         {/* Footer */}
-        <div className="mt-auto border-t border-gray-900 p-3">
-          <ul className="space-y-1">
+        <Box marginTop="auto" borderTopWidth={1} borderColor="var(--neutral-900)" padding={12}>
+          <Box render="ul" rowGap={4}>
             <li>
-              <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                <Settings className="w-4 h-4 mr-2" /> 
+              <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Settings size={16} /></Box> 
                 Settings
               </Button>
             </li>
             <li>
-              <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]">
-                <Keyboard className="w-4 h-4 mr-2" /> 
+              <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Keyboard size={16} /></Box> 
                 Keyboard Shortcuts
               </Button>
             </li>
             <li>
-              <Button variant="ghost" className="w-full justify-start text-neutral-300 hover:bg-gray-900 hover:text-[var(--white)]" onClick={() => navigate("/")}>
-                <Home className="w-4 h-4 mr-2" /> 
+              <Button variant="ghost" width="100%" justifyContent="flex-start" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-900)", color: "var(--white)" }} onClick={() => navigate("/")}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Home size={16} /></Box> 
                 Home
               </Button>
             </li>
-          </ul>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </YStack>
       
       {/* Main Content */}
-      <div className="flex-1 overflow-hidden flex flex-col">
+      <YStack flex={1} overflow="hidden" display="flex" flexDirection="column">
         {/* Header */}
-        <header className="h-12 border-b border-gray-900 flex items-center px-4">
-          <div className="flex-1"></div>
-          <div className="flex items-center space-x-3">
-            <Button size="icon" variant="ghost" className="text-neutral-400 hover:text-[var(--white)]">
-              <BellDot className="h-5 w-5" />
+        <XStack render="header" height={48} borderBottomWidth={1} borderColor="var(--neutral-900)" display="flex" alignItems="center" paddingHorizontal={16}>
+          <Box flex={1}></Box>
+          <XStack display="flex" alignItems="center" columnGap={12}>
+            <Button size="icon" variant="ghost" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+              <BellDot size={20} />
             </Button>
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 border border-gray-800"></div>
-          </div>
-        </header>
+            <Box height={32} width={32} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom right, var(--neutral-700), var(--neutral-900))"></Box>
+          </XStack>
+        </XStack>
         
         {/* Content */}
-        <main className="flex-1 overflow-hidden p-6">
+        <Box render="main" flex={1} overflow="hidden" padding={24}>
           {children}
-        </main>
-      </div>
-    </div>
+        </Box>
+      </YStack>
+    </XStack>
   );
 };
 

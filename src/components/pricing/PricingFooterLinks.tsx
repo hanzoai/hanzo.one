@@ -1,27 +1,27 @@
+import { Anchor, Box, Button, XStack } from '@/gui'
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 
 const PricingFooterLinks = () => {
   return (
-    <div className="mt-8 text-center flex flex-wrap justify-center">
-      <Button variant="outline" className="border-gray-800 hover:bg-gray-800 px-4 py-2 h-10 min-w-[152px]" size="sm">
-        <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" className="flex items-center">
+    <XStack marginTop={32} textAlign="center" display="flex" flexWrap="wrap" justifyContent="center">
+      <Button variant="outline" borderColor="var(--neutral-800)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="152px" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} size="sm">
+        <Anchor href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center">
           Hanzo GitHub
-          <Github className="ml-2 h-4 w-4" />
-        </a>
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Github size={16} /></Box>
+        </Anchor>
       </Button>
-      <Button variant="outline" className="border-gray-800 hover:bg-gray-800 px-4 py-2 h-10 min-w-[152px]" size="sm">
+      <Button variant="outline" borderColor="var(--neutral-800)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="152px" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} size="sm">
         <a href="mailto:sales@hanzo.ai">
           Contact Sales
         </a>
       </Button>
-      <Button variant="outline" className="border-gray-800 hover:bg-gray-800 px-4 py-2 h-10 min-w-[152px]" size="sm">
+      <Button variant="outline" borderColor="var(--neutral-800)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="152px" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} size="sm">
         <a href="https://discord.gg/XthHQQj" target="_blank" rel="noopener noreferrer">
           Join Discord
         </a>
       </Button>
-    </div>
+    </XStack>
   );
 };
 

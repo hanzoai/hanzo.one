@@ -1,6 +1,6 @@
+import { Box, H3, Paragraph, Switch, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Switch } from "@/components/ui/radix-switch";
 import { Shield, HeadsetIcon } from "lucide-react";
 
 interface CostSummaryProps {
@@ -29,10 +29,10 @@ const CostSummary = ({
   support
 }: CostSummaryProps) => {
   return (
-    <div className="p-6 rounded-xl border border-[#333] bg-gray-900/50 hover:border-gray-700">
-      <h3 className="text-xl font-semibold mb-6">Cost Summary</h3>
+    <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="#333" backgroundColor="var(--surface-card-emphasis)" hoverStyle={{ borderColor: "var(--neutral-700)" }}>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={24}>Cost Summary</H3>
 
-      <div className="space-y-4 mb-8">
+      <Box rowGap={16} marginBottom={32}>
         {[
           { label: "Compute", cost: costs.compute },
           { label: "Hanzo Base", cost: costs.replicas },
@@ -41,47 +41,47 @@ const CostSummary = ({
           { label: "Analytics Events", cost: costs.analytics },
           { label: "Observability", cost: costs.observability }
         ].map(({ label, cost }) => (
-          <div key={label} className="flex justify-between items-center">
-            <span className="text-neutral-400">{label}</span>
+          <XStack key={label} display="flex" justifyContent="space-between" alignItems="center">
+            <Text color="var(--neutral-400)">{label}</Text>
             <span>${cost.toFixed(2)}</span>
-          </div>
+          </XStack>
         ))}
-      </div>
+      </Box>
 
-      <div className="space-y-4 mb-8 border-t border-[#333] pt-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Shield className="h-4 w-4 text-neutral-400" />
-            <span className="text-neutral-400">SOC2 Type 2 Compliance</span>
-          </div>
-          <div className="flex items-center gap-3">
+      <Box rowGap={16} marginBottom={32} borderTopWidth={1} borderColor="#333" paddingTop={16}>
+        <XStack display="flex" alignItems="center" justifyContent="space-between">
+          <XStack display="flex" alignItems="center" gap={8}>
+            <Shield size={16} color="var(--neutral-400)" />
+            <Text color="var(--neutral-400)">SOC2 Type 2 Compliance</Text>
+          </XStack>
+          <XStack display="flex" alignItems="center" gap={12}>
             <span>${costs.compliance.toFixed(2)}</span>
             <Switch checked={compliance} onCheckedChange={onComplianceChange} />
-          </div>
-        </div>
+          </XStack>
+        </XStack>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <HeadsetIcon className="h-4 w-4 text-neutral-400" />
-            <span className="text-neutral-400">Enterprise Support</span>
-          </div>
-          <div className="flex items-center gap-3">
+        <XStack display="flex" alignItems="center" justifyContent="space-between">
+          <XStack display="flex" alignItems="center" gap={8}>
+            <HeadsetIcon size={16} color="var(--neutral-400)" />
+            <Text color="var(--neutral-400)">Enterprise Support</Text>
+          </XStack>
+          <XStack display="flex" alignItems="center" gap={12}>
             <span>${costs.support.toFixed(2)}</span>
             <Switch checked={support} onCheckedChange={onSupportChange} />
-          </div>
-        </div>
-      </div>
+          </XStack>
+        </XStack>
+      </Box>
 
-      <div className="border-t border-[#333] pt-4">
-        <div className="flex justify-between items-center">
-          <span className="text-lg font-semibold">Estimated Total</span>
-          <span className="text-lg font-semibold">${costs.total.toFixed(2)}/mo</span>
-        </div>
-        <p className="text-sm text-neutral-400 mt-2">
+      <Box borderTopWidth={1} borderColor="#333" paddingTop={16}>
+        <XStack display="flex" justifyContent="space-between" alignItems="center">
+          <Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600">Estimated Total</Text>
+          <Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600">${costs.total.toFixed(2)}/mo</Text>
+        </XStack>
+        <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={8}>
           Actual costs may vary based on usage and additional services.
-        </p>
-      </div>
-    </div>
+        </Paragraph>
+      </Box>
+    </Box>
   );
 };
 

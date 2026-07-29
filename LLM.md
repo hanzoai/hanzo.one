@@ -4,10 +4,56 @@ Marketing site for Hanzo One, the all-in-one AI-powered business suite (hanzo.on
 
 ## Stack
 
-- React 18 + TypeScript (Vite 5, SWC)
+- React 19 + TypeScript (Vite 5, SWC)
 - React Router v6 (client-side routing)
-- Tailwind CSS v4 + Radix UI primitives
+- **@hanzo/ui components on the @hanzo/gui backend** (the Tamagui fork) —
+  no Tailwind, no shadcn, no Radix, no `className` anywhere in the JSX
+- **@hanzo/design** tokens (the only stylesheet), **@hanzo/logo** mark,
+  **@hanzo/brand** identity
 - Framer Motion (animations), Three.js (3D)
+
+## The UI layer — one surface, `src/gui`
+
+Every page imports from `@/gui` and nowhere else:
+
+```
+src/gui/
+  config.ts       the ONE createGui(defaultConfig) runtime config (v4 preset)
+  primitives.tsx  Box / Grid / XStack / YStack / Text / Paragraph / H1-H6 /
+                  Anchor / Link / MotionBox / MotionText
+  components.tsx  Button, Card, Input, Tabs, Dialog, Select, Table, Toast …
+                  (what used to be src/components/ui/*, on gui primitives)
+  ChromeText, CodeBlock, MasonryGrid, AnimatedSection, architectural, Command,
+  Helmet          the site's own compositions
+  index.ts        the barrel — plus @hanzo/ui/product (BrandMark, useToast,
+                  charts) and @hanzo/logo
+```
+
+House rules, in one place each:
+
+- **Style props, never classes.** `padding={24} backgroundColor="var(--card)"`.
+  Brand values (colour, radius, type scale) resolve through @hanzo/design CSS
+  custom properties, so the whole site retunes from one token layer.
+- **`render`, not `tag`.** gui picks the element from the `render` prop; `tag`
+  silently leaks to the DOM as an attribute and everything renders as `<span>`.
+- **Boxes are built on gui's Text**, because `textAlign` is a text style prop
+  and `text-center` on a section is the commonest instruction in this codebase.
+- **Web shrink semantics.** gui's stacks default to `flexShrink: 0` (React
+  Native); `src/gui/primitives.tsx` restores `flexShrink: 1; min-width: 0` once,
+  which is what these layouts were written against.
+- **44px touch targets.** `Button` is 44px tall by default (36px `sm` grows back
+  to 44 under `$maxSm`); `Anchor`/`Link` take `tap` for the same hit height.
+  Links that wrap a card do not take it — an inline-flex box collapses the card.
+- **Monochrome.** Chromatic values collapse onto the neutral ladder and the
+  white opacity ladder; dark fills resolve to `--surface-card*`. There is no hue
+  left in the UI.
+
+Vite needs four knobs for gui on the web (see `vite.config.ts`): the
+`react-native` → `react-native-web` alias (absolute — pnpm nests), React
+de-duplication, `TAMAGUI_TARGET`/`__DEV__`, and `.web.js` resolve extensions.
+`build.rollupOptions.output.manualChunks` is deliberately absent: hoisting the
+gui/react vendors into sibling eager chunks reordered module initialisation and
+the runtime threw a TDZ error before first paint.
 
 ## Structure
 
@@ -88,11 +134,18 @@ Running and a deep link returns 200 -> re-delegate DNS. The CR is committed INER
 (empty tag, absent from `kustomization.yaml`); promoting an App with no image tag
 takes the host down instead of leaving it alone.
 
-Note also that `origin/fix/broken-links` (`eaf948d`) carries the real
-@hanzo/brand blocky-H logo and favicon and was never merged; `main`'s
-`index.html` still links `lovable-uploads/28d53ec4-….png`. Land it before pinning
-a tag, so the first image is not the wrong brand.
+The wrong-brand favicon is fixed here: `index.html` links `public/favicon.svg`
+copied from `@hanzo/logo`, and the footer renders `<HanzoLogo/>` instead of the
+`lovable-uploads` PNG. `origin/fix/broken-links` (`eaf948d`) carried the same
+correction and can be dropped.
 
 ## Notes
 
 - Shares the same component library and routes as hanzo.app, hanzo.id, hanzo.network, and sensei.group. Only `OneLanding.tsx` and `index.html` metadata are unique.
+- `index.html` now links the real `@hanzo/logo` favicon (`public/favicon.svg`),
+  not the `lovable-uploads` PNG, and no longer pulls Inter from Google Fonts —
+  @hanzo/design ships Geist. The static server's CSP no longer needs
+  `fonts.googleapis.com` / `fonts.gstatic.com`.
+- `/shadcn-v4` is a marketing page *about* shadcn; its copy still names Tailwind
+  and Radix. That is page content, not a dependency — the site itself ships
+  neither.

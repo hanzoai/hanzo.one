@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,92 +6,92 @@ import { Code, Zap, MessageSquare, Globe, Bot, FileCode, Infinity, Network } fro
 
 const FeatureCard = ({ title, description, icon }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 h-full"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} height="100%"
     >
-      <div className="flex flex-col h-full">
-        <div className="mb-6">
+      <YStack display="flex" flexDirection="column" height="100%">
+        <Box marginBottom={24}>
           {icon}
-          <h3 className="text-2xl font-semibold mt-4 mb-2">{title}</h3>
-          <p className="text-neutral-300 mb-4">{description}</p>
-        </div>
-      </div>
-    </motion.div>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginTop={16} marginBottom={8}>{title}</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={16}>{description}</Paragraph>
+        </Box>
+      </YStack>
+    </MotionBox>
   );
 };
 
 const HanzoCodeFeatures = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950" id="features">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }} id="features">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Beyond Other AI Editors</h2>
-          <p className="text-xl text-neutral-300">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Beyond Other AI Editors</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
             Capabilities that leave Cursor, Windsurf, and other AI editors far behind
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           <FeatureCard 
             title="Holistic Understanding"
             description="Unlike others, we analyze your entire codebase, not just the current file or context window"
-            icon={<Code className="h-10 w-10 text-purple-400" />}
+            icon={<Code size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Parallel Execution"
             description="Run multiple autonomous agents simultaneously to solve different parts of your project"
-            icon={<Zap className="h-10 w-10 text-purple-400" />}
+            icon={<Zap size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Advanced Reasoning"
             description="Complex problem solving with multi-step reasoning that other AI tools can't match"
-            icon={<MessageSquare className="h-10 w-10 text-purple-400" />}
+            icon={<MessageSquare size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Multi-repo Context"
             description="Understand dependencies across multiple repositories and codebases simultaneously"
-            icon={<Globe className="h-10 w-10 text-purple-400" />}
+            icon={<Globe size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Complete Autonomy"
             description="Agents can work independently, making decisions without constant human guidance"
-            icon={<Bot className="h-10 w-10 text-purple-400" />}
+            icon={<Bot size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Full System Access"
             description="Agents have controlled access to your file system, dev environment, and tooling"
-            icon={<FileCode className="h-10 w-10 text-purple-400" />}
+            icon={<FileCode size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Unlimited Context"
             description="No token limits or context windows - process entire codebases at once"
-            icon={<Infinity className="h-10 w-10 text-purple-400" />}
+            icon={<Infinity size={40} color="var(--foreground)" />}
           />
           
           <FeatureCard 
             title="Agent Collaboration"
             description="Multiple agents working together with different roles and responsibilities"
-            icon={<Network className="h-10 w-10 text-purple-400" />}
+            icon={<Network size={40} color="var(--foreground)" />}
           />
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

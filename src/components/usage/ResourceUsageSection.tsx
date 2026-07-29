@@ -1,7 +1,7 @@
+import { Box, H4, Progress, Text, XStack } from '@/gui'
 
 import React from "react";
 import { Server, CircuitBoard, HardDrive, Globe } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
 import { ProjectResources } from "./models/project";
 
 interface ResourceUsageSectionProps {
@@ -11,53 +11,53 @@ interface ResourceUsageSectionProps {
 const ResourceUsageSection = ({ resources }: ResourceUsageSectionProps) => {
   return (
     <div>
-      <h4 className="font-medium mb-4">Resource Usage</h4>
+      <H4 fontWeight="500" marginBottom={16}>Resource Usage</H4>
       
-      <div className="space-y-6">
+      <Box rowGap={24}>
         <div>
-          <div className="flex justify-between mb-1">
-            <div className="flex items-center gap-2">
-              <Server className="h-4 w-4 text-neutral-400" />
-              <span className="text-sm text-neutral-400">CPU</span>
-            </div>
-            <span className="text-sm">{resources.cpu.value}</span>
-          </div>
-          <Progress value={resources.cpu.usage} className="h-2" />
+          <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+            <XStack display="flex" alignItems="center" gap={8}>
+              <Server size={16} color="var(--neutral-400)" />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">CPU</Text>
+            </XStack>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{resources.cpu.value}</Text>
+          </XStack>
+          <Progress value={resources.cpu.usage} height={8} />
         </div>
         
         <div>
-          <div className="flex justify-between mb-1">
-            <div className="flex items-center gap-2">
-              <CircuitBoard className="h-4 w-4 text-neutral-400" />
-              <span className="text-sm text-neutral-400">RAM</span>
-            </div>
-            <span className="text-sm">{resources.memory.value}</span>
-          </div>
-          <Progress value={resources.memory.usage} className="h-2" />
+          <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+            <XStack display="flex" alignItems="center" gap={8}>
+              <CircuitBoard size={16} color="var(--neutral-400)" />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">RAM</Text>
+            </XStack>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{resources.memory.value}</Text>
+          </XStack>
+          <Progress value={resources.memory.usage} height={8} />
         </div>
         
         <div>
-          <div className="flex justify-between mb-1">
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-neutral-400" />
-              <span className="text-sm text-neutral-400">Network Egress</span>
-            </div>
-            <span className="text-sm">{resources.network.value}</span>
-          </div>
-          <Progress value={resources.network.usage} className="h-2" />
+          <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+            <XStack display="flex" alignItems="center" gap={8}>
+              <Globe size={16} color="var(--neutral-400)" />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Network Egress</Text>
+            </XStack>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{resources.network.value}</Text>
+          </XStack>
+          <Progress value={resources.network.usage} height={8} />
         </div>
         
         <div>
-          <div className="flex justify-between mb-1">
-            <div className="flex items-center gap-2">
-              <HardDrive className="h-4 w-4 text-neutral-400" />
-              <span className="text-sm text-neutral-400">Volume</span>
-            </div>
-            <span className="text-sm">{resources.storage.value}</span>
-          </div>
-          <Progress value={resources.storage.usage} className="h-2" />
+          <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+            <XStack display="flex" alignItems="center" gap={8}>
+              <HardDrive size={16} color="var(--neutral-400)" />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Volume</Text>
+            </XStack>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{resources.storage.value}</Text>
+          </XStack>
+          <Progress value={resources.storage.usage} height={8} />
         </div>
-      </div>
+      </Box>
     </div>
   );
 };

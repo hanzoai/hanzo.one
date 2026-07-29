@@ -1,3 +1,4 @@
+import { Box, Grid, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -41,62 +42,62 @@ const StarRating = ({ rating }) => {
   const stars = [];
 
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<span key={`full-${i}`} className="text-yellow-400">★</span>);
+    stars.push(<Text key={`full-${i}`} color="var(--foreground)">★</Text>);
   }
 
   if (halfStar) {
-    stars.push(<span key="half" className="text-yellow-400">★</span>);
+    stars.push(<Text key="half" color="var(--foreground)">★</Text>);
   }
 
   const emptyStars = 5 - stars.length;
   for (let i = 0; i < emptyStars; i++) {
-    stars.push(<span key={`empty-${i}`} className="text-neutral-500">★</span>);
+    stars.push(<Text key={`empty-${i}`} color="var(--neutral-500)">★</Text>);
   }
 
-  return <div className="flex">{stars}</div>;
+  return <XStack display="flex">{stars}</XStack>;
 };
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/30 relative overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">What Our Users Are Saying</h2>
-          <p className="text-xl text-neutral-300">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>What Our Users Are Saying</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
             Join the growing number of users who trust Hanzo Balancer.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800/30 p-6 rounded-lg border border-gray-700"
+              backgroundColor="var(--surface-card-emphasis)" padding={24} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)"
             >
-              <p className="text-lg mb-4">"{testimonial.quote}"</p>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={16}>"{testimonial.quote}"</Paragraph>
               <StarRating rating={testimonial.rating} />
-              <div className="mt-4">
-                <p className="font-medium">{testimonial.author}</p>
-                <p className="text-neutral-400 text-sm">{testimonial.role}</p>
-              </div>
-            </motion.div>
+              <Box marginTop={16}>
+                <Paragraph fontWeight="500">{testimonial.author}</Paragraph>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{testimonial.role}</Paragraph>
+              </Box>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

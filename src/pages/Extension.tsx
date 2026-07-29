@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -11,7 +12,7 @@ import HanzoExtensionCTA from "@/components/extension/HanzoExtensionCTA";
 
 const Extension = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       <main>
         <HanzoExtensionHero />
@@ -21,7 +22,7 @@ const Extension = () => {
         <HanzoExtensionCTA />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

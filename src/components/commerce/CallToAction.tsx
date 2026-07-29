@@ -1,72 +1,72 @@
+import { Box, Button, Grid, H2, H3, Paragraph, YStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, ShoppingCart, Book, Code } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-black to-gray-900/40">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center mb-10">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your E-commerce Experience?</h2>
-          <p className="text-lg text-neutral-300 mb-8">
+    <Box render="section" paddingVertical={64} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+      <Box marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" marginBottom={40}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24}>Ready to Transform Your E-commerce Experience?</H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32}>
             Join thousands of businesses that trust Hanzo Commerce to power their online stores.
-          </p>
+          </Paragraph>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 flex flex-col items-center">
-              <ShoppingCart className="h-12 w-12 text-amber-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Start Selling</h3>
-              <p className="text-neutral-400 mb-4 text-center">Launch your store with our easy-to-use platform</p>
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <YStack backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><ShoppingCart size={48} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>Start Selling</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={16} textAlign="center">Launch your store with our easy-to-use platform</Paragraph>
               <Button 
-                className="mt-auto bg-amber-500 hover:bg-amber-600 text-black"
+                marginTop="auto" backgroundColor="var(--neutral-500)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
                 onClick={() => window.open('https://console.hanzo.ai', '_blank')}
               >
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                Get Started <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
-            </div>
+            </YStack>
             
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 flex flex-col items-center">
-              <Book className="h-12 w-12 text-amber-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Documentation</h3>
-              <p className="text-neutral-400 mb-4 text-center">Explore our guides and API references</p>
+            <YStack backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Book size={48} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>Documentation</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={16} textAlign="center">Explore our guides and API references</Paragraph>
               <Button 
-                className="mt-auto bg-amber-500 hover:bg-amber-600 text-black"
+                marginTop="auto" backgroundColor="var(--neutral-500)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
                 onClick={() => window.open('https://docs.hanzo.ai/commerce', '_blank')}
               >
-                View Docs <ArrowRight className="ml-2 h-4 w-4" />
+                View Docs <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
-            </div>
+            </YStack>
             
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 flex flex-col items-center">
-              <Code className="h-12 w-12 text-amber-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">For Developers</h3>
-              <p className="text-neutral-400 mb-4 text-center">Integrate our APIs into your applications</p>
+            <YStack backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Code size={48} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>For Developers</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={16} textAlign="center">Integrate our APIs into your applications</Paragraph>
               <Button 
-                className="mt-auto bg-amber-500 hover:bg-amber-600 text-black"
+                marginTop="auto" backgroundColor="var(--neutral-500)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
                 onClick={() => window.open('https://docs.hanzo.ai/api', '_blank')}
               >
-                API Reference <ArrowRight className="ml-2 h-4 w-4" />
+                API Reference <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
-            </div>
-          </div>
-        </div>
+            </YStack>
+          </Grid>
+        </Box>
         
-        <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-6 text-center max-w-3xl mx-auto">
-          <h3 className="text-xl font-semibold mb-3">Need a Custom Solution?</h3>
-          <p className="text-neutral-300 mb-6">
+        <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={24} textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto">
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Need a Custom Solution?</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={24}>
             Our team of experts can help you design and implement a tailored e-commerce solution for your unique business needs.
-          </p>
+          </Paragraph>
           <Button 
             variant="outline" 
-            className="border-amber-500/50 text-amber-400 hover:bg-amber-500/10"
+            borderColor="var(--border-strong)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             onClick={() => window.open('https://hanzo.ai/contact', '_blank')}
           >
             Contact Sales
           </Button>
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

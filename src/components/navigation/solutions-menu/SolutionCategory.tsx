@@ -1,6 +1,7 @@
+import { Box, Grid, H3, Link, XStack } from '@/gui'
 
 import { getIcon } from "@/constants/iconMappings";
-import { Link } from "react-router-dom";
+
 
 interface SolutionCategoryProps {
   title: string;
@@ -13,19 +14,19 @@ export const SolutionCategory = ({ title, items, onItemClick }: SolutionCategory
   const displayItems = items.slice(0, 8);
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-[var(--white)]">{title}</h3>
-        <Link 
+    <Box rowGap={16}>
+      <XStack display="flex" alignItems="center" justifyContent="space-between">
+        <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)">{title}</H3>
+        <Link tap 
           to="/solutions" 
-          className="text-purple-400 hover:text-purple-300 text-sm font-medium"
+          color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" hoverStyle={{ color: "var(--foreground)" }}
           onClick={onItemClick}
         >
           View all
         </Link>
-      </div>
+      </XStack>
       
-      <div className="grid grid-cols-1 gap-3">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={12}>
         {displayItems.map((item: string) => {
           const Icon = getIcon(item);
           const itemSlug = item.toLowerCase().replace(/\s+/g, '-');
@@ -33,19 +34,19 @@ export const SolutionCategory = ({ title, items, onItemClick }: SolutionCategory
             <Link 
               to={`/solutions/${itemSlug}`} 
               key={item} 
-              className="flex items-center space-x-3 group"
+              group display="flex" alignItems="center" columnGap={12}
               onClick={onItemClick}
             >
-              <div className="w-10 h-10 flex items-center justify-center shrink-0">
-                <Icon className="h-5 w-5 text-neutral-400 group-hover:text-[var(--white)] transition-colors" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <div className="text-neutral-300 group-hover:text-[var(--white)] font-medium truncate">{item}</div>
-              </div>
+              <XStack width={40} height={40} display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                <Icon height={20} width={20} color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--white)" }} strokeWidth={1.5} />
+              </XStack>
+              <Box flex={1}>
+                <Box color="var(--neutral-300)" fontWeight="500" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" $group-hover={{ color: "var(--white)" }}>{item}</Box>
+              </Box>
             </Link>
           );
         })}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };

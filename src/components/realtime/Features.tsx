@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -12,19 +13,19 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description, delay }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6"
+      borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
     >
-      <div className="h-12 w-12 rounded-lg bg-purple-900/20 flex items-center justify-center mb-4">
-        <Icon className="h-6 w-6 text-purple-400" />
-      </div>
-      <h3 className="text-xl font-semibold text-[var(--white)] mb-2">{title}</h3>
-      <p className="text-neutral-400">{description}</p>
-    </motion.div>
+      <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+        <Icon height={24} width={24} color="var(--foreground)" />
+      </XStack>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 
@@ -73,24 +74,24 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Key Features
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Everything you need to build scalable real-time applications
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
@@ -100,9 +101,9 @@ const Features = () => {
               delay={index * 0.1}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

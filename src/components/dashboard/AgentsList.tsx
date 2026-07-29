@@ -1,13 +1,9 @@
+import { Box, Button, Grid, Input, Progress, Text, XStack, YStack, toast } from '@/gui'
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Bot, Activity, Database, Settings, PlayCircle, StopCircle, Brain, Zap, PlusCircle, Search, List, LayoutGrid } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
 import { DummyAgentData, Agent } from "./data";
-import { cn } from "@/lib/utils";
 import AgentDetail from "./AgentDetail";
-import { toast } from "sonner";
 
 interface AgentsListProps {
   viewMode?: "list" | "grid";
@@ -66,205 +62,205 @@ const AgentsList = ({ viewMode = "grid" }: AgentsListProps) => {
   };
 
   return (
-    <div className="h-full flex flex-col">
-      <div className="flex justify-between items-center mb-4">
-        <div className="relative w-80">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-neutral-500" />
+    <YStack height="100%" display="flex" flexDirection="column">
+      <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+        <Box position="relative" width={320}>
+          <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={10}><Search size={16} color="var(--neutral-500)" /></Box>
           <Input 
             placeholder="Search agents..." 
-            className="bg-[var(--black)] border-gray-800 pl-10"
+            backgroundColor="var(--black)" borderColor="var(--neutral-800)" paddingLeft={40}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-        </div>
-        <div className="flex space-x-2">
+        </Box>
+        <XStack display="flex" columnGap={8}>
           <Button 
             variant="ghost" 
-            className="border border-gray-800" 
+            borderWidth={1} borderColor="var(--neutral-800)" 
             onClick={toggleDisplayMode}
             title={displayMode === "grid" ? "Switch to List View" : "Switch to Grid View"}
           >
-            {displayMode === "grid" ? <List className="h-4 w-4" /> : <LayoutGrid className="h-4 w-4" />}
+            {displayMode === "grid" ? <List size={16} /> : <LayoutGrid size={16} />}
           </Button>
-          <Button className="bg-[var(--black)] hover:bg-gray-900 border border-gray-800">
-            <PlusCircle className="h-4 w-4 mr-2" />
+          <Button backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><PlusCircle size={16} /></Box>
             New Agent
           </Button>
-        </div>
-      </div>
+        </XStack>
+      </XStack>
       
       {displayMode === "grid" ? (
-        <div className="border border-gray-800 rounded-lg overflow-hidden">
-          <table className="w-full text-sm">
+        <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden">
+          <Box render="table" display="table" width="100%" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
             <thead>
-              <tr className="bg-[var(--black)] text-left">
-                <th className="px-4 py-3 font-medium text-neutral-400">Name</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Status</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Type</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Model</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Tasks</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Memory</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Tokens</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Cost</th>
-                <th className="px-4 py-3 font-medium text-neutral-400">Actions</th>
-              </tr>
+              <Box render="tr" display="table-row" backgroundColor="var(--black)" textAlign="left">
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Name</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Status</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Type</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Model</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Tasks</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Memory</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Tokens</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Cost</Box>
+                <Box render="th" display="table-cell" paddingHorizontal={16} paddingVertical={12} fontWeight="500" color="var(--neutral-400)">Actions</Box>
+              </Box>
             </thead>
-            <tbody className="divide-y divide-gray-800">
+            <Box render="tbody" display="table-row-group">
               {filteredAgents.map((agent) => (
-                <tr 
+                <Box 
                   key={agent.id} 
-                  className="bg-[var(--black)] hover:bg-gray-900/60 cursor-pointer"
+                  render="tr" display="table-row" backgroundColor="var(--black)" cursor="pointer" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                   onClick={() => handleAgentClick(agent)}
                 >
-                  <td className="px-4 py-3">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 rounded-md bg-blue-900/30 border border-blue-800/50 flex items-center justify-center mr-3">
-                        <Bot className="h-4 w-4 text-blue-400" />
-                      </div>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>
+                    <XStack display="flex" alignItems="center">
+                      <XStack width={32} height={32} borderRadius="var(--radius-md)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
+                        <Bot size={16} color="var(--foreground)" />
+                      </XStack>
                       <div>
-                        <div className="font-medium">{agent.name}</div>
-                        <div className="text-xs text-neutral-500">Last active: {agent.lastActive}</div>
+                        <Box fontWeight="500">{agent.name}</Box>
+                        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Last active: {agent.lastActive}</Box>
                       </div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center">
-                      <div className={`h-2 w-2 rounded-full ${statusColors[agent.status]} mr-2`}></div>
+                    </XStack>
+                  </Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>
+                    <XStack display="flex" alignItems="center">
+                      <Box height={8} width={8} borderRadius="var(--radius-full)" marginRight={8}></Box>
                       {getStatusText(agent.status)}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center">
-                      {agent.type === "Research" && <Database className="h-4 w-4 mr-1 text-blue-400" />}
-                      {agent.type === "Coding" && <Brain className="h-4 w-4 mr-1 text-purple-400" />}
-                      {agent.type === "Assistant" && <Activity className="h-4 w-4 mr-1 text-green-400" />}
+                    </XStack>
+                  </Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>
+                    <XStack display="flex" alignItems="center">
+                      {agent.type === "Research" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Database size={16} color="var(--foreground)" /></Box>}
+                      {agent.type === "Coding" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Brain size={16} color="var(--foreground)" /></Box>}
+                      {agent.type === "Assistant" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Activity size={16} color="var(--foreground)" /></Box>}
                       {agent.type}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-neutral-300">{agent.model}</td>
-                  <td className="px-4 py-3">{agent.tasks}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center">
+                    </XStack>
+                  </Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12} color="var(--neutral-300)">{agent.model}</Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>{agent.tasks}</Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>
+                    <XStack display="flex" alignItems="center">
                       <Progress 
                         value={agent.memory} 
-                        className="h-1.5 w-16 mr-2 bg-gray-800" 
+                        height={6} width={64} marginRight={8} backgroundColor="var(--neutral-800)" 
                         style={{
-                          '--progress-background': agent.memory > 80 ? 'bg-red-500' : 
-                            agent.memory > 60 ? 'bg-yellow-500' : 
-                            'bg-blue-500'
+                          '--progress-background': agent.memory > 80 ? 'var(--white-10)' : 
+                            agent.memory > 60 ? 'var(--white-10)' : 
+                            'var(--white-10)'
                         } as React.CSSProperties}
                       />
                       <span>{agent.memory}%</span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">{agent.tokens.toLocaleString()}</td>
-                  <td className="px-4 py-3">${agent.cost.toFixed(2)}</td>
-                  <td className="px-4 py-3">
-                    <div className="flex space-x-1" onClick={(e) => e.stopPropagation()}>
+                    </XStack>
+                  </Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>{agent.tokens.toLocaleString()}</Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>${agent.cost.toFixed(2)}</Box>
+                  <Box render="td" display="table-cell" paddingHorizontal={16} paddingVertical={12}>
+                    <XStack display="flex" columnGap={4} onClick={(e) => e.stopPropagation()}>
                       {agent.status === "running" ? (
-                        <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]" onClick={(e) => handleStatusToggle(agent, e)}>
-                          <StopCircle className="h-4 w-4" />
+                        <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }} onClick={(e) => handleStatusToggle(agent, e)}>
+                          <StopCircle size={16} />
                         </Button>
                       ) : (
-                        <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]" onClick={(e) => handleStatusToggle(agent, e)}>
-                          <PlayCircle className="h-4 w-4" />
+                        <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }} onClick={(e) => handleStatusToggle(agent, e)}>
+                          <PlayCircle size={16} />
                         </Button>
                       )}
-                      <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]">
-                        <Settings className="h-4 w-4" />
+                      <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+                        <Settings size={16} />
                       </Button>
-                    </div>
-                  </td>
-                </tr>
+                    </XStack>
+                  </Box>
+                </Box>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {filteredAgents.map((agent) => (
-            <div 
+            <Box 
               key={agent.id}
-              className="bg-[var(--black)] border border-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-900/20 transition-colors"
+              backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={16} cursor="pointer" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
               onClick={() => handleAgentClick(agent)}
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-md bg-blue-900/30 border border-blue-800/50 flex items-center justify-center mr-3">
-                    <Bot className="h-4 w-4 text-blue-400" />
-                  </div>
+              <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={12}>
+                <XStack display="flex" alignItems="center">
+                  <XStack width={32} height={32} borderRadius="var(--radius-md)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
+                    <Bot size={16} color="var(--foreground)" />
+                  </XStack>
                   <div>
-                    <div className="font-medium">{agent.name}</div>
-                    <div className="text-xs text-neutral-500">Last active: {agent.lastActive}</div>
+                    <Box fontWeight="500">{agent.name}</Box>
+                    <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Last active: {agent.lastActive}</Box>
                   </div>
-                </div>
-                <div className="flex items-center">
-                  <div className={`h-2 w-2 rounded-full ${statusColors[agent.status]} mr-2`}></div>
-                  <span className="text-sm">{getStatusText(agent.status)}</span>
-                </div>
-              </div>
+                </XStack>
+                <XStack display="flex" alignItems="center">
+                  <Box height={8} width={8} borderRadius="var(--radius-full)" marginRight={8}></Box>
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{getStatusText(agent.status)}</Text>
+                </XStack>
+              </XStack>
               
-              <div className="mb-3 text-sm">
-                <div className="flex justify-between mb-1">
-                  <span className="text-neutral-400">Type:</span>
-                  <span className="flex items-center">
-                    {agent.type === "Research" && <Database className="h-3 w-3 mr-1 text-blue-400" />}
-                    {agent.type === "Coding" && <Brain className="h-3 w-3 mr-1 text-purple-400" />}
-                    {agent.type === "Assistant" && <Activity className="h-3 w-3 mr-1 text-green-400" />}
+              <Box marginBottom={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                  <Text color="var(--neutral-400)">Type:</Text>
+                  <Text display="flex" alignItems="center">
+                    {agent.type === "Research" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Database size={12} color="var(--foreground)" /></Box>}
+                    {agent.type === "Coding" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Brain size={12} color="var(--foreground)" /></Box>}
+                    {agent.type === "Assistant" && <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Activity size={12} color="var(--foreground)" /></Box>}
                     {agent.type}
-                  </span>
-                </div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-neutral-400">Model:</span>
+                  </Text>
+                </XStack>
+                <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                  <Text color="var(--neutral-400)">Model:</Text>
                   <span>{agent.model}</span>
-                </div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-neutral-400">Tasks:</span>
+                </XStack>
+                <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                  <Text color="var(--neutral-400)">Tasks:</Text>
                   <span>{agent.tasks}</span>
-                </div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-neutral-400">Tokens:</span>
+                </XStack>
+                <XStack display="flex" justifyContent="space-between" marginBottom={4}>
+                  <Text color="var(--neutral-400)">Tokens:</Text>
                   <span>{agent.tokens.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Cost:</span>
+                </XStack>
+                <XStack display="flex" justifyContent="space-between">
+                  <Text color="var(--neutral-400)">Cost:</Text>
                   <span>${agent.cost.toFixed(2)}</span>
-                </div>
-              </div>
+                </XStack>
+              </Box>
               
-              <div className="flex items-center justify-between">
-                <div className="flex items-center text-sm">
-                  <span className="text-neutral-400 mr-2">Memory:</span>
+              <XStack display="flex" alignItems="center" justifyContent="space-between">
+                <XStack display="flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                  <Text color="var(--neutral-400)" marginRight={8}>Memory:</Text>
                   <Progress 
                     value={agent.memory} 
-                    className="h-1.5 w-16 mr-2 bg-gray-800" 
+                    height={6} width={64} marginRight={8} backgroundColor="var(--neutral-800)" 
                     style={{
-                      '--progress-background': agent.memory > 80 ? 'bg-red-500' : 
-                        agent.memory > 60 ? 'bg-yellow-500' : 
-                        'bg-blue-500'
+                      '--progress-background': agent.memory > 80 ? 'var(--white-10)' : 
+                        agent.memory > 60 ? 'var(--white-10)' : 
+                        'var(--white-10)'
                     } as React.CSSProperties}
                   />
                   <span>{agent.memory}%</span>
-                </div>
+                </XStack>
                 
-                <div className="flex space-x-1" onClick={(e) => e.stopPropagation()}>
+                <XStack display="flex" columnGap={4} onClick={(e) => e.stopPropagation()}>
                   {agent.status === "running" ? (
-                    <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]" onClick={(e) => handleStatusToggle(agent, e)}>
-                      <StopCircle className="h-4 w-4" />
+                    <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }} onClick={(e) => handleStatusToggle(agent, e)}>
+                      <StopCircle size={16} />
                     </Button>
                   ) : (
-                    <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]" onClick={(e) => handleStatusToggle(agent, e)}>
-                      <PlayCircle className="h-4 w-4" />
+                    <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }} onClick={(e) => handleStatusToggle(agent, e)}>
+                      <PlayCircle size={16} />
                     </Button>
                   )}
-                  <Button size="icon" variant="ghost" className="h-8 w-8 text-neutral-400 hover:text-[var(--white)]">
-                    <Settings className="h-4 w-4" />
+                  <Button size="icon" variant="ghost" height={32} width={32} color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+                    <Settings size={16} />
                   </Button>
-                </div>
-              </div>
-            </div>
+                </XStack>
+              </XStack>
+            </Box>
           ))}
-        </div>
+        </Grid>
       )}
 
       {selectedAgent && (
@@ -274,7 +270,7 @@ const AgentsList = ({ viewMode = "grid" }: AgentsListProps) => {
           onUpdate={handleAgentUpdate}
         />
       )}
-    </div>
+    </YStack>
   );
 };
 

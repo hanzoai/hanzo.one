@@ -1,72 +1,73 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 const FeaturesOverview = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">What is Hanzo Balancer?</h2>
-          <p className="text-xl text-neutral-300 max-w-4xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>What is Hanzo Balancer?</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="56rem" marginHorizontal="auto">
             Hanzo Balancer is a leading modern open source reverse proxy and ingress controller that makes deploying services and APIs easy. 
             Hanzo Balancer integrates with your existing infrastructure components and configures itself automatically and dynamically.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-800/30 p-8 rounded-lg border border-gray-700"
+            backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)"
           >
-            <h3 className="text-2xl font-semibold mb-4">Simplified Operation, Complex Deployments</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Simplified Operation, Complex Deployments</H3>
+            <Paragraph color="var(--neutral-300)">
               Hanzo Balancer is designed to be as simple as possible to operate, but capable of handling large, 
               highly-complex deployments across a wide range of environments and protocols in public, private, and hybrid clouds.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-800/30 p-8 rounded-lg border border-gray-700"
+            backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)"
           >
-            <h3 className="text-2xl font-semibold mb-4">Enhanced with Powerful Middleware Suite</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Enhanced with Powerful Middleware Suite</H3>
+            <Paragraph color="var(--neutral-300)">
               Hanzo Balancer also comes with a powerful set of middlewares that enhance its capabilities to include 
               load balancing, API gateway, orchestrator ingress, and more.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-800/30 p-8 rounded-lg border border-gray-700"
+            backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)"
           >
-            <h3 className="text-2xl font-semibold mb-4">Upgrade from Other Proxies in Seconds</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Upgrade from Other Proxies in Seconds</H3>
+            <Paragraph color="var(--neutral-300)">
               Watch our short demo video to see why our cloud native, GitOps-driven API Gateway is Developers' #1 choice.
-            </p>
-            <a href="#watch-demo" className="inline-flex mt-4 text-purple-400 hover:text-purple-300">
+            </Paragraph>
+            <Anchor tap href="#watch-demo" display="inline-flex" marginTop={16} color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Watch Demo Video
-            </a>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </Anchor>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

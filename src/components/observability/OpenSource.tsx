@@ -1,26 +1,26 @@
+import { Box, Button, Grid, H2, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, Star, Download, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const statsItems = [
   { 
-    icon: <Download className="h-6 w-6 text-green-400" />,
+    icon: <Download size={24} color="var(--foreground)" />,
     value: 17,
     suffix: "M+",
     label: "Downloads",
     countUpDuration: 2
   },
   { 
-    icon: <Star className="h-6 w-6 text-yellow-400" />,
+    icon: <Star size={24} color="var(--foreground)" />,
     value: 25,
     suffix: "K+",
     label: "GitHub Stars",
     countUpDuration: 2.2
   },
   { 
-    icon: <Users className="h-6 w-6 text-blue-400" />,
+    icon: <Users size={24} color="var(--foreground)" />,
     value: 280,
     suffix: "+",
     label: "Contributors",
@@ -32,27 +32,27 @@ const OpenSource = () => {
   const [isInView, setIsInView] = useState(false);
   
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/20 to-black relative">
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex items-center justify-center mb-6 bg-purple-900/30 p-3 rounded-full">
-            <Github className="h-7 w-7 text-purple-400" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Proudly Open Source</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <XStack display="inline-flex" alignItems="center" justifyContent="center" marginBottom={24} backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)">
+            <Github size={28} color="var(--foreground)" />
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Proudly Open Source</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Transparency is at the core of Hanzo Observability. Deploy it locally, self-host on your own infrastructure, or leverage our managed cloud solution.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-3 gap-6 mb-12">
+        <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24} marginBottom={48}>
           {statsItems.map((item, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{
@@ -64,44 +64,44 @@ const OpenSource = () => {
                 }
               }}
               viewport={{ once: true }}
-              className="text-center p-6 bg-gray-900/30 rounded-xl border border-gray-800"
+              textAlign="center" padding={24} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)"
               onViewportEnter={() => {
                 if (!isInView) {
                   setIsInView(true);
                 }
               }}
             >
-              <div className="flex justify-center mb-3">{item.icon}</div>
-              <div className="flex justify-center items-baseline">
-                <motion.span
+              <XStack display="flex" justifyContent="center" marginBottom={12}>{item.icon}</XStack>
+              <XStack display="flex" justifyContent="center" alignItems="baseline">
+                <MotionText
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : {}}
                   transition={{ duration: item.countUpDuration }}
-                  className="text-4xl font-bold"
+                  fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700"
                 >
                   {isInView ? (
                     <CountUp end={item.value} duration={item.countUpDuration} />
                   ) : (
                     0
                   )}
-                </motion.span>
-                <span className="text-4xl font-bold">{item.suffix}</span>
-              </div>
-              <div className="text-neutral-400 mt-2">{item.label}</div>
-            </motion.div>
+                </MotionText>
+                <Text fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700">{item.suffix}</Text>
+              </XStack>
+              <Box color="var(--neutral-400)" marginTop={8}>{item.label}</Box>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <div className="flex justify-center gap-4">
-          <Button variant="outline" size="lg" className="text-[var(--white)] border-white/20 hover:bg-[var(--white)]/10">
-            <Github className="mr-2 h-5 w-5" /> Read Documentation
+        <XStack display="flex" justifyContent="center" gap={16}>
+          <Button variant="outline" size="lg" color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box> Read Documentation
           </Button>
-          <Button variant="outline" size="lg" className="text-[var(--white)] border-white/20 hover:bg-[var(--white)]/10">
-            <Github className="mr-2 h-5 w-5" /> View GitHub Repository
+          <Button variant="outline" size="lg" color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box> View GitHub Repository
           </Button>
-        </div>
-      </div>
-    </section>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

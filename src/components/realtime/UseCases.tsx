@@ -1,8 +1,8 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Users, Edit, GamepadIcon, ChartBar, Code, Heart, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface UseCaseCardProps {
   icon: React.ElementType;
@@ -13,19 +13,19 @@ interface UseCaseCardProps {
 
 const UseCaseCard: React.FC<UseCaseCardProps> = ({ icon: Icon, title, description, index }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-      className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-purple-500/30 transition-colors"
+      
+      borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))" hoverStyle={{ borderColor: "var(--border-strong)" }}
     >
-      <div className="bg-purple-900/20 h-10 w-10 rounded-full flex items-center justify-center mb-4">
-        <Icon className="h-5 w-5 text-purple-400" />
-      </div>
-      <h3 className="text-lg font-semibold text-[var(--white)] mb-2">{title}</h3>
-      <p className="text-neutral-400 text-sm">{description}</p>
-    </motion.div>
+      <XStack backgroundColor="rgb(255 255 255 / 0.2)" height={40} width={40} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+        <Icon height={20} width={20} color="var(--foreground)" />
+      </XStack>
+      <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 
@@ -64,28 +64,28 @@ const UseCases = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-purple-950/10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 mb-6">
-            <Heart className="h-4 w-4 text-purple-400 mr-2" />
-            <span className="text-sm text-purple-300">Popular Use Cases</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">
+          <XStack display="inline-flex" alignItems="center" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" marginBottom={24}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Heart size={16} color="var(--foreground)" /></Box>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">Popular Use Cases</Text>
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Build Interactive Experiences
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hanzo Realtime powers a wide range of applications that demand immediate data updates
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={48} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => (
             <UseCaseCard
               key={index}
@@ -95,21 +95,21 @@ const UseCases = () => {
               index={index}
             />
           ))}
-        </div>
+        </Grid>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center"
+          textAlign="center"
         >
-          <Button className="bg-purple-600 hover:bg-purple-700">
-            Explore All Use Cases <ArrowRight className="ml-2 h-4 w-4" />
+          <Button backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+            Explore All Use Cases <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

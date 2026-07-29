@@ -1,79 +1,79 @@
+import { Box, Button, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, Users, Crown, Clock, Monitor, Laptop, Gauge, Shield, Play, TestTube, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const BRAND_COLOR = "#fd4444";
+import { ArrowRight, Users, Crown, Clock, Monitor, Laptop, Gauge, Shield, Play, TestTube, Globe } from "lucide-react";
+
+const BRAND_COLOR = "var(--foreground)";
 
 const AgentCodeDemo = () => {
   return (
-    <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+    <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
       {/* IDE header */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-neutral-800 bg-neutral-900/50">
-        <div className="flex items-center gap-4">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
-          <span className="text-xs text-neutral-500">Hanzo AI</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-neutral-400">signal-server</span>
-        </div>
-      </div>
+      <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={8} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+        <XStack display="flex" alignItems="center" gap={16}>
+          <XStack display="flex" gap={6}>
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+            <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+          </XStack>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Hanzo AI</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" gap={8}>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">signal-server</Text>
+        </XStack>
+      </XStack>
 
-      <div className="grid grid-cols-12">
+      <Grid display="grid" gridTemplateColumns="repeat(12, minmax(0, 1fr))">
         {/* File tree */}
-        <div className="col-span-3 border-r border-neutral-800 p-3 text-xs font-mono">
-          <div className="text-neutral-500 mb-2">service</div>
-          <div className="ml-2 space-y-1">
-            <div className="text-neutral-400">RateLimiter.java</div>
-            <div className="text-neutral-400">RateLimitConfig.java</div>
-            <div className="text-white bg-neutral-800 px-2 py-0.5 rounded">RateLimitMetrics.java</div>
-          </div>
-          <div className="text-neutral-500 mt-3 mb-2">delivery</div>
-          <div className="ml-2 space-y-1">
-            <div className="text-neutral-400">MessageDeliveryLoop.java</div>
-            <div className="text-neutral-400">NoopDeliveryLoop.java</div>
-          </div>
-        </div>
+        <Box gridColumn="span 3 / span 3" borderRightWidth={1} borderColor="var(--neutral-800)" padding={12} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontFamily="var(--font-mono)">
+          <Box color="var(--neutral-500)" marginBottom={8}>service</Box>
+          <Box marginLeft={8} rowGap={4}>
+            <Box color="var(--neutral-400)">RateLimiter.java</Box>
+            <Box color="var(--neutral-400)">RateLimitConfig.java</Box>
+            <Box color="var(--foreground)" backgroundColor="var(--neutral-800)" paddingHorizontal={8} paddingVertical={2} borderRadius="var(--radius)">RateLimitMetrics.java</Box>
+          </Box>
+          <Box color="var(--neutral-500)" marginTop={12} marginBottom={8}>delivery</Box>
+          <Box marginLeft={8} rowGap={4}>
+            <Box color="var(--neutral-400)">MessageDeliveryLoop.java</Box>
+            <Box color="var(--neutral-400)">NoopDeliveryLoop.java</Box>
+          </Box>
+        </Box>
 
         {/* Code panel */}
-        <div className="col-span-5 border-r border-neutral-800 p-4 font-mono text-xs">
-          <div className="text-neutral-500 mb-2">package service.limits;</div>
-          <div className="space-y-1">
-            <div><span className="text-purple-400">import</span> java.time.Instant;</div>
-            <div><span className="text-purple-400">import</span> java.util.concurrent.*;</div>
-            <div className="mt-3"><span className="text-purple-400">public class</span> <span className="text-yellow-400">RateLimitMetrics</span> {"{"}</div>
-            <div className="ml-4 text-green-400">// allowedCount, blockedCount, resetCount</div>
-            <div className="ml-4"><span className="text-purple-400">private final</span> AtomicLong allowed = <span className="text-purple-400">new</span> AtomicLong();</div>
-            <div className="ml-4"><span className="text-purple-400">private final</span> AtomicLong blocked = <span className="text-purple-400">new</span> AtomicLong();</div>
-            <div className="mt-3 ml-4"><span className="text-purple-400">public void</span> <span className="text-blue-400">markAllowed</span>() {"{"}</div>
-            <div className="ml-8">allowed.incrementAndGet();</div>
-            <div className="ml-8">lastAllowed.set(Instant.now());</div>
-            <div className="ml-4">{"}"}</div>
-          </div>
-        </div>
+        <Box gridColumn="span 5 / span 5" borderRightWidth={1} borderColor="var(--neutral-800)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+          <Box color="var(--neutral-500)" marginBottom={8}>package service.limits;</Box>
+          <Box rowGap={4}>
+            <div><Text color="var(--foreground)">import</Text> java.time.Instant;</div>
+            <div><Text color="var(--foreground)">import</Text> java.util.concurrent.*;</div>
+            <Box marginTop={12}><Text color="var(--foreground)">public class</Text> <Text color="var(--foreground)">RateLimitMetrics</Text> {"{"}</Box>
+            <Box marginLeft={16} color="var(--foreground)">// allowedCount, blockedCount, resetCount</Box>
+            <Box marginLeft={16}><Text color="var(--foreground)">private final</Text> AtomicLong allowed = <Text color="var(--foreground)">new</Text> AtomicLong();</Box>
+            <Box marginLeft={16}><Text color="var(--foreground)">private final</Text> AtomicLong blocked = <Text color="var(--foreground)">new</Text> AtomicLong();</Box>
+            <Box marginTop={12} marginLeft={16}><Text color="var(--foreground)">public void</Text> <Text color="var(--foreground)">markAllowed</Text>() {"{"}</Box>
+            <Box marginLeft={32}>allowed.incrementAndGet();</Box>
+            <Box marginLeft={32}>lastAllowed.set(Instant.now());</Box>
+            <Box marginLeft={16}>{"}"}</Box>
+          </Box>
+        </Box>
 
         {/* Task panel */}
-        <div className="col-span-4 p-4">
-          <div className="mb-4">
-            <div className="text-xs text-neutral-500 mb-1">Task</div>
-            <div className="text-sm text-white">Improve the rate limiting implementation.</div>
-          </div>
-          <div className="bg-neutral-900/50 rounded-lg p-3 mb-4">
-            <div className="text-xs text-neutral-400 mb-2">Thought for 2 minutes.</div>
-            <div className="text-xs text-neutral-300">I'll proceed with implementing all the improvements starting with Enhanced Metrics and Observability...</div>
-          </div>
-          <div className="flex items-center gap-2 text-xs">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-neutral-400">Hanzo AI thinking...</span>
-          </div>
-        </div>
-      </div>
-    </div>
+        <Box gridColumn="span 4 / span 4" padding={16}>
+          <Box marginBottom={16}>
+            <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Task</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">Improve the rate limiting implementation.</Box>
+          </Box>
+          <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={12} marginBottom={16}>
+            <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={8}>Thought for 2 minutes.</Box>
+            <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)">I'll proceed with implementing all the improvements starting with Enhanced Metrics and Observability...</Box>
+          </Box>
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+            <Text color="var(--neutral-400)">Hanzo AI thinking...</Text>
+          </XStack>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 
@@ -130,139 +130,139 @@ const ideFeatures = [
 
 const MultiAgentSection = () => {
   return (
-    <section className="py-24 px-4 bg-black relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20"
+      <Box position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="600px" height="600px" borderRadius="var(--radius-full)" opacity={0.2}
         style={{
           background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
           filter: "blur(100px)",
         }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
         {/* Header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
             style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
           >
             Hanzo Autonomous Agent
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Run multiple autonomous agents in parallel
             <br />
             locally and remotely
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Multi-agent remote execution with LLM consensus to select the best execution for each task.
-          </p>
+          </Paragraph>
           <Button
             size="lg"
-            className="mt-8 text-white"
+            marginTop={32} color="var(--foreground)"
             style={{ backgroundColor: BRAND_COLOR }}
             asChild
           >
             <Link to="/signup">
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>
           </Button>
-        </motion.div>
+        </MotionBox>
 
         {/* Agent Code Demo */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          marginBottom={64}
         >
           <AgentCodeDemo />
-        </motion.div>
+        </MotionBox>
 
         {/* Multi-agent features */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <Grid display="grid" gap={24} marginBottom={96} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/30 transition-colors"
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                <XStack
+                  width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                   style={{ backgroundColor: `${BRAND_COLOR}20` }}
                 >
-                  <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-neutral-400">{feature.description}</p>
-              </motion.div>
+                  <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
+        </Grid>
 
         {/* IDE Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Hanzo Agents on +35 IDEs
-          </h3>
-          <p className="text-neutral-400 mb-6">
+          </H3>
+          <Paragraph color="var(--neutral-400)" marginBottom={24}>
             Hanzo Agents run tasks on the Hanzo IDE, VSCode, JetBrains & more...
-          </p>
+          </Paragraph>
           <Button
             size="lg"
-            className="text-white"
+            color="var(--foreground)"
             style={{ backgroundColor: BRAND_COLOR }}
             asChild
           >
             <Link to="/download">
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Link>
           </Button>
-        </motion.div>
+        </MotionBox>
 
         {/* IDE features */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {ideFeatures.slice(1).map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/30 transition-colors"
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                <XStack
+                  width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                   style={{ backgroundColor: `${BRAND_COLOR}20` }}
                 >
-                  <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-neutral-400">{feature.description}</p>
-              </motion.div>
+                  <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

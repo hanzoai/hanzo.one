@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 
 import React, { useEffect, useState } from "react";
 import PricingPlan from "./PricingPlan";
@@ -24,7 +25,7 @@ const IndividualPlans = () => {
   const plans = [
     {
       name: "Pro",
-      icon: <Code className="h-6 w-6 text-neutral-400" />,
+      icon: <Code size={24} color="var(--neutral-400)" />,
       price: "$20",
       billingPeriod: "/month",
       description: "Ideal for hobbyists and occasional use",
@@ -42,7 +43,7 @@ const IndividualPlans = () => {
     },
     {
       name: "Max",
-      icon: <Zap className="h-6 w-6 text-neutral-400" />,
+      icon: <Zap size={24} color="var(--neutral-400)" />,
       price: "$200",
       billingPeriod: "/month",
       description: "For professionals and small businesses",
@@ -61,7 +62,7 @@ const IndividualPlans = () => {
     },
     {
       name: "Team",
-      icon: <Users className="h-6 w-6 text-neutral-400" />,
+      icon: <Users size={24} color="var(--neutral-400)" />,
       price: "$30",
       billingPeriod: "/user/month",
       description: "Collaborative teams requiring unified billing",
@@ -80,8 +81,8 @@ const IndividualPlans = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto mb-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+    <Box maxWidth="var(--container-max)" marginHorizontal="auto" marginBottom={64}>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {plans.map((plan) => (
           <PricingPlan
             key={plan.name}
@@ -95,10 +96,10 @@ const IndividualPlans = () => {
             showDetails={plan.showDetails}
           />
         ))}
-      </div>
+      </Grid>
       
       <TeamPlanDetails fromProPlan={fromProPlan} fromDevPlan={fromDevPlan} />
-    </div>
+    </Box>
   );
 };
 

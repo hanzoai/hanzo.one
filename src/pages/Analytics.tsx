@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -16,7 +17,7 @@ import CallToAction from "@/components/analytics/CallToAction";
 
 const Analytics = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       <main>
         <HeroSection />
@@ -32,7 +33,7 @@ const Analytics = () => {
         <CallToAction />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

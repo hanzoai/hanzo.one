@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -15,34 +16,34 @@ const clients = [
 
 const TrustedBy = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          textAlign="center" marginBottom={40}
         >
-          <h2 className="text-2xl font-medium text-neutral-400">Trusted by Industry Leaders</h2>
-        </motion.div>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--neutral-400)">Trusted by Industry Leaders</H2>
+        </MotionBox>
         
-        <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 px-4">
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" gap={24} paddingHorizontal={16} $sm={{ gap: 40 }}>
           {clients.map((client, index) => (
-            <motion.div
+            <MotionBox
               key={client.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: client.delay }}
-              className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-400 to-gray-300 bg-clip-text text-transparent"
+              fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--neutral-400), var(--neutral-300))" $sm={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}
             >
               {client.name}
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

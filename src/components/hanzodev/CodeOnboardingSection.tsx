@@ -1,92 +1,93 @@
+import { Box, Grid, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { GitBranch, GitPullRequest, Zap } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const CodebaseDemo = () => {
   return (
-    <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+    <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
       {/* Chat interface */}
-      <div className="p-6">
+      <Box padding={24}>
         {/* User message */}
-        <div className="flex gap-3 mb-6">
-          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-medium flex-shrink-0">
+        <XStack display="flex" gap={12} marginBottom={24}>
+          <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" flexShrink={0}>
             &gt;
-          </div>
-          <div className="bg-neutral-800 rounded-lg px-4 py-3 max-w-lg">
-            <p className="text-white text-sm">I'm new to this codebase. Can you explain it to me?</p>
-          </div>
-        </div>
+          </XStack>
+          <Box backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={12} maxWidth="32rem">
+            <Paragraph color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">I'm new to this codebase. Can you explain it to me?</Paragraph>
+          </Box>
+        </XStack>
 
         {/* AI response */}
-        <div className="flex gap-3">
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium flex-shrink-0"
+        <XStack display="flex" gap={12}>
+          <XStack
+            width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" flexShrink={0}
             style={{ backgroundColor: BRAND_COLOR }}
           >
             ⏺
-          </div>
-          <div className="flex-1">
-            <p className="text-neutral-300 text-sm mb-3">
+          </XStack>
+          <Box flex={1}>
+            <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={12}>
               I'll analyze the Excalidraw codebase structure and provide a high-level overview.
-            </p>
+            </Paragraph>
 
-            <div className="bg-neutral-900/50 rounded-lg p-4 mb-4 border border-neutral-800">
-              <p className="text-xs text-neutral-500 mb-2">
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} marginBottom={16} borderWidth={1} borderColor="var(--neutral-800)">
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>
                 ⏺ Analyze(what: "Excalidraw codebase structure and provide a high-level overview...")
-              </p>
-            </div>
+              </Paragraph>
+            </Box>
 
-            <div className="space-y-4 text-sm">
-              <p className="text-neutral-300">
+            <Box rowGap={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+              <Paragraph color="var(--neutral-300)">
                 Excalidraw is an open-source virtual whiteboard application with a hand-drawn style. It's designed for creating diagrams, wireframes, and collaborative drawings.
-              </p>
+              </Paragraph>
 
               <div>
-                <h4 className="text-white font-semibold mb-2">## Purpose</h4>
-                <ul className="text-neutral-400 space-y-1 ml-4">
+                <H4 color="var(--foreground)" fontWeight="600" marginBottom={8}>## Purpose</H4>
+                <Box render="ul" color="var(--neutral-400)" rowGap={4} marginLeft={16}>
                   <li>• Web-based drawing tool with infinite canvas</li>
                   <li>• Hand-drawn aesthetic with support for shapes, arrows, text</li>
                   <li>• End-to-end encrypted collaboration</li>
                   <li>• Works offline as a PWA (Progressive Web App)</li>
-                </ul>
+                </Box>
               </div>
 
               <div>
-                <h4 className="text-white font-semibold mb-2">## Architecture</h4>
-                <p className="text-neutral-400 mb-2">The project is organized as a monorepo with these main components:</p>
-                <div className="ml-4 space-y-2">
+                <H4 color="var(--foreground)" fontWeight="600" marginBottom={8}>## Architecture</H4>
+                <Paragraph color="var(--neutral-400)" marginBottom={8}>The project is organized as a monorepo with these main components:</Paragraph>
+                <Box marginLeft={16} rowGap={8}>
                   <div>
-                    <span className="text-white">1. Core Package</span>
-                    <span className="text-neutral-500"> (packages/excalidraw)</span>
+                    <Text color="var(--foreground)">1. Core Package</Text>
+                    <Text color="var(--neutral-500)"> (packages/excalidraw)</Text>
                   </div>
                   <div>
-                    <span className="text-white">2. Web Application</span>
-                    <span className="text-neutral-500"> (excalidraw-app/)</span>
+                    <Text color="var(--foreground)">2. Web Application</Text>
+                    <Text color="var(--neutral-500)"> (excalidraw-app/)</Text>
                   </div>
                   <div>
-                    <span className="text-white">3. Support Packages</span>
-                    <span className="text-neutral-500"> - common, element, math, utils</span>
+                    <Text color="var(--foreground)">3. Support Packages</Text>
+                    <Text color="var(--neutral-500)"> - common, element, math, utils</Text>
                   </div>
-                </div>
+                </Box>
               </div>
 
               <div>
-                <h4 className="text-white font-semibold mb-2">## Technology Stack</h4>
-                <ul className="text-neutral-400 space-y-1 ml-4">
+                <H4 color="var(--foreground)" fontWeight="600" marginBottom={8}>## Technology Stack</H4>
+                <Box render="ul" color="var(--neutral-400)" rowGap={4} marginLeft={16}>
                   <li>• React for UI</li>
                   <li>• TypeScript for type safety</li>
                   <li>• Firebase for collaboration backend</li>
                   <li>• Jotai for state management</li>
                   <li>• Vite for development and building</li>
-                </ul>
+                </Box>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Box>
+          </Box>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 
@@ -110,45 +111,45 @@ const features = [
 
 const CodeOnboardingSection = () => {
   return (
-    <section className="py-24 px-4 bg-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Demo */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          marginBottom={64}
         >
           <CodebaseDemo />
-        </motion.div>
+        </MotionBox>
 
         {/* Feature cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/30 transition-colors"
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                <XStack
+                  width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                   style={{ backgroundColor: `${BRAND_COLOR}20` }}
                 >
-                  <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-sm text-neutral-400">{feature.description}</p>
-              </motion.div>
+                  <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

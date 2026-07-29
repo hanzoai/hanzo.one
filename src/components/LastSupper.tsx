@@ -1,3 +1,4 @@
+import { Box, MotionBox, Paragraph, YStack } from '@/gui'
 
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
@@ -11,55 +12,55 @@ interface TeamMember {
 
 const LastSupper = ({ members }: { members: TeamMember[] }) => {
   return (
-    <div className="py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="relative flex flex-col items-center">
+    <Box paddingVertical={48}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16}>
+        <YStack position="relative" display="flex" flexDirection="column" alignItems="center">
           {/* Fireworks GIF animation positioned directly over members */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="relative mb-[-5%] z-0" // Changed z-index to 0 to be behind text
+            position="relative" marginBottom="-5%" zIndex={0} // Changed z-index to 0 to be behind text
           >
-            <motion.img 
+            <MotionBox 
               src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnBuZzFlZWxzNnN3dzVzZzBqbTB2eHMxd2IzMjIwMG03eWN3MWZreiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/odsNxyQQDb29O/giphy.gif" 
               alt="Fireworks animation"
-              className="w-96 h-96 object-cover"
+              width={384} height={384} objectFit="cover"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
             />
-          </motion.div>
+          </MotionBox>
           
           {/* Team members row */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="flex items-center justify-center gap-4 overflow-x-auto z-20" // Added z-index to ensure it's above the GIF
+            flexDirection="row" display="flex" alignItems="center" justifyContent="center" gap={16} overflowX="auto" zIndex={20} // Added z-index to ensure it's above the GIF
           >
             {members.map((member, index) => {
               const Icon = member.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex-shrink-0 text-center relative z-20" // Added relative and z-index to ensure text is on top
+                  flexShrink={0} textAlign="center" position="relative" zIndex={20} // Added relative and z-index to ensure text is on top
                 >
-                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${member.gradient} p-4 mx-auto mb-2`}>
-                    <Icon className="w-full h-full text-[var(--white)]" />
-                  </div>
-                  <p className="text-[var(--white)] font-medium">{member.name}</p>
-                  <p className="text-purple-400 text-sm">{member.role}</p>
-                </motion.div>
+                  <Box width={64} height={64} borderRadius="var(--radius-full)" padding={16} marginHorizontal="auto" marginBottom={8}>
+                    <Icon width="100%" height="100%" color="var(--white)" />
+                  </Box>
+                  <Paragraph color="var(--white)" fontWeight="500">{member.name}</Paragraph>
+                  <Paragraph color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{member.role}</Paragraph>
+                </MotionBox>
               );
             })}
-          </motion.div>
-        </div>
-      </div>
-    </div>
+          </MotionBox>
+        </YStack>
+      </Box>
+    </Box>
   );
 };
 

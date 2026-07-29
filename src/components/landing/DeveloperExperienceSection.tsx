@@ -1,6 +1,7 @@
+import { Anchor, Box as GuiBox, CodeTabs, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Terminal,
   Copy,
@@ -18,9 +19,8 @@ import {
   Box,
   Bot,
 } from "lucide-react";
-import { CodeTabs } from "@/components/ui/code-block";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Multi-language code examples for the API section
 const API_CODE_EXAMPLES = [
@@ -109,187 +109,187 @@ const DeveloperExperienceSection = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-6xl mx-auto space-y-24">
+    <GuiBox render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <GuiBox maxWidth="var(--container-wide)" marginHorizontal="auto" rowGap={96}>
 
         {/* IDE Agents Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
         >
           <div>
-            <p
-              className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+            <Paragraph
+              display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
               style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
             >
               Works where developers live
-            </p>
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            </Paragraph>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               VS Code. JetBrains. Terminal. Remote.
-            </h2>
-            <p className="text-lg text-neutral-400 mb-8">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32}>
               Hanzo reads your repo structure first, edits across files coherently, and executes tasks step-by-step—locally or in isolated remote sandboxes.
-            </p>
+            </Paragraph>
             <Link
               to="/extensions"
-              className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-colors bg-[#fd4444] text-white hover:opacity-90"
+              display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--neutral-800)" color="var(--foreground)" hoverStyle={{ opacity: 0.9 }}
             >
               Install the IDE extension
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
             </Link>
           </div>
 
           {/* IDE Preview */}
-          <div className="rounded-xl border border-neutral-800 bg-neutral-900/80 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <span className="ml-2 text-xs text-neutral-500">VS Code - Hanzo Extension</span>
-            </div>
-            <div className="p-4 space-y-3 bg-neutral-950">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-neutral-900 border border-neutral-800">
-                <MonitorUp className="w-4 h-4 text-[#fd4444]" />
-                <span className="text-sm text-neutral-300">Reading repo structure...</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-neutral-900 border border-neutral-800">
-                <Check className="w-4 h-4 text-green-500" />
-                <span className="text-sm text-neutral-300">Edited 4 files cohesively</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/30">
-                <Check className="w-4 h-4 text-green-500" />
-                <span className="text-sm text-green-400">All tests passing</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+          <GuiBox borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" overflow="hidden">
+            <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+              <XStack display="flex" gap={6}>
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+              </XStack>
+              <Text marginLeft={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">VS Code - Hanzo Extension</Text>
+            </XStack>
+            <GuiBox padding={16} rowGap={12} backgroundColor="var(--neutral-950)">
+              <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <MonitorUp size={16} color="var(--foreground)" />
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">Reading repo structure...</Text>
+              </XStack>
+              <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <Check size={16} color="var(--neutral-500)" />
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">Edited 4 files cohesively</Text>
+              </XStack>
+              <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="var(--border-strong)">
+                <Check size={16} color="var(--neutral-500)" />
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">All tests passing</Text>
+              </XStack>
+            </GuiBox>
+          </GuiBox>
+        </MotionBox>
 
         {/* Hanzo Dev Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
         >
           {/* Terminal Preview */}
-          <div className="order-2 lg:order-1 rounded-xl border border-neutral-800 bg-neutral-900/80 overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <span className="ml-2 text-xs text-neutral-500 font-mono">terminal</span>
-              <button
+          <GuiBox order={2} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" overflow="hidden" $lg={{ order: 1 }}>
+            <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+              <XStack display="flex" gap={6}>
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+              </XStack>
+              <Text marginLeft={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)">terminal</Text>
+              <GuiBox display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                 onClick={handleCopyInstall}
-                className="ml-auto p-1 rounded hover:bg-neutral-800 transition-colors"
+                render="button" marginLeft="auto" padding={4} borderRadius="var(--radius)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
               >
                 {copied ? (
-                  <Check className="h-3 w-3 text-green-500" />
+                  <Check size={12} color="var(--neutral-500)" />
                 ) : (
-                  <Copy className="h-3 w-3 text-neutral-500" />
+                  <Copy size={12} color="var(--neutral-500)" />
                 )}
-              </button>
-            </div>
-            <div className="p-4 font-mono text-sm bg-neutral-950">
-              <div className="mb-2">
-                <span className="text-neutral-500">$ </span>
-                <span className="text-purple-400">curl</span>
-                <span className="text-neutral-300"> -fsSL </span>
-                <span className="text-blue-400">hanzo.sh/install.sh</span>
-                <span className="text-neutral-300"> | </span>
-                <span className="text-purple-400">sh</span>
-              </div>
-              <div className="mb-4">
-                <span className="text-neutral-500">$ </span>
-                <span className="text-purple-400">hanzo</span>
-                <span className="text-cyan-400"> dev</span>
-                <span className="text-green-400"> "Fix rate limiting. Add metrics. Add tests. Open a PR."</span>
-              </div>
-              <div className="text-green-400 mb-1">
-                <span className="text-green-500">✓ </span>Plan created
-              </div>
-              <div className="text-green-400 mb-1">
-                <span className="text-green-500">✓ </span>Implementation complete
-              </div>
-              <div className="text-green-400 mb-1">
-                <span className="text-green-500">✓ </span>Tests passing (12/12)
-              </div>
-              <div className="text-[#fd4444]">
-                <span className="text-green-500">✓ </span>PR opened: #247
-              </div>
-            </div>
-          </div>
+              </GuiBox>
+            </XStack>
+            <GuiBox padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor="var(--neutral-950)">
+              <GuiBox marginBottom={8}>
+                <Text color="var(--neutral-500)">$ </Text>
+                <Text color="var(--foreground)">curl</Text>
+                <Text color="var(--neutral-300)"> -fsSL </Text>
+                <Text color="var(--foreground)">hanzo.sh/install.sh</Text>
+                <Text color="var(--neutral-300)"> | </Text>
+                <Text color="var(--foreground)">sh</Text>
+              </GuiBox>
+              <GuiBox marginBottom={16}>
+                <Text color="var(--neutral-500)">$ </Text>
+                <Text color="var(--foreground)">hanzo</Text>
+                <Text color="var(--foreground)"> dev</Text>
+                <Text color="var(--foreground)"> "Fix rate limiting. Add metrics. Add tests. Open a PR."</Text>
+              </GuiBox>
+              <GuiBox color="var(--foreground)" marginBottom={4}>
+                <Text color="var(--neutral-500)">✓ </Text>Plan created
+              </GuiBox>
+              <GuiBox color="var(--foreground)" marginBottom={4}>
+                <Text color="var(--neutral-500)">✓ </Text>Implementation complete
+              </GuiBox>
+              <GuiBox color="var(--foreground)" marginBottom={4}>
+                <Text color="var(--neutral-500)">✓ </Text>Tests passing (12/12)
+              </GuiBox>
+              <GuiBox color="var(--foreground)">
+                <Text color="var(--neutral-500)">✓ </Text>PR opened: #247
+              </GuiBox>
+            </GuiBox>
+          </GuiBox>
 
-          <div className="order-1 lg:order-2">
-            <p
-              className="inline-flex items-center text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <GuiBox order={1} $lg={{ order: 2 }}>
+            <Paragraph
+              display="inline-flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
               style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
             >
-              <Bot className="w-3.5 h-3.5 mr-1.5" />
+              <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={6}><Bot size={14} /></GuiBox>
               Hanzo Dev
-            </p>
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            </Paragraph>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               AI coding agent in your terminal.
-            </h2>
-            <p className="text-neutral-400 mb-6">
-              Install <code className="px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-300 text-sm">@hanzo/dev</code> and <code className="px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-300 text-sm">@hanzo/cli</code> via curl.
-            </p>
-            <ul className="space-y-3 text-neutral-400 mb-8">
-              <li className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded bg-neutral-800 flex items-center justify-center">
-                  <Code className="w-3.5 h-3.5 text-neutral-500" />
-                </div>
+            </H2>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
+              Install <Text render="code" paddingHorizontal={6} paddingVertical={2} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">@hanzo/dev</Text> and <Text render="code" paddingHorizontal={6} paddingVertical={2} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">@hanzo/cli</Text> via curl.
+            </Paragraph>
+            <GuiBox render="ul" rowGap={12} color="var(--neutral-400)" marginBottom={32}>
+              <XStack render="li" display="flex" alignItems="center" gap={12}>
+                <XStack width={24} height={24} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+                  <Code size={14} color="var(--neutral-500)" />
+                </XStack>
                 Generate APIs, scripts, components, and tests
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded bg-neutral-800 flex items-center justify-center">
-                  <Bug className="w-3.5 h-3.5 text-neutral-500" />
-                </div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={12}>
+                <XStack width={24} height={24} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+                  <Bug size={14} color="var(--neutral-500)" />
+                </XStack>
                 Debug and fix using your real codebase context
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded bg-neutral-800 flex items-center justify-center">
-                  <Workflow className="w-3.5 h-3.5 text-neutral-500" />
-                </div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={12}>
+                <XStack width={24} height={24} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+                  <Workflow size={14} color="var(--neutral-500)" />
+                </XStack>
                 Scaffold CI/CD and release workflows
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded bg-neutral-800 flex items-center justify-center">
-                  <Box className="w-3.5 h-3.5 text-neutral-500" />
-                </div>
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={12}>
+                <XStack width={24} height={24} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+                  <Box size={14} color="var(--neutral-500)" />
+                </XStack>
                 No framework lock-in
-              </li>
-            </ul>
-          </div>
-        </motion.div>
+              </XStack>
+            </GuiBox>
+          </GuiBox>
+        </MotionBox>
 
         {/* Remote Agents Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-12">
-            <p
-              className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <GuiBox textAlign="center" marginBottom={48}>
+            <Paragraph
+              display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
               style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
             >
               Remote Agents
-            </p>
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            </Paragraph>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Secure remote execution for teams
-            </h2>
-          </div>
+            </H2>
+          </GuiBox>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Grid display="grid" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {[
               { icon: Zap, title: "Parallel runs", desc: "Execute across repos simultaneously" },
               { icon: Users, title: "Shared workspaces", desc: "Collaborate via shared environments" },
@@ -298,72 +298,72 @@ const DeveloperExperienceSection = () => {
             ].map((item, index) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={item.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 text-center"
+                  padding={20} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" textAlign="center"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center mb-4 mx-auto">
-                    <Icon className="w-5 h-5 text-neutral-400" />
-                  </div>
-                  <h3 className="text-base font-semibold text-white mb-1">{item.title}</h3>
-                  <p className="text-sm text-neutral-500">{item.desc}</p>
-                </motion.div>
+                  <XStack width={40} height={40} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center" marginBottom={16} marginHorizontal="auto">
+                    <Icon width={20} height={20} color="var(--neutral-400)" />
+                  </XStack>
+                  <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="600" color="var(--foreground)" marginBottom={4}>{item.title}</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">{item.desc}</Paragraph>
+                </MotionBox>
               );
             })}
-          </div>
+          </Grid>
 
-          <div className="text-center">
+          <GuiBox textAlign="center">
             <Link
               to="/remote"
-              className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-colors border border-neutral-700 hover:bg-neutral-900 text-white"
+              display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               Enable Remote Agents
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
             </Link>
-          </div>
-        </motion.div>
+          </GuiBox>
+        </MotionBox>
 
         {/* Hanzo AI API Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-2xl border border-[#fd4444]/30 bg-gradient-to-br from-[#fd4444]/10 to-transparent p-8 md:p-12"
+          borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--border-strong)" padding={32} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), transparent)" $md={{ padding: 48 }}
         >
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <Grid display="grid" gap={32} alignItems="flex-start" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <div>
-              <p
-                className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+              <Paragraph
+                display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
                 style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
               >
                 Hanzo AI API
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+              </Paragraph>
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 One API for models + tools.
-              </h2>
-              <p className="text-lg text-neutral-400 mb-6">
+              </H2>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={24}>
                 Streaming, tool calling, and agent execution behind a single endpoint. Compatible with existing OpenAI SDKs by switching the base URL.
-              </p>
-              <a
+              </Paragraph>
+              <Anchor
                 href="https://docs.hanzo.ai/api"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-colors bg-white text-black hover:bg-neutral-200"
+                display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor="var(--foreground)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
               >
                 View API reference
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
+                <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></GuiBox>
+              </Anchor>
             </div>
             <CodeTabs tabs={API_CODE_EXAMPLES} />
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </Grid>
+        </MotionBox>
+      </GuiBox>
+    </GuiBox>
   );
 };
 

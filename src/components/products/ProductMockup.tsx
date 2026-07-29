@@ -1,3 +1,4 @@
+import { Box, Grid, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import type { ProductCategory, Product } from "@/data/product-taxonomy";
@@ -5,207 +6,207 @@ import type { ProductCategory, Product } from "@/data/product-taxonomy";
 interface ProductMockupProps {
   category: ProductCategory;
   product: Product;
-  className?: string;
+  
 }
 
 // Database/SQL Mockup - Shows table view with query editor
 const DatabaseMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName} Console</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName} Console</Text>
+    </XStack>
 
     {/* Query Editor */}
-    <div className="p-4 border-b border-neutral-800 bg-neutral-900/30">
-      <div className="font-mono text-sm">
-        <span className="text-purple-400">SELECT</span>
-        <span className="text-neutral-300"> * </span>
-        <span className="text-purple-400">FROM</span>
-        <span className="text-cyan-400"> users </span>
-        <span className="text-purple-400">WHERE</span>
-        <span className="text-neutral-300"> status = </span>
-        <span className="text-green-400">'active'</span>
-        <span className="text-neutral-500">;</span>
-      </div>
-    </div>
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <Box fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+        <Text color="var(--foreground)">SELECT</Text>
+        <Text color="var(--neutral-300)"> * </Text>
+        <Text color="var(--foreground)">FROM</Text>
+        <Text color="var(--foreground)"> users </Text>
+        <Text color="var(--foreground)">WHERE</Text>
+        <Text color="var(--neutral-300)"> status = </Text>
+        <Text color="var(--foreground)">'active'</Text>
+        <Text color="var(--neutral-500)">;</Text>
+      </Box>
+    </Box>
 
     {/* Results Table */}
-    <div className="p-4">
-      <div className="text-xs text-neutral-500 mb-3">Results: 3 rows (2ms)</div>
-      <div className="overflow-hidden rounded-lg border border-neutral-800">
-        <table className="w-full text-sm">
-          <thead className="bg-neutral-800/50">
+    <Box padding={16}>
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={12}>Results: 3 rows (2ms)</Box>
+      <Box overflow="hidden" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)">
+        <Box render="table" display="table" width="100%" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+          <Box render="thead" display="table-header-group" backgroundColor="var(--surface-card-emphasis)">
             <tr>
-              <th className="px-3 py-2 text-left text-neutral-400 font-medium">id</th>
-              <th className="px-3 py-2 text-left text-neutral-400 font-medium">name</th>
-              <th className="px-3 py-2 text-left text-neutral-400 font-medium">email</th>
-              <th className="px-3 py-2 text-left text-neutral-400 font-medium">status</th>
+              <Box render="th" display="table-cell" paddingHorizontal={12} paddingVertical={8} textAlign="left" color="var(--neutral-400)" fontWeight="500">id</Box>
+              <Box render="th" display="table-cell" paddingHorizontal={12} paddingVertical={8} textAlign="left" color="var(--neutral-400)" fontWeight="500">name</Box>
+              <Box render="th" display="table-cell" paddingHorizontal={12} paddingVertical={8} textAlign="left" color="var(--neutral-400)" fontWeight="500">email</Box>
+              <Box render="th" display="table-cell" paddingHorizontal={12} paddingVertical={8} textAlign="left" color="var(--neutral-400)" fontWeight="500">status</Box>
             </tr>
-          </thead>
-          <tbody className="font-mono text-xs">
-            <tr className="border-t border-neutral-800">
-              <td className="px-3 py-2 text-cyan-400">1</td>
-              <td className="px-3 py-2 text-neutral-300">alice</td>
-              <td className="px-3 py-2 text-neutral-300">alice@example.com</td>
-              <td className="px-3 py-2 text-green-400">active</td>
-            </tr>
-            <tr className="border-t border-neutral-800">
-              <td className="px-3 py-2 text-cyan-400">2</td>
-              <td className="px-3 py-2 text-neutral-300">bob</td>
-              <td className="px-3 py-2 text-neutral-300">bob@example.com</td>
-              <td className="px-3 py-2 text-green-400">active</td>
-            </tr>
-            <tr className="border-t border-neutral-800">
-              <td className="px-3 py-2 text-cyan-400">3</td>
-              <td className="px-3 py-2 text-neutral-300">carol</td>
-              <td className="px-3 py-2 text-neutral-300">carol@example.com</td>
-              <td className="px-3 py-2 text-green-400">active</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+          </Box>
+          <Box render="tbody" display="table-row-group" fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <Box render="tr" display="table-row" borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">1</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">alice</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">alice@example.com</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">active</Box>
+            </Box>
+            <Box render="tr" display="table-row" borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">2</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">bob</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">bob@example.com</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">active</Box>
+            </Box>
+            <Box render="tr" display="table-row" borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">3</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">carol</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--neutral-300)">carol@example.com</Box>
+              <Box render="td" display="table-cell" paddingHorizontal={12} paddingVertical={8} color="var(--foreground)">active</Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Vector Database Mockup - Shows vector visualization
 const VectorMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
     {/* Search Input */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="flex items-center gap-3">
-        <div className="flex-1 bg-neutral-900 rounded-lg px-4 py-2 border border-neutral-700">
-          <span className="text-neutral-400 text-sm">Find similar: "machine learning tutorials"</span>
-        </div>
-        <button className="px-4 py-2 bg-[#fd4444] text-white text-sm rounded-lg hover:bg-[#fd4444]/90">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack display="flex" alignItems="center" gap={12}>
+        <Box flex={1} backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} borderColor="var(--neutral-700)">
+          <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Find similar: "machine learning tutorials"</Text>
+        </Box>
+        <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" paddingHorizontal={16} paddingVertical={8} backgroundColor="var(--neutral-800)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}>
           Search
-        </button>
-      </div>
-    </div>
+        </Box>
+      </XStack>
+    </Box>
 
     {/* Vector Space Visualization */}
-    <div className="p-4 relative h-48">
-      <div className="absolute inset-4">
+    <Box padding={16} position="relative" height={192}>
+      <Box position="absolute" top={16} right={16} bottom={16} left={16}>
         {/* Grid */}
-        <div className="absolute inset-0 opacity-20">
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.2}>
           {[...Array(5)].map((_, i) => (
-            <div key={`h-${i}`} className="absolute w-full h-px bg-neutral-600" style={{ top: `${i * 25}%` }} />
+            <Box key={`h-${i}`} position="absolute" width="100%" height={1} backgroundColor="var(--neutral-600)" style={{ top: `${i * 25}%` }} />
           ))}
           {[...Array(5)].map((_, i) => (
-            <div key={`v-${i}`} className="absolute h-full w-px bg-neutral-600" style={{ left: `${i * 25}%` }} />
+            <Box key={`v-${i}`} position="absolute" height="100%" width={1} backgroundColor="var(--neutral-600)" style={{ left: `${i * 25}%` }} />
           ))}
-        </div>
+        </Box>
 
         {/* Vector points */}
-        <motion.div
-          className="absolute w-4 h-4 rounded-full bg-[#fd4444] shadow-lg shadow-[#fd4444]/50"
+        <MotionBox
+          position="absolute" width={16} height={16} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" shadowColor="rgb(255 255 255 / 0.5)"
           style={{ left: '45%', top: '40%' }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
-        <div className="absolute w-3 h-3 rounded-full bg-cyan-400/80" style={{ left: '50%', top: '35%' }} />
-        <div className="absolute w-3 h-3 rounded-full bg-cyan-400/80" style={{ left: '40%', top: '45%' }} />
-        <div className="absolute w-3 h-3 rounded-full bg-cyan-400/80" style={{ left: '48%', top: '50%' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-neutral-500" style={{ left: '20%', top: '25%' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-neutral-500" style={{ left: '75%', top: '60%' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-neutral-500" style={{ left: '65%', top: '20%' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-neutral-500" style={{ left: '30%', top: '70%' }} />
+        <Box position="absolute" width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" style={{ left: '50%', top: '35%' }} />
+        <Box position="absolute" width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" style={{ left: '40%', top: '45%' }} />
+        <Box position="absolute" width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" style={{ left: '48%', top: '50%' }} />
+        <Box position="absolute" width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" style={{ left: '20%', top: '25%' }} />
+        <Box position="absolute" width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" style={{ left: '75%', top: '60%' }} />
+        <Box position="absolute" width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" style={{ left: '65%', top: '20%' }} />
+        <Box position="absolute" width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" style={{ left: '30%', top: '70%' }} />
 
         {/* Similarity lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+        <Box display="inline-block" render="svg" position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%" pointerEvents="none">
           <line x1="47%" y1="42%" x2="52%" y2="37%" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.5" />
           <line x1="47%" y1="42%" x2="42%" y2="47%" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.5" />
           <line x1="47%" y1="42%" x2="50%" y2="52%" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.5" />
-        </svg>
-      </div>
+        </Box>
+      </Box>
 
       {/* Legend */}
-      <div className="absolute bottom-4 right-4 flex items-center gap-4 text-xs">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-[#fd4444]" />
-          <span className="text-neutral-400">Query</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span className="text-neutral-400">Similar</span>
-        </div>
-      </div>
-    </div>
+      <XStack position="absolute" bottom={16} right={16} display="flex" alignItems="center" gap={16} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+        <XStack display="flex" alignItems="center" gap={6}>
+          <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" />
+          <Text color="var(--neutral-400)">Query</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" gap={6}>
+          <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)" />
+          <Text color="var(--neutral-400)">Similar</Text>
+        </XStack>
+      </XStack>
+    </Box>
 
     {/* Results */}
-    <div className="p-4 border-t border-neutral-800">
-      <div className="text-xs text-neutral-500 mb-2">Top 3 matches (cosine similarity)</div>
-      <div className="space-y-2">
+    <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)">
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Top 3 matches (cosine similarity)</Box>
+      <Box rowGap={8}>
         {[
           { score: 0.95, text: 'Intro to ML with Python' },
           { score: 0.89, text: 'Deep Learning Fundamentals' },
           { score: 0.84, text: 'Neural Networks Guide' }
         ].map((item, i) => (
-          <div key={i} className="flex items-center justify-between text-sm">
-            <span className="text-neutral-300 truncate">{item.text}</span>
-            <span className="text-green-400 font-mono ml-2">{item.score}</span>
-          </div>
+          <XStack key={i} display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Text color="var(--neutral-300)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{item.text}</Text>
+            <Text color="var(--foreground)" fontFamily="var(--font-mono)" marginLeft={8}>{item.score}</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
-  </div>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Gateway/Compute Mockup - Shows API routes and model selection
 const GatewayMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName} Dashboard</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName} Dashboard</Text>
+    </XStack>
 
     {/* Model Selection */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="text-xs text-neutral-500 mb-2">Active Models</div>
-      <div className="flex flex-wrap gap-2">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Active Models</Box>
+      <XStack display="flex" flexWrap="wrap" gap={8}>
         {['gpt-4o', 'claude-3.5', 'gemini-pro', 'llama-3.1'].map((model) => (
-          <div key={model} className="flex items-center gap-2 px-3 py-1.5 bg-neutral-800 rounded-full text-xs">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <span className="text-neutral-300">{model}</span>
-          </div>
+          <XStack key={model} display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)" />
+            <Text color="var(--neutral-300)">{model}</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
+      </XStack>
+    </Box>
 
     {/* API Endpoint */}
-    <div className="p-4 border-b border-neutral-800 bg-neutral-900/30">
-      <div className="font-mono text-sm">
-        <span className="text-green-400">POST</span>
-        <span className="text-neutral-400"> /v1/chat/completions</span>
-      </div>
-    </div>
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <Box fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+        <Text color="var(--foreground)">POST</Text>
+        <Text color="var(--neutral-400)"> /v1/chat/completions</Text>
+      </Box>
+    </Box>
 
     {/* Request/Response */}
-    <div className="grid grid-cols-2 divide-x divide-neutral-800">
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-2">Request</div>
-        <pre className="text-xs font-mono text-neutral-400 overflow-hidden">
+    <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))">
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Request</Box>
+        <Box render="pre" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontFamily="var(--font-mono)" color="var(--neutral-400)" overflow="hidden">
 {`{
   "model": "gpt-4o",
   "messages": [
@@ -213,11 +214,11 @@ const GatewayMockup: React.FC<{ product: Product }> = ({ product }) => (
      "content": "Hello!"}
   ]
 }`}
-        </pre>
-      </div>
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-2">Response <span className="text-green-400">200</span></div>
-        <pre className="text-xs font-mono text-neutral-400 overflow-hidden">
+        </Box>
+      </Box>
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Response <Text color="var(--foreground)">200</Text></Box>
+        <Box render="pre" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontFamily="var(--font-mono)" color="var(--neutral-400)" overflow="hidden">
 {`{
   "choices": [{
     "message": {
@@ -226,65 +227,65 @@ const GatewayMockup: React.FC<{ product: Product }> = ({ product }) => (
   }],
   "usage": {...}
 }`}
-        </pre>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Grid>
 
     {/* Stats */}
-    <div className="p-4 border-t border-neutral-800 grid grid-cols-3 gap-4">
+    <Grid padding={16} borderTopWidth={1} borderColor="var(--neutral-800)" display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16}>
       <div>
-        <div className="text-xs text-neutral-500">Requests/min</div>
-        <div className="text-lg font-semibold text-white">2.4K</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Requests/min</Box>
+        <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">2.4K</Box>
       </div>
       <div>
-        <div className="text-xs text-neutral-500">Avg Latency</div>
-        <div className="text-lg font-semibold text-white">124ms</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Avg Latency</Box>
+        <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">124ms</Box>
       </div>
       <div>
-        <div className="text-xs text-neutral-500">Success Rate</div>
-        <div className="text-lg font-semibold text-green-400">99.9%</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Success Rate</Box>
+        <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">99.9%</Box>
       </div>
-    </div>
-  </div>
+    </Grid>
+  </Box>
 );
 
 // ML/Training Mockup - Shows training progress
 const MLMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
     {/* Training Status */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm text-neutral-300">Training in progress</span>
-        </div>
-        <span className="text-xs text-neutral-500">Epoch 15/50</span>
-      </div>
-      <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-[#fd4444] to-orange-500"
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={12}>
+        <XStack display="flex" alignItems="center" gap={8}>
+          <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)" />
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">Training in progress</Text>
+        </XStack>
+        <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Epoch 15/50</Text>
+      </XStack>
+      <Box height={8} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" overflow="hidden">
+        <MotionBox
+          height="100%" backgroundImage="linear-gradient(to right, var(--foreground), var(--neutral-500))"
           initial={{ width: 0 }}
           animate={{ width: '30%' }}
           transition={{ duration: 1 }}
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
 
     {/* Metrics Chart */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="text-xs text-neutral-500 mb-3">Loss vs Epochs</div>
-      <div className="h-32 relative">
-        <svg className="w-full h-full">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={12}>Loss vs Epochs</Box>
+      <Box height={128} position="relative">
+        <Box display="inline-block" render="svg" width="100%" height="100%">
           {/* Grid lines */}
           <line x1="0" y1="25%" x2="100%" y2="25%" stroke="#374151" strokeWidth="1" />
           <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#374151" strokeWidth="1" />
@@ -293,7 +294,7 @@ const MLMockup: React.FC<{ product: Product }> = ({ product }) => (
           {/* Loss curve */}
           <motion.path
             d="M 0 80 Q 20 70 40 50 T 80 35 T 120 28 T 160 24 T 200 22"
-            stroke="#fd4444"
+            stroke="var(--foreground)"
             strokeWidth="2"
             fill="none"
             initial={{ pathLength: 0 }}
@@ -312,467 +313,469 @@ const MLMockup: React.FC<{ product: Product }> = ({ product }) => (
             animate={{ pathLength: 1 }}
             transition={{ duration: 2, delay: 0.5 }}
           />
-        </svg>
+        </Box>
 
         {/* Legend */}
-        <div className="absolute top-0 right-0 flex items-center gap-4 text-xs">
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-0.5 bg-[#fd4444]" />
-            <span className="text-neutral-400">Train</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-0.5 bg-cyan-400" style={{ borderTop: '2px dashed' }} />
-            <span className="text-neutral-400">Val</span>
-          </div>
-        </div>
-      </div>
-    </div>
+        <XStack position="absolute" top={0} right={0} display="flex" alignItems="center" gap={16} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+          <XStack display="flex" alignItems="center" gap={6}>
+            <Box width={12} height={2} backgroundColor="var(--neutral-800)" />
+            <Text color="var(--neutral-400)">Train</Text>
+          </XStack>
+          <XStack display="flex" alignItems="center" gap={6}>
+            <Box width={12} height={2} backgroundColor="var(--foreground)" style={{ borderTop: '2px dashed' }} />
+            <Text color="var(--neutral-400)">Val</Text>
+          </XStack>
+        </XStack>
+      </Box>
+    </Box>
 
     {/* Metrics Grid */}
-    <div className="p-4 grid grid-cols-4 gap-4">
+    <Grid padding={16} display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))" gap={16}>
       <div>
-        <div className="text-xs text-neutral-500">Loss</div>
-        <div className="text-sm font-semibold text-white">0.0234</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Loss</Box>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="600" color="var(--foreground)">0.0234</Box>
       </div>
       <div>
-        <div className="text-xs text-neutral-500">Accuracy</div>
-        <div className="text-sm font-semibold text-green-400">94.2%</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Accuracy</Box>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="600" color="var(--foreground)">94.2%</Box>
       </div>
       <div>
-        <div className="text-xs text-neutral-500">LR</div>
-        <div className="text-sm font-semibold text-white">1e-4</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">LR</Box>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="600" color="var(--foreground)">1e-4</Box>
       </div>
       <div>
-        <div className="text-xs text-neutral-500">GPU</div>
-        <div className="text-sm font-semibold text-cyan-400">A100</div>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">GPU</Box>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="600" color="var(--foreground)">A100</Box>
       </div>
-    </div>
-  </div>
+    </Grid>
+  </Box>
 );
 
 // Chat/Agent Mockup - Shows chat interface with tool calls
 const ChatMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-      <div className="ml-auto flex items-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-green-400" />
-        <span className="text-xs text-neutral-400">gpt-4o</span>
-      </div>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+      <XStack marginLeft="auto" display="flex" alignItems="center" gap={8}>
+        <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)" />
+        <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">gpt-4o</Text>
+      </XStack>
+    </XStack>
 
     {/* Messages */}
-    <div className="p-4 space-y-4 max-h-64 overflow-y-auto">
+    <Box padding={16} rowGap={16} maxHeight={256} overflowY="auto">
       {/* User message */}
-      <div className="flex justify-end">
-        <div className="bg-[#fd4444]/20 border border-[#fd4444]/30 rounded-2xl rounded-br-md px-4 py-2 max-w-[80%]">
-          <p className="text-sm text-white">What's the weather in Tokyo?</p>
-        </div>
-      </div>
+      <XStack display="flex" justifyContent="flex-end">
+        <Box backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-2xl)" borderBottomRightRadius="var(--radius-md)" paddingHorizontal={16} paddingVertical={8} maxWidth="80%">
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">What's the weather in Tokyo?</Paragraph>
+        </Box>
+      </XStack>
 
       {/* Tool call */}
-      <div className="flex justify-start">
-        <div className="bg-neutral-800/50 border border-neutral-700 rounded-lg px-3 py-2 max-w-[90%]">
-          <div className="flex items-center gap-2 text-xs text-neutral-400 mb-1">
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <XStack display="flex" justifyContent="flex-start">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" paddingHorizontal={12} paddingVertical={8} maxWidth="90%">
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>
+            <Box display="inline-block" render="svg" width={12} height={12} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
+            </Box>
             <span>get_weather</span>
-            <span className="text-green-400">completed</span>
-          </div>
-          <pre className="text-xs font-mono text-neutral-500">{"{ \"city\": \"Tokyo\" }"}</pre>
-        </div>
-      </div>
+            <Text color="var(--foreground)">completed</Text>
+          </XStack>
+          <Box render="pre" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontFamily="var(--font-mono)" color="var(--neutral-500)">{"{ \"city\": \"Tokyo\" }"}</Box>
+        </Box>
+      </XStack>
 
       {/* Assistant message */}
-      <div className="flex justify-start">
-        <div className="bg-neutral-800/50 border border-neutral-700 rounded-2xl rounded-bl-md px-4 py-2 max-w-[80%]">
-          <p className="text-sm text-neutral-200">The weather in Tokyo is currently 18C and partly cloudy. Perfect for a walk!</p>
-        </div>
-      </div>
-    </div>
+      <XStack display="flex" justifyContent="flex-start">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-2xl)" borderBottomLeftRadius="var(--radius-md)" paddingHorizontal={16} paddingVertical={8} maxWidth="80%">
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-200)">The weather in Tokyo is currently 18C and partly cloudy. Perfect for a walk!</Paragraph>
+        </Box>
+      </XStack>
+    </Box>
 
     {/* Input */}
-    <div className="p-4 border-t border-neutral-800">
-      <div className="flex items-center gap-2">
-        <input
+    <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)">
+      <XStack display="flex" alignItems="center" gap={8}>
+        <Box display="inline-block" minHeight={44}
           type="text"
           placeholder="Type a message..."
-          className="flex-1 bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600"
+          render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
         />
-        <button className="p-2 bg-[#fd4444] text-white rounded-lg hover:bg-[#fd4444]/90">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" padding={8} backgroundColor="var(--neutral-800)" color="var(--foreground)" borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}>
+          <Box display="inline-block" render="svg" width={20} height={20} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
+          </Box>
+        </Box>
+      </XStack>
+    </Box>
+  </Box>
 );
 
 // Agent Workflow Mockup
 const AgentMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName} Workflow</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName} Workflow</Text>
+    </XStack>
 
     {/* Workflow visualization */}
-    <div className="p-6 relative">
-      <div className="flex items-center justify-between">
+    <Box padding={24} position="relative">
+      <XStack display="flex" alignItems="center" justifyContent="space-between">
         {/* Nodes */}
-        <motion.div
-          className="flex flex-col items-center"
+        <MotionBox
+          display="flex" flexDirection="column" alignItems="center"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0 }}
         >
-          <div className="w-14 h-14 rounded-xl bg-[#fd4444]/20 border-2 border-[#fd4444] flex items-center justify-center">
-            <svg className="w-6 h-6 text-[#fd4444]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <XStack width={56} height={56} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={2} borderColor="var(--foreground)" display="flex" alignItems="center" justifyContent="center">
+            <Box display="inline-block" render="svg" width={24} height={24} color="var(--foreground)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </div>
-          <span className="text-xs text-neutral-400 mt-2">Input</span>
-        </motion.div>
+            </Box>
+          </XStack>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginTop={8}>Input</Text>
+        </MotionBox>
 
         {/* Arrow */}
-        <motion.div
-          className="flex-1 h-0.5 bg-gradient-to-r from-[#fd4444] to-cyan-400 mx-2"
+        <MotionBox
+          flex={1} height={2} marginHorizontal={8} backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.3 }}
         />
 
-        <motion.div
-          className="flex flex-col items-center"
+        <MotionBox
+          display="flex" flexDirection="column" alignItems="center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="w-14 h-14 rounded-xl bg-cyan-500/20 border-2 border-cyan-500 flex items-center justify-center">
-            <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <XStack width={56} height={56} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={2} borderColor="var(--neutral-500)" display="flex" alignItems="center" justifyContent="center">
+            <Box display="inline-block" render="svg" width={24} height={24} color="var(--foreground)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </div>
-          <span className="text-xs text-neutral-400 mt-2">Planner</span>
-        </motion.div>
+            </Box>
+          </XStack>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginTop={8}>Planner</Text>
+        </MotionBox>
 
         {/* Arrow */}
-        <motion.div
-          className="flex-1 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 mx-2"
+        <MotionBox
+          flex={1} height={2} marginHorizontal={8} backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.6 }}
         />
 
-        <motion.div
-          className="flex flex-col items-center"
+        <MotionBox
+          display="flex" flexDirection="column" alignItems="center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          <div className="w-14 h-14 rounded-xl bg-purple-500/20 border-2 border-purple-500 flex items-center justify-center">
-            <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <XStack width={56} height={56} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={2} borderColor="var(--neutral-500)" display="flex" alignItems="center" justifyContent="center">
+            <Box display="inline-block" render="svg" width={24} height={24} color="var(--foreground)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
-          <span className="text-xs text-neutral-400 mt-2">Tools</span>
-        </motion.div>
+            </Box>
+          </XStack>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginTop={8}>Tools</Text>
+        </MotionBox>
 
         {/* Arrow */}
-        <motion.div
-          className="flex-1 h-0.5 bg-gradient-to-r from-purple-400 to-green-400 mx-2"
+        <MotionBox
+          flex={1} height={2} marginHorizontal={8} backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.9 }}
         />
 
-        <motion.div
-          className="flex flex-col items-center"
+        <MotionBox
+          display="flex" flexDirection="column" alignItems="center"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1 }}
         >
-          <div className="w-14 h-14 rounded-xl bg-green-500/20 border-2 border-green-500 flex items-center justify-center">
-            <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <XStack width={56} height={56} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={2} borderColor="var(--neutral-500)" display="flex" alignItems="center" justifyContent="center">
+            <Box display="inline-block" render="svg" width={24} height={24} color="var(--foreground)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <span className="text-xs text-neutral-400 mt-2">Output</span>
-        </motion.div>
-      </div>
-    </div>
+            </Box>
+          </XStack>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginTop={8}>Output</Text>
+        </MotionBox>
+      </XStack>
+    </Box>
 
     {/* Tool calls */}
-    <div className="p-4 border-t border-neutral-800">
-      <div className="text-xs text-neutral-500 mb-2">Tool Calls</div>
-      <div className="space-y-2">
+    <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)">
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Tool Calls</Box>
+      <Box rowGap={8}>
         {[
           { name: 'search_web', status: 'completed', time: '120ms' },
           { name: 'read_file', status: 'completed', time: '45ms' },
           { name: 'write_code', status: 'running', time: '...' }
         ].map((tool, i) => (
-          <div key={i} className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <div className={`w-1.5 h-1.5 rounded-full ${tool.status === 'running' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`} />
-              <span className="font-mono text-neutral-300">{tool.name}</span>
-            </div>
-            <span className={tool.status === 'running' ? 'text-yellow-400' : 'text-neutral-500'}>{tool.time}</span>
-          </div>
+          <XStack key={i} display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <XStack display="flex" alignItems="center" gap={8}>
+              <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor={tool.status === 'running' ? "var(--foreground)" : "var(--foreground)"} />
+              <Text fontFamily="var(--font-mono)" color="var(--neutral-300)">{tool.name}</Text>
+            </XStack>
+            <Text color={tool.status === 'running' ? "var(--foreground)" : "var(--neutral-500)"}>{tool.time}</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
-  </div>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Observability Mockup - Shows metrics/logs
 const ObservabilityMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
     {/* Metrics Overview */}
-    <div className="grid grid-cols-3 divide-x divide-neutral-800 border-b border-neutral-800">
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">Requests/sec</div>
-        <div className="text-2xl font-bold text-white">1,247</div>
-        <div className="text-xs text-green-400">+12.3%</div>
-      </div>
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">P99 Latency</div>
-        <div className="text-2xl font-bold text-white">234ms</div>
-        <div className="text-xs text-yellow-400">+2.1%</div>
-      </div>
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">Error Rate</div>
-        <div className="text-2xl font-bold text-white">0.02%</div>
-        <div className="text-xs text-green-400">-0.01%</div>
-      </div>
-    </div>
+    <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Requests/sec</Box>
+        <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">1,247</Box>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">+12.3%</Box>
+      </Box>
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>P99 Latency</Box>
+        <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">234ms</Box>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">+2.1%</Box>
+      </Box>
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Error Rate</Box>
+        <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">0.02%</Box>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">-0.01%</Box>
+      </Box>
+    </Grid>
 
     {/* Mini chart */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="h-20 flex items-end gap-1">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack height={80} display="flex" alignItems="flex-end" gap={4}>
         {[65, 72, 68, 85, 92, 78, 88, 95, 82, 90, 87, 93].map((h, i) => (
-          <motion.div
+          <MotionBox
             key={i}
-            className="flex-1 bg-gradient-to-t from-[#fd4444] to-[#fd4444]/50 rounded-t"
+            flex={1} borderTopLeftRadius="var(--radius)" borderTopRightRadius="var(--radius)" backgroundImage="linear-gradient(to top, var(--foreground), rgb(255 255 255 / 0.08))"
             initial={{ height: 0 }}
             animate={{ height: `${h}%` }}
             transition={{ delay: i * 0.05 }}
           />
         ))}
-      </div>
-    </div>
+      </XStack>
+    </Box>
 
     {/* Logs */}
-    <div className="p-4">
-      <div className="text-xs text-neutral-500 mb-2">Recent Logs</div>
-      <div className="space-y-1 font-mono text-xs">
+    <Box padding={16}>
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Recent Logs</Box>
+      <Box rowGap={4} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
         {[
           { level: 'info', msg: 'Request completed successfully', time: '12:34:56' },
           { level: 'warn', msg: 'Rate limit approaching', time: '12:34:55' },
           { level: 'info', msg: 'New connection established', time: '12:34:54' }
         ].map((log, i) => (
-          <div key={i} className="flex items-start gap-2">
-            <span className="text-neutral-600">{log.time}</span>
-            <span className={log.level === 'warn' ? 'text-yellow-400' : 'text-cyan-400'}>[{log.level}]</span>
-            <span className="text-neutral-400 truncate">{log.msg}</span>
-          </div>
+          <XStack key={i} display="flex" alignItems="flex-start" gap={8}>
+            <Text color="var(--neutral-600)">{log.time}</Text>
+            <Text color={log.level === 'warn' ? "var(--foreground)" : "var(--foreground)"}>[{log.level}]</Text>
+            <Text color="var(--neutral-400)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{log.msg}</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
-  </div>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Platform/Infrastructure Mockup
 const PlatformMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
     {/* Deployment Status */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-400" />
-          <span className="text-sm text-white font-medium">Production</span>
-        </div>
-        <span className="text-xs text-neutral-500">v2.4.1</span>
-      </div>
-      <div className="flex items-center gap-4 text-xs">
-        <div className="flex items-center gap-1.5">
-          <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={12}>
+        <XStack display="flex" alignItems="center" gap={8}>
+          <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--foreground)" />
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" fontWeight="500">Production</Text>
+        </XStack>
+        <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">v2.4.1</Text>
+      </XStack>
+      <XStack display="flex" alignItems="center" gap={16} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+        <XStack display="flex" alignItems="center" gap={6}>
+          <Box display="inline-block" render="svg" width={16} height={16} color="var(--neutral-400)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-          </svg>
-          <span className="text-neutral-400">3 replicas</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          </Box>
+          <Text color="var(--neutral-400)">3 replicas</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" gap={6}>
+          <Box display="inline-block" render="svg" width={16} height={16} color="var(--neutral-400)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
-          </svg>
-          <span className="text-neutral-400">us-east-1</span>
-        </div>
-      </div>
-    </div>
+          </Box>
+          <Text color="var(--neutral-400)">us-east-1</Text>
+        </XStack>
+      </XStack>
+    </Box>
 
     {/* Services */}
-    <div className="p-4">
-      <div className="text-xs text-neutral-500 mb-3">Services</div>
-      <div className="space-y-2">
+    <Box padding={16}>
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={12}>Services</Box>
+      <Box rowGap={8}>
         {[
           { name: 'api-gateway', status: 'healthy', cpu: '23%' },
           { name: 'auth-service', status: 'healthy', cpu: '12%' },
           { name: 'worker', status: 'scaling', cpu: '78%' }
         ].map((svc, i) => (
-          <div key={i} className="flex items-center justify-between p-2 bg-neutral-900 rounded-lg">
-            <div className="flex items-center gap-2">
-              <div className={`w-1.5 h-1.5 rounded-full ${svc.status === 'scaling' ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`} />
-              <span className="text-sm text-neutral-300">{svc.name}</span>
-            </div>
-            <span className="text-xs text-neutral-500">{svc.cpu} CPU</span>
-          </div>
+          <XStack key={i} display="flex" alignItems="center" justifyContent="space-between" padding={8} backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)">
+            <XStack display="flex" alignItems="center" gap={8}>
+              <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor={svc.status === 'scaling' ? "var(--foreground)" : "var(--foreground)"} />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">{svc.name}</Text>
+            </XStack>
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{svc.cpu} CPU</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
-  </div>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Async/Queue Mockup
 const AsyncMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
     {/* Queue Stats */}
-    <div className="grid grid-cols-3 divide-x divide-neutral-800 border-b border-neutral-800">
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">Pending</div>
-        <div className="text-xl font-bold text-yellow-400">1,247</div>
-      </div>
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">Processing</div>
-        <div className="text-xl font-bold text-cyan-400">32</div>
-      </div>
-      <div className="p-4">
-        <div className="text-xs text-neutral-500 mb-1">Completed</div>
-        <div className="text-xl font-bold text-green-400">45.2K</div>
-      </div>
-    </div>
+    <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Pending</Box>
+        <Box fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--foreground)">1,247</Box>
+      </Box>
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Processing</Box>
+        <Box fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--foreground)">32</Box>
+      </Box>
+      <Box padding={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={4}>Completed</Box>
+        <Box fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--foreground)">45.2K</Box>
+      </Box>
+    </Grid>
 
     {/* Queue visualization */}
-    <div className="p-4 border-b border-neutral-800">
-      <div className="flex items-center gap-1">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+      <XStack display="flex" alignItems="center" gap={4}>
         {[...Array(12)].map((_, i) => (
-          <motion.div
+          <MotionBox
             key={i}
-            className={`flex-1 h-8 rounded ${i < 8 ? 'bg-[#fd4444]/60' : 'bg-neutral-800'}`}
+            flex={1} height={32} borderRadius="var(--radius)" backgroundColor={i < 8 ? "rgb(255 255 255 / 0.6)" : "var(--neutral-800)"}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: i * 0.05 }}
           />
         ))}
-      </div>
-      <div className="flex justify-between text-xs text-neutral-500 mt-2">
+      </XStack>
+      <XStack display="flex" justifyContent="space-between" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={8}>
         <span>In</span>
         <span>Out</span>
-      </div>
-    </div>
+      </XStack>
+    </Box>
 
     {/* Recent Jobs */}
-    <div className="p-4">
-      <div className="text-xs text-neutral-500 mb-2">Recent Jobs</div>
-      <div className="space-y-2">
+    <Box padding={16}>
+      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Recent Jobs</Box>
+      <Box rowGap={8}>
         {[
           { id: 'job-a1b2', status: 'completed', time: '234ms' },
           { id: 'job-c3d4', status: 'running', time: '...' },
           { id: 'job-e5f6', status: 'pending', time: '-' }
         ].map((job, i) => (
-          <div key={i} className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <div className={`w-1.5 h-1.5 rounded-full ${
-                job.status === 'completed' ? 'bg-green-400' :
-                job.status === 'running' ? 'bg-cyan-400 animate-pulse' : 'bg-neutral-500'
-              }`} />
-              <span className="font-mono text-neutral-300">{job.id}</span>
-            </div>
-            <span className="text-neutral-500">{job.time}</span>
-          </div>
+          <XStack key={i} display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <XStack display="flex" alignItems="center" gap={8}>
+              <Box
+                width={6}
+                height={6}
+                borderRadius="var(--radius-full)"
+                backgroundColor={job.status === 'completed' ? 'var(--foreground)' : job.status === 'running' ? 'var(--neutral-300)' : 'var(--neutral-500)'}
+              />
+              <Text fontFamily="var(--font-mono)" color="var(--neutral-300)">{job.id}</Text>
+            </XStack>
+            <Text color="var(--neutral-500)">{job.time}</Text>
+          </XStack>
         ))}
-      </div>
-    </div>
-  </div>
+      </Box>
+    </Box>
+  </Box>
 );
 
 // Generic fallback mockup
 const GenericMockup: React.FC<{ product: Product }> = ({ product }) => (
-  <div className="bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden">
+  <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
     {/* Toolbar */}
-    <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-900/50">
-      <div className="flex gap-1.5">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-      </div>
-      <span className="text-xs text-neutral-500 ml-2 font-mono">{product.shortName}</span>
-    </div>
+    <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)">
+      <XStack display="flex" gap={6}>
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+      </XStack>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8} fontFamily="var(--font-mono)">{product.shortName}</Text>
+    </XStack>
 
-    <div className="p-8 flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#fd4444]/20 to-purple-500/20 border border-[#fd4444]/30 flex items-center justify-center mx-auto mb-4">
-          <motion.div
-            className="w-8 h-8 rounded-lg bg-[#fd4444]/40"
+    <XStack padding={32} display="flex" alignItems="center" justifyContent="center">
+      <Box textAlign="center">
+        <XStack width={64} height={64} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" marginBottom={16} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <MotionBox
+            width={32} height={32} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)"
             animate={{
               scale: [1, 1.1, 1],
               opacity: [0.5, 1, 0.5]
             }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-        </div>
-        <p className="text-sm text-neutral-400">{product.tagline}</p>
-      </div>
-    </div>
-  </div>
+        </XStack>
+        <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{product.tagline}</Paragraph>
+      </Box>
+    </XStack>
+  </Box>
 );
 
 // Main ProductMockup component that selects the appropriate mockup
-export const ProductMockup: React.FC<ProductMockupProps> = ({ category, product, className = '' }) => {
+export const ProductMockup: React.FC<ProductMockupProps> = ({ category, product, ...styleProps }) => {
   // Select mockup based on product ID or category
   const getMockup = () => {
     // Specific product mockups
@@ -817,14 +820,14 @@ export const ProductMockup: React.FC<ProductMockupProps> = ({ category, product,
   };
 
   return (
-    <motion.div
-      className={className}
+    <MotionBox {...styleProps}
+      
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       {getMockup()}
-    </motion.div>
+    </MotionBox>
   );
 };
 

@@ -1,0 +1,125 @@
+// The primitives this site is built from. Everything here is @hanzo/gui — the
+// two boxes below exist only because gui's stacks are flex-first and the web
+// needs `block` and `grid` displays as well.
+
+import { forwardRef } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
+import {
+  styled, View, Anchor as GuiAnchor,
+  XStack as GuiXStack, YStack as GuiYStack,
+  Text as GuiText, Paragraph as GuiParagraph,
+  H1 as GuiH1, H2 as GuiH2, H3 as GuiH3, H4 as GuiH4, H5 as GuiH5, H6 as GuiH6,
+} from '@hanzo/gui'
+import { motion } from 'framer-motion'
+import { useHref, useLinkClickHandler } from 'react-router-dom'
+import type { To } from 'react-router-dom'
+
+// gui's stacks are React-Native-flavoured: they default to `flexShrink: 0`, so
+// a child keeps its intrinsic width and a narrow viewport overflows. On the web
+// a flex item defaults to `flex-shrink: 1`, which is the behaviour this site's
+// layouts were written against — so every box here restores it. This is the one
+// place that decision is made.
+const web = { flexShrink: 1, minWidth: 0 } as const
+
+// Built on gui's Text rather than its View: a box on this site carries type
+// alignment as often as it carries layout (`text-center` on a section is the
+// commonest instruction in the whole codebase), and gui only honours text style
+// props on text components. Same element, same box props, full vocabulary.
+/** The block box — a `div` in CSS normal flow. `render` keeps the semantics. */
+export const Box = styled(GuiText, {
+  name: 'Box',
+  render: 'div',
+  display: 'block',
+  ...web,
+})
+
+/** The grid box. Track definitions arrive as `gridTemplateColumns`. */
+export const Grid = styled(GuiText, {
+  name: 'Grid',
+  render: 'div',
+  display: 'grid',
+  ...web,
+})
+
+/** Row and column stacks, with the same web shrink behaviour. */
+export const XStack = styled(GuiText, {
+  name: 'Row', render: 'div', display: 'flex', flexDirection: 'row', alignItems: 'stretch', ...web,
+})
+
+export const YStack = styled(GuiText, {
+  name: 'Col', render: 'div', display: 'flex', flexDirection: 'column', alignItems: 'stretch', ...web,
+})
+export const Text = styled(GuiText, { name: 'Text', ...web })
+
+// gui's text primitives are inline (so nested text flows). A paragraph and a
+// heading are block boxes in the markup this site is written in, and reading
+// order breaks if they are not — so they are declared block here, once.
+export const Paragraph = styled(GuiParagraph, { name: 'Paragraph', display: 'block', ...web })
+export const H1 = styled(GuiH1, { name: 'H1', display: 'block', ...web })
+export const H2 = styled(GuiH2, { name: 'H2', display: 'block', ...web })
+export const H3 = styled(GuiH3, { name: 'H3', display: 'block', ...web })
+export const H4 = styled(GuiH4, { name: 'H4', display: 'block', ...web })
+export const H5 = styled(GuiH5, { name: 'H5', display: 'block', ...web })
+export const H6 = styled(GuiH6, { name: 'H6', display: 'block', ...web })
+
+export type BoxProps = ComponentProps<typeof Box>
+
+/**
+ * Motion-driven boxes. framer-motion composes over the gui primitive rather
+ * than around it, so a moving element keeps the same style-prop vocabulary as
+ * a static one — one way to express a box, animated or not.
+ */
+export const MotionBox = motion.create(Box)
+export const MotionText = motion.create(styled(View, { name: 'MotionText', display: 'inline', ...web }))
+
+/**
+ * A plain anchor — external links, mailto, in-page hashes.
+ *
+ * `tap` makes it a 44px tap target: the label does not move, the hit area
+ * grows around it. Navigation surfaces (site nav, footer, menus) set it; links
+ * inside prose and links wrapping a whole card do not, because an inline-flex
+ * box there would either break the line or collapse the card it wraps.
+ */
+export const Anchor = styled(GuiAnchor, {
+  name: 'Anchor',
+  variants: {
+    tap: {
+      true: { display: 'inline-flex', alignItems: 'center', minHeight: 44 },
+    },
+  } as const,
+})
+
+/**
+ * An in-app link: the same anchor with react-router's navigation. Keeps SPA
+ * routing (no full reload) while styling exactly like every other gui element.
+ */
+export interface LinkProps extends Omit<ComponentProps<typeof Anchor>, 'href'> {
+  to: To
+  replace?: boolean
+  state?: unknown
+  children?: ReactNode
+}
+
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+  { to, replace, state, target, onPress, ...rest },
+  ref,
+) {
+  const href = useHref(to)
+  const handleClick = useLinkClickHandler(to, { replace, state, target })
+  return (
+    <Anchor
+      ref={ref as never}
+      href={href}
+      target={target}
+      cursor="pointer"
+      textDecorationLine="none"
+      color="inherit"
+      onPress={(e: never) => {
+        onPress?.(e)
+        const ev = e as unknown as React.MouseEvent<HTMLAnchorElement>
+        if (!ev?.defaultPrevented) handleClick(ev)
+      }}
+      {...rest}
+    />
+  )
+})

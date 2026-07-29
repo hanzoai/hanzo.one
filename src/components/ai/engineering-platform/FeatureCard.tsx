@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -28,28 +29,28 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   bulletColor
 }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl p-6 h-full flex flex-col"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} height="100%" display="flex" flexDirection="column"
     >
-      <div className={`w-12 h-12 rounded-lg ${iconBgClass} flex items-center justify-center mb-4`}>
-        <div className={iconTextClass}>{icon}</div>
-      </div>
+      <XStack width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+        <Box >{icon}</Box>
+      </XStack>
       
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-neutral-400 mb-4 flex-grow">{description}</p>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-400)" marginBottom={16} flexGrow={1}>{description}</Paragraph>
       
-      <ul className="space-y-2">
+      <Box render="ul" rowGap={8}>
         {featurePoints.map((point, index) => (
-          <li key={index} className="flex items-start">
-            <span className={`${bulletColor} mr-2 text-lg`}>•</span>
-            <span className="text-sm text-neutral-300">{point.text}</span>
-          </li>
+          <XStack key={index} render="li" display="flex" alignItems="flex-start">
+            <Text marginRight={8} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">•</Text>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">{point.text}</Text>
+          </XStack>
         ))}
-      </ul>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

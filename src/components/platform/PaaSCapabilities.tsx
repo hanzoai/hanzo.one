@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, H2, H4, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Shield,
   Zap,
@@ -99,201 +100,199 @@ const ADDITIONAL_SERVICES: Service[] = [
 
 const PaaSCapabilities = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-black to-neutral-900/30">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Section header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-4"
+          <XStack
+            display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={16}
             style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
           >
-            <Terminal className="w-3.5 h-3.5" />
+            <Terminal size={14} />
             Platform-as-a-Service
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Backend Services, Ready to Deploy
-          </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Everything you need to build production applications. Self-host on your infrastructure,
             or deploy to Hanzo Cloud with zero changes.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Core services */}
-        <div className="mb-12">
-          <motion.h3
+        <Box marginBottom={48}>
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-lg font-semibold text-white mb-6"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={24}
           >
             Core Services
-          </motion.h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          </MotionText>
+          <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {CORE_SERVICES.map((service, index) => {
               const Icon = service.icon;
               const content = (
-                <motion.div
+                <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 transition-all ${
-                    service.href ? "hover:border-green-500/30 cursor-pointer" : ""
-                  }`}
+                  
+                  padding={24} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" cursor={service.href ? "pointer" : undefined} hoverStyle={service.href ? { borderColor: "var(--border-strong)" } : undefined}
                 >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                  <XStack display="flex" alignItems="flex-start" gap={16}>
+                    <XStack
+                      width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}
                       style={{ backgroundColor: `${BRAND_COLOR}20` }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: BRAND_COLOR }} />
-                    </div>
+                      <Icon width={20} height={20} style={{ color: BRAND_COLOR }} />
+                    </XStack>
                     <div>
-                      <h4 className="text-white font-medium mb-1">{service.name}</h4>
-                      <p className="text-sm text-neutral-400">{service.description}</p>
+                      <H4 color="var(--foreground)" fontWeight="500" marginBottom={4}>{service.name}</H4>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{service.description}</Paragraph>
                     </div>
-                  </div>
-                </motion.div>
+                  </XStack>
+                </MotionBox>
               );
 
               return service.href ? (
-                <Link key={service.name} to={service.href}>
+                <Link tap key={service.name} to={service.href}>
                   {content}
                 </Link>
               ) : (
                 <div key={service.name}>{content}</div>
               );
             })}
-          </div>
-        </div>
+          </Grid>
+        </Box>
 
         {/* Additional services */}
-        <div className="mb-12">
-          <motion.h3
+        <Box marginBottom={48}>
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-lg font-semibold text-white mb-6"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={24}
           >
             Additional Services
-          </motion.h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          </MotionText>
+          <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {ADDITIONAL_SERVICES.map((service, index) => {
               const Icon = service.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={service.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="p-4 rounded-lg bg-neutral-950/50 border border-neutral-800/50"
+                  padding={16} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)"
                 >
-                  <div className="flex items-center gap-3">
-                    <Icon className="w-4 h-4 text-neutral-500" />
+                  <XStack display="flex" alignItems="center" gap={12}>
+                    <Icon width={16} height={16} color="var(--neutral-500)" />
                     <div>
-                      <span className="text-sm font-medium text-white">{service.name}</span>
-                      <span className="text-xs text-neutral-500 ml-2">{service.description}</span>
+                      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">{service.name}</Text>
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginLeft={8}>{service.description}</Text>
                     </div>
-                  </div>
-                </motion.div>
+                  </XStack>
+                </MotionBox>
               );
             })}
-          </div>
-        </div>
+          </Grid>
+        </Box>
 
         {/* CLI showcase */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-neutral-900/80 border border-neutral-800 rounded-xl overflow-hidden"
+          backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden"
         >
-          <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-800">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
-            </div>
-            <span className="text-xs text-neutral-500 font-mono">hanzo platform</span>
-          </div>
-          <div className="p-6 font-mono text-sm">
-            <div className="space-y-3">
-              <div className="text-neutral-500">
-                <span className="text-green-400">$</span> hanzo init my-app
-              </div>
-              <div className="text-neutral-400">
+          <XStack display="flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)">
+            <XStack display="flex" gap={6}>
+              <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+              <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+              <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+            </XStack>
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)">hanzo platform</Text>
+          </XStack>
+          <Box padding={24} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Box rowGap={12}>
+              <Box color="var(--neutral-500)">
+                <Text color="var(--foreground)">$</Text> hanzo init my-app
+              </Box>
+              <Box color="var(--neutral-400)">
                 ✓ Created project configuration
-              </div>
-              <div className="text-neutral-400">
+              </Box>
+              <Box color="var(--neutral-400)">
                 ✓ Initialized Auth, Database, Storage
-              </div>
-              <div className="text-neutral-400">
+              </Box>
+              <Box color="var(--neutral-400)">
                 ✓ Generated TypeScript types
-              </div>
-              <div className="mt-4 text-neutral-500">
-                <span className="text-green-400">$</span> hanzo dev
-              </div>
-              <div className="text-neutral-400">
+              </Box>
+              <Box marginTop={16} color="var(--neutral-500)">
+                <Text color="var(--foreground)">$</Text> hanzo dev
+              </Box>
+              <Box color="var(--neutral-400)">
                 Starting local development server...
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-green-400">
+              </Box>
+              <XStack display="flex" alignItems="center" gap={8}>
+                <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+                <Text color="var(--foreground)">
                   Platform running at http://localhost:8000
-                </span>
-              </div>
-              <div className="mt-4 text-neutral-500">
-                <span className="text-green-400">$</span> hanzo deploy
-              </div>
-              <div className="text-neutral-400">
+                </Text>
+              </XStack>
+              <Box marginTop={16} color="var(--neutral-500)">
+                <Text color="var(--foreground)">$</Text> hanzo deploy
+              </Box>
+              <Box color="var(--neutral-400)">
                 Deploying to production...
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-green-400">
+              </Box>
+              <XStack display="flex" alignItems="center" gap={8}>
+                <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+                <Text color="var(--foreground)">
                   Live at https://my-app.hanzo.app
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+                </Text>
+              </XStack>
+            </Box>
+          </Box>
+        </MotionBox>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          marginTop={48} textAlign="center"
         >
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
+            <Anchor
               href="https://docs.hanzo.ai/platform/quickstart"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#fff" }}
             >
               Get Started
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </a>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>
+            </Anchor>
             <Link
               to="/cloud"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               Compare to Cloud
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>
             </Link>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

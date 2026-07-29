@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -25,7 +26,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const RECENTLY_SHIPPED = [
   {
@@ -171,44 +172,44 @@ const ALL_FEATURES = [
 
 const Features = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-black to-neutral-900/50">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Section header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Features
-          </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Everything you need for agentic development
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Recently Shipped */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          marginBottom={64}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div
-              className="px-3 py-1 rounded-full text-xs font-medium"
+          <XStack display="flex" alignItems="center" gap={12} marginBottom={32}>
+            <Box
+              paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500"
               style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
             >
               Recently Shipped
-            </div>
-          </div>
+            </Box>
+          </XStack>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {RECENTLY_SHIPPED.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.a
+                <MotionBox
                   key={feature.title}
                   href={feature.link}
                   target="_blank"
@@ -216,82 +217,82 @@ const Features = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/50 transition-all group"
+                  
+                  group backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center"
+                  <XStack display="flex" alignItems="flex-start" justifyContent="space-between" marginBottom={16}>
+                    <XStack
+                      width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center"
                       style={{ backgroundColor: `${BRAND_COLOR}20` }}
                     >
-                      <Icon className="w-6 h-6" style={{ color: BRAND_COLOR }} />
-                    </div>
-                    <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+                      <Icon width={24} height={24} style={{ color: BRAND_COLOR }} />
+                    </XStack>
+                    <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)">
                       New
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#fd4444] transition-colors">
+                    </Text>
+                  </XStack>
+                  <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                     {feature.title}
-                  </h3>
-                  <p className="text-sm text-neutral-400 mb-4">
+                  </H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16}>
                     {feature.description}
-                  </p>
-                  <span className="text-sm text-[#fd4444] flex items-center gap-1">
+                  </Paragraph>
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" display="flex" alignItems="center" gap={4}>
                     View Documentation
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </span>
-                </motion.a>
+                    <ExternalLink size={14} />
+                  </Text>
+                </MotionBox>
               );
             })}
-          </div>
-        </motion.div>
+          </Grid>
+        </MotionBox>
 
         {/* All Features Grid */}
-        <div className="grid md:grid-cols-3 gap-4">
+        <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {ALL_FEATURES.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (index % 6) * 0.05 }}
-                className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-5 hover:border-neutral-700 transition-colors"
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={20} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <Icon className="w-5 h-5 text-neutral-400" />
-                  <h4 className="text-sm font-medium text-white">
+                <XStack display="flex" alignItems="center" gap={12} marginBottom={12}>
+                  <Icon width={20} height={20} color="var(--neutral-400)" />
+                  <H4 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">
                     {feature.title}
-                  </h4>
-                </div>
-                <p className="text-xs text-neutral-500 leading-relaxed">
+                  </H4>
+                </XStack>
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-relaxed)" color="var(--neutral-500)">
                   {feature.description}
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
+        </Grid>
 
         {/* See upcoming features link */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          textAlign="center" marginTop={48}
         >
-          <a
+          <Anchor tap
             href="https://docs.hanzo.ai/roadmap"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+            display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
           >
             See upcoming features
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </motion.div>
-      </div>
-    </section>
+            <ArrowRight size={16} />
+          </Anchor>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

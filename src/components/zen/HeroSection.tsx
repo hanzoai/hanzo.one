@@ -1,3 +1,4 @@
+import { Anchor, Box, H1, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,48 +6,48 @@ import TaijiSymbol from "./svg/TaijiSymbol";
 
 const HeroSection = () => {
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 min-h-[80vh] flex flex-col justify-center">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.div
+    <YStack render="section" position="relative" paddingVertical={96} paddingHorizontal={16} minHeight="80vh" display="flex" flexDirection="column" justifyContent="center" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8"
+          marginBottom={32}
         >
-          <div className="flex justify-center mb-8">
-            <TaijiSymbol size={80} className="text-[var(--white)]" />
-          </div>
+          <XStack display="flex" justifyContent="center" marginBottom={32}>
+            <TaijiSymbol size={80} color="var(--white)" />
+          </XStack>
 
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/50">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
             The Zen of Hanzo
-          </h1>
+          </H1>
           
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32}>
             Our guiding principles that shape everything we build. Distilled wisdom from ancient knowledge, 
             reimagined for modern AI engineering.
-          </p>
+          </Paragraph>
           
-          <motion.div 
-            className="w-20 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-auto"
+          <MotionBox 
+            width={80} height={1} marginHorizontal="auto" backgroundImage="linear-gradient(to right, transparent, var(--neutral-600), transparent)"
             initial={{ width: 0 }}
             animate={{ width: 80 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           />
-        </motion.div>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="flex justify-center"
+          flexDirection="row" display="flex" justifyContent="center"
         >
-          <a 
+          <Anchor 
             href="#principles" 
-            className="group flex items-center gap-2 px-4 py-2 rounded-full text-neutral-400 hover:text-[var(--white)] transition-colors"
+            group display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
           >
             <span>Explore Principles</span>
-            <svg 
-              className="w-4 h-4 transform group-hover:translate-y-1 transition-transform" 
+            <Box display="inline-block" 
+              render="svg" width={16} height={16} transition="transform var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ y: 4 }} 
               viewBox="0 0 24 24" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +59,11 @@ const HeroSection = () => {
                 strokeLinecap="round" 
                 strokeLinejoin="round"
               />
-            </svg>
-          </a>
-        </motion.div>
-      </div>
-    </section>
+            </Box>
+          </Anchor>
+        </MotionBox>
+      </Box>
+    </YStack>
   );
 };
 

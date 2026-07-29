@@ -1,3 +1,4 @@
+import { MotionText } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -8,7 +9,7 @@ interface HeroDescriptionProps {
 
 const HeroDescription: React.FC<HeroDescriptionProps> = ({ titleAnimationComplete }) => {
   return (
-    <motion.p 
+    <MotionText 
       initial={{
         opacity: 0,
         y: 20,
@@ -23,11 +24,11 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({ titleAnimationComplet
         duration: 0.4,
         delay: 0.25
       }} 
-      className="mt-8 text-lg sm:text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed tracking-wide"
+      marginTop={32} fontSize="var(--text-lg)" lineHeight="var(--leading-relaxed)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" letterSpacing="var(--tracking-wide)" $sm={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}
     >
       Your AI future belongs in your hands. With Hanzo, pioneer a new era of intelligence with customizable, 
       private, transparent, and trusted AI solutions that empower all humans to build what was once impossible.
-    </motion.p>
+    </MotionText>
   );
 };
 

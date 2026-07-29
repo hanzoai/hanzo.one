@@ -1,296 +1,295 @@
+import { Box, Button, ChromeText, Grid, H1, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { Code, Terminal, Database, Server, Cpu, Network, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 
 const Functions = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1 inline-block mb-4">
-              <span className="text-blue-400 text-sm font-medium">Serverless Computing</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+      <Box render="section" paddingVertical={80} position="relative" $lg={{ paddingVertical: 128 }}>
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), transparent)"></Box>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={4} display="inline-block" marginBottom={16}>
+              <Text color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Serverless Computing</Text>
+            </Box>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
               Hanzo Functions
-            </h1>
-            <p className="text-xl text-neutral-300 mb-8">
+            </H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
               Serverless function execution for any workload. Deploy code in seconds without managing infrastructure.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-[var(--white)] px-8 py-6 text-lg">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Get Started
               </Button>
-              <Button variant="outline" className="border-blue-500/30 text-[var(--white)] hover:bg-blue-900/20 px-8 py-6 text-lg">
+              <Button variant="outline" borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}>
                 View Documentation
               </Button>
-            </div>
-          </div>
+            </YStack>
+          </Box>
           
           {/* Hero Visual */}
-          <div className="relative bg-blue-900/20 border border-blue-500/20 rounded-xl p-8 overflow-hidden">
-            <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
-            <pre className="text-sm sm:text-base overflow-x-auto bg-[var(--black)]/50 p-4 rounded-lg border border-blue-500/30">
-              <code className="text-neutral-300">
-                <span className="text-blue-400">export</span> <span className="text-cyan-400">async function</span> <span className="text-green-400">handler</span><span className="text-[var(--white)]">(req, res) {'{'}</span>
+          <Box position="relative" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32} overflow="hidden">
+            <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px)" backgroundSize="32px 32px" maskImage="linear-gradient(to bottom,white,transparent)"></Box>
+            <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" overflowX="auto" backgroundColor="rgb(0 0 0 / 0.5)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)" $sm={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>
+              <Text render="code" color="var(--neutral-300)">
+                <Text color="var(--foreground)">export</Text> <Text color="var(--foreground)">async function</Text> <Text color="var(--foreground)">handler</Text><Text color="var(--white)">(req, res) {'{'}</Text>
                 <br/>
-                <span className="ml-4">// Process incoming data</span>
+                <Text marginLeft={16}>// Process incoming data</Text>
                 <br/>
-                <span className="ml-4 text-blue-400">const</span> <span className="text-[var(--white)]">{'{'} data {'}'} = </span><span className="text-blue-400">await</span> <span className="text-[var(--white)]">req.json();</span>
+                <Text marginLeft={16} color="var(--foreground)">const</Text> <Text color="var(--white)">{'{'} data {'}'} = </Text><Text color="var(--foreground)">await</Text> <Text color="var(--white)">req.json();</Text>
                 <br/>
-                <span className="ml-4 text-blue-400">const</span> <span className="text-[var(--white)]">result = </span><span className="text-blue-400">await</span> <span className="text-purple-400">processData</span><span className="text-[var(--white)]">(data);</span>
+                <Text marginLeft={16} color="var(--foreground)">const</Text> <Text color="var(--white)">result = </Text><Text color="var(--foreground)">await</Text> <Text color="var(--foreground)">processData</Text><Text color="var(--white)">(data);</Text>
                 <br/>
                 <br/>
-                <span className="ml-4">// Return JSON response</span>
+                <Text marginLeft={16}>// Return JSON response</Text>
                 <br/>
-                <span className="ml-4 text-blue-400">return</span> <span className="text-[var(--white)]">Response.json({'{'}</span>
+                <Text marginLeft={16} color="var(--foreground)">return</Text> <Text color="var(--white)">Response.json({'{'}</Text>
                 <br/>
-                <span className="ml-8">success: <span className="text-yellow-400">true</span>,</span>
+                <Text marginLeft={32}>success: <Text color="var(--foreground)">true</Text>,</Text>
                 <br/>
-                <span className="ml-8">data: result</span>
+                <Text marginLeft={32}>data: result</Text>
                 <br/>
-                <span className="ml-4 text-[var(--white)]">{'}'})</span>
+                <Text marginLeft={16} color="var(--white)">{'}'})</Text>
                 <br/>
-                <span className="text-[var(--white)]">{'}'}</span>
-              </code>
-            </pre>
-          </div>
-        </div>
-      </section>
+                <Text color="var(--white)">{'}'}</Text>
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       
       {/* Features */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ChromeText as="h2" className="text-3xl font-bold mb-4">
+      <Box render="section" paddingVertical={80} position="relative">
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" marginBottom={64}>
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
               Key Features & Capabilities
             </ChromeText>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Deploy serverless functions that scale automatically and only run when needed
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <motion.div 
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Code className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Multi-Language Support</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Code size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Multi-Language Support</H3>
+              <Paragraph color="var(--neutral-300)">
                 Write functions in JavaScript, TypeScript, Python, Go, or Rust with native runtime support.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Terminal className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Zero Cold Starts</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Terminal size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Zero Cold Starts</H3>
+              <Paragraph color="var(--neutral-300)">
                 Our intelligent prediction system keeps functions warm for instant execution.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Database className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Native Database Access</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Database size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Native Database Access</H3>
+              <Paragraph color="var(--neutral-300)">
                 Seamless integration with Hanzo Datastore and Vector for persistent storage.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Server className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Edge Deployment</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Server size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Edge Deployment</H3>
+              <Paragraph color="var(--neutral-300)">
                 Deploy to 200+ global edge locations for ultra-low latency responses.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Network className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Event-Driven Architecture</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Network size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Event-Driven Architecture</H3>
+              <Paragraph color="var(--neutral-300)">
                 Trigger functions from HTTP requests, webhooks, schedules, or database changes.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Shield className="h-10 w-10 text-blue-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Security & Isolation</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Shield size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Security & Isolation</H3>
+              <Paragraph color="var(--neutral-300)">
                 Each function runs in an isolated environment with configurable permissions.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+              </Paragraph>
+            </MotionBox>
+          </Grid>
+        </Box>
+      </Box>
       
       {/* Use Cases */}
-      <section className="py-20 bg-gradient-to-b from-black to-blue-950/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ChromeText as="h2" className="text-3xl font-bold mb-4">
+      <Box render="section" paddingVertical={80} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" marginBottom={64}>
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
               Common Use Cases
             </ChromeText>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Hanzo Functions powers a wide range of serverless applications
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">API Backends</h3>
-              <p className="text-neutral-300 mb-4">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>API Backends</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Build complete REST or GraphQL APIs with automatic scaling and no server management.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Custom middleware for authentication and validation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>API versioning and documentation generation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Automatic OpenAPI schema generation</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Real-time Processing</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Real-time Processing</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Process events in real-time with automatic scaling for traffic spikes.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Webhook handlers for third-party services</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Event-driven data transformation and enrichment</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Real-time analytics processing</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">AI/ML Inference</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>AI/ML Inference</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Deploy machine learning models for inference with built-in GPU acceleration.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Image and text classification</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>AI chatbots and virtual assistants</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Real-time recommendations</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-blue-900/10 border border-blue-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Scheduled Tasks</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Scheduled Tasks</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Run tasks on a schedule without maintaining a dedicated server.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Periodic data cleanup and maintenance</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Scheduled reports and notifications</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Recurring data integration and ETL processes</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+                </XStack>
+              </Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
       
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-2xl p-8 md:p-12 border border-blue-500/30">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Build?</h2>
-              <p className="text-xl text-neutral-300 mb-8 max-w-3xl mx-auto">
+      <Box render="section" paddingVertical={80}>
+        <Box maxWidth="64rem" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box borderRadius="var(--radius-2xl)" padding={32} borderWidth={1} borderColor="var(--border-strong)" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 48 }}>
+            <Box textAlign="center">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Ready to Build?</H2>
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Get started with Hanzo Functions today and deploy your first serverless function in minutes.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-[var(--white)] px-8 py-6 text-lg">
+              </Paragraph>
+              <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+                <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                   Sign Up Free
                 </Button>
-                <Button variant="outline" className="border-blue-500/30 text-[var(--white)] hover:bg-blue-900/20 px-8 py-6 text-lg">
+                <Button variant="outline" borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}>
                   Read Documentation
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </YStack>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

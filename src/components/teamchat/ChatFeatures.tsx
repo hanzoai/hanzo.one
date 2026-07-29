@@ -1,37 +1,38 @@
+import { Box, Grid, H2, H3, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { MessageSquare, Bot, Settings } from "lucide-react";
 
 const ChatFeatures: React.FC = () => {
   return (
-    <div className="mt-10 mb-16">
-      <h2 className="text-2xl font-bold text-center mb-8">Enhanced Chat Capabilities</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
-          <div className="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-            <MessageSquare className="h-6 w-6 text-blue-400" />
-          </div>
-          <h3 className="text-xl font-bold mb-2 text-[var(--white)]">Multimodal Conversations</h3>
-          <p className="text-neutral-300">Chat with text, images, audio, and video in natural conversations with our AI assistants.</p>
-        </div>
+    <Box marginTop={40} marginBottom={64}>
+      <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" textAlign="center" marginBottom={32}>Enhanced Chat Capabilities</H2>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.05))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <XStack backgroundColor="rgb(255 255 255 / 0.1)" width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+            <MessageSquare size={24} color="var(--foreground)" />
+          </XStack>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">Multimodal Conversations</H3>
+          <Paragraph color="var(--neutral-300)">Chat with text, images, audio, and video in natural conversations with our AI assistants.</Paragraph>
+        </Box>
         
-        <div className="bg-gradient-to-br from-purple-900/20 to-purple-900/5 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-          <div className="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-            <Bot className="h-6 w-6 text-purple-400" />
-          </div>
-          <h3 className="text-xl font-bold mb-2 text-[var(--white)]">Specialized Assistants</h3>
-          <p className="text-neutral-300">Access domain-specific experts for coding, design, marketing, legal, and more fields.</p>
-        </div>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.05))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <XStack backgroundColor="rgb(255 255 255 / 0.1)" width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+            <Bot size={24} color="var(--foreground)" />
+          </XStack>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">Specialized Assistants</H3>
+          <Paragraph color="var(--neutral-300)">Access domain-specific experts for coding, design, marketing, legal, and more fields.</Paragraph>
+        </Box>
         
-        <div className="bg-gradient-to-br from-green-900/20 to-green-900/5 p-6 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all duration-300">
-          <div className="bg-green-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-            <Settings className="h-6 w-6 text-green-400" />
-          </div>
-          <h3 className="text-xl font-bold mb-2 text-[var(--white)]">Customizable Workflows</h3>
-          <p className="text-neutral-300">Connect your data sources, APIs, and tools to create powerful AI-powered workflows.</p>
-        </div>
-      </div>
-    </div>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.05))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <XStack backgroundColor="rgb(255 255 255 / 0.1)" width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+            <Settings size={24} color="var(--foreground)" />
+          </XStack>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">Customizable Workflows</H3>
+          <Paragraph color="var(--neutral-300)">Connect your data sources, APIs, and tools to create powerful AI-powered workflows.</Paragraph>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 

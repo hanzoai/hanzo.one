@@ -1,17 +1,18 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 interface TaijiProps {
   size?: number;
-  className?: string;
+  
   animate?: boolean;
 }
 
 const TaijiSymbol: React.FC<TaijiProps> = ({ 
   size = 48, 
-  className = "",
-  animate = false
+   
+  animate = false, ...styleProps
 }) => {
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -26,11 +27,11 @@ const TaijiSymbol: React.FC<TaijiProps> = ({
   };
 
   return (
-    <motion.svg 
+    <MotionBox {...styleProps} 
       width={size} 
       height={size} 
       viewBox="0 0 100 100" 
-      className={className} 
+       
       xmlns="http://www.w3.org/2000/svg"
       initial={animate ? "hidden" : "visible"}
       animate="visible"
@@ -84,7 +85,7 @@ const TaijiSymbol: React.FC<TaijiProps> = ({
           }
         } : undefined}
       />
-    </motion.svg>
+    </MotionBox>
   );
 };
 

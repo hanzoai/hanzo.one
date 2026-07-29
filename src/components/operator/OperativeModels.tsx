@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 
 import React from "react";
 import ModelHeader from "./models/ModelHeader";
@@ -7,14 +8,14 @@ import { operatorModels } from "./models/operatorModelData";
 
 const OperativeModels = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <Box render="section" paddingVertical={96} position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-black"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, var(--neutral-950), var(--pure-black))"></Box>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
         <ModelHeader />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {operatorModels.map((model, index) => (
             <ModelCard 
               key={index}
@@ -22,11 +23,11 @@ const OperativeModels = () => {
               index={index} 
             />
           ))}
-        </div>
+        </Grid>
         
         <ModelFooter />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
+import { Box, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Grid, H4, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/radix-dialog";
 import { NodeType } from "./types";
 
 interface NodeDetailsDialogProps {
@@ -24,38 +24,38 @@ const NodeDetailsDialog: React.FC<NodeDetailsDialogProps> = ({ isOpen, onOpenCha
           </DialogDescription>
         </DialogHeader>
         
-        <div className="p-4 bg-gray-800/50 rounded-md mb-4">
-          <h4 className="text-sm font-medium text-neutral-300 mb-2">Service Details</h4>
-          <div className="grid grid-cols-2 gap-y-2 text-sm">
-            <div className="text-neutral-400">Status</div>
-            <div className="text-neutral-200">
-              {selectedNode.status === 'deployed' && <span className="text-green-400">Deployed</span>}
-              {selectedNode.status === 'pending' && <span className="text-blue-400">Pending</span>}
-              {selectedNode.status === 'error' && <span className="text-red-400">Failed</span>}
-            </div>
+        <Box padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" marginBottom={16}>
+          <H4 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)" marginBottom={8}>Service Details</H4>
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" rowGap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Box color="var(--neutral-400)">Status</Box>
+            <Box color="var(--neutral-200)">
+              {selectedNode.status === 'deployed' && <Text color="var(--foreground)">Deployed</Text>}
+              {selectedNode.status === 'pending' && <Text color="var(--foreground)">Pending</Text>}
+              {selectedNode.status === 'error' && <Text color="var(--foreground)">Failed</Text>}
+            </Box>
             
-            <div className="text-neutral-400">Type</div>
-            <div className="text-neutral-200">{selectedNode.type}</div>
+            <Box color="var(--neutral-400)">Type</Box>
+            <Box color="var(--neutral-200)">{selectedNode.type}</Box>
             
-            <div className="text-neutral-400">Created</div>
-            <div className="text-neutral-200">Just now</div>
-          </div>
-        </div>
+            <Box color="var(--neutral-400)">Created</Box>
+            <Box color="var(--neutral-200)">Just now</Box>
+          </Grid>
+        </Box>
         
-        <div className="flex justify-end space-x-2">
-          <button 
-            className="px-3 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-neutral-300 text-sm"
+        <XStack display="flex" justifyContent="flex-end" columnGap={8}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             onClick={() => onOpenChange(false)}
           >
             Close
-          </button>
-          <button 
-            className="px-3 py-1.5 rounded bg-purple-600 hover:bg-purple-700 text-[var(--white)] text-sm"
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+            render="button" paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius)" backgroundColor="var(--neutral-600)" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             onClick={() => onOpenChange(false)}
           >
             View Details
-          </button>
-        </div>
+          </Box>
+        </XStack>
       </DialogContent>
     </Dialog>
   );

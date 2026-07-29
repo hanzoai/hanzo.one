@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,27 +6,27 @@ import { CreditCard, Calendar, Send, CreditCard as CardIcon, Coins } from "lucid
 
 const suiteItems = [
   {
-    icon: <CreditCard className="h-6 w-6 text-purple-400" />,
+    icon: <CreditCard size={24} color="var(--foreground)" />,
     title: "Online Payments",
     description: "Flexible integration with any website, optimized checkouts, and local payment methods."
   },
   {
-    icon: <Calendar className="h-6 w-6 text-purple-400" />,
+    icon: <Calendar size={24} color="var(--foreground)" />,
     title: "Subscriptions & Billing",
     description: "Automated subscription management, recurring billing, and multilingual invoicing."
   },
   {
-    icon: <Send className="h-6 w-6 text-purple-400" />,
+    icon: <Send size={24} color="var(--foreground)" />,
     title: "Embedded Finance (Connect)",
     description: "Integrate end-to-end payment experiences for marketplaces and platforms, including streamlined payouts."
   },
   {
-    icon: <CardIcon className="h-6 w-6 text-purple-400" />,
+    icon: <CardIcon size={24} color="var(--foreground)" />,
     title: "Issuing",
     description: "Create and manage physical and virtual cards for your teams or customers."
   },
   {
-    icon: <Coins className="h-6 w-6 text-purple-400" />,
+    icon: <Coins size={24} color="var(--foreground)" />,
     title: "Capital",
     description: "Access financing options to fuel your growth."
   }
@@ -33,95 +34,95 @@ const suiteItems = [
 
 const PaymentsSuite = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Comprehensive Payments Infrastructure</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Comprehensive Payments Infrastructure</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hanzo Payments provides the essential tools needed to process payments and optimize your financial operations, 
             fully integrated into your Hanzo workflow.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          marginBottom={64}
         >
-          <h3 className="text-2xl font-bold mb-8 text-center">Unified Payments Suite</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Unified Payments Suite</H3>
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {suiteItems.map((item, index) => (
-              <motion.div
+              <MotionBox
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
               >
-                <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
+                <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
                   {item.icon}
-                </div>
-                <h4 className="text-xl font-semibold mb-3">{item.title}</h4>
-                <p className="text-neutral-400">{item.description}</p>
-              </motion.div>
+                </Box>
+                <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>{item.title}</H4>
+                <Paragraph color="var(--neutral-400)">{item.description}</Paragraph>
+              </MotionBox>
             ))}
-          </div>
-        </motion.div>
+          </Grid>
+        </MotionBox>
 
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative bg-gradient-to-br from-gray-900/50 to-purple-900/20 border border-gray-800 rounded-xl p-8 overflow-hidden"
+          position="relative" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} overflow="hidden" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
         >
-          <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,transparent,black)]"></div>
-          <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-            <div className="md:w-2/3">
-              <h3 className="text-2xl font-bold mb-4">Optimized for Growth</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px)" backgroundSize="32px 32px" maskImage="linear-gradient(to bottom,transparent,black)"></Box>
+          <YStack position="relative" zIndex={10} display="flex" flexDirection="column" gap={32} alignItems="center" $md={{ flexDirection: "row" }}>
+            <Box $md={{ width: "66.666667%" }}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Optimized for Growth</H3>
+              <Box render="ul" rowGap={12}>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Real-time analytics and detailed financial reporting.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Forecast and predict revenues with built-in AI-driven analytics.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start" gap={8}>
+                  <Text color="var(--foreground)">•</Text>
                   <span>Transparent pricing with no hidden fees.</span>
-                </li>
-              </ul>
-            </div>
-            <div className="md:w-1/3 bg-gray-900/70 border border-gray-700 rounded-lg p-5">
-              <div className="text-center">
-                <h4 className="text-lg font-semibold mb-3">Payment Growth</h4>
-                <div className="flex items-end justify-center space-x-2 h-32 mb-4">
+                </XStack>
+              </Box>
+            </Box>
+            <Box backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" padding={20} $md={{ width: "33.333333%" }}>
+              <Box textAlign="center">
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" marginBottom={12}>Payment Growth</H4>
+                <XStack display="flex" alignItems="flex-end" justifyContent="center" columnGap={8} height={128} marginBottom={16}>
                   {[20, 35, 28, 45, 60, 75, 90].map((height, i) => (
-                    <div 
+                    <Box 
                       key={i} 
-                      className="bg-gradient-to-t from-purple-600 to-indigo-500 rounded-t w-6"
+                      borderTopLeftRadius="var(--radius)" borderTopRightRadius="var(--radius)" width={24} backgroundImage="linear-gradient(to top, var(--neutral-600), var(--neutral-500))"
                       style={{height: `${height}%`}}
-                    ></div>
+                    ></Box>
                   ))}
-                </div>
-                <div className="text-sm text-neutral-400">Last 7 days</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                </XStack>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Last 7 days</Box>
+              </Box>
+            </Box>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

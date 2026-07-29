@@ -1,8 +1,7 @@
+import { AnimatedHeading, AnimatedSection, AnimatedStaggerContainer, Box, H2, MotionBox, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import AnimatedSection, { AnimatedHeading, AnimatedStaggerContainer } from "@/components/ui/animated-section";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
 
 const companyItemVariant = createAnimationVariant("fadeInBlur", {
   duration: 0.3,
@@ -20,30 +19,30 @@ const TrustedBy = () => {
 
   return (
     <AnimatedSection 
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-950"
+      paddingVertical={64} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
       viewportAmount={0.3}
     >
-      <div className="max-w-7xl mx-auto">
-        <AnimatedHeading className="text-center mb-10">
-          <h2 className="text-2xl font-semibold text-[var(--white)] mb-2">Trusted By AI Innovators</h2>
-          <div className="w-20 h-1 bg-indigo-500 mx-auto"></div>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <AnimatedHeading textAlign="center" marginBottom={40}>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Trusted By AI Innovators</H2>
+          <Box width={80} height={4} backgroundColor="var(--neutral-500)" marginHorizontal="auto"></Box>
         </AnimatedHeading>
         
-        <AnimatedStaggerContainer className="flex flex-wrap justify-center gap-x-8 gap-y-6" delayFactor={0.03}>
+        <AnimatedStaggerContainer display="flex" flexWrap="wrap" justifyContent="center" columnGap={32} rowGap={24} delayFactor={0.03}>
           {companies.map((company, index) => (
-            <motion.div 
+            <MotionBox 
               key={index}
               variants={companyItemVariant}
-              className="text-neutral-400 font-medium text-lg transition-colors hover:text-indigo-400"
+              color="var(--neutral-400)" fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ color: "var(--foreground)" }}
               whileHover={{ scale: 1.05, color: "#818cf8" }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
               {company}
-            </motion.div>
+            </MotionBox>
           ))}
         </AnimatedStaggerContainer>
-      </div>
+      </Box>
     </AnimatedSection>
   );
 };

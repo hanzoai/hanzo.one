@@ -1,5 +1,5 @@
+import { Box, Helmet } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/hanzoapp/HeroSection";
@@ -10,7 +10,7 @@ import FooterCTA from "@/components/hanzoapp/FooterCTA";
 
 const HanzoApp = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Hanzo App - Build Anywhere, Ship Everywhere | Hanzo AI</title>
         <meta
@@ -27,7 +27,7 @@ const HanzoApp = () => {
         <FooterCTA />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

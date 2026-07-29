@@ -1,31 +1,31 @@
+import { Box, Button, H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const HanzoAppEnterprise = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
-      <div className="max-w-3xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-prose)" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold mb-4">Enterprise</h2>
-          <p className="text-xl text-neutral-300 mb-8">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Enterprise</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
             Looking for specific use cases and support?
-          </p>
+          </Paragraph>
           <Button 
             size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-8"
+            backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
           >
             Let's Chat
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

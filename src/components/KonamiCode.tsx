@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
@@ -63,46 +64,46 @@ const KonamiCode = () => {
   return (
     <AnimatePresence>
       {isActive && (
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] bg-black"
+          position="fixed" top={0} right={0} bottom={0} left={0} zIndex={9999} backgroundColor="var(--pure-black)"
         >
           {/* Close button */}
-          <motion.button
+          <MotionBox
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.2 }}
+            
             onClick={() => setIsActive(false)}
-            className="absolute top-4 right-4 z-10 p-3 rounded-full bg-black/80 border border-neutral-700 text-white hover:bg-neutral-800 transition-colors shadow-lg"
+            position="absolute" top={16} right={16} zIndex={10} padding={12} borderRadius="var(--radius-full)" backgroundColor="rgb(0 0 0 / 0.8)" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             aria-label="Close secret menu"
           >
-            <X className="w-6 h-6" />
-          </motion.button>
+            <X size={24} />
+          </MotionBox>
 
           {/* Secret hint badge */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-full bg-black/80 border border-neutral-700 text-xs text-neutral-400 font-mono"
+            position="absolute" top={16} left={16} zIndex={10} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-full)" backgroundColor="rgb(0 0 0 / 0.8)" borderWidth={1} borderColor="var(--neutral-700)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" fontFamily="var(--font-mono)"
           >
             🥷 ↑↑↓↓↓ S E ⏎ ␣
-          </motion.div>
+          </MotionBox>
 
           {/* Embedded site */}
-          <motion.iframe
+          <MotionBox
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
             src={SECRET_MENU_URL}
-            className="w-full h-full border-0"
+            width="100%" height="100%" borderWidth={0}
             title="SF Secret Menu"
             allow="geolocation; payment"
           />
-        </motion.div>
+        </MotionBox>
       )}
     </AnimatePresence>
   );

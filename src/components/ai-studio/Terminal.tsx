@@ -1,17 +1,18 @@
+import { Box, H3, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { Terminal as TerminalIcon } from "lucide-react";
 
 const Terminal = () => {
   return (
-    <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
-      <TerminalIcon className="h-16 w-16 text-neutral-600 mb-4" />
-      <h3 className="text-xl font-medium mb-2">Terminal Mode</h3>
-      <p className="text-neutral-400 max-w-md">
+    <YStack flex={1} padding={24} display="flex" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center">
+      <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><TerminalIcon size={64} color="var(--neutral-600)" /></Box>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={8}>Terminal Mode</H3>
+      <Paragraph color="var(--neutral-400)" maxWidth="28rem">
         This feature provides a command-line interface for advanced model interactions.
         Coming soon in a future update.
-      </p>
-    </div>
+      </Paragraph>
+    </YStack>
   );
 };
 

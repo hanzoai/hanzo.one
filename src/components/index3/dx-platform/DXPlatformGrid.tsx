@@ -1,11 +1,10 @@
+import { Box, Button, ChromeText, Grid, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import DXPlatformCard from "./DXPlatformCard";
 import { dxPlatformData } from "./dxPlatformData";
-import { Link } from "react-router-dom";
-import ChromeText from "@/components/ui/chrome-text";
-import { Button } from "@/components/ui/button";
+
 
 interface DXPlatformGridProps {
   isHovered: string | null;
@@ -14,33 +13,33 @@ interface DXPlatformGridProps {
 
 const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered }) => {
   return (
-    <div className="space-y-8">
+    <Box rowGap={32}>
       {/* Enhanced Platform Visual with Grid Layout */}
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        marginBottom={48}
       >
-        <div className="relative h-80 w-full bg-gray-900/30 rounded-xl overflow-hidden border border-gray-800">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 to-purple-900/10"></div>
+        <Box position="relative" height={320} width="100%" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)">
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
           
           {/* Background grid pattern with enhanced visibility */}
-          <div className="absolute inset-0 grid grid-cols-16 grid-rows-8 gap-4 p-4 opacity-30">
+          <Grid position="absolute" top={0} right={0} bottom={0} left={0} display="grid" gridTemplateColumns="repeat(16, minmax(0, 1fr))" gridTemplateRows="repeat(8, minmax(0, 1fr))" gap={16} padding={16} opacity={0.3}>
             {Array(16 * 8).fill(0).map((_, i) => (
-              <div key={i} className="border border-indigo-500/20 rounded-sm"></div>
+              <Box key={i} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-sm)"></Box>
             ))}
-          </div>
+          </Grid>
           
           {/* Central platform hub */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-600/30 to-purple-600/30 border border-indigo-500/40 flex items-center justify-center">
-              <span className="text-xl font-bold text-[var(--white)]">Hanzo DX</span>
-            </div>
+          <Box position="absolute" top="50%" left="50%" x="-50%" y="-50%">
+            <XStack width={112} height={112} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+              <Text fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)">Hanzo DX</Text>
+            </XStack>
             
             {/* Connection lines to product categories */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
+            <Box position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="100%" height="100%">
               {dxPlatformData.slice(0, 12).map((platform, index) => {
                 const angle = (index / 12) * Math.PI * 2;
                 const distance = 180;
@@ -49,8 +48,8 @@ const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered
                 
                 return (
                   <React.Fragment key={platform.id}>
-                    <div 
-                      className="absolute w-0.5 bg-gradient-to-b from-indigo-500/20 to-purple-500/40"
+                    <Box 
+                      position="absolute" width={2} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
                       style={{
                         height: distance,
                         transform: `rotate(${angle + Math.PI/2}rad)`,
@@ -59,8 +58,8 @@ const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered
                         left: '50%'
                       }}
                     />
-                    <div 
-                      className="absolute p-2 rounded-lg bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 flex items-center justify-center"
+                    <XStack 
+                      position="absolute" padding={8} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
                       style={{
                         width: '80px',
                         height: '40px',
@@ -71,18 +70,18 @@ const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered
                       onMouseEnter={() => setIsHovered(platform.id)}
                       onMouseLeave={() => setIsHovered(null)}
                     >
-                      <span className="text-xs font-medium text-[var(--white)] whitespace-nowrap">{platform.title}</span>
-                    </div>
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--white)" whiteSpace="nowrap">{platform.title}</Text>
+                    </XStack>
                   </React.Fragment>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </motion.div>
+            </Box>
+          </Box>
+        </Box>
+      </MotionBox>
       
       {/* Products grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $md={{ gap: 24 }}>
         {/* Display all platform cards */}
         {dxPlatformData.map((platform) => (
           <DXPlatformCard
@@ -99,7 +98,7 @@ const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered
         ))}
 
         {/* Updated "Explore More" card */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -107,59 +106,59 @@ const DXPlatformGrid: React.FC<DXPlatformGridProps> = ({ isHovered, setIsHovered
           onMouseEnter={() => setIsHovered("more")}
           onMouseLeave={() => setIsHovered(null)}
         >
-          <Link to="/platform" className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 group hover:bg-gray-900/30 transition-colors h-full flex flex-col">
-            <div className="h-12 w-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 bg-indigo-900/30 group-hover:bg-indigo-600/30">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <Link to="/platform" group backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" height="100%" display="flex" flexDirection="column" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+            <XStack height={48} width={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16} transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" backgroundColor="var(--surface-card-emphasis)" $group-hover={{ backgroundColor: "var(--surface-card)" }}>
+              <Box display="inline-block" xmlns="http://www.w3.org/2000/svg" render="svg" height={24} width={24} color="var(--foreground)" transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" $group-hover={{ color: "var(--foreground)" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </div>
-            <ChromeText as="h3" className="text-xl font-bold mb-2">
+              </Box>
+            </XStack>
+            <ChromeText as="h3" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>
               Explore More
             </ChromeText>
-            <p className="text-neutral-300 mb-4 text-sm">
+            <Paragraph color="var(--neutral-300)" marginBottom={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
               Discover our complete DX Platform and developer tools ecosystem
-            </p>
-            <div className="mt-auto">
+            </Paragraph>
+            <Box marginTop="auto">
               <Button 
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-[var(--white)] w-full"
+                color="var(--white)" width="100%" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--neutral-500))" }}
                 radius="full"
               >
                 View All Tools
               </Button>
-            </div>
+            </Box>
           </Link>
-        </motion.div>
-      </div>
+        </MotionBox>
+      </Grid>
 
       {/* Get Started Free Section */}
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mt-16 p-8 bg-gradient-to-r from-indigo-900/20 to-purple-900/20 rounded-xl border border-indigo-500/20"
+        marginTop={64} padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
       >
-        <div className="max-w-4xl mx-auto text-center">
-          <ChromeText as="h2" className="text-2xl md:text-3xl font-bold mb-4">
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <ChromeText as="h2" fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
             Start Building Today, Risk-Free
           </ChromeText>
-          <p className="text-lg text-neutral-300 mb-6">
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={24}>
             Sign up now and receive $5 in free credits. Earn an additional $5 credit for every friend who joins through your referral link.
-          </p>
+          </Paragraph>
           <Button 
             asChild
             size="lg"
-            className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-[var(--white)] font-medium shadow-lg transition-all duration-300"
+            paddingHorizontal={32} paddingVertical={12} color="var(--white)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--neutral-500))" }}
             radius="full"
           >
-            <Link to="/signup">Get Started Free</Link>
+            <Link tap to="/signup">Get Started Free</Link>
           </Button>
-          <p className="mt-4 text-sm text-neutral-400">
-            No credit card required. <Link to="/referrals" className="text-indigo-400 hover:text-indigo-300 underline">Learn more</Link> about our referral program.
-          </p>
-        </div>
-      </motion.div>
-    </div>
+          <Paragraph marginTop={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
+            No credit card required. <Link tap to="/referrals" color="var(--foreground)" textDecorationLine="underline" hoverStyle={{ color: "var(--foreground)" }}>Learn more</Link> about our referral program.
+          </Paragraph>
+        </Box>
+      </MotionBox>
+    </Box>
   );
 };
 

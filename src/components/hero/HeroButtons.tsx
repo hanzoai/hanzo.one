@@ -1,5 +1,5 @@
+import { Anchor, Box, Button, YStack } from '@/gui'
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Zap } from "lucide-react";
 
 interface HeroButtonsProps {
@@ -10,8 +10,8 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ titleAnimationComplete }) => 
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <div 
-      className="mt-12 flex flex-col sm:flex-row gap-5 justify-center"
+    <YStack 
+      marginTop={48} display="flex" flexDirection="column" gap={20} justifyContent="center" $sm={{ flexDirection: "row" }}
       style={{
         opacity: titleAnimationComplete ? 1 : 0,
         transform: titleAnimationComplete ? "translateY(0)" : "translateY(20px)",
@@ -24,26 +24,26 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ titleAnimationComplete }) => 
         size="sm" 
         variant="outline" 
         radius="full"
-        className="text-white border-white/10 bg-transparent hover:bg-white/5 h-10 min-w-[140px]"
+        color="var(--foreground)" borderColor="rgb(255 255 255 / 0.1)" backgroundColor="transparent" height={40} minWidth="140px" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
       >
-        <a href="/ai" className="chrome-text flex items-center">
-          <Sparkles className="mr-2 h-4 w-4" />
+        <Anchor href="/ai" backgroundImage="linear-gradient(90deg, var(--neutral-400), var(--foreground), var(--neutral-400))" backgroundClip="text" color="transparent" display="flex" alignItems="center">
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Sparkles size={16} /></Box>
           Our models
-        </a>
+        </Anchor>
       </Button>
       <Button 
         size="sm" 
         radius="full"
-        className="bg-white text-black border border-gray-300 hover:bg-gray-100 hover:text-black hover:border-gray-400 transition-all duration-300 h-10 min-w-[140px]"
+        backgroundColor="var(--foreground)" color="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-300)" transition="all 300ms cubic-bezier(.4,0,.2,1)" height={40} minWidth="140px" hoverStyle={{ backgroundColor: "var(--neutral-100)", color: "var(--pure-black)", borderColor: "var(--neutral-400)" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <a href="/zen" className="flex items-center">
-          <Zap className="mr-2 h-4 w-4" />
+        <Anchor href="/zen" display="flex" alignItems="center">
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Zap size={16} /></Box>
           Our principles
-        </a>
+        </Anchor>
       </Button>
-    </div>
+    </YStack>
   );
 };
 

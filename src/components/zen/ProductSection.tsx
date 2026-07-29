@@ -1,3 +1,4 @@
+import { Grid, H3, H4, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -21,17 +22,17 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   bgClass = "bg-gradient-to-br from-purple-900/20 to-indigo-900/20"
 }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`rounded-xl ${bgClass} p-8 backdrop-blur-sm border border-white/10`}
+      borderRadius="var(--radius-xl)" padding={32} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
     >
-      <h3 className="text-2xl md:text-3xl font-bold mb-2">{title}</h3>
-      {subtitle && <p className="text-neutral-300 mb-6">{subtitle}</p>}
+      <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>{title}</H3>
+      {subtitle && <Paragraph color="var(--neutral-300)" marginBottom={24}>{subtitle}</Paragraph>}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {products.map((product, index) => {
           // Handle products in format "Name – Description"
           let name, description;
@@ -43,21 +44,21 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           }
           
           return (
-            <motion.div
+            <MotionBox
               key={name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="bg-[var(--black)]/30 p-4 rounded-lg border border-purple-500/10 hover:border-purple-500/30 transition-colors"
+              
+              backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
-              <h4 className="text-lg font-semibold text-purple-400 mb-1">{name}</h4>
-              <p className="text-neutral-300 text-sm">{description}</p>
-            </motion.div>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={4}>{name}</H4>
+              <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{description}</Paragraph>
+            </MotionBox>
           );
         })}
-      </div>
-    </motion.div>
+      </Grid>
+    </MotionBox>
   );
 };
 

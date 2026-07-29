@@ -1,16 +1,16 @@
+import { Box, H1, H2, Helmet, Link, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Home, ArrowLeft, Search, FileQuestion } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex flex-col">
+    <YStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" flexDirection="column">
       <Helmet>
         <title>404 - Page Not Found | Hanzo AI</title>
         <meta name="description" content="The page you're looking for doesn't exist." />
@@ -18,114 +18,114 @@ const NotFound = () => {
 
       <Navbar />
 
-      <main className="flex-grow flex items-center justify-center px-4 py-24">
-        <div className="max-w-2xl mx-auto text-center relative">
+      <XStack render="main" flexGrow={1} display="flex" alignItems="center" justifyContent="center" paddingHorizontal={16} paddingVertical={96}>
+        <Box maxWidth="42rem" marginHorizontal="auto" textAlign="center" position="relative">
           {/* Background glow */}
-          <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+            <Box
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="600px" height="600px" borderRadius="var(--radius-full)" opacity={0.1}
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </Box>
 
-          <div className="relative z-10">
-            <motion.div
+          <Box position="relative" zIndex={10}>
+            <MotionBox
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <div
-                className="w-24 h-24 rounded-2xl mx-auto flex items-center justify-center mb-6"
+              <XStack
+                width={96} height={96} borderRadius="var(--radius-2xl)" marginHorizontal="auto" display="flex" alignItems="center" justifyContent="center" marginBottom={24}
                 style={{ backgroundColor: `${BRAND_COLOR}15` }}
               >
-                <FileQuestion className="w-12 h-12" style={{ color: BRAND_COLOR }} />
-              </div>
+                <FileQuestion size={48} style={{ color: BRAND_COLOR }} />
+              </XStack>
 
-              <h1 className="text-8xl md:text-9xl font-bold mb-4 bg-gradient-to-b from-white to-neutral-600 bg-clip-text text-transparent">
+              <H1 fontSize="var(--text-8xl)" lineHeight="var(--leading-8xl)" fontWeight="700" marginBottom={16} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), var(--neutral-600))" $md={{ fontSize: "var(--text-9xl)", lineHeight: "var(--leading-9xl)" }}>
                 404
-              </h1>
-            </motion.div>
+              </H1>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
                 Page not found
-              </h2>
-              <p className="text-neutral-400 text-lg mb-10 max-w-md mx-auto">
+              </H2>
+              <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={40} maxWidth="28rem" marginHorizontal="auto">
                 The page you're looking for doesn't exist or has been moved to a new location.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}
             >
               <Link
                 to="/"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
-                <Home className="w-4 h-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Home size={16} /></Box>
                 Go to Homepage
               </Link>
-              <button
+              <XStack minHeight={44}
                 onClick={() => window.history.back()}
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                render="button" display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ArrowLeft size={16} /></Box>
                 Go Back
-              </button>
-            </motion.div>
+              </XStack>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mt-12"
+              marginTop={48}
             >
-              <p className="text-neutral-500 text-sm mb-4">Looking for something?</p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <Link
+              <Paragraph color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>Looking for something?</Paragraph>
+              <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={12}>
+                <Link tap
                   to="/products"
-                  className="px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-sm text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+                  paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                 >
                   Products
                 </Link>
-                <Link
+                <Link tap
                   to="/docs"
-                  className="px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-sm text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+                  paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                 >
                   Documentation
                 </Link>
-                <Link
+                <Link tap
                   to="/contact"
-                  className="px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-sm text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+                  paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                 >
                   Contact
                 </Link>
-                <Link
+                <Link tap
                   to="/status"
-                  className="px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-sm text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors"
+                  paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                 >
                   Status
                 </Link>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </main>
+              </XStack>
+            </MotionBox>
+          </Box>
+        </Box>
+      </XStack>
 
       <Footer />
-    </div>
+    </YStack>
   );
 };
 

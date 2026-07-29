@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -22,115 +23,115 @@ const SecurityFeatures = [
 
 const Security = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-gray-900/40 via-transparent to-transparent"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), transparent, transparent)"></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex items-center justify-center mb-4">
-            <ShieldCheck className="h-10 w-10 text-green-400" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Enterprise-Grade Security & Compliance</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <XStack display="inline-flex" alignItems="center" justifyContent="center" marginBottom={16}>
+            <ShieldCheck size={40} color="var(--foreground)" />
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Enterprise-Grade Security & Compliance</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Secure by design, ensuring your data meets stringent compliance standards.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-1"
+            $lg={{ gridColumn: "span 1 / span 1" }}
           >
-            <div className="bg-gradient-to-br from-gray-900 to-gray-900/50 rounded-xl border border-gray-800 p-6 h-full">
-              <div className="flex justify-center mb-6">
-                <div className="p-3 bg-green-900/20 rounded-full border border-green-800/30">
-                  <Lock className="h-8 w-8 text-green-400" />
-                </div>
-              </div>
+            <Box borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} height="100%" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), rgb(255 255 255 / 0.08))">
+              <XStack display="flex" justifyContent="center" marginBottom={24}>
+                <Box padding={12} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)">
+                  <Lock size={32} color="var(--foreground)" />
+                </Box>
+              </XStack>
               
-              <h3 className="text-xl font-bold text-center mb-6">Security Features</h3>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" textAlign="center" marginBottom={24}>Security Features</H3>
               
-              <ul className="space-y-3">
+              <Box render="ul" rowGap={12}>
                 {SecurityFeatures.map((feature, index) => (
-                  <motion.li
+                  <MotionBox
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.1 * index }}
-                    className="flex items-center"
+                    flexDirection="row" display="flex" alignItems="center"
                   >
-                    <CheckCircle className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
-                    <span className="text-neutral-300">{feature}</span>
-                  </motion.li>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><CheckCircle size={20} color="var(--foreground)" /></Box>
+                    <Text color="var(--neutral-300)">{feature}</Text>
+                  </MotionBox>
                 ))}
-              </ul>
-            </div>
-          </motion.div>
+              </Box>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-2"
+            $lg={{ gridColumn: "span 2 / span 2" }}
           >
-            <div className="bg-gradient-to-br from-gray-900 to-gray-900/50 rounded-xl border border-gray-800 p-6 h-full">
-              <h3 className="text-xl font-bold mb-6">Compliance Certifications</h3>
+            <Box borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} height="100%" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), rgb(255 255 255 / 0.08))">
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={24}>Compliance Certifications</H3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {certifications.map((cert, index) => (
-                  <motion.div
+                  <MotionBox
                     key={cert.name}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
-                    className="bg-gray-800/30 rounded-lg p-5 border border-gray-700"
+                    backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={20} borderWidth={1} borderColor="var(--neutral-700)"
                   >
-                    <div className="flex items-center">
-                      <div className="mr-3 p-2 bg-green-900/30 rounded-full">
-                        <ShieldCheck className="h-6 w-6 text-green-400" />
-                      </div>
-                      <h4 className="text-lg font-medium">{cert.name}</h4>
-                    </div>
-                    <p className="mt-3 text-neutral-400">{cert.details}</p>
-                  </motion.div>
+                    <XStack display="flex" alignItems="center">
+                      <Box marginRight={12} padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)">
+                        <ShieldCheck size={24} color="var(--foreground)" />
+                      </Box>
+                      <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{cert.name}</H4>
+                    </XStack>
+                    <Paragraph marginTop={12} color="var(--neutral-400)">{cert.details}</Paragraph>
+                  </MotionBox>
                 ))}
-              </div>
+              </Grid>
               
-              <div className="mt-8 bg-blue-900/20 rounded-lg p-5 border border-blue-900/30">
-                <div className="flex">
-                  <div className="mr-4 p-2 bg-blue-900/30 rounded-full">
-                    <svg className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <Box marginTop={32} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={20} borderWidth={1} borderColor="var(--border-strong)">
+                <XStack display="flex">
+                  <Box marginRight={16} padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)">
+                    <Box display="inline-block" render="svg" height={24} width={24} color="var(--foreground)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
+                    </Box>
+                  </Box>
                   <div>
-                    <h4 className="text-lg font-medium mb-2">Data Privacy Commitment</h4>
-                    <p className="text-neutral-400">
+                    <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={8}>Data Privacy Commitment</H4>
+                    <Paragraph color="var(--neutral-400)">
                       We believe privacy is a fundamental right. Hanzo Analytics is designed with privacy-first principles and gives you full control over your data collection practices.
-                    </p>
-                    <a href="#privacy-policy" className="inline-block mt-3 text-blue-400 hover:text-blue-300 transition-colors">
+                    </Paragraph>
+                    <Anchor tap href="#privacy-policy" display="inline-block" marginTop={12} color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
                       Read our privacy policy →
-                    </a>
+                    </Anchor>
                   </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                </XStack>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

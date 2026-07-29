@@ -1,81 +1,81 @@
+import { Box, Button, H1, MotionBox, Paragraph, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Code2 } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="pt-36 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <Box render="section" paddingTop={144} paddingBottom={96} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-6 text-center"
+          marginBottom={24} textAlign="center"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium">
+          <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
             New Release
-          </span>
-        </motion.div>
+          </Text>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          textAlign="center" marginBottom={40}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/70">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), var(--foreground), rgb(255 255 255 / 0.08))" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
             Shadcn/UI with Tailwind v4 & React 19
-          </h1>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H1>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             The complete guide to using shadcn/ui components with Tailwind v4 and React 19.
             Get started with the latest features and improvements.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
+          display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={64} $sm={{ flexDirection: "row" }}
         >
           <Button 
             size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white rounded-md py-6"
+            backgroundColor="var(--neutral-600)" color="var(--foreground)" borderRadius="var(--radius-md)" paddingVertical={24} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
           >
-            Get Started <ArrowRight className="ml-2 h-5 w-5" />
+            Get Started <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Button>
           
           <Button 
             size="lg" 
             variant="outline"
-            className="border-purple-500/30 text-white hover:border-purple-500/50 rounded-md py-6"
+            borderColor="var(--border-strong)" color="var(--foreground)" borderRadius="var(--radius-md)" paddingVertical={24} hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <Code2 className="mr-2 h-5 w-5" /> View Demo
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Code2 size={20} /></Box> View Demo
           </Button>
           
           <Button 
             size="lg" 
             variant="outline"
-            className="border-gray-700 text-white hover:bg-white/10 rounded-md py-6"
+            borderColor="var(--neutral-700)" color="var(--foreground)" borderRadius="var(--radius-md)" paddingVertical={24} hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
           >
-            <Github className="mr-2 h-5 w-5" /> Star on GitHub
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box> Star on GitHub
           </Button>
-        </motion.div>
+        </MotionBox>
         
-        <div className="bg-black/30 border border-white/10 rounded-xl p-6 mx-auto max-w-4xl backdrop-blur-sm">
-          <code className="text-sm text-neutral-300 block overflow-x-auto">
-            <span className="text-purple-400">npm</span> <span className="text-blue-400">install</span> @shadcn/ui <span className="text-green-400">--force</span>
-          </code>
-        </div>
-      </div>
-    </section>
+        <Box backgroundColor="rgb(0 0 0 / 0.3)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-xl)" padding={24} marginHorizontal="auto" maxWidth="56rem" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)">
+          <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" display="block" overflowX="auto">
+            <Text color="var(--foreground)">npm</Text> <Text color="var(--foreground)">install</Text> @shadcn/ui <Text color="var(--foreground)">--force</Text>
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -17,19 +18,19 @@ const PlatformFeatureCard: React.FC<PlatformFeatureCardProps> = ({
   index,
 }) => {
   return (
-    <motion.div
+    <MotionBox
       key={title}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1 * index }}
-      className="bg-gray-900/20 border border-gray-800 rounded-xl p-6"
+      backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
     >
-      <div className="h-12 w-12 bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
-        <Icon className="h-6 w-6 text-purple-400" />
-      </div>
-      <h3 className="text-xl font-bold mb-2 text-[var(--white)]">{title}</h3>
-      <p className="text-neutral-400">{description}</p>
-    </motion.div>
+      <XStack height={48} width={48} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+        <Icon height={24} width={24} color="var(--foreground)" />
+      </XStack>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">{title}</H3>
+      <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 

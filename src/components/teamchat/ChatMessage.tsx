@@ -1,3 +1,4 @@
+import { Box, Text, XStack } from '@/gui'
 
 import React from "react";
 import { Bot, User } from "lucide-react";
@@ -14,41 +15,37 @@ interface ChatMessageProps {
 
 const ChatMessage: React.FC<ChatMessageProps> = ({ message, formatTimestamp }) => {
   return (
-    <div
-      className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"} mb-4`}
+    <XStack
+      display="flex" marginBottom={16} justifyContent={message.sender === "user" ? "flex-end" : "flex-start"}
     >
       {message.sender === "ai" && (
-        <div className="bg-purple-600/40 h-8 w-8 rounded-full flex items-center justify-center mr-2 mt-1">
-          <Bot className="h-4 w-4 text-[var(--white)]" />
-        </div>
+        <XStack backgroundColor="var(--surface-card-emphasis)" height={32} width={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginRight={8} marginTop={4}>
+          <Bot size={16} color="var(--white)" />
+        </XStack>
       )}
       
-      <div
-        className={`max-w-3xl p-3 rounded-lg ${
-          message.sender === "user"
-            ? "bg-blue-600/30 border border-blue-500/30"
-            : "bg-gray-800/60 border border-gray-700/50"
-        }`}
+      <Box
+        maxWidth="var(--container-prose)" padding={12} borderRadius="var(--radius-lg)" backgroundColor={message.sender === "user" ? "rgb(255 255 255 / 0.3)" : "rgb(255 255 255 / 0.6)"} borderWidth={message.sender === "user" ? 1 : 1} borderColor={message.sender === "user" ? "rgb(255 255 255 / 0.3)" : "rgb(255 255 255 / 0.5)"}
       >
-        <div 
-          className="prose prose-invert text-sm" 
+        <Box 
+          fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" 
           dangerouslySetInnerHTML={{ 
             __html: message.message.replace(/```(.+?)```/gs, '<pre><code>$1</code></pre>').replace(/\n/g, '<br>') 
           }} 
         />
-        <div className="text-right mt-1">
-          <span className="text-xs text-neutral-400">
+        <Box textAlign="right" marginTop={4}>
+          <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">
             {formatTimestamp(message.timestamp)}
-          </span>
-        </div>
-      </div>
+          </Text>
+        </Box>
+      </Box>
       
       {message.sender === "user" && (
-        <div className="bg-blue-600/40 h-8 w-8 rounded-full flex items-center justify-center ml-2 mt-1">
-          <User className="h-4 w-4 text-[var(--white)]" />
-        </div>
+        <XStack backgroundColor="var(--surface-card-emphasis)" height={32} width={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginLeft={8} marginTop={4}>
+          <User size={16} color="var(--white)" />
+        </XStack>
       )}
-    </div>
+    </XStack>
   );
 };
 

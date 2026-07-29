@@ -1,6 +1,6 @@
+import { Box, Button, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { PlusCircle, X } from "lucide-react";
 
 interface Assignee {
@@ -16,37 +16,37 @@ interface AssigneesListProps {
 
 const AssigneesList: React.FC<AssigneesListProps> = ({ assignees = [], onRemove }) => {
   return (
-    <div className="mb-6">
-      <div className="flex justify-between mb-2">
-        <label className="block text-sm font-medium text-neutral-400">Assignees</label>
-        <Button size="sm" variant="ghost" className="text-blue-400 hover:text-blue-300 h-6 px-2">
-          <PlusCircle className="h-3.5 w-3.5 mr-1" />
+    <Box marginBottom={24}>
+      <XStack display="flex" justifyContent="space-between" marginBottom={8}>
+        <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)">Assignees</Text>
+        <Button size="sm" variant="ghost" color="var(--foreground)" height={24} paddingHorizontal={8} hoverStyle={{ color: "var(--foreground)" }}>
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><PlusCircle size={14} /></Box>
           Add
         </Button>
-      </div>
-      <div className="flex flex-wrap gap-2">
+      </XStack>
+      <XStack display="flex" flexWrap="wrap" gap={8}>
         {assignees.map(assignee => (
-          <div 
+          <XStack 
             key={assignee.id}
-            className="flex items-center gap-2 bg-gray-800 px-2 py-1 rounded text-sm"
+            display="flex" alignItems="center" gap={8} backgroundColor="var(--neutral-800)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
           >
-            <div className="w-5 h-5 rounded-full bg-blue-900 flex items-center justify-center text-xs">
+            <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
               {assignee.name.charAt(0)}
-            </div>
+            </XStack>
             <span>{assignee.name}</span>
-            <button 
-              className="text-neutral-400 hover:text-[var(--white)]"
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
+              render="button" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}
               onClick={() => onRemove && onRemove(assignee.id)}
             >
-              <X className="h-3 w-3" />
-            </button>
-          </div>
+              <X size={12} />
+            </Box>
+          </XStack>
         ))}
         {!assignees.length && (
-          <div className="text-sm text-neutral-500">No assignees</div>
+          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">No assignees</Box>
         )}
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

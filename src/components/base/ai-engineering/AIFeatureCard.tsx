@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -29,35 +30,35 @@ const AIFeatureCard = ({
   bulletColor,
 }: AIFeatureCardProps) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, x: title.includes("Vector") || title.includes("AI-Enhanced") ? 20 : -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gray-900/20 border border-gray-800 rounded-lg p-6"
+      backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}
     >
-      <div className="flex items-center mb-6">
-        <div className="flex-shrink-0">
-          <div className={`flex items-center justify-center h-12 w-12 rounded-lg ${iconBgClass} ${iconTextClass}`}>
+      <XStack display="flex" alignItems="center" marginBottom={24}>
+        <Box flexShrink={0}>
+          <XStack display="flex" alignItems="center" justifyContent="center" height={48} width={48} borderRadius="var(--radius-lg)">
             {icon}
-          </div>
-        </div>
-        <div className="ml-4">
-          <h3 className="text-xl font-semibold text-[var(--white)]">{title}</h3>
-        </div>
-      </div>
-      <p className="text-neutral-300 mb-6">
+          </XStack>
+        </Box>
+        <Box marginLeft={16}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">{title}</H3>
+        </Box>
+      </XStack>
+      <Paragraph color="var(--neutral-300)" marginBottom={24}>
         {description}
-      </p>
-      <ul className="space-y-3">
+      </Paragraph>
+      <Box render="ul" rowGap={12}>
         {featurePoints.map((point, index) => (
-          <li key={index} className="flex items-start">
-            <span className={`${bulletColor} mr-2`}>•</span>
-            <span className="text-neutral-300">{point.text}</span>
-          </li>
+          <XStack key={index} render="li" display="flex" alignItems="flex-start">
+            <Text marginRight={8}>•</Text>
+            <Text color="var(--neutral-300)">{point.text}</Text>
+          </XStack>
         ))}
-      </ul>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

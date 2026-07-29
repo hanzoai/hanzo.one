@@ -1,9 +1,8 @@
+import { Box, Button, XStack, toast } from '@/gui'
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { DummyTaskData } from "./data";
 import { TaskDetailModal } from "./task-detail";
-import { toast } from "sonner";
 import { Task } from "./data/tasks/task-data";
 import KanbanColumn from "./kanban/KanbanColumn";
 import KanbanAddTaskButton from "./kanban/KanbanAddTaskButton";
@@ -18,25 +17,25 @@ const KanbanBoard = () => {
     {
       id: "backlog",
       title: "Backlog",
-      icon: <Clock className="h-4 w-4 text-neutral-400" />,
+      icon: <Clock size={16} color="var(--neutral-400)" />,
       tasks: tasks.filter(task => task.status === "backlog")
     },
     {
       id: "todo",
       title: "Todo",
-      icon: <CheckCircle className="h-4 w-4 text-neutral-400" />,
+      icon: <CheckCircle size={16} color="var(--neutral-400)" />,
       tasks: tasks.filter(task => task.status === "todo")
     },
     {
       id: "in-progress",
       title: "In Progress",
-      icon: <Zap className="h-4 w-4 text-yellow-500" />,
+      icon: <Zap size={16} color="var(--neutral-500)" />,
       tasks: tasks.filter(task => task.status === "in-progress")
     },
     {
       id: "done",
       title: "Done",
-      icon: <CheckCircle className="h-4 w-4 text-green-500" />,
+      icon: <CheckCircle size={16} color="var(--neutral-500)" />,
       tasks: tasks.filter(task => task.status === "done")
     }
   ];
@@ -90,8 +89,8 @@ const KanbanBoard = () => {
   };
 
   return (
-    <div className="h-full overflow-x-auto">
-      <div className="flex space-x-4 h-full pb-6 min-w-max">
+    <Box height="100%" overflowX="auto">
+      <XStack display="flex" columnGap={16} height="100%" paddingBottom={24} minWidth="max-content">
         {columns.map((column) => (
           <KanbanColumn
             key={column.id}
@@ -103,7 +102,7 @@ const KanbanBoard = () => {
             onAddTask={handleAddTask}
           />
         ))}
-      </div>
+      </XStack>
 
       {selectedTask && (
         <TaskDetailModal
@@ -112,7 +111,7 @@ const KanbanBoard = () => {
           onUpdate={handleTaskUpdate}
         />
       )}
-    </div>
+    </Box>
   );
 };
 

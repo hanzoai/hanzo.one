@@ -1,3 +1,4 @@
+import { YStack } from '@/gui'
 
 import React from "react";
 import Chat from "./Chat";
@@ -21,7 +22,7 @@ const Content = ({
   handleSubmit 
 }: ContentProps) => {
   return (
-    <div className="flex-1 flex flex-col bg-gray-900/30 border border-gray-800 rounded-lg overflow-hidden">
+    <YStack flex={1} display="flex" flexDirection="column" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden">
       {activeTab === "chat" && (
         <Chat 
           conversation={conversation}
@@ -34,7 +35,7 @@ const Content = ({
       {activeTab === "playground" && <Playground />}
       
       {activeTab === "terminal" && <Terminal />}
-    </div>
+    </YStack>
   );
 };
 

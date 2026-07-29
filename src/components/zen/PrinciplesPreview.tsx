@@ -1,7 +1,8 @@
+import { Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Info, X } from "lucide-react";
-import { Link } from "react-router-dom";
+
 import { principles } from "./data/zenPrinciples";
 
 interface WisdomDialogProps {
@@ -20,60 +21,60 @@ const WisdomDialog: React.FC<WisdomDialogProps> = ({ principle, isOpen, onClose 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          flexDirection="row" position="fixed" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(0 0 0 / 0.8)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" zIndex={50} display="flex" alignItems="center" justifyContent="center" padding={16}
           onClick={onClose}
         >
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25 }}
-            className="bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-2xl max-w-md w-full p-6 shadow-xl"
+            borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-2xl)" maxWidth="28rem" width="100%" padding={24} boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center">
-                <div className="w-8 h-8 flex items-center justify-center bg-white/10 rounded-full text-white mr-3">
+            <XStack display="flex" alignItems="flex-start" justifyContent="space-between" marginBottom={16}>
+              <XStack display="flex" alignItems="center">
+                <XStack width={32} height={32} display="flex" alignItems="center" justifyContent="center" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" color="var(--foreground)" marginRight={12}>
                   {principle.emoji}
-                </div>
+                </XStack>
                 <div>
-                  <h3 className="text-white text-xl font-medium">{principle.title}</h3>
-                  <div className="text-neutral-400 text-sm">
+                  <H3 color="var(--foreground)" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">{principle.title}</H3>
+                  <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     {principle.discipline}
-                  </div>
+                  </Box>
                 </div>
-              </div>
-              <button 
+              </XStack>
+              <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
                 onClick={onClose}
-                className="text-neutral-400 hover:text-white transition-colors"
+                render="button" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <X size={20} />
-              </button>
-            </div>
+              </Box>
+            </XStack>
             
-            <div className="mb-4 text-neutral-200 font-medium">
+            <Box marginBottom={16} color="var(--neutral-200)" fontWeight="500">
               "{principle.description}"
-            </div>
+            </Box>
             
-            <div className="text-neutral-400 text-sm">
+            <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
               Deep mastery of this principle leads to engineering excellence. Apply it consistently to create systems that are elegant, resilient, and sustainable.
-            </div>
+            </Box>
             
-            <div className="mt-6 pt-4 border-t border-white/10 text-center">
+            <Box marginTop={24} paddingTop={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" textAlign="center">
               <Link 
                 to="/philosophy" 
-                className="text-neutral-400 hover:text-white transition-colors text-sm flex items-center justify-center"
+                color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" justifyContent="center" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <span>Explore more principles</span>
-                <ArrowRight className="ml-2 h-3 w-3" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></Box>
               </Link>
-            </div>
-          </motion.div>
-        </motion.div>
+            </Box>
+          </MotionBox>
+        </MotionBox>
       )}
     </AnimatePresence>
   );
@@ -102,114 +103,101 @@ const PrinciplesPreview = () => {
   };
 
   return (
-    <section className="py-24 px-4 relative" id="principles">
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-50"
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" id="principles">
+      <Box 
+        position="absolute" top={0} right={0} bottom={0} left={0} pointerEvents="none" opacity={0.5}
         style={{
           background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(20,20,20,1) 100%)"
         }}
       />
       
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl font-bold mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/50">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} display="inline-block" backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
             Zen of Hanzo
-          </h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-500)" maxWidth="42rem" marginHorizontal="auto">
             Engineering principles rooted in ancient wisdom, designed for modern developers building 
             next-generation AI systems and applications.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
         {/* Discipline Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          <button
-            className={`px-3 py-1 rounded-full text-sm ${
-              selectedDiscipline === null 
-                ? "bg-white/20 text-white" 
-                : "bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-gray-300"
-            } transition-colors`}
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={8} marginBottom={48}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
+            render="button" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={selectedDiscipline === null ? "rgb(255 255 255 / 0.2)" : "rgb(255 255 255 / 0.5)"} color={selectedDiscipline === null ? "var(--foreground)" : "var(--neutral-400)"} hoverStyle={selectedDiscipline === null ? undefined : { backgroundColor: "var(--neutral-800)", color: "var(--neutral-300)" }}
             onClick={() => setSelectedDiscipline(null)}
           >
             All
-          </button>
+          </Box>
           {disciplines.map(discipline => (
-            <button
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
               key={discipline}
-              className={`px-3 py-1 rounded-full text-sm ${
-                selectedDiscipline === discipline 
-                  ? "bg-white/20 text-white" 
-                  : "bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-gray-300"
-              } transition-colors`}
+              render="button" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={selectedDiscipline === discipline ? "rgb(255 255 255 / 0.2)" : "rgb(255 255 255 / 0.5)"} color={selectedDiscipline === discipline ? "var(--foreground)" : "var(--neutral-400)"} hoverStyle={selectedDiscipline === discipline ? undefined : { backgroundColor: "var(--neutral-800)", color: "var(--neutral-300)" }}
               onClick={() => setSelectedDiscipline(discipline)}
             >
               {discipline}
-            </button>
+            </Box>
           ))}
-        </div>
+        </XStack>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {(selectedDiscipline 
             ? previewPrinciples.filter(p => p?.discipline === selectedDiscipline)
             : previewPrinciples
           ).map((principle, index) => principle && (
-            <motion.div
+            <MotionBox
               key={principle.number}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.1,
-                type: "spring",
-                stiffness: 100
-              }}
+              
               viewport={{ once: true }}
               whileHover={{ 
                 y: -5, 
                 transition: { duration: 0.2 }
               }}
-              className="bg-gradient-to-br from-gray-900/40 to-gray-950/70 border border-white/10 rounded-2xl p-6 hover:border-white/30 hover:shadow-lg transition-all duration-300 relative overflow-hidden group"
+              group borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-2xl)" padding={24} transition="all 300ms cubic-bezier(.4,0,.2,1)" position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)", boxShadow: "0 10px 15px -3px rgb(0 0 0 / .35)" }}
               onClick={() => openWisdomDialog(principle)}
             >
-              <div className="absolute top-2 right-2 text-white/40 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Box position="absolute" top={8} right={8} color="rgb(255 255 255 / 0.4)" opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ opacity: 1 }}>
                 <Info size={16} />
-              </div>
+              </Box>
               
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-3 text-lg">
+              <XStack display="flex" alignItems="center" marginBottom={16}>
+                <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" marginRight={12} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">
                   {principle.emoji}
-                </div>
+                </XStack>
                 <div>
-                  <h3 className="text-white text-lg font-medium">{principle.title}</h3>
-                  <div className="text-neutral-500 text-sm">
+                  <H3 color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{principle.title}</H3>
+                  <Box color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     {principle.discipline}
-                  </div>
+                  </Box>
                 </div>
-              </div>
-              <p className="text-neutral-400 text-sm mb-4">{principle.description}</p>
+              </XStack>
+              <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>{principle.description}</Paragraph>
               
-              <motion.div 
-                className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"
+              <MotionBox 
+                position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(255 255 255 / 0.05)" opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderRadius="var(--radius-2xl)" $group-hover={{ opacity: 1 }}
                 initial={false}
                 whileHover={{ scale: 1.05, opacity: 0.1 }}
               />
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <div className="text-center mt-12">
-          <Link to="/philosophy" className="inline-flex items-center text-neutral-400 hover:text-white transition-colors group">
-            <span className="group-hover:underline">Learn more principles</span>
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        <Box textAlign="center" marginTop={48}>
+          <Link to="/philosophy" group display="inline-flex" alignItems="center" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
+            <Text $group-hover={{ textDecorationLine: "underline" }}>Learn more principles</Text>
+            <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
           </Link>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {selectedPrinciple && (
         <WisdomDialog 
@@ -218,7 +206,7 @@ const PrinciplesPreview = () => {
           onClose={closeWisdomDialog} 
         />
       )}
-    </section>
+    </Box>
   );
 };
 

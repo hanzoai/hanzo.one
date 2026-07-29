@@ -1,7 +1,7 @@
+import { Box, H3, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { Bot, MessageSquare, Paperclip, AlertCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface TaskCardProps {
   task: {
@@ -26,86 +26,86 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-md p-3 border border-gray-800 hover:border-gray-700 cursor-pointer transition-colors">
+    <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} borderWidth={1} borderColor="var(--neutral-800)" cursor="pointer" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}>
       {/* Task ID and Priority */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-xs text-neutral-500 flex items-center">
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={8}>
+        <XStack fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" display="flex" alignItems="center">
           <span>HAN-{task.id}</span>
-        </div>
+        </XStack>
         {task.priority && (
-          <div className={cn("h-2 w-2 rounded-full", priorityColors[task.priority])}></div>
+          <Box height={8} width={8} borderRadius="var(--radius-full)"></Box>
         )}
-      </div>
+      </XStack>
       
       {/* Title */}
-      <h3 className="font-medium text-sm mb-2">{task.title}</h3>
+      <H3 fontWeight="500" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={8}>{task.title}</H3>
       
       {/* Description (optional) */}
       {task.description && (
-        <p className="text-xs text-neutral-400 mb-3 line-clamp-2">{task.description}</p>
+        <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={12} WebkitLineClamp={2} display="-webkit-box" WebkitBoxOrient="vertical" overflow="hidden">{task.description}</Paragraph>
       )}
       
       {/* Labels */}
       {task.labels && task.labels.length > 0 && (
-        <div className="flex flex-wrap gap-1 mb-3">
+        <XStack display="flex" flexWrap="wrap" gap={4} marginBottom={12}>
           {task.labels.map(label => (
-            <span 
+            <Text 
               key={label.id} 
-              className="px-2 py-0.5 text-xs rounded-full" 
+              paddingHorizontal={8} paddingVertical={2} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" borderRadius="var(--radius-full)" 
               style={{ backgroundColor: `${label.color}20`, color: label.color }}
             >
               {label.name}
-            </span>
+            </Text>
           ))}
-        </div>
+        </XStack>
       )}
       
       {/* Footer */}
-      <div className="flex items-center justify-between mt-2">
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginTop={8}>
         {/* Assignees */}
-        <div className="flex -space-x-2">
+        <XStack display="flex" columnGap={8}>
           {task.assignees && task.assignees.map((assignee, index) => (
-            <div 
+            <XStack 
               key={assignee.id} 
-              className="h-6 w-6 rounded-full bg-gray-700 border-2 border-gray-900 flex items-center justify-center text-[10px]"
+              height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-700)" borderWidth={2} borderColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" fontSize="10px"
               title={assignee.name}
             >
               {assignee.avatar ? (
-                <img src={assignee.avatar} alt={assignee.name} className="h-full w-full rounded-full" />
+                <Box display="inline-block" src={assignee.avatar} alt={assignee.name} render="img" height="100%" width="100%" borderRadius="var(--radius-full)" />
               ) : (
                 assignee.name.charAt(0)
               )}
-            </div>
+            </XStack>
           ))}
           
           {task.agentCount && task.agentCount > 0 && (
-            <div 
-              className="h-6 w-6 rounded-full bg-blue-900 border-2 border-gray-900 flex items-center justify-center"
+            <XStack 
+              height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={2} borderColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center"
               title={`${task.agentCount} AI agents`}
             >
-              <Bot className="h-3 w-3 text-blue-400" />
-            </div>
+              <Bot size={12} color="var(--foreground)" />
+            </XStack>
           )}
-        </div>
+        </XStack>
         
         {/* Metadata */}
-        <div className="flex items-center space-x-2 text-neutral-400">
+        <XStack display="flex" alignItems="center" columnGap={8} color="var(--neutral-400)">
           {task.messageCount && task.messageCount > 0 && (
-            <div className="flex items-center text-xs">
-              <MessageSquare className="h-3 w-3 mr-1" />
+            <XStack display="flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><MessageSquare size={12} /></Box>
               {task.messageCount}
-            </div>
+            </XStack>
           )}
           
           {task.dueDate && (
-            <div className="flex items-center text-xs">
-              <AlertCircle className="h-3 w-3 mr-1" />
+            <XStack display="flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><AlertCircle size={12} /></Box>
               {new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-            </div>
+            </XStack>
           )}
-        </div>
-      </div>
-    </div>
+        </XStack>
+      </XStack>
+    </Box>
   );
 };
 

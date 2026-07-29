@@ -1,35 +1,35 @@
+import { Box, ChromeText, MotionBox, MotionText } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import ChromeText from "@/components/ui/chrome-text";
 
 const FeatureShowcaseHeader: React.FC = () => {
   return (
-    <div className="text-center mb-16">
-      <motion.div 
-        className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6"
+    <Box textAlign="center" marginBottom={64}>
+      <MotionBox 
+        display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
         Open Source AI Engineering
-      </motion.div>
+      </MotionBox>
       
-      <motion.h2 
+      <MotionText 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="max-w-4xl mx-auto"
+        maxWidth="56rem" marginHorizontal="auto"
       >
-        <ChromeText as="span" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        <ChromeText as="span" fontSize="var(--text-4xl)" lineHeight="var(--leading-tight)" fontWeight="700" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
           Build the Future with AI
         </ChromeText>
-      </motion.h2>
+      </MotionText>
       
-      <motion.p 
-        className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto mt-6"
+      <MotionText 
+        fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="42rem" marginHorizontal="auto" marginTop={24} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -37,8 +37,8 @@ const FeatureShowcaseHeader: React.FC = () => {
       >
         A complete platform for developers to build, deploy, and scale AI applications
         with unprecedented speed and complete control
-      </motion.p>
-    </div>
+      </MotionText>
+    </Box>
   );
 };
 

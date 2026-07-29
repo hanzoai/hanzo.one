@@ -1,7 +1,6 @@
+import { Anchor, Box, Button, ChromeText, MotionBox, Paragraph, Text } from '@/gui'
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 import { Github, Terminal, Download } from "lucide-react";
 
 const HeroSection = () => {
@@ -26,98 +25,98 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section 
+    <Box 
       ref={containerRef}
-      className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
     >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto text-center relative z-10">
-        <motion.div
+      <Box maxWidth="64rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-6"
+          marginBottom={24}
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-green-900/30 border border-green-500/30 text-green-300 text-sm font-medium">
+          <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
             Open Source
-          </span>
-        </motion.div>
+          </Text>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          marginBottom={32}
         >
           <ChromeText 
             as="h1" 
-            className="text-4xl md:text-6xl font-bold mb-6"
+            fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
             style={{
               backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
             }}
           >
             Hanzo Platform
           </ChromeText>
-          <p className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto mb-8">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
             The free, forever, open-source version of our cloud infrastructure.
-          </p>
-          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto mb-8">
+          </Paragraph>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
             Build locally, deploy anywhere. Hanzo Platform gives developers the same powerful experience as our cloud offering, but with the freedom to run it on your own hardware.
-          </p>
-          <p className="text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto mb-12">
+          </Paragraph>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={48} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
             Permissively licensed, community-driven, and built for the modern developer who values sovereignty and control over their stack.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          display="flex" flexDirection="column" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}
         >
           <Button 
             size="lg"
-            className="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all flex items-center"
+            color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
           >
-            <Github className="mr-2 h-5 w-5" />
-            <a href="https://github.com/hanzo/platform" className="flex-1">Get on GitHub</a>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box>
+            <Anchor tap href="https://github.com/hanzo/platform" flex={1}>Get on GitHub</Anchor>
           </Button>
           
           <Button 
             size="lg"
             variant="outline"
-            className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 px-8 py-6 text-lg rounded-lg font-medium flex items-center"
+            color="var(--white)" borderColor="var(--neutral-700)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderRadius="var(--radius-lg)" fontWeight="500" display="flex" alignItems="center" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
           >
-            <Terminal className="mr-2 h-5 w-5" />
-            <span className="flex-1">Quick Start</span>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={20} /></Box>
+            <Text flex={1}>Quick Start</Text>
           </Button>
           
           <Button 
             size="lg"
             variant="outline"
-            className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 px-8 py-6 text-lg rounded-lg font-medium flex items-center"
+            color="var(--white)" borderColor="var(--neutral-700)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderRadius="var(--radius-lg)" fontWeight="500" display="flex" alignItems="center" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
           >
-            <Download className="mr-2 h-5 w-5" />
-            <span className="flex-1">Download CLI</span>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={20} /></Box>
+            <Text flex={1}>Download CLI</Text>
           </Button>
-        </motion.div>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 px-4 py-3 bg-gray-900/50 rounded-lg inline-block"
+          marginTop={64} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" display="inline-block"
         >
-          <code className="text-sm text-neutral-300">
+          <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
             npx @hanzo/cli create my-new-project
-          </code>
-        </motion.div>
-      </div>
-    </section>
+          </Text>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

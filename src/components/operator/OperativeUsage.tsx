@@ -1,135 +1,135 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const OperativeUsage = () => {
   return (
-    <section className="py-24 bg-gray-950 relative overflow-hidden" id="get-started">
+    <Box render="section" paddingVertical={96} backgroundColor="var(--neutral-950)" position="relative" overflow="hidden" id="get-started">
       {/* Background gradient */}
-      <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-purple-900/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top="50%" left="25%" x="-50%" y="-50%" width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Getting Started with Hanzo Operative
-            </h2>
-            <p className="text-xl text-neutral-300">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               Set up your environment in minutes and start using AI to operate your computer
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $lg={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
+          <Box rowGap={24} $lg={{ gridColumn: "span 2 / span 2" }}>
+            <MotionBox
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-900/30 border border-gray-800 rounded-xl p-6"
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <h3 className="text-xl font-semibold text-[var(--white)] mb-4">Installation</h3>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>Installation</H3>
               
-              <div className="space-y-4">
+              <Box rowGap={16}>
                 <div>
-                  <p className="text-neutral-400 mb-2">1. Install the package</p>
-                  <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>1. Install the package</Paragraph>
+                  <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                     pip install hanzo-operative
-                  </div>
+                  </Box>
                 </div>
                 
                 <div>
-                  <p className="text-neutral-400 mb-2">2. Run the operative</p>
-                  <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>2. Run the operative</Paragraph>
+                  <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                     operative
-                  </div>
+                  </Box>
                 </div>
                 
                 <div>
-                  <p className="text-neutral-400 mb-2">3. Enter your API key when prompted</p>
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>3. Enter your API key when prompted</Paragraph>
                 </div>
-              </div>
+              </Box>
               
-              <div className="mt-6">
-                <Button size="sm" variant="outline" className="text-neutral-300 border-gray-700">
-                  <Terminal className="h-4 w-4 mr-2" />
+              <Box marginTop={24}>
+                <Button size="sm" variant="outline" color="var(--neutral-300)" borderColor="var(--neutral-700)">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={16} /></Box>
                   Copy Installation Commands
                 </Button>
-              </div>
-            </motion.div>
+              </Box>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-gray-900/30 border border-gray-800 rounded-xl p-6"
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <h3 className="text-xl font-semibold text-[var(--white)] mb-4">System Requirements</h3>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>System Requirements</H3>
               
-              <ul className="space-y-2 text-neutral-400">
+              <Box render="ul" rowGap={8} color="var(--neutral-400)">
                 <li>• macOS, Windows, or Linux (with X server)</li>
                 <li>• Python 3.8 or higher</li>
                 <li>• 8GB RAM recommended</li>
                 <li>• Internet connection for API access</li>
-              </ul>
-            </motion.div>
-          </div>
+              </Box>
+            </MotionBox>
+          </Box>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-3 bg-gray-900/30 border border-gray-800 rounded-xl p-6 h-full"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} height="100%" $lg={{ gridColumn: "span 3 / span 3" }}
           >
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-4">Basic Usage</h3>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>Basic Usage</H3>
             
-            <div className="space-y-6">
+            <Box rowGap={24}>
               <div>
-                <p className="text-neutral-400 mb-2">Running with default settings (GPT-4o)</p>
-                <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                <Paragraph color="var(--neutral-400)" marginBottom={8}>Running with default settings (GPT-4o)</Paragraph>
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                   operative
-                </div>
+                </Box>
               </div>
               
               <div>
-                <p className="text-neutral-400 mb-2">Using voice input mode</p>
-                <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                <Paragraph color="var(--neutral-400)" marginBottom={8}>Using voice input mode</Paragraph>
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                   operative --voice
-                </div>
+                </Box>
               </div>
               
               <div>
-                <p className="text-neutral-400 mb-2">Using OCR mode for enhanced element detection</p>
-                <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                <Paragraph color="var(--neutral-400)" marginBottom={8}>Using OCR mode for enhanced element detection</Paragraph>
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                   operative -m gpt-4-with-ocr
-                </div>
+                </Box>
               </div>
               
               <div>
-                <p className="text-neutral-400 mb-2">Using Set-of-Mark (SoM) prompting</p>
-                <div className="bg-gray-900 rounded-md p-3 font-mono text-sm text-[var(--white)] overflow-x-auto">
+                <Paragraph color="var(--neutral-400)" marginBottom={8}>Using Set-of-Mark (SoM) prompting</Paragraph>
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-md)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" overflowX="auto">
                   operative -m gpt-4-with-som
-                </div>
+                </Box>
               </div>
               
-              <div className="pt-2">
-                <p className="text-neutral-400">After running any of these commands, you'll be prompted to enter an objective for the AI to accomplish.</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              <Box paddingTop={8}>
+                <Paragraph color="var(--neutral-400)">After running any of these commands, you'll be prompted to enter an objective for the AI to accomplish.</Paragraph>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

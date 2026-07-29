@@ -1,3 +1,4 @@
+import { H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -10,17 +11,17 @@ interface IndustryCardProps {
 
 const IndustryCard: React.FC<IndustryCardProps> = ({ name, description, index }) => {
   return (
-    <motion.div
+    <MotionBox
       key={index}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all"
+      
+      backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
     >
-      <h3 className="text-xl font-bold mb-3 text-[var(--white)]">{name}</h3>
-      <p className="text-neutral-400">{description}</p>
-    </motion.div>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={12} color="var(--white)">{name}</H3>
+      <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 

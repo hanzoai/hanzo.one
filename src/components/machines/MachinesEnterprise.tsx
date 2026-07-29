@@ -1,17 +1,17 @@
+import { Box, ChromeText, Grid, H3, Paragraph, YStack } from '@/gui'
 
 import React from 'react';
 import { Shield, Database, Server } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const EnterpriseFeature = ({ icon: Icon, title, description }) => {
   return (
-    <div className="bg-green-900/10 border border-green-500/20 rounded-xl p-6 flex flex-col items-center text-center">
-      <Icon className="h-12 w-12 text-green-400 mb-4" />
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-neutral-300">
+    <YStack backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center" textAlign="center">
+      <Icon height={48} width={48} color="var(--foreground)" marginBottom={16} />
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-300)">
         {description}
-      </p>
-    </div>
+      </Paragraph>
+    </YStack>
   );
 };
 
@@ -35,18 +35,18 @@ const MachinesEnterprise = () => {
   ];
 
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl font-bold mb-4">
+    <Box render="section" paddingVertical={80}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
             Enterprise-Grade Infrastructure
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Built for organizations with the most demanding requirements
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
             <EnterpriseFeature
               key={index}
@@ -55,9 +55,9 @@ const MachinesEnterprise = () => {
               description={feature.description}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

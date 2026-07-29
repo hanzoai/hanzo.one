@@ -1,6 +1,6 @@
+import { Box, Button, H3, XStack } from '@/gui'
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
 const CurrentPlan = () => {
@@ -11,20 +11,20 @@ const CurrentPlan = () => {
   };
 
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <h3 className="text-xl font-medium mb-4">Current Plan</h3>
-      <div className="flex items-center justify-between">
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Current Plan</H3>
+      <XStack display="flex" alignItems="center" justifyContent="space-between">
         <div>
-          <div className="text-2xl font-bold">Pro Plan</div>
-          <div className="text-neutral-400 mt-1">$49/month, billed annually</div>
+          <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Pro Plan</Box>
+          <Box color="var(--neutral-400)" marginTop={4}>$49/month, billed annually</Box>
         </div>
         <Button onClick={handleUpgradePlan}>Upgrade Plan</Button>
-      </div>
-      <div className="mt-6 pt-6 border-t border-gray-800 flex items-center justify-between">
-        <div className="text-neutral-400">Next billing date: July 15, 2024</div>
+      </XStack>
+      <XStack marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="space-between">
+        <Box color="var(--neutral-400)">Next billing date: July 15, 2024</Box>
         <Button variant="outline" size="sm">Cancel Subscription</Button>
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

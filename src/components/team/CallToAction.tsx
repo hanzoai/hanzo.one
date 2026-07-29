@@ -1,33 +1,33 @@
+import { Box, Button, H2, Paragraph, XStack } from '@/gui'
 
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <div className="mt-16 text-center">
-      <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-      <p className="text-neutral-400 mb-8 max-w-2xl mx-auto">
+    <Box marginTop={64} textAlign="center">
+      <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Ready to Get Started?</H2>
+      <Paragraph color="var(--neutral-400)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto">
         Join our community of innovators and start building with your AI team today.
-      </p>
-      <div className="flex flex-wrap justify-center gap-4">
+      </Paragraph>
+      <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
         <Button 
           size="lg" 
-          className="bg-gray-600 hover:bg-gray-700"
+          backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
           onClick={() => window.open('https://hanzo.chat', '_blank')}
         >
           Try Hanzo Chat
-          <ArrowRight className="ml-2 h-4 w-4" />
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
         </Button>
         <Button 
           size="lg" 
-          className="bg-gray-600 hover:bg-gray-700"
+          backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
           onClick={() => window.open('https://hanzo.bot', '_blank')}
         >
           Try Hanzo Bot
-          <ArrowRight className="ml-2 h-4 w-4" />
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
         </Button>
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

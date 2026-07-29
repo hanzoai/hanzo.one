@@ -1,40 +1,40 @@
+import { Box, Button, H2, MotionBox, Paragraph, Text, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-blue-950/30">
-      <div className="max-w-5xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6 leading-tight">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-tight)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Get Started Today
-          </h2>
-          <p className="text-xl text-neutral-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-relaxed)" color="var(--neutral-300)" marginBottom={48} maxWidth="var(--container-prose)" marginHorizontal="auto">
             Launch your next-generation project instantly or request a custom demo to explore 
             Hanzo Base's powerful capabilities.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" radius="full" className="text-lg px-8 bg-blue-600 hover:bg-blue-700 text-[var(--white)]">
-              <span className="py-1 leading-relaxed">Start Building</span>
-              <ArrowRight className="ml-2 h-5 w-5" />
+          <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+            <Button size="lg" radius="full" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+              <Text paddingVertical={4} lineHeight="var(--leading-relaxed)">Start Building</Text>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Button>
-            <Button size="lg" variant="outline" radius="full" className="text-lg px-8 text-[var(--white)]">
-              <span className="py-1 leading-relaxed">Read Docs</span>
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" variant="outline" radius="full" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} color="var(--white)">
+              <Text paddingVertical={4} lineHeight="var(--leading-relaxed)">Read Docs</Text>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

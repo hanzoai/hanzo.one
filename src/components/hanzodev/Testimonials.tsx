@@ -1,8 +1,9 @@
+import { Anchor, Box, Grid, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const testimonials = [
   {
@@ -38,90 +39,90 @@ const companyLogos = [
 
 const Testimonials = () => {
   return (
-    <section className="py-24 px-4 bg-black">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
             style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
           >
             Testimonials
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             What developers are saying
-          </h2>
-        </motion.div>
+          </H2>
+        </MotionBox>
 
         {/* Company logos marquee */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex justify-center gap-8 mb-16 overflow-hidden"
+          flexDirection="row" display="flex" justifyContent="center" gap={32} marginBottom={64} overflow="hidden"
         >
-          <div className="flex gap-8 animate-marquee">
+          <MotionBox flexDirection="row" animate={{ x: ["0%", "-100%"] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} display="flex" gap={32}>
             {[...companyLogos, ...companyLogos].map((logo, i) => (
-              <div
+              <Box
                 key={i}
-                className="text-neutral-600 text-lg font-medium whitespace-nowrap"
+                color="var(--neutral-600)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" whiteSpace="nowrap"
               >
                 {logo}
-              </div>
+              </Box>
             ))}
-          </div>
-        </motion.div>
+          </MotionBox>
+        </MotionBox>
 
         {/* Testimonial cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={testimonial.company}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-6 hover:border-[#fd4444]/30 transition-colors group"
+              
+              group backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
               {/* Company logo */}
-              <div className="flex items-center gap-3 mb-4">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
+              <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+                <XStack
+                  width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" color="var(--foreground)" fontWeight="700"
                   style={{ backgroundColor: `${BRAND_COLOR}40` }}
                 >
                   {testimonial.logo}
-                </div>
-                <span className="text-white font-semibold">{testimonial.company}</span>
-              </div>
+                </XStack>
+                <Text color="var(--foreground)" fontWeight="600">{testimonial.company}</Text>
+              </XStack>
 
               {/* Quote */}
-              <blockquote className="text-neutral-300 text-sm mb-6 leading-relaxed">
+              <Box render="blockquote" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-relaxed)" marginBottom={24}>
                 "{testimonial.quote}"
-              </blockquote>
+              </Box>
 
               {/* Author */}
-              <div className="flex items-center justify-between">
+              <XStack display="flex" alignItems="center" justifyContent="space-between">
                 <div>
-                  <div className="text-white font-medium text-sm">{testimonial.author}</div>
-                  <div className="text-neutral-500 text-xs">{testimonial.title}</div>
+                  <Box color="var(--foreground)" fontWeight="500" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{testimonial.author}</Box>
+                  <Box color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">{testimonial.title}</Box>
                 </div>
-                <a
+                <Anchor tap
                   href={testimonial.link}
-                  className="text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" gap={4} opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ opacity: 1 }}
                   style={{ color: BRAND_COLOR }}
                 >
                   Read story
-                  <ArrowRight className="w-3 h-3" />
-                </a>
-              </div>
-            </motion.div>
+                  <ArrowRight size={12} />
+                </Anchor>
+              </XStack>
+            </MotionBox>
           ))}
-        </div>
-      </div>
+        </Grid>
+      </Box>
 
       <style>{`
         @keyframes marquee {
@@ -132,7 +133,7 @@ const Testimonials = () => {
           animation: marquee 20s linear infinite;
         }
       `}</style>
-    </section>
+    </Box>
   );
 };
 

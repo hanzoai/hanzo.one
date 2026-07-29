@@ -1,156 +1,156 @@
+import { Anchor, Box, Button, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Github, Star, GitBranch, GitMerge, Code, Users, Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const DeveloperTools = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Developer Tools
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Tools and libraries that enhance developer productivity
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {/* Dev Project */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-900/60 rounded-xl border border-gray-800 p-6 hover:border-green-500/40 transition-colors"
+            
+            backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <div className="flex items-center mb-4">
-              <Code className="h-8 w-8 text-green-400 mr-3" />
-              <h3 className="text-xl font-semibold text-[var(--white)]">Hanzo Dev</h3>
-            </div>
-            <p className="text-neutral-300 mb-6">
+            <XStack display="flex" alignItems="center" marginBottom={16}>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Code size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">Hanzo Dev</H3>
+            </XStack>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               AI-powered software engineering assistant that helps you write, debug, and document code.
-            </p>
-            <div className="flex items-center justify-between text-sm text-neutral-400 mb-5">
-              <div className="flex items-center">
-                <Star className="h-4 w-4 mr-1" />
+            </Paragraph>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={20}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Star size={16} /></Box>
                 <span>3.2k stars</span>
-              </div>
-              <div className="flex items-center">
-                <GitBranch className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitBranch size={16} /></Box>
                 <span>412 forks</span>
-              </div>
-              <div className="flex items-center">
-                <GitMerge className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitMerge size={16} /></Box>
                 <span>TypeScript</span>
-              </div>
-            </div>
+              </XStack>
+            </XStack>
             <Button 
               size="sm" 
-              className="w-full bg-green-600/70 hover:bg-green-600"
+              width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <a href="https://github.com/hanzoai/dev" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                <Github className="mr-2 h-4 w-4" /> View Repository
-              </a>
+              <Anchor href="https://github.com/hanzoai/dev" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
+              </Anchor>
             </Button>
-          </motion.div>
+          </MotionBox>
 
           {/* Team Project */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/60 rounded-xl border border-gray-800 p-6 hover:border-green-500/40 transition-colors"
+            
+            backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <div className="flex items-center mb-4">
-              <Users className="h-8 w-8 text-green-400 mr-3" />
-              <h3 className="text-xl font-semibold text-[var(--white)]">Hanzo Team</h3>
-            </div>
-            <p className="text-neutral-300 mb-6">
+            <XStack display="flex" alignItems="center" marginBottom={16}>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Users size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">Hanzo Team</H3>
+            </XStack>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               An integrated collaboration platform with AI-powered tools for remote teams.
-            </p>
-            <div className="flex items-center justify-between text-sm text-neutral-400 mb-5">
-              <div className="flex items-center">
-                <Star className="h-4 w-4 mr-1" />
+            </Paragraph>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={20}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Star size={16} /></Box>
                 <span>2.7k stars</span>
-              </div>
-              <div className="flex items-center">
-                <GitBranch className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitBranch size={16} /></Box>
                 <span>289 forks</span>
-              </div>
-              <div className="flex items-center">
-                <GitMerge className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitMerge size={16} /></Box>
                 <span>TypeScript</span>
-              </div>
-            </div>
+              </XStack>
+            </XStack>
             <Button 
               size="sm" 
-              className="w-full bg-green-600/70 hover:bg-green-600"
+              width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <a href="https://github.com/hanzoai/team" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                <Github className="mr-2 h-4 w-4" /> View Repository
-              </a>
+              <Anchor href="https://github.com/hanzoai/team" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
+              </Anchor>
             </Button>
-          </motion.div>
+          </MotionBox>
 
           {/* CLI Project */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-900/60 rounded-xl border border-gray-800 p-6 hover:border-green-500/40 transition-colors"
+            
+            backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <div className="flex items-center mb-4">
-              <Terminal className="h-8 w-8 text-green-400 mr-3" />
-              <h3 className="text-xl font-semibold text-[var(--white)]">Hanzo CLI</h3>
-            </div>
-            <p className="text-neutral-300 mb-6">
+            <XStack display="flex" alignItems="center" marginBottom={16}>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Terminal size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">Hanzo CLI</H3>
+            </XStack>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Command-line interface for scaffolding and managing Hanzo applications. Create, deploy, and manage with ease.
-            </p>
-            <div className="flex items-center justify-between text-sm text-neutral-400 mb-5">
-              <div className="flex items-center">
-                <Star className="h-4 w-4 mr-1" />
+            </Paragraph>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={20}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Star size={16} /></Box>
                 <span>1.9k stars</span>
-              </div>
-              <div className="flex items-center">
-                <GitBranch className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitBranch size={16} /></Box>
                 <span>213 forks</span>
-              </div>
-              <div className="flex items-center">
-                <GitMerge className="h-4 w-4 mr-1" />
+              </XStack>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><GitMerge size={16} /></Box>
                 <span>JavaScript</span>
-              </div>
-            </div>
+              </XStack>
+            </XStack>
             <Button 
               size="sm" 
-              className="w-full bg-green-600/70 hover:bg-green-600"
+              width="100%" backgroundColor="var(--surface-overlay)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
             >
-              <a href="https://github.com/hanzoai/cli" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                <Github className="mr-2 h-4 w-4" /> View Repository
-              </a>
+              <Anchor href="https://github.com/hanzoai/cli" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center" justifyContent="center" width="100%">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box> View Repository
+              </Anchor>
             </Button>
-          </motion.div>
-        </div>
+          </MotionBox>
+        </Grid>
 
-        <div className="text-center mt-12">
-          <Button size="lg" variant="outline" className="border-green-500/30 text-[var(--white)] hover:bg-green-800/30">
-            <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" className="flex items-center">
-              <Github className="mr-2 h-5 w-5" /> View All Projects
-            </a>
+        <Box textAlign="center" marginTop={48}>
+          <Button size="lg" variant="outline" borderColor="var(--border-strong)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+            <Anchor href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box> View All Projects
+            </Anchor>
           </Button>
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

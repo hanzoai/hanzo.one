@@ -1,6 +1,6 @@
+import { Box, Button, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 
 interface DateRangePickerProps {
@@ -31,33 +31,33 @@ const DateRangePicker = ({ dateRange, onDateRangeChange }: DateRangePickerProps)
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <XStack display="flex" alignItems="center" columnGap={8}>
       <Button 
         variant="outline" 
         size="sm" 
-        className="border-gray-700 hover:bg-gray-800"
+        borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
         onClick={handlePrevious}
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft size={16} />
       </Button>
       
       <Button 
         variant="outline"
-        className="border-gray-700 hover:bg-gray-800"
+        borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
       >
-        <Calendar className="h-4 w-4 mr-2" />
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Calendar size={16} /></Box>
         <span>{dateRange.start} - {dateRange.end}</span>
       </Button>
       
       <Button 
         variant="outline" 
         size="sm" 
-        className="border-gray-700 hover:bg-gray-800"
+        borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
         onClick={handleNext}
       >
-        <ChevronRight className="h-4 w-4" />
+        <ChevronRight size={16} />
       </Button>
-    </div>
+    </XStack>
   );
 };
 

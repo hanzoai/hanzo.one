@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -12,58 +13,58 @@ interface PhilosophyItemProps {
 
 const PhilosophyItem: React.FC<PhilosophyItemProps> = ({ icon, title, description, delay }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="flex flex-col items-center text-center"
+      display="flex" flexDirection="column" alignItems="center" textAlign="center"
     >
-      <div className="w-16 h-16 rounded-full bg-purple-900/30 flex items-center justify-center mb-4">
+      <XStack width={64} height={64} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
         {icon}
-      </div>
-      <h3 className="text-xl font-bold mb-2 text-[var(--white)]">{title}</h3>
-      <p className="text-neutral-300">{description}</p>
-    </motion.div>
+      </XStack>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">{title}</H3>
+      <Paragraph color="var(--neutral-300)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 
 const PhilosophySection: React.FC = () => {
   const items = [
     {
-      icon: <Shield className="h-8 w-8 text-blue-400" />,
+      icon: <Shield size={32} color="var(--foreground)" />,
       title: "Developer-First",
       description: "Built by developers for developers, with a focus on exceptional DX and intuitive APIs."
     },
     {
-      icon: <Zap className="h-8 w-8 text-purple-400" />,
+      icon: <Zap size={32} color="var(--foreground)" />,
       title: "Open Source",
       description: "Complete transparency with our core tools open source and free forever."
     },
     {
-      icon: <Code className="h-8 w-8 text-emerald-400" />,
+      icon: <Code size={32} color="var(--foreground)" />,
       title: "Complete Control",
       description: "No black boxes. You own your data, models, and infrastructure with full control."
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
+          <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
             Our Philosophy
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+          </Box>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Building AI, the Right Way
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             We believe AI should be powerful, transparent, and fully under your control.
             Our platform is built with these principles at its core.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {items.map((item, index) => (
             <PhilosophyItem
               key={index}
@@ -73,9 +74,9 @@ const PhilosophySection: React.FC = () => {
               delay={index * 0.1}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,11 +1,6 @@
-
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Box, H2 } from '@/gui'
 import React from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 
 const PricingFAQ = () => {
   const faqs = [
@@ -68,26 +63,26 @@ const PricingFAQ = () => {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto my-16 px-4">
-      <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+    <Box maxWidth="var(--container-prose)" marginHorizontal="auto" marginVertical={64} paddingHorizontal={16}>
+      <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Frequently Asked Questions</H2>
       
-      <Accordion type="single" collapsible className="border-gray-800">
+      <Accordion type="single" collapsible borderColor="var(--neutral-800)">
         {faqs.map((faq, index) => (
           <AccordionItem 
             key={index} 
             value={`item-${index}`}
-            className="border-b border-gray-800"
+            borderBottomWidth={1} borderColor="var(--neutral-800)"
           >
-            <AccordionTrigger className="py-4 text-left text-neutral-200 hover:text-[var(--white)]">
+            <AccordionTrigger paddingVertical={16} textAlign="left" color="var(--neutral-200)" hoverStyle={{ color: "var(--white)" }}>
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-neutral-400 pb-4">
+            <AccordionContent color="var(--neutral-400)" paddingBottom={16}>
               {faq.answer}
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+    </Box>
   );
 };
 

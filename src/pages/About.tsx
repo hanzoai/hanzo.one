@@ -1,6 +1,6 @@
+import { Box, Helmet } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AboutHero from "@/components/about/AboutHero";
@@ -11,7 +11,7 @@ import OurStory from "@/components/about/OurStory";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>About Hanzo Industries - Our Story and Evolution</title>
         <meta 
@@ -22,16 +22,16 @@ const About = () => {
       
       <Navbar />
       
-      <main className="pt-20">
+      <Box render="main" paddingTop={80}>
         <AboutHero />
         <OurStory />
         <HistoryTimeline />
         <ZenPrinciples />
         <SenseiMethod />
-      </main>
+      </Box>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

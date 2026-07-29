@@ -1,8 +1,9 @@
+import { Anchor, Box, Grid, H2, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const SUPPORTED_PROVIDERS = [
   "OpenAI",
@@ -19,91 +20,91 @@ const SUPPORTED_PROVIDERS = [
 
 const OpenModels = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <Grid display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {/* Left: Text content */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Open Models
-            </h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Switch between 500+ custom, local, and frontier LLMs.
-            </p>
-            <p className="text-neutral-400 mb-8">
+            </Paragraph>
+            <Paragraph color="var(--neutral-400)" marginBottom={32}>
               Hanzo is the best gateway to discover and compare models. Use new
               models the day they come out and try stealth models for free.
-            </p>
+            </Paragraph>
 
-            <div className="flex flex-wrap gap-4">
-              <a
+            <XStack display="flex" flexWrap="wrap" gap={16}>
+              <Anchor
                 href="https://hanzo.ai/leaderboard"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-5 py-2.5 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 View leaderboard
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-              <a
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+              </Anchor>
+              <Anchor tap
                 href="https://hanzo.ai/models/compare"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-5 py-2.5 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Compare models
-              </a>
-            </div>
-          </motion.div>
+              </Anchor>
+            </XStack>
+          </MotionBox>
 
           {/* Right: Providers */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-neutral-900/80 border border-neutral-800 rounded-xl overflow-hidden"
+            backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden"
           >
-            <div className="p-4 border-b border-neutral-800">
-              <span className="text-sm font-medium text-white">
+            <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">
                 Supported Providers
-              </span>
-            </div>
+              </Text>
+            </Box>
 
-            <div className="p-4">
-              <div className="flex flex-wrap gap-2">
+            <Box padding={16}>
+              <XStack display="flex" flexWrap="wrap" gap={8}>
                 {SUPPORTED_PROVIDERS.map((provider, index) => (
-                  <motion.span
+                  <MotionText
                     key={provider}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.03 }}
-                    className="px-3 py-1.5 bg-neutral-800 rounded-full text-sm text-neutral-300"
+                    paddingHorizontal={12} paddingVertical={6} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)"
                   >
                     {provider}
-                  </motion.span>
+                  </MotionText>
                 ))}
-                <span className="px-3 py-1.5 bg-neutral-800/50 rounded-full text-sm text-neutral-500">
+                <Text paddingHorizontal={12} paddingVertical={6} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
                   + many more
-                </span>
-              </div>
-            </div>
+                </Text>
+              </XStack>
+            </Box>
 
-            <div className="p-4 border-t border-neutral-800 text-center">
-              <span className="text-xs text-neutral-500">
+            <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)" textAlign="center">
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">
                 Bring your own API keys or use Hanzo Gateway
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </Text>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

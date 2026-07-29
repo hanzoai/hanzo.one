@@ -1,24 +1,24 @@
+import { Box, ChromeText, Grid, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from 'react';
 import { motion } from "framer-motion";
 import { Cpu, Server, Zap, Network, BarChart, Globe } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => {
   return (
-    <motion.div 
+    <MotionBox 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="bg-green-900/20 border border-green-500/30 rounded-xl p-6"
+      backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
     >
-      <Icon className="h-10 w-10 text-green-400 mb-4" />
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-neutral-300">
+      <Icon height={40} width={40} color="var(--foreground)" marginBottom={16} />
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-300)">
         {description}
-      </p>
-    </motion.div>
+      </Paragraph>
+    </MotionBox>
   );
 };
 
@@ -63,18 +63,18 @@ const MachinesFeatures = () => {
   ];
 
   return (
-    <section className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl font-bold mb-4">
+    <Box render="section" paddingVertical={80} position="relative">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
             Key Features & Capabilities
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Purpose-built infrastructure for the most demanding AI and compute workloads
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
@@ -84,9 +84,9 @@ const MachinesFeatures = () => {
               delay={feature.delay}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

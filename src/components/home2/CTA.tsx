@@ -1,54 +1,54 @@
+import { Box, Button, H2, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Github } from "lucide-react";
 
 const CTA = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-black"></div>
+    <Box render="section" paddingVertical={80} position="relative" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), var(--pure-black))"></Box>
       
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 relative z-10"
+        marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10}
       >
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-gray-900 to-black border border-purple-500/20 rounded-2xl p-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <Box maxWidth="56rem" marginHorizontal="auto" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-2xl)" padding={40} textAlign="center" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Ready to Build the Future with AI?
-          </h2>
-          <p className="text-xl text-neutral-300 mb-10 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto">
             Join thousands of developers and start building powerful AI applications today.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
             <Button 
               size="sm"
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-[var(--white)] rounded-full"
+              color="var(--white)" borderRadius="var(--radius-full)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}
             >
               Get Started Free
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
             
             <Button 
               size="sm"
               variant="outline"
-              className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 rounded-full"
+              color="var(--white)" borderColor="var(--neutral-700)" borderRadius="var(--radius-full)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <Github className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               Star on GitHub
             </Button>
-          </div>
+          </YStack>
           
-          <p className="text-neutral-400 mt-8">
+          <Paragraph color="var(--neutral-400)" marginTop={32}>
             No credit card required. Start with our free tier.
-          </p>
-        </div>
-      </motion.div>
-    </section>
+          </Paragraph>
+        </Box>
+      </MotionBox>
+    </Box>
   );
 };
 

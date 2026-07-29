@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, H5, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -9,105 +10,105 @@ const UseCases = () => {
       icon: MessageSquare,
       title: 'Conversational AI',
       description: 'Build intelligent chatbots, virtual assistants, and customer support agents with natural language understanding.',
-      color: 'bg-blue-500/20',
-      textColor: 'text-blue-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     },
     {
       icon: Brain,
       title: 'Generative Content',
       description: 'Create text, images, code, and other content with AI-powered generation and customization.',
-      color: 'bg-purple-500/20',
-      textColor: 'text-purple-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     },
     {
       icon: Search,
       title: 'Knowledge Retrieval',
       description: 'Implement semantic search, question answering, and information extraction from your data.',
-      color: 'bg-green-500/20',
-      textColor: 'text-green-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     },
     {
       icon: Bot,
       title: 'Autonomous Agents',
       description: 'Deploy AI agents that can perform complex tasks, make decisions, and execute workflows autonomously.',
-      color: 'bg-pink-500/20',
-      textColor: 'text-pink-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     },
     {
       icon: FileCode,
       title: 'Developer Tooling',
       description: 'Enhance your development workflow with AI-powered code generation, debugging, and documentation.',
-      color: 'bg-yellow-500/20',
-      textColor: 'text-yellow-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     },
     {
       icon: Headphones,
       title: 'Voice & Speech',
       description: 'Convert speech to text, text to speech, and analyze voice interactions with advanced AI models.',
-      color: 'bg-red-500/20',
-      textColor: 'text-red-400'
+      color: 'var(--white-10)',
+      textColor: 'var(--foreground)'
     }
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-72 h-72 bg-purple-900/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-      </div>
+      <Box position="absolute" top={0} left={0} width="100%" height="100%" overflow="hidden" pointerEvents="none">
+        <Box position="absolute" top="25%" right={0} width={288} height={288} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+        <Box position="absolute" bottom={0} left={0} width={384} height={384} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" x="-50%" y="50%"></Box>
+      </Box>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Versatile AI Use Cases
-            </h2>
-            <p className="text-xl text-neutral-300">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               Hanzo's AI platform supports a wide range of intelligent applications across industries
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/20 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/40 transition-colors group"
+              
+              group backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             >
-              <div className={`h-14 w-14 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${useCase.color} group-hover:bg-opacity-30`}>
-                <useCase.icon className={`h-7 w-7 ${useCase.textColor}`} />
-              </div>
-              <h3 className="text-xl font-semibold text-[var(--white)] mb-3">{useCase.title}</h3>
-              <p className="text-neutral-400">{useCase.description}</p>
-            </motion.div>
+              <XStack height={56} width={56} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center" marginBottom={24} transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)">
+                <useCase.icon height={28} width={28} />
+              </XStack>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={12}>{useCase.title}</H3>
+              <Paragraph color="var(--neutral-400)">{useCase.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
 
         {/* Implementation example */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden"
+          marginTop={64} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden"
         >
-          <div className="flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 p-8 flex flex-col justify-center">
-              <h3 className="text-2xl font-bold text-[var(--white)] mb-4">Simple Implementation</h3>
-              <p className="text-neutral-400 mb-6">
+          <YStack display="flex" flexDirection="column" $lg={{ flexDirection: "row" }}>
+            <YStack padding={32} display="flex" flexDirection="column" justifyContent="center" $lg={{ width: "50%" }}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={16}>Simple Implementation</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Build powerful AI applications with just a few lines of code using our intuitive SDK
-              </p>
-              <div className="bg-gray-950 rounded-lg p-4 font-mono text-sm text-neutral-300 overflow-x-auto">
+              </Paragraph>
+              <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-lg)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" overflowX="auto">
                 <pre>
 {`import { Hanzo } from '@hanzo/ai';
 
@@ -128,20 +129,20 @@ const response = await conversation.send('Tell me about AI engineering');
 
 console.log(response);`}
                 </pre>
-              </div>
-            </div>
-            <div className="lg:w-1/2 bg-gray-950 p-8 flex flex-col">
-              <h4 className="text-lg font-semibold text-[var(--white)] mb-4 flex items-center">
-                <BookOpen className="h-4 w-4 mr-2 text-purple-400" />
+              </Box>
+            </YStack>
+            <YStack backgroundColor="var(--neutral-950)" padding={32} display="flex" flexDirection="column" $lg={{ width: "50%" }}>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={16} display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><BookOpen size={16} color="var(--foreground)" /></Box>
                 Documentation Example
-              </h4>
-              <div className="flex flex-col h-full space-y-4 overflow-y-auto">
-                <div className="bg-gray-900 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <Database className="h-4 w-4 text-blue-400 mr-2" />
-                    <h5 className="text-blue-400 font-medium">Vector Search</h5>
-                  </div>
-                  <pre className="text-xs text-neutral-300 overflow-x-auto">
+              </H4>
+              <YStack display="flex" flexDirection="column" height="100%" rowGap={16} overflowY="auto">
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={16}>
+                  <XStack display="flex" alignItems="center" marginBottom={8}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Database size={16} color="var(--foreground)" /></Box>
+                    <H5 color="var(--foreground)" fontWeight="500">Vector Search</H5>
+                  </XStack>
+                  <Box render="pre" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" overflowX="auto">
 {`// Create a vector store
 const vectorStore = hanzo.vectorStore('my-store');
 
@@ -156,15 +157,15 @@ const results = await vectorStore.search(
   'How to deploy AI models?', 
   { limit: 3 }
 );`}
-                  </pre>
-                </div>
+                  </Box>
+                </Box>
 
-                <div className="bg-gray-900 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <Bot className="h-4 w-4 text-green-400 mr-2" />
-                    <h5 className="text-green-400 font-medium">AI Agents</h5>
-                  </div>
-                  <pre className="text-xs text-neutral-300 overflow-x-auto">
+                <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={16}>
+                  <XStack display="flex" alignItems="center" marginBottom={8}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} color="var(--foreground)" /></Box>
+                    <H5 color="var(--foreground)" fontWeight="500">AI Agents</H5>
+                  </XStack>
+                  <Box render="pre" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" overflowX="auto">
 {`// Create an agent with tools
 const agent = hanzo.agent({
   model: 'claude-3-opus',
@@ -179,14 +180,14 @@ const agent = hanzo.agent({
 const result = await agent.run(
   'Analyze our production metrics and suggest optimizations'
 );`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                  </Box>
+                </Box>
+              </YStack>
+            </YStack>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

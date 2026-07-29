@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, Link, MotionBox, MotionText, Text, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Download,
@@ -15,7 +16,7 @@ import {
   Chrome,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const PLATFORMS = [
   { id: "web", label: "Web App", icon: Globe, description: "Build in browser" },
@@ -29,96 +30,96 @@ const AppDemo = ({ activeTab }: { activeTab: string }) => {
     web: {
       title: "hanzo.app",
       content: (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Check className="w-4 h-4 text-green-500" />
-            <span className="text-green-400">Workspace synced</span>
-          </div>
-          <div className="bg-neutral-900/50 rounded-lg p-3">
-            <div className="text-xs text-neutral-500 mb-2">Active Projects</div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-white">signal-server</span>
-                <span className="text-neutral-400">12 files changed</span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-white">payments-api</span>
-                <span className="text-neutral-400">3 PRs pending</span>
-              </div>
-            </div>
-          </div>
-          <div className="text-xs text-neutral-500">Collaborative editing • Real-time sync • Cloud storage</div>
-        </div>
+        <Box rowGap={12}>
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Check size={16} color="var(--neutral-500)" />
+            <Text color="var(--foreground)">Workspace synced</Text>
+          </XStack>
+          <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={12}>
+            <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={8}>Active Projects</Box>
+            <Box rowGap={8}>
+              <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                <Text color="var(--foreground)">signal-server</Text>
+                <Text color="var(--neutral-400)">12 files changed</Text>
+              </XStack>
+              <XStack display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                <Text color="var(--foreground)">payments-api</Text>
+                <Text color="var(--neutral-400)">3 PRs pending</Text>
+              </XStack>
+            </Box>
+          </Box>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Collaborative editing • Real-time sync • Cloud storage</Box>
+        </Box>
       ),
     },
     desktop: {
       title: "Hanzo Desktop",
       content: (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Monitor className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-400">Native performance</span>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <div className="bg-neutral-900/50 rounded-lg p-2 text-center">
-              <Apple className="w-5 h-5 mx-auto mb-1 text-neutral-400" />
-              <span className="text-xs text-neutral-500">macOS</span>
-            </div>
-            <div className="bg-neutral-900/50 rounded-lg p-2 text-center">
-              <Monitor className="w-5 h-5 mx-auto mb-1 text-neutral-400" />
-              <span className="text-xs text-neutral-500">Windows</span>
-            </div>
-            <div className="bg-neutral-900/50 rounded-lg p-2 text-center">
-              <Chrome className="w-5 h-5 mx-auto mb-1 text-neutral-400" />
-              <span className="text-xs text-neutral-500">Linux</span>
-            </div>
-          </div>
-          <div className="text-xs text-neutral-500">Offline capable • System integrations • Native UI</div>
-        </div>
+        <Box rowGap={12}>
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Monitor size={16} color="var(--foreground)" />
+            <Text color="var(--foreground)">Native performance</Text>
+          </XStack>
+          <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={8}>
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={8} textAlign="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={4}><Apple size={20} color="var(--neutral-400)" /></Box>
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">macOS</Text>
+            </Box>
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={8} textAlign="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={4}><Monitor size={20} color="var(--neutral-400)" /></Box>
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Windows</Text>
+            </Box>
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={8} textAlign="center">
+              <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={4}><Chrome size={20} color="var(--neutral-400)" /></Box>
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Linux</Text>
+            </Box>
+          </Grid>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Offline capable • System integrations • Native UI</Box>
+        </Box>
       ),
     },
     local: {
       title: "Local AI Mode",
       content: (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Cpu className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-400">Running locally</span>
-          </div>
-          <div className="bg-neutral-900/50 rounded-lg p-3 font-mono text-xs">
-            <div className="text-neutral-500">$ hanzo local start</div>
-            <div className="text-green-400 mt-1">✓ Qwen3-32B loaded (16GB VRAM)</div>
-            <div className="text-green-400">✓ MCP tools connected</div>
-            <div className="text-green-400">✓ Ready on localhost:8080</div>
-          </div>
-          <div className="text-xs text-neutral-500">Zero data leaves your machine • Full privacy • GPU accelerated</div>
-        </div>
+        <Box rowGap={12}>
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Cpu size={16} color="var(--foreground)" />
+            <Text color="var(--foreground)">Running locally</Text>
+          </XStack>
+          <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <Box color="var(--neutral-500)">$ hanzo local start</Box>
+            <Box color="var(--foreground)" marginTop={4}>✓ Qwen3-32B loaded (16GB VRAM)</Box>
+            <Box color="var(--foreground)">✓ MCP tools connected</Box>
+            <Box color="var(--foreground)">✓ Ready on localhost:8080</Box>
+          </Box>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Zero data leaves your machine • Full privacy • GPU accelerated</Box>
+        </Box>
       ),
     },
     node: {
       title: "Hanzo Node",
       content: (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-sm">
-            <Shield className="w-4 h-4" style={{ color: BRAND_COLOR }} />
+        <Box rowGap={12}>
+          <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Shield size={16} style={{ color: BRAND_COLOR }} />
             <span style={{ color: BRAND_COLOR }}>Node active</span>
-          </div>
-          <div className="bg-neutral-900/50 rounded-lg p-3 font-mono text-xs">
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Staked:</span>
-              <span className="text-white">50,000 LUX</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Earnings:</span>
-              <span className="text-green-400">+127.4 LUX/day</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Uptime:</span>
-              <span className="text-white">99.97%</span>
-            </div>
-          </div>
-          <div className="text-xs text-neutral-500">Earn rewards • Decentralized compute • Proof of AI</div>
-        </div>
+          </XStack>
+          <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+            <XStack display="flex" justifyContent="space-between">
+              <Text color="var(--neutral-500)">Staked:</Text>
+              <Text color="var(--foreground)">50,000 LUX</Text>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between">
+              <Text color="var(--neutral-500)">Earnings:</Text>
+              <Text color="var(--foreground)">+127.4 LUX/day</Text>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between">
+              <Text color="var(--neutral-500)">Uptime:</Text>
+              <Text color="var(--foreground)">99.97%</Text>
+            </XStack>
+          </Box>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Earn rewards • Decentralized compute • Proof of AI</Box>
+        </Box>
       ),
     },
   };
@@ -126,28 +127,28 @@ const AppDemo = ({ activeTab }: { activeTab: string }) => {
   const demo = demos[activeTab];
 
   return (
-    <div className="rounded-xl border border-neutral-700 bg-neutral-900/95 backdrop-blur-sm overflow-hidden shadow-2xl h-[320px] flex flex-col">
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950 shrink-0">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-3 h-3 rounded-full bg-green-500/80" />
-        </div>
+    <YStack borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" height="320px" display="flex" flexDirection="column">
+      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)" flexShrink={0}>
+        <XStack display="flex" gap={6}>
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        </XStack>
         <AnimatePresence mode="wait">
-          <motion.span
+          <MotionText
             key={activeTab}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-xs text-neutral-500 font-mono ml-2"
+            fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)" marginLeft={8}
           >
             {demo.title}
-          </motion.span>
+          </MotionText>
         </AnimatePresence>
-      </div>
-      <div className="flex-1 p-4 bg-neutral-950 overflow-y-auto">
+      </XStack>
+      <Box flex={1} padding={16} backgroundColor="var(--neutral-950)" overflowY="auto">
         <AnimatePresence mode="wait">
-          <motion.div
+          <MotionBox
             key={activeTab}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -155,10 +156,10 @@ const AppDemo = ({ activeTab }: { activeTab: string }) => {
             transition={{ duration: 0.15 }}
           >
             {demo.content}
-          </motion.div>
+          </MotionBox>
         </AnimatePresence>
-      </div>
-    </div>
+      </Box>
+    </YStack>
   );
 };
 
@@ -173,135 +174,131 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
+    <Box render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
       {/* Background gradient */}
-      <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+        <Box
+          position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
           style={{
             background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
             filter: "blur(100px)",
           }}
         />
-      </div>
+      </Box>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Grid display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 64 }}>
           {/* Left Column */}
           <div>
-            <motion.h1
+            <MotionText
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+              fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
             >
-              <span className="text-white">Build anywhere.</span>
+              <Text color="var(--foreground)">Build anywhere.</Text>
               <br />
-              <span className="text-neutral-400">Ship everywhere.</span>
-            </motion.h1>
+              <Text color="var(--neutral-400)">Ship everywhere.</Text>
+            </MotionText>
 
-            <motion.p
+            <MotionText
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.05 }}
-              className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-8 max-w-xl"
+              fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={32} maxWidth="36rem" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
             >
               Hanzo App works in your browser, as a native desktop app, with private local AI, or connected to the decentralized network. Your choice.
-            </motion.p>
+            </MotionText>
 
             {/* CTAs */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="flex flex-wrap items-center gap-4 mb-6"
+              flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" gap={16} marginBottom={24}
             >
-              <a
+              <Anchor
                 href="https://hanzo.app"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Open in browser
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+              </Anchor>
               <Link
                 to="/download"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
-                <Download className="mr-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
                 Download app
               </Link>
-            </motion.div>
+            </MotionBox>
 
             {/* Install command */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800">
-                <code className="text-sm font-mono text-neutral-300">
+              <XStack display="inline-flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)" color="var(--neutral-300)">
                   curl -fsSL hanzo.sh | sh
-                </code>
-                <button
+                </Text>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={handleCopy}
-                  className="text-neutral-500 hover:text-white transition-colors"
+                  render="button" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 >
-                  {copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
-                </button>
-                <a
+                  {copied ? <Check size={14} color="var(--neutral-500)" /> : <Copy size={14} />}
+                </Box>
+                <Anchor tap
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="text-neutral-500 hover:text-white transition-colors"
+                  color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 >
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </motion.div>
+                  <ExternalLink size={14} />
+                </Anchor>
+              </XStack>
+            </MotionBox>
 
             {/* Platform tabs */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="flex flex-wrap gap-2"
+              flexDirection="row" display="flex" flexWrap="wrap" gap={8}
             >
               {PLATFORMS.map((platform) => {
                 const Icon = platform.icon;
                 const isActive = activeTab === platform.id;
                 return (
-                  <button
+                  <XStack minHeight={44}
                     key={platform.id}
                     onClick={() => setActiveTab(platform.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      isActive
-                        ? "bg-[#fd4444] text-white"
-                        : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700"
-                    }`}
+                    render="button" display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isActive ? "var(--foreground)" : "var(--neutral-900)"} color={isActive ? "var(--foreground)" : "var(--neutral-400)"} borderWidth={isActive ? undefined : 1} borderColor={isActive ? undefined : "var(--neutral-800)"} hoverStyle={isActive ? undefined : { color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon width={16} height={16} />
                     {platform.label}
-                  </button>
+                  </XStack>
                 );
               })}
-            </motion.div>
+            </MotionBox>
           </div>
 
           {/* Right Column: Demo */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.25 }}
           >
             <AppDemo activeTab={activeTab} />
-          </motion.div>
-        </div>
-      </div>
-    </section>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

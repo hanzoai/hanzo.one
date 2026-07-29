@@ -1,28 +1,28 @@
+import { Box, ChromeText, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import ChromeText from "@/components/ui/chrome-text";
 
 const TeamChatHero: React.FC = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 py-10 px-4">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box paddingVertical={40} paddingHorizontal={16} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center"
+          textAlign="center"
         >
-          <ChromeText as="h1" className="text-4xl font-bold mb-2">
+          <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={8}>
             Hanzo Chat
           </ChromeText>
-          <p className="text-neutral-300 max-w-2xl mx-auto">
+          <Paragraph color="var(--neutral-300)" maxWidth="42rem" marginHorizontal="auto">
             Connect with state-of-the-art AI models through our intuitive chat interface.
             Get answers, generate content, and solve problems with natural language.
-          </p>
-        </motion.div>
-      </div>
-    </div>
+          </Paragraph>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

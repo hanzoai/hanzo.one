@@ -1,7 +1,7 @@
+import { Box, Text, XStack, YStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
 import { X, Plus, LayoutGrid, List, MenuSquare } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export type TabType = {
   id: string;
@@ -44,53 +44,50 @@ const TabsManager: React.FC<TabsManagerProps> = ({ initialTabs, onAddTab }) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex border-b border-gray-800">
-        <div className="flex-1 flex overflow-x-auto scrollbar-none">
+    <YStack display="flex" flexDirection="column" height="100%">
+      <XStack display="flex" borderBottomWidth={1} borderColor="var(--neutral-800)">
+        <XStack flex={1} display="flex" overflowX="auto" scrollbarWidth="none">
           {tabs.map(tab => (
-            <div
+            <XStack
               key={tab.id}
-              className={cn(
-                "flex items-center px-4 py-2 border-r border-gray-800 cursor-pointer group transition-colors",
-                activeTabId === tab.id ? "bg-gray-900" : "hover:bg-gray-900/50"
-              )}
+              group display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRightWidth={1} borderColor="var(--neutral-800)" cursor="pointer" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={activeTabId === tab.id ? "var(--neutral-900)" : undefined} hoverStyle={activeTabId === tab.id ? undefined : { backgroundColor: "var(--surface-card)" }}
               onClick={() => handleTabClick(tab.id)}
             >
-              {tab.icon && <span className="mr-2">{tab.icon}</span>}
-              <span className="truncate max-w-[150px]">{tab.title}</span>
+              {tab.icon && <Text marginRight={8}>{tab.icon}</Text>}
+              <Text whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxWidth="150px">{tab.title}</Text>
               {tabs.length > 1 && (
-                <button
-                  className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-neutral-500 hover:text-[var(--white)]"
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
+                  render="button" marginLeft={8} opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" color="var(--neutral-500)" $group-hover={{ opacity: 1 }} hoverStyle={{ color: "var(--white)" }}
                   onClick={(e) => handleCloseTab(e, tab.id)}
                 >
                   <X size={14} />
-                </button>
+                </Box>
               )}
-            </div>
+            </XStack>
           ))}
-        </div>
-        <div className="flex items-center">
-          <button
+        </XStack>
+        <XStack display="flex" alignItems="center">
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
             onClick={onAddTab}
-            className="p-2 hover:bg-gray-800 transition-colors"
+            render="button" padding={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             title="New Tab"
           >
             <Plus size={16} />
-          </button>
-          <button
+          </Box>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
             onClick={toggleViewMode}
-            className="p-2 hover:bg-gray-800 transition-colors"
+            render="button" padding={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             title={viewMode === "kanban" ? "Switch to List View" : "Switch to Kanban View"}
           >
             {viewMode === "kanban" ? <List size={16} /> : <LayoutGrid size={16} />}
-          </button>
-        </div>
-      </div>
+          </Box>
+        </XStack>
+      </XStack>
       
-      <div className="flex-1 overflow-hidden">
+      <Box flex={1} overflow="hidden">
         {activeTab && activeTab.content}
-      </div>
-    </div>
+      </Box>
+    </YStack>
   );
 };
 

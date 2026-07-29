@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -15,7 +16,7 @@ import EnterpriseSolutions from "@/components/balancer/EnterpriseSolutions";
 
 const HanzoBalancer = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       <HeroSection />
       <FeaturesOverview />
@@ -28,7 +29,7 @@ const HanzoBalancer = () => {
       <Testimonials />
       <CallToAction />
       <Footer />
-    </div>
+    </Box>
   );
 };
 

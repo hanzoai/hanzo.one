@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 import React, { useEffect, useState } from "react";
 import PricingPlan from "./PricingPlan";
 import { Users, Shield, Code } from "lucide-react";
@@ -23,7 +24,7 @@ const TeamEnterprisePlans = () => {
   const plans = [
     {
       name: "Team",
-      icon: <Users className="h-6 w-6 text-neutral-400" />,
+      icon: <Users size={24} color="var(--neutral-400)" />,
       price: "$30",
       billingPeriod: "/user/month",
       description: "Collaborative teams requiring unified billing",
@@ -42,7 +43,7 @@ const TeamEnterprisePlans = () => {
     },
     {
       name: "Enterprise",
-      icon: <Shield className="h-6 w-6 text-neutral-400" />,
+      icon: <Shield size={24} color="var(--neutral-400)" />,
       price: "Custom",
       description: "For large businesses requiring enterprise-grade security",
       features: [
@@ -60,8 +61,8 @@ const TeamEnterprisePlans = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto mb-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <Box maxWidth="var(--container-max)" marginHorizontal="auto" marginBottom={64}>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
         {plans.map((plan) => (
           <PricingPlan
             key={plan.name}
@@ -76,10 +77,10 @@ const TeamEnterprisePlans = () => {
             customColor={plan.customColor}
           />
         ))}
-      </div>
+      </Grid>
       
       <TeamPlanDetails fromMaxPlan={fromMaxPlan} fromProPlan={fromProPlan} />
-    </div>
+    </Box>
   );
 };
 

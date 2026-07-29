@@ -1,84 +1,84 @@
+import { Anchor, Box, Button, H1, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Terminal, Eye, Cpu, MousePointer, Keyboard } from "lucide-react";
 
 const OperativeHero = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <Box render="section" paddingVertical={128} position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
-      <div className="absolute top-1/3 -left-1/4 w-1/2 h-1/2 bg-blue-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), transparent)"></Box>
+      <Box position="absolute" top="33.333333%" left="-25%" width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom="25%" right="-25%" width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
+            <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
               AI Engineering Framework
-            </span>
+            </Text>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--white)] mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-purple-300">
+            <H1 fontSize="var(--text-5xl)" lineHeight="var(--leading-5xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" color="transparent" marginBottom={24} backgroundClip="text" backgroundImage="linear-gradient(to bottom, var(--foreground), var(--foreground), var(--foreground))" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} $lg={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
               Hanzo Operative
-            </h1>
+            </H1>
 
-            <p className="mt-6 text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph marginTop={24} fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               A framework that enables multimodal AI models to operate a computer using the same inputs and 
               outputs as a human operator, viewing the screen and executing mouse and keyboard actions to achieve objectives.
-            </p>
+            </Paragraph>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
+            <YStack marginTop={40} display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button size="lg" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}>
                 <a href="#get-started">Get Started</a>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10">
-                <a href="https://docs.hanzo.ai/operative" className="flex items-center gap-2">
-                  <Terminal className="h-5 w-5" />
+              <Button size="lg" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+                <Anchor tap href="https://docs.hanzo.ai/operative" display="flex" alignItems="center" gap={8}>
+                  <Terminal size={20} />
                   View Docs
-                </a>
+                </Anchor>
               </Button>
-            </div>
-          </motion.div>
+            </YStack>
+          </MotionBox>
 
-          <motion.div 
+          <MotionBox 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            marginTop={64} display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={24} maxWidth="56rem" marginHorizontal="auto" $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}
           >
-            <div className="flex flex-col items-center">
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
-                <Eye className="h-6 w-6 text-purple-400" />
-              </div>
-              <p className="text-sm font-medium text-neutral-300">Screen Vision</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
-                <Cpu className="h-6 w-6 text-purple-400" />
-              </div>
-              <p className="text-sm font-medium text-neutral-300">Multimodal Models</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
-                <MousePointer className="h-6 w-6 text-purple-400" />
-              </div>
-              <p className="text-sm font-medium text-neutral-300">Cursor Control</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
-                <Keyboard className="h-6 w-6 text-purple-400" />
-              </div>
-              <p className="text-sm font-medium text-neutral-300">Keyboard Actions</p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            <YStack display="flex" flexDirection="column" alignItems="center">
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <Eye size={24} color="var(--foreground)" />
+              </XStack>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)">Screen Vision</Paragraph>
+            </YStack>
+            <YStack display="flex" flexDirection="column" alignItems="center">
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <Cpu size={24} color="var(--foreground)" />
+              </XStack>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)">Multimodal Models</Paragraph>
+            </YStack>
+            <YStack display="flex" flexDirection="column" alignItems="center">
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <MousePointer size={24} color="var(--foreground)" />
+              </XStack>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)">Cursor Control</Paragraph>
+            </YStack>
+            <YStack display="flex" flexDirection="column" alignItems="center">
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <Keyboard size={24} color="var(--foreground)" />
+              </XStack>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)">Keyboard Actions</Paragraph>
+            </YStack>
+          </MotionBox>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

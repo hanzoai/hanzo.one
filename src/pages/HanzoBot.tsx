@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -12,7 +13,7 @@ import Community from "@/components/hanzobot/Community";
 
 const HanzoBot = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       <main>
         <HeroSection />
@@ -24,7 +25,7 @@ const HanzoBot = () => {
         <Community />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

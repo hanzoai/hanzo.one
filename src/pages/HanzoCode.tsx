@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -14,7 +15,7 @@ import HanzoCodeAgents from "@/components/hanzocode/HanzoCodeAgents";
 
 const HanzoCode = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       <main>
         <HanzoCodeHero />
@@ -28,7 +29,7 @@ const HanzoCode = () => {
         <HanzoCodeCTA />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
+import { Box, H2, MotionBox, Paragraph, Tabs, TabsContent, TabsList, TabsTrigger, Text, XStack } from '@/gui'
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Copy, Terminal } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface CodeExample {
   language: string;
@@ -42,35 +42,35 @@ export function CodeExamplesSection({
   };
 
   return (
-    <motion.section
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-16 px-4 md:px-8"
+      paddingVertical={64} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}
     >
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-2 mb-2">
-          <Terminal className="w-5 h-5 text-[#fd4444]" />
-          <span className="text-sm font-medium text-[#fd4444] uppercase tracking-wider">
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <XStack display="flex" alignItems="center" gap={8} marginBottom={8}>
+          <Terminal size={20} color="var(--foreground)" />
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)" textTransform="uppercase" letterSpacing="0.05em">
             Code Examples
-          </span>
-        </div>
+          </Text>
+        </XStack>
 
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
           {title}
-        </h2>
-        <p className="text-neutral-400 mb-8">
+        </H2>
+        <Paragraph color="var(--neutral-400)" marginBottom={32}>
           {subtitle}
-        </p>
+        </Paragraph>
 
-        <Tabs defaultValue={examples[0]?.language} className="w-full">
-          <TabsList className="flex flex-wrap gap-2 bg-transparent border-b border-neutral-800 pb-4 mb-6">
+        <Tabs defaultValue={examples[0]?.language} width="100%">
+          <TabsList display="flex" flexWrap="wrap" gap={8} backgroundColor="transparent" borderBottomWidth={1} borderColor="var(--neutral-800)" paddingBottom={16} marginBottom={24}>
             {examples.map((example) => (
               <TabsTrigger
                 key={example.language}
                 value={example.language}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-neutral-400 data-[state=active]:text-white data-[state=active]:bg-neutral-800 hover:text-white transition-colors"
+                display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <span>{languageIcons[example.language.toLowerCase()] || "📄"}</span>
                 {example.label}
@@ -81,42 +81,42 @@ export function CodeExamplesSection({
           {examples.map((example) => (
             <TabsContent key={example.language} value={example.language}>
               {example.description && (
-                <p className="text-neutral-400 text-sm mb-4">
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>
                   {example.description}
-                </p>
+                </Paragraph>
               )}
 
-              <div className="relative group">
-                <div className="absolute top-3 right-3 z-10">
-                  <button
+              <Box group position="relative">
+                <Box position="absolute" top={12} right={12} zIndex={10}>
+                  <XStack minHeight={44}
                     onClick={() => copyToClipboard(example.code, example.language)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 rounded-md text-xs font-medium text-neutral-300 transition-colors"
+                    render="button" display="inline-flex" alignItems="center" gap={6} paddingHorizontal={12} paddingVertical={6} backgroundColor="var(--neutral-800)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                   >
                     {copiedIndex === example.language ? (
                       <>
-                        <Check className="w-3 h-3 text-green-500" />
+                        <Check size={12} color="var(--neutral-500)" />
                         Copied!
                       </>
                     ) : (
                       <>
-                        <Copy className="w-3 h-3" />
+                        <Copy size={12} />
                         Copy
                       </>
                     )}
-                  </button>
-                </div>
+                  </XStack>
+                </Box>
 
-                <pre className="bg-neutral-900 border border-neutral-800 rounded-xl p-4 pr-24 overflow-x-auto">
-                  <code className="text-sm text-neutral-300 font-mono whitespace-pre">
+                <Box render="pre" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={16} paddingRight={96} overflowX="auto">
+                  <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" fontFamily="var(--font-mono)" whiteSpace="pre">
                     {example.code}
-                  </code>
-                </pre>
-              </div>
+                  </Text>
+                </Box>
+              </Box>
             </TabsContent>
           ))}
         </Tabs>
-      </div>
-    </motion.section>
+      </Box>
+    </MotionBox>
   );
 }
 

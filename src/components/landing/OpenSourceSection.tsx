@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Github, ExternalLink, Heart, ArrowRight, Rocket, Network } from "lucide-react";
 
 // GitHub organizations
@@ -40,12 +41,12 @@ const features = [
     description: "Every core component is open source and MIT/Apache 2.0 licensed",
   },
   {
-    icon: <Heart className="w-5 h-5" />,
+    icon: <Heart size={20} />,
     title: "Community Driven",
     description: "Built with and for the developer community",
   },
   {
-    icon: <Github className="w-5 h-5" />,
+    icon: <Github size={20} />,
     title: "Self-Hostable",
     description: "Run the entire platform on your own infrastructure",
   },
@@ -58,96 +59,96 @@ const OpenSourceSection = () => {
   const templates = repos["hanzo-apps"].slice(0, 3);
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-black relative">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" $md={{ paddingHorizontal: 32 }}>
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="absolute inset-0"
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.03}>
+        <Box
+          position="absolute" top={0} right={0} bottom={0} left={0}
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
-      </div>
+      </Box>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex items-center gap-2 text-xs font-medium rounded-full px-4 py-2 border mb-6"
-               style={{ color: "#fd4444", borderColor: "rgba(253, 68, 68, 0.3)" }}>
-            <Github className="w-4 h-4" />
+          <XStack display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
+               style={{ color: "var(--foreground)", borderColor: "rgba(253, 68, 68, 0.3)" }}>
+            <Github size={16} />
             Open Source
-          </div>
-          <h2 className="text-3xl md:text-5xl font-medium text-white mb-6">
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Built in the open
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             We believe the future of AI infrastructure should be open. View our code, contribute, or self-host the entire platform.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* GitHub Organizations */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={48}
         >
           {githubOrgs.map((org) => (
-            <a
+            <Anchor
               key={org.name}
               href={org.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-5 py-3 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:border-neutral-700 transition-all group"
+              group display="flex" alignItems="center" gap={12} paddingHorizontal={20} paddingVertical={12} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-700)" }}
             >
-              <Github className="w-5 h-5 text-neutral-400" />
+              <Github size={20} color="var(--neutral-400)" />
               <div>
-                <div className="text-sm font-medium text-white group-hover:text-[#fd4444] transition-colors">{org.label}</div>
-                <div className="text-xs text-neutral-500">{org.description}</div>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>{org.label}</Box>
+                <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{org.description}</Box>
               </div>
-              <ExternalLink className="w-3.5 h-3.5 text-neutral-600 group-hover:text-neutral-400 transition-colors" />
-            </a>
+              <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--neutral-400)" }}><ExternalLink size={14} color="var(--neutral-600)" /></Box>
+            </Anchor>
           ))}
-        </motion.div>
+        </MotionBox>
 
         {/* Features row */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
         >
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-              className="text-center p-6"
+              textAlign="center" padding={24}
             >
-              <div className="w-12 h-12 rounded-xl bg-[#fd4444]/10 flex items-center justify-center mx-auto mb-4 text-[#fd4444] font-bold">
+              <XStack width={48} height={48} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" marginBottom={16} color="var(--foreground)" fontWeight="700">
                 {typeof feature.icon === "string" ? feature.icon : feature.icon}
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-sm text-neutral-400">{feature.description}</p>
-            </motion.div>
+              </XStack>
+              <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </motion.div>
+        </MotionBox>
 
         {/* Featured Repos grid - 3x2 on desktop */}
-        <div className="mb-16">
-          <h3 className="text-xl font-medium text-white mb-6 text-center">Core Infrastructure</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Box marginBottom={64}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" color="var(--foreground)" marginBottom={24} textAlign="center">Core Infrastructure</H3>
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {featuredRepos.map((repo, index) => (
-              <motion.a
+              <MotionBox
                 key={repo.name}
                 href={`https://github.com/hanzoai/${repo.name}`}
                 target="_blank"
@@ -155,183 +156,179 @@ const OpenSourceSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 + (index % 3) * 0.1 }}
-                className={`group p-5 rounded-xl border bg-neutral-900/50 hover:bg-neutral-900 transition-all ${
-                  repo.featured
-                    ? "border-[#fd4444]/30 hover:border-[#fd4444]/50"
-                    : "border-neutral-800 hover:border-neutral-700"
-                }`}
+                
+                group padding={20} borderRadius="var(--radius-xl)" borderWidth={1} backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderColor={repo.featured ? "rgb(255 255 255 / 0.3)" : "var(--neutral-800)"} hoverStyle={{ ...({ backgroundColor: "var(--neutral-900)" }), ...(repo.featured ? { borderColor: "var(--border-strong)" } : { borderColor: "var(--neutral-700)" }) }}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Github className="w-4 h-4 text-neutral-400" />
-                    <span className="font-mono text-sm text-white">hanzoai/{repo.name}</span>
-                  </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-neutral-600 group-hover:text-neutral-400 transition-colors" />
-                </div>
-                <p className="text-sm text-neutral-400 mb-3 line-clamp-2">{repo.description}</p>
-                <div className="flex items-center gap-3">
-                  <span className="text-[11px] px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-500">{repo.language}</span>
-                </div>
-              </motion.a>
+                <XStack display="flex" alignItems="flex-start" justifyContent="space-between" marginBottom={12}>
+                  <XStack display="flex" alignItems="center" gap={8}>
+                    <Github size={16} color="var(--neutral-400)" />
+                    <Text fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">hanzoai/{repo.name}</Text>
+                  </XStack>
+                  <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--neutral-400)" }}><ExternalLink size={14} color="var(--neutral-600)" /></Box>
+                </XStack>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={12} WebkitLineClamp={2} display="-webkit-box" WebkitBoxOrient="vertical" overflow="hidden">{repo.description}</Paragraph>
+                <XStack display="flex" alignItems="center" gap={12}>
+                  <Text fontSize="11px" paddingHorizontal={6} paddingVertical={2} borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" color="var(--neutral-500)">{repo.language}</Text>
+                </XStack>
+              </MotionBox>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Box>
 
         {/* Templates Section */}
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-medium text-white">Templates &amp; Starters</h3>
-            <a
+        <Box marginBottom={64}>
+          <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={24}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" color="var(--foreground)">Templates &amp; Starters</H3>
+            <Anchor tap
               href="https://github.com/hanzo-apps"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-neutral-400 hover:text-white transition-colors flex items-center gap-1"
+              fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" gap={4} hoverStyle={{ color: "var(--foreground)" }}
             >
               View all templates
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <ExternalLink size={14} />
+            </Anchor>
+          </XStack>
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {templates.map((template, index) => (
-              <motion.div
+              <MotionBox
                 key={template.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                className="group p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:border-neutral-700 transition-all"
+                
+                group padding={20} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-700)" }}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Rocket className="w-4 h-4 text-[#fd4444]" />
-                    <span className="font-mono text-sm text-white">{template.name}</span>
-                  </div>
-                </div>
-                <p className="text-sm text-neutral-400 mb-4 line-clamp-2">{template.description}</p>
-                <div className="flex items-center gap-2">
-                  <a
+                <XStack display="flex" alignItems="flex-start" justifyContent="space-between" marginBottom={12}>
+                  <XStack display="flex" alignItems="center" gap={8}>
+                    <Rocket size={16} color="var(--foreground)" />
+                    <Text fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">{template.name}</Text>
+                  </XStack>
+                </XStack>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16} WebkitLineClamp={2} display="-webkit-box" WebkitBoxOrient="vertical" overflow="hidden">{template.description}</Paragraph>
+                <XStack display="flex" alignItems="center" gap={8}>
+                  <Anchor tap
                     href={`https://hanzo.app/new?template=${template.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 text-center px-3 py-2 rounded-lg bg-[#fd4444] hover:bg-[#fd4444]/90 text-white text-xs font-medium transition-colors"
+                    flex={1} textAlign="center" paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-800)" color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                   >
                     Launch in Hanzo
-                  </a>
-                  <a
+                  </Anchor>
+                  <Anchor tap
                     href={`https://github.com/hanzo-apps/${template.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 rounded-lg border border-neutral-700 hover:bg-neutral-800 text-neutral-400 text-xs transition-colors"
+                    paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)" color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                   >
-                    <Github className="w-4 h-4" />
-                  </a>
-                </div>
-              </motion.div>
+                    <Github size={16} />
+                  </Anchor>
+                </XStack>
+              </MotionBox>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Box>
 
         {/* Hanzo Network Section */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="rounded-2xl border border-[#fd4444]/30 bg-gradient-to-br from-[#fd4444]/10 to-transparent p-8 mb-12"
+          borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--border-strong)" padding={32} marginBottom={48} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), transparent)"
         >
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <Grid display="grid" gap={32} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-medium rounded-full px-4 py-2 border mb-4"
-                   style={{ color: "#fd4444", borderColor: "rgba(253, 68, 68, 0.3)" }}>
-                <Network className="w-4 h-4" />
+              <XStack display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={16}
+                   style={{ color: "var(--foreground)", borderColor: "rgba(253, 68, 68, 0.3)" }}>
+                <Network size={16} />
                 Hanzo Network
-              </div>
-              <h3 className="text-2xl md:text-3xl font-medium text-white mb-4">
+              </XStack>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
                 Decentralized AI compute
-              </h3>
-              <p className="text-neutral-400 mb-6">
+              </H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Join the Hanzo Network to contribute GPU power for AI inference and training. Earn rewards while powering the next generation of AI applications.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" gap={12}>
+                <Anchor tap
                   href="https://hanzo.network"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[#fd4444] text-white hover:opacity-90 transition-colors"
+                  display="inline-flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" backgroundColor="var(--neutral-800)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
                 >
                   Learn more
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
+                  <ArrowRight size={16} />
+                </Anchor>
+                <Anchor tap
                   href="https://github.com/hanzoai/network"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-neutral-700 text-white hover:bg-neutral-900 transition-colors"
+                  display="inline-flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
-                  <Github className="w-4 h-4" />
+                  <Github size={16} />
                   View source
-                </a>
-              </div>
+                </Anchor>
+              </XStack>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="w-32 h-32 rounded-2xl bg-neutral-800/50 flex items-center justify-center">
-                <Network className="w-16 h-16 text-[#fd4444]" />
-              </div>
-            </div>
-          </div>
-        </motion.div>
+            <XStack display="flex" alignItems="center" justifyContent="center">
+              <XStack width={128} height={128} borderRadius="var(--radius-2xl)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center">
+                <Network size={64} color="var(--foreground)" />
+              </XStack>
+            </XStack>
+          </Grid>
+        </MotionBox>
 
         {/* Research Link */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <p className="text-neutral-400 mb-4">
+          <Paragraph color="var(--neutral-400)" marginBottom={16}>
             Read our research papers and technical specifications
-          </p>
-          <a
+          </Paragraph>
+          <Anchor tap
             href="https://zenlm.org"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#fd4444] hover:underline"
+            display="inline-flex" alignItems="center" gap={8} color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}
           >
             zenlm.org - AI Research &amp; Philosophy
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </motion.div>
+            <ExternalLink size={16} />
+          </Anchor>
+        </MotionBox>
 
         {/* CTAs */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}
         >
-          <Link
+          <Link tap
             to="/open-source"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white bg-[#fd4444] hover:bg-[#fd4444]/90 transition-colors"
+            display="inline-flex" alignItems="center" gap={8} paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" backgroundColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
           >
             Browse all projects
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight size={16} />
           </Link>
-          <a
+          <Anchor tap
             href="https://github.com/hanzoai"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white border border-neutral-700 hover:bg-neutral-900 transition-colors"
+            display="inline-flex" alignItems="center" gap={8} paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
-            <Github className="w-5 h-5" />
+            <Github size={20} />
             View on GitHub
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </motion.div>
-      </div>
-    </section>
+            <ExternalLink size={16} />
+          </Anchor>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
+import { Box, Helmet } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/shadcn-v4/HeroSection";
@@ -12,7 +12,7 @@ import CallToAction from "@/components/shadcn-v4/CallToAction";
 
 const ShadcnV4Page = () => {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <Box minHeight="100vh" backgroundColor="var(--background)" color="var(--foreground)">
       <Helmet>
         <title>Shadcn/UI with Tailwind v4 and React 19 | Hanzo</title>
         <meta name="description" content="Learn how to use shadcn/ui with Tailwind v4 and React 19. Discover the latest features, improvements, and migration steps." />
@@ -30,7 +30,7 @@ const ShadcnV4Page = () => {
       </main>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

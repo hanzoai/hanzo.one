@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -15,12 +16,12 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
       <Navbar />
-      <div className="pt-16">
+      <Box paddingTop={64}>
         <ProductPageTemplate product={product} />
-      </div>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 }

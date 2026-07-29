@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, Link, MotionBox, MotionText, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Github,
@@ -13,7 +14,7 @@ import {
   Copy,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const FEATURES = [
   { id: "self-host", label: "Self-Host", icon: Server },
@@ -105,40 +106,40 @@ hanzo deploy --prod`,
   const demo = demos[activeFeature];
 
   return (
-    <div className="rounded-xl border border-neutral-700 bg-neutral-900/95 backdrop-blur-sm overflow-hidden shadow-2xl">
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-3 h-3 rounded-full bg-green-500/80" />
-        </div>
+    <Box borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
+      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+        <XStack display="flex" gap={6}>
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        </XStack>
         <AnimatePresence mode="wait">
-          <motion.span
+          <MotionText
             key={activeFeature}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-xs text-neutral-500 font-mono ml-2"
+            fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)" marginLeft={8}
           >
             {demo.title}
-          </motion.span>
+          </MotionText>
         </AnimatePresence>
-      </div>
-      <div className="p-4 bg-neutral-950">
+      </XStack>
+      <Box padding={16} backgroundColor="var(--neutral-950)">
         <AnimatePresence mode="wait">
-          <motion.pre
+          <MotionBox
             key={activeFeature}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="text-sm font-mono text-neutral-300 overflow-x-auto"
+            fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)" color="var(--neutral-300)" overflowX="auto"
           >
             <code>{demo.code}</code>
-          </motion.pre>
+          </MotionBox>
         </AnimatePresence>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
@@ -153,137 +154,133 @@ const PlatformHero = () => {
   };
 
   return (
-    <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
+    <Box render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
       {/* Background gradient */}
-      <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+        <Box
+          position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
           style={{
             background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
             filter: "blur(100px)",
           }}
         />
-      </div>
+      </Box>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Grid display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 64 }}>
           {/* Left Column */}
           <div>
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6"
+              flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={24}
               style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
             >
               Open Source • MIT Licensed • Self-Hostable
-            </motion.div>
+            </MotionBox>
 
-            <motion.h1
+            <MotionText
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.05 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+              fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
             >
-              <span className="text-white">Own your</span>
+              <Text color="var(--foreground)">Own your</Text>
               <br />
-              <span className="text-neutral-400">entire stack.</span>
-            </motion.h1>
+              <Text color="var(--neutral-400)">entire stack.</Text>
+            </MotionText>
 
-            <motion.p
+            <MotionText
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-8 max-w-xl"
+              fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={32} maxWidth="36rem" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
             >
               Open source Backend-as-a-Service with Auth, Database, Storage, and Functions.
               Self-host on your infrastructure or deploy to Hanzo Cloud. No vendor lock-in.
-            </motion.p>
+            </MotionText>
 
             {/* CTAs */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="flex flex-wrap items-center gap-4 mb-6"
+              flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" gap={16} marginBottom={24}
             >
-              <a
+              <Anchor
                 href="https://github.com/hanzoai/platform"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
-                <Github className="mr-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
                 Star on GitHub
-              </a>
-              <a
+              </Anchor>
+              <Anchor tap
                 href="https://docs.hanzo.ai/platform"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Documentation
-              </a>
-            </motion.div>
+              </Anchor>
+            </MotionBox>
 
             {/* Install command */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="mb-8"
+              marginBottom={32}
             >
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800">
-                <code className="text-sm font-mono text-neutral-300">npx @hanzo/cli create my-app</code>
-                <button
+              <XStack display="inline-flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <Text render="code" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)" color="var(--neutral-300)">npx @hanzo/cli create my-app</Text>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={handleCopy}
-                  className="text-neutral-500 hover:text-white transition-colors"
+                  render="button" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 >
-                  {copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
-                </button>
-              </div>
-            </motion.div>
+                  {copied ? <Check size={14} color="var(--neutral-500)" /> : <Copy size={14} />}
+                </Box>
+              </XStack>
+            </MotionBox>
 
             {/* Feature tabs */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.25 }}
-              className="flex flex-wrap gap-2"
+              flexDirection="row" display="flex" flexWrap="wrap" gap={8}
             >
               {FEATURES.map((feature) => {
                 const Icon = feature.icon;
                 const isActive = activeFeature === feature.id;
                 return (
-                  <button
+                  <XStack minHeight={44}
                     key={feature.id}
                     onClick={() => setActiveFeature(feature.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      isActive
-                        ? "bg-[#fd4444] text-white"
-                        : "bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700"
-                    }`}
+                    render="button" display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isActive ? "var(--foreground)" : "var(--neutral-900)"} color={isActive ? "var(--foreground)" : "var(--neutral-400)"} borderWidth={isActive ? undefined : 1} borderColor={isActive ? undefined : "var(--neutral-800)"} hoverStyle={isActive ? undefined : { color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon width={16} height={16} />
                     {feature.label}
-                  </button>
+                  </XStack>
                 );
               })}
-            </motion.div>
+            </MotionBox>
           </div>
 
           {/* Right Column: Feature Demo */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
             <FeatureDemo activeFeature={activeFeature} />
-          </motion.div>
-        </div>
-      </div>
-    </section>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
+import { toast } from '@/gui'
 
-import { toast } from "sonner";
 
 // Note: In a production environment, these keys would be handled through environment variables
 // and the actual payment processing would happen on the server-side

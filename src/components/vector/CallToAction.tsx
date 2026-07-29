@@ -1,55 +1,54 @@
+import { Anchor, Box, Button, ChromeText, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 import { ArrowRight } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-blue-900/20 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div 
-          className="text-center"
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox 
+          textAlign="center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Ready to transform your AI applications?
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Join thousands of developers building faster, more accurate AI-powered experiences with Hanzo Vector
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-500 hover:to-blue-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all"
+              color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
               Get Started Free
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="text-lg px-8"
+              fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}
             >
               Join the Community
             </Button>
-          </div>
+          </YStack>
           
-          <p className="text-neutral-400 mt-8">
-            Have questions? Contact us at <a href="mailto:vector@hanzo.ai" className="text-indigo-400 hover:text-indigo-300">vector@hanzo.ai</a>
-          </p>
-        </motion.div>
-      </div>
-    </section>
+          <Paragraph color="var(--neutral-400)" marginTop={32}>
+            Have questions? Contact us at <Anchor tap href="mailto:vector@hanzo.ai" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>vector@hanzo.ai</Anchor>
+          </Paragraph>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

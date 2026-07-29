@@ -1,17 +1,16 @@
+import { Box, Button, ChromeText, Grid, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Leaf, Recycle, ThermometerSun } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
-import { Button } from "@/components/ui/button";
 const Karma = () => {
-  return <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute top-20 right-20 w-64 h-64 bg-purple-900/5 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl"></div>
+  return <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={80} right={80} width={256} height={256} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-128} left={-128} width={384} height={384} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           <div>
-            <motion.div initial={{
+            <MotionBox initial={{
             opacity: 0,
             y: -20
           }} whileInView={{
@@ -21,12 +20,12 @@ const Karma = () => {
             once: true
           }} transition={{
             duration: 0.5
-          }} className="mb-4">
-              <span className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium">
+          }} marginBottom={16}>
+              <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
                 AI Engineering Platform
-              </span>
-            </motion.div>
-            <motion.div initial={{
+              </Text>
+            </MotionBox>
+            <MotionBox initial={{
             opacity: 0,
             y: 20
           }} whileInView={{
@@ -38,21 +37,21 @@ const Karma = () => {
             duration: 0.5,
             delay: 0.1
           }}>
-              <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+              <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
                 Sustainable AI for the Future
               </ChromeText>
-              <div className="text-xl text-neutral-300 mb-8 space-y-4">
+              <Box fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32} rowGap={16}>
                 <p>
                   At Hanzo, we believe AI should empower humanity while respecting our planet. Our commitment to sustainable AI development is reflected in every product we build.
                 </p>
                 <p>
                   From energy-efficient infrastructure to carbon-neutral operations, we're creating AI that's as sustainable as it is powerful.
                 </p>
-              </div>
-            </motion.div>
+              </Box>
+            </MotionBox>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-              <motion.div initial={{
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={40} $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+              <MotionBox initial={{
               opacity: 0,
               y: 20
             }} whileInView={{
@@ -63,15 +62,15 @@ const Karma = () => {
             }} transition={{
               duration: 0.4,
               delay: 0.1
-            }} className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-900/20 border border-gray-800">
-                <div className="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center mb-3">
-                  <Leaf className="h-6 w-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-semibold mb-1">Carbon Neutral</h3>
-                <p className="text-neutral-400 text-sm">Offset all carbon emissions</p>
-              </motion.div>
+            }} display="flex" flexDirection="column" alignItems="center" textAlign="center" padding={16} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)">
+                <XStack width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12}>
+                  <Leaf size={24} color="var(--foreground)" />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" marginBottom={4}>Carbon Neutral</H3>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Offset all carbon emissions</Paragraph>
+              </MotionBox>
               
-              <motion.div initial={{
+              <MotionBox initial={{
               opacity: 0,
               y: 20
             }} whileInView={{
@@ -82,15 +81,15 @@ const Karma = () => {
             }} transition={{
               duration: 0.4,
               delay: 0.2
-            }} className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-900/20 border border-gray-800">
-                <div className="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mb-3">
-                  <ThermometerSun className="h-6 w-6 text-blue-400" />
-                </div>
-                <h3 className="text-lg font-semibold mb-1">Energy Efficient</h3>
-                <p className="text-neutral-400 text-sm">90% lower energy usage</p>
-              </motion.div>
+            }} display="flex" flexDirection="column" alignItems="center" textAlign="center" padding={16} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)">
+                <XStack width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12}>
+                  <ThermometerSun size={24} color="var(--foreground)" />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" marginBottom={4}>Energy Efficient</H3>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">90% lower energy usage</Paragraph>
+              </MotionBox>
               
-              <motion.div initial={{
+              <MotionBox initial={{
               opacity: 0,
               y: 20
             }} whileInView={{
@@ -101,16 +100,16 @@ const Karma = () => {
             }} transition={{
               duration: 0.4,
               delay: 0.3
-            }} className="flex flex-col items-center text-center p-4 rounded-lg bg-gray-900/20 border border-gray-800">
-                <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mb-3">
-                  <Recycle className="h-6 w-6 text-purple-400" />
-                </div>
-                <h3 className="text-lg font-semibold mb-1">Renewable Focus</h3>
-                <p className="text-neutral-400 text-sm">100% renewable data centers</p>
-              </motion.div>
-            </div>
+            }} display="flex" flexDirection="column" alignItems="center" textAlign="center" padding={16} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)">
+                <XStack width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={12}>
+                  <Recycle size={24} color="var(--foreground)" />
+                </XStack>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" marginBottom={4}>Renewable Focus</H3>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">100% renewable data centers</Paragraph>
+              </MotionBox>
+            </Grid>
             
-            <motion.div initial={{
+            <MotionBox initial={{
             opacity: 0,
             y: 20
           }} whileInView={{
@@ -121,17 +120,17 @@ const Karma = () => {
           }} transition={{
             duration: 0.5,
             delay: 0.4
-          }} className="flex flex-row gap-4">
-              <Button variant="outline" className="text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10">
+          }} display="flex" flexDirection="row" gap={16}>
+              <Button variant="outline" color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
                 <a href="/leadership">Our Leadership</a>
               </Button>
-              <Button variant="outline" className="text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10">
+              <Button variant="outline" color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
                 <a href="/careers">Join Our Team</a>
               </Button>
-            </motion.div>
+            </MotionBox>
           </div>
           
-          <motion.div initial={{
+          <MotionBox initial={{
           opacity: 0,
           x: 20
         }} whileInView={{
@@ -141,25 +140,25 @@ const Karma = () => {
           once: true
         }} transition={{
           duration: 0.6
-        }} className="bg-gray-900/20 border border-gray-800 rounded-xl p-8">
-            <div className="flex items-start mb-6">
-              <div className="w-16 h-16 rounded-full bg-gray-800 mr-4"></div>
+        }} backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}>
+            <XStack display="flex" alignItems="flex-start" marginBottom={24}>
+              <Box width={64} height={64} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" marginRight={16}></Box>
               <div>
-                <h3 className="text-xl font-bold mb-1">Zach Kelling</h3>
-                <p className="text-neutral-400">CTO, Hanzo AI</p>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={4}>Zach Kelling</H3>
+                <Paragraph color="var(--neutral-400)">CTO, Hanzo AI</Paragraph>
               </div>
-            </div>
+            </XStack>
             
-            <blockquote className="text-xl text-neutral-300 italic mb-6">
+            <Box render="blockquote" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" fontStyle="italic" marginBottom={24}>
               "Our mission at Hanzo is to democratize access to Amazon-level AI infrastructure while maintaining an unwavering commitment to sustainability. We've achieved incredible growth by providing powerful AI tools that don't compromise our environmental values."
-            </blockquote>
+            </Box>
             
-            <blockquote className="text-xl text-neutral-300 italic">
+            <Box render="blockquote" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" fontStyle="italic">
               "By optimizing our infrastructure and operations, we're proving that cutting-edge AI and environmental responsibility can go hand in hand. This isn't just good karma—it's good business."
-            </blockquote>
-          </motion.div>
-        </div>
-      </div>
-    </section>;
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>;
 };
 export default Karma;

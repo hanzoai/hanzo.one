@@ -1,7 +1,7 @@
+import { Box, Button, H1, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Download, Monitor, Apple } from "lucide-react";
 
 const DownloadHero = () => {
@@ -26,59 +26,59 @@ const DownloadHero = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-blue-900/20 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <Box ref={containerRef} render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div 
-          className="text-center"
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox 
+          textAlign="center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gradient-steel"
+          <H1 
+            fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
             style={{
               backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
             }}
           >
             Everything you love about Hanzo,<br />
             across every app on your computer
-          </h1>
+          </H1>
           
-          <p className="text-xl text-neutral-300 mb-10 max-w-2xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto">
             Your AI workspace for building AI products and AI-powered companies. Available on PC and Mac. Mobile coming soon.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+          <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={64} $sm={{ flexDirection: "row" }}>
             <Button 
               size="sm"
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] shadow-lg hover:shadow-xl transition-all"
+              color="var(--white)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Apple className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Apple size={16} /></Box>
               Download (Apple Silicon)
             </Button>
             <Button 
               size="sm"
-              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-[var(--white)] shadow-lg hover:shadow-xl transition-all"
+              color="var(--white)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <Apple className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Apple size={16} /></Box>
               Download (Intel Mac)
             </Button>
-          </div>
+          </YStack>
           
-          <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-gray-800">
-            <div className="relative pb-[56.25%] h-0 bg-gray-900">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Monitor className="h-16 w-16 text-neutral-500" />
-                <span className="ml-2 text-neutral-400">Video preview</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          <Box maxWidth="56rem" marginHorizontal="auto" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Box position="relative" paddingBottom="56.25%" height={0} backgroundColor="var(--neutral-900)">
+              <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center">
+                <Monitor size={64} color="var(--neutral-500)" />
+                <Text marginLeft={8} color="var(--neutral-400)">Video preview</Text>
+              </XStack>
+            </Box>
+          </Box>
+        </MotionBox>
+      </Box>
 
       <style>
         {`
@@ -104,7 +104,7 @@ const DownloadHero = () => {
         }
         `}
       </style>
-    </section>
+    </Box>
   );
 };
 

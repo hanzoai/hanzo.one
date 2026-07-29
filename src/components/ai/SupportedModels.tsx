@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import ModelHeader from "./models/ModelHeader";
@@ -7,8 +8,8 @@ import modelCategories from "./models/data/modelData";
 
 const SupportedModels = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-black to-purple-950/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <Box render="section" paddingVertical={96} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
         <ModelHeader />
 
         {/* Model Categories */}
@@ -22,8 +23,8 @@ const SupportedModels = () => {
 
         {/* Additional Features Section */}
         <AdditionalFeatures />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

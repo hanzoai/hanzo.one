@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { LucideIcon } from "lucide-react";
@@ -61,29 +62,29 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   const classes = colorClasses[color] || colorClasses.blue;
 
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: delay * 0.1 }}
-      className={`${classes.bg} border ${classes.border} rounded-lg p-6 h-full`}
+      borderWidth={1} borderRadius="var(--radius-lg)" padding={24} height="100%"
     >
-      <div className="flex items-center mb-4">
-        <div className="mr-3">
-          <Icon className={`h-6 w-6 ${classes.text}`} />
-        </div>
-        <h3 className="text-xl font-semibold text-[var(--white)]">{title}</h3>
-      </div>
-      <p className="text-neutral-300 mb-4">{description}</p>
-      <ul className="space-y-2">
+      <XStack display="flex" alignItems="center" marginBottom={16}>
+        <Box marginRight={12}>
+          <Icon height={24} width={24} />
+        </Box>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">{title}</H3>
+      </XStack>
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>{description}</Paragraph>
+      <Box render="ul" rowGap={8}>
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <span className={`mr-2 ${classes.text}`}>•</span>
-            <span className="text-neutral-300 text-sm">{feature}</span>
-          </li>
+          <XStack key={index} render="li" display="flex" alignItems="flex-start">
+            <Text marginRight={8}>•</Text>
+            <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+          </XStack>
         ))}
-      </ul>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

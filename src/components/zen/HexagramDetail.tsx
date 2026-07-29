@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -10,35 +11,35 @@ interface HexagramDetailProps {
 
 const HexagramDetail: React.FC<HexagramDetailProps> = ({ hexagram }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4 }}
-      className="bg-gray-900/40 border border-gray-800/70 rounded-lg p-6 backdrop-blur-sm"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={24} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)"
     >
-      <div className="flex items-center mb-4">
-        <div className="mr-4">
-          <IChingHexagram lines={hexagram.lines} size={64} className="text-[var(--white)]" />
-        </div>
+      <XStack display="flex" alignItems="center" marginBottom={16}>
+        <Box marginRight={16}>
+          <IChingHexagram lines={hexagram.lines} size={64} color="var(--white)" />
+        </Box>
         <div>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-            <h3 className="text-2xl font-bold text-[var(--white)]">{hexagram.name}</h3>
-            <span className="text-xl text-neutral-400">{hexagram.chineseName}</span>
-            <span className="text-sm text-neutral-500">{hexagram.pinyin}</span>
-          </div>
-          <div className="text-neutral-400 text-sm">Hexagram {hexagram.id}</div>
+          <YStack display="flex" flexDirection="column" gap={8} marginBottom={8} $sm={{ flexDirection: "row", alignItems: "center" }}>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)">{hexagram.name}</H3>
+            <Text fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)">{hexagram.chineseName}</Text>
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">{hexagram.pinyin}</Text>
+          </YStack>
+          <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Hexagram {hexagram.id}</Box>
         </div>
-      </div>
+      </XStack>
       
-      <div className="mt-4 mb-6 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
+      <Box marginTop={16} marginBottom={24} height={1} backgroundImage="linear-gradient(to right, transparent, var(--neutral-700), transparent)" />
       
-      <p className="text-neutral-300 mb-4">{hexagram.description || hexagram.principle}</p>
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>{hexagram.description || hexagram.principle}</Paragraph>
       
-      <div className="mt-4 text-sm text-neutral-500">
+      <Box marginTop={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
         Click on any hexagram in the grid to view its details
-      </div>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

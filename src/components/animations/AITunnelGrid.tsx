@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import TunnelSegments from "./tunnel/TunnelSegments";
@@ -10,7 +11,7 @@ interface AITunnelGridProps {
 
 const AITunnelGrid: React.FC<AITunnelGridProps> = ({ mousePosition }) => {
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <Box position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%" overflow="hidden">
       {/* Moving tunnel rings */}
       <TunnelSegments />
       
@@ -19,7 +20,7 @@ const AITunnelGrid: React.FC<AITunnelGridProps> = ({ mousePosition }) => {
       
       {/* Glowing center point (vanishing point) */}
       <VanishingPoint />
-    </div>
+    </Box>
   );
 };
 

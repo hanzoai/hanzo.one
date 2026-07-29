@@ -1,3 +1,4 @@
+import { Box, Text, XStack } from '@/gui'
 
 import React from "react";
 
@@ -15,23 +16,19 @@ const PrioritySelector: React.FC<PrioritySelectorProps> = ({ priority, onChange 
 
   return (
     <div>
-      <label className="block text-sm font-medium text-neutral-400 mb-1">Priority</label>
-      <div className="space-y-1">
+      <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Priority</Text>
+      <Box rowGap={4}>
         {priorityOptions.map(option => (
-          <div 
+          <XStack 
             key={option.value}
-            className={`px-3 py-2 rounded cursor-pointer flex items-center ${
-              priority === option.value 
-                ? 'bg-gray-800' 
-                : 'hover:bg-gray-800/50'
-            }`}
+            paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius)" cursor="pointer" display="flex" alignItems="center" backgroundColor={priority === option.value ? "var(--neutral-800)" : undefined} hoverStyle={priority === option.value ? undefined : { backgroundColor: "var(--surface-card)" }}
             onClick={() => onChange(option.value as "low" | "medium" | "high")}
           >
-            <div className={`w-2 h-2 rounded-full ${option.color} mr-2`}></div>
+            <Box width={8} height={8} borderRadius="var(--radius-full)" marginRight={8}></Box>
             {option.label}
-          </div>
+          </XStack>
         ))}
-      </div>
+      </Box>
     </div>
   );
 };

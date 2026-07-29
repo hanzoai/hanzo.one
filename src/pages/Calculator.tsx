@@ -1,3 +1,4 @@
+import { Box, H1, H2, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -7,58 +8,58 @@ import { Server, Database, HardDrive, Globe, Shield, HeadsetIcon, Activity, File
 
 const Calculator = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
-      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">Billing Calculator</h1>
-          <p className="text-neutral-400 mb-6 max-w-3xl">
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={32}>Billing Calculator</H1>
+          <Paragraph color="var(--neutral-400)" marginBottom={24} maxWidth="var(--container-prose)">
             Estimate your monthly Hanzo costs based on your infrastructure needs. Adjust the sliders below to see how different resources affect your total cost.
-          </p>
+          </Paragraph>
           
-          <div className="mb-12 p-6 rounded-xl border border-[#333] bg-gray-900/50 space-y-4">
-            <h2 className="text-xl font-semibold">Pricing Structure</h2>
-            <ul className="space-y-2 text-neutral-300">
-              <li className="flex items-center gap-2">
-                <Server className="h-4 w-4 text-neutral-400" />
+          <Box marginBottom={48} padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="#333" backgroundColor="var(--surface-card-emphasis)" rowGap={16}>
+            <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600">Pricing Structure</H2>
+            <Box render="ul" rowGap={8} color="var(--neutral-300)">
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <Server size={16} color="var(--neutral-400)" />
                 <span><strong>Compute:</strong> $155/month per performance machine (4 vCPU, 8GB RAM)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Database className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <Database size={16} color="var(--neutral-400)" />
                 <span><strong>Hanzo Base:</strong> $77.50/month per replica (2 vCPU, 4GB RAM)</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <HardDrive className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <HardDrive size={16} color="var(--neutral-400)" />
                 <span><strong>Storage:</strong> $0.15/GB per month for persistent storage</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <Globe size={16} color="var(--neutral-400)" />
                 <span><strong>Bandwidth:</strong> $0.02/GB for North America outgoing traffic</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Activity className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <Activity size={16} color="var(--neutral-400)" />
                 <span><strong>Analytics Events:</strong> First 1 million events/month free, then $0.0001 per event</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <FileText size={16} color="var(--neutral-400)" />
                 <span><strong>Observability Logs:</strong> $0.50/GB for log storage and processing</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <Shield size={16} color="var(--neutral-400)" />
                 <span><strong>Compliance:</strong> $99/month for SOC2 Type 2 compliance</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <HeadsetIcon className="h-4 w-4 text-neutral-400" />
+              </XStack>
+              <XStack render="li" display="flex" alignItems="center" gap={8}>
+                <HeadsetIcon size={16} color="var(--neutral-400)" />
                 <span><strong>Enterprise Support:</strong> $2,500/month for premium support</span>
-              </li>
-            </ul>
-          </div>
+              </XStack>
+            </Box>
+          </Box>
           
           <BillingCalculator />
-        </div>
-      </main>
+        </Box>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

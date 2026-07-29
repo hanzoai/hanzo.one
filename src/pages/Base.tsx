@@ -1,6 +1,6 @@
+import { Box, Helmet } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/base/HeroSection";
@@ -16,7 +16,7 @@ import Compliance from "@/components/base/Compliance";
 
 const Base = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Hanzo Base - Open Source Backend for Modern Apps | Hanzo AI</title>
         <meta
@@ -38,7 +38,7 @@ const Base = () => {
         <Community />
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

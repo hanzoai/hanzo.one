@@ -1,10 +1,7 @@
+import { Anchor, Box, Button, H1, Input, Label, Paragraph, XStack, toast } from '@/gui'
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 
 const Login = () => {
@@ -54,21 +51,21 @@ const Login = () => {
   };
   
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Welcome Back</h1>
-          <p className="text-neutral-400 mt-2">
+    <XStack minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" display="flex" alignItems="center" justifyContent="center" padding={16}>
+      <Box width="100%" maxWidth="28rem" rowGap={24}>
+        <Box textAlign="center">
+          <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">Welcome Back</H1>
+          <Paragraph color="var(--neutral-400)" marginTop={8}>
             Sign in to your account
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <Box onSubmit={handleSubmit} render="form" rowGap={16}>
+            <Box rowGap={8}>
               <Label htmlFor="email">Email</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+              <Box position="relative">
+                <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><Mail size={16} color="var(--neutral-400)" /></Box>
                 <Input
                   id="email"
                   name="email"
@@ -76,20 +73,20 @@ const Login = () => {
                   placeholder="you@example.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="pl-10"
+                  paddingLeft={40}
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
             
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
+            <Box rowGap={8}>
+              <XStack display="flex" justifyContent="space-between" alignItems="center">
                 <Label htmlFor="password">Password</Label>
-                <a href="/forgot-password" className="text-sm text-purple-400 hover:underline">
+                <Anchor tap href="/forgot-password" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>
                   Forgot password?
-                </a>
-              </div>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-neutral-400" />
+                </Anchor>
+              </XStack>
+              <Box position="relative">
+                <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top={12}><Lock size={16} color="var(--neutral-400)" /></Box>
                 <Input
                   id="password"
                   name="password"
@@ -97,29 +94,29 @@ const Login = () => {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
-                  className="pl-10"
+                  paddingLeft={40}
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
             
             <Button 
               type="submit" 
-              className="w-full mt-6 bg-purple-600 hover:bg-purple-700 text-[var(--white)]"
+              width="100%" marginTop={24} backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
               Sign In
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
-          </form>
-        </div>
+          </Box>
+        </Box>
         
-        <div className="text-center text-sm text-neutral-400">
+        <Box textAlign="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
           Don't have an account?{" "}
-          <a href="/signup" className="text-purple-400 hover:underline">
+          <Anchor tap href="/signup" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>
             Sign up
-          </a>
-        </div>
-      </div>
-    </div>
+          </Anchor>
+        </Box>
+      </Box>
+    </XStack>
   );
 };
 

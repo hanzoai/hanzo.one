@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -8,17 +9,17 @@ interface HeroFeaturesProps {
 
 const HeroFeatures: React.FC<HeroFeaturesProps> = ({ titleAnimationComplete }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ 
         opacity: titleAnimationComplete ? 1 : 0,
         y: titleAnimationComplete ? 0 : 20 
       }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="max-w-4xl mx-auto"
+      maxWidth="56rem" marginHorizontal="auto"
     >
       {/* Empty container that maintains the layout spacing */}
-    </motion.div>
+    </MotionBox>
   );
 };
 

@@ -1,8 +1,6 @@
+import { Box, Button, Grid, Input, Text, Textarea } from '@/gui'
 
 import React from "react";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Bot } from "lucide-react";
 import AssigneesList from "./AssigneesList";
 import LabelsList from "./LabelsList";
@@ -25,17 +23,17 @@ const TaskDetailContent: React.FC<TaskDetailContentProps> = ({ task, onTaskChang
   };
 
   return (
-    <div className="grid grid-cols-3 gap-6">
-      <div className="col-span-2">
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-neutral-400 mb-1">Description</label>
+    <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24}>
+      <Box gridColumn="span 2 / span 2">
+        <Box marginBottom={24}>
+          <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Description</Text>
           <Textarea 
             value={task.description || ""}
             onChange={handleDescriptionChange}
             placeholder="Add a description..."
-            className="min-h-32 bg-gray-900 border-gray-800"
+            minHeight={128} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
           />
-        </div>
+        </Box>
 
         <AssigneesList 
           assignees={task.assignees} 
@@ -52,9 +50,9 @@ const TaskDetailContent: React.FC<TaskDetailContentProps> = ({ task, onTaskChang
             onTaskChange("labels", newLabels);
           }} 
         />
-      </div>
+      </Box>
 
-      <div className="space-y-6">
+      <Box rowGap={24}>
         <StatusSelector 
           status={task.status} 
           onChange={(value) => onTaskChange("status", value)} 
@@ -66,27 +64,27 @@ const TaskDetailContent: React.FC<TaskDetailContentProps> = ({ task, onTaskChang
         />
 
         <div>
-          <label className="block text-sm font-medium text-neutral-400 mb-1">Due Date</label>
+          <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Due Date</Text>
           <Input 
             type="date"
             value={task.dueDate || ""}
             onChange={handleDateChange}
-            className="bg-gray-900 border-gray-800"
+            backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-neutral-400 mb-1">AI Agents</label>
+          <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>AI Agents</Text>
           <Button 
             variant="outline" 
-            className="w-full justify-start bg-gray-900 border-gray-800"
+            width="100%" justifyContent="flex-start" backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
           >
-            <Bot className="mr-2 h-4 w-4" />
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} /></Box>
             Assign Agent
           </Button>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Grid>
   );
 };
 

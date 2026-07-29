@@ -1,95 +1,95 @@
+import { Box, Button, H2, H3, Link, MotionBox, Paragraph, YStack } from '@/gui'
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const CallToAction = () => {
   return (
-    <section className="py-24 px-4 bg-black relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20"
+      <Box
+        position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.2}
         style={{
           background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
           filter: "blur(100px)",
         }}
       />
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        <motion.div
-          className="text-center"
+      <Box maxWidth="56rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
+          textAlign="center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} color="var(--foreground)" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Create what's exciting.
             <br />
             <span style={{ color: BRAND_COLOR }}>Maintain what's essential.</span>
-          </h2>
+          </H2>
 
-          <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-8">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto" marginBottom={32}>
             Use Hanzo Dev where you work
-          </p>
+          </Paragraph>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+          <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={64} $sm={{ flexDirection: "row" }}>
             <Button
               size="lg"
-              className="text-white text-lg px-8"
+              color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}
               style={{ backgroundColor: BRAND_COLOR }}
               asChild
             >
               <Link to="/signup">
                 Get Started
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-neutral-700 hover:bg-neutral-900 text-lg px-8"
+              borderColor="var(--neutral-700)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               asChild
             >
               <a href="https://docs.hanzo.ai/dev" target="_blank" rel="noopener noreferrer">
                 Read the documentation
               </a>
             </Button>
-          </div>
+          </YStack>
 
           {/* Newsletter signup */}
-          <div className="border-t border-neutral-800 pt-12">
-            <h3 className="text-xl font-semibold text-white mb-2">
+          <Box borderTopWidth={1} borderColor="var(--neutral-800)" paddingTop={48}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>
               Get the developer newsletter
-            </h3>
-            <p className="text-neutral-400 text-sm mb-6 max-w-lg mx-auto">
+            </H3>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={24} maxWidth="32rem" marginHorizontal="auto">
               Product updates, how-tos, community spotlights, and more. Delivered monthly to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" gap={12} maxWidth="28rem" marginHorizontal="auto" $sm={{ flexDirection: "row" }}>
+              <Box display="inline-block" minHeight={44}
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#fd4444]/50"
+                render="input" flex={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
               />
               <Button
-                className="text-white px-6"
+                color="var(--foreground)" paddingHorizontal={24}
                 style={{ backgroundColor: BRAND_COLOR }}
               >
-                <Mail className="w-4 h-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Mail size={16} /></Box>
                 Subscribe
               </Button>
-            </div>
-            <p className="text-xs text-neutral-500 mt-4">
+            </YStack>
+            <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={16}>
               Please provide your email address if you'd like to receive our monthly developer newsletter.
               You can unsubscribe at any time.
-            </p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            </Paragraph>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

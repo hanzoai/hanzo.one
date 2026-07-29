@@ -1,3 +1,4 @@
+import { Box, XStack } from '@/gui'
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -46,39 +47,35 @@ const PricingPlans = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
         <PricingHeader />
         
         {/* Tab Navigation */}
-        <div className="max-w-3xl mx-auto mb-12">
-          <div className="flex justify-center">
-            <div className="bg-gray-900/50 rounded-full p-1 border border-gray-800">
+        <Box maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={48}>
+          <XStack display="flex" justifyContent="center">
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" padding={4} borderWidth={1} borderColor="var(--neutral-800)">
               {tabs.map((tab) => (
-                <button
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
-                    activeTab === tab.id
-                      ? "bg-white text-black"
-                      : "text-neutral-400 hover:text-white"
-                  }`}
+                  render="button" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all 200ms cubic-bezier(.4,0,.2,1)" backgroundColor={activeTab === tab.id ? "var(--foreground)" : undefined} color={activeTab === tab.id ? "var(--pure-black)" : "var(--neutral-400)"} hoverStyle={activeTab === tab.id ? undefined : { color: "var(--foreground)" }}
                 >
                   {tab.label}
-                </button>
+                </Box>
               ))}
-            </div>
-          </div>
-        </div>
+            </Box>
+          </XStack>
+        </Box>
 
         {/* Tab Content */}
         {renderTabContent()}
-      </main>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,29 +1,10 @@
-
+import { AnimatedHeading, AnimatedSection, Avatar, AvatarFallback, AvatarImage, Box, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, H2, H3, Input, Label, Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Text, Textarea, XStack, YStack, toast } from '@/gui'
 import React, { useState, useEffect } from 'react';
 import { useAccount } from '@/contexts/AccountContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table';
+
 import { Building, User, UserPlus, MoreVertical, Upload, MapPin, Globe, Link as LinkIcon } from 'lucide-react';
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { toast } from 'sonner';
-import { Link } from 'react-router-dom';
-import AnimatedSection, { AnimatedHeading } from '@/components/ui/animated-section';
+
+
 
 const Organization = () => {
   const { currentOrganization, updateOrganization } = useAccount();
@@ -73,150 +54,152 @@ const Organization = () => {
 
   return (
     <AnimatedSection>
-      <div className="space-y-8">
+      <Box rowGap={32}>
         <AnimatedHeading>
-          <h2 className="text-2xl font-bold mb-6">Organization Settings</h2>
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Organization Settings</H2>
         </AnimatedHeading>
 
-        <div className="flex flex-col md:flex-row md:items-center gap-6">
-          <div className="h-24 w-24 bg-gray-900/30 rounded-xl flex items-center justify-center">
-            <Building className="h-12 w-12 text-neutral-400" />
-          </div>
+        <YStack display="flex" flexDirection="column" gap={24} $md={{ flexDirection: "row", alignItems: "center" }}>
+          <XStack height={96} width={96} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center">
+            <Building size={48} color="var(--neutral-400)" />
+          </XStack>
           
           <div>
-            <h2 className="text-2xl font-bold mb-2">{currentOrganization.name}</h2>
-            <div className="text-neutral-400">
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8}>{currentOrganization.name}</H2>
+            <Box color="var(--neutral-400)">
               {currentOrganization.role === 'owner' ? 'You are the owner of this organization' : 
                 `You are a ${currentOrganization.role} in this organization`}
-            </div>
+            </Box>
             
-            <div className="mt-4 space-x-4">
-              <Button variant="outline" size="sm" className="bg-[var(--black)] border-gray-800/30 hover:bg-gray-900/30 space-x-2">
-                <Upload className="h-4 w-4" />
+            <Box marginTop={16} columnGap={16}>
+              <Button variant="outline" size="sm" backgroundColor="var(--black)" borderColor="var(--border-strong)" columnGap={8} hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+                <Upload size={16} />
                 <span>Upload Logo</span>
               </Button>
-              <Link to="/organization-profile">
-                <Button variant="outline" size="sm" className="bg-[var(--black)] border-gray-800/30 hover:bg-gray-900/30">
+              <Link tap to="/organization-profile">
+                <Button variant="outline" size="sm" backgroundColor="var(--black)" borderColor="var(--border-strong)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
                   View Public Profile
                 </Button>
               </Link>
-            </div>
+            </Box>
           </div>
-        </div>
+        </YStack>
         
-        <div className="border-t border-gray-800/10 pt-6">
-          <h3 className="text-xl font-medium mb-4">Organization Details</h3>
+        <Box borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" paddingTop={24}>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Organization Details</H3>
           
-          <form onSubmit={handleSubmit} className="space-y-6 max-w-xl">
-            <div className="space-y-2">
+          <Box onSubmit={handleSubmit} render="form" rowGap={24} maxWidth="36rem">
+            <Box rowGap={8}>
               <Label htmlFor="orgName">Organization Name</Label>
               <Input
                 id="orgName"
                 value={orgName}
                 onChange={(e) => setOrgName(e.target.value)}
-                className="bg-gray-900/20 border-gray-800/30"
+                backgroundColor="rgb(255 255 255 / 0.2)" borderColor="var(--border-strong)"
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
+            <Box rowGap={8}>
               <Label htmlFor="orgDescription">Description</Label>
               <Textarea
                 id="orgDescription"
                 value={orgDescription}
                 onChange={(e) => setOrgDescription(e.target.value)}
-                className="bg-gray-900/20 border-gray-800/30 min-h-24"
+                backgroundColor="rgb(255 255 255 / 0.2)" borderColor="var(--border-strong)" minHeight={96}
                 placeholder="Tell us about your organization"
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
+            <Box rowGap={8}>
               <Label htmlFor="orgWebsite">Website</Label>
               <Input
                 id="orgWebsite"
                 value={orgWebsite}
                 onChange={(e) => setOrgWebsite(e.target.value)}
-                className="bg-gray-900/20 border-gray-800/30"
+                backgroundColor="rgb(255 255 255 / 0.2)" borderColor="var(--border-strong)"
                 placeholder="https://example.com"
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
+            <Box rowGap={8}>
               <Label htmlFor="orgLocation">Location</Label>
               <Input
                 id="orgLocation"
                 value={orgLocation}
                 onChange={(e) => setOrgLocation(e.target.value)}
-                className="bg-gray-900/20 border-gray-800/30"
+                backgroundColor="rgb(255 255 255 / 0.2)" borderColor="var(--border-strong)"
                 placeholder="City, Country"
               />
-            </div>
+            </Box>
             
-            <Button type="submit" className="bg-gray-900 hover:bg-gray-800 border-none">
+            <Button type="submit" backgroundColor="var(--neutral-900)" borderStyle="none" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
               Update Organization
             </Button>
-          </form>
-        </div>
+          </Box>
+        </Box>
 
-        <div className="pt-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-medium">Team Members</h3>
+        <Box paddingTop={24}>
+          <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Team Members</H3>
             
-            <Button onClick={handleInviteMember} className="space-x-2 bg-gray-900 hover:bg-gray-800 border-none">
-              <UserPlus className="h-4 w-4" />
+            <Button onClick={handleInviteMember} columnGap={8} backgroundColor="var(--neutral-900)" borderStyle="none" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+              <UserPlus size={16} />
               <span>Invite Member</span>
             </Button>
-          </div>
+          </XStack>
           
-          <div className="rounded-lg overflow-hidden">
+          <Box borderRadius="var(--radius-lg)" overflow="hidden">
             <Table>
-              <TableHeader className="bg-gray-900/30">
-                <TableRow className="border-0">
+              <TableHeader backgroundColor="var(--surface-card-emphasis)">
+                <TableRow borderWidth={0}>
                   <TableHead>User</TableHead>
                   <TableHead>Role</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableHead textAlign="right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {teamMembers.map((member) => (
-                  <TableRow key={member.id} className="border-gray-800/10">
+                  <TableRow key={member.id} borderColor="rgb(255 255 255 / 0.1)">
                     <TableCell>
-                      <div className="flex items-center space-x-3">
-                        <Avatar className="h-8 w-8">
+                      <XStack display="flex" alignItems="center" columnGap={12}>
+                        <Avatar height={32} width={32}>
                           <AvatarImage src={member.avatar} />
-                          <AvatarFallback className="bg-gray-900/50">{member.name[0]}</AvatarFallback>
+                          <AvatarFallback backgroundColor="var(--surface-card-emphasis)">{member.name[0]}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-medium">{member.name}</div>
-                          <div className="text-sm text-neutral-400">{member.email}</div>
+                          <Box fontWeight="500">{member.name}</Box>
+                          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{member.email}</Box>
                         </div>
-                      </div>
+                      </XStack>
                     </TableCell>
                     <TableCell>
-                      <span className={`px-2 py-1 rounded-full text-xs ${
-                        member.role === 'Owner' 
-                          ? 'bg-purple-900/10 text-purple-300' 
-                          : member.role === 'Admin' 
-                            ? 'bg-blue-900/10 text-blue-300' 
-                            : 'bg-gray-900/20 text-neutral-300'
-                      }`}>
+                      <Text
+                        paddingHorizontal={8}
+                        paddingVertical={4}
+                        borderRadius="var(--radius-full)"
+                        fontSize="var(--text-xs)"
+                        lineHeight="var(--leading-xs)"
+                        backgroundColor="rgb(255 255 255 / 0.06)"
+                        color={member.role === 'Owner' ? 'var(--foreground)' : 'var(--neutral-300)'}
+                      >
                         {member.role}
-                      </span>
+                      </Text>
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell textAlign="right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                            <MoreVertical className="h-4 w-4" />
+                          <Button variant="ghost" size="sm" height={32} width={32} padding={0}>
+                            <MoreVertical size={16} />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-[var(--black)] border-gray-800/30">
-                          <DropdownMenuItem className="text-[var(--white)] hover:bg-gray-900/30">
+                        <DropdownMenuContent align="end" backgroundColor="var(--black)" borderColor="var(--border-strong)">
+                          <DropdownMenuItem color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
                             View Profile
                           </DropdownMenuItem>
-                          <DropdownMenuItem className="text-[var(--white)] hover:bg-gray-900/30">
+                          <DropdownMenuItem color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
                             Change Role
                           </DropdownMenuItem>
-                          <DropdownMenuItem className="text-red-400 hover:bg-red-900/10 hover:text-red-300">
+                          <DropdownMenuItem color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)", color: "var(--foreground)" }}>
                             Remove
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -226,9 +209,9 @@ const Organization = () => {
                 ))}
               </TableBody>
             </Table>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </AnimatedSection>
   );
 };

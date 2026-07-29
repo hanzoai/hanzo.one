@@ -1,32 +1,32 @@
+import { Box, Button, Grid, H2, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const WebinarCard = ({ title, partner, image, logos = [] }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden group hover:border-gray-700 transition-colors"
+      
+      group backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
     >
-      <div className="h-48 bg-gray-800 relative">
-        <div className="absolute inset-0 flex items-center justify-center text-neutral-500">
+      <Box height={192} backgroundColor="var(--neutral-800)" position="relative">
+        <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center" color="var(--neutral-500)">
           {title}
-        </div>
-      </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-lg font-semibold">{title}</div>
-          <div className="text-neutral-500">{partner}</div>
-        </div>
-        <Button className="w-full bg-gray-800 hover:bg-gray-700">
+        </XStack>
+      </Box>
+      <Box padding={24}>
+        <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+          <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600">{title}</Box>
+          <Box color="var(--neutral-500)">{partner}</Box>
+        </XStack>
+        <Button width="100%" backgroundColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
           Learn More
         </Button>
-      </div>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 
@@ -65,22 +65,22 @@ const HanzoAppWebinars = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Webinars</h2>
-          <p className="text-xl text-neutral-300">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Webinars</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
             Learn how to use Hanzo AI from different webinar series with our partners
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {webinars.map((webinar, index) => (
             <WebinarCard 
               key={index}
@@ -90,9 +90,9 @@ const HanzoAppWebinars = () => {
               image={webinar.image}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

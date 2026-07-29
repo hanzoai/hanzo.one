@@ -1,3 +1,4 @@
+import { Box, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Cpu, Check } from "lucide-react";
@@ -26,34 +27,34 @@ const ModelCategoryCard = ({ model, modelIndex, categoryIndex }: ModelCategoryCa
   const checkColor = isFrontierAI ? "text-neutral-400" : "text-neutral-500";
 
   return (
-    <motion.div
+    <MotionBox
       key={modelIndex}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: modelIndex * 0.1 }}
-      className={cardClasses}
+      
     >
-      <div className="flex items-center mb-3">
-        <Cpu className={`h-5 w-5 ${iconColor} mr-2`} />
-        <h4 className="text-xl font-semibold text-[var(--white)]">{model.name}</h4>
-      </div>
+      <XStack display="flex" alignItems="center" marginBottom={12}>
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Cpu size={20} /></Box>
+        <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">{model.name}</H4>
+      </XStack>
       
       {model.description && (
-        <p className="text-sm text-neutral-400 mb-4 italic">{model.description}</p>
+        <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16} fontStyle="italic">{model.description}</Paragraph>
       )}
       
-      <p className="text-sm text-neutral-500 mb-4">via {model.provider}</p>
+      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginBottom={16}>via {model.provider}</Paragraph>
       
-      <ul className="space-y-2 mb-6">
+      <Box render="ul" rowGap={8} marginBottom={24}>
         {model.features.map((feature, i) => (
-          <li key={i} className="flex items-start">
-            <Check className={`h-5 w-5 ${checkColor} mr-2 flex-shrink-0 mt-0.5`} />
-            <span className="text-neutral-300 text-sm">{feature}</span>
-          </li>
+          <XStack key={i} render="li" display="flex" alignItems="flex-start">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8} marginTop={2}><Check size={20} /></Box>
+            <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+          </XStack>
         ))}
-      </ul>
-    </motion.div>
+      </Box>
+    </MotionBox>
   );
 };
 

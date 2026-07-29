@@ -1,70 +1,71 @@
+import { Anchor, Box, Grid, H3, Link, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { Users, Shield, ExternalLink, Mail, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+
 
 const ExpertServices: React.FC = () => {
   return (
-    <div className="mb-24 bg-gradient-to-br from-gray-900/70 to-black/90 p-10 rounded-2xl border border-gray-800">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="p-6 bg-gradient-to-br from-purple-900/50 to-blue-900/30 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-colors h-full">
-          <div className="p-3 rounded-lg bg-purple-500/20 self-start inline-block mb-4">
-            <Users className="h-6 w-6 text-purple-400" strokeWidth={1.5} />
-          </div>
-          <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Hanzo Agency</h3>
-          <p className="text-neutral-300 mb-5">
+    <Box marginBottom={96} padding={40} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" height="100%" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+            <Users size={24} color="var(--foreground)" strokeWidth={1.5} />
+          </Box>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Hanzo Agency</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={20}>
             Our AI-powered creative agency helps brands transform their digital presence with cutting-edge design, 
             content, and marketing strategies powered by artificial intelligence.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a 
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={16}>
+            <Anchor 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-md text-[var(--white)] transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" color="var(--white)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
             >
               <span>Visit Hanzo Agency</span>
               <ExternalLink size={14} />
-            </a>
-            <a 
+            </Anchor>
+            <Anchor 
               href="/contact" 
-              className="flex items-center gap-2 px-5 py-2.5 border border-purple-500/40 hover:border-purple-500 rounded-md text-purple-400 hover:text-purple-300 transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
               <span>Contact us</span>
               <Mail size={14} />
-            </a>
-          </div>
-        </div>
-        <div className="p-6 bg-gradient-to-br from-green-900/50 to-teal-900/30 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-colors h-full">
-          <div className="p-3 rounded-lg bg-green-500/20 self-start inline-block mb-4">
-            <Shield className="h-6 w-6 text-green-400" strokeWidth={1.5} />
-          </div>
-          <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Sensei Group</h3>
-          <p className="text-neutral-300 mb-5">
+            </Anchor>
+          </XStack>
+        </Box>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" height="100%" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+            <Shield size={24} color="var(--foreground)" strokeWidth={1.5} />
+          </Box>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Sensei Group</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={20}>
             Our collective of fractional CXOs and industry experts help enterprises implement transformative 
             technology solutions and drive strategic growth initiatives.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a 
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={16}>
+            <Anchor 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-500 rounded-md text-[var(--white)] transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" color="var(--white)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
             >
               <span>Visit Sensei Group</span>
               <ExternalLink size={14} />
-            </a>
-            <a 
+            </Anchor>
+            <Anchor 
               href="tel:+1234567890" 
-              className="flex items-center gap-2 px-5 py-2.5 border border-green-500/40 hover:border-green-500 rounded-md text-green-400 hover:text-green-300 transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
               <span>Schedule a call</span>
               <Phone size={14} />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Anchor>
+          </XStack>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 

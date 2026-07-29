@@ -1,11 +1,10 @@
+import { ArchitecturalBox, BlueprintLine, Box, GridLines, XStack, useToast } from '@/gui'
 
 import { useState, useEffect, useRef } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import HeroTitle from "@/components/hero/HeroTitle";
 import HeroDescription from "@/components/hero/HeroDescription";
 import HeroButtons from "@/components/hero/HeroButtons";
 import HeroFeatures from "@/components/hero/HeroFeatures";
-import { GridLines, BlueprintLine, ArchitecturalBox } from "@/components/ui/architectural-elements";
 
 const Hero = () => {
   const { toast } = useToast();
@@ -33,8 +32,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-[var(--black)]" />
+    <XStack ref={containerRef} position="relative" minHeight="100vh" display="flex" alignItems="center" justifyContent="center" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="var(--black)" />
 
       {/* Architectural grid background with minimal opacity */}
       <GridLines spacing={50} opacity={0.03} />
@@ -46,14 +45,14 @@ const Hero = () => {
       <BlueprintLine orientation="vertical" position="85%" color="rgba(200, 200, 200, 0.03)" />
       
       {/* Background subtle gradient effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-64 w-96 h-96 bg-purple-900/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-900/30 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-      </div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0}>
+        <Box position="absolute" top="25%" left={-256} width={384} height={384} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+        <Box position="absolute" bottom={0} right={0} width={384} height={384} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" filter="blur(64px)" x="50%" y="50%"></Box>
+      </Box>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 w-full">
+      <Box position="relative" zIndex={10} maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} paddingVertical={48} width="100%" $sm={{ paddingHorizontal: 24, paddingVertical: 64 }} $lg={{ paddingHorizontal: 32 }} $md={{ paddingVertical: 80 }}>
         <ArchitecturalBox 
-          className="text-center bg-transparent p-4 sm:p-6 md:p-8 mx-auto"
+          textAlign="center" backgroundColor="transparent" padding={16} marginHorizontal="auto" $sm={{ padding: 24 }} $md={{ padding: 32 }}
           showCorners={true}
           showGrid={false}
           cornerSize={40}
@@ -69,16 +68,16 @@ const Hero = () => {
 
           <HeroDescription titleAnimationComplete={titleAnimationComplete} />
 
-          <div className="flex justify-center">
+          <XStack display="flex" justifyContent="center">
             <HeroButtons titleAnimationComplete={titleAnimationComplete} />
-          </div>
+          </XStack>
           
-          <div className="mt-12">
+          <Box marginTop={48}>
             <HeroFeatures titleAnimationComplete={titleAnimationComplete} />
-          </div>
+          </Box>
         </ArchitecturalBox>
-      </div>
-    </div>
+      </Box>
+    </XStack>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useEffect, useRef } from "react";
 import { useCanvasContext } from "./CanvasContext";
@@ -32,11 +33,11 @@ const Canvas: React.FC<CanvasProps> = ({ width, height }) => {
   }, [drawGlobe, connectionPoints]);
 
   return (
-    <canvas 
+    <Box display="inline-block" 
       ref={canvasRef} 
-      width={width}
-      height={height}
-      className="absolute inset-0 w-full h-full"
+      
+      
+      render="canvas" position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%"
     />
   );
 };

@@ -1,3 +1,4 @@
+import { Box, Text } from '@/gui'
 
 import React from "react";
 
@@ -16,22 +17,18 @@ const StatusSelector: React.FC<StatusSelectorProps> = ({ status, onChange }) => 
 
   return (
     <div>
-      <label className="block text-sm font-medium text-neutral-400 mb-1">Status</label>
-      <div className="space-y-1">
+      <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Status</Text>
+      <Box rowGap={4}>
         {statusOptions.map(option => (
-          <div 
+          <Box 
             key={option.value}
-            className={`px-3 py-2 rounded cursor-pointer ${
-              status === option.value 
-                ? 'bg-blue-900/30 border border-blue-800' 
-                : 'hover:bg-gray-800'
-            }`}
+            paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius)" cursor="pointer" backgroundColor={status === option.value ? "rgb(255 255 255 / 0.3)" : undefined} borderWidth={status === option.value ? 1 : undefined} borderColor={status === option.value ? "var(--neutral-800)" : undefined} hoverStyle={status === option.value ? undefined : { backgroundColor: "var(--neutral-800)" }}
             onClick={() => onChange(option.value)}
           >
             {option.label}
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
     </div>
   );
 };

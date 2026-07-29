@@ -1,6 +1,6 @@
+import { Box, Button, Grid, H3, H4, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import { motion } from "framer-motion";
 import { BarChart, LineChart, PieChart, Activity, Users, Globe, Zap, Brain, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Analytics = () => {
   // Container animation variants
@@ -189,9 +189,9 @@ const Analytics = () => {
     }
   };
 
-  return <section className="py-20 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{
+  return <Box render="section" paddingVertical={80} backgroundColor="var(--black)">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <MotionBox initial={{
         opacity: 0,
         y: 20
       }} whileInView={{
@@ -202,8 +202,8 @@ const Analytics = () => {
         margin: "-100px"
       }} transition={{
         duration: 0.5
-      }} className="text-center mb-16">
-          <motion.div initial={{
+      }} textAlign="center" marginBottom={64}>
+          <MotionBox initial={{
           opacity: 0,
           scale: 0.9
         }} whileInView={{
@@ -214,11 +214,11 @@ const Analytics = () => {
         }} transition={{
           delay: 0.1,
           duration: 0.4
-        }} className="inline-flex items-center space-x-2 bg-[var(--white)]/10 px-4 py-1 rounded-full mb-6">
-            <Activity className="h-4 w-4 text-neutral-400" />
-            <span className="text-sm text-neutral-400">Real-time Analytics</span>
-          </motion.div>
-          <motion.h2 initial={{
+        }} flexDirection="row" display="inline-flex" alignItems="center" columnGap={8} backgroundColor="rgb(255 255 255 / 0.1)" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" marginBottom={24}>
+            <Activity size={16} color="var(--neutral-400)" />
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Real-time Analytics</Text>
+          </MotionBox>
+          <MotionText initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -229,10 +229,10 @@ const Analytics = () => {
         }} transition={{
           delay: 0.2,
           duration: 0.4
-        }} className="text-3xl md:text-4xl font-display text-[var(--white)] mb-4">
+        }} fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontFamily="var(--font-display)" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Scale from Zero to One Billion Users
-          </motion.h2>
-          <motion.p initial={{
+          </MotionText>
+          <MotionText initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -243,89 +243,89 @@ const Analytics = () => {
         }} transition={{
           delay: 0.3,
           duration: 0.4
-        }} className="text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto py-0">
+        }} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" paddingVertical={0} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
             Enterprise-grade analytics built for the AI era. Track, analyze, and optimize your application with our powerful analytics suite.
-          </motion.p>
-        </motion.div>
+          </MotionText>
+        </MotionBox>
 
         {/* Milestone Progress Indicator - With numbered circles instead of icons */}
-        <div className="relative mb-4 flex justify-center">
-          <div className="relative w-full max-w-4xl">
+        <XStack position="relative" marginBottom={16} display="flex" justifyContent="center">
+          <Box position="relative" width="100%" maxWidth="56rem">
             {/* Background line */}
-            <div className="absolute top-6 left-0 w-full h-1.5 bg-gray-800 rounded-full"></div>
+            <Box position="absolute" top={24} left={0} width="100%" height={6} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)"></Box>
             
             {/* Animated progress lines in segments - with fixed percentages for equal spacing */}
-            <motion.div className="absolute top-6 left-0 h-1.5 bg-[var(--white)] rounded-full origin-left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
+            <MotionBox position="absolute" top={24} left={0} height={6} backgroundColor="var(--white)" borderRadius="var(--radius-full)" transformOrigin="left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
             once: true,
             margin: "-100px"
-          }} custom={33.33}></motion.div>
+          }} custom={33.33}></MotionBox>
             
-            <motion.div className="absolute top-6 left-[33.33%] h-1.5 bg-[var(--white)] rounded-full origin-left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
+            <MotionBox position="absolute" top={24} left="33.33%" height={6} backgroundColor="var(--white)" borderRadius="var(--radius-full)" transformOrigin="left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
             once: true,
             margin: "-100px"
-          }} custom={33.33}></motion.div>
+          }} custom={33.33}></MotionBox>
             
-            <motion.div className="absolute top-6 left-[66.66%] h-1.5 bg-[var(--white)] rounded-full origin-left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
+            <MotionBox position="absolute" top={24} left="66.66%" height={6} backgroundColor="var(--white)" borderRadius="var(--radius-full)" transformOrigin="left" variants={milestoneLineVariants} initial="hidden" whileInView="visible" viewport={{
             once: true,
             margin: "-100px"
-          }} custom={33.34}></motion.div>
+          }} custom={33.34}></MotionBox>
             
             {/* Milestone Points - with numbers clearly visible */}
-            <div className="flex justify-between items-center relative w-full">
+            <XStack display="flex" justifyContent="space-between" alignItems="center" position="relative" width="100%">
               {/* First Milestone */}
-              <div className="text-center relative w-1/3 pr-4">
-                <motion.div className="w-12 h-12 rounded-full bg-gray-900 border-2 border-purple-400 flex items-center justify-center mx-auto relative" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
+              <Box textAlign="center" position="relative" width="33.333333%" paddingRight={16}>
+                <MotionBox flexDirection="row" width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={2} borderColor="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" position="relative" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
                 once: true,
                 margin: "-100px"
               }} custom={1}>
-                  <motion.span className="text-xl font-bold text-[var(--white)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>1</motion.span>
-                </motion.div>
-                <p className="mt-2 font-medium text-[var(--white)] text-xs sm:text-sm md:text-base whitespace-nowrap">Real-time Events</p>
-              </div>
+                  <MotionText fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>1</MotionText>
+                </MotionBox>
+                <Paragraph marginTop={8} fontWeight="500" color="var(--white)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" whiteSpace="nowrap" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }} $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Real-time Events</Paragraph>
+              </Box>
               
               {/* Second Milestone - Center */}
-              <div className="text-center relative w-1/3 px-2">
-                <motion.div className="w-12 h-12 rounded-full bg-gray-900 border-2 border-blue-400 flex items-center justify-center mx-auto" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
+              <Box textAlign="center" position="relative" width="33.333333%" paddingHorizontal={8}>
+                <MotionBox flexDirection="row" width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={2} borderColor="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
                 once: true,
                 margin: "-100px"
               }} custom={2}>
-                  <motion.span className="text-xl font-bold text-[var(--white)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>2</motion.span>
-                </motion.div>
-                <p className="mt-2 font-medium text-[var(--white)] text-xs sm:text-sm md:text-base whitespace-nowrap">User Insights</p>
-              </div>
+                  <MotionText fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}>2</MotionText>
+                </MotionBox>
+                <Paragraph marginTop={8} fontWeight="500" color="var(--white)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" whiteSpace="nowrap" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }} $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>User Insights</Paragraph>
+              </Box>
               
               {/* Third Milestone */}
-              <div className="text-center relative w-1/3 pl-4">
-                <motion.div className="w-12 h-12 rounded-full bg-gray-900 border-2 border-cyan-400 flex items-center justify-center mx-auto" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
+              <Box textAlign="center" position="relative" width="33.333333%" paddingLeft={16}>
+                <MotionBox flexDirection="row" width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={2} borderColor="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" variants={milestoneCircleVariants} initial="hidden" whileInView="visible" viewport={{
                 once: true,
                 margin: "-100px"
               }} custom={3}>
-                  <motion.span className="text-xl font-bold text-[var(--white)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 5 }}>3</motion.span>
-                </motion.div>
-                <p className="mt-2 font-medium text-[var(--white)] text-xs sm:text-sm md:text-base whitespace-nowrap">AI Analytics</p>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <MotionText fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 5 }}>3</MotionText>
+                </MotionBox>
+                <Paragraph marginTop={8} fontWeight="500" color="var(--white)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" whiteSpace="nowrap" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }} $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>AI Analytics</Paragraph>
+              </Box>
+            </XStack>
+          </Box>
+        </XStack>
 
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+        <MotionBox variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
         once: true,
         margin: "-50px"
-      }} className="grid grid-cols-3 gap-4 md:gap-8 mb-16 mt-10">
-          <motion.div variants={itemVariants} whileHover="hover" whileTap="tap" className="p-4 md:p-6 bg-gradient-to-br from-gray-900/20 to-transparent rounded-xl transition-all duration-300 flex flex-col items-center text-center">
-            <p className="text-xs xs:text-sm md:text-base text-neutral-300">Track user behavior, system events, and business metrics in real-time with millisecond latency.</p>
-          </motion.div>
+      }} display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16} marginBottom={64} marginTop={40} $md={{ gap: 32 }}>
+          <MotionBox variants={itemVariants} whileHover="hover" whileTap="tap" padding={16} borderRadius="var(--radius-xl)" transition="all 300ms cubic-bezier(.4,0,.2,1)" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+            <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Track user behavior, system events, and business metrics in real-time with millisecond latency.</Paragraph>
+          </MotionBox>
 
-          <motion.div variants={itemVariants} whileHover="hover" whileTap="tap" className="p-4 md:p-6 bg-gradient-to-br from-gray-900/20 to-transparent rounded-xl transition-all duration-300 flex flex-col items-center text-center">
-            <p className="text-xs xs:text-sm md:text-base text-neutral-300">Understand user journeys, cohorts, and behavior patterns with AI-powered analytics.</p>
-          </motion.div>
+          <MotionBox variants={itemVariants} whileHover="hover" whileTap="tap" padding={16} borderRadius="var(--radius-xl)" transition="all 300ms cubic-bezier(.4,0,.2,1)" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+            <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Understand user journeys, cohorts, and behavior patterns with AI-powered analytics.</Paragraph>
+          </MotionBox>
 
-          <motion.div variants={itemVariants} whileHover="hover" whileTap="tap" className="p-4 md:p-6 bg-gradient-to-br from-gray-900/20 to-transparent rounded-xl transition-all duration-300 flex flex-col items-center text-center">
-            <p className="text-xs xs:text-sm md:text-base text-neutral-300">Leverage machine learning to predict trends, detect anomalies, and optimize performance.</p>
-          </motion.div>
-        </motion.div>
+          <MotionBox variants={itemVariants} whileHover="hover" whileTap="tap" padding={16} borderRadius="var(--radius-xl)" transition="all 300ms cubic-bezier(.4,0,.2,1)" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+            <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $md={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Leverage machine learning to predict trends, detect anomalies, and optimize performance.</Paragraph>
+          </MotionBox>
+        </MotionBox>
 
-        <motion.div initial={{
+        <MotionBox initial={{
         opacity: 0,
         y: 30
       }} whileInView={{
@@ -338,9 +338,9 @@ const Analytics = () => {
         duration: 0.6,
         type: "spring",
         stiffness: 100
-      }} className="bg-gradient-to-r from-gray-900/20 via-black to-gray-900/20 rounded-xl p-8 mb-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <motion.div initial={{
+      }} borderRadius="var(--radius-xl)" padding={32} marginBottom={64} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), var(--pure-black), rgb(255 255 255 / 0.08))">
+          <Grid display="grid" gap={32} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <MotionBox initial={{
             opacity: 0,
             x: -20
           }} whileInView={{
@@ -352,39 +352,39 @@ const Analytics = () => {
             delay: 0.3,
             duration: 0.5
           }}>
-              <h3 className="text-xl sm:text-2xl font-semibold text-[var(--white)] mb-4">Planetary-Scale Infrastructure</h3>
-              <motion.ul variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16} $sm={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>Planetary-Scale Infrastructure</H3>
+              <MotionBox variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
               once: true
-            }} className="space-y-4">
-                <motion.li variants={itemVariants} className="flex items-start space-x-3">
-                  <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-neutral-400 mt-1" />
+            }} rowGap={16}>
+                <MotionBox variants={itemVariants} flexDirection="row" display="flex" alignItems="flex-start" columnGap={12}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={4} $sm={{ height: 24, width: 24 }}><Zap size={20} color="var(--neutral-400)" /></Box>
                   <div>
-                    <h4 className="text-sm sm:text-base text-[var(--white)] font-semibold">Global Edge Network</h4>
-                    <p className="text-xs sm:text-sm text-neutral-300">200+ data centers worldwide ensuring sub-50ms latency for 99% of users</p>
+                    <H4 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" fontWeight="600" $sm={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Global Edge Network</H4>
+                    <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>200+ data centers worldwide ensuring sub-50ms latency for 99% of users</Paragraph>
                   </div>
-                </motion.li>
-                <motion.li variants={itemVariants} className="flex items-start space-x-3">
-                  <Globe className="h-5 w-5 sm:h-6 sm:w-6 text-neutral-400 mt-1" />
+                </MotionBox>
+                <MotionBox variants={itemVariants} flexDirection="row" display="flex" alignItems="flex-start" columnGap={12}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={4} $sm={{ height: 24, width: 24 }}><Globe size={20} color="var(--neutral-400)" /></Box>
                   <div>
-                    <h4 className="text-sm sm:text-base text-[var(--white)] font-semibold">Infinite Scale</h4>
-                    <p className="text-xs sm:text-sm text-neutral-300">Handle billions of events per day with automatic scaling and zero maintenance</p>
+                    <H4 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" fontWeight="600" $sm={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>Infinite Scale</H4>
+                    <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Handle billions of events per day with automatic scaling and zero maintenance</Paragraph>
                   </div>
-                </motion.li>
-                <motion.li variants={itemVariants} className="flex items-start space-x-3">
-                  <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-neutral-400 mt-1" />
+                </MotionBox>
+                <MotionBox variants={itemVariants} flexDirection="row" display="flex" alignItems="flex-start" columnGap={12}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={4} $sm={{ height: 24, width: 24 }}><Brain size={20} color="var(--neutral-400)" /></Box>
                   <div>
-                    <h4 className="text-sm sm:text-base text-[var(--white)] font-semibold">AI-Powered Insights</h4>
-                    <p className="text-xs sm:text-sm text-neutral-300">Automatic anomaly detection, trend analysis, and predictive analytics</p>
+                    <H4 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)" fontWeight="600" $sm={{ fontSize: "var(--text-base)", lineHeight: "var(--leading-base)" }}>AI-Powered Insights</H4>
+                    <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Automatic anomaly detection, trend analysis, and predictive analytics</Paragraph>
                   </div>
-                </motion.li>
-              </motion.ul>
-            </motion.div>
+                </MotionBox>
+              </MotionBox>
+            </MotionBox>
             
-          </div>
-        </motion.div>
+          </Grid>
+        </MotionBox>
 
         {/* User Insights Section - Enhanced centering */}
-        <motion.div initial={{
+        <MotionBox initial={{
         opacity: 0,
         y: 30
       }} whileInView={{
@@ -397,8 +397,8 @@ const Analytics = () => {
         duration: 0.6,
         type: "spring",
         stiffness: 90
-      }} className="mb-16 mx-auto">
-          <motion.h2 initial={{
+      }} marginBottom={64} marginHorizontal="auto">
+          <MotionText initial={{
           opacity: 0,
           y: 15
         }} whileInView={{
@@ -409,55 +409,55 @@ const Analytics = () => {
         }} transition={{
           delay: 0.2,
           duration: 0.5
-        }} className="text-2xl sm:text-3xl font-semibold text-[var(--white)] text-center mb-12">
+        }} fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" textAlign="center" marginBottom={48} $sm={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
             Powerful User Insights for Growth
-          </motion.h2>
+          </MotionText>
 
-          <motion.div variants={userInsightsVariants} initial="hidden" whileInView="visible" viewport={{
+          <MotionBox variants={userInsightsVariants} initial="hidden" whileInView="visible" viewport={{
           once: true
-        }} className="grid grid-cols-3 gap-4 md:gap-8">
-            <motion.div variants={userInsightItemVariants} whileHover={{
+        }} display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16} $md={{ gap: 32 }}>
+            <MotionBox variants={userInsightItemVariants} whileHover={{
             y: -5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/30 to-transparent rounded-xl p-4 md:p-6 ring-1 ring-white/10 flex flex-col items-center text-center">
-              <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full p-2 md:p-3 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mb-3 md:mb-4">
-                <Users className="h-5 w-5 sm:h-6 sm:w-6 text-purple-300" />
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-medium text-[var(--white)] mb-2 md:mb-3">Cohort Analysis</h3>
-              <p className="text-xs sm:text-sm text-neutral-300">Group users by common characteristics and behaviors to discover usage patterns.</p>
-            </motion.div>
+          }} borderRadius="var(--radius-xl)" padding={16} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+              <XStack borderRadius="var(--radius-full)" padding={8} width={40} height={40} display="flex" alignItems="center" justifyContent="center" marginBottom={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 12, width: 56, height: 56, marginBottom: 16 }} $sm={{ width: 48, height: 48 }}>
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><Users size={20} color="var(--foreground)" /></Box>
+              </XStack>
+              <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)", marginBottom: 12 }}>Cohort Analysis</H3>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Group users by common characteristics and behaviors to discover usage patterns.</Paragraph>
+            </MotionBox>
 
-            <motion.div variants={userInsightItemVariants} whileHover={{
+            <MotionBox variants={userInsightItemVariants} whileHover={{
             y: -5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/30 to-transparent rounded-xl p-4 md:p-6 ring-1 ring-white/10 flex flex-col items-center text-center">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full p-2 md:p-3 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mb-3 md:mb-4">
-                <LineChart className="h-5 w-5 sm:h-6 sm:w-6 text-blue-300" />
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-medium text-[var(--white)] mb-2 md:mb-3">User Journeys</h3>
-              <p className="text-xs sm:text-sm text-neutral-300">Visualize and optimize the complete user journey from acquisition to conversion.</p>
-            </motion.div>
+          }} borderRadius="var(--radius-xl)" padding={16} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+              <XStack borderRadius="var(--radius-full)" padding={8} width={40} height={40} display="flex" alignItems="center" justifyContent="center" marginBottom={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 12, width: 56, height: 56, marginBottom: 16 }} $sm={{ width: 48, height: 48 }}>
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><LineChart size={20} color="var(--foreground)" /></Box>
+              </XStack>
+              <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)", marginBottom: 12 }}>User Journeys</H3>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Visualize and optimize the complete user journey from acquisition to conversion.</Paragraph>
+            </MotionBox>
 
-            <motion.div variants={userInsightItemVariants} whileHover={{
+            <MotionBox variants={userInsightItemVariants} whileHover={{
             y: -5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/30 to-transparent rounded-xl p-4 md:p-6 ring-1 ring-white/10 flex flex-col items-center text-center">
-              <div className="bg-gradient-to-br from-cyan-500/20 to-teal-500/20 rounded-full p-2 md:p-3 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mb-3 md:mb-4">
-                <PieChart className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-300" />
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-medium text-[var(--white)] mb-2 md:mb-3">Engagement Metrics</h3>
-              <p className="text-xs sm:text-sm text-neutral-300">Capture and analyze key engagement metrics to improve user retention.</p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          }} borderRadius="var(--radius-xl)" padding={16} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" display="flex" flexDirection="column" alignItems="center" textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 24 }}>
+              <XStack borderRadius="var(--radius-full)" padding={8} width={40} height={40} display="flex" alignItems="center" justifyContent="center" marginBottom={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 12, width: 56, height: 56, marginBottom: 16 }} $sm={{ width: 48, height: 48 }}>
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><PieChart size={20} color="var(--foreground)" /></Box>
+              </XStack>
+              <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)", marginBottom: 12 }}>Engagement Metrics</H3>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Capture and analyze key engagement metrics to improve user retention.</Paragraph>
+            </MotionBox>
+          </MotionBox>
+        </MotionBox>
 
-        <motion.div initial={{
+        <MotionBox initial={{
         opacity: 0,
         y: 30
       }} whileInView={{
@@ -470,8 +470,8 @@ const Analytics = () => {
         duration: 0.6,
         type: "spring",
         stiffness: 85
-      }} className="bg-gradient-to-r from-gray-900/20 via-black to-gray-900/20 rounded-xl p-8 mb-16">
-          <motion.h2 initial={{
+      }} borderRadius="var(--radius-xl)" padding={32} marginBottom={64} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), var(--pure-black), rgb(255 255 255 / 0.08))">
+          <MotionText initial={{
           opacity: 0,
           y: 15
         }} whileInView={{
@@ -482,61 +482,61 @@ const Analytics = () => {
         }} transition={{
           delay: 0.2,
           duration: 0.5
-        }} className="text-2xl sm:text-3xl font-semibold text-[var(--white)] text-center mb-10">
+        }} fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" textAlign="center" marginBottom={40} $sm={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
             Easily Integrate Hanzo AI-Powered Analytics
-          </motion.h2>
+          </MotionText>
 
-          <motion.div variants={aiAnalyticsVariants} initial="hidden" whileInView="visible" viewport={{
+          <MotionBox variants={aiAnalyticsVariants} initial="hidden" whileInView="visible" viewport={{
           once: true
-        }} className="space-y-6">
-            <motion.div variants={aiAnalyticsItemVariants} whileHover={{
+        }} rowGap={24}>
+            <MotionBox variants={aiAnalyticsItemVariants} whileHover={{
             x: 5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/40 to-black/20 rounded-lg p-5 ring-1 ring-white/5 flex items-start space-x-4">
-              <div className="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 rounded-lg p-3">
-                <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-indigo-300" />
-              </div>
-              <div className="flex-1 text-center">
-                <h3 className="text-base sm:text-lg font-medium text-[var(--white)] mb-2">Predictive Analysis</h3>
-                <p className="text-xs sm:text-sm text-neutral-300">Forecast future trends and user behaviors with advanced machine learning algorithms.</p>
-              </div>
-            </motion.div>
+          }} flexDirection="row" borderRadius="var(--radius-lg)" padding={20} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.05)" outlineStyle="solid" display="flex" alignItems="flex-start" columnGap={16} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.2))">
+              <Box borderRadius="var(--radius-lg)" padding={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><Brain size={20} color="var(--foreground)" /></Box>
+              </Box>
+              <Box flex={1} textAlign="center">
+                <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>Predictive Analysis</H3>
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Forecast future trends and user behaviors with advanced machine learning algorithms.</Paragraph>
+              </Box>
+            </MotionBox>
 
-            <motion.div variants={aiAnalyticsItemVariants} whileHover={{
+            <MotionBox variants={aiAnalyticsItemVariants} whileHover={{
             x: 5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/40 to-black/20 rounded-lg p-5 ring-1 ring-white/5 flex items-start space-x-4">
-              <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-lg p-3">
-                <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-blue-300" />
-              </div>
-              <div className="flex-1 text-center">
-                <h3 className="text-base sm:text-lg font-medium text-[var(--white)] mb-2">Anomaly Detection</h3>
-                <p className="text-xs sm:text-sm text-neutral-300">Automatically identify unusual patterns and potential issues in your application.</p>
-              </div>
-            </motion.div>
+          }} flexDirection="row" borderRadius="var(--radius-lg)" padding={20} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.05)" outlineStyle="solid" display="flex" alignItems="flex-start" columnGap={16} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.2))">
+              <Box borderRadius="var(--radius-lg)" padding={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><Activity size={20} color="var(--foreground)" /></Box>
+              </Box>
+              <Box flex={1} textAlign="center">
+                <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>Anomaly Detection</H3>
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Automatically identify unusual patterns and potential issues in your application.</Paragraph>
+              </Box>
+            </MotionBox>
 
-            <motion.div variants={aiAnalyticsItemVariants} whileHover={{
+            <MotionBox variants={aiAnalyticsItemVariants} whileHover={{
             x: 5,
             transition: {
               duration: 0.2
             }
-          }} className="bg-gradient-to-br from-gray-900/40 to-black/20 rounded-lg p-5 ring-1 ring-white/5 flex items-start space-x-4">
-              <div className="bg-gradient-to-br from-emerald-600/20 to-teal-600/20 rounded-lg p-3">
-                <BarChart className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-300" />
-              </div>
-              <div className="flex-1 text-center">
-                <h3 className="text-base sm:text-lg font-medium text-[var(--white)] mb-2">Intelligent Recommendations</h3>
-                <p className="text-xs sm:text-sm text-neutral-300">Get actionable insights and recommendations to optimize your business metrics.</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          }} flexDirection="row" borderRadius="var(--radius-lg)" padding={20} outlineWidth={1} outlineColor="rgb(255 255 255 / 0.05)" outlineStyle="solid" display="flex" alignItems="flex-start" columnGap={16} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.2))">
+              <Box borderRadius="var(--radius-lg)" padding={12} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                <Box render="span" display="inline-flex" alignItems="center" $sm={{ height: 24, width: 24 }}><BarChart size={20} color="var(--foreground)" /></Box>
+              </Box>
+              <Box flex={1} textAlign="center">
+                <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--white)" marginBottom={8} $sm={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>Intelligent Recommendations</H3>
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" $sm={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>Get actionable insights and recommendations to optimize your business metrics.</Paragraph>
+              </Box>
+            </MotionBox>
+          </MotionBox>
+        </MotionBox>
 
-        <motion.div initial={{
+        <MotionBox initial={{
         opacity: 0,
         y: 20
       }} whileInView={{
@@ -547,8 +547,8 @@ const Analytics = () => {
       }} transition={{
         delay: 0.8,
         duration: 0.5
-      }} className="text-center">
-          <motion.div whileHover={{
+      }} textAlign="center">
+          <MotionBox whileHover={{
           scale: 1.05
         }} whileTap={{
           scale: 0.95
@@ -557,12 +557,12 @@ const Analytics = () => {
           stiffness: 400,
           damping: 10
         }}>
-            <Button className="bg-gray-600 hover:bg-gray-700 text-[var(--white)] px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-xl">
+            <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={24} paddingVertical={20} fontSize="var(--text-base)" lineHeight="var(--leading-base)" borderRadius="var(--radius-xl)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }} $sm={{ paddingHorizontal: 32, paddingVertical: 24, fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>
               Get Started with Analytics
             </Button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>;
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>;
 };
 export default Analytics;

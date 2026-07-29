@@ -1,9 +1,6 @@
+import { Box, Button, Dialog, DialogContent, DialogHeader, DialogTitle, Grid, Input, Text, Textarea, XStack } from '@/gui'
 
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/radix-dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { 
   Bot, Calendar, Tag, 
   User, AlertCircle, X,
@@ -60,160 +57,152 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
 
   return (
     <Dialog open={!!task} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent maxWidth="42rem">
         <DialogHeader>
           <DialogTitle>
             <Input 
               name="title"
               value={editedTask.title}
               onChange={handleChange}
-              className="text-xl font-semibold mt-2 bg-transparent border-none focus:ring-0 px-0 h-auto"
+              fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginTop={8} backgroundColor="transparent" borderStyle="none" paddingHorizontal={0} height="auto" focusStyle={{ outlineWidth: 0 }}
             />
           </DialogTitle>
         </DialogHeader>
 
-        <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-2">
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-neutral-400 mb-1">Description</label>
+        <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24}>
+          <Box gridColumn="span 2 / span 2">
+            <Box marginBottom={24}>
+              <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Description</Text>
               <Textarea 
                 name="description"
                 value={editedTask.description || ""}
                 onChange={handleChange}
                 placeholder="Add a description..."
-                className="min-h-32 bg-gray-900 border-gray-800"
+                minHeight={128} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
               />
-            </div>
+            </Box>
 
-            <div className="mb-6">
-              <div className="flex justify-between mb-2">
-                <label className="block text-sm font-medium text-neutral-400">Assignees</label>
-                <Button size="sm" variant="ghost" className="text-blue-400 hover:text-blue-300 h-6 px-2">
-                  <PlusCircle className="h-3.5 w-3.5 mr-1" />
+            <Box marginBottom={24}>
+              <XStack display="flex" justifyContent="space-between" marginBottom={8}>
+                <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)">Assignees</Text>
+                <Button size="sm" variant="ghost" color="var(--foreground)" height={24} paddingHorizontal={8} hoverStyle={{ color: "var(--foreground)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><PlusCircle size={14} /></Box>
                   Add
                 </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
+              </XStack>
+              <XStack display="flex" flexWrap="wrap" gap={8}>
                 {editedTask.assignees?.map(assignee => (
-                  <div 
+                  <XStack 
                     key={assignee.id}
-                    className="flex items-center gap-2 bg-gray-800 px-2 py-1 rounded text-sm"
+                    display="flex" alignItems="center" gap={8} backgroundColor="var(--neutral-800)" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                   >
-                    <div className="w-5 h-5 rounded-full bg-blue-900 flex items-center justify-center text-xs">
+                    <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
                       {assignee.name.charAt(0)}
-                    </div>
+                    </XStack>
                     <span>{assignee.name}</span>
-                    <button className="text-neutral-400 hover:text-[var(--white)]">
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
+                    <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+                      <X size={12} />
+                    </Box>
+                  </XStack>
                 ))}
                 {!editedTask.assignees?.length && (
-                  <div className="text-sm text-neutral-500">No assignees</div>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">No assignees</Box>
                 )}
-              </div>
-            </div>
+              </XStack>
+            </Box>
 
-            <div className="mb-6">
-              <div className="flex justify-between mb-2">
-                <label className="block text-sm font-medium text-neutral-400">Labels</label>
-                <Button size="sm" variant="ghost" className="text-blue-400 hover:text-blue-300 h-6 px-2">
-                  <PlusCircle className="h-3.5 w-3.5 mr-1" />
+            <Box marginBottom={24}>
+              <XStack display="flex" justifyContent="space-between" marginBottom={8}>
+                <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)">Labels</Text>
+                <Button size="sm" variant="ghost" color="var(--foreground)" height={24} paddingHorizontal={8} hoverStyle={{ color: "var(--foreground)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><PlusCircle size={14} /></Box>
                   Add
                 </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
+              </XStack>
+              <XStack display="flex" flexWrap="wrap" gap={8}>
                 {editedTask.labels?.map(label => (
-                  <div 
+                  <XStack 
                     key={label.id}
-                    className="flex items-center gap-2 px-2 py-1 rounded text-sm"
+                    display="flex" alignItems="center" gap={8} paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                     style={{ backgroundColor: `${label.color}20`, color: label.color }}
                   >
                     <span>{label.name}</span>
                     <button>
-                      <X className="h-3 w-3" />
+                      <X size={12} />
                     </button>
-                  </div>
+                  </XStack>
                 ))}
                 {!editedTask.labels?.length && (
-                  <div className="text-sm text-neutral-500">No labels</div>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">No labels</Box>
                 )}
-              </div>
-            </div>
-          </div>
+              </XStack>
+            </Box>
+          </Box>
 
-          <div className="space-y-6">
+          <Box rowGap={24}>
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-1">Status</label>
-              <div className="space-y-1">
+              <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Status</Text>
+              <Box rowGap={4}>
                 {statusOptions.map(option => (
-                  <div 
+                  <Box 
                     key={option.value}
-                    className={`px-3 py-2 rounded cursor-pointer ${
-                      editedTask.status === option.value 
-                        ? 'bg-blue-900/30 border border-blue-800' 
-                        : 'hover:bg-gray-800'
-                    }`}
+                    paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius)" cursor="pointer" backgroundColor={editedTask.status === option.value ? "rgb(255 255 255 / 0.3)" : undefined} borderWidth={editedTask.status === option.value ? 1 : undefined} borderColor={editedTask.status === option.value ? "var(--neutral-800)" : undefined} hoverStyle={editedTask.status === option.value ? undefined : { backgroundColor: "var(--neutral-800)" }}
                     onClick={() => setEditedTask(prev => ({ ...prev, status: option.value }))}
                   >
                     {option.label}
-                  </div>
+                  </Box>
                 ))}
-              </div>
+              </Box>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-1">Priority</label>
-              <div className="space-y-1">
+              <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Priority</Text>
+              <Box rowGap={4}>
                 {priorityOptions.map(option => (
-                  <div 
+                  <XStack 
                     key={option.value}
-                    className={`px-3 py-2 rounded cursor-pointer flex items-center ${
-                      editedTask.priority === option.value 
-                        ? 'bg-gray-800' 
-                        : 'hover:bg-gray-800/50'
-                    }`}
+                    paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius)" cursor="pointer" display="flex" alignItems="center" backgroundColor={editedTask.priority === option.value ? "var(--neutral-800)" : undefined} hoverStyle={editedTask.priority === option.value ? undefined : { backgroundColor: "var(--surface-card)" }}
                     onClick={() => setEditedTask(prev => ({ ...prev, priority: option.value as "low" | "medium" | "high" }))}
                   >
-                    <div className={`w-2 h-2 rounded-full ${option.color} mr-2`}></div>
+                    <Box width={8} height={8} borderRadius="var(--radius-full)" marginRight={8}></Box>
                     {option.label}
-                  </div>
+                  </XStack>
                 ))}
-              </div>
+              </Box>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-1">Due Date</label>
+              <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>Due Date</Text>
               <Input 
                 type="date"
                 name="dueDate"
                 value={editedTask.dueDate || ""}
                 onChange={handleChange}
-                className="bg-gray-900 border-gray-800"
+                backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-1">AI Agents</label>
+              <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)" marginBottom={4}>AI Agents</Text>
               <Button 
                 variant="outline" 
-                className="w-full justify-start bg-gray-900 border-gray-800"
+                width="100%" justifyContent="flex-start" backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
               >
-                <Bot className="mr-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} /></Box>
                 Assign Agent
               </Button>
             </div>
-          </div>
-        </div>
+          </Box>
+        </Grid>
 
-        <div className="flex justify-end gap-2 mt-6">
+        <XStack display="flex" justifyContent="flex-end" gap={8} marginTop={24}>
           <Button variant="ghost" onClick={onClose}>
             Cancel
           </Button>
           <Button onClick={handleSave}>
             Save Changes
           </Button>
-        </div>
+        </XStack>
       </DialogContent>
     </Dialog>
   );

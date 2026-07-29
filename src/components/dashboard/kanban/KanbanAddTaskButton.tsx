@@ -1,6 +1,6 @@
+import { Box, Button } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
 interface KanbanAddTaskButtonProps {
@@ -10,11 +10,11 @@ interface KanbanAddTaskButtonProps {
 const KanbanAddTaskButton: React.FC<KanbanAddTaskButtonProps> = ({ onAddTask }) => {
   return (
     <Button 
-      className="w-full justify-start text-neutral-400 hover:text-[var(--white)] border border-gray-800 bg-[var(--black)] hover:bg-gray-900" 
+      width="100%" justifyContent="flex-start" color="var(--neutral-400)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--black)" hoverStyle={{ color: "var(--white)", backgroundColor: "var(--neutral-900)" }} 
       variant="outline"
       onClick={onAddTask}
     >
-      <Plus className="h-4 w-4 mr-2" />
+      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Plus size={16} /></Box>
       Add Task
     </Button>
   );

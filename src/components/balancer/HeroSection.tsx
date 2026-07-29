@@ -1,108 +1,108 @@
+import { Anchor, Box, Button, Grid, H3, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, BookOpen } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <Box render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <div className="flex flex-wrap justify-center gap-4 mb-6">
-            <a href="/pricing" className="flex items-center text-neutral-300 hover:text-[var(--white)] transition-colors">
-              <Button variant="ghost" size="sm" className="gap-2 rounded-full">
-                <FileText className="h-4 w-4" />
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box textAlign="center" marginBottom={48}>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={24}>
+            <Anchor tap href="/pricing" display="flex" alignItems="center" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>
+              <Button variant="ghost" size="sm" gap={8} borderRadius="var(--radius-full)">
+                <FileText size={16} />
                 Pricing
               </Button>
-            </a>
-            <a href="https://docs.hanzo.ai/balancer" className="flex items-center text-neutral-300 hover:text-[var(--white)] transition-colors">
-              <Button variant="ghost" size="sm" className="gap-2 rounded-full">
-                <BookOpen className="h-4 w-4" />
+            </Anchor>
+            <Anchor tap href="https://docs.hanzo.ai/balancer" display="flex" alignItems="center" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}>
+              <Button variant="ghost" size="sm" gap={8} borderRadius="var(--radius-full)">
+                <BookOpen size={16} />
                 Docs
               </Button>
-            </a>
-          </div>
+            </Anchor>
+          </XStack>
 
-          <div className="mb-4">
-            <span className="text-purple-400 font-medium leading-relaxed">Hanzo Balancer v3.3 Is Now Available! 
-              <a href="#learn-more" className="ml-2 text-purple-300 underline">Learn More</a>
-            </span>
-          </div>
+          <Box marginBottom={16}>
+            <Text color="var(--foreground)" fontWeight="500" lineHeight="var(--leading-relaxed)">Hanzo Balancer v3.3 Is Now Available! 
+              <Anchor tap href="#learn-more" marginLeft={8} color="var(--foreground)" textDecorationLine="underline">Learn More</Anchor>
+            </Text>
+          </Box>
           
-          <motion.h1
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+            fontSize="var(--text-4xl)" lineHeight="var(--leading-tight)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
           >
             The Cloud Native<br />
-            <span className="text-purple-400">Application Proxy</span>
-          </motion.h1>
+            <Text color="var(--foreground)">Application Proxy</Text>
+          </MotionText>
           
-          <motion.p
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto mb-12 leading-relaxed"
+            fontSize="var(--text-xl)" lineHeight="var(--leading-relaxed)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={48} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}
           >
             Simplify and automate the discovery, routing, and load balancing of microservices.
-          </motion.p>
+          </MotionText>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
+            display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={64} $sm={{ flexDirection: "row" }}
           >
             <Button 
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] rounded-full py-6"
+              backgroundColor="var(--neutral-600)" color="var(--white)" borderRadius="var(--radius-full)" paddingVertical={24} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
-              <span className="py-1 leading-relaxed">GET STARTED</span>
+              <Text paddingVertical={4} lineHeight="var(--leading-relaxed)">GET STARTED</Text>
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-gray-600 text-[var(--white)] hover:bg-[var(--white)]/10 rounded-full py-6"
+              borderColor="var(--neutral-600)" color="var(--white)" borderRadius="var(--radius-full)" paddingVertical={24} hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <span className="py-1 leading-relaxed">Start Free Trial</span>
+              <Text paddingVertical={4} lineHeight="var(--leading-relaxed)">Start Free Trial</Text>
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-gray-600 text-[var(--white)] hover:bg-[var(--white)]/10 rounded-full py-6"
+              borderColor="var(--neutral-600)" color="var(--white)" borderRadius="var(--radius-full)" paddingVertical={24} hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <span className="py-1 leading-relaxed">Request Demo</span>
+              <Text paddingVertical={4} lineHeight="var(--leading-relaxed)">Request Demo</Text>
             </Button>
-          </motion.div>
+          </MotionBox>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-2">3.2B+</h3>
-              <p className="text-neutral-400">Downloads</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-2">47K+</h3>
-              <p className="text-neutral-400">Stars on Github</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-2">900+</h3>
-              <p className="text-neutral-400">Contributors</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-2">Top 15</h3>
-              <p className="text-neutral-400">on Docker hub</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} maxWidth="56rem" marginHorizontal="auto" $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+            <Box textAlign="center">
+              <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={8}>3.2B+</H3>
+              <Paragraph color="var(--neutral-400)">Downloads</Paragraph>
+            </Box>
+            <Box textAlign="center">
+              <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={8}>47K+</H3>
+              <Paragraph color="var(--neutral-400)">Stars on Github</Paragraph>
+            </Box>
+            <Box textAlign="center">
+              <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={8}>900+</H3>
+              <Paragraph color="var(--neutral-400)">Contributors</Paragraph>
+            </Box>
+            <Box textAlign="center">
+              <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={8}>Top 15</H3>
+              <Paragraph color="var(--neutral-400)">on Docker hub</Paragraph>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

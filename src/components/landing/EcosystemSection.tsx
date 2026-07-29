@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph, Text } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -22,54 +23,54 @@ const EcosystemBadge: React.FC<{ item: CompatibilityItem; index: number }> = ({
   index,
 }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
+      
       whileHover={{ scale: 1.02, backgroundColor: "rgba(253, 68, 68, 0.08)" }}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 cursor-default transition-colors"
+      flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" cursor="default" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
     >
-      <span className="text-sm font-medium text-white">{item.name}</span>
-      <span className="text-xs text-neutral-500">
+      <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">{item.name}</Text>
+      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">
         ({item.compatible}-compatible)
-      </span>
-    </motion.div>
+      </Text>
+    </MotionBox>
   );
 };
 
 const EcosystemSection: React.FC = () => {
   return (
-    <section className="py-16 px-4 md:px-8 bg-black">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          textAlign="center" marginBottom={40}
         >
-          <h2 className="text-2xl md:text-3xl font-medium text-white mb-2">
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--foreground)" marginBottom={8} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>
             Ecosystem
-          </h2>
-          <p className="text-neutral-400 text-sm">
+          </H2>
+          <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
             Drop-in compatible, unified experience.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-3"
+          flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={12}
         >
           {ecosystemItems.map((item, index) => (
             <EcosystemBadge key={item.name} item={item} index={index} />
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

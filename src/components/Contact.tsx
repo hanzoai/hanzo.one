@@ -1,14 +1,13 @@
+import { Anchor, Box, Button, Grid, H1, H2, H3, Helmet, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone, MessageSquare, Send, Github, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Contact Us - Hanzo Industries</title>
         <meta 
@@ -19,176 +18,176 @@ const Contact = () => {
       
       <Navbar />
       
-      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+      <Box render="main" paddingTop={96} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+          <Box textAlign="center" marginBottom={64}>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Contact Us</H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Have questions or need assistance? Our team is here to help. 
               Reach out to us through any of the channels below.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {/* Contact Form */}
-            <div className="bg-gray-900/30 rounded-xl p-8 border border-gray-800">
-              <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-800)">
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={24}>Send Us a Message</H2>
+              <Box render="form" rowGap={24}>
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-neutral-300 mb-1">
+                    <Text htmlFor="name" render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)" marginBottom={4}>
                       Name
-                    </label>
-                    <input
+                    </Text>
+                    <Box display="inline-block" minHeight={44}
                       type="text"
                       id="name"
-                      className="w-full px-4 py-2 bg-[var(--black)]/50 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      render="input" width="100%" paddingHorizontal={16} paddingVertical={8} backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-md)" focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-1">
+                    <Text htmlFor="email" render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)" marginBottom={4}>
                       Email
-                    </label>
-                    <input
+                    </Text>
+                    <Box display="inline-block" minHeight={44}
                       type="email"
                       id="email"
-                      className="w-full px-4 py-2 bg-[var(--black)]/50 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      render="input" width="100%" paddingHorizontal={16} paddingVertical={8} backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-md)" focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
                       placeholder="your.email@example.com"
                     />
                   </div>
-                </div>
+                </Grid>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-neutral-300 mb-1">
+                  <Text htmlFor="subject" render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)" marginBottom={4}>
                     Subject
-                  </label>
-                  <input
+                  </Text>
+                  <Box display="inline-block" minHeight={44}
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-2 bg-[var(--black)]/50 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    render="input" width="100%" paddingHorizontal={16} paddingVertical={8} backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-md)" focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
                     placeholder="What is this regarding?"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-neutral-300 mb-1">
+                  <Text htmlFor="message" render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-300)" marginBottom={4}>
                     Message
-                  </label>
-                  <textarea
+                  </Text>
+                  <Box display="inline-block" minHeight={44}
                     id="message"
                     rows={6}
-                    className="w-full px-4 py-2 bg-[var(--black)]/50 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                    render="textarea" width="100%" paddingHorizontal={16} paddingVertical={8} backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-md)" focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
                     placeholder="Tell us how we can help..."
                   />
                 </div>
                 
-                <Button type="submit" className="w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700" size="sm">
-                  <Send className="mr-2 h-4 w-4" />
+                <Button type="submit" width="100%" display="flex" alignItems="center" justifyContent="center" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }} size="sm">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Send size={16} /></Box>
                   Send Message
                 </Button>
-              </form>
-            </div>
+              </Box>
+            </Box>
             
             {/* Contact Information */}
-            <div className="flex flex-col">
-              <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-xl p-8 border border-purple-500/20 mb-8">
-                <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <Mail className="h-6 w-6 text-purple-400 mr-4 mt-1" />
+            <YStack display="flex" flexDirection="column">
+              <Box borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" marginBottom={32} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={24}>Contact Information</H2>
+                <Box rowGap={24}>
+                  <XStack display="flex" alignItems="flex-start">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={16} marginTop={4}><Mail size={24} color="var(--foreground)" /></Box>
                     <div>
-                      <h3 className="font-medium">Email</h3>
-                      <p className="text-neutral-300">
-                        <a href="mailto:info@hanzo.ai" className="hover:text-purple-400 transition-colors">
+                      <H3 fontWeight="500">Email</H3>
+                      <Paragraph color="var(--neutral-300)">
+                        <Anchor tap href="mailto:info@hanzo.ai" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
                           info@hanzo.ai
-                        </a>
-                      </p>
+                        </Anchor>
+                      </Paragraph>
                     </div>
-                  </div>
+                  </XStack>
                   
-                  <div className="flex items-start">
-                    <Phone className="h-6 w-6 text-purple-400 mr-4 mt-1" />
+                  <XStack display="flex" alignItems="flex-start">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={16} marginTop={4}><Phone size={24} color="var(--foreground)" /></Box>
                     <div>
-                      <h3 className="font-medium">Phone</h3>
-                      <p className="text-neutral-300">
-                        <a href="tel:+18005551234" className="hover:text-purple-400 transition-colors">
+                      <H3 fontWeight="500">Phone</H3>
+                      <Paragraph color="var(--neutral-300)">
+                        <Anchor tap href="tel:+18005551234" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>
                           +1 (800) 555-1234
-                        </a>
-                      </p>
+                        </Anchor>
+                      </Paragraph>
                     </div>
-                  </div>
+                  </XStack>
                   
-                  <div className="flex items-start">
-                    <MapPin className="h-6 w-6 text-purple-400 mr-4 mt-1" />
+                  <XStack display="flex" alignItems="flex-start">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={16} marginTop={4}><MapPin size={24} color="var(--foreground)" /></Box>
                     <div>
-                      <h3 className="font-medium">Location</h3>
-                      <p className="text-neutral-300">
+                      <H3 fontWeight="500">Location</H3>
+                      <Paragraph color="var(--neutral-300)">
                         Kansas City, MO<br />
                         United States
-                      </p>
+                      </Paragraph>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </XStack>
+                </Box>
+              </Box>
               
-              <div className="bg-gray-900/30 rounded-xl p-8 border border-gray-800 flex-grow">
-                <h2 className="text-2xl font-semibold mb-6">Connect With Us</h2>
-                <p className="text-neutral-300 mb-6">
+              <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-800)" flexGrow={1}>
+                <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={24}>Connect With Us</H2>
+                <Paragraph color="var(--neutral-300)" marginBottom={24}>
                   Follow us on social media or join our community platforms to stay updated
                   on the latest news and engage with other Hanzo users.
-                </p>
+                </Paragraph>
                 
-                <div className="space-y-4">
-                  <a href="https://discord.gg/XthHQQj" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <MessageSquare className="h-5 w-5 text-purple-400 mr-3" />
+                <Box rowGap={16}>
+                  <Anchor href="https://discord.gg/XthHQQj" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><MessageSquare size={20} color="var(--foreground)" /></Box>
                     <span>Join our Discord Community</span>
-                  </a>
+                  </Anchor>
                   
-                  <a href="https://github.com/hanzoai" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <Github className="h-5 w-5 text-purple-400 mr-3" />
+                  <Anchor href="https://github.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Github size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on GitHub</span>
-                  </a>
+                  </Anchor>
                   
-                  <a href="https://twitter.com/hanzoai" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <Twitter className="h-5 w-5 text-purple-400 mr-3" />
+                  <Anchor href="https://twitter.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Twitter size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on Twitter</span>
-                  </a>
+                  </Anchor>
 
-                  <a href="https://linkedin.com/company/hanzo-ai" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <Linkedin className="h-5 w-5 text-purple-400 mr-3" />
+                  <Anchor href="https://linkedin.com/company/hanzo-ai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Linkedin size={20} color="var(--foreground)" /></Box>
                     <span>Connect on LinkedIn</span>
-                  </a>
+                  </Anchor>
 
-                  <a href="https://facebook.com/hanzo-inc" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <Facebook className="h-5 w-5 text-purple-400 mr-3" />
+                  <Anchor href="https://facebook.com/hanzo-inc" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Facebook size={20} color="var(--foreground)" /></Box>
                     <span>Like us on Facebook</span>
-                  </a>
+                  </Anchor>
 
-                  <a href="https://instagram.com/hanzoai" className="flex items-center px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors">
-                    <Instagram className="h-5 w-5 text-purple-400 mr-3" />
+                  <Anchor href="https://instagram.com/hanzoai" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Instagram size={20} color="var(--foreground)" /></Box>
                     <span>Follow us on Instagram</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                  </Anchor>
+                </Box>
+              </Box>
+            </YStack>
+          </Grid>
           
           {/* FAQ Section */}
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
-            <p className="text-neutral-300 mb-4">
+          <Box textAlign="center">
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={24}>Frequently Asked Questions</H2>
+            <Paragraph color="var(--neutral-300)" marginBottom={16}>
               Can't find what you're looking for? Check our comprehensive FAQ section.
-            </p>
-            <Button variant="outline" className="border-purple-500 text-[var(--white)] hover:bg-purple-900/20" size="sm">
+            </Paragraph>
+            <Button variant="outline" borderColor="var(--neutral-500)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }} size="sm">
               <a href="/pricing#faq">View FAQ</a>
             </Button>
-          </div>
-        </div>
-      </main>
+          </Box>
+        </Box>
+      </Box>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,71 +1,71 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Tabs, TabsContent, TabsList, TabsTrigger, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { TabsContent, TabsList, TabsTrigger, Tabs } from "@/components/ui/tabs";
 
 const HanzoCodeBenefits = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold mb-6">Like Cursor & Windsurf, But Better</h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24}>Like Cursor & Windsurf, But Better</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Hanzo Code gives you all the features you love from Cursor and Windsurf, with intelligence that goes beyond tab completion.
-            </p>
+            </Paragraph>
             
-            <h2 className="text-3xl font-bold mb-6 mt-12">Advanced Code Understanding</h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} marginTop={48}>Advanced Code Understanding</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Unlike other AI coding assistants, Hanzo Code builds a complete understanding of your entire codebase, not just the current file.
-            </p>
+            </Paragraph>
             
-            <h2 className="text-3xl font-bold mb-6 mt-12">Natural Language & Contextual Awareness</h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} marginTop={48}>Natural Language & Contextual Awareness</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Rewrite entire modules with plain English instructions. Our AI understands your context and project architecture better than any other tool.
-            </p>
+            </Paragraph>
             
-            <h2 className="text-3xl font-bold mb-6 mt-12">True Force Multiplier</h2>
-            <p className="text-xl text-neutral-300 mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} marginTop={48}>True Force Multiplier</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={24}>
               Hanzo Code isn't just an assistant—it's a force multiplier that can scale your productivity by orders of magnitude.
-            </p>
+            </Paragraph>
             
-            <a href="#features" className="text-purple-400 hover:text-purple-300 font-medium">
+            <Anchor tap href="#features" color="var(--foreground)" fontWeight="500" hoverStyle={{ color: "var(--foreground)" }}>
               See how we compare
-            </a>
-          </motion.div>
+            </Anchor>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-xl overflow-hidden"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden"
           >
-            <div className="h-96 bg-gray-900 flex items-center justify-center p-8">
-              <div className="space-y-4 text-left w-full">
-                <div className="border-l-4 border-purple-500 pl-4 py-2">
-                  <h3 className="font-semibold text-[var(--white)]">What Cursor/Windsurf Users Say:</h3>
-                  <p className="text-neutral-300 italic">"I switched to Hanzo Code and my productivity jumped 3x. The agent capabilities are on another level."</p>
-                </div>
+            <XStack height={384} backgroundColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" padding={32}>
+              <Box rowGap={16} textAlign="left" width="100%">
+                <Box borderLeftWidth={4} borderColor="var(--neutral-500)" paddingLeft={16} paddingVertical={8}>
+                  <H3 fontWeight="600" color="var(--white)">What Cursor/Windsurf Users Say:</H3>
+                  <Paragraph color="var(--neutral-300)" fontStyle="italic">"I switched to Hanzo Code and my productivity jumped 3x. The agent capabilities are on another level."</Paragraph>
+                </Box>
                 
-                <div className="border-l-4 border-blue-500 pl-4 py-2">
-                  <p className="text-neutral-300 italic">"Using my favorite VS Code setup with Hanzo's AI has transformed how I approach complex programming tasks."</p>
-                </div>
+                <Box borderLeftWidth={4} borderColor="var(--neutral-500)" paddingLeft={16} paddingVertical={8}>
+                  <Paragraph color="var(--neutral-300)" fontStyle="italic">"Using my favorite VS Code setup with Hanzo's AI has transformed how I approach complex programming tasks."</Paragraph>
+                </Box>
                 
-                <div className="border-l-4 border-green-500 pl-4 py-2">
-                  <p className="text-neutral-300 italic">"Running parallel agent instances to solve different parts of the same problem simultaneously is a game-changer."</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                <Box borderLeftWidth={4} borderColor="var(--neutral-500)" paddingLeft={16} paddingVertical={8}>
+                  <Paragraph color="var(--neutral-300)" fontStyle="italic">"Running parallel agent instances to solve different parts of the same problem simultaneously is a game-changer."</Paragraph>
+                </Box>
+              </Box>
+            </XStack>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

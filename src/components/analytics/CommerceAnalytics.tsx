@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -14,151 +15,151 @@ const CommerceAnalytics = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 1]);
 
   return (
-    <section 
+    <Box 
       ref={sectionRef}
-      className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden"
+      render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-blue-900/5 opacity-50"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.5} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.05))"></Box>
       
       {/* Content */}
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          textAlign="center" marginBottom={80}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Commerce-Focused Analytics</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Commerce-Focused Analytics</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Optimize your sales funnel and boost revenue with insights designed specifically for commerce.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div className="space-y-12">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <Box rowGap={48}>
             {[
               {
-                icon: <Zap className="h-6 w-6" />,
+                icon: <Zap size={24} />,
                 title: "AI-powered recommendations",
                 description: "Personalize experiences based on real-time user insights and behavior patterns."
               },
               {
-                icon: <DollarSign className="h-6 w-6" />,
+                icon: <DollarSign size={24} />,
                 title: "Dynamic Pricing & Predictive Analytics",
                 description: "Forecast sales, detect anomalies, and optimize revenue streams with AI-powered insights."
               },
               {
-                icon: <CreditCard className="h-6 w-6" />,
+                icon: <CreditCard size={24} />,
                 title: "Seamless Payments & Omnichannel Insights",
                 description: "Unified tracking across web, mobile, in-store, and global commerce channels."
               }
             ].map((feature, index) => (
-              <motion.div
+              <MotionBox
                 key={feature.title}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex"
+                flexDirection="row" display="flex"
               >
-                <div className="mr-4 p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/20 text-purple-400">
+                <Box marginRight={16} padding={12} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
                   {feature.icon}
-                </div>
+                </Box>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                  <p className="text-neutral-400">{feature.description}</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{feature.title}</H3>
+                  <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
                 </div>
-              </motion.div>
+              </MotionBox>
             ))}
-          </div>
+          </Box>
           
-          <motion.div
+          <MotionBox
             style={{ scale, opacity }}
-            className="rounded-xl overflow-hidden bg-gradient-to-br from-gray-900 to-black border border-gray-800 shadow-xl"
+            borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
           >
-            <div className="p-4 border-b border-gray-800">
-              <div className="flex items-center">
-                <ShoppingCart className="h-5 w-5 text-purple-400 mr-2" />
-                <span className="text-[var(--white)] font-medium">Commerce Dashboard</span>
-              </div>
-            </div>
+            <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ShoppingCart size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)" fontWeight="500">Commerce Dashboard</Text>
+              </XStack>
+            </Box>
             
-            <div className="p-6">
-              <div className="mb-6">
-                <h4 className="text-lg font-medium mb-4">Sales Performance</h4>
-                <div className="h-40 bg-gray-800/50 rounded-lg relative overflow-hidden">
+            <Box padding={24}>
+              <Box marginBottom={24}>
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Sales Performance</H4>
+                <Box height={160} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" position="relative" overflow="hidden">
                   {/* Bar chart */}
-                  <div className="absolute inset-0 flex items-end justify-around px-4 pb-4">
+                  <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="flex-end" justifyContent="space-around" paddingHorizontal={16} paddingBottom={16}>
                     {[65, 80, 55, 90, 70, 85, 60].map((height, i) => (
-                      <motion.div
+                      <MotionBox
                         key={i}
-                        className="w-6 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t"
+                        width={24} borderTopLeftRadius="var(--radius)" borderTopRightRadius="var(--radius)" backgroundImage="linear-gradient(to top, var(--neutral-600), var(--foreground))"
                         initial={{ height: 0 }}
                         whileInView={{ height: `${height}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
-                      ></motion.div>
+                      ></MotionBox>
                     ))}
-                  </div>
-                </div>
-              </div>
+                  </XStack>
+                </Box>
+              </Box>
               
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-800/30 p-4 rounded-lg">
-                  <div className="text-sm text-neutral-400">Conversion Rate</div>
-                  <div className="text-2xl font-bold mt-2">4.78%</div>
-                  <div className="text-green-400 text-sm flex items-center mt-1">
-                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} marginBottom={24}>
+                <Box backgroundColor="var(--surface-card-emphasis)" padding={16} borderRadius="var(--radius-lg)">
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Conversion Rate</Box>
+                  <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginTop={8}>4.78%</Box>
+                  <XStack color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" marginTop={4}>
+                    <Box display="inline-block" render="svg" width={12} height={12} marginRight={4} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                    </svg>
+                    </Box>
                     +0.6%
-                  </div>
-                </div>
-                <div className="bg-gray-800/30 p-4 rounded-lg">
-                  <div className="text-sm text-neutral-400">Avg. Order Value</div>
-                  <div className="text-2xl font-bold mt-2">$87.32</div>
-                  <div className="text-green-400 text-sm flex items-center mt-1">
-                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  </XStack>
+                </Box>
+                <Box backgroundColor="var(--surface-card-emphasis)" padding={16} borderRadius="var(--radius-lg)">
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Avg. Order Value</Box>
+                  <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginTop={8}>$87.32</Box>
+                  <XStack color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" marginTop={4}>
+                    <Box display="inline-block" render="svg" width={12} height={12} marginRight={4} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                    </svg>
+                    </Box>
                     +2.4%
-                  </div>
-                </div>
-              </div>
+                  </XStack>
+                </Box>
+              </Grid>
               
-              <div className="border-t border-gray-800 pt-4">
-                <h4 className="text-lg font-medium mb-4">Product Recommendations</h4>
-                <div className="space-y-3">
+              <Box borderTopWidth={1} borderColor="var(--neutral-800)" paddingTop={16}>
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Product Recommendations</H4>
+                <Box rowGap={12}>
                   {[
                     { name: "Premium Headphones", score: 98 },
                     { name: "Wireless Keyboard", score: 85 },
                     { name: "Smart Watch", score: 79 }
                   ].map((product, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <span className="text-neutral-300">{product.name}</span>
-                      <div className="flex items-center">
-                        <div className="w-24 h-2 bg-gray-800 rounded-full mr-2 overflow-hidden">
-                          <motion.div
-                            className="h-full bg-purple-500"
+                    <XStack key={i} display="flex" alignItems="center" justifyContent="space-between">
+                      <Text color="var(--neutral-300)">{product.name}</Text>
+                      <XStack display="flex" alignItems="center">
+                        <Box width={96} height={8} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" marginRight={8} overflow="hidden">
+                          <MotionBox
+                            height="100%" backgroundColor="var(--neutral-500)"
                             initial={{ width: 0 }}
                             whileInView={{ width: `${product.score}%` }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.3 + i * 0.1 }}
-                          ></motion.div>
-                        </div>
-                        <span className="text-sm text-purple-400">{product.score}%</span>
-                      </div>
-                    </div>
+                          ></MotionBox>
+                        </Box>
+                        <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">{product.score}%</Text>
+                      </XStack>
+                    </XStack>
                   ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                </Box>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

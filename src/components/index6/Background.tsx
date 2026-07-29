@@ -1,3 +1,4 @@
+import { Box, MotionBox } from '@/gui'
 
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -114,17 +115,17 @@ const Background: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10">
-      <canvas 
+    <Box position="fixed" top={0} right={0} bottom={0} left={0} zIndex={-10}>
+      <Box display="inline-block" 
         ref={canvasRef} 
-        className="absolute inset-0 w-full h-full"
+        render="canvas" position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%"
       />
       
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-950/20 to-black"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))"></Box>
       
       {/* Animated grid overlay */}
-      <motion.div 
-        className="absolute inset-0" 
+      <MotionBox 
+        position="absolute" top={0} right={0} bottom={0} left={0} 
         initial={{ opacity: 0.05 }}
         animate={{ opacity: [0.05, 0.1, 0.05] }}
         transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
@@ -135,8 +136,8 @@ const Background: React.FC = () => {
       />
       
       {/* Animated glow spots */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[100px] bg-purple-500/10"
+      <MotionBox
+        position="absolute" top="25%" left="25%" width={384} height={384} borderRadius="var(--radius-full)" filter="blur(100px)" backgroundColor="rgb(255 255 255 / 0.1)"
         animate={{ 
           scale: [1, 1.2, 1],
           opacity: [0.1, 0.15, 0.1],
@@ -144,15 +145,15 @@ const Background: React.FC = () => {
         transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
       />
       
-      <motion.div
-        className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full blur-[100px] bg-indigo-500/10"
+      <MotionBox
+        position="absolute" bottom="33.333333%" right="33.333333%" width={256} height={256} borderRadius="var(--radius-full)" filter="blur(100px)" backgroundColor="rgb(255 255 255 / 0.1)"
         animate={{ 
           scale: [1, 1.3, 1],
           opacity: [0.08, 0.12, 0.08],
         }}
         transition={{ duration: 8, repeat: Infinity, repeatType: "reverse", delay: 2 }}
       />
-    </div>
+    </Box>
   );
 };
 

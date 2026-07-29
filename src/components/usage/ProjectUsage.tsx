@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import ProjectCard from "./ProjectCard";
@@ -7,7 +8,7 @@ const ProjectUsage = () => {
   const { projects, toggleExpand } = useProjects();
 
   return (
-    <div className="space-y-4">
+    <Box rowGap={16}>
       {projects.map((project) => (
         <ProjectCard 
           key={project.id} 
@@ -15,7 +16,7 @@ const ProjectUsage = () => {
           onToggleExpand={toggleExpand} 
         />
       ))}
-    </div>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -9,21 +10,21 @@ interface SectionHeaderProps {
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title, description }) => {
   return (
-    <motion.div 
+    <MotionBox 
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="text-center mb-12"
+      textAlign="center" marginBottom={48}
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--white)]">{title}</h2>
-      <div className="h-1 w-20 bg-purple-500 mx-auto mb-6"></div>
+      <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} color="var(--white)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>{title}</H2>
+      <Box height={4} width={80} backgroundColor="var(--neutral-500)" marginHorizontal="auto" marginBottom={24}></Box>
       {description && (
-        <p className="text-neutral-300 md:text-lg max-w-3xl mx-auto">
+        <Paragraph color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" $md={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>
           {description}
-        </p>
+        </Paragraph>
       )}
-    </motion.div>
+    </MotionBox>
   );
 };
 

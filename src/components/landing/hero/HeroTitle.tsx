@@ -1,3 +1,4 @@
+import { Box, H1, MotionBox, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -18,7 +19,7 @@ const HeroTitle: React.FC<HeroTitleProps> = ({
   onTitleAnimationComplete,
 }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -27,25 +28,25 @@ const HeroTitle: React.FC<HeroTitleProps> = ({
         onTitleAnimationComplete();
       }}
     >
-      <div className="inline-block px-4 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-sm font-medium mb-6">
+      <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
         Open Source AI Engineering Platform
-      </div>
+      </Box>
       
-      <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-300">
+      <H1 fontSize="var(--text-5xl)" lineHeight="var(--leading-tight)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
+        <Text backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground), var(--neutral-300))">
           Build As Fast
-        </span>
+        </Text>
         <br />
-        <span 
-          className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-blue-400"
+        <Text 
+          backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground), var(--foreground))"
           style={{
             backgroundPosition: `${(mousePosition.x / (containerRef.current?.offsetWidth || 1)) * 100}% ${(mousePosition.y / (containerRef.current?.offsetHeight || 1)) * 100}%`,
           }}
         >
           As You Think
-        </span>
-      </h1>
-    </motion.div>
+        </Text>
+      </H1>
+    </MotionBox>
   );
 };
 

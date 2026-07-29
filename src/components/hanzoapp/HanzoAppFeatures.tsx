@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,66 +6,66 @@ import { MessageCircle, Bot, Code, ServerIcon, Database, Share2 } from "lucide-r
 
 const FeatureCard = ({ title, description, icon, list, code = null }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 h-full"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} height="100%"
     >
-      <div className="flex flex-col h-full">
-        <div className="mb-6">
+      <YStack display="flex" flexDirection="column" height="100%">
+        <Box marginBottom={24}>
           {icon}
-          <h3 className="text-2xl font-semibold mt-4 mb-2">{title}</h3>
-          <p className="text-neutral-300 mb-4">{description}</p>
-        </div>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginTop={16} marginBottom={8}>{title}</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={16}>{description}</Paragraph>
+        </Box>
         
         {list && (
-          <div className="mb-4">
+          <Box marginBottom={16}>
             {list.map((item, index) => (
-              <div key={index} className="text-neutral-400 mb-2">{item}</div>
+              <Box key={index} color="var(--neutral-400)" marginBottom={8}>{item}</Box>
             ))}
-          </div>
+          </Box>
         )}
         
         {code && (
-          <div className="mt-auto">
-            <div className="bg-gray-950 rounded-lg p-4 font-mono text-xs text-neutral-300 text-left overflow-auto">
+          <Box marginTop="auto">
+            <Box backgroundColor="var(--neutral-950)" borderRadius="var(--radius-lg)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" textAlign="left" overflow="auto">
               <pre>{code}</pre>
-            </div>
-          </div>
+            </Box>
+          </Box>
         )}
-      </div>
-    </motion.div>
+      </YStack>
+    </MotionBox>
   );
 };
 
 const HanzoAppFeatures = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Features 01</h2>
-        </motion.div>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Features 01</H2>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={80} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           <FeatureCard 
             title="Chatflow LLM Orchestration"
             description="Connect LLMs with memory, data loaders, cache, moderation and many more"
-            icon={<MessageCircle className="h-10 w-10 text-purple-400" />}
+            icon={<MessageCircle size={40} color="var(--foreground)" />}
             list={["Langchain", "LlamaIndex", "100+ integrations"]}
           />
           
           <FeatureCard 
             title="Agents & Assistants"
             description="Create autonomous agent that can uses tools to execute different tasks"
-            icon={<Bot className="h-10 w-10 text-purple-400" />}
+            icon={<Bot size={40} color="var(--foreground)" />}
             list={["Custom Tools", "OpenAI Assistant", "Function Agent"]}
             code={`import requests
  
@@ -85,35 +86,35 @@ output = query({
           <FeatureCard 
             title="Developer Friendly API, SDK, Embed"
             description="Extend and integrate to your applications using APIs, SDK and Embedded Chat"
-            icon={<Code className="h-10 w-10 text-purple-400" />}
+            icon={<Code size={40} color="var(--foreground)" />}
             list={["APIs", "Embedded Widget", "React SDK"]}
           />
-        </div>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Features 02</h2>
-        </motion.div>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Features 02</H2>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(1, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(1, minmax(0, 1fr))" }}>
           <FeatureCard 
             title="Platform Agnostic Open source LLMs"
             description="Run in air-gapped environment with local LLMs, embeddings and vector databases"
-            icon={<ServerIcon className="h-10 w-10 text-purple-400" />}
+            icon={<ServerIcon size={40} color="var(--foreground)" />}
             list={[
               "HuggingFace, Ollama, LocalAI, Replicate", 
               "Llama2, Mistral, Vicuna, Orca, Llava", 
               "Self host on AWS, Azure, GCP"
             ]}
           />
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

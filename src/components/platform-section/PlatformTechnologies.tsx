@@ -1,47 +1,48 @@
+import { Grid, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 const PlatformTechnologies: React.FC = () => {
   return (
-    <motion.div 
+    <MotionBox 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="mt-16 text-center"
+      marginTop={64} textAlign="center"
     >
-      <p className="text-neutral-400 mb-8 max-w-3xl mx-auto">
+      <Paragraph color="var(--neutral-400)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto">
         Join the global pioneers who are 100x-ing their capabilities with the world's most comprehensive AI platform.
-      </p>
+      </Paragraph>
       
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-12 gap-y-6">
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">OPEN SOURCE</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">INFERENCE</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">FINE-TUNING</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">PRIVATE CLOUD</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">RAG</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">MODEL DISTILLATION</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">EDGE DEPLOYMENT</span>
-        </div>
-        <div className="flex items-center justify-center h-8">
-          <span className="text-gradient-steel text-sm font-medium">AGENTIC WORKFLOWS</span>
-        </div>
-      </div>
-    </motion.div>
+      <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" columnGap={48} rowGap={24} $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">OPEN SOURCE</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">INFERENCE</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">FINE-TUNING</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">PRIVATE CLOUD</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">RAG</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">MODEL DISTILLATION</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">EDGE DEPLOYMENT</Text>
+        </XStack>
+        <XStack display="flex" alignItems="center" justifyContent="center" height={32}>
+          <Text backgroundImage="linear-gradient(180deg, var(--foreground), var(--neutral-500))" backgroundClip="text" color="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">AGENTIC WORKFLOWS</Text>
+        </XStack>
+      </Grid>
+    </MotionBox>
   );
 };
 

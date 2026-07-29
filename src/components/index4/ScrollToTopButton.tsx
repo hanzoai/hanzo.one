@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -10,16 +11,14 @@ interface ScrollToTopButtonProps {
 const ScrollToTopButton = ({ scrolled }: ScrollToTopButtonProps) => {
   console.log("ScrollToTopButton rendering, scrolled:", scrolled);
   return (
-    <motion.button
+    <MotionBox
       initial={{ opacity: 0 }}
       animate={{ opacity: scrolled ? 1 : 0 }}
-      className={`fixed bottom-8 right-8 bg-zinc-800/80 backdrop-blur-md p-3 rounded-full border border-zinc-700/30 hover:bg-zinc-700/80 transition-all z-50 ${
-        !scrolled ? 'pointer-events-none' : ''
-      }`}
+      position="fixed" bottom={32} right={32} backgroundColor="var(--surface-overlay)" backdropFilter="blur(12px)" WebkitBackdropFilter="blur(12px)" padding={12} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" zIndex={50} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }} pointerEvents={!scrolled ? "none" : undefined}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
-      <ArrowUp className="h-5 w-5 text-[var(--white)]" />
-    </motion.button>
+      <ArrowUp size={20} color="var(--white)" />
+    </MotionBox>
   );
 };
 

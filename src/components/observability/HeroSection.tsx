@@ -1,85 +1,85 @@
+import { Box, Button, Grid, MotionBox, MotionText, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { LineChart, BarChart4, Activity } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
+    <Box render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Gradient effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent opacity-70"></div>
-      <div className="absolute top-40 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px]"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-[100px]"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), transparent, transparent)" opacity={0.7}></Box>
+      <Box position="absolute" top={160} left={80} width={384} height={384} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" filter="blur(100px)"></Box>
+      <Box position="absolute" bottom={0} right={0} width={288} height={288} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" filter="blur(100px)"></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center mb-6"
+            flexDirection="row" display="flex" justifyContent="center" marginBottom={24}
           >
-            <div className="bg-gradient-to-r from-violet-600 to-blue-600 p-3 rounded-lg">
-              <Activity className="h-8 w-8 text-[var(--white)]" />
-            </div>
-          </motion.div>
+            <Box padding={12} borderRadius="var(--radius-lg)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))">
+              <Activity size={32} color="var(--white)" />
+            </Box>
+          </MotionBox>
           
-          <motion.h1
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+            fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--neutral-400))" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
           >
             Unified Intelligence for AI Applications
-          </motion.h1>
+          </MotionText>
           
-          <motion.p
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-neutral-300 mb-10 max-w-3xl mx-auto"
+            fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}
           >
             Hanzo Observability provides end-to-end visibility and proactive insights designed specifically for debugging, optimizing, and improving your AI applications.
-          </motion.p>
+          </MotionText>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}
           >
-            <Button size="lg" className="bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-[var(--white)] border-none px-8 py-6 rounded-md text-lg">
+            <Button size="lg" color="var(--white)" borderStyle="none" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-md)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}>
               Get Started
             </Button>
-            <Button size="lg" variant="outline" className="border-gray-600 hover:bg-gray-800/50 px-8 py-6 rounded-md text-lg">
+            <Button size="lg" variant="outline" borderColor="var(--neutral-600)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-md)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
               View Documentation
             </Button>
-          </motion.div>
-        </div>
+          </MotionBox>
+        </Box>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 relative"
+          marginTop={64} position="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 h-20 bottom-0"></div>
-          <div className="bg-gradient-to-br from-gray-900 to-black p-2 rounded-xl border border-gray-800/50 shadow-2xl overflow-hidden">
-            <div className="grid grid-cols-5 gap-3 p-4 bg-[var(--black)]/60 rounded-lg">
-              <div className="col-span-1 space-y-4">
-                <div className="h-8 bg-gray-800 rounded-md"></div>
-                <div className="h-8 bg-gray-800/60 rounded-md"></div>
-                <div className="h-8 bg-gray-800/60 rounded-md"></div>
-                <div className="h-8 bg-gray-800/60 rounded-md"></div>
-                <div className="h-8 bg-gray-800/60 rounded-md"></div>
-                <div className="h-32 bg-gray-800/40 rounded-md mt-8"></div>
-              </div>
-              <div className="col-span-4 space-y-4">
-                <div className="h-12 bg-gray-800/60 rounded-md"></div>
-                <div className="h-64 bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-lg relative overflow-hidden">
-                  <div className="absolute inset-x-0 bottom-0 h-40">
-                    <svg viewBox="0 0 500 150" preserveAspectRatio="none" className="w-full h-full">
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} zIndex={10} height={80} backgroundImage="linear-gradient(to top, var(--pure-black), transparent, transparent)"></Box>
+          <Box padding={8} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--border-strong)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))">
+            <Grid display="grid" gridTemplateColumns="repeat(5, minmax(0, 1fr))" gap={12} padding={16} backgroundColor="rgb(0 0 0 / 0.6)" borderRadius="var(--radius-lg)">
+              <Box gridColumn="span 1 / span 1" rowGap={16}>
+                <Box height={32} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)"></Box>
+                <Box height={32} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-md)"></Box>
+                <Box height={32} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-md)"></Box>
+                <Box height={32} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-md)"></Box>
+                <Box height={32} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-md)"></Box>
+                <Box height={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" marginTop={32}></Box>
+              </Box>
+              <Box gridColumn="span 4 / span 4" rowGap={16}>
+                <Box height={48} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius-md)"></Box>
+                <Box height={256} borderRadius="var(--radius-lg)" position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                  <Box position="absolute" left={0} right={0} bottom={0} height={160}>
+                    <Box display="inline-block" viewBox="0 0 500 150" preserveAspectRatio="none" render="svg" width="100%" height="100%">
                       <path
                         d="M0,150 L0,40 Q125,10 250,40 T500,40 L500,150 Z"
                         fill="rgba(124, 58, 237, 0.5)"
@@ -88,23 +88,23 @@ const HeroSection = () => {
                         d="M0,150 L0,60 Q125,30 250,60 T500,60 L500,150 Z"
                         fill="rgba(37, 99, 235, 0.4)"
                       ></path>
-                    </svg>
-                  </div>
-                  <div className="absolute top-4 left-4 flex space-x-2">
-                    <div className="h-3 w-3 rounded-full bg-violet-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="h-32 bg-gray-800/40 rounded-lg"></div>
-                  <div className="h-32 bg-gray-800/40 rounded-lg"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                    </Box>
+                  </Box>
+                  <XStack position="absolute" top={16} left={16} display="flex" columnGap={8}>
+                    <Box height={12} width={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                    <Box height={12} width={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                  </XStack>
+                </Box>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16}>
+                  <Box height={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)"></Box>
+                  <Box height={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)"></Box>
+                </Grid>
+              </Box>
+            </Grid>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

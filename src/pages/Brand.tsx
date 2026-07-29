@@ -1,40 +1,39 @@
+import { Box, Button, Grid, H1, H2, H3, Helmet, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
-const ColorSwatch = ({ name, hex, className }) => (
-  <div className="space-y-2">
-    <div className={`w-full aspect-square rounded-lg ${className}`}></div>
-    <div className="text-sm font-medium">{name}</div>
-    <div className="text-xs text-neutral-500">{hex}</div>
-  </div>
+const ColorSwatch = ({ name, hex, ...styleProps }) => (
+  <Box {...styleProps} rowGap={8}>
+    <Box width="100%" aspectRatio={1} borderRadius="var(--radius-lg)"></Box>
+    <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">{name}</Box>
+    <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{hex}</Box>
+  </Box>
 );
 
-const TypographyExample = ({ name, className, description }) => (
-  <div className="space-y-2 mb-10">
-    <div className={`${className}`}>{name}</div>
-    <div className="text-xs text-neutral-500">{description}</div>
-  </div>
+const TypographyExample = ({ name,   description, ...styleProps }) => (
+  <Box {...styleProps} rowGap={8} marginBottom={40}>
+    <Box >{name}</Box>
+    <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{description}</Box>
+  </Box>
 );
 
 const ComponentShowcase = ({ title, children }) => (
-  <div className="border border-gray-800 rounded-xl overflow-hidden">
-    <div className="p-4 border-b border-gray-800 bg-[var(--black)]/40">
-      <h3 className="text-sm font-medium text-[var(--white)]">{title}</h3>
-    </div>
-    <div className="p-8 flex flex-wrap gap-4 items-center justify-center bg-[var(--black)]/20">
+  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" overflow="hidden">
+    <Box padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.4)">
+      <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--white)">{title}</H3>
+    </Box>
+    <XStack padding={32} display="flex" flexWrap="wrap" gap={16} alignItems="center" justifyContent="center" backgroundColor="rgb(0 0 0 / 0.2)">
       {children}
-    </div>
-  </div>
+    </XStack>
+  </Box>
 );
 
 const Brand = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Hanzo Design System - Brand Guidelines</title>
         <meta name="description" content="The Hanzo design system, typography, colors, and components. A guide for consistent visual design across our platform." />
@@ -42,140 +41,140 @@ const Brand = () => {
       
       <Navbar />
       
-      <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
-        <motion.div
+      <Box render="main" paddingTop={128} paddingBottom={96} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto"
+          maxWidth="var(--container-wide)" marginHorizontal="auto"
         >
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1 rounded-full bg-gray-900 text-neutral-300 text-sm font-medium mb-4">
+          <Box textAlign="center" marginBottom={64}>
+            <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={16}>
               Design System
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70">
+            </Box>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
               Hanzo Brand
-            </h1>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            </H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               A comprehensive guide for creating consistent, elegant, and minimal interfaces across our platform.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
           {/* Design Principles */}
-          <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8 text-center">Design Principles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-8 rounded-xl bg-gradient-to-b from-gray-900 to-black border border-gray-800">
-                <h3 className="text-xl font-bold mb-4">Minimal & Focused</h3>
-                <p className="text-neutral-400">
+          <Box render="section" marginBottom={96}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Design Principles</H2>
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+              <Box padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))">
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>Minimal & Focused</H3>
+                <Paragraph color="var(--neutral-400)">
                   Reduce visual noise and focus on essential elements. Each design decision should have purpose and enhance the user experience.
-                </p>
-              </div>
-              <div className="p-8 rounded-xl bg-gradient-to-b from-gray-900 to-black border border-gray-800">
-                <h3 className="text-xl font-bold mb-4">Elegant & Refined</h3>
-                <p className="text-neutral-400">
+                </Paragraph>
+              </Box>
+              <Box padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))">
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>Elegant & Refined</H3>
+                <Paragraph color="var(--neutral-400)">
                   Use subtle gradients, appropriate spacing, and thoughtful typography to create elegant and sophisticated interfaces.
-                </p>
-              </div>
-              <div className="p-8 rounded-xl bg-gradient-to-b from-gray-900 to-black border border-gray-800">
-                <h3 className="text-xl font-bold mb-4">Consistent & Cohesive</h3>
-                <p className="text-neutral-400">
+                </Paragraph>
+              </Box>
+              <Box padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))">
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>Consistent & Cohesive</H3>
+                <Paragraph color="var(--neutral-400)">
                   Maintain consistency in design patterns, spacing, and visual hierarchy to create a unified experience across all touchpoints.
-                </p>
-              </div>
-            </div>
-          </section>
+                </Paragraph>
+              </Box>
+            </Grid>
+          </Box>
           
           {/* Color Palette */}
-          <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8 text-center">Color Palette</h2>
-            <div className="space-y-12">
+          <Box render="section" marginBottom={96}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Color Palette</H2>
+            <Box rowGap={48}>
               <div>
-                <h3 className="text-xl font-medium mb-6">Core Colors</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                  <ColorSwatch name="Pure Black" hex="#000000" className="bg-[var(--black)]" />
-                  <ColorSwatch name="Deep Black" hex="#101010" className="bg-[#101010]" />
-                  <ColorSwatch name="Pure White" hex="#FFFFFF" className="bg-[var(--white)]" />
-                  <ColorSwatch name="Off White" hex="#F7F7F7" className="bg-[#F7F7F7]" />
-                </div>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={24}>Core Colors</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+                  <ColorSwatch name="Pure Black" hex="#000000" backgroundColor="var(--black)" />
+                  <ColorSwatch name="Deep Black" hex="#101010" backgroundColor="#101010" />
+                  <ColorSwatch name="Pure White" hex="#FFFFFF" backgroundColor="var(--white)" />
+                  <ColorSwatch name="Off White" hex="#F7F7F7" backgroundColor="#F7F7F7" />
+                </Grid>
               </div>
               
               <div>
-                <h3 className="text-xl font-medium mb-6">Gray Scale</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6">
-                  <ColorSwatch name="Gray 900" hex="#171717" className="bg-[#171717]" />
-                  <ColorSwatch name="Gray 800" hex="#262626" className="bg-[#262626]" />
-                  <ColorSwatch name="Gray 700" hex="#404040" className="bg-[#404040]" />
-                  <ColorSwatch name="Gray 600" hex="#525252" className="bg-[#525252]" />
-                  <ColorSwatch name="Gray 500" hex="#737373" className="bg-[#737373]" />
-                  <ColorSwatch name="Gray 400" hex="#A3A3A3" className="bg-[#A3A3A3]" />
-                </div>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={24}>Gray Scale</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $md={{ gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}>
+                  <ColorSwatch name="Gray 900" hex="#171717" backgroundColor="#171717" />
+                  <ColorSwatch name="Gray 800" hex="#262626" backgroundColor="#262626" />
+                  <ColorSwatch name="Gray 700" hex="#404040" backgroundColor="#404040" />
+                  <ColorSwatch name="Gray 600" hex="#525252" backgroundColor="#525252" />
+                  <ColorSwatch name="Gray 500" hex="#737373" backgroundColor="#737373" />
+                  <ColorSwatch name="Gray 400" hex="#A3A3A3" backgroundColor="#A3A3A3" />
+                </Grid>
               </div>
               
               <div>
-                <h3 className="text-xl font-medium mb-6">Subtle Gradients</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={24}>Subtle Gradients</H3>
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                   <ColorSwatch 
                     name="White Fade" 
                     hex="Linear" 
-                    className="bg-gradient-to-b from-white/10 to-transparent" 
+                    backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), transparent)" 
                   />
                   <ColorSwatch 
                     name="Gray Fade" 
                     hex="Linear" 
-                    className="bg-gradient-to-r from-gray-800/20 to-transparent" 
+                    backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), transparent)" 
                   />
-                </div>
+                </Grid>
               </div>
-            </div>
-          </section>
+            </Box>
+          </Box>
           
           {/* Typography */}
-          <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8 text-center">Typography</h2>
-            <div className="max-w-3xl mx-auto">
+          <Box render="section" marginBottom={96}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Typography</H2>
+            <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
               <TypographyExample 
                 name="Heading 1" 
-                className="text-4xl md:text-6xl font-bold tracking-tight" 
+                fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} 
                 description="Large page titles, hero sections" 
               />
               <TypographyExample 
                 name="Heading 2" 
-                className="text-3xl md:text-4xl font-bold tracking-tight" 
+                fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} 
                 description="Section titles, major divisions" 
               />
               <TypographyExample 
                 name="Heading 3" 
-                className="text-2xl font-semibold" 
+                fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" 
                 description="Subsection headings, feature headings" 
               />
               <TypographyExample 
                 name="Heading 4" 
-                className="text-xl font-medium" 
+                fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" 
                 description="Card titles, minor section headings" 
               />
               <TypographyExample 
                 name="Body Large" 
-                className="text-lg leading-relaxed text-neutral-300" 
+                fontSize="var(--text-lg)" lineHeight="var(--leading-relaxed)" color="var(--neutral-300)" 
                 description="Featured paragraphs, pull quotes" 
               />
               <TypographyExample 
                 name="Body" 
-                className="text-base leading-relaxed text-neutral-400" 
+                fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" 
                 description="Primary body text" 
               />
               <TypographyExample 
                 name="Caption" 
-                className="text-sm text-neutral-500" 
+                fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" 
                 description="Supporting text, metadata, labels" 
               />
-            </div>
-          </section>
+            </Box>
+          </Box>
           
           {/* Components */}
-          <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8 text-center">Components</h2>
-            <div className="space-y-12">
+          <Box render="section" marginBottom={96}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Components</H2>
+            <Box rowGap={48}>
               <ComponentShowcase title="Buttons">
                 <Button variant="default" size="lg">Primary Button</Button>
                 <Button variant="outline" size="lg">Secondary Button</Button>
@@ -184,76 +183,76 @@ const Brand = () => {
               </ComponentShowcase>
               
               <ComponentShowcase title="Cards">
-                <div className="w-full max-w-md p-6 rounded-xl bg-gradient-to-b from-gray-900 to-black border border-gray-800">
-                  <h3 className="text-xl font-medium mb-2">Card Title</h3>
-                  <p className="text-neutral-400 mb-4">This is a standard card component with a subtle gradient background.</p>
+                <Box width="100%" maxWidth="28rem" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))">
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={8}>Card Title</H3>
+                  <Paragraph color="var(--neutral-400)" marginBottom={16}>This is a standard card component with a subtle gradient background.</Paragraph>
                   <Button variant="outline" size="sm">Learn More</Button>
-                </div>
+                </Box>
               </ComponentShowcase>
               
               <ComponentShowcase title="Badges">
-                <div className="px-3 py-1 rounded-full bg-gray-900 text-neutral-300 text-sm font-medium">Default Badge</div>
-                <div className="px-3 py-1 rounded-full bg-[var(--white)]/10 backdrop-blur-sm border border-white/20 text-[var(--white)] text-sm font-medium">Glass Badge</div>
+                <Box paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Default Badge</Box>
+                <Box paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Glass Badge</Box>
               </ComponentShowcase>
-            </div>
-          </section>
+            </Box>
+          </Box>
           
           {/* Grid & Spacing */}
-          <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-8 text-center">Grid & Spacing</h2>
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-gray-900 p-4 rounded-lg mb-8">
-                <div className="grid grid-cols-4 gap-4 h-64">
+          <Box render="section" marginBottom={96}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Grid & Spacing</H2>
+            <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
+              <Box backgroundColor="var(--neutral-900)" padding={16} borderRadius="var(--radius-lg)" marginBottom={32}>
+                <Grid display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))" gap={16} height={256}>
                   {[...Array(8)].map((_, i) => (
-                    <div key={i} className="bg-gray-800 rounded flex items-center justify-center">
-                      <span className="text-xs text-neutral-500">{i+1}</span>
-                    </div>
+                    <XStack key={i} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="center">
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{i+1}</Text>
+                    </XStack>
                   ))}
-                </div>
-              </div>
-              <div className="space-y-3 text-neutral-400">
+                </Grid>
+              </Box>
+              <Box rowGap={12} color="var(--neutral-400)">
                 <p>We use a 4px base unit for all spacing measurements.</p>
                 <p>Common spacing values: 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px, 96px.</p>
                 <p>Baseline grid: 4px with a primary line height of 1.5.</p>
-              </div>
-            </div>
-          </section>
+              </Box>
+            </Box>
+          </Box>
           
           {/* Icons & Illustrations */}
           <section>
-            <h2 className="text-2xl font-bold mb-8 text-center">Icons & Illustrations</h2>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-neutral-400 mb-8">
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Icons & Illustrations</H2>
+            <Box maxWidth="var(--container-prose)" marginHorizontal="auto" textAlign="center">
+              <Paragraph color="var(--neutral-400)" marginBottom={32}>
                 We use minimalist, monochrome SVG graphics with subtle animations to emphasize important concepts
                 without compromising our clean, elegant aesthetic.
-              </p>
-              <div className="flex flex-wrap gap-8 justify-center">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--white)]">
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" gap={32} justifyContent="center">
+                <Box display="inline-block" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" render="svg" color="var(--white)">
                   <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                </Box>
                 
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--white)]">
+                <Box display="inline-block" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" render="svg" color="var(--white)">
                   <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M12 8V16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   <path d="M8 12H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+                </Box>
                 
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--white)]">
+                <Box display="inline-block" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" render="svg" color="var(--white)">
                   <path d="M15 4L9 12L15 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                </Box>
                 
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[var(--white)]">
+                <Box display="inline-block" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" render="svg" color="var(--white)">
                   <path d="M9 4L15 12L9 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </div>
+                </Box>
+              </XStack>
+            </Box>
           </section>
-        </motion.div>
-      </main>
+        </MotionBox>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

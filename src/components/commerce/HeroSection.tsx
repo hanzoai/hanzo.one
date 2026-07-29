@@ -1,54 +1,54 @@
+import { Box, Button, H1, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ShoppingCart, ExternalLink } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
+    <Box render="section" position="relative" paddingTop={112} paddingBottom={64} overflow="hidden" $md={{ paddingTop: 144, paddingBottom: 96 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} zIndex={0} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08), var(--pure-black))" />
       
       {/* Background effect */}
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-amber-400/10 via-amber-600/5 to-transparent z-0" />
+      <Box position="absolute" top={0} left={0} right={0} height={384} zIndex={0} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.05), transparent)" />
       
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center px-3 py-1 mb-4 border border-amber-500/30 rounded-full bg-amber-500/10 text-amber-400 text-sm">
-            <ShoppingCart className="mr-2 h-4 w-4" />
+      <Box position="relative" zIndex={10} marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" maxWidth="56rem" marginHorizontal="auto">
+          <XStack display="inline-flex" alignItems="center" paddingHorizontal={12} paddingVertical={4} marginBottom={16} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ShoppingCart size={16} /></Box>
             Headless E-commerce Platform
-          </div>
+          </XStack>
           
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            <span className="text-[var(--white)]">Hanzo</span>
-            <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent"> Commerce</span>
-          </h1>
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+            <Text color="var(--white)">Hanzo</Text>
+            <Text backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--neutral-600))"> Commerce</Text>
+          </H1>
           
-          <p className="text-neutral-300 text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+          <Paragraph color="var(--neutral-300)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
             A powerful headless e-commerce platform with API-first architecture. 
             Build custom shopping experiences with modular components that scale.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+          <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} marginBottom={48} $sm={{ flexDirection: "row" }}>
             <Button 
               size="lg" 
-              className="bg-amber-500 hover:bg-amber-600 text-black"
+              backgroundColor="var(--neutral-500)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-600)" }}
               onClick={() => window.open('https://docs.hanzo.ai/commerce', '_blank')}
             >
               Get Started
-              <ExternalLink className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-gray-600 text-[var(--white)] hover:bg-[var(--white)]/10"
+              borderColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
               onClick={() => window.open('https://console.hanzo.ai', '_blank')}
             >
               Console
             </Button>
-          </div>
-        </div>
-      </div>
-    </section>
+          </YStack>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

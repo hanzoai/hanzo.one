@@ -1,8 +1,7 @@
+import { Anchor, Avatar, AvatarFallback, AvatarImage, Box, Button, Grid, H1, H2, H3, Paragraph, XStack, YStack } from '@/gui'
 
 import React, { useState, useEffect } from 'react';
 import { useAccount } from '@/contexts/AccountContext';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import { Mail, MapPin, Calendar, Link as LinkIcon, Edit } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AccountLayout from '@/components/account/AccountLayout';
@@ -30,81 +29,81 @@ const UserProfile = () => {
 
   return (
     <AccountLayout>
-      <div className="space-y-8">
+      <Box rowGap={32}>
         {/* Profile Header */}
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <Avatar className="h-32 w-32 border-4 border-purple-500/20">
+        <YStack display="flex" flexDirection="column" gap={32} alignItems="flex-start" $md={{ flexDirection: "row" }}>
+          <Avatar height={128} width={128} borderWidth={4} borderColor="rgb(255 255 255 / 0.2)">
             <AvatarImage src={user.avatar} />
-            <AvatarFallback className="text-4xl bg-purple-900">{user.name.charAt(0)}</AvatarFallback>
+            <AvatarFallback fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" backgroundColor="var(--neutral-900)">{user.name.charAt(0)}</AvatarFallback>
           </Avatar>
           
-          <div className="flex-1">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <Box flex={1}>
+            <YStack display="flex" flexDirection="column" gap={16} $md={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <h1 className="text-3xl font-bold">{user.name}</h1>
-                <p className="text-neutral-400 mt-1">{userProfile.bio}</p>
+                <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">{user.name}</H1>
+                <Paragraph color="var(--neutral-400)" marginTop={4}>{userProfile.bio}</Paragraph>
                 
-                <div className="flex flex-wrap gap-4 mt-4">
-                  <div className="flex items-center text-neutral-400">
-                    <MapPin className="h-4 w-4 mr-2" />
+                <XStack display="flex" flexWrap="wrap" gap={16} marginTop={16}>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MapPin size={16} /></Box>
                     {userProfile.location}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <Calendar className="h-4 w-4 mr-2" />
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Calendar size={16} /></Box>
                     Joined {userProfile.joinedDate}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <Mail className="h-4 w-4 mr-2" />
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Mail size={16} /></Box>
                     {user.email}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <LinkIcon className="h-4 w-4 mr-2" />
-                    <a href={userProfile.website} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><LinkIcon size={16} /></Box>
+                    <Anchor tap href={userProfile.website} target="_blank" rel="noopener noreferrer" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>
                       {userProfile.website.replace('https://', '')}
-                    </a>
-                  </div>
-                </div>
+                    </Anchor>
+                  </XStack>
+                </XStack>
               </div>
               
               <Button 
                 onClick={() => navigate('/account')} 
                 variant="outline" 
-                className="flex items-center"
+                display="flex" alignItems="center"
               >
-                <Edit className="h-4 w-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Edit size={16} /></Box>
                 Edit Profile
               </Button>
-            </div>
-          </div>
-        </div>
+            </YStack>
+          </Box>
+        </YStack>
         
         {/* Organization Info */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-          <h2 className="text-xl font-medium mb-4">Current Organization</h2>
-          <div className="flex items-center space-x-4">
-            <div className="h-12 w-12 bg-gray-800 rounded-lg flex items-center justify-center text-lg font-bold">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Current Organization</H2>
+          <XStack display="flex" alignItems="center" columnGap={16}>
+            <XStack height={48} width={48} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700">
               {currentOrganization?.name.charAt(0)}
-            </div>
+            </XStack>
             <div>
-              <div className="font-medium text-lg">{currentOrganization?.name}</div>
-              <div className="text-sm text-neutral-400">Role: {currentOrganization?.role}</div>
+              <Box fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{currentOrganization?.name}</Box>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Role: {currentOrganization?.role}</Box>
             </div>
-          </div>
-        </div>
+          </XStack>
+        </Box>
         
         {/* Projects */}
-        <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-          <h2 className="text-xl font-medium mb-4">Recent Projects</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>Recent Projects</H2>
+          <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {userProfile.projects.map(project => (
-              <div key={project.id} className="bg-gray-800/50 rounded-lg p-4 hover:bg-gray-800 transition-colors">
-                <h3 className="font-medium">{project.name}</h3>
-                <p className="text-sm text-neutral-400 mt-1">{project.description}</p>
-              </div>
+              <Box key={project.id} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+                <H3 fontWeight="500">{project.name}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>{project.description}</Paragraph>
+              </Box>
             ))}
-          </div>
-        </div>
-      </div>
+          </Grid>
+        </Box>
+      </Box>
     </AccountLayout>
   );
 };

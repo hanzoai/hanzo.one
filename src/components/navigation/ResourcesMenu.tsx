@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H3 } from '@/gui'
 import { resourcesNav } from "@/constants/navigation-data";
 import NavMenu from "./NavMenu";
 
@@ -5,39 +6,39 @@ export const ResourcesMenu = () => {
   return (
     <NavMenu label="Resources">
       {(closeMenu) => (
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <Box width="100%">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {resourcesNav.map(category => (
               <div key={category.title}>
-                <h3 className="text-lg font-semibold text-white mb-4">{category.title}</h3>
-                <div className="space-y-4">
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={16}>{category.title}</H3>
+                <Box rowGap={16}>
                   {category.items.map(item => {
                     const Icon = item.icon;
 
                     return (
-                      <a
+                      <Anchor tap
                         key={item.title}
                         href={item.href}
                         target={item.href.startsWith('http') ? '_blank' : undefined}
                         rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="flex items-start space-x-3 group"
+                        group display="flex" alignItems="flex-start" columnGap={12}
                         onClick={closeMenu}
                       >
-                        {Icon && <Icon className="h-5 w-5 min-w-5 text-neutral-400 group-hover:text-white mt-1" />}
-                        <div className="min-w-0">
-                          <div className="text-neutral-300 group-hover:text-white font-medium truncate">{item.title}</div>
+                        {Icon && <Icon height={20} width={20} minWidth={20} color="var(--neutral-400)" marginTop={4} $group-hover={{ color: "var(--foreground)" }} />}
+                        <Box minWidth={0}>
+                          <Box color="var(--neutral-300)" fontWeight="500" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" $group-hover={{ color: "var(--foreground)" }}>{item.title}</Box>
                           {item.description && (
-                            <div className="text-sm text-neutral-500 truncate">{item.description}</div>
+                            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{item.description}</Box>
                           )}
-                        </div>
-                      </a>
+                        </Box>
+                      </Anchor>
                     );
                   })}
-                </div>
+                </Box>
               </div>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Box>
       )}
     </NavMenu>
   );

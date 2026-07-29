@@ -1,3 +1,4 @@
+import { Anchor, Box, H2, MotionBox, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,50 +6,50 @@ import { Github, Twitter, MessagesSquare, Facebook, Linkedin, Instagram } from "
 
 const Community = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-5xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold text-[var(--white)] mb-6">
+          <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={24}>
             Join our Developer Community
-          </h2>
+          </H2>
           
-          <div className="flex flex-wrap justify-center gap-4">
-            <a 
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
+            <Anchor 
               href="https://github.com/hanzoai" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="flex items-center bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-2 rounded-lg"
+              display="flex" alignItems="center" backgroundColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
-              <Github className="mr-2 h-5 w-5 text-[var(--white)]" />
-              <span className="text-[var(--white)]">GitHub</span>
-            </a>
-            <a 
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} color="var(--white)" /></Box>
+              <Text color="var(--white)">GitHub</Text>
+            </Anchor>
+            <Anchor 
               href="https://discord.gg/XthHQQj" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="flex items-center bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-2 rounded-lg"
+              display="flex" alignItems="center" backgroundColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
-              <MessagesSquare className="mr-2 h-5 w-5 text-[var(--white)]" />
-              <span className="text-[var(--white)]">Discord</span>
-            </a>
-            <a 
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessagesSquare size={20} color="var(--white)" /></Box>
+              <Text color="var(--white)">Discord</Text>
+            </Anchor>
+            <Anchor 
               href="https://twitter.com/hanzoai" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="flex items-center bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-2 rounded-lg"
+              display="flex" alignItems="center" backgroundColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
-              <Twitter className="mr-2 h-5 w-5 text-[var(--white)]" />
-              <span className="text-[var(--white)]">Twitter</span>
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Twitter size={20} color="var(--white)" /></Box>
+              <Text color="var(--white)">Twitter</Text>
+            </Anchor>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

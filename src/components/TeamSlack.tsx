@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 
 import { motion } from "framer-motion";
 import { MessageSquare, Hash, Users, Search, ChevronDown } from "lucide-react";
@@ -15,105 +16,105 @@ const TeamSlack = () => {
   ];
 
   return (
-    <motion.div 
+    <MotionBox 
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="max-w-6xl mx-auto mb-24 px-4"
+      maxWidth="var(--container-wide)" marginHorizontal="auto" marginBottom={96} paddingHorizontal={16}
     >
-      <motion.h2 
+      <MotionText 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-3xl font-bold text-center mb-12"
+        fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" textAlign="center" marginBottom={48}
       >
         Watch Our Team in Action
-      </motion.h2>
-      <motion.div 
+      </MotionText>
+      <MotionBox 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="rounded-xl border border-gray-800 bg-[var(--black)]/50 backdrop-blur-sm overflow-hidden"
+        borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden"
       >
-        <div className="grid grid-cols-4">
+        <Grid display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))">
           {/* Sidebar */}
-          <motion.div 
+          <MotionBox 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="col-span-1 border-r border-gray-800 p-4"
+            gridColumn="span 1 / span 1" borderRightWidth={1} borderColor="var(--neutral-800)" padding={16}
           >
-            <div className="flex items-center justify-between p-2 mb-4">
-              <h3 className="text-purple-400 font-semibold">Hanzo Team</h3>
-              <ChevronDown className="w-4 h-4 text-neutral-400" />
-            </div>
-            <div className="space-y-2">
+            <XStack display="flex" alignItems="center" justifyContent="space-between" padding={8} marginBottom={16}>
+              <H3 color="var(--foreground)" fontWeight="600">Hanzo Team</H3>
+              <ChevronDown size={16} color="var(--neutral-400)" />
+            </XStack>
+            <Box rowGap={8}>
               {channels.map((channel, idx) => (
-                <motion.div
+                <MotionBox
                   key={channel}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.5 + (idx * 0.1) }}
                   whileHover={{ x: 4 }}
-                  className="flex items-center gap-2 p-2 rounded hover:bg-[var(--white)]/5 cursor-pointer"
+                  flexDirection="row" display="flex" alignItems="center" gap={8} padding={8} borderRadius="var(--radius)" cursor="pointer" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.05)" }}
                 >
-                  <Hash className="w-4 h-4 text-neutral-400" />
-                  <span className="text-neutral-300 text-sm">{channel}</span>
-                </motion.div>
+                  <Hash size={16} color="var(--neutral-400)" />
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{channel}</Text>
+                </MotionBox>
               ))}
-            </div>
-          </motion.div>
+            </Box>
+          </MotionBox>
 
           {/* Chat Area */}
-          <motion.div 
+          <MotionBox 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="col-span-3 p-4"
+            gridColumn="span 3 / span 3" padding={16}
           >
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.6 }}
-              className="flex items-center gap-4 p-4 border-b border-gray-800 mb-4"
+              flexDirection="row" display="flex" alignItems="center" gap={16} padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)" marginBottom={16}
             >
-              <Hash className="w-5 h-5 text-neutral-400" />
-              <span className="text-[var(--white)] font-medium">general</span>
-            </motion.div>
-            <div className="space-y-4">
+              <Hash size={20} color="var(--neutral-400)" />
+              <Text color="var(--white)" fontWeight="500">general</Text>
+            </MotionBox>
+            <Box rowGap={16}>
               {messages.map((msg, idx) => (
-                <motion.div
+                <MotionBox
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.7 + (idx * 0.2) }}
-                  className="flex items-start gap-3"
+                  flexDirection="row" display="flex" alignItems="flex-start" gap={12}
                 >
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center text-[var(--white)] text-sm">
+                  <XStack width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundImage="linear-gradient(to bottom right, var(--neutral-500), var(--neutral-500))">
                     {msg.user[0]}
-                  </div>
+                  </XStack>
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-[var(--white)]">{msg.user}</span>
-                      <span className="text-xs text-neutral-400">{msg.time}</span>
-                    </div>
-                    <p className="text-neutral-300">{msg.message}</p>
+                    <XStack display="flex" alignItems="center" gap={8}>
+                      <Text fontWeight="500" color="var(--white)">{msg.user}</Text>
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">{msg.time}</Text>
+                    </XStack>
+                    <Paragraph color="var(--neutral-300)">{msg.message}</Paragraph>
                   </div>
-                </motion.div>
+                </MotionBox>
               ))}
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </MotionBox>
+    </MotionBox>
   );
 };
 

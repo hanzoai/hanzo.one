@@ -1,3 +1,4 @@
+import { Box, H3, Text, XStack } from '@/gui'
 
 import React from 'react';
 import { CreditCard, ArrowRight } from 'lucide-react';
@@ -5,25 +6,25 @@ import BillingTabsLink from '../BillingTabsLink';
 
 const PaymentMethodSummary = () => {
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-medium">Payment Method</h3>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Payment Method</H3>
         <BillingTabsLink tabId="payment-methods">
-          <span className="flex items-center">
-            Manage <ArrowRight className="ml-2 h-4 w-4" />
-          </span>
+          <Text display="flex" alignItems="center">
+            Manage <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+          </Text>
         </BillingTabsLink>
-      </div>
-      <div className="flex items-center">
-        <div className="h-10 w-14 bg-gray-800 rounded flex items-center justify-center mr-4">
-          <CreditCard className="h-6 w-6 text-neutral-400" />
-        </div>
+      </XStack>
+      <XStack display="flex" alignItems="center">
+        <XStack height={40} width={56} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="center" marginRight={16}>
+          <CreditCard size={24} color="var(--neutral-400)" />
+        </XStack>
         <div>
-          <div className="font-medium">Visa ending in 4242</div>
-          <div className="text-sm text-neutral-400">Expires 12/25</div>
+          <Box fontWeight="500">Visa ending in 4242</Box>
+          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Expires 12/25</Box>
         </div>
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -9,7 +10,7 @@ export interface HexagramLine {
 export interface HexagramProps {
   lines: HexagramLine[];
   size?: number;
-  className?: string;
+  
   animate?: boolean;
   index?: number;
 }
@@ -17,9 +18,9 @@ export interface HexagramProps {
 const IChingHexagram: React.FC<HexagramProps> = ({ 
   lines = Array(6).fill({ type: 'solid' }), 
   size = 36, 
-  className = "",
+   
   animate = false,
-  index = 0
+  index = 0, ...styleProps
 }) => {
   // Ensure we have exactly 6 lines
   const normalizedLines = lines.slice(0, 6);
@@ -34,11 +35,11 @@ const IChingHexagram: React.FC<HexagramProps> = ({
   const totalHeight = (lineHeight * 6) + (gap * 5);
   
   return (
-    <svg 
+    <Box display="inline-block" {...styleProps} 
       width={lineWidth} 
       height={totalHeight} 
       viewBox={`0 0 ${lineWidth} ${totalHeight}`} 
-      className={className}
+      render="svg"
       xmlns="http://www.w3.org/2000/svg"
     >
       {normalizedLines.map((line, lineIndex) => {
@@ -47,7 +48,7 @@ const IChingHexagram: React.FC<HexagramProps> = ({
         
         if (line.type === 'solid') {
           return (
-            <motion.rect
+            <MotionBox render="rect"
               key={lineIndex}
               x="0"
               y={y}
@@ -70,7 +71,7 @@ const IChingHexagram: React.FC<HexagramProps> = ({
           const segmentWidth = (lineWidth - gapWidth) / 2;
           return (
             <g key={lineIndex}>
-              <motion.rect
+              <MotionBox render="rect"
                 x="0"
                 y={y}
                 width={segmentWidth}
@@ -85,7 +86,7 @@ const IChingHexagram: React.FC<HexagramProps> = ({
                 }}
                 style={{ originX: 0 }}
               />
-              <motion.rect
+              <MotionBox render="rect"
                 x={segmentWidth + gapWidth}
                 y={y}
                 width={segmentWidth}
@@ -104,7 +105,7 @@ const IChingHexagram: React.FC<HexagramProps> = ({
           );
         }
       })}
-    </svg>
+    </Box>
   );
 };
 

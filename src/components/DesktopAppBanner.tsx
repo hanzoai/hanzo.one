@@ -1,3 +1,4 @@
+import { Anchor, Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Monitor, Download, ExternalLink } from "lucide-react";
@@ -43,45 +44,45 @@ const DesktopAppBanner = ({ variant = "floating" }: DesktopAppBannerProps) => {
     return (
       <AnimatePresence>
         {isVisible && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-gradient-to-r from-neutral-900 to-neutral-800 border-b border-neutral-800"
+            borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to right, var(--neutral-900), var(--neutral-800))"
           >
-            <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[var(--brand)]/20 flex items-center justify-center">
-                  <Monitor className="w-4 h-4 text-[var(--brand)]" />
-                </div>
+            <XStack maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} paddingVertical={12} display="flex" alignItems="center" justifyContent="space-between" gap={16}>
+              <XStack display="flex" alignItems="center" gap={12}>
+                <XStack width={32} height={32} borderRadius="var(--radius-lg)" backgroundColor="color-mix(in srgb, var(--brand) 20%, transparent)" display="flex" alignItems="center" justifyContent="center">
+                  <Monitor size={16} color="var(--brand)" />
+                </XStack>
                 <div>
-                  <p className="text-sm text-white font-medium">
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" fontWeight="500">
                     Hanzo Dev Desktop App
-                  </p>
-                  <p className="text-xs text-neutral-400">
+                  </Paragraph>
+                  <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">
                     Native performance. All your tools in one place.
-                  </p>
+                  </Paragraph>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <a
+              </XStack>
+              <XStack display="flex" alignItems="center" gap={8}>
+                <Anchor tap
                   href={downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--brand)] text-white text-sm font-medium hover:bg-[var(--brand-muted)] transition-colors"
+                  display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" backgroundColor="var(--brand)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--brand-muted)" }}
                 >
-                  <Download className="w-4 h-4" />
+                  <Download size={16} />
                   {isMac ? "Download for Mac" : "Download"}
-                </a>
-                <button
+                </Anchor>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={handleDismiss}
-                  className="p-2 rounded-full text-neutral-500 hover:text-white hover:bg-neutral-800 transition-colors"
+                  render="button" padding={8} borderRadius="var(--radius-full)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)" }}
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
+                  <X size={16} />
+                </Box>
+              </XStack>
+            </XStack>
+          </MotionBox>
         )}
       </AnimatePresence>
     );
@@ -90,71 +91,71 @@ const DesktopAppBanner = ({ variant = "floating" }: DesktopAppBannerProps) => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-24 left-6 z-40 max-w-sm"
+          position="fixed" bottom={96} left={24} zIndex={40} maxWidth="24rem"
         >
-          <div className="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden">
+          <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden">
             {/* Header with close button */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-800">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-md bg-[var(--brand)]/20 flex items-center justify-center">
-                  <Monitor className="w-3.5 h-3.5 text-[var(--brand)]" />
-                </div>
-                <span className="text-xs font-medium text-white">NEW</span>
-              </div>
-              <button
+            <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={8}>
+                <XStack width={24} height={24} borderRadius="var(--radius-md)" backgroundColor="color-mix(in srgb, var(--brand) 20%, transparent)" display="flex" alignItems="center" justifyContent="center">
+                  <Monitor size={14} color="var(--brand)" />
+                </XStack>
+                <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--foreground)">NEW</Text>
+              </XStack>
+              <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                 onClick={handleDismiss}
-                className="p-1 rounded-md text-neutral-500 hover:text-white hover:bg-neutral-800 transition-colors"
+                render="button" padding={4} borderRadius="var(--radius-md)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)" }}
               >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
+                <X size={16} />
+              </Box>
+            </XStack>
 
             {/* Content */}
-            <div className="p-4">
-              <h3 className="text-base font-semibold text-white mb-1">
+            <Box padding={16}>
+              <H3 fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="600" color="var(--foreground)" marginBottom={4}>
                 Get Hanzo Dev for Desktop
-              </h3>
-              <p className="text-sm text-neutral-400 mb-4">
+              </H3>
+              <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16}>
                 Native app with faster performance, offline access, and system integrations.
-              </p>
+              </Paragraph>
 
-              <div className="flex items-center gap-2">
-                <a
+              <XStack display="flex" alignItems="center" gap={8}>
+                <Anchor tap
                   href={downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[var(--brand)] text-white text-sm font-medium hover:bg-[var(--brand-muted)] transition-colors"
+                  flex={1} display="inline-flex" alignItems="center" justifyContent="center" gap={8} paddingHorizontal={16} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--brand)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--brand-muted)" }}
                 >
-                  <Download className="w-4 h-4" />
+                  <Download size={16} />
                   {isMac ? "Download for Mac" : "Download"}
-                </a>
-                <a
+                </Anchor>
+                <Anchor tap
                   href="/dev"
-                  className="px-4 py-2.5 rounded-lg border border-neutral-700 text-neutral-300 text-sm font-medium hover:bg-neutral-800 hover:text-white transition-colors"
+                  paddingHorizontal={16} paddingVertical={10} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)", color: "var(--foreground)" }}
                 >
                   Learn more
-                </a>
-              </div>
+                </Anchor>
+              </XStack>
 
               {/* Platform note */}
-              <p className="mt-3 text-xs text-neutral-500 flex items-center gap-1">
+              <Paragraph marginTop={12} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" display="flex" alignItems="center" gap={4}>
                 {isMac ? (
                   <>Apple Silicon & Intel supported</>
                 ) : (
                   <>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink size={12} />
                     Also available for Windows & Linux
                   </>
                 )}
-              </p>
-            </div>
-          </div>
-        </motion.div>
+              </Paragraph>
+            </Box>
+          </Box>
+        </MotionBox>
       )}
     </AnimatePresence>
   );

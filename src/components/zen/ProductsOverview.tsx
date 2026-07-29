@@ -1,6 +1,7 @@
+import { Box as GuiBox, Grid, H2, H3, H4, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { 
   ArrowRight, Database, Cloud, Code, Cpu, 
   Box, Server, Globe, Network, Sparkles,
@@ -9,8 +10,8 @@ import {
 } from "lucide-react";
 
 const AICloudSVG = () => (
-  <svg 
-    className="absolute -bottom-10 -right-10 opacity-10 w-40 h-40 text-purple-500" 
+  <GuiBox display="inline-block" 
+    render="svg" position="absolute" bottom={-40} right={-40} opacity={0.1} width={160} height={160} color="var(--neutral-500)" 
     viewBox="0 0 200 200" 
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -29,12 +30,12 @@ const AICloudSVG = () => (
       <path d="M30 10C30 15.5228 25.5228 20 20 20C14.4772 20 10 15.5228 10 10C10 4.47715 14.4772 0 20 0C25.5228 0 30 4.47715 30 10Z" fill="currentColor" fillOpacity="0.3" />
       <circle cx="20" cy="10" r="5" fill="currentColor" />
     </g>
-  </svg>
+  </GuiBox>
 );
 
 const DxPlatformSVG = () => (
-  <svg 
-    className="absolute -bottom-10 -right-10 opacity-10 w-40 h-40 text-blue-500" 
+  <GuiBox display="inline-block" 
+    render="svg" position="absolute" bottom={-40} right={-40} opacity={0.1} width={160} height={160} color="var(--neutral-500)" 
     viewBox="0 0 200 200" 
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +47,7 @@ const DxPlatformSVG = () => (
     <circle cx="95" cy="55" r="5" fill="currentColor" />
     <rect x="60" y="90" width="80" height="50" rx="4" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" fill="currentColor" fillOpacity="0.1" />
     <path d="M70 105L80 115L90 95M110 95L120 115L130 105" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
+  </GuiBox>
 );
 
 interface EcosystemDetailProps {
@@ -59,198 +60,198 @@ const EcosystemDetail: React.FC<EcosystemDetailProps> = ({ isOpen, onClose, type
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          flexDirection="row" position="fixed" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(0 0 0 / 0.8)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" zIndex={50} display="flex" alignItems="center" justifyContent="center" padding={16}
           onClick={onClose}
         >
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25 }}
-            className="bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-2xl max-w-3xl w-full p-6 shadow-xl overflow-y-auto max-h-[80vh]"
+            borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-2xl)" maxWidth="var(--container-prose)" width="100%" padding={24} boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" overflowY="auto" maxHeight="80vh" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
             onClick={(e) => e.stopPropagation()}
           >
             {type === 'cloud' ? (
               <>
-                <div className="mb-6">
-                  <h3 className="text-2xl font-medium text-white mb-2 flex items-center">
-                    <Cloud className="mr-2 h-6 w-6 text-purple-400" />
+                <GuiBox marginBottom={24}>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--foreground)" marginBottom={8} display="flex" alignItems="center">
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Cloud size={24} color="var(--foreground)" /></GuiBox>
                     Hanzo AI Cloud
-                  </h3>
-                  <p className="text-neutral-400">
+                  </H3>
+                  <Paragraph color="var(--neutral-400)">
                     Our comprehensive AI platform providing seamless access to cutting-edge AI capabilities with enterprise-grade reliability and security.
-                  </p>
-                </div>
+                  </Paragraph>
+                </GuiBox>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <motion.div 
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Brain className="h-5 w-5 text-purple-400 mr-2" />
-                      <h4 className="text-white font-medium">AI Model Hub</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Brain size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">AI Model Hub</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Access to leading open and proprietary AI models with unified API, optimized inference, and cost management.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Database className="h-5 w-5 text-purple-400 mr-2" />
-                      <h4 className="text-white font-medium">Vector Database</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Database size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Vector Database</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       High-performance vector storage and retrieval for AI applications with advanced filtering and hybrid search.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Bot className="h-5 w-5 text-purple-400 mr-2" />
-                      <h4 className="text-white font-medium">Agent Framework</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Agent Framework</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Build, deploy and manage intelligent agents that can reason, plan, and execute complex tasks autonomously.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Lock className="h-5 w-5 text-purple-400 mr-2" />
-                      <h4 className="text-white font-medium">Enterprise Security</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Lock size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Enterprise Security</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       SOC 2 compliance, end-to-end encryption, and comprehensive audit logging for mission-critical AI systems.
-                    </p>
-                  </motion.div>
-                </div>
+                    </Paragraph>
+                  </MotionBox>
+                </Grid>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
-                  <div className="text-neutral-500 text-sm">
+                <XStack marginTop={24} paddingTop={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" display="flex" justifyContent="space-between" alignItems="center">
+                  <GuiBox color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     Unified AI infrastructure for the enlightened engineer
-                  </div>
+                  </GuiBox>
                   <Link 
                     to="/ai" 
-                    className="text-purple-400 hover:text-purple-300 transition-colors text-sm flex items-center"
+                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}
                   >
                     <span>Learn more about AI Cloud</span>
-                    <ArrowRight className="ml-2 h-3 w-3" />
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></GuiBox>
                   </Link>
-                </div>
+                </XStack>
               </>
             ) : (
               <>
-                <div className="mb-6">
-                  <h3 className="text-2xl font-medium text-white mb-2 flex items-center">
-                    <Code className="mr-2 h-6 w-6 text-blue-400" />
+                <GuiBox marginBottom={24}>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--foreground)" marginBottom={8} display="flex" alignItems="center">
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Code size={24} color="var(--foreground)" /></GuiBox>
                     Developer Experience Platform
-                  </h3>
-                  <p className="text-neutral-400">
+                  </H3>
+                  <Paragraph color="var(--neutral-400)">
                     Our integrated toolkit designed to streamline the software development lifecycle, from code to production.
-                  </p>
-                </div>
+                  </Paragraph>
+                </GuiBox>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <motion.div 
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <GitBranch className="h-5 w-5 text-blue-400 mr-2" />
-                      <h4 className="text-white font-medium">CI/CD Pipeline</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><GitBranch size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">CI/CD Pipeline</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Automated testing, integration, and deployment with intelligent optimization and failure prediction.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Terminal className="h-5 w-5 text-blue-400 mr-2" />
-                      <h4 className="text-white font-medium">Dev Tools</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Dev Tools</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Enhanced CLI, IDE integrations, and AI-assisted coding tools that anticipate developer needs.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Zap className="h-5 w-5 text-blue-400 mr-2" />
-                      <h4 className="text-white font-medium">Edge Computing</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Zap size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Edge Computing</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Global edge network for low-latency deployment with intelligent traffic routing and caching.
-                    </p>
-                  </motion.div>
+                    </Paragraph>
+                  </MotionBox>
 
-                  <motion.div 
+                  <MotionBox 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)"
                   >
-                    <div className="flex items-center mb-2">
-                      <Network className="h-5 w-5 text-blue-400 mr-2" />
-                      <h4 className="text-white font-medium">Observability</h4>
-                    </div>
-                    <p className="text-neutral-400 text-sm">
+                    <XStack display="flex" alignItems="center" marginBottom={8}>
+                      <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Network size={20} color="var(--foreground)" /></GuiBox>
+                      <H4 color="var(--foreground)" fontWeight="500">Observability</H4>
+                    </XStack>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                       Comprehensive monitoring, logging, and analytics with AI-powered anomaly detection and recommendation.
-                    </p>
-                  </motion.div>
-                </div>
+                    </Paragraph>
+                  </MotionBox>
+                </Grid>
 
-                <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
-                  <div className="text-neutral-500 text-sm">
+                <XStack marginTop={24} paddingTop={16} borderTopWidth={1} borderColor="rgb(255 255 255 / 0.1)" display="flex" justifyContent="space-between" alignItems="center">
+                  <GuiBox color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
                     Build with tranquility, deploy with confidence
-                  </div>
+                  </GuiBox>
                   <Link 
                     to="/platform" 
-                    className="text-blue-400 hover:text-blue-300 transition-colors text-sm flex items-center"
+                    color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" hoverStyle={{ color: "var(--foreground)" }}
                   >
                     <span>Learn more about DX Platform</span>
-                    <ArrowRight className="ml-2 h-3 w-3" />
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={12} /></GuiBox>
                   </Link>
-                </div>
+                </XStack>
               </>
             )}
-          </motion.div>
-        </motion.div>
+          </MotionBox>
+        </MotionBox>
       )}
     </AnimatePresence>
   );
@@ -291,173 +292,173 @@ const ProductsOverview = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-[var(--black)] relative">
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
+    <GuiBox render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative">
+      <GuiBox 
+        position="absolute" top={0} right={0} bottom={0} left={0} pointerEvents="none" opacity={0.3}
         style={{
           background: "radial-gradient(circle at 50% 30%, rgba(25,25,25,1), rgba(0,0,0,1))"
         }}
       />
       
-      <div className="max-w-screen-2xl w-full mx-auto relative z-10">
-        <motion.div
+      <GuiBox maxWidth="1536px" width="100%" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/50">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} display="inline-block" backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
             The Way of Building
-          </h2>
-          <p className="text-neutral-500 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-500)" maxWidth="42rem" marginHorizontal="auto">
             Each tool embodies our principles. Together, they form a complete system for enlightened engineering.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* AI Ecosystem Overview */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            className="relative overflow-hidden rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-950/20 to-black p-6 cursor-pointer group"
+            group position="relative" overflow="hidden" borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={24} cursor="pointer" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black))"
             onClick={() => setSelectedSystem('cloud')}
           >
-            <div className="relative z-10">
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-xl bg-purple-500/10 mr-4">
-                  <Cloud className="h-8 w-8 text-purple-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">AI Cloud</h3>
-              </div>
+            <GuiBox position="relative" zIndex={10}>
+              <XStack display="flex" alignItems="center" marginBottom={16}>
+                <GuiBox padding={8} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" marginRight={16}>
+                  <Cloud size={32} color="var(--foreground)" />
+                </GuiBox>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">AI Cloud</H3>
+              </XStack>
               
-              <p className="text-neutral-300 mb-4">
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Our unified AI infrastructure combines vector databases, model inference, 
                 and agent frameworks into a coherent platform built for enlightened engineers.
-              </p>
+              </Paragraph>
               
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-2 py-1 bg-purple-500/10 rounded-full text-xs text-purple-300">Vector DB</span>
-                <span className="px-2 py-1 bg-purple-500/10 rounded-full text-xs text-purple-300">Multi-Model</span>
-                <span className="px-2 py-1 bg-purple-500/10 rounded-full text-xs text-purple-300">Agents</span>
-                <span className="px-2 py-1 bg-purple-500/10 rounded-full text-xs text-purple-300">Enterprise Ready</span>
-              </div>
+              <XStack display="flex" flexWrap="wrap" gap={8} marginBottom={24}>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Vector DB</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Multi-Model</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Agents</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Enterprise Ready</Text>
+              </XStack>
               
-              <button className="flex items-center text-purple-400 group-hover:text-purple-300 transition">
+              <XStack minHeight={44} render="button" display="flex" alignItems="center" color="var(--foreground)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                 <span>Explore AI Cloud</span>
-                <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+                <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></GuiBox>
+              </XStack>
+            </GuiBox>
             
             <AICloudSVG />
             
-            <motion.div 
-              className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
+            <MotionBox 
+              position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(255 255 255 / 0.05)" opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ opacity: 1 }}
               initial={false}
               whileHover={{ opacity: 0.1 }}
             />
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            className="relative overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-950/20 to-black p-6 cursor-pointer group"
+            group position="relative" overflow="hidden" borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={24} cursor="pointer" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black))"
             onClick={() => setSelectedSystem('dx')}
           >
-            <div className="relative z-10">
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-xl bg-blue-500/10 mr-4">
-                  <Code className="h-8 w-8 text-blue-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">DX Platform</h3>
-              </div>
+            <GuiBox position="relative" zIndex={10}>
+              <XStack display="flex" alignItems="center" marginBottom={16}>
+                <GuiBox padding={8} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" marginRight={16}>
+                  <Code size={32} color="var(--foreground)" />
+                </GuiBox>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">DX Platform</H3>
+              </XStack>
               
-              <p className="text-neutral-300 mb-4">
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Our developer experience platform streamlines engineering workflow with 
                 automated CI/CD, observability, and edge computing in perfect harmony.
-              </p>
+              </Paragraph>
               
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-2 py-1 bg-blue-500/10 rounded-full text-xs text-blue-300">CI/CD</span>
-                <span className="px-2 py-1 bg-blue-500/10 rounded-full text-xs text-blue-300">Dev Tools</span>
-                <span className="px-2 py-1 bg-blue-500/10 rounded-full text-xs text-blue-300">Edge</span>
-                <span className="px-2 py-1 bg-blue-500/10 rounded-full text-xs text-blue-300">Observability</span>
-              </div>
+              <XStack display="flex" flexWrap="wrap" gap={8} marginBottom={24}>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">CI/CD</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Dev Tools</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Edge</Text>
+                <Text paddingHorizontal={8} paddingVertical={4} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">Observability</Text>
+              </XStack>
               
-              <button className="flex items-center text-blue-400 group-hover:text-blue-300 transition">
+              <XStack minHeight={44} render="button" display="flex" alignItems="center" color="var(--foreground)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                 <span>Explore DX Platform</span>
-                <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+                <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></GuiBox>
+              </XStack>
+            </GuiBox>
             
             <DxPlatformSVG />
             
-            <motion.div 
-              className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
+            <MotionBox 
+              position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(255 255 255 / 0.05)" opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ opacity: 1 }}
               initial={false}
               whileHover={{ opacity: 0.1 }}
             />
-          </motion.div>
-        </div>
+          </MotionBox>
+        </Grid>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {products.map((product, index) => (
-            <motion.div
+            <MotionBox
               key={product.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              
               viewport={{ once: true }}
               whileHover={{ 
                 y: -5,
                 transition: { duration: 0.2 }
               }}
-              className="bg-gradient-to-br from-gray-900/40 to-black border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all duration-300 group"
+              group borderWidth={1} borderColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-2xl)" padding={24} transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black))" hoverStyle={{ borderColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--white)]/5 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                  <product.icon className="h-5 w-5 text-[var(--white)]" />
-                </div>
-                <h3 className="text-[var(--white)] text-lg font-medium">{product.name}</h3>
-              </div>
-              <p className="text-neutral-400 mb-4">{product.description}</p>
-              <div className="text-neutral-600 text-sm italic mb-6">"{product.principle}"</div>
+              <XStack display="flex" alignItems="center" marginBottom={16}>
+                <XStack width={40} height={40} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.05)" display="flex" alignItems="center" justifyContent="center" marginRight={16} transition="transform var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ scale: 1.1 }}>
+                  <product.icon height={20} width={20} color="var(--white)" />
+                </XStack>
+                <H3 color="var(--white)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">{product.name}</H3>
+              </XStack>
+              <Paragraph color="var(--neutral-400)" marginBottom={16}>{product.description}</Paragraph>
+              <GuiBox color="var(--neutral-600)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontStyle="italic" marginBottom={24}>"{product.principle}"</GuiBox>
               <Link 
                 to={product.path} 
-                className="text-neutral-400 hover:text-[var(--white)] text-sm flex items-center transition-colors"
+                color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--white)" }}
               >
-                <span className="group-hover:underline">Learn more</span>
-                <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                <Text $group-hover={{ textDecorationLine: "underline" }}>Learn more</Text>
+                <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={12} /></GuiBox>
               </Link>
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 text-center border border-white/5 rounded-2xl p-8 bg-gradient-to-b from-transparent to-gray-900/20"
+          marginTop={64} textAlign="center" borderWidth={1} borderColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-2xl)" padding={32} backgroundImage="linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.08))"
         >
-          <h3 className="text-2xl font-medium mb-4 text-[var(--white)]">Seek guidance from a Sensei</h3>
-          <p className="text-neutral-500 max-w-2xl mx-auto mb-6">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" marginBottom={16} color="var(--white)">Seek guidance from a Sensei</H3>
+          <Paragraph color="var(--neutral-500)" maxWidth="42rem" marginHorizontal="auto" marginBottom={24}>
             Our masters can guide your team through the 64 principles and practices of enlightened engineering.
-          </p>
-          <Link 
+          </Paragraph>
+          <Link tap 
             to="/contact" 
-            className="inline-flex items-center px-6 py-3 bg-[var(--white)]/5 hover:bg-[var(--white)]/10 border border-white/10 rounded-xl text-[var(--white)] transition-all duration-300 hover:shadow-lg hover:shadow-purple-900/10"
+            display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} backgroundColor="rgb(255 255 255 / 0.05)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-xl)" color="var(--white)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)", boxShadow: "0 10px 15px -3px rgb(0 0 0 / .35)", shadowColor: "rgb(255 255 255 / 0.1)" }}
           >
             Request Sensei Consultation
           </Link>
-        </motion.div>
-      </div>
+        </MotionBox>
+      </GuiBox>
 
       <EcosystemDetail 
         isOpen={selectedSystem === 'cloud'}
@@ -470,7 +471,7 @@ const ProductsOverview = () => {
         onClose={() => setSelectedSystem(null)}
         type="dx"
       />
-    </section>
+    </GuiBox>
   );
 };
 

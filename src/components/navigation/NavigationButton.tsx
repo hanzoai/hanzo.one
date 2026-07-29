@@ -1,7 +1,7 @@
+import { Box, XStack } from '@/gui'
 
 import { ChevronDown } from "lucide-react";
 import { type ReactNode, forwardRef } from "react";
-import { cn } from "@/lib/utils";
 
 interface NavigationButtonProps {
   children: ReactNode;
@@ -14,26 +14,20 @@ interface NavigationButtonProps {
 export const NavigationButton = forwardRef<HTMLButtonElement, NavigationButtonProps>(
   ({ children, onHoverStart, onClick, noChevron = false, isActive = false, ...props }, ref) => {
     return (
-      <button 
+      <XStack minHeight={44} 
         ref={ref}
-        className={cn(
-          "inline-flex items-center outline-none focus:outline-none transition-colors",
-          isActive ? "text-white" : "text-neutral-300 hover:text-white"
-        )}
+        render="button" display="inline-flex" alignItems="center" outlineStyle="none" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none" }} color={isActive ? "var(--foreground)" : "var(--neutral-300)"} hoverStyle={isActive ? undefined : { color: "var(--foreground)" }}
         onMouseEnter={onHoverStart}
         onClick={onClick}
         {...props}
       >
         {children}
         {!noChevron && (
-          <ChevronDown 
-            className={cn(
-              "ml-1 h-4 w-4 transition-transform duration-300",
-              isActive && "rotate-180"
-            )} 
-          />
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ChevronDown 
+            size={16} 
+          /></Box>
         )}
-      </button>
+      </XStack>
     );
   }
 );

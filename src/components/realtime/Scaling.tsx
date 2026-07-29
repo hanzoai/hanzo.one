@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,133 +6,133 @@ import { Activity, Users, Zap, Cpu, Server, Network } from "lucide-react";
 
 const Scaling = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-purple-950/10">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Scale to Millions of Connections
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Built for massive scale from day one, with no infrastructure management required
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gradient-to-br from-purple-900/20 to-transparent rounded-xl border border-purple-500/20 p-6"
+            borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={24} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)"
           >
-            <Activity className="h-8 w-8 text-purple-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">High Throughput</h3>
-            <p className="text-neutral-300">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Activity size={32} color="var(--foreground)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>High Throughput</H3>
+            <Paragraph color="var(--neutral-300)">
               Process millions of messages per second with sub-millisecond latency. 
               Perfect for high-frequency data updates and time-sensitive applications.
-            </p>
+            </Paragraph>
             
-            <div className="mt-6 pt-6 border-t border-gray-800">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-neutral-400 text-sm">Message throughput</span>
-                <span className="text-[var(--white)] font-medium">Unlimited</span>
-              </div>
-              <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-purple-500 h-full rounded-full" style={{ width: "100%" }}></div>
-              </div>
-            </div>
-          </motion.div>
+            <Box marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={8}>
+                <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Message throughput</Text>
+                <Text color="var(--white)" fontWeight="500">Unlimited</Text>
+              </XStack>
+              <Box width="100%" backgroundColor="var(--neutral-800)" height={8} borderRadius="var(--radius-full)" overflow="hidden">
+                <Box backgroundColor="var(--neutral-500)" height="100%" borderRadius="var(--radius-full)" style={{ width: "100%" }}></Box>
+              </Box>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gradient-to-br from-blue-900/20 to-transparent rounded-xl border border-blue-500/20 p-6"
+            borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={24} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)"
           >
-            <Users className="h-8 w-8 text-blue-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Concurrent Connections</h3>
-            <p className="text-neutral-300">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Users size={32} color="var(--foreground)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Concurrent Connections</H3>
+            <Paragraph color="var(--neutral-300)">
               Support millions of simultaneous client connections with automatic
               scaling. No connection limits or throttling to worry about.
-            </p>
+            </Paragraph>
             
-            <div className="mt-6 pt-6 border-t border-gray-800">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-neutral-400 text-sm">Connection capacity</span>
-                <span className="text-[var(--white)] font-medium">Millions+</span>
-              </div>
-              <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full rounded-full" style={{ width: "95%" }}></div>
-              </div>
-            </div>
-          </motion.div>
+            <Box marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={8}>
+                <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Connection capacity</Text>
+                <Text color="var(--white)" fontWeight="500">Millions+</Text>
+              </XStack>
+              <Box width="100%" backgroundColor="var(--neutral-800)" height={8} borderRadius="var(--radius-full)" overflow="hidden">
+                <Box backgroundColor="var(--neutral-500)" height="100%" borderRadius="var(--radius-full)" style={{ width: "95%" }}></Box>
+              </Box>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gradient-to-br from-cyan-900/20 to-transparent rounded-xl border border-cyan-500/20 p-6"
+            borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={24} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)"
           >
-            <Network className="h-8 w-8 text-cyan-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Global Edge Network</h3>
-            <p className="text-neutral-300">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Network size={32} color="var(--foreground)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Global Edge Network</H3>
+            <Paragraph color="var(--neutral-300)">
               Deployed at the edge across 200+ locations worldwide, ensuring
               low-latency connections for users anywhere on the planet.
-            </p>
+            </Paragraph>
             
-            <div className="mt-6 pt-6 border-t border-gray-800">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-neutral-400 text-sm">Global coverage</span>
-                <span className="text-[var(--white)] font-medium">200+ regions</span>
-              </div>
-              <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-cyan-500 h-full rounded-full" style={{ width: "90%" }}></div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            <Box marginTop={24} paddingTop={24} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={8}>
+                <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Global coverage</Text>
+                <Text color="var(--white)" fontWeight="500">200+ regions</Text>
+              </XStack>
+              <Box width="100%" backgroundColor="var(--neutral-800)" height={8} borderRadius="var(--radius-full)" overflow="hidden">
+                <Box backgroundColor="var(--neutral-500)" height="100%" borderRadius="var(--radius-full)" style={{ width: "90%" }}></Box>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
+          marginTop={64} display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
         >
-          <div className="bg-[var(--black)]/40 rounded-lg border border-gray-800 p-4 flex items-center">
-            <Zap className="h-8 w-8 text-purple-400 mr-4" />
+          <XStack backgroundColor="rgb(0 0 0 / 0.4)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" padding={16} display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={16}><Zap size={32} color="var(--foreground)" /></Box>
             <div>
-              <h4 className="text-[var(--white)] font-medium">Auto-scaling</h4>
-              <p className="text-neutral-400 text-sm">Scales automatically based on demand</p>
+              <H4 color="var(--white)" fontWeight="500">Auto-scaling</H4>
+              <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Scales automatically based on demand</Paragraph>
             </div>
-          </div>
+          </XStack>
           
-          <div className="bg-[var(--black)]/40 rounded-lg border border-gray-800 p-4 flex items-center">
-            <Cpu className="h-8 w-8 text-blue-400 mr-4" />
+          <XStack backgroundColor="rgb(0 0 0 / 0.4)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" padding={16} display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={16}><Cpu size={32} color="var(--foreground)" /></Box>
             <div>
-              <h4 className="text-[var(--white)] font-medium">High Availability</h4>
-              <p className="text-neutral-400 text-sm">99.99% uptime SLA guarantee</p>
+              <H4 color="var(--white)" fontWeight="500">High Availability</H4>
+              <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">99.99% uptime SLA guarantee</Paragraph>
             </div>
-          </div>
+          </XStack>
           
-          <div className="bg-[var(--black)]/40 rounded-lg border border-gray-800 p-4 flex items-center">
-            <Server className="h-8 w-8 text-cyan-400 mr-4" />
+          <XStack backgroundColor="rgb(0 0 0 / 0.4)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" padding={16} display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={16}><Server size={32} color="var(--foreground)" /></Box>
             <div>
-              <h4 className="text-[var(--white)] font-medium">Zero Management</h4>
-              <p className="text-neutral-400 text-sm">No servers or infrastructure to manage</p>
+              <H4 color="var(--white)" fontWeight="500">Zero Management</H4>
+              <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">No servers or infrastructure to manage</Paragraph>
             </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

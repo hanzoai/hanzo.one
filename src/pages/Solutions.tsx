@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import Navbar from "@/components/Navbar";
@@ -10,21 +11,21 @@ import CallToAction from "@/components/index3/CallToAction";
 
 const Solutions: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto">
           <SolutionsHero />
           <MainCards />
           <UnifiedAICloud />
           <ExpertServices />
           <CallToAction />
-        </div>
-      </main>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

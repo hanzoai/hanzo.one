@@ -1,6 +1,7 @@
+import { Box, Button, Grid, H1, H2, H3, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Blocks,
   Wallet,
@@ -29,9 +30,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Web3 capability categories
 const CAPABILITIES = [
@@ -194,96 +194,96 @@ const Blockchain = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 md:px-8 relative overflow-hidden">
+      <Box render="section" paddingTop={96} paddingBottom={64} paddingHorizontal={16} position="relative" overflow="hidden" $md={{ paddingHorizontal: 32 }}>
         {/* Background gradient */}
-        <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+          <Box
+            position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
             style={{
               background: `radial-gradient(circle, #8b5cf6 0%, transparent 70%)`,
               filter: "blur(100px)",
             }}
           />
-        </div>
+        </Box>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            textAlign="center" marginBottom={64}
           >
             {/* Coming Soon Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6">
-              <Clock className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-400">Coming Soon</span>
-            </div>
+            <XStack display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" backgroundColor="rgb(255 255 255 / 0.1)" marginBottom={24}>
+              <Clock size={16} color="var(--foreground)" />
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">Coming Soon</Text>
+            </XStack>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
-              <span className="text-white">Web3 Infrastructure.</span>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+              <Text color="var(--foreground)">Web3 Infrastructure.</Text>
               <br />
-              <span className="text-neutral-400">For the AI Era.</span>
-            </h1>
+              <Text color="var(--neutral-400)">For the AI Era.</Text>
+            </H1>
 
-            <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-8">
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto" marginBottom={32} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
               Blockchain nodes, wallets, payments, smart contracts, and more—all integrated into the Hanzo platform. Build decentralized applications with the same simplicity as traditional apps.
-            </p>
+            </Paragraph>
 
             {/* Waitlist Form */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="max-w-md mx-auto"
+              maxWidth="28rem" marginHorizontal="auto"
             >
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800">
-                  <Mail className="w-4 h-4 text-neutral-500" />
-                  <input
+              <YStack onSubmit={handleSubmit} render="form" display="flex" flexDirection="column" gap={12} $sm={{ flexDirection: "row" }}>
+                <XStack flex={1} display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                  <Mail size={16} color="var(--neutral-500)" />
+                  <Box display="inline-block" minHeight={44}
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                    render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                     required
                   />
-                </div>
+                </XStack>
                 <Button
                   type="submit"
-                  className="px-6 py-3 rounded-lg font-medium transition-all"
+                  paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
                   style={{ backgroundColor: "#8b5cf6" }}
                 >
                   {submitted ? (
-                    <span className="flex items-center gap-2">
-                      <Check className="w-4 h-4" />
+                    <Text display="flex" alignItems="center" gap={8}>
+                      <Check size={16} />
                       Joined!
-                    </span>
+                    </Text>
                   ) : (
-                    <span className="flex items-center gap-2">
+                    <Text display="flex" alignItems="center" gap={8}>
                       Join Waitlist
-                      <Bell className="w-4 h-4" />
-                    </span>
+                      <Bell size={16} />
+                    </Text>
                   )}
                 </Button>
-              </form>
-              <p className="text-xs text-neutral-500 mt-3">
+              </YStack>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={12}>
                 Be the first to know when Hanzo Blockchain launches. No spam, ever.
-              </p>
-            </motion.div>
-          </motion.div>
+              </Paragraph>
+            </MotionBox>
+          </MotionBox>
 
           {/* Visual Hero Element */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-900/20 to-transparent p-8 md:p-12"
+            borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={32} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 48 }}
           >
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
+            <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}>
               {[
                 { icon: Server, label: "Nodes" },
                 { icon: Wallet, label: "Wallets" },
@@ -294,47 +294,47 @@ const Blockchain = () => {
               ].map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <motion.div
+                  <MotionBox
                     key={item.label}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: 0.3 + idx * 0.05 }}
-                    className="flex flex-col items-center gap-2"
+                    display="flex" flexDirection="column" alignItems="center" gap={8}
                   >
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-                      <Icon className="w-6 h-6 md:w-8 md:h-8 text-purple-400" />
-                    </div>
-                    <span className="text-xs md:text-sm text-neutral-400">{item.label}</span>
-                  </motion.div>
+                    <XStack width={48} height={48} borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" $md={{ width: 64, height: 64 }}>
+                      <Icon width={24} height={24} color="var(--foreground)" $md={{ width: 32, height: 32 }} />
+                    </XStack>
+                    <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" $md={{ fontSize: "var(--text-sm)", lineHeight: "var(--leading-sm)" }}>{item.label}</Text>
+                  </MotionBox>
                 );
               })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </Grid>
+          </MotionBox>
+        </Box>
+      </Box>
 
       {/* Products Section */}
-      <section className="py-24 px-4 md:px-8 bg-neutral-950">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            textAlign="center" marginBottom={48}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Web3 Products
-            </h2>
-            <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
               Explore our suite of blockchain services. Each product is in private beta—apply for early access.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <Grid display="grid" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {PRODUCTS.map((product, index) => {
               const Icon = product.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={product.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -343,157 +343,157 @@ const Blockchain = () => {
                 >
                   <Link
                     to={product.href}
-                    className="block p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-800/50 hover:border-neutral-700 transition-all group"
+                    group display="block" padding={20} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)", borderColor: "var(--neutral-700)" }}
                   >
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center mb-3"
+                    <XStack
+                      width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={12}
                       style={{ backgroundColor: `${product.color}1a` }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: product.color }} />
-                    </div>
-                    <h3 className="font-semibold text-white mb-1 group-hover:text-purple-400 transition-colors">
+                      <Icon width={20} height={20} style={{ color: product.color }} />
+                    </XStack>
+                    <H3 fontWeight="600" color="var(--foreground)" marginBottom={4} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                       {product.name}
-                    </h3>
-                    <p className="text-sm text-neutral-500">{product.description}</p>
-                    <div className="mt-3 flex items-center gap-1 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </H3>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">{product.description}</Paragraph>
+                    <XStack marginTop={12} display="flex" alignItems="center" gap={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" opacity={0} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ opacity: 1 }}>
                       Apply for beta
-                      <ArrowRight className="w-3 h-3" />
-                    </div>
+                      <ArrowRight size={12} />
+                    </XStack>
                   </Link>
-                </motion.div>
+                </MotionBox>
               );
             })}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Capabilities Section */}
-      <section className="py-24 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            textAlign="center" marginBottom={64}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Complete Web3 Infrastructure
-            </h2>
-            <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
               Everything you need to build decentralized applications, from blockchain data access to compliance tools.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {CAPABILITIES.map((capability, index) => {
               const Icon = capability.icon;
               const isExpanded = expandedCapability === capability.id;
               return (
-                <motion.div
+                <MotionBox
                   key={capability.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="rounded-xl border border-neutral-800 bg-neutral-900/50 overflow-hidden"
+                  borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" overflow="hidden"
                 >
-                  <button
+                  <XStack minHeight={44}
                     onClick={() => setExpandedCapability(isExpanded ? null : capability.id)}
-                    className="w-full p-5 text-left flex items-start gap-4 hover:bg-neutral-800/50 transition-colors"
+                    render="button" width="100%" padding={20} textAlign="left" display="flex" alignItems="flex-start" gap={16} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
                   >
-                    <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-purple-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-semibold text-white">{capability.title}</h3>
+                    <XStack width={40} height={40} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                      <Icon width={20} height={20} color="var(--foreground)" />
+                    </XStack>
+                    <Box flex={1} minWidth={0}>
+                      <XStack display="flex" alignItems="center" justifyContent="space-between" gap={8}>
+                        <H3 fontWeight="600" color="var(--foreground)">{capability.title}</H3>
                         {isExpanded ? (
-                          <ChevronUp className="w-4 h-4 text-neutral-500 shrink-0" />
+                          <ChevronUp size={16} color="var(--neutral-500)" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 text-neutral-500 shrink-0" />
+                          <ChevronDown size={16} color="var(--neutral-500)" />
                         )}
-                      </div>
-                      <p className="text-sm text-neutral-400 mt-1">{capability.description}</p>
-                    </div>
-                  </button>
+                      </XStack>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>{capability.description}</Paragraph>
+                    </Box>
+                  </XStack>
 
                   {isExpanded && (
-                    <motion.div
+                    <MotionBox
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="px-5 pb-5 border-t border-neutral-800"
+                      paddingHorizontal={20} paddingBottom={20} borderTopWidth={1} borderColor="var(--neutral-800)"
                     >
-                      <ul className="mt-4 space-y-2">
+                      <Box render="ul" marginTop={16} rowGap={8}>
                         {capability.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-neutral-300">
-                            <Check className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                          <XStack key={idx} render="li" display="flex" alignItems="flex-start" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
+                            <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><Check size={16} color="var(--foreground)" /></Box>
                             {feature}
-                          </li>
+                          </XStack>
                         ))}
-                      </ul>
-                    </motion.div>
+                      </Box>
+                    </MotionBox>
                   )}
-                </motion.div>
+                </MotionBox>
               );
             })}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Integration Section */}
-      <section className="py-24 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <Grid display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <MotionBox
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6">
-                <Zap className="w-4 h-4 text-purple-400" />
-                <span className="text-sm font-medium text-purple-400">Unified Platform</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+              <XStack display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" backgroundColor="rgb(255 255 255 / 0.1)" marginBottom={24}>
+                <Zap size={16} color="var(--foreground)" />
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">Unified Platform</Text>
+              </XStack>
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 AI + Web3.<br />
-                <span className="text-neutral-400">Better Together.</span>
-              </h2>
-              <p className="text-lg text-neutral-400 mb-6">
+                <Text color="var(--neutral-400)">Better Together.</Text>
+              </H2>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={24}>
                 Combine Hanzo's AI capabilities with blockchain infrastructure. Let AI agents manage wallets, execute transactions, and interact with smart contracts autonomously.
-              </p>
-              <ul className="space-y-3 mb-8">
+              </Paragraph>
+              <Box render="ul" rowGap={12} marginBottom={32}>
                 {[
                   "AI agents that can send on-chain transactions",
                   "Natural language smart contract interaction",
                   "Automated DeFi strategies with AI optimization",
                   "Cross-chain portfolio management",
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-neutral-300">
-                    <div className="w-6 h-6 rounded bg-purple-500/10 flex items-center justify-center">
-                      <Check className="w-3.5 h-3.5 text-purple-400" />
-                    </div>
+                  <XStack key={idx} render="li" display="flex" alignItems="center" gap={12} color="var(--neutral-300)">
+                    <XStack width={24} height={24} borderRadius="var(--radius)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center">
+                      <Check size={14} color="var(--foreground)" />
+                    </XStack>
                     {item}
-                  </li>
+                  </XStack>
                 ))}
-              </ul>
-            </motion.div>
+              </Box>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-xl border border-neutral-800 bg-neutral-900/80 overflow-hidden"
+              borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" overflow="hidden"
             >
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                </div>
-                <span className="ml-2 text-xs text-neutral-500 font-mono">hanzo-agent.ts</span>
-              </div>
-              <div className="p-4 font-mono text-sm bg-neutral-950">
-                <pre className="text-neutral-300 overflow-x-auto">
+              <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+                <XStack display="flex" gap={6}>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                </XStack>
+                <Text marginLeft={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)">hanzo-agent.ts</Text>
+              </XStack>
+              <Box padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor="var(--neutral-950)">
+                <Box render="pre" color="var(--neutral-300)" overflowX="auto">
 {`import { Hanzo } from "@hanzo/ai";
 import { Wallet } from "@hanzo/blockchain";
 
@@ -508,88 +508,86 @@ await agent.run(\`
   then swap 0.1 ETH for USDC on Uniswap
   if the price is favorable.
 \`);`}
-                </pre>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+                </Box>
+              </Box>
+            </MotionBox>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Roadmap Section */}
-      <section className="py-24 px-4 md:px-8 bg-neutral-950">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="56rem" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            textAlign="center" marginBottom={48}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Development Roadmap
-            </h2>
-            <p className="text-lg text-neutral-400">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)">
               Our planned timeline for launching Web3 infrastructure.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <div className="relative">
+          <Box position="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-neutral-800" />
+            <Box position="absolute" left={16} top={0} bottom={0} width={1} backgroundColor="var(--neutral-800)" $md={{ left: "50%" }} />
 
-            <div className="space-y-8">
+            <Box rowGap={32}>
               {ROADMAP.map((item, index) => (
-                <motion.div
+                <MotionBox
                   key={item.phase}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className={`relative flex items-center gap-6 ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  flexDirection="row" position="relative" display="flex" alignItems="center" gap={24} $md={index % 2 === 0 ? { flexDirection: "row" } : { flexDirection: "row-reverse" }}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full -translate-x-1/2 bg-purple-500" />
+                  <Box position="absolute" left={16} width={12} height={12} borderRadius="var(--radius-full)" x="-50%" backgroundColor="var(--neutral-500)" $md={{ left: "50%" }} />
 
                   {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                    <div className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/30 mb-2">
+                  <Box marginLeft={48} $md={{ ...({ marginLeft: 0, width: "50%" }), ...(index % 2 === 0 ? { paddingRight: 48, textAlign: "right" } : { paddingLeft: 48 }) }}>
+                    <Box display="inline-block" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" backgroundColor="rgb(255 255 255 / 0.1)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)" marginBottom={8}>
                       {item.phase}
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                    <span className={`text-sm ${item.status === "in-progress" ? "text-green-400" : "text-neutral-500"}`}>
+                    </Box>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">{item.title}</H3>
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color={item.status === "in-progress" ? "var(--foreground)" : "var(--neutral-500)"}>
                       {item.status === "in-progress" ? "In Progress" : "Planned"}
-                    </span>
-                  </div>
-                </motion.div>
+                    </Text>
+                  </Box>
+                </MotionBox>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Supported Chains */}
-      <section className="py-24 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            textAlign="center" marginBottom={48}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Multi-Chain from Day One
-            </h2>
-            <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
               Support for all major blockchain networks, with more being added continuously.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-4"
+            flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={16}
           >
             {[
               "Ethereum",
@@ -605,77 +603,77 @@ await agent.run(\`
               "zkSync",
               "Starknet",
             ].map((chain, index) => (
-              <div
+              <Box
                 key={chain}
-                className="px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 text-sm text-neutral-300"
+                paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)"
               >
                 {chain}
-              </div>
+              </Box>
             ))}
-          </motion.div>
-        </div>
-      </section>
+          </MotionBox>
+        </Box>
+      </Box>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 md:px-8 border-t border-neutral-900">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} borderTopWidth={1} borderColor="var(--neutral-900)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="56rem" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-900/20 to-transparent p-8 md:p-12 text-center"
+            borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--border-strong)" padding={32} textAlign="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), transparent)" $md={{ padding: 48 }}
           >
-            <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto mb-6">
-              <Blocks className="w-8 h-8 text-purple-400" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <XStack width={64} height={64} borderRadius="var(--radius-2xl)" backgroundColor="rgb(255 255 255 / 0.1)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" marginBottom={24}>
+              <Blocks size={32} color="var(--foreground)" />
+            </XStack>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Ready to Build on Web3?
-            </h2>
-            <p className="text-lg text-neutral-400 mb-8 max-w-xl mx-auto">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32} maxWidth="36rem" marginHorizontal="auto">
               Join the waitlist to be among the first to access Hanzo's Web3 infrastructure when it launches.
-            </p>
+            </Paragraph>
 
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
-              <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800">
-                <Mail className="w-4 h-4 text-neutral-500" />
-                <input
+            <YStack onSubmit={handleSubmit} render="form" maxWidth="28rem" marginHorizontal="auto" display="flex" flexDirection="column" gap={12} $sm={{ flexDirection: "row" }}>
+              <XStack flex={1} display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <Mail size={16} color="var(--neutral-500)" />
+                <Box display="inline-block" minHeight={44}
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                   required
                 />
-              </div>
+              </XStack>
               <Button
                 type="submit"
-                className="px-6 py-3 rounded-lg font-medium"
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" fontWeight="500"
                 style={{ backgroundColor: "#8b5cf6" }}
               >
                 {submitted ? "Joined!" : "Join Waitlist"}
               </Button>
-            </form>
+            </YStack>
 
-            <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-neutral-500">
-              <span className="flex items-center gap-2">
-                <Lock className="w-4 h-4" />
+            <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={24} marginTop={32} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
+              <Text display="flex" alignItems="center" gap={8}>
+                <Lock size={16} />
                 Enterprise-grade security
-              </span>
-              <span className="flex items-center gap-2">
-                <Globe className="w-4 h-4" />
+              </Text>
+              <Text display="flex" alignItems="center" gap={8}>
+                <Globe size={16} />
                 Multi-chain support
-              </span>
-              <span className="flex items-center gap-2">
-                <Zap className="w-4 h-4" />
+              </Text>
+              <Text display="flex" alignItems="center" gap={8}>
+                <Zap size={16} />
                 AI-native integration
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+              </Text>
+            </XStack>
+          </MotionBox>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,9 +1,9 @@
+import { Box, ChromeText, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
-import { Link } from "react-router-dom";
+
 
 interface CloudServiceCardProps {
   id: string;
@@ -97,30 +97,30 @@ const CloudServiceCard: React.FC<CloudServiceCardProps> = ({
   
   const CardContent = (
     <>
-      <div className={`h-12 w-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${bgClass}`}>
-        <Icon className={`h-6 w-6 transition-colors duration-300 ${textClass}`} />
-      </div>
-      <ChromeText as="h3" className="text-xl font-bold mb-2">
+      <XStack height={48} width={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16} transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)">
+        <Icon height={24} width={24} transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" />
+      </XStack>
+      <ChromeText as="h3" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>
         {title}
       </ChromeText>
-      <p className="text-neutral-300 mb-4 text-sm">
+      <Paragraph color="var(--neutral-300)" marginBottom={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
         {description}
-      </p>
-      <ul className="text-neutral-400 space-y-2 text-xs mt-auto hidden lg:block">
+      </Paragraph>
+      <Box render="ul" color="var(--neutral-400)" rowGap={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginTop="auto" display="none" $lg={{ display: "block" }}>
         {features.slice(0, 2).map((feature, index) => (
-          <li key={`${id}-feature-${index}`} className="flex items-start">
-            <span className="mr-2">•</span>
+          <XStack key={`${id}-feature-${index}`} render="li" display="flex" alignItems="flex-start">
+            <Text marginRight={8}>•</Text>
             <span>{feature}</span>
-          </li>
+          </XStack>
         ))}
-      </ul>
+      </Box>
     </>
   );
 
   const containerClasses = "bg-gray-900/20 border border-gray-800 rounded-xl p-6 group hover:bg-gray-900/30 transition-colors h-full flex flex-col";
 
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -129,15 +129,15 @@ const CloudServiceCard: React.FC<CloudServiceCardProps> = ({
       onMouseLeave={() => setIsHovered(null)}
     >
       {id === "more" ? (
-        <Link to="/cloud" className={containerClasses}>
+        <Link tap to="/cloud" >
           {CardContent}
         </Link>
       ) : (
-        <Link to={`/${id}`} className={containerClasses}>
+        <Link tap to={`/${id}`} >
           {CardContent}
         </Link>
       )}
-    </motion.div>
+    </MotionBox>
   );
 };
 

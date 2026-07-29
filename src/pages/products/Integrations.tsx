@@ -1,9 +1,7 @@
+import { Badge, Box, Button, Grid, H1, H2, H3, Input, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Search, ExternalLink, Github, Plug } from "lucide-react";
 
 // Sample integrations data - in production, this would come from an API
@@ -74,42 +72,42 @@ export default function IntegrationsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
       <Navbar />
-      <div className="pt-24 pb-16">
+      <Box paddingTop={96} paddingBottom={64}>
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4 border-purple-500/50 text-purple-400">
-              <Plug className="w-3 h-3 mr-1" />
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" marginBottom={48}>
+            <Badge variant="outline" marginBottom={16} borderColor="var(--border-strong)" color="var(--foreground)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Plug size={12} /></Box>
               280+ Integrations
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Connect to <span className="text-purple-400">Everything</span>
-            </h1>
-            <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+              Connect to <Text color="var(--foreground)">Everything</Text>
+            </H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Hanzo Auto comes with 280+ pre-built integrations to connect your favorite apps and services.
               All integrations are also available as MCP servers for use with Claude, Cursor, and other AI tools.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
 
           {/* Search and Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500" />
+          <YStack display="flex" flexDirection="column" gap={16} marginBottom={32} $md={{ flexDirection: "row" }}>
+            <Box position="relative" flex={1}>
+              <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={12} top="50%" y="-50%"><Search size={16} color="var(--neutral-500)" /></Box>
               <Input
                 placeholder="Search integrations..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-neutral-900 border-neutral-800"
+                paddingLeft={40} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)"
               />
-            </div>
-            <div className="flex gap-2 flex-wrap">
+            </Box>
+            <XStack display="flex" gap={8} flexWrap="wrap">
               <Button
                 variant={selectedCategory === null ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory(null)}
-                className={selectedCategory === null ? "bg-purple-600 hover:bg-purple-700" : ""}
+                backgroundColor={selectedCategory === null ? "var(--neutral-600)" : undefined} hoverStyle={selectedCategory === null ? { backgroundColor: "var(--neutral-700)" } : undefined}
               >
                 All
               </Button>
@@ -119,58 +117,58 @@ export default function IntegrationsPage() {
                   variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory(category)}
-                  className={selectedCategory === category ? "bg-purple-600 hover:bg-purple-700" : ""}
+                  backgroundColor={selectedCategory === category ? "var(--neutral-600)" : undefined} hoverStyle={selectedCategory === category ? { backgroundColor: "var(--neutral-700)" } : undefined}
                 >
                   {category}
                 </Button>
               ))}
-            </div>
-          </div>
+            </XStack>
+          </YStack>
 
           {/* Integrations Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
             {filteredIntegrations.map((integration, index) => (
-              <div
+              <Box
                 key={index}
-                className="p-4 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-purple-500/50 transition-colors group cursor-pointer"
+                group padding={16} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" cursor="pointer" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <div className="text-3xl mb-2">{integration.logo}</div>
-                <h3 className="font-semibold text-white group-hover:text-purple-400 transition-colors">
+                <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" marginBottom={8}>{integration.logo}</Box>
+                <H3 fontWeight="600" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                   {integration.name}
-                </h3>
-                <p className="text-sm text-neutral-500">{integration.description}</p>
-                <Badge variant="outline" className="mt-2 text-xs">
+                </H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">{integration.description}</Paragraph>
+                <Badge variant="outline" marginTop={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
                   {integration.category}
                 </Badge>
-              </div>
+              </Box>
             ))}
-          </div>
+          </Grid>
 
           {/* CTA Section */}
-          <div className="mt-16 text-center p-8 rounded-2xl bg-gradient-to-b from-purple-900/30 to-blue-900/30 border border-purple-500/20">
-            <h2 className="text-2xl font-bold mb-4">Need a custom integration?</h2>
-            <p className="text-neutral-400 mb-6">
+          <Box marginTop={64} textAlign="center" padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Need a custom integration?</H2>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               All integrations are built with TypeScript and are open source.
               Create your own pieces or request new integrations.
-            </p>
-            <div className="flex gap-4 justify-center">
+            </Paragraph>
+            <XStack display="flex" gap={16} justifyContent="center">
               <Button asChild>
                 <a href="https://github.com/hanzoai/auto" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
                   View on GitHub
                 </a>
               </Button>
               <Button variant="outline" asChild>
                 <a href="https://activepieces.com/pieces" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={16} /></Box>
                   Browse All Pieces
                 </a>
               </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+            </XStack>
+          </Box>
+        </Box>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 }

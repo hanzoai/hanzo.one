@@ -1,74 +1,73 @@
+import { Anchor, Box, Button, ChromeText, H1, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Chrome, Globe } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const HanzoExtensionHero = () => {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <Box render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-5xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          textAlign="center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Hanzo <span className="text-purple-400">Extension</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto mb-12">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+            Hanzo <Text color="var(--foreground)">Extension</Text>
+          </H1>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={48} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
             Access Hanzo AI directly in your browser
             <br />for a seamless web experience
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16} marginBottom={48}>
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium"
+              color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <a href="#browsers" className="flex items-center">
-                <Chrome className="mr-2 h-5 w-5" />
+              <Anchor href="#browsers" display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Chrome size={20} /></Box>
                 Add to Chrome
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+              </Anchor>
             </Button>
             
             <Button 
               size="lg"
               variant="outline"
-              className="border-purple-600 text-[var(--white)] hover:bg-purple-600/10 px-8 py-6 rounded-lg text-lg font-medium"
+              borderColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <a href="#browsers" className="flex items-center">
-                <Globe className="mr-2 h-5 w-5" />
+              <Anchor href="#browsers" display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={20} /></Box>
                 Get Firefox Add-on
-              </a>
+              </Anchor>
             </Button>
-          </div>
+          </XStack>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl">
-              <img 
+            <Box position="relative" width="100%" maxWidth="56rem" marginHorizontal="auto" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
+              <Box display="inline-block" 
                 src="/placeholder.svg" 
                 alt="Hanzo Extension Preview" 
-                className="w-full h-auto"
+                render="img" width="100%" height="auto"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+              <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to top, rgb(0 0 0 / 0.7), transparent)"></Box>
+            </Box>
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

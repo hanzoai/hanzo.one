@@ -1,58 +1,57 @@
+import { Box, Button, ChromeText, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Terminal, Download } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const GetStartedSection = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/50 to-black">
-      <div className="max-w-5xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Start Using Datastore in Minutes
           </ChromeText>
-          <p className="text-lg text-neutral-300 mb-12 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={48} maxWidth="var(--container-prose)" marginHorizontal="auto">
             Get up and running quickly with multiple installation options for MacOS, Linux, Windows, FreeBSD, and Docker.
-          </p>
+          </Paragraph>
 
-          <div className="flex flex-col items-center justify-center space-y-8 mb-12">
-            <div className="bg-gray-900/50 p-6 rounded-xl border border-gray-800 w-full max-w-2xl">
-              <div className="flex items-center mb-3">
-                <Terminal className="h-5 w-5 text-purple-400 mr-2" />
-                <span className="text-sm text-neutral-400">Installation Command</span>
-              </div>
-              <div className="font-mono text-lg bg-black/40 p-4 rounded-lg text-neutral-200 overflow-x-auto">
+          <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="center" rowGap={32} marginBottom={48}>
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" width="100%" maxWidth="42rem">
+              <XStack display="flex" alignItems="center" marginBottom={12}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Terminal size={20} color="var(--foreground)" /></Box>
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Installation Command</Text>
+              </XStack>
+              <Box fontFamily="var(--font-mono)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" backgroundColor="rgb(0 0 0 / 0.4)" padding={16} borderRadius="var(--radius-lg)" color="var(--neutral-200)" overflowX="auto">
                 curl https://datastore.hanzo.ai/ | sh
-              </div>
-            </div>
+              </Box>
+            </Box>
 
-            <div className="flex flex-wrap justify-center gap-6">
+            <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={24}>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all flex items-center"
+                color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
               >
-                <Download className="mr-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={20} /></Box>
                 Download
               </Button>
 
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 bg-white/5 hover:bg-white/10 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium transition-all flex items-center"
+                borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" display="flex" alignItems="center" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
               >
-                <Code className="mr-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Code size={20} /></Box>
                 View Docs
               </Button>
-            </div>
-          </div>
+            </XStack>
+          </YStack>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -60,14 +59,14 @@ const GetStartedSection = () => {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)] px-8 py-6 rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all"
+              color="var(--white)" paddingHorizontal={32} paddingVertical={24} borderRadius="var(--radius-lg)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ boxShadow: "0 20px 25px -5px rgb(0 0 0 / .4)", backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              Deploy Now <ArrowRight className="ml-2 h-5 w-5" />
+              Deploy Now <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
             </Button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

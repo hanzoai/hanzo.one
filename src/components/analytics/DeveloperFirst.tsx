@@ -1,13 +1,13 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Code, Terminal, PenTool, Layers } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const tabs = [
-  { id: "js", label: "JavaScript", icon: <Code className="h-4 w-4" /> },
-  { id: "py", label: "Python", icon: <Terminal className="h-4 w-4" /> },
-  { id: "api", label: "API", icon: <PenTool className="h-4 w-4" /> }
+  { id: "js", label: "JavaScript", icon: <Code size={16} /> },
+  { id: "py", label: "Python", icon: <Terminal size={16} /> },
+  { id: "api", label: "API", icon: <PenTool size={16} /> }
 ];
 
 const codeExamples = {
@@ -89,109 +89,105 @@ const DeveloperFirst = () => {
   const [activeTab, setActiveTab] = useState("js");
   
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), transparent, transparent)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Developer-First API & SDKs</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Developer-First API & SDKs</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Easy-to-integrate SDKs and APIs designed for minimal friction and maximum flexibility.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 lg:grid-cols-7 gap-10">
-          <div className="lg:col-span-3 flex flex-col justify-center">
-            <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $lg={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}>
+          <YStack display="flex" flexDirection="column" justifyContent="center" $lg={{ gridColumn: "span 3 / span 3" }}>
+            <MotionBox
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center mb-5">
-                <Layers className="h-6 w-6 text-purple-400 mr-3" />
-                <h3 className="text-2xl font-bold">Designed for Developers</h3>
-              </div>
+              <XStack display="flex" alignItems="center" marginBottom={20}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Layers size={24} color="var(--foreground)" /></Box>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Designed for Developers</H3>
+              </XStack>
               
-              <ul className="space-y-4 mb-8">
-                <li className="flex">
-                  <div className="mr-3 text-purple-400">•</div>
+              <Box render="ul" rowGap={16} marginBottom={32}>
+                <XStack render="li" display="flex">
+                  <Box marginRight={12} color="var(--foreground)">•</Box>
                   <div>
-                    <span className="font-medium text-[var(--white)]">OpenTelemetry Integration</span>
-                    <p className="text-neutral-400 mt-1">Seamlessly integrate with your existing observability stack.</p>
+                    <Text fontWeight="500" color="var(--white)">OpenTelemetry Integration</Text>
+                    <Paragraph color="var(--neutral-400)" marginTop={4}>Seamlessly integrate with your existing observability stack.</Paragraph>
                   </div>
-                </li>
-                <li className="flex">
-                  <div className="mr-3 text-purple-400">•</div>
+                </XStack>
+                <XStack render="li" display="flex">
+                  <Box marginRight={12} color="var(--foreground)">•</Box>
                   <div>
-                    <span className="font-medium text-[var(--white)]">API-first, highly customizable</span>
-                    <p className="text-neutral-400 mt-1">Build exactly what you need with our flexible API.</p>
+                    <Text fontWeight="500" color="var(--white)">API-first, highly customizable</Text>
+                    <Paragraph color="var(--neutral-400)" marginTop={4}>Build exactly what you need with our flexible API.</Paragraph>
                   </div>
-                </li>
-                <li className="flex">
-                  <div className="mr-3 text-purple-400">•</div>
+                </XStack>
+                <XStack render="li" display="flex">
+                  <Box marginRight={12} color="var(--foreground)">•</Box>
                   <div>
-                    <span className="font-medium text-[var(--white)]">Robust documentation and code examples</span>
-                    <p className="text-neutral-400 mt-1">Comprehensive guides and examples to get you started quickly.</p>
+                    <Text fontWeight="500" color="var(--white)">Robust documentation and code examples</Text>
+                    <Paragraph color="var(--neutral-400)" marginTop={4}>Comprehensive guides and examples to get you started quickly.</Paragraph>
                   </div>
-                </li>
-              </ul>
+                </XStack>
+              </Box>
               
-              <div className="flex flex-wrap gap-3">
+              <XStack display="flex" flexWrap="wrap" gap={12}>
                 <Button variant="outline" size="sm">View Documentation</Button>
                 <Button variant="outline" size="sm">API Reference</Button>
                 <Button variant="outline" size="sm">Example Projects</Button>
-              </div>
-            </motion.div>
-          </div>
+              </XStack>
+            </MotionBox>
+          </YStack>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-4"
+            $lg={{ gridColumn: "span 4 / span 4" }}
           >
-            <div className="bg-gray-900/50 rounded-xl border border-gray-800 overflow-hidden shadow-xl">
-              <div className="flex border-b border-gray-800">
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)">
+              <XStack display="flex" borderBottomWidth={1} borderColor="var(--neutral-800)">
                 {tabs.map((tab) => (
-                  <button
+                  <XStack minHeight={44}
                     key={tab.id}
-                    className={`flex items-center px-4 py-3 text-sm font-medium ${
-                      activeTab === tab.id
-                        ? "bg-gray-800 text-[var(--white)]"
-                        : "text-neutral-400 hover:text-[var(--white)] hover:bg-gray-800/50"
-                    }`}
+                    render="button" display="flex" alignItems="center" paddingHorizontal={16} paddingVertical={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" backgroundColor={activeTab === tab.id ? "var(--neutral-800)" : undefined} color={activeTab === tab.id ? "var(--white)" : "var(--neutral-400)"} hoverStyle={activeTab === tab.id ? undefined : { color: "var(--white)", backgroundColor: "var(--surface-card)" }}
                     onClick={() => setActiveTab(tab.id)}
                   >
-                    <span className="mr-2">{tab.icon}</span>
+                    <Text marginRight={8}>{tab.icon}</Text>
                     {tab.label}
-                  </button>
+                  </XStack>
                 ))}
-              </div>
+              </XStack>
               
-              <div className="p-5 overflow-x-auto">
-                <pre className="text-sm text-neutral-300 font-mono whitespace-pre">
+              <Box padding={20} overflowX="auto">
+                <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" fontFamily="var(--font-mono)" whiteSpace="pre">
                   {codeExamples[activeTab as keyof typeof codeExamples]}
-                </pre>
-              </div>
+                </Box>
+              </Box>
               
-              <div className="bg-gray-900 p-3 border-t border-gray-800 text-sm text-neutral-400">
+              <Box backgroundColor="var(--neutral-900)" padding={12} borderTopWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                 {activeTab === "js" && "npm install hanzo-analytics"}
                 {activeTab === "py" && "pip install hanzo-analytics"}
                 {activeTab === "api" && "API Key: Get yours from the Hanzo Analytics dashboard"}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

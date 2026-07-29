@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -26,7 +27,7 @@ import {
 } from "lucide-react";
 import TeamGroup from "./TeamGroup";
 import { teamMembers } from "@/constants/team-members";
-import { Link } from "react-router-dom";
+
 
 interface AgentDetailModalProps {
   agent: {
@@ -48,82 +49,82 @@ const AgentDetailModal: React.FC<AgentDetailModalProps> = ({ agent, isOpen, onCl
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          flexDirection="row" position="fixed" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(0 0 0 / 0.8)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" zIndex={50} display="flex" alignItems="center" justifyContent="center" padding={16}
           onClick={onClose}
         >
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25 }}
-            className={`bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-2xl max-w-lg w-full p-6 shadow-xl`}
+            borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-2xl)" maxWidth="32rem" width="100%" padding={24} boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center">
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${agent.gradient} mr-4`}>
-                  <Icon className="h-6 w-6 text-white" />
-                </div>
+            <XStack display="flex" alignItems="flex-start" justifyContent="space-between" marginBottom={24}>
+              <XStack display="flex" alignItems="center">
+                <Box padding={12} borderRadius="var(--radius-xl)" marginRight={16}>
+                  <Icon height={24} width={24} color="var(--foreground)" />
+                </Box>
                 <div>
-                  <h3 className="text-2xl font-semibold text-white">{agent.name}</h3>
-                  <p className="text-neutral-400">{agent.role}</p>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--foreground)">{agent.name}</H3>
+                  <Paragraph color="var(--neutral-400)">{agent.role}</Paragraph>
                 </div>
-              </div>
-              <button
+              </XStack>
+              <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                 onClick={onClose}
-                className="text-neutral-400 hover:text-white transition-colors"
+                render="button" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
                 <X size={24} />
-              </button>
-            </div>
+              </Box>
+            </XStack>
             
-            <div className="mb-6">
-              <p className="text-neutral-300">{agent.description}</p>
-            </div>
+            <Box marginBottom={24}>
+              <Paragraph color="var(--neutral-300)">{agent.description}</Paragraph>
+            </Box>
             
-            <div className="grid grid-cols-1 gap-4 mb-6">
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h4 className="text-lg font-medium text-white mb-2">Expertise</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-neutral-300">
-                    <span className="mr-2 text-purple-400">•</span>
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={24}>
+              <Box backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)">
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--foreground)" marginBottom={8}>Expertise</H4>
+                <Box render="ul" rowGap={8}>
+                  <XStack render="li" display="flex" alignItems="center" color="var(--neutral-300)">
+                    <Text marginRight={8} color="var(--foreground)">•</Text>
                     Machine learning & data processing
-                  </li>
-                  <li className="flex items-center text-neutral-300">
-                    <span className="mr-2 text-purple-400">•</span>
+                  </XStack>
+                  <XStack render="li" display="flex" alignItems="center" color="var(--neutral-300)">
+                    <Text marginRight={8} color="var(--foreground)">•</Text>
                     Neural network optimization
-                  </li>
-                  <li className="flex items-center text-neutral-300">
-                    <span className="mr-2 text-purple-400">•</span>
+                  </XStack>
+                  <XStack render="li" display="flex" alignItems="center" color="var(--neutral-300)">
+                    <Text marginRight={8} color="var(--foreground)">•</Text>
                     Natural language processing
-                  </li>
-                </ul>
-              </div>
+                  </XStack>
+                </Box>
+              </Box>
               
-              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h4 className="text-lg font-medium text-white mb-2">Integration</h4>
-                <p className="text-neutral-300">
+              <Box backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)">
+                <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--foreground)" marginBottom={8}>Integration</H4>
+                <Paragraph color="var(--neutral-300)">
                   Works seamlessly with human teams via natural language interfaces,
                   and integrates with all major productivity tools and platforms.
-                </p>
-              </div>
-            </div>
+                </Paragraph>
+              </Box>
+            </Grid>
             
-            <div className="flex justify-center">
+            <XStack display="flex" justifyContent="center">
               <Link 
                 to={`/team/${agent.name.toLowerCase()}`}
-                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-xl)" color="var(--foreground)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))"
               >
                 View Full Profile
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Link>
-            </div>
-          </motion.div>
-        </motion.div>
+            </XStack>
+          </MotionBox>
+        </MotionBox>
       )}
     </AnimatePresence>
   );
@@ -267,27 +268,27 @@ const AgentGallery = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-flex p-2 rounded-full bg-purple-900/20 border border-purple-500/20 text-purple-400 mb-4">
-            <Bot className="h-6 w-6" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <XStack display="inline-flex" padding={8} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" marginBottom={16}>
+            <Bot size={24} />
+          </XStack>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Meet Your AI Team
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Our AI team members can handle a wide range of tasks across leadership, engineering, 
             business, and creative functions. Each agent is specialized and 
             trained to excel in their domain.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         <TeamGroup 
           title="Leadership & Core Team" 
@@ -309,14 +310,14 @@ const AgentGallery = () => {
           members={creativeAgents} 
           onMemberClick={openAgentDetail}
         />
-      </div>
+      </Box>
 
       <AgentDetailModal 
         agent={selectedAgent}
         isOpen={isModalOpen}
         onClose={closeAgentDetail}
       />
-    </section>
+    </Box>
   );
 };
 

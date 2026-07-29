@@ -1,7 +1,7 @@
+import { Box, Button, Grid, H1, H2, H3, Paragraph, XStack, YStack } from '@/gui'
 
 import React from 'react';
 import { useAccount } from '@/contexts/AccountContext';
-import { Button } from '@/components/ui/button';
 import { Building, Users, Calendar, Globe, Edit, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AccountLayout from '@/components/account/AccountLayout';
@@ -35,109 +35,109 @@ const OrganizationProfile = () => {
 
   return (
     <AccountLayout>
-      <div className="space-y-8">
+      <Box rowGap={32}>
         {/* Organization Header */}
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="h-32 w-32 bg-gray-900/30 rounded-xl flex items-center justify-center">
-            <Building className="h-16 w-16 text-neutral-400" />
-          </div>
+        <YStack display="flex" flexDirection="column" gap={32} alignItems="flex-start" $md={{ flexDirection: "row" }}>
+          <XStack height={128} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center">
+            <Building size={64} color="var(--neutral-400)" />
+          </XStack>
           
-          <div className="flex-1">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <Box flex={1}>
+            <YStack display="flex" flexDirection="column" gap={16} $md={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <h1 className="text-3xl font-bold">{currentOrganization.name}</h1>
-                <p className="text-neutral-400 mt-1">{orgProfile.description}</p>
+                <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">{currentOrganization.name}</H1>
+                <Paragraph color="var(--neutral-400)" marginTop={4}>{orgProfile.description}</Paragraph>
                 
-                <div className="flex flex-wrap gap-4 mt-4">
-                  <div className="flex items-center text-neutral-400">
-                    <Calendar className="h-4 w-4 mr-2" />
+                <XStack display="flex" flexWrap="wrap" gap={16} marginTop={16}>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Calendar size={16} /></Box>
                     Founded {orgProfile.founded}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <Globe className="h-4 w-4 mr-2" />
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={16} /></Box>
                     {orgProfile.location}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <Users className="h-4 w-4 mr-2" />
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Users size={16} /></Box>
                     {orgProfile.teamSize}
-                  </div>
-                  <div className="flex items-center text-neutral-400">
-                    <Shield className="h-4 w-4 mr-2" />
+                  </XStack>
+                  <XStack display="flex" alignItems="center" color="var(--neutral-400)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Shield size={16} /></Box>
                     {orgProfile.security}
-                  </div>
-                </div>
+                  </XStack>
+                </XStack>
               </div>
               
               <Button 
                 onClick={() => navigate('/account/organization')} 
                 variant="outline" 
-                className="flex items-center bg-[var(--black)] hover:bg-gray-900/30 border-gray-800/30"
+                display="flex" alignItems="center" backgroundColor="var(--black)" borderColor="var(--border-strong)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
               >
-                <Edit className="h-4 w-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Edit size={16} /></Box>
                 Edit Organization
               </Button>
-            </div>
-          </div>
-        </div>
+            </YStack>
+          </Box>
+        </YStack>
         
         {/* Organization Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-[var(--black)] border-0 rounded-lg p-6">
-            <h3 className="font-medium text-neutral-400 mb-2">Current Plan</h3>
-            <div className="text-2xl font-bold">Pro Plan</div>
-            <div className="text-sm text-neutral-400 mt-1">$49/month, billed annually</div>
-          </div>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <Box backgroundColor="var(--black)" borderWidth={0} borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Current Plan</H3>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Pro Plan</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>$49/month, billed annually</Box>
+          </Box>
           
-          <div className="bg-[var(--black)] border-0 rounded-lg p-6">
-            <h3 className="font-medium text-neutral-400 mb-2">Team Members</h3>
-            <div className="text-2xl font-bold">{teamMembers.length}</div>
-            <div className="text-sm text-neutral-400 mt-1">
+          <Box backgroundColor="var(--black)" borderWidth={0} borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Team Members</H3>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">{teamMembers.length}</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>
               {teamMembers.filter(m => m.role === 'Owner' || m.role === 'Admin').length} admins, 
               {teamMembers.filter(m => m.role === 'Member').length} members
-            </div>
-          </div>
+            </Box>
+          </Box>
           
-          <div className="bg-[var(--black)] border-0 rounded-lg p-6">
-            <h3 className="font-medium text-neutral-400 mb-2">Your Role</h3>
-            <div className="text-2xl font-bold">{currentOrganization.role}</div>
-            <div className="text-sm text-neutral-400 mt-1">
+          <Box backgroundColor="var(--black)" borderWidth={0} borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontWeight="500" color="var(--neutral-400)" marginBottom={8}>Your Role</H3>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">{currentOrganization.role}</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>
               {currentOrganization.role === 'owner' 
                 ? 'Full access to all settings' 
                 : currentOrganization.role === 'admin' 
                   ? 'Can invite members and modify settings'
                   : 'Standard access to resources'}
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Grid>
         
         {/* Team Members */}
-        <div className="bg-[var(--black)] border-0 rounded-lg p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-medium">Team Members</h2>
+        <Box backgroundColor="var(--black)" borderWidth={0} borderRadius="var(--radius-lg)" padding={24}>
+          <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+            <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Team Members</H2>
             <Button 
               onClick={() => navigate('/account/organization')} 
               size="sm"
-              className="bg-gray-900 hover:bg-gray-800 border-0"
+              backgroundColor="var(--neutral-900)" borderWidth={0} hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
               View All
             </Button>
-          </div>
+          </XStack>
           
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Grid display="grid" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {teamMembers.slice(0, 3).map(member => (
-              <div key={member.id} className="flex items-center p-3 bg-gray-900/20 rounded-lg">
-                <div className="h-10 w-10 bg-gray-900/50 rounded-full mr-3 flex items-center justify-center text-sm font-medium">
+              <XStack key={member.id} display="flex" alignItems="center" padding={12} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)">
+                <XStack height={40} width={40} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" marginRight={12} display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
                   {member.name.charAt(0)}
-                </div>
+                </XStack>
                 <div>
-                  <div className="font-medium">{member.name}</div>
-                  <div className="text-xs text-neutral-400">{member.role}</div>
+                  <Box fontWeight="500">{member.name}</Box>
+                  <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">{member.role}</Box>
                 </div>
-              </div>
+              </XStack>
             ))}
-          </div>
-        </div>
-      </div>
+          </Grid>
+        </Box>
+      </Box>
     </AccountLayout>
   );
 };

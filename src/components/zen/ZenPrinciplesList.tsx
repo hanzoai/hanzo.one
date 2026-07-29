@@ -1,3 +1,4 @@
+import { Box, Grid, H3, XStack } from '@/gui'
 
 import React from "react";
 import ZenPrincipleCard, { ZenPrinciple } from "./ZenPrincipleCard";
@@ -28,14 +29,14 @@ const ZenPrinciplesList: React.FC<ZenPrinciplesListProps> = ({
 
   if (groupByDiscipline && disciplineGroups) {
     return (
-      <div className="space-y-12">
+      <Box rowGap={48}>
         {Object.entries(disciplineGroups).map(([discipline, disciplinePrinciples]) => (
-          <div key={discipline} className="space-y-6">
-            <div className="flex items-center space-x-2">
-              <h3 className="text-2xl font-semibold text-purple-400">{discipline}</h3>
-              <div className="h-px flex-grow bg-purple-500/20"></div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Box key={discipline} rowGap={24}>
+            <XStack display="flex" alignItems="center" columnGap={8}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--foreground)">{discipline}</H3>
+              <Box height={1} flexGrow={1} backgroundColor="rgb(255 255 255 / 0.2)"></Box>
+            </XStack>
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {disciplinePrinciples.map((principle, index) => (
                 <ZenPrincipleCard 
                   key={principle.title} 
@@ -43,19 +44,19 @@ const ZenPrinciplesList: React.FC<ZenPrinciplesListProps> = ({
                   index={index} 
                 />
               ))}
-            </div>
-          </div>
+            </Grid>
+          </Box>
         ))}
-      </div>
+      </Box>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
       {principles.map((principle, index) => (
         <ZenPrincipleCard key={principle.title} principle={principle} index={index} />
       ))}
-    </div>
+    </Grid>
   );
 };
 

@@ -1,7 +1,7 @@
+import { Button, H1, MotionBox, MotionText, Text, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 interface AITunnelContentProps {
@@ -16,20 +16,20 @@ const AITunnelContent: React.FC<AITunnelContentProps> = ({
   showButtons
 }) => {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4 py-12">
-      <motion.div
+    <YStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center" zIndex={10} paddingHorizontal={16} paddingVertical={48}>
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative"
+        position="relative"
       >
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--white)] mb-6 leading-tight">
+        <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-tight)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
           {title}
-        </h1>
+        </H1>
         
         {/* Glowing underline */}
-        <motion.div 
-          className="h-[2px] bg-gradient-to-r from-purple-500/0 via-purple-500 to-purple-500/0 mx-auto"
+        <MotionBox 
+          height="2px" marginHorizontal="auto" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0), var(--neutral-500), rgb(255 255 255 / 0))"
           style={{ width: '60%' }}
           animate={{
             opacity: [0.5, 1, 0.5],
@@ -41,28 +41,28 @@ const AITunnelContent: React.FC<AITunnelContentProps> = ({
             repeatType: "reverse",
           }}
         />
-      </motion.div>
+      </MotionBox>
 
-      <motion.p
+      <MotionText
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="text-lg md:text-xl text-neutral-300 mb-8 max-w-xl"
+        fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32} maxWidth="36rem" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}
       >
         {subtitle}
-      </motion.p>
+      </MotionText>
 
       {showButtons && (
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4"
+          display="flex" flexDirection="column" gap={16} $sm={{ flexDirection: "row" }}
         >
           <Button 
             size="lg"
             radius="full"
-            className="text-lg px-8 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 border-none"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} borderStyle="none" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
           >
             Start Building
           </Button>
@@ -70,14 +70,14 @@ const AITunnelContent: React.FC<AITunnelContentProps> = ({
             size="lg" 
             variant="outline" 
             radius="full"
-            className="text-lg px-8 text-[var(--white)] border-white/20 bg-[var(--white)]/5 hover:bg-[var(--white)]/10"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} color="var(--white)" borderColor="rgb(255 255 255 / 0.2)" backgroundColor="rgb(255 255 255 / 0.05)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
           >
-            <span className="mr-2">Read Docs</span>
-            <ArrowRight className="h-5 w-5" />
+            <Text marginRight={8}>Read Docs</Text>
+            <ArrowRight size={20} />
           </Button>
-        </motion.div>
+        </MotionBox>
       )}
-    </div>
+    </YStack>
   );
 };
 

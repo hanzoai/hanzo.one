@@ -1,6 +1,6 @@
+import { Box, Button, Text, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { PlusCircle, X } from "lucide-react";
 
 interface Label {
@@ -16,32 +16,32 @@ interface LabelsListProps {
 
 const LabelsList: React.FC<LabelsListProps> = ({ labels = [], onRemove }) => {
   return (
-    <div className="mb-6">
-      <div className="flex justify-between mb-2">
-        <label className="block text-sm font-medium text-neutral-400">Labels</label>
-        <Button size="sm" variant="ghost" className="text-blue-400 hover:text-blue-300 h-6 px-2">
-          <PlusCircle className="h-3.5 w-3.5 mr-1" />
+    <Box marginBottom={24}>
+      <XStack display="flex" justifyContent="space-between" marginBottom={8}>
+        <Text render="label" display="block" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-400)">Labels</Text>
+        <Button size="sm" variant="ghost" color="var(--foreground)" height={24} paddingHorizontal={8} hoverStyle={{ color: "var(--foreground)" }}>
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><PlusCircle size={14} /></Box>
           Add
         </Button>
-      </div>
-      <div className="flex flex-wrap gap-2">
+      </XStack>
+      <XStack display="flex" flexWrap="wrap" gap={8}>
         {labels.map(label => (
-          <div 
+          <XStack 
             key={label.id}
-            className="flex items-center gap-2 px-2 py-1 rounded text-sm"
+            display="flex" alignItems="center" gap={8} paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
             style={{ backgroundColor: `${label.color}20`, color: label.color }}
           >
             <span>{label.name}</span>
             <button onClick={() => onRemove && onRemove(label.id)}>
-              <X className="h-3 w-3" />
+              <X size={12} />
             </button>
-          </div>
+          </XStack>
         ))}
         {!labels.length && (
-          <div className="text-sm text-neutral-500">No labels</div>
+          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">No labels</Box>
         )}
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

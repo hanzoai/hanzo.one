@@ -1,9 +1,6 @@
+import { Box, Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, Grid, Input, Label, Text, XStack } from '@/gui'
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useBilling } from "@/contexts/BillingContext";
 import { CreditCard, Loader2 } from "lucide-react";
 
@@ -55,42 +52,38 @@ const PurchaseCreditsDialog = ({ open, onOpenChange }: PurchaseCreditsDialogProp
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-[var(--black)] border-gray-800">
+      <DialogContent backgroundColor="var(--black)" borderColor="var(--neutral-800)" $sm={{ maxWidth: "425px" }}>
         <DialogHeader>
-          <DialogTitle className="text-xl">Purchase Credits</DialogTitle>
+          <DialogTitle fontSize="var(--text-xl)" lineHeight="var(--leading-xl)">Purchase Credits</DialogTitle>
           <DialogDescription>
             Add more credits to your account. Credits are used for resource usage.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <Box rowGap={24} paddingVertical={16}>
           <div>
-            <Label className="text-neutral-400 mb-2 block">Select an amount</Label>
-            <div className="grid grid-cols-2 gap-3">
+            <Label color="var(--neutral-400)" marginBottom={8} display="block">Select an amount</Label>
+            <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12}>
               {PREDEFINED_AMOUNTS.map((amount) => (
                 <Button
                   key={amount}
                   type="button"
                   variant={selectedAmount === amount ? "default" : "outline"}
                   onClick={() => handleSelectAmount(amount)}
-                  className={`${
-                    selectedAmount === amount
-                      ? "bg-indigo-600 hover:bg-indigo-700 text-[var(--white)]"
-                      : "border-gray-700 text-[var(--white)]"
-                  }`}
+                  backgroundColor={selectedAmount === amount ? "var(--neutral-600)" : undefined} color={selectedAmount === amount ? "var(--white)" : "var(--white)"} borderColor={selectedAmount === amount ? undefined : "var(--neutral-700)"} hoverStyle={selectedAmount === amount ? { backgroundColor: "var(--neutral-700)" } : undefined}
                 >
                   ${amount}
                 </Button>
               ))}
-            </div>
+            </Grid>
           </div>
 
           <div>
-            <Label htmlFor="custom-amount" className="text-neutral-400 mb-2 block">
+            <Label htmlFor="custom-amount" color="var(--neutral-400)" marginBottom={8} display="block">
               Or enter a custom amount
             </Label>
-            <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">$</span>
+            <Box position="relative">
+              <Text position="absolute" left={12} top="50%" y="-50%" color="var(--neutral-400)">$</Text>
               <Input
                 id="custom-amount"
                 placeholder="Enter amount"
@@ -99,47 +92,47 @@ const PurchaseCreditsDialog = ({ open, onOpenChange }: PurchaseCreditsDialogProp
                 step="1"
                 value={customAmount}
                 onChange={handleCustomAmountChange}
-                className="pl-8 bg-gray-900 border-gray-700 text-[var(--white)]"
+                paddingLeft={32} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-700)" color="var(--white)"
               />
-            </div>
+            </Box>
           </div>
 
-          <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800">
-            <div className="flex justify-between text-sm mb-1">
-              <span className="text-neutral-400">Amount:</span>
+          <Box backgroundColor="var(--surface-card-emphasis)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)">
+            <XStack display="flex" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={4}>
+              <Text color="var(--neutral-400)">Amount:</Text>
               <span>${getEffectiveAmount().toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between text-sm font-medium">
-              <span className="text-neutral-400">Total:</span>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
+              <Text color="var(--neutral-400)">Total:</Text>
               <span>${getEffectiveAmount().toFixed(2)}</span>
-            </div>
-          </div>
-        </div>
+            </XStack>
+          </Box>
+        </Box>
 
         <DialogFooter>
           <Button
             type="button"
             variant="ghost"
             onClick={() => onOpenChange(false)}
-            className="text-neutral-400 hover:text-[var(--white)] hover:bg-gray-800"
+            color="var(--neutral-400)" hoverStyle={{ color: "var(--white)", backgroundColor: "var(--neutral-800)" }}
             disabled={isProcessing}
           >
             Cancel
           </Button>
           <Button
             type="button"
-            className="bg-[var(--white)] hover:bg-gray-200 text-black"
+            backgroundColor="var(--white)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
             onClick={handlePurchase}
             disabled={isProcessing || getEffectiveAmount() <= 0}
           >
             {isProcessing ? (
               <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Loader2 size={16} /></Box>
                 Processing...
               </>
             ) : (
               <>
-                <CreditCard className="h-4 w-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CreditCard size={16} /></Box>
                 Purchase Credits
               </>
             )}

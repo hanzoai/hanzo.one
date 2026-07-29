@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -16,49 +17,49 @@ const techStacks = [
 
 const TechStack = () => {
   return (
-    <section id="learn-more" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-wrap justify-center gap-8 mb-16">
+    <Box id="learn-more" render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), var(--neutral-900))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={32} marginBottom={64}>
           {techStacks.map((tech, index) => (
-            <motion.div
+            <MotionBox
               key={tech}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="px-6 py-3 bg-gray-800/50 rounded-full border border-gray-700 hover:border-purple-500/50 hover:bg-gray-800 transition-colors"
+              
+              paddingHorizontal={24} paddingVertical={12} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-800)" }}
             >
               {tech}
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
+        </XStack>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center"
+          textAlign="center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Developer-Focused Public Cloud
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Help us build the next public cloud. No, seriously. Is your product something devs can take advantage of to ship better apps? Work with us.
-          </p>
+          </Paragraph>
           
-          <motion.a
+          <MotionBox
             href="#contact"
             initial={{ opacity: 0.9 }}
             whileHover={{ opacity: 1, scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-            className="inline-block px-8 py-4 rounded-lg bg-[var(--white)] text-black font-medium hover:shadow-lg hover:shadow-white/20 transition-all"
+            
+            display="inline-block" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-lg)" backgroundColor="var(--white)" color="var(--pure-black)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ boxShadow: "0 10px 15px -3px rgb(0 0 0 / .35)", shadowColor: "rgb(255 255 255 / 0.2)" }}
           >
             Build A Cloud For Developers
-          </motion.a>
-        </motion.div>
-      </div>
-    </section>
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

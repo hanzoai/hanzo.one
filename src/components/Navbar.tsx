@@ -1,3 +1,4 @@
+import { Box, XStack } from '@/gui'
 import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { MobileMenu } from "./navigation/MobileMenu";
@@ -59,21 +60,21 @@ const Navbar = () => {
   return (
     <>
       <NavbarContainer isScrolled={isScrolled}>
-        <div className="flex items-center w-full">
+        <XStack display="flex" alignItems="center" width="100%">
           {/* Left: Logo (right-click for explore menu) */}
-          <div className="flex-shrink-0">
+          <Box flexShrink={0}>
             <Logo />
-          </div>
+          </Box>
 
           {/* Center: Navigation */}
-          <div className="flex-1 flex justify-center">
+          <XStack flex={1} display="flex" justifyContent="center">
             <DesktopNav />
-          </div>
+          </XStack>
 
           {/* Right: Auth Buttons */}
-          <div className="flex-shrink-0">
+          <Box flexShrink={0}>
             <AuthButtons user={user} onOpenCommandPalette={handleOpenCommandPalette} />
-          </div>
+          </Box>
 
           {/* Mobile Menu */}
           <MobileMenu
@@ -81,7 +82,7 @@ const Navbar = () => {
             onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             onOpenSearch={handleOpenCommandPalette}
           />
-        </div>
+        </XStack>
       </NavbarContainer>
 
       {/* Command Palette */}

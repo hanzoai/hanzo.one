@@ -1,6 +1,6 @@
+import { Box, Button, MotionBox } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Github } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,41 +12,41 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ titleAnimationComplete }) => 
   const navigate = useNavigate();
 
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: titleAnimationComplete ? 1 : 0, y: titleAnimationComplete ? 0 : 20 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="flex flex-col sm:flex-row justify-center mt-6"
+      display="flex" flexDirection="column" justifyContent="center" marginTop={24} $sm={{ flexDirection: "row" }}
     >
       <Button 
         size="sm" 
-        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-[var(--white)] rounded-full px-4 py-2 h-10 min-w-[120px]"
+        color="var(--white)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="120px" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}
         onClick={() => navigate('/signup')}
       >
         Get Started
-        <ArrowRight className="ml-2 h-4 w-4" />
+        <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
       </Button>
       
       <Button 
         size="sm" 
         variant="outline" 
-        className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 rounded-full px-4 py-2 h-10 min-w-[120px]"
+        color="var(--white)" borderColor="var(--neutral-700)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="120px" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
         onClick={() => navigate('/philosophy')}
       >
         Zen of Hanzo
-        <ArrowRight className="ml-2 h-4 w-4" />
+        <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
       </Button>
       
       <Button 
         size="sm" 
         variant="outline" 
-        className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 rounded-full px-4 py-2 h-10 min-w-[120px]"
+        color="var(--white)" borderColor="var(--neutral-700)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} height={40} minWidth="120px" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
         onClick={() => window.open('https://github.com/hanzoai', '_blank')}
       >
         Star on GitHub
-        <Github className="ml-2 h-4 w-4" />
+        <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Github size={16} /></Box>
       </Button>
-    </motion.div>
+    </MotionBox>
   );
 };
 

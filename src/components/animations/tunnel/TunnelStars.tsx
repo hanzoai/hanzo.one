@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -18,9 +19,9 @@ const TunnelStars: React.FC<TunnelStarsProps> = ({ starCount = 60 }) => {
     const speed = Math.random() * 5 + 5; // Increased speed for smoother animation
     
     stars.push(
-      <motion.div
+      <MotionBox
         key={`star-${i}`}
-        className="absolute bg-[var(--white)] rounded-full"
+        position="absolute" backgroundColor="var(--white)" borderRadius="var(--radius-full)"
         style={{
           width: `${size}px`,
           height: `${size}px`,

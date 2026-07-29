@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -43,45 +44,45 @@ const ecosystemCategories = [
 
 const Ecosystem = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Hanzo Balancer Ecosystem</h2>
-          <p className="text-xl text-neutral-300 max-w-4xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Hanzo Balancer Ecosystem</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="56rem" marginHorizontal="auto">
             Hanzo Balancer integrates with every major cluster technology and includes built-in support for 
             the top distributed tracing and metrics providers.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {ecosystemCategories.map((category, index) => (
-            <motion.div
+            <MotionBox
               key={category.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800/30 p-6 rounded-lg border border-gray-700"
+              backgroundColor="var(--surface-card-emphasis)" padding={24} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)"
             >
-              <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-              <ul className="space-y-2">
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>{category.title}</H3>
+              <Box render="ul" rowGap={8}>
                 {category.items.map((item) => (
-                  <li key={item} className="text-neutral-300">
+                  <Box key={item} render="li" color="var(--neutral-300)">
                     {item}
-                  </li>
+                  </Box>
                 ))}
-              </ul>
-            </motion.div>
+              </Box>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

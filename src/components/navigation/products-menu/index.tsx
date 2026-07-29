@@ -1,9 +1,8 @@
+import { Box, Button, Grid, H3, Link, Text, XStack } from '@/gui'
 import { productsNav, featuredProducts } from "@/constants/navigation-data";
-import { Link } from "react-router-dom";
+
 import NavMenu from "../NavMenu";
 import { Sparkles, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const ITEMS_PER_CATEGORY = 3;
@@ -14,126 +13,83 @@ export const ProductsMenu = () => {
   return (
     <NavMenu label="Products">
       {(closeMenu) => (
-        <div className="w-full">
+        <Box width="100%">
           {/* Featured Products Row */}
-          <div className={cn(
-            "mb-4 pb-4 border-b",
-            isDarkMode ? "border-neutral-800" : "border-neutral-200"
-          )}>
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="h-3.5 w-3.5 text-[#fd4444]" />
-              <span className={cn(
-                "text-xs font-medium uppercase tracking-wider",
-                isDarkMode ? "text-neutral-400" : "text-neutral-500"
-              )}>Featured</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
+          <Box marginBottom={16} paddingBottom={16} borderBottomWidth={1} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+            <XStack display="flex" alignItems="center" gap={8} marginBottom={8}>
+              <Sparkles size={14} color="var(--foreground)" />
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" textTransform="uppercase" letterSpacing="0.05em" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>Featured</Text>
+            </XStack>
+            <XStack display="flex" flexWrap="wrap" gap={8}>
               {featuredProducts.map((product) => {
                 const Icon = product.icon;
                 return (
-                  <Link
+                  <Link tap
                     key={product.title}
                     to={product.href}
                     onClick={closeMenu}
-                    className={cn(
-                      "flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all group",
-                      isDarkMode
-                        ? "bg-neutral-900/50 border-neutral-800 hover:border-[#fd4444]/50 hover:bg-neutral-800/50"
-                        : "bg-neutral-100 border-neutral-200 hover:border-[#fd4444]/50 hover:bg-neutral-50"
-                    )}
+                    group display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
                   >
-                    {Icon && <Icon className={cn(
-                      "h-3.5 w-3.5 group-hover:text-[#fd4444]",
-                      isDarkMode ? "text-neutral-400" : "text-neutral-500"
-                    )} />}
-                    <span className={cn(
-                      "text-sm font-medium group-hover:text-[#fd4444]",
-                      isDarkMode ? "text-neutral-300" : "text-neutral-700"
-                    )}>{product.title}</span>
+                    {Icon && <Icon height={14} width={14} $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"} />}
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"}>{product.title}</Text>
                   </Link>
                 );
               })}
-            </div>
-          </div>
+            </XStack>
+          </Box>
 
           {/* 9-Category Grid - Condensed to 3 items per category */}
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-4">
+          <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" columnGap={24} rowGap={16} $lg={{ gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}>
             {productsNav.map((section) => (
-              <div key={section.title} className="space-y-1.5">
-                <h3 className={cn(
-                  "text-[10px] font-semibold uppercase tracking-wider mb-2",
-                  isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                )}>
+              <Box key={section.title} rowGap={6}>
+                <H3 fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.05em" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                   {section.title}
-                </h3>
-                <div className="space-y-0.5">
+                </H3>
+                <Box rowGap={2}>
                   {section.items.slice(0, ITEMS_PER_CATEGORY).map((item) => {
                     const Icon = item.icon;
                     return (
-                      <Link
+                      <Link tap
                         key={item.title}
                         to={item.href}
                         onClick={closeMenu}
-                        className="flex items-center gap-1.5 py-0.5 group"
+                        group display="flex" alignItems="center" gap={6} paddingVertical={2}
                       >
-                        {Icon && <Icon className={cn(
-                          "h-3 w-3 group-hover:text-[#fd4444]",
-                          isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                        )} />}
-                        <span className={cn(
-                          "text-xs transition-colors group-hover:text-[#fd4444]",
-                          isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                        )}>
+                        {Icon && <Icon height={12} width={12} $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} />}
+                        <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                           {item.title}
-                        </span>
+                        </Text>
                       </Link>
                     );
                   })}
                   {section.items.length > ITEMS_PER_CATEGORY && (
-                    <Link
+                    <Link tap
                       to="/products"
                       onClick={closeMenu}
-                      className={cn(
-                        "flex items-center gap-1 py-0.5 text-[10px] transition-colors hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-600" : "text-neutral-500"
-                      )}
+                      display="flex" alignItems="center" gap={4} paddingVertical={2} fontSize="10px" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-600)" : "var(--neutral-500)"}
                     >
                       +{section.items.length - ITEMS_PER_CATEGORY} more
-                      <ArrowRight className="h-2.5 w-2.5" />
+                      <ArrowRight size={10} />
                     </Link>
                   )}
-                </div>
-              </div>
+                </Box>
+              </Box>
             ))}
-          </div>
+          </Grid>
 
           {/* Footer - More compact */}
-          <div className={cn(
-            "mt-4 pt-4 border-t flex items-center justify-between",
-            isDarkMode ? "border-neutral-800" : "border-neutral-200"
-          )}>
-            <div className="flex items-center gap-3">
-              <div className={cn(
-                "rounded-md px-2.5 py-1 font-mono text-[10px]",
-                isDarkMode ? "bg-neutral-900 text-green-400" : "bg-neutral-100 text-green-600"
-              )}>
+          <XStack marginTop={16} paddingTop={16} borderTopWidth={1} display="flex" alignItems="center" justifyContent="space-between" borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+            <XStack display="flex" alignItems="center" gap={12}>
+              <Box borderRadius="var(--radius-md)" paddingHorizontal={10} paddingVertical={4} fontFamily="var(--font-mono)" fontSize="10px" backgroundColor={isDarkMode ? "var(--neutral-900)" : "var(--neutral-100)"} color={isDarkMode ? "var(--foreground)" : "var(--neutral-600)"}>
                 curl -fsSL hanzo.sh | sh
-              </div>
-              <span className={cn(
-                "text-[10px]",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>Install Hanzo CLI</span>
-            </div>
-            <div className="flex gap-2">
+              </Box>
+              <Text fontSize="10px" color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>Install Hanzo CLI</Text>
+            </XStack>
+            <XStack display="flex" gap={8}>
               <Button
                 size="sm"
                 variant="outline"
-                className={cn(
-                  "h-7 text-xs px-3",
-                  isDarkMode
-                    ? "bg-transparent border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                    : "bg-transparent border-neutral-300 text-neutral-700 hover:bg-neutral-100 hover:text-black"
-                )}
+                height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} backgroundColor={isDarkMode ? "transparent" : "transparent"} borderColor={isDarkMode ? "var(--neutral-700)" : "var(--neutral-300)"} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"} hoverStyle={isDarkMode ? { backgroundColor: "var(--neutral-800)", color: "var(--foreground)" } : { backgroundColor: "var(--neutral-100)", color: "var(--pure-black)" }}
                 asChild
               >
                 <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
@@ -142,17 +98,17 @@ export const ProductsMenu = () => {
               </Button>
               <Button
                 size="sm"
-                className="bg-[#fd4444] text-white hover:bg-[#fd4444]/90 h-7 text-xs px-3"
+                backgroundColor="var(--neutral-800)" color="var(--foreground)" height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                 asChild
               >
                 <Link to="/products" onClick={closeMenu}>
                   All Products
-                  <ArrowRight className="ml-1 h-3 w-3" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ArrowRight size={12} /></Box>
                 </Link>
               </Button>
-            </div>
-          </div>
-        </div>
+            </XStack>
+          </XStack>
+        </Box>
       )}
     </NavMenu>
   );

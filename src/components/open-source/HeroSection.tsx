@@ -1,53 +1,53 @@
+import { Box, Button, H1, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, Star, GitBranch } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-teal-400 mb-6">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" backgroundClip="text" color="transparent" marginBottom={24} backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))" $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
             Built in the Open, For Everyone
-          </h1>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          </H1>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Hanzo is proudly open source. We believe in transparency, collaboration, and community-driven innovation. 
             Everything we build is available for you to use, modify, and contribute to.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
             <Button 
               size="sm" 
-              className="bg-green-600 hover:bg-green-700"
+              backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
-              <Github className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
               <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer">View on GitHub</a>
             </Button>
             <Button 
               size="sm" 
               variant="outline" 
-              className="border-green-500/30 text-[var(--white)] hover:bg-green-800/30"
+              borderColor="var(--border-strong)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             >
-              <Star className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Star size={16} /></Box>
               <a href="https://github.com/hanzoai/platform" target="_blank" rel="noopener noreferrer">Star Platform Repo</a>
             </Button>
             <Button 
               size="sm" 
               variant="outline" 
-              className="border-green-500/30 text-[var(--white)] hover:bg-green-800/30"
+              borderColor="var(--border-strong)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             >
-              <GitBranch className="mr-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><GitBranch size={16} /></Box>
               <a href="https://github.com/hanzoai/platform/fork" target="_blank" rel="noopener noreferrer">Fork & Contribute</a>
             </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

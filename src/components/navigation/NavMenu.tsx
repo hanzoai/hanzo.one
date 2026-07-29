@@ -1,7 +1,7 @@
+import { Box, XStack, YStack } from '@/gui'
 import { useState, ReactNode, useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { cn } from "@/lib/utils";
 import { useTheme } from "@/contexts/ThemeContext";
 
 type NavMenuProps = {
@@ -73,58 +73,56 @@ export const NavMenu = ({ label, children }: NavMenuProps) => {
     : children;
 
   return (
-    <div 
-      className="relative" 
+    <Box 
+      position="relative" 
       ref={menuRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Menu trigger button */}
-      <button
-        onClick={toggleMenu}
-        className={cn(
-          "inline-flex items-center outline-none focus:outline-none transition-colors text-sm font-medium",
-          isOpen
-            ? (isDarkMode ? "text-white" : "text-black")
-            : (isDarkMode ? "text-neutral-400 hover:text-white" : "text-neutral-600 hover:text-black")
-        )}
+      <XStack
+        render="button"
+        onPress={toggleMenu}
+        minHeight={44}
+        display="inline-flex"
+        alignItems="center"
+        outlineStyle="none"
+        backgroundColor="transparent"
+        borderWidth={0}
+        cursor="pointer"
+        transition="color var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
+        fontSize="var(--text-sm)"
+        fontWeight="500"
+        color={isOpen
+          ? (isDarkMode ? 'var(--foreground)' : 'var(--pure-black)')
+          : (isDarkMode ? 'var(--neutral-400)' : 'var(--neutral-600)')}
+        hoverStyle={{ color: isDarkMode ? 'var(--foreground)' : 'var(--pure-black)' }}
       >
         {label}
-        <ChevronDown
-          className={cn(
-            "ml-1 h-4 w-4 transition-transform duration-300",
-            isOpen && "rotate-180"
-          )}
-        />
-      </button>
+        <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ChevronDown
+          size={16}
+        /></Box>
+      </XStack>
 
       {/* Dropdown content */}
       {isOpen && (
         <>
           {/* Desktop: Full viewport width dropdown with backdrop */}
           {isDesktop ? (
-            <div className={cn(
-                   "fixed left-0 w-full backdrop-blur-md z-50 border-b shadow-2xl",
-                   isDarkMode
-                     ? "bg-black/95 border-gray-800/50"
-                     : "bg-white/95 border-gray-200"
-                 )}
+            <Box position="fixed" left={0} width="100%" backdropFilter="blur(12px)" WebkitBackdropFilter="blur(12px)" zIndex={50} borderBottomWidth={1} boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" backgroundColor={isDarkMode ? "rgb(0 0 0 / 0.95)" : "rgb(255 255 255 / 0.95)"} borderColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-200)"}
                  style={{
                    top: 'var(--header-height)',
                  }}>
-              <div className="py-6">
-                <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12">
+              <Box paddingVertical={24}>
+                <Box width="100%" maxWidth="1400px" marginHorizontal="auto" paddingHorizontal={16} $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
                   {childrenWithProps}
-                </div>
-              </div>
-            </div>
+                </Box>
+              </Box>
+            </Box>
           ) : (
             /* Mobile: Full-viewport menu overlay */
-            <div
-              className={cn(
-                "fixed inset-0 left-0 right-0 backdrop-blur-md z-50 w-screen transition-opacity duration-300 ease-in-out",
-                isDarkMode ? "bg-black/95" : "bg-white/95"
-              )}
+            <Box
+              position="fixed" top={0} right={0} bottom={0} left={0} backdropFilter="blur(12px)" WebkitBackdropFilter="blur(12px)" zIndex={50} width="100vw" transition="opacity 300ms ease-in-out" backgroundColor={isDarkMode ? "rgb(0 0 0 / 0.95)" : "rgb(255 255 255 / 0.95)"}
               style={{
                 top: 'var(--header-height)',
                 height: 'calc(100vh - var(--header-height))',
@@ -132,21 +130,21 @@ export const NavMenu = ({ label, children }: NavMenuProps) => {
               }}
               onClick={closeMenu}
             >
-              <div 
-                className="relative w-full h-full overflow-y-auto"
+              <Box 
+                position="relative" width="100%" height="100%" overflowY="auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="px-4 sm:px-6 lg:px-8 py-6 h-full flex flex-col">
-                  <div className="flex-grow overflow-x-hidden">
+                <YStack paddingHorizontal={16} paddingVertical={24} height="100%" display="flex" flexDirection="column" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+                  <Box flexGrow={1} overflowX="hidden">
                     {childrenWithProps}
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </Box>
+                </YStack>
+              </Box>
+            </Box>
           )}
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,124 +1,124 @@
+import { Anchor, Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Target, BarChart3, Zap, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const SenseiMethod = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-4">
+            <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={16}>
               Principles in Practice
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            </Text>
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               The Sensei Method
-            </h2>
-            <p className="text-xl text-neutral-300 mb-8">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
               A practical framework for applying AI and data to achieve exponential growth for businesses.
               If the "Zen of Hanzo" is the theory, the Sensei Method is the practice.
-            </p>
+            </Paragraph>
             
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start">
-                <div className="p-2 bg-purple-900/30 rounded-lg mr-4">
-                  <Target className="h-6 w-6 text-purple-400" />
-                </div>
+            <Box rowGap={24} marginBottom={32}>
+              <XStack display="flex" alignItems="flex-start">
+                <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" marginRight={16}>
+                  <Target size={24} color="var(--foreground)" />
+                </Box>
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">Identify First-Principle Goals</h3>
-                  <p className="text-neutral-300">Drill down to the fundamental objectives that drive real value.</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>Identify First-Principle Goals</H3>
+                  <Paragraph color="var(--neutral-300)">Drill down to the fundamental objectives that drive real value.</Paragraph>
                 </div>
-              </div>
+              </XStack>
               
-              <div className="flex items-start">
-                <div className="p-2 bg-purple-900/30 rounded-lg mr-4">
-                  <Zap className="h-6 w-6 text-purple-400" />
-                </div>
+              <XStack display="flex" alignItems="flex-start">
+                <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" marginRight={16}>
+                  <Zap size={24} color="var(--foreground)" />
+                </Box>
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">Rapid Prototyping</h3>
-                  <p className="text-neutral-300">Build quickly, test assumptions, and iterate with purpose.</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>Rapid Prototyping</H3>
+                  <Paragraph color="var(--neutral-300)">Build quickly, test assumptions, and iterate with purpose.</Paragraph>
                 </div>
-              </div>
+              </XStack>
               
-              <div className="flex items-start">
-                <div className="p-2 bg-purple-900/30 rounded-lg mr-4">
-                  <BarChart3 className="h-6 w-6 text-purple-400" />
-                </div>
+              <XStack display="flex" alignItems="flex-start">
+                <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" marginRight={16}>
+                  <BarChart3 size={24} color="var(--foreground)" />
+                </Box>
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">Data-Driven Decisions</h3>
-                  <p className="text-neutral-300">Measure impact, analyze patterns, and let insights guide strategy.</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>Data-Driven Decisions</H3>
+                  <Paragraph color="var(--neutral-300)">Measure impact, analyze patterns, and let insights guide strategy.</Paragraph>
                 </div>
-              </div>
+              </XStack>
               
-              <div className="flex items-start">
-                <div className="p-2 bg-purple-900/30 rounded-lg mr-4">
-                  <Users className="h-6 w-6 text-purple-400" />
-                </div>
+              <XStack display="flex" alignItems="flex-start">
+                <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" marginRight={16}>
+                  <Users size={24} color="var(--foreground)" />
+                </Box>
                 <div>
-                  <h3 className="text-xl font-semibold mb-1">Sensei Mentorship</h3>
-                  <p className="text-neutral-300">Work directly with expert "senseis" to implement and refine your approach.</p>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>Sensei Mentorship</H3>
+                  <Paragraph color="var(--neutral-300)">Work directly with expert "senseis" to implement and refine your approach.</Paragraph>
                 </div>
-              </div>
-            </div>
+              </XStack>
+            </Box>
             
             <Button 
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-[var(--white)]"
+              color="var(--white)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
             >
-              <a href="https://sensei.group" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <Anchor href="https://sensei.group" target="_blank" rel="noopener noreferrer" display="flex" alignItems="center">
                 Visit Sensei Group
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+              </Anchor>
             </Button>
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            position="relative"
           >
-            <div className="bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl p-1">
-              <div className="bg-[var(--black)]/50 backdrop-blur-sm rounded-xl overflow-hidden">
-                <img 
+            <Box borderRadius="var(--radius-2xl)" padding={4} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+              <Box backgroundColor="rgb(0 0 0 / 0.5)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" overflow="hidden">
+                <Box display="inline-block" 
                   src="/placeholder.svg" 
                   alt="Sensei Method in action" 
-                  className="w-full h-auto rounded-t-xl"
+                  render="img" width="100%" height="auto" borderTopLeftRadius="var(--radius-xl)" borderTopRightRadius="var(--radius-xl)"
                 />
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-4">The Impact of Sensei</h3>
-                  <p className="text-neutral-300 mb-6">
+                <Box padding={32}>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>The Impact of Sensei</H3>
+                  <Paragraph color="var(--neutral-300)" marginBottom={24}>
                     Through the Sensei Method and Sensei Group, we've helped clients generate over $1 billion in revenue,
                     launch groundbreaking products, and build scalable businesses.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="bg-purple-900/30 px-4 py-2 rounded-lg">
-                      <span className="text-2xl font-bold text-purple-300">$1B+</span>
-                      <p className="text-sm text-neutral-400">Client Revenue</p>
-                    </div>
-                    <div className="bg-blue-900/30 px-4 py-2 rounded-lg">
-                      <span className="text-2xl font-bold text-blue-300">100+</span>
-                      <p className="text-sm text-neutral-400">Product Launches</p>
-                    </div>
-                    <div className="bg-green-900/30 px-4 py-2 rounded-lg">
-                      <span className="text-2xl font-bold text-green-300">10+</span>
-                      <p className="text-sm text-neutral-400">Years Experience</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                  </Paragraph>
+                  <XStack display="flex" flexWrap="wrap" gap={16}>
+                    <Box backgroundColor="var(--surface-card-emphasis)" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)">
+                      <Text fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">$1B+</Text>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Client Revenue</Paragraph>
+                    </Box>
+                    <Box backgroundColor="var(--surface-card-emphasis)" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)">
+                      <Text fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">100+</Text>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Product Launches</Paragraph>
+                    </Box>
+                    <Box backgroundColor="var(--surface-card-emphasis)" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)">
+                      <Text fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">10+</Text>
+                      <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Years Experience</Paragraph>
+                    </Box>
+                  </XStack>
+                </Box>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

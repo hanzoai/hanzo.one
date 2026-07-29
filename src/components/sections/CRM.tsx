@@ -1,101 +1,101 @@
+import { Box, Button, Grid, H3, MotionBox, MotionText, Paragraph } from '@/gui'
 
 import { motion } from "framer-motion";
 import { Users, MessageSquare, BarChart, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/radix-button";
 
 const CRM = () => {
   return (
-    <section className="py-24 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-black/50" />
+    <Box render="section" paddingVertical={96} backgroundColor="var(--black)" position="relative" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.5))" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.h2 
+      <Box position="relative" zIndex={10} maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <MotionText 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl font-bold text-[var(--white)] mb-4"
+            fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
           >
             Hanzo CRM
-          </motion.h2>
-          <motion.p
+          </MotionText>
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg text-neutral-400 max-w-2xl mx-auto"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto"
           >
             Streamline your customer relationships with AI-powered insights and automation
-          </motion.p>
-        </div>
+          </MotionText>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300"
+            
+            backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ outlineColor: "rgb(255 255 255 / 0.2)", outlineStyle: "solid" }}
           >
-            <Users className="w-12 h-12 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Contact Management</h3>
-            <p className="text-neutral-400">Organize and track customer interactions with AI-enhanced contact profiles</p>
-          </motion.div>
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Users size={48} color="var(--neutral-400)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Contact Management</H3>
+            <Paragraph color="var(--neutral-400)">Organize and track customer interactions with AI-enhanced contact profiles</Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300"
+            
+            backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ outlineColor: "rgb(255 255 255 / 0.2)", outlineStyle: "solid" }}
           >
-            <MessageSquare className="w-12 h-12 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Smart Communication</h3>
-            <p className="text-neutral-400">Automated messaging and follow-ups powered by contextual AI understanding</p>
-          </motion.div>
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><MessageSquare size={48} color="var(--neutral-400)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Smart Communication</H3>
+            <Paragraph color="var(--neutral-400)">Automated messaging and follow-ups powered by contextual AI understanding</Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300"
+            
+            backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ outlineColor: "rgb(255 255 255 / 0.2)", outlineStyle: "solid" }}
           >
-            <BarChart className="w-12 h-12 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Analytics Dashboard</h3>
-            <p className="text-neutral-400">Real-time insights and predictive analytics to optimize customer relationships</p>
-          </motion.div>
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><BarChart size={48} color="var(--neutral-400)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Analytics Dashboard</H3>
+            <Paragraph color="var(--neutral-400)">Real-time insights and predictive analytics to optimize customer relationships</Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 hover:ring-white/20 transition-all duration-300"
+            
+            backgroundColor="var(--surface-card-emphasis)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ outlineColor: "rgb(255 255 255 / 0.2)", outlineStyle: "solid" }}
           >
-            <Calendar className="w-12 h-12 text-neutral-400 mb-4" />
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-2">Smart Scheduling</h3>
-            <p className="text-neutral-400">AI-powered meeting scheduling and follow-up management</p>
-          </motion.div>
-        </div>
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Calendar size={48} color="var(--neutral-400)" /></Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Smart Scheduling</H3>
+            <Paragraph color="var(--neutral-400)">AI-powered meeting scheduling and follow-up management</Paragraph>
+          </MotionBox>
+        </Grid>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 text-center"
+          marginTop={64} textAlign="center"
         >
           <Button
             size="lg"
-            className="bg-[var(--white)] text-black hover:bg-gray-100"
+            backgroundColor="var(--white)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-100)" }}
           >
             <a href="https://console.hanzo.ai/crm">Try Hanzo CRM</a>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

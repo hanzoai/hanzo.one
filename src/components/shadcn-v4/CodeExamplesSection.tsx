@@ -1,8 +1,7 @@
+import { Box, Button, H2, MotionBox, Paragraph, Tabs, TabsContent, TabsList, TabsTrigger, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
 
 const CodeExamplesSection = () => {
@@ -15,46 +14,46 @@ const CodeExamplesSection = () => {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Code Examples</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} color="var(--foreground)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Code Examples</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             See how to implement shadcn/ui components with Tailwind v4 and React 19.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <Tabs defaultValue="css-variables" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+        <Tabs defaultValue="css-variables" width="100%">
+          <TabsList display="grid" width="100%" gridTemplateColumns="repeat(3, minmax(0, 1fr))" marginBottom={32}>
             <TabsTrigger value="css-variables">CSS Variables</TabsTrigger>
             <TabsTrigger value="components">Component Structure</TabsTrigger>
             <TabsTrigger value="tailwind-config">Tailwind Config</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="css-variables" className="rounded-lg overflow-hidden">
-            <div className="bg-black/50 border border-gray-800 rounded-lg p-4">
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-sm text-neutral-400">globals.css</div>
+          <TabsContent value="css-variables" borderRadius="var(--radius-lg)" overflow="hidden">
+            <Box backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={16}>
+              <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={8}>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">globals.css</Box>
                 <Button
                   variant="ghost" 
                   size="sm"
                   onClick={() => handleCopy(cssVariablesCode, "css")}
-                  className="h-8 px-2 text-neutral-400"
+                  height={32} paddingHorizontal={8} color="var(--neutral-400)"
                 >
                   {copied === "css" ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check size={16} color="var(--neutral-500)" />
                   ) : (
-                    <Copy className="h-4 w-4" />
+                    <Copy size={16} />
                   )}
                 </Button>
-              </div>
-              <pre className="text-sm text-neutral-200 overflow-x-auto p-4">
+              </XStack>
+              <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-200)" overflowX="auto" padding={16}>
                 <code>
 {`:root {
   --background: hsl(0 0% 100%); /* Wrap in hsl */
@@ -74,28 +73,28 @@ const CodeExamplesSection = () => {
   /* ... other theme mappings */
 }`}
                 </code>
-              </pre>
-            </div>
+              </Box>
+            </Box>
           </TabsContent>
           
-          <TabsContent value="components" className="rounded-lg overflow-hidden">
-            <div className="bg-black/50 border border-gray-800 rounded-lg p-4">
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-sm text-neutral-400">Button.tsx</div>
+          <TabsContent value="components" borderRadius="var(--radius-lg)" overflow="hidden">
+            <Box backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={16}>
+              <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={8}>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Button.tsx</Box>
                 <Button
                   variant="ghost" 
                   size="sm"
                   onClick={() => handleCopy(componentCode, "component")}
-                  className="h-8 px-2 text-neutral-400"
+                  height={32} paddingHorizontal={8} color="var(--neutral-400)"
                 >
                   {copied === "component" ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check size={16} color="var(--neutral-500)" />
                   ) : (
-                    <Copy className="h-4 w-4" />
+                    <Copy size={16} />
                   )}
                 </Button>
-              </div>
-              <pre className="text-sm text-neutral-200 overflow-x-auto p-4">
+              </XStack>
+              <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-200)" overflowX="auto" padding={16}>
                 <code>
 {`function Button({
   className,
@@ -115,28 +114,28 @@ const CodeExamplesSection = () => {
   )
 }`}
                 </code>
-              </pre>
-            </div>
+              </Box>
+            </Box>
           </TabsContent>
           
-          <TabsContent value="tailwind-config" className="rounded-lg overflow-hidden">
-            <div className="bg-black/50 border border-gray-800 rounded-lg p-4">
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-sm text-neutral-400">tailwind.config.ts</div>
+          <TabsContent value="tailwind-config" borderRadius="var(--radius-lg)" overflow="hidden">
+            <Box backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={16}>
+              <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={8}>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">tailwind.config.ts</Box>
                 <Button
                   variant="ghost" 
                   size="sm"
                   onClick={() => handleCopy(tailwindConfigCode, "tailwind")}
-                  className="h-8 px-2 text-neutral-400"
+                  height={32} paddingHorizontal={8} color="var(--neutral-400)"
                 >
                   {copied === "tailwind" ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check size={16} color="var(--neutral-500)" />
                   ) : (
-                    <Copy className="h-4 w-4" />
+                    <Copy size={16} />
                   )}
                 </Button>
-              </div>
-              <pre className="text-sm text-neutral-200 overflow-x-auto p-4">
+              </XStack>
+              <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-200)" overflowX="auto" padding={16}>
                 <code>
 {`import type { Config } from "tailwindcss";
 
@@ -163,12 +162,12 @@ export default {
   plugins: [import("tw-animate-css")],
 } satisfies Config;`}
                 </code>
-              </pre>
-            </div>
+              </Box>
+            </Box>
           </TabsContent>
         </Tabs>
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, MotionBox, XStack } from '@/gui'
 
 import React from "react";
 import ChatMessage from "./ChatMessage";
@@ -22,7 +23,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
   endOfMessagesRef
 }) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <Box flex={1} overflowY="auto" padding={16} rowGap={16}>
       {chatHistory.map((chat) => (
         <ChatMessage 
           key={chat.id} 
@@ -32,22 +33,22 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
       ))}
       
       {isTyping && (
-        <div className="flex justify-start mb-4">
-          <div className="bg-purple-600/40 h-8 w-8 rounded-full flex items-center justify-center mr-2">
-            <Bot className="h-4 w-4 text-[var(--white)]" />
-          </div>
-          <div className="bg-gray-800/60 py-3 px-4 rounded-lg border border-gray-700/50">
-            <div className="flex space-x-1">
-              <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></div>
-              <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-              <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
-            </div>
-          </div>
-        </div>
+        <XStack display="flex" justifyContent="flex-start" marginBottom={16}>
+          <XStack backgroundColor="var(--surface-card-emphasis)" height={32} width={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginRight={8}>
+            <Bot size={16} color="var(--white)" />
+          </XStack>
+          <Box backgroundColor="var(--surface-overlay)" paddingVertical={12} paddingHorizontal={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)">
+            <XStack display="flex" columnGap={4}>
+              <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} height={8} width={8} backgroundColor="var(--neutral-400)" borderRadius="var(--radius-full)"></MotionBox>
+              <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} height={8} width={8} backgroundColor="var(--neutral-400)" borderRadius="var(--radius-full)" style={{ animationDelay: "0.2s" }}></MotionBox>
+              <MotionBox animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} height={8} width={8} backgroundColor="var(--neutral-400)" borderRadius="var(--radius-full)" style={{ animationDelay: "0.4s" }}></MotionBox>
+            </XStack>
+          </Box>
+        </XStack>
       )}
       
       <div ref={endOfMessagesRef} />
-    </div>
+    </Box>
   );
 };
 

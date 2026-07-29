@@ -1,6 +1,6 @@
+import { Box, TooltipProvider } from '@/gui'
 
 import React, { useState } from "react";
-import { TooltipProvider } from "@/components/ui/radix-tooltip";
 import { useDeploymentSequence } from "./hooks/useDeploymentSequence";
 import BackgroundGrid from "./BackgroundGrid";
 import ZoomControls from "./ZoomControls";
@@ -22,9 +22,9 @@ const CloudDeployment: React.FC = () => {
   };
 
   return (
-    <div className="relative h-[460px] w-full overflow-hidden rounded-xl bg-[var(--black)]/90 border border-gray-800 shadow-lg">
+    <Box position="relative" height="460px" width="100%" overflow="hidden" borderRadius="var(--radius-xl)" backgroundColor="rgb(0 0 0 / 0.9)" borderWidth={1} borderColor="var(--neutral-800)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)">
       {/* Semi-transparent blue gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 to-cyan-950/20 pointer-events-none"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} pointerEvents="none" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"></Box>
       
       {/* Zoom controls */}
       <ZoomControls />
@@ -58,7 +58,7 @@ const CloudDeployment: React.FC = () => {
         onOpenChange={setIsDialogOpen}
         selectedNode={selectedNode}
       />
-    </div>
+    </Box>
   );
 };
 

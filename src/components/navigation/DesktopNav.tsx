@@ -1,5 +1,6 @@
+import { Anchor, Box, Grid, H3, Link, Paragraph, Text } from '@/gui'
 import React from "react";
-import { Link } from "react-router-dom";
+
 import ProductsMenu from "./products-menu";
 import { SolutionsMenu } from "./solutions-menu";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -7,129 +8,129 @@ import { NavMenu } from "./NavMenu";
 
 // Meet Hanzo dropdown content
 const MeetHanzoContent = ({ closeMenu }: { closeMenu: () => void }) => (
-  <div className="grid grid-cols-4 gap-8">
+  <Grid display="grid" gridTemplateColumns="repeat(4, minmax(0, 1fr))" gap={32}>
     {/* Featured - About Hanzo */}
-    <div className="col-span-1">
-      <div className="p-4 rounded-xl bg-gradient-to-br from-neutral-800/50 to-neutral-900/50 border border-neutral-700/50 mb-4">
-        <h3 className="text-white font-semibold mb-2">Hanzo AI</h3>
-        <p className="text-neutral-400 text-xs mb-3 leading-relaxed">
+    <Box gridColumn="span 1 / span 1">
+      <Box padding={16} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--border-strong)" marginBottom={16} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+        <H3 color="var(--foreground)" fontWeight="600" marginBottom={8}>Hanzo AI</H3>
+        <Paragraph color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-relaxed)" marginBottom={12}>
           Building frontier AI infrastructure since 2017. Techstars-backed.
-        </p>
-        <Link
+        </Paragraph>
+        <Link tap
           to="/team"
           onClick={closeMenu}
-          className="inline-flex items-center text-xs font-medium text-[#fd4444] hover:text-white transition-colors"
+          display="inline-flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
         >
           Meet the team →
         </Link>
-      </div>
-      <ul className="space-y-2">
-        <li><Link to="/philosophy" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Philosophy</Link></li>
-        <li><Link to="/leadership" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Leadership</Link></li>
-        <li><Link to="/brand" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Brand</Link></li>
-        <li><Link to="/press" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Press</Link></li>
-      </ul>
-    </div>
+      </Box>
+      <Box render="ul" rowGap={8}>
+        <li><Link tap to="/philosophy" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Philosophy</Link></li>
+        <li><Link tap to="/leadership" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Leadership</Link></li>
+        <li><Link tap to="/brand" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Brand</Link></li>
+        <li><Link tap to="/press" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Press</Link></li>
+      </Box>
+    </Box>
 
     {/* Research & Models */}
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Research</h3>
-      <ul className="space-y-2">
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Research</H3>
+      <Box render="ul" rowGap={8}>
         <li>
-          <Link to="/zen" onClick={closeMenu} className="group flex items-start gap-2">
-            <span className="text-purple-400 text-lg">🧠</span>
+          <Link tap to="/zen" onClick={closeMenu} group display="flex" alignItems="flex-start" gap={8}>
+            <Text color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">🧠</Text>
             <div>
-              <span className="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">Zen LM</span>
-              <p className="text-xs text-neutral-500">30+ open foundation models</p>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>Zen LM</Text>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">30+ open foundation models</Paragraph>
             </div>
           </Link>
         </li>
         <li>
-          <Link to="/zen/models" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">All Models</Link>
+          <Link tap to="/zen/models" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>All Models</Link>
         </li>
         <li>
-          <a href="https://zenlm.org/research" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">Papers</a>
+          <Anchor tap href="https://zenlm.org/research" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Papers</Anchor>
         </li>
         <li>
-          <a href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">HuggingFace</a>
+          <Anchor tap href="https://huggingface.co/zenlm" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>HuggingFace</Anchor>
         </li>
         <li>
-          <Link to="/open-source" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Open Source</Link>
+          <Link tap to="/open-source" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Open Source</Link>
         </li>
-      </ul>
+      </Box>
     </div>
 
     {/* Products */}
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Products</h3>
-      <ul className="space-y-2">
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Products</H3>
+      <Box render="ul" rowGap={8}>
         <li>
-          <Link to="/dev" onClick={closeMenu} className="group flex items-start gap-2">
-            <span className="text-[#fd4444] text-lg">⚡</span>
+          <Link tap to="/dev" onClick={closeMenu} group display="flex" alignItems="flex-start" gap={8}>
+            <Text color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">⚡</Text>
             <div>
-              <span className="text-sm text-white font-medium group-hover:text-[#fd4444] transition-colors">Hanzo Dev</span>
-              <p className="text-xs text-neutral-500">AI coding assistant</p>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>Hanzo Dev</Text>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">AI coding assistant</Paragraph>
             </div>
           </Link>
         </li>
-        <li><Link to="/ai" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">AI Platform</Link></li>
-        <li><Link to="/cloud" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Cloud</Link></li>
-        <li><Link to="/platform" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Infrastructure</Link></li>
-        <li><Link to="/products" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">All Products →</Link></li>
-      </ul>
+        <li><Link tap to="/ai" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>AI Platform</Link></li>
+        <li><Link tap to="/cloud" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Cloud</Link></li>
+        <li><Link tap to="/platform" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Infrastructure</Link></li>
+        <li><Link tap to="/products" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>All Products →</Link></li>
+      </Box>
     </div>
 
     {/* Connect & Trust */}
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Connect</h3>
-      <ul className="space-y-2 mb-6">
-        <li><Link to="/contact" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Contact Us</Link></li>
-        <li><Link to="/enterprise" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Enterprise</Link></li>
-        <li><Link to="/referrals" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Referral Program</Link></li>
-      </ul>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Trust</h3>
-      <ul className="space-y-2">
-        <li><Link to="/security" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Security</Link></li>
-        <li><Link to="/status" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">System Status</Link></li>
-      </ul>
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Connect</H3>
+      <Box render="ul" rowGap={8} marginBottom={24}>
+        <li><Link tap to="/contact" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Contact Us</Link></li>
+        <li><Link tap to="/enterprise" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Enterprise</Link></li>
+        <li><Link tap to="/referrals" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Referral Program</Link></li>
+      </Box>
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Trust</H3>
+      <Box render="ul" rowGap={8}>
+        <li><Link tap to="/security" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Security</Link></li>
+        <li><Link tap to="/status" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>System Status</Link></li>
+      </Box>
     </div>
-  </div>
+  </Grid>
 );
 
 // Learn dropdown content
 const LearnContent = ({ closeMenu }: { closeMenu: () => void }) => (
-  <div className="grid grid-cols-3 gap-6">
+  <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24}>
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Documentation</h3>
-      <ul className="space-y-2">
-        <li><a href="https://docs.hanzo.ai" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">Docs</a></li>
-        <li><a href="https://docs.hanzo.ai/tutorials" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">Tutorials</a></li>
-        <li><a href="https://docs.hanzo.ai/api" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">API Reference</a></li>
-      </ul>
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Documentation</H3>
+      <Box render="ul" rowGap={8}>
+        <li><Anchor tap href="https://docs.hanzo.ai" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Docs</Anchor></li>
+        <li><Anchor tap href="https://docs.hanzo.ai/tutorials" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Tutorials</Anchor></li>
+        <li><Anchor tap href="https://docs.hanzo.ai/api" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>API Reference</Anchor></li>
+      </Box>
     </div>
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Community</h3>
-      <ul className="space-y-2">
-        <li><a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">GitHub</a></li>
-        <li><a href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-300 hover:text-white transition-colors">Discord</a></li>
-        <li><Link to="/blog" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Blog</Link></li>
-      </ul>
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Community</H3>
+      <Box render="ul" rowGap={8}>
+        <li><Anchor tap href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>GitHub</Anchor></li>
+        <li><Anchor tap href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Discord</Anchor></li>
+        <li><Link tap to="/blog" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Blog</Link></li>
+      </Box>
     </div>
     <div>
-      <h3 className="text-neutral-500 text-xs font-medium mb-3 uppercase tracking-wider">Support</h3>
-      <ul className="space-y-2">
-        <li><Link to="/contact" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Support Center</Link></li>
-        <li><Link to="/status" onClick={closeMenu} className="text-sm text-neutral-300 hover:text-white transition-colors">Status</Link></li>
-      </ul>
+      <H3 color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={12} textTransform="uppercase" letterSpacing="0.05em">Support</H3>
+      <Box render="ul" rowGap={8}>
+        <li><Link tap to="/contact" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Support Center</Link></li>
+        <li><Link tap to="/status" onClick={closeMenu} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>Status</Link></li>
+      </Box>
     </div>
-  </div>
+  </Grid>
 );
 
 const DesktopNav = () => {
   const { isDarkMode } = useTheme();
 
   return (
-    <div className="hidden md:flex items-center space-x-6">
+    <Box display="none" alignItems="center" columnGap={24} $md={{ display: "flex" }}>
       {/* Meet Hanzo dropdown */}
       <NavMenu label="Meet Hanzo">
         {(closeMenu) => <MeetHanzoContent closeMenu={closeMenu} />}
@@ -142,9 +143,9 @@ const DesktopNav = () => {
       <SolutionsMenu />
 
       {/* Pricing direct link */}
-      <Link
+      <Link tap
         to="/pricing"
-        className="text-neutral-400 hover:text-white transition-colors text-sm font-medium"
+        color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" hoverStyle={{ color: "var(--foreground)" }}
       >
         Pricing
       </Link>
@@ -153,7 +154,7 @@ const DesktopNav = () => {
       <NavMenu label="Learn">
         {(closeMenu) => <LearnContent closeMenu={closeMenu} />}
       </NavMenu>
-    </div>
+    </Box>
   );
 };
 

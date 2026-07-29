@@ -1,51 +1,51 @@
+import { Box, Button, H3, Text, XStack } from '@/gui'
 
 import React from 'react';
 import { Clock, Download, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import BillingTabsLink from '../BillingTabsLink';
 
 const RecentInvoices = () => {
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-medium">Recent Invoices</h3>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Recent Invoices</H3>
         <BillingTabsLink tabId="history">
-          <span className="flex items-center">
-            View All <ArrowRight className="ml-2 h-4 w-4" />
-          </span>
+          <Text display="flex" alignItems="center">
+            View All <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+          </Text>
         </BillingTabsLink>
-      </div>
+      </XStack>
       
-      <div className="space-y-4">
-        <div className="flex items-center justify-between p-4 bg-gray-800/30 rounded-lg">
-          <div className="flex items-center">
-            <Clock className="h-5 w-5 text-neutral-400 mr-3" />
+      <Box rowGap={16}>
+        <XStack display="flex" alignItems="center" justifyContent="space-between" padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)">
+          <XStack display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Clock size={20} color="var(--neutral-400)" /></Box>
             <div>
-              <div className="font-medium">June 15, 2024</div>
-              <div className="text-sm text-neutral-400">Pro Plan - $49.00</div>
+              <Box fontWeight="500">June 15, 2024</Box>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Pro Plan - $49.00</Box>
             </div>
-          </div>
+          </XStack>
           <Button variant="ghost" size="sm">
-            <Download className="h-4 w-4 mr-2" />
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
             PDF
           </Button>
-        </div>
+        </XStack>
         
-        <div className="flex items-center justify-between p-4 bg-gray-800/30 rounded-lg">
-          <div className="flex items-center">
-            <Clock className="h-5 w-5 text-neutral-400 mr-3" />
+        <XStack display="flex" alignItems="center" justifyContent="space-between" padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)">
+          <XStack display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Clock size={20} color="var(--neutral-400)" /></Box>
             <div>
-              <div className="font-medium">May 15, 2024</div>
-              <div className="text-sm text-neutral-400">Pro Plan - $49.00</div>
+              <Box fontWeight="500">May 15, 2024</Box>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Pro Plan - $49.00</Box>
             </div>
-          </div>
+          </XStack>
           <Button variant="ghost" size="sm">
-            <Download className="h-4 w-4 mr-2" />
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
             PDF
           </Button>
-        </div>
-      </div>
-    </div>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

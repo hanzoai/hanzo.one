@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 import React, { ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
@@ -32,7 +33,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <MotionBox
         key={location.pathname}
         initial="initial"
         animate="in"
@@ -41,7 +42,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         transition={pageTransition}
       >
         {children}
-      </motion.div>
+      </MotionBox>
     </AnimatePresence>
   );
 };

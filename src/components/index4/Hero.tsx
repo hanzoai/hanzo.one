@@ -1,10 +1,8 @@
+import { BlueprintLine, Box, Button, H1, MotionBox, Paragraph, Text, XStack, YStack, createAnimationVariant, curves, timing } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { BlueprintLine } from "@/components/ui/architectural-elements";
-import { createAnimationVariant, timing, curves } from "@/components/ui/animation-variants";
 
 const fadeInAnimation = createAnimationVariant("fadeIn", {
   duration: timing.medium,
@@ -13,44 +11,44 @@ const fadeInAnimation = createAnimationVariant("fadeIn", {
 
 const Hero = () => {
   return (
-    <section className="max-w-5xl mx-auto mb-32 relative">
+    <Box render="section" maxWidth="64rem" marginHorizontal="auto" marginBottom={128} position="relative">
       <BlueprintLine orientation="horizontal" position="20%" color="rgba(255,255,255,0.04)" />
       <BlueprintLine orientation="vertical" position="15%" color="rgba(255,255,255,0.04)" />
       
-      <motion.div
+      <MotionBox
         initial="hidden"
         animate="visible"
         variants={fadeInAnimation}
-        className="text-center"
+        textAlign="center"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 text-[var(--white)]">
+        <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} color="var(--white)" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }} $lg={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
           Infrastructure for the<br />modern world
-        </h1>
-        <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+        </H1>
+        <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto" marginBottom={48} $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
           Build, deploy, and scale applications effortlessly with our developer-focused platform.
-        </p>
+        </Paragraph>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" marginBottom={48} $sm={{ flexDirection: "row" }}>
           <Button 
             size="sm" 
-            className="bg-[var(--white)] hover:bg-zinc-200 text-black transition-colors duration-300"
+            backgroundColor="var(--white)" color="var(--pure-black)" transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}
           >
-            Start building <ArrowRight className="ml-2 h-4 w-4" />
+            Start building <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
           </Button>
           <Button 
             size="sm" 
             variant="outline" 
-            className="border-zinc-800 bg-transparent hover:bg-zinc-900 transition-colors duration-300"
+            borderColor="var(--neutral-800)" backgroundColor="transparent" transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
           >
             Documentation
           </Button>
-        </div>
+        </YStack>
         
-        <div className="text-sm text-zinc-500 flex items-center justify-center gap-2">
-          No credit card required <span className="mx-2">•</span> Cancel anytime
-        </div>
-      </motion.div>
-    </section>
+        <XStack fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" display="flex" alignItems="center" justifyContent="center" gap={8}>
+          No credit card required <Text marginHorizontal={8}>•</Text> Cancel anytime
+        </XStack>
+      </MotionBox>
+    </Box>
   );
 };
 

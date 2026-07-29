@@ -1,10 +1,9 @@
+import { ArchitecturalBox, Box, Button, Grid, GridLines, H3, Link, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import CloudServiceCard from "./CloudServiceCard";
 import { cloudServiceData } from "./cloudServiceData";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArchitecturalBox, GridLines } from "@/components/ui/architectural-elements";
+
 
 interface CloudServiceGridProps {
   isHovered: string | null;
@@ -16,13 +15,13 @@ const CloudServiceGrid: React.FC<CloudServiceGridProps> = ({ isHovered, setIsHov
   const mainServices = cloudServiceData.slice(0, 11);
   
   return (
-    <div className="space-y-8 relative">
+    <Box rowGap={32} position="relative">
       {/* Add architectural grid lines */}
-      <div className="absolute inset-0 -z-10">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} zIndex={-10}>
         <GridLines spacing={60} opacity={0.15} color="rgba(59, 130, 246, 0.2)" />
-      </div>
+      </Box>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $xl={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $md={{ gap: 24 }}>
         {/* Regular service cards */}
         {mainServices.map((service) => (
           <CloudServiceCard
@@ -41,28 +40,28 @@ const CloudServiceGrid: React.FC<CloudServiceGridProps> = ({ isHovered, setIsHov
         {/* Special "Learn More" card as the last item */}
         <Link
           to="/cloud"
-          className="bg-gray-900/20 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/30 transition-all duration-300 h-full flex flex-col justify-center items-center"
+          backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="all 300ms cubic-bezier(.4,0,.2,1)" height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
           onMouseEnter={() => setIsHovered("learn-more")}
           onMouseLeave={() => setIsHovered(null)}
         >
-          <div className="text-center space-y-4">
-            <div className="w-12 h-12 mx-auto bg-blue-500/10 rounded-full flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <Box textAlign="center" rowGap={16}>
+            <XStack width={48} height={48} marginHorizontal="auto" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center">
+              <Box display="inline-block" xmlns="http://www.w3.org/2000/svg" render="svg" height={24} width={24} color="var(--foreground)" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-[var(--white)]">Explore More</h3>
-            <p className="text-neutral-300 text-sm">Discover our full range of cloud solutions and services</p>
+              </Box>
+            </XStack>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)">Explore More</H3>
+            <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Discover our full range of cloud solutions and services</Paragraph>
             <Button 
-              className="mt-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-[var(--white)] border-none"
+              marginTop={8} color="var(--white)" borderStyle="none" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-500), var(--foreground))" }}
               radius="full"
             >
               View All Services
             </Button>
-          </div>
+          </Box>
         </Link>
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 

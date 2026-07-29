@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useRef } from 'react';
 import { useGlobeScene } from '../hooks/useGlobeScene';
@@ -16,9 +17,9 @@ const GlobeRenderer: React.FC<GlobeRendererProps> = ({ width, height }) => {
   useGlobeAnimation(globeRef);
   
   return (
-    <div 
+    <Box 
       ref={containerRef} 
-      className="w-full h-full rounded-lg overflow-hidden"
+      width="100%" height="100%" borderRadius="var(--radius-lg)" overflow="hidden"
       style={{ 
         background: 'radial-gradient(circle at center, rgba(25, 34, 55, 0.4) 0%, rgba(10, 14, 25, 0.8) 70%)',
       }}

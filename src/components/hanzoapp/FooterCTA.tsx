@@ -1,57 +1,58 @@
+import { Anchor, Box, H2, Link, MotionBox, Paragraph, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { ArrowRight, Download } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const FooterCTA = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" position="relative" overflow="hidden" $md={{ paddingHorizontal: 32 }}>
       {/* Background gradient */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20"
+      <Box
+        position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.2}
         style={{
           background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
           filter: "blur(100px)",
         }}
       />
 
-      <div className="max-w-4xl mx-auto relative z-10 text-center">
-        <motion.div
+      <Box maxWidth="56rem" marginHorizontal="auto" position="relative" zIndex={10} textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Start building today
-          </h2>
-          <p className="text-xl text-neutral-400 mb-8 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto">
             Web, desktop, local, or decentralized. Choose your way.
-          </p>
+          </Paragraph>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
+          <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
+            <Anchor
               href="https://hanzo.app"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-white text-lg transition-all hover:opacity-90"
+              display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR }}
             >
               Open hanzo.app
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+            </Anchor>
             <Link
               to="/download"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-white text-lg border border-neutral-700 hover:bg-neutral-900 transition-colors"
+              display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
-              <Download className="mr-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={20} /></Box>
               Download desktop
             </Link>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

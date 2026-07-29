@@ -1,7 +1,7 @@
+import { Anchor, Box, Button, H1, MotionBox, Paragraph, Text, YStack } from '@/gui'
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import TaijiSymbol from "./svg/TaijiSymbol";
 
 const ZenHero = () => {
@@ -25,78 +25,78 @@ const ZenHero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-4 py-24 relative">
-      <motion.div
+    <YStack render="section" minHeight="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" paddingHorizontal={16} paddingVertical={96} position="relative">
+      <MotionBox
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
-        className="absolute inset-0 pointer-events-none"
+        position="absolute" top={0} right={0} bottom={0} left={0} pointerEvents="none"
         style={{
           background: "radial-gradient(circle at 50% 50%, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 70%)"
         }}
       />
       
-      <div className="max-w-4xl mx-auto text-center z-10 relative">
-        <motion.div 
+      <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" zIndex={10} position="relative">
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-8"
+          marginBottom={32}
         >
-          <TaijiSymbol size={80} className="mx-auto mb-8" animate={true} />
+          <TaijiSymbol size={80} marginHorizontal="auto" marginBottom={32} animate={true} />
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/50">
+          <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} letterSpacing="var(--tracking-tight)" $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+            <Text backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
               The 36 Principles &amp; 64 Hexagrams
-            </span>
-          </h1>
+            </Text>
+          </H1>
           
-          <motion.div
+          <MotionBox
             key={currentPrinciple}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.5 }}
-            className="h-12 flex items-center justify-center"
+            flexDirection="row" height={48} display="flex" alignItems="center" justifyContent="center"
           >
-            <p className="text-xl text-neutral-400 italic">"{principles[currentPrinciple]}"</p>
-          </motion.div>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" fontStyle="italic">"{principles[currentPrinciple]}"</Paragraph>
+          </MotionBox>
           
-          <p className="text-neutral-500 max-w-2xl mx-auto mt-8">
+          <Paragraph color="var(--neutral-500)" maxWidth="42rem" marginHorizontal="auto" marginTop={32}>
             Build software with enlightened engineering. Hanzo's platform embodies 
             36 principles and 64 hexagrams from the I Ching that guide the creation of resilient, scalable systems.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="mt-12 space-y-6">
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <Box marginTop={48} rowGap={24}>
+          <YStack display="flex" flexDirection="column" gap={24} justifyContent="center" $sm={{ flexDirection: "row" }}>
             <Button 
               variant="outline" 
-              className="bg-[var(--black)]/50 border border-white/10 text-[var(--white)] hover:bg-[var(--white)]/10"
+              backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" color="var(--white)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
               Explore Platform
             </Button>
             <Button 
-              className="bg-[var(--white)]/10 hover:bg-[var(--white)]/20 text-[var(--white)] border border-white/20"
+              backgroundColor="rgb(255 255 255 / 0.1)" color="var(--white)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}
             >
               Learn Principles
             </Button>
-          </div>
+          </YStack>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.5 }}
-            className="text-neutral-600 mt-16"
+            color="var(--neutral-600)" marginTop={64}
           >
-            <a href="#principles" className="flex flex-col items-center">
-              <span className="mb-2 text-sm">Discover more</span>
-              <ArrowDown className="animate-bounce w-5 h-5" />
-            </a>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            <Anchor tap href="#principles" display="flex" flexDirection="column" alignItems="center">
+              <Text marginBottom={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Discover more</Text>
+              <ArrowDown size={20} />
+            </Anchor>
+          </MotionBox>
+        </Box>
+      </Box>
+    </YStack>
   );
 };
 

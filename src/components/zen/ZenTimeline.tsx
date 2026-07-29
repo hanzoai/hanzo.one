@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -43,32 +44,32 @@ const timelineEvents: TimelineEvent[] = [
 
 const ZenTimeline: React.FC = () => {
   return (
-    <div className="relative py-16">
-      <div className="absolute left-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500/0 via-purple-500/50 to-purple-500/0 transform -translate-x-1/2"></div>
+    <Box position="relative" paddingVertical={64}>
+      <Box position="absolute" left="50%" height="100%" width={2} x="-50%" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0))"></Box>
       
-      <div className="max-w-5xl mx-auto">
+      <Box maxWidth="64rem" marginHorizontal="auto">
         {timelineEvents.map((event, index) => (
-          <motion.div
+          <MotionBox
             key={event.year}
             initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative mb-16 flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}
+            flexDirection="row" position="relative" marginBottom={64} display="flex" justifyContent={index % 2 === 0 ? "flex-end" : "flex-start"}
           >
-            <div className="absolute left-1/2 top-5 w-5 h-5 rounded-full bg-purple-500 transform -translate-x-1/2 z-10"></div>
+            <Box position="absolute" left="50%" top={20} width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" x="-50%" zIndex={10}></Box>
             
-            <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
-              <div className="bg-[var(--black)]/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                <div className="text-purple-400 font-bold mb-2">{event.year}</div>
-                <h3 className="text-xl text-[var(--white)] font-bold mb-2">{event.title}</h3>
-                <p className="text-neutral-300">{event.description}</p>
-              </div>
-            </div>
-          </motion.div>
+            <Box width="41.666667%" paddingRight={index % 2 === 0 ? 48 : undefined} paddingLeft={index % 2 === 0 ? undefined : 48}>
+              <Box backgroundColor="rgb(0 0 0 / 0.3)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={24}>
+                <Box color="var(--foreground)" fontWeight="700" marginBottom={8}>{event.year}</Box>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--white)" fontWeight="700" marginBottom={8}>{event.title}</H3>
+                <Paragraph color="var(--neutral-300)">{event.description}</Paragraph>
+              </Box>
+            </Box>
+          </MotionBox>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

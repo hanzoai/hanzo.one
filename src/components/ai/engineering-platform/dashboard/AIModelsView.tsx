@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, Text, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -8,76 +9,76 @@ const AIModelsView = () => {
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-[var(--white)]">AI Model Registry</h3>
-        <div className="flex space-x-2">
-          <button className="px-2 py-1 bg-purple-600/40 rounded-md text-xs text-purple-200 flex items-center">
-            <BrainCog className="w-3 h-3 mr-1" />
+    <Box rowGap={16}>
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+        <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--white)">AI Model Registry</H3>
+        <XStack display="flex" columnGap={8}>
+          <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><BrainCog size={12} /></Box>
             Deploy Model
-          </button>
-          <button className="px-2 py-1 bg-gray-800 rounded-md text-xs text-neutral-400 flex items-center">
-            <Terminal className="w-3 h-3 mr-1" />
+          </XStack>
+          <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={4} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Terminal size={12} /></Box>
             Import
-          </button>
-        </div>
-      </div>
+          </XStack>
+        </XStack>
+      </XStack>
 
-      <div className="grid grid-cols-1 gap-3">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={12}>
         {aiModels.map((model) => (
-          <motion.div
+          <MotionBox
             key={model.id}
-            className={`p-3 rounded-lg border ${selectedModel === model.id ? "bg-purple-900/20 border-purple-600/40" : "bg-gray-800/40 border-gray-700/40"} hover:bg-gray-800/60 transition-colors cursor-pointer`}
+            padding={12} borderRadius="var(--radius-lg)" borderWidth={1} cursor="pointer" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }} backgroundColor={selectedModel === model.id ? "rgb(255 255 255 / 0.2)" : "rgb(255 255 255 / 0.4)"} borderColor={selectedModel === model.id ? "rgb(255 255 255 / 0.4)" : "rgb(255 255 255 / 0.4)"}
             onClick={() => setSelectedModel(model.id)}
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="flex items-start justify-between">
+            <XStack display="flex" alignItems="flex-start" justifyContent="space-between">
               <div>
-                <div className="flex items-center">
-                  <BrainCircuit className="w-4 h-4 text-purple-400 mr-2" />
-                  <span className="font-medium text-[var(--white)] text-sm">{model.name}</span>
-                  <span className="ml-2 px-1.5 py-0.5 bg-gray-700/60 rounded text-xs text-neutral-300">{model.type}</span>
-                </div>
-                <div className="text-xs text-neutral-400 mt-1">Provider: {model.provider}</div>
+                <XStack display="flex" alignItems="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><BrainCircuit size={16} color="var(--foreground)" /></Box>
+                  <Text fontWeight="500" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{model.name}</Text>
+                  <Text marginLeft={8} paddingHorizontal={6} paddingVertical={2} backgroundColor="var(--surface-overlay)" borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)">{model.type}</Text>
+                </XStack>
+                <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginTop={4}>Provider: {model.provider}</Box>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="text-right">
-                  <div className="text-xs text-neutral-400">Accuracy</div>
-                  <div className="text-sm font-medium text-green-400">{model.accuracy}%</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-neutral-400">Latency</div>
-                  <div className="text-sm font-medium text-blue-400">{model.latency}ms</div>
-                </div>
-              </div>
-            </div>
+              <XStack display="flex" alignItems="center" columnGap={16}>
+                <Box textAlign="right">
+                  <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">Accuracy</Box>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">{model.accuracy}%</Box>
+                </Box>
+                <Box textAlign="right">
+                  <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">Latency</Box>
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">{model.latency}ms</Box>
+                </Box>
+              </XStack>
+            </XStack>
 
             {selectedModel === model.id && (
-              <motion.div 
-                className="mt-3 pt-3 border-t border-gray-700/40 grid grid-cols-3 gap-3"
+              <MotionBox 
+                marginTop={12} paddingTop={12} borderTopWidth={1} borderColor="var(--border-strong)" display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={12}
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.3 }}
               >
-                <button className="px-2 py-1.5 bg-gray-700/40 rounded text-xs text-neutral-300 flex items-center justify-center">
-                  <Activity className="w-3 h-3 mr-1.5" />
+                <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={6} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" display="flex" alignItems="center" justifyContent="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={6}><Activity size={12} /></Box>
                   Benchmark
-                </button>
-                <button className="px-2 py-1.5 bg-gray-700/40 rounded text-xs text-neutral-300 flex items-center justify-center">
-                  <ServerCog className="w-3 h-3 mr-1.5" />
+                </XStack>
+                <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={6} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-300)" display="flex" alignItems="center" justifyContent="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={6}><ServerCog size={12} /></Box>
                   Fine-tune
-                </button>
-                <button className="px-2 py-1.5 bg-purple-600/30 rounded text-xs text-purple-200 flex items-center justify-center">
-                  <Zap className="w-3 h-3 mr-1.5" />
+                </XStack>
+                <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={6} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center" justifyContent="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={6}><Zap size={12} /></Box>
                   Deploy
-                </button>
-              </motion.div>
+                </XStack>
+              </MotionBox>
             )}
-          </motion.div>
+          </MotionBox>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 

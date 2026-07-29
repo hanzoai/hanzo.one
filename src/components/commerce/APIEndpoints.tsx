@@ -1,7 +1,6 @@
+import { Box, Grid, H2, H3, Paragraph, Tabs, TabsContent, TabsList, TabsTrigger } from '@/gui'
 
 import React, { useState } from "react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
 
 interface EndpointProps {
   path: string;
@@ -10,10 +9,10 @@ interface EndpointProps {
 
 const EndpointCard = ({ path, description }: EndpointProps) => {
   return (
-    <div className="bg-gray-900/40 border border-gray-800 rounded-lg p-4 hover:border-amber-500/30 transition-all duration-300">
-      <div className="font-mono text-sm text-amber-400 mb-2">{path}</div>
-      <p className="text-neutral-400 text-sm">{description}</p>
-    </div>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={16} transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+      <Box fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" marginBottom={8}>{path}</Box>
+      <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{description}</Paragraph>
+    </Box>
   );
 };
 
@@ -110,43 +109,43 @@ const APIEndpoints = () => {
   const tabClasses = "data-[state=active]:bg-amber-500/10 data-[state=active]:text-amber-400 border-b-0";
 
   return (
-    <section className="py-16 bg-gradient-to-b from-black to-gray-900/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold mb-4">Comprehensive API</h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+    <Box render="section" paddingVertical={64} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+      <Box marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={40}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Comprehensive API</H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             A complete API-first platform that powers your e-commerce business with flexible endpoints for every need.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="max-w-5xl mx-auto">
-          <Tabs defaultValue="commerce" className="w-full" onValueChange={setActiveCategory}>
-            <TabsList className="w-full mb-6 bg-gray-900/50 border border-gray-800 rounded-lg p-1 h-auto flex flex-wrap">
-              <TabsTrigger value="commerce" className={cn(tabClasses, "flex-1")}>
+        <Box maxWidth="64rem" marginHorizontal="auto">
+          <Tabs defaultValue="commerce" width="100%" onValueChange={setActiveCategory}>
+            <TabsList width="100%" marginBottom={24} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={4} height="auto" display="flex" flexWrap="wrap">
+              <TabsTrigger value="commerce" flex={1}>
                 Commerce
               </TabsTrigger>
-              <TabsTrigger value="identity" className={cn(tabClasses, "flex-1")}>
+              <TabsTrigger value="identity" flex={1}>
                 Identity
               </TabsTrigger>
-              <TabsTrigger value="marketing" className={cn(tabClasses, "flex-1")}>
+              <TabsTrigger value="marketing" flex={1}>
                 Marketing
               </TabsTrigger>
-              <TabsTrigger value="payments" className={cn(tabClasses, "flex-1")}>
+              <TabsTrigger value="payments" flex={1}>
                 Payments
               </TabsTrigger>
-              <TabsTrigger value="platform" className={cn(tabClasses, "flex-1")}>
+              <TabsTrigger value="platform" flex={1}>
                 Platform
               </TabsTrigger>
             </TabsList>
             
             {Object.keys(endpointCategories).map((category) => (
-              <TabsContent key={category} value={category} className="mt-0">
-                <div className="bg-gray-900/20 border border-gray-800 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-amber-400">
+              <TabsContent key={category} value={category} marginTop={0}>
+                <Box backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16} color="var(--foreground)">
                     Hanzo {category.charAt(0).toUpperCase() + category.slice(1)} API Endpoints
-                  </h3>
+                  </H3>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={12} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                     {endpointCategories[category as keyof typeof endpointCategories].map((endpoint, index) => (
                       <EndpointCard
                         key={index}
@@ -154,14 +153,14 @@ const APIEndpoints = () => {
                         description={endpoint.description}
                       />
                     ))}
-                  </div>
-                </div>
+                  </Grid>
+                </Box>
               </TabsContent>
             ))}
           </Tabs>
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

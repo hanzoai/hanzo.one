@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React, { useEffect, useState } from "react";
 
@@ -100,8 +101,8 @@ const Trail: React.FC<TrailProps> = ({ index }) => {
   }, [index]);
 
   return (
-    <div 
-      className="absolute rounded-full" 
+    <Box 
+      position="absolute" borderRadius="var(--radius-full)" 
       style={style}
     />
   );

@@ -1,8 +1,9 @@
+import { Box, Grid, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, X, Minus } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const features = [
   { name: "Multi-agent parallelism + consensus", hanzo: "full", others: "none", desc: "Best patch wins" },
@@ -16,21 +17,21 @@ const renderStatus = (status: string) => {
   switch (status) {
     case "full":
       return (
-        <div className="flex items-center justify-center">
-          <Check className="w-5 h-5 text-green-500" />
-        </div>
+        <XStack display="flex" alignItems="center" justifyContent="center">
+          <Check size={20} color="var(--neutral-500)" />
+        </XStack>
       );
     case "partial":
       return (
-        <div className="flex items-center justify-center">
-          <Minus className="w-5 h-5 text-yellow-500" />
-        </div>
+        <XStack display="flex" alignItems="center" justifyContent="center">
+          <Minus size={20} color="var(--neutral-500)" />
+        </XStack>
       );
     case "none":
       return (
-        <div className="flex items-center justify-center">
-          <X className="w-5 h-5 text-neutral-600" />
-        </div>
+        <XStack display="flex" alignItems="center" justifyContent="center">
+          <X size={20} color="var(--neutral-600)" />
+        </XStack>
       );
     default:
       return null;
@@ -39,83 +40,81 @@ const renderStatus = (status: string) => {
 
 const UseCasesSection = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
             style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
           >
             Comparison
-          </p>
-          <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Why Hanzo vs agents + glue
-          </h2>
-          <p className="text-lg text-neutral-400">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)">
             Production software needs more than autocomplete.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Comparison Table */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="rounded-xl border border-neutral-800 overflow-hidden"
+          borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden"
         >
           {/* Header */}
-          <div className="grid grid-cols-3 gap-4 p-4 bg-neutral-900 border-b border-neutral-800">
-            <div className="text-sm font-medium text-neutral-500">Capability</div>
-            <div className="text-sm font-medium text-center" style={{ color: BRAND_COLOR }}>Hanzo</div>
-            <div className="text-sm font-medium text-neutral-500 text-center">Others</div>
-          </div>
+          <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16} padding={16} backgroundColor="var(--neutral-900)" borderBottomWidth={1} borderColor="var(--neutral-800)">
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-500)">Capability</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" textAlign="center" style={{ color: BRAND_COLOR }}>Hanzo</Box>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-500)" textAlign="center">Others</Box>
+          </Grid>
 
           {/* Rows */}
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={feature.name}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className={`grid grid-cols-3 gap-4 p-4 ${
-                index !== features.length - 1 ? "border-b border-neutral-800" : ""
-              } hover:bg-neutral-900/50 transition-colors`}
+              
+              display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16} padding={16} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }} borderBottomWidth={index !== features.length - 1 ? 1 : undefined} borderColor={index !== features.length - 1 ? "var(--neutral-800)" : undefined}
             >
               <div>
-                <div className="text-sm text-white font-medium">{feature.name}</div>
-                <div className="text-xs text-neutral-500 mt-0.5">{feature.desc}</div>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" fontWeight="500">{feature.name}</Box>
+                <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={2}>{feature.desc}</Box>
               </div>
-              <div className="flex justify-center items-center">{renderStatus(feature.hanzo)}</div>
-              <div className="flex justify-center items-center">{renderStatus(feature.others)}</div>
-            </motion.div>
+              <XStack display="flex" justifyContent="center" alignItems="center">{renderStatus(feature.hanzo)}</XStack>
+              <XStack display="flex" justifyContent="center" alignItems="center">{renderStatus(feature.others)}</XStack>
+            </MotionBox>
           ))}
-        </motion.div>
+        </MotionBox>
 
         {/* Legend */}
-        <div className="flex justify-center gap-6 mt-6">
-          <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
-            <span className="text-xs text-neutral-500">Full support</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Minus className="w-4 h-4 text-yellow-500" />
-            <span className="text-xs text-neutral-500">Partial / varies</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <X className="w-4 h-4 text-neutral-600" />
-            <span className="text-xs text-neutral-500">Not available</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <XStack display="flex" justifyContent="center" gap={24} marginTop={24}>
+          <XStack display="flex" alignItems="center" gap={8}>
+            <Check size={16} color="var(--neutral-500)" />
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Full support</Text>
+          </XStack>
+          <XStack display="flex" alignItems="center" gap={8}>
+            <Minus size={16} color="var(--neutral-500)" />
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Partial / varies</Text>
+          </XStack>
+          <XStack display="flex" alignItems="center" gap={8}>
+            <X size={16} color="var(--neutral-600)" />
+            <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">Not available</Text>
+          </XStack>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

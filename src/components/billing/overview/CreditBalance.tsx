@@ -1,6 +1,6 @@
+import { Box, Button, H3, Text, XStack } from '@/gui'
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useBilling } from '@/contexts/BillingContext';
@@ -14,25 +14,25 @@ const CreditBalance = () => {
   };
 
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-medium">Credit Balance</h3>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Credit Balance</H3>
         <Button onClick={handleAddCredits}>
-          <Plus className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Plus size={16} /></Box>
           Add Credits
         </Button>
-      </div>
+      </XStack>
       
-      <div className="flex items-center">
-        <div className="h-16 w-16 bg-purple-900/30 rounded-full flex items-center justify-center mr-4">
-          <span className="text-2xl font-bold text-purple-300">$</span>
-        </div>
+      <XStack display="flex" alignItems="center">
+        <XStack height={64} width={64} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginRight={16}>
+          <Text fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">$</Text>
+        </XStack>
         <div>
-          <div className="text-3xl font-bold">${billingInfo.credits.toFixed(2)}</div>
-          <div className="text-sm text-neutral-400 mt-1">Available credits</div>
+          <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">${billingInfo.credits.toFixed(2)}</Box>
+          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>Available credits</Box>
         </div>
-      </div>
-    </div>
+      </XStack>
+    </Box>
   );
 };
 

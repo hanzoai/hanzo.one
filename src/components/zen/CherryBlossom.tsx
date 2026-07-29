@@ -1,15 +1,16 @@
+import { Box, MotionBox } from '@/gui'
 
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 interface CherryBlossomProps {
   count?: number;
-  className?: string;
+  
 }
 
 const CherryBlossom: React.FC<CherryBlossomProps> = ({ 
   count = 20,
-  className = ""
+  ...styleProps
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -24,11 +25,11 @@ const CherryBlossom: React.FC<CherryBlossomProps> = ({
   }));
 
   return (
-    <div ref={containerRef} className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <Box {...styleProps} ref={containerRef} position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" pointerEvents="none">
       {petals.map((petal) => (
-        <motion.div
+        <MotionBox
           key={petal.id}
-          className="absolute"
+          position="absolute"
           style={{
             left: `${petal.x}%`,
             top: "-50px",
@@ -54,9 +55,9 @@ const CherryBlossom: React.FC<CherryBlossomProps> = ({
             ease: "linear"
           }}
         >
-          <svg 
+          <Box display="inline-block" 
             viewBox="0 0 100 100" 
-            className="w-full h-full"
+            render="svg" width="100%" height="100%"
             style={{ 
               filter: "drop-shadow(0 0 2px rgba(255, 255, 255, 0.3))" 
             }}
@@ -65,10 +66,10 @@ const CherryBlossom: React.FC<CherryBlossomProps> = ({
               d="M50 0 C60 30 70 50 100 50 C70 60 60 70 50 100 C40 70 30 60 0 50 C30 40 40 30 50 0Z"
               fill="rgba(255, 192, 203, 0.7)"
             />
-          </svg>
-        </motion.div>
+          </Box>
+        </MotionBox>
       ))}
-    </div>
+    </Box>
   );
 };
 

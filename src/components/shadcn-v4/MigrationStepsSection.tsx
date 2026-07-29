@@ -1,13 +1,7 @@
-
+import { Box, Card, CardContent, CardDescription, CardHeader, CardTitle, H2, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import { ArrowRight } from "lucide-react";
 
 const steps = [
@@ -45,53 +39,53 @@ const steps = [
 
 const MigrationStepsSection = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black/30 to-purple-900/10">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(0 0 0 / 0.3), rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Migration Steps</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} color="var(--foreground)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Migration Steps</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Follow these steps to upgrade your existing shadcn/ui projects to Tailwind v4 and React 19.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="space-y-6">
+        <Box rowGap={24}>
           {steps.map((step, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="bg-gray-900/50 border-gray-800 hover:border-purple-500/30 transition-all duration-300">
-                <CardHeader className="flex flex-row items-start gap-4">
-                  <div className="bg-purple-900/30 rounded-lg p-2 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <span className="text-lg font-bold text-purple-400">{step.number}</span>
-                  </div>
+              <Card backgroundColor="var(--surface-card-emphasis)" borderColor="var(--neutral-800)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+                <CardHeader display="flex" flexDirection="row" alignItems="flex-start" gap={16}>
+                  <XStack backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={8} width={48} height={48} display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                    <Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700" color="var(--foreground)">{step.number}</Text>
+                  </XStack>
                   <div>
-                    <CardTitle className="text-xl text-white">{step.title}</CardTitle>
-                    <CardDescription className="text-neutral-400 mt-2">
+                    <CardTitle fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--foreground)">{step.title}</CardTitle>
+                    <CardDescription color="var(--neutral-400)" marginTop={8}>
                       {step.description}
                     </CardDescription>
                   </div>
                 </CardHeader>
                 {index < steps.length - 1 && (
-                  <CardContent className="pt-0 pb-4 flex justify-center">
-                    <ArrowRight className="text-gray-600 h-5 w-5" />
+                  <CardContent paddingTop={0} paddingBottom={16} display="flex" justifyContent="center">
+                    <ArrowRight size={20} color="var(--neutral-600)" />
                   </CardContent>
                 )}
               </Card>
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

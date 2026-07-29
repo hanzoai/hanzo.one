@@ -1,3 +1,4 @@
+import { Anchor, Box, MotionBox, MotionText, Text, XStack } from '@/gui'
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,7 +16,8 @@ import {
   Check,
 } from "lucide-react";
 
-const BRAND_COLOR = "#e11633";
+// Hanzo is monochrome: the widget's accent is the foreground, not a hue.
+const BRAND_COLOR = "var(--foreground)";
 
 // Available Zen models for the dropdown
 const zenModels = [
@@ -249,207 +251,195 @@ const GlobalChatWidget = () => {
       {/* Floating chat button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
+          <MotionBox
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-black border border-neutral-800"
+            flexDirection="row" position="fixed" bottom={24} right={24} zIndex={50} width={56} height={56} borderRadius="var(--radius-full)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" display="flex" alignItems="center" justifyContent="center" backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)"
           >
-            <img src="/zen-logo.png" alt="Zen AI" className="w-8 h-8" />
+            <Box display="inline-block" src="/zen-logo.png" alt="Zen AI" render="img" width={32} height={32} />
             {/* Pulse animation */}
-            <span className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: BRAND_COLOR }} />
-          </motion.button>
+            <MotionText render="span" animate={{ scale: [1, 2], opacity: [0.75, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeOut" }} position="absolute" top={0} right={0} bottom={0} left={0} borderRadius="var(--radius-full)" opacity={0.2} backgroundColor={BRAND_COLOR} />
+          </MotionBox>
         )}
       </AnimatePresence>
 
       {/* Chat window */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`fixed z-50 bg-black border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col ${
-              isExpanded
-                ? "inset-4 md:inset-8"
-                : "bottom-6 right-6 w-[380px] max-w-[calc(100vw-48px)] h-[520px] max-h-[80vh]"
-            }`}
+            position="fixed" zIndex={50} backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" display="flex" flexDirection="column" top={isExpanded ? 16 : undefined} right={isExpanded ? 16 : 24} bottom={isExpanded ? 16 : 24} left={isExpanded ? 16 : undefined} width={isExpanded ? undefined : "380px"} maxWidth={isExpanded ? undefined : "calc(100vw-48px)"} height={isExpanded ? undefined : "520px"} maxHeight={isExpanded ? undefined : "80vh"} $md={isExpanded ? { top: 32, right: 32, bottom: 32, left: 32 } : undefined}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-800">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-black border border-neutral-700">
-                  <img src="/zen-logo.png" alt="Zen AI" className="w-5 h-5" />
-                </div>
+            <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={12}>
+                <XStack width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-700)">
+                  <Box display="inline-block" src="/zen-logo.png" alt="Zen AI" render="img" width={20} height={20} />
+                </XStack>
                 {/* Model selector dropdown */}
-                <div className="relative" ref={modelDropdownRef}>
-                  <button
+                <Box position="relative" ref={modelDropdownRef}>
+                  <XStack minHeight={44}
                     onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-                    className="flex items-center gap-1.5 hover:bg-neutral-800/50 rounded-md px-2 py-1 transition-colors"
+                    render="button" display="flex" alignItems="center" gap={6} borderRadius="var(--radius-md)" paddingHorizontal={8} paddingVertical={4} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
                   >
-                    <div className="text-left">
-                      <div className="text-white text-sm font-medium flex items-center gap-1.5">
+                    <Box textAlign="left">
+                      <XStack color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" display="flex" alignItems="center" gap={6}>
                         {selectedModel.name}
-                        <span className="text-[10px] font-mono text-neutral-500 bg-neutral-800 px-1 py-0.5 rounded">
+                        <Text fontSize="10px" fontFamily="var(--font-mono)" color="var(--neutral-500)" backgroundColor="var(--neutral-800)" paddingHorizontal={4} paddingVertical={2} borderRadius="var(--radius)">
                           {selectedModel.params}
-                        </span>
-                      </div>
-                    </div>
-                    <ChevronDown className={`w-3.5 h-3.5 text-neutral-500 transition-transform ${isModelDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                        </Text>
+                      </XStack>
+                    </Box>
+                    <ChevronDown size={14} color="var(--neutral-500)" />
+                  </XStack>
 
                   {/* Model dropdown menu */}
                   <AnimatePresence>
                     {isModelDropdownOpen && (
-                      <motion.div
+                      <MotionBox
                         initial={{ opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -4 }}
-                        className="absolute left-0 top-full mt-1 w-56 bg-neutral-900 border border-neutral-800 rounded-lg shadow-xl overflow-hidden z-10"
+                        position="absolute" left={0} top="100%" marginTop={4} width={224} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" overflow="hidden" zIndex={10}
                       >
                         {zenModels.map((model) => (
-                          <button
+                          <XStack minHeight={44}
                             key={model.id}
                             onClick={() => {
                               setSelectedModel(model);
                               setIsModelDropdownOpen(false);
                             }}
-                            className={`w-full flex items-center justify-between px-3 py-2 text-left hover:bg-neutral-800 transition-colors ${
-                              selectedModel.id === model.id ? 'bg-neutral-800/50' : ''
-                            }`}
+                            render="button" width="100%" display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={12} paddingVertical={8} textAlign="left" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} backgroundColor={selectedModel.id === model.id ? "rgb(255 255 255 / 0.5)" : undefined}
                           >
                             <div>
-                              <div className="text-sm text-white flex items-center gap-2">
+                              <XStack fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" display="flex" alignItems="center" gap={8}>
                                 {model.name}
-                                <span className="text-[10px] font-mono text-neutral-500">{model.params}</span>
-                              </div>
-                              <div className="text-[10px] text-neutral-500">{model.description}</div>
+                                <Text fontSize="10px" fontFamily="var(--font-mono)" color="var(--neutral-500)">{model.params}</Text>
+                              </XStack>
+                              <Box fontSize="10px" color="var(--neutral-500)">{model.description}</Box>
                             </div>
                             {selectedModel.id === model.id && (
-                              <Check className="w-4 h-4 text-green-500" />
+                              <Check size={16} color="var(--neutral-500)" />
                             )}
-                          </button>
+                          </XStack>
                         ))}
-                        <div className="border-t border-neutral-800 px-3 py-2">
-                          <a
+                        <Box borderTopWidth={1} borderColor="var(--neutral-800)" paddingHorizontal={12} paddingVertical={8}>
+                          <Anchor tap
                             href="/zen"
-                            className="text-xs text-neutral-500 hover:text-white transition-colors"
+                            fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                           >
                             View all models →
-                          </a>
-                        </div>
-                      </motion.div>
+                          </Anchor>
+                        </Box>
+                      </MotionBox>
                     )}
                   </AnimatePresence>
-                </div>
-              </div>
-              <div className="flex items-center gap-1">
-                <button
+                </Box>
+              </XStack>
+              <XStack display="flex" alignItems="center" gap={4}>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="p-1.5 rounded-md text-neutral-500 hover:text-white hover:bg-neutral-800 transition-colors"
+                  render="button" padding={6} borderRadius="var(--radius-md)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)" }}
                 >
                   {isExpanded ? (
-                    <Minimize2 className="w-4 h-4" />
+                    <Minimize2 size={16} />
                   ) : (
-                    <Maximize2 className="w-4 h-4" />
+                    <Maximize2 size={16} />
                   )}
-                </button>
-                <button
+                </Box>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 rounded-md text-neutral-500 hover:text-white hover:bg-neutral-800 transition-colors"
+                  render="button" padding={6} borderRadius="var(--radius-md)" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)" }}
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+                  <X size={16} />
+                </Box>
+              </XStack>
+            </XStack>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <Box flex={1} overflowY="auto" padding={16} rowGap={16}>
               {messages.map((message) => (
-                <div
+                <XStack
                   key={message.id}
-                  className={`flex ${
-                    message.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                  display="flex" justifyContent={message.role === "user" ? "flex-end" : "flex-start"}
                 >
-                  <div
-                    className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm ${
-                      message.role === "user"
-                        ? "bg-[#fd4444] text-white rounded-br-md"
-                        : "bg-neutral-800 text-neutral-200 rounded-bl-md"
-                    }`}
+                  <Box
+                    maxWidth="85%" paddingHorizontal={12} paddingVertical={8} borderRadius="var(--radius-2xl)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor={message.role === "user" ? "var(--foreground)" : "var(--neutral-800)"} color={message.role === "user" ? "var(--foreground)" : "var(--neutral-200)"} borderBottomRightRadius={message.role === "user" ? "var(--radius-md)" : undefined} borderBottomLeftRadius={message.role === "user" ? undefined : "var(--radius-md)"}
                   >
                     {message.content}
-                  </div>
-                </div>
+                  </Box>
+                </XStack>
               ))}
               {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-neutral-800 px-4 py-2 rounded-2xl rounded-bl-md">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </div>
+                <XStack display="flex" justifyContent="flex-start">
+                  <Box backgroundColor="var(--neutral-800)" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-2xl)" borderBottomLeftRadius="var(--radius-md)">
+                    <XStack display="flex" gap={4}>
+                      <MotionText render="span" animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-500)" borderRadius="var(--radius-full)" style={{ animationDelay: "0ms" }} />
+                      <MotionText render="span" animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-500)" borderRadius="var(--radius-full)" style={{ animationDelay: "150ms" }} />
+                      <MotionText render="span" animate={{ y: [0, -25, 0] }} transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }} width={8} height={8} backgroundColor="var(--neutral-500)" borderRadius="var(--radius-full)" style={{ animationDelay: "300ms" }} />
+                    </XStack>
+                  </Box>
+                </XStack>
               )}
               <div ref={messagesEndRef} />
-            </div>
+            </Box>
 
             {/* Preset buttons */}
             {messages.length <= 1 && (
-              <div className="px-4 pb-2">
-                <div className="flex flex-wrap gap-2">
+              <Box paddingHorizontal={16} paddingBottom={8}>
+                <XStack display="flex" flexWrap="wrap" gap={8}>
                   {chatPresets.map((preset) => {
                     const Icon = preset.icon;
                     return (
-                      <button
+                      <XStack minHeight={44}
                         key={preset.label}
                         onClick={() => handlePreset(preset)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs font-medium hover:bg-neutral-800 hover:text-white transition-colors"
+                        render="button" display="inline-flex" alignItems="center" gap={6} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-md)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)", color: "var(--foreground)" }}
                       >
-                        <Icon className="w-3 h-3" />
+                        <Icon width={12} height={12} />
                         {preset.label}
-                      </button>
+                      </XStack>
                     );
                   })}
-                </div>
-              </div>
+                </XStack>
+              </Box>
             )}
 
             {/* Input */}
-            <div className="p-3 border-t border-neutral-800">
-              <div className="relative">
-                <input
+            <Box padding={12} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Box position="relative">
+                <Box display="inline-block" minHeight={44}
                   ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask anything..."
-                  className="w-full bg-neutral-900 border border-neutral-800 rounded-full px-4 py-2.5 pr-12 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-700 transition-colors"
+                  render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={10} paddingRight={48} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
                 />
-                <button
+                <XStack
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all disabled:opacity-50"
-                  style={{ backgroundColor: input.trim() ? BRAND_COLOR : "transparent" }}
+                  render="button" position="absolute" right={6} top="50%" y="-50%" width={32} height={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" disabledStyle={{ opacity: 0.5 }}
+                  backgroundColor={input.trim() ? BRAND_COLOR : "transparent"}
                 >
-                  <Send className={`w-4 h-4 ${input.trim() ? "text-white" : "text-neutral-500"}`} />
-                </button>
-              </div>
-              <div className="mt-2 text-center">
-                <span className="text-neutral-600 text-[10px]">
-                  Press Enter to send • <kbd className="px-1 py-0.5 bg-neutral-800 rounded text-neutral-500">⌘K</kbd> for quick navigation
-                </span>
-              </div>
-            </div>
-          </motion.div>
+                  <Send size={16} />
+                </XStack>
+              </Box>
+              <Box marginTop={8} textAlign="center">
+                <Text color="var(--neutral-600)" fontSize="10px">
+                  Press Enter to send • <Text paddingHorizontal={4} paddingVertical={2} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" color="var(--neutral-500)">⌘K</Text> for quick navigation
+                </Text>
+              </Box>
+            </Box>
+          </MotionBox>
         )}
       </AnimatePresence>
     </>

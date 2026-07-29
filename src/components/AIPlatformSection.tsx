@@ -1,111 +1,107 @@
+import { Anchor, ArchitecturalBox, Box, Button, ChromeText, GridLines, H3, MasonryGrid, MasonryItem, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
-import { MasonryGrid, MasonryItem } from "@/components/ui/masonry-grid";
-import { ArchitecturalBox, GridLines } from "@/components/ui/architectural-elements";
 import { aiPlatformFeatures } from "./data/ai-platform-data";
-import { getColorClasses } from "./utils/tailwind-helpers";
 
 const AIPlatformSection = () => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section className="relative py-20 sm:py-32 overflow-hidden">
+    <Box render="section" position="relative" paddingVertical={80} overflow="hidden" $sm={{ paddingVertical: 128 }}>
       {/* Background elements - simplified */}
-      <div className="absolute inset-0 bg-[var(--black)]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-black/90"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="var(--black)" />
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.05), rgb(0 0 0 / 0.9))"></Box>
       
       <GridLines spacing={60} opacity={0.2} color="rgba(147, 51, 234, 0.15)" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+      <Box position="relative" zIndex={10} maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="flex justify-center mb-4">
-            <span className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium">
+          <XStack display="flex" justifyContent="center" marginBottom={16}>
+            <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
               Unified AI Development
-            </span>
-          </div>
-          <div className="flex justify-center">
-            <ChromeText as="h2" className="text-4xl md:text-5xl font-bold mb-6">
+            </Text>
+          </XStack>
+          <XStack display="flex" justifyContent="center">
+            <ChromeText as="h2" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               AI Engineering Platform
             </ChromeText>
-          </div>
-          <p className="text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto">
+          </XStack>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}>
             Build powerful AI experiences with our comprehensive platform designed for developers,
             researchers, and enterprises to create, deploy, and scale AI applications.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto max-w-7xl"
+          marginHorizontal="auto" maxWidth="var(--container-max)"
         >
-          <MasonryGrid columns={4} gap={20} className="mb-12">
+          <MasonryGrid columns={4} gap={20} marginBottom={48}>
             {aiPlatformFeatures.map((feature, index) => {
               const isFeatureHovered = hovered === index;
-              const gradientClasses = getColorClasses(feature.color, 'gradient', isFeatureHovered);
-              const borderClasses = getColorClasses(feature.color, 'border', isFeatureHovered);
-              const textColorClass = getColorClasses(feature.color, 'text', isFeatureHovered);
+              // Monochrome: hover raises the surface and the border, it does
+              // not introduce a hue.
+              const surface = isFeatureHovered ? 'var(--white-10)' : 'var(--white-05)';
+              const edge = isFeatureHovered ? 'var(--border-strong)' : 'var(--border)';
               
               return (
                 <MasonryItem key={feature.id}>
-                  <motion.div
+                  <MotionBox
                     onMouseEnter={() => setHovered(index)}
                     onMouseLeave={() => setHovered(null)}
                     whileHover={{ scale: 1.03, y: -5 }}
                     transition={{ duration: 0.2 }}
                   >
                     <ArchitecturalBox
-                      className={`h-full bg-gradient-to-br ${gradientClasses} ${borderClasses} backdrop-blur-sm border p-6 rounded-2xl transition-colors duration-300`}
+                      height="100%" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} padding={24} borderRadius="var(--radius-2xl)" transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)"
+                      backgroundColor={surface}
+                      borderColor={edge}
                       showCorners={true}
                       cornerSize={16}
-                      cornerColor={isFeatureHovered ? `rgba(147, 51, 234, 0.4)` : "rgba(147, 51, 234, 0.2)"}
+                      cornerColor={isFeatureHovered ? 'rgb(255 255 255 / 0.4)' : 'rgb(255 255 255 / 0.2)'}
                     >
-                      <div className="mb-4">
-                        {React.createElement(feature.icon, { 
-                          size: 32, 
-                          className: textColorClass
-                        })}
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                      <p className="text-neutral-400">{feature.description}</p>
+                      <Box marginBottom={16}>
+                        {React.createElement(feature.icon, { size: 32, color: 'var(--foreground)' })}
+                      </Box>
+                      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>{feature.title}</H3>
+                      <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
                     </ArchitecturalBox>
-                  </motion.div>
+                  </MotionBox>
                 </MasonryItem>
               );
             })}
           </MasonryGrid>
-        </motion.div>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          textAlign="center"
         >
           <Button
             size="lg"
-            className="bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-600 hover:to-blue-600 rounded-full"
+            borderRadius="var(--radius-full)" backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-700))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--neutral-600))" }}
           >
-            <a href="/ai" className="flex items-center">
-              Explore the Platform <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+            <Anchor href="/ai" display="flex" alignItems="center">
+              Explore the Platform <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+            </Anchor>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

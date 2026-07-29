@@ -1,70 +1,70 @@
+import { Anchor, Box, Button, MotionBox, MotionText, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Activity, ArrowRight, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const CallToAction = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center px-3 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 mb-6"
+          flexDirection="row" display="inline-flex" alignItems="center" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" marginBottom={24}
         >
-          <Activity className="h-4 w-4 text-purple-400 mr-2" />
-          <span className="text-sm text-purple-300">Get Started Today</span>
-        </motion.div>
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Activity size={16} color="var(--foreground)" /></Box>
+          <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">Get Started Today</Text>
+        </MotionBox>
         
-        <motion.h2
+        <MotionText
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6"
+          fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
         >
           Build Real-time Experiences in Minutes
-        </motion.h2>
+        </MotionText>
         
-        <motion.p
+        <MotionText
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl text-neutral-300 mb-8"
+          fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}
         >
           Join thousands of developers building with Hanzo Realtime.
           No credit card required to get started.
-        </motion.p>
+        </MotionText>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}
         >
           <Button 
             size="lg" 
-            className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-8 py-6 text-lg w-full sm:w-auto"
+            backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-700)" }} $sm={{ width: "auto" }}
           >
-            Start Building <ArrowRight className="ml-2 h-5 w-5" />
+            Start Building <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Button>
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-gray-700 text-[var(--white)] hover:bg-gray-800 px-8 py-6 text-lg w-full sm:w-auto"
+            borderColor="var(--neutral-700)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-800)" }} $sm={{ width: "auto" }}
           >
-            <a href="https://docs.hanzo.ai" className="flex items-center">
-              Documentation <ChevronRight className="ml-2 h-5 w-5" />
-            </a>
+            <Anchor href="https://docs.hanzo.ai" display="flex" alignItems="center">
+              Documentation <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
+            </Anchor>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

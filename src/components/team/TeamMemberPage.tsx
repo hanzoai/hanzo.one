@@ -1,11 +1,10 @@
+import { Anchor, Box, Button, Grid, H1, H2, H3, MotionBox, Paragraph, XStack, toast } from '@/gui'
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { LucideIcon, ExternalLink, Mail, Phone, Shield, Users } from "lucide-react";
 import TeamSlack from "@/components/TeamSlack";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 import { teamMembers, TeamMemberId } from "@/constants/team-members";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -38,132 +37,132 @@ const TeamMemberPage = ({ memberId }: TeamMemberPageProps) => {
   const specialty = member.description.split(',')[0].trim();
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4">
-        <motion.div 
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16}>
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-7xl mx-auto"
+          maxWidth="var(--container-max)" marginHorizontal="auto"
         >
-          <div className="text-center mb-16">
-            <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${member.gradient} mb-4`}>
-              <MainIcon className="h-8 w-8 text-[var(--white)]" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+          <Box textAlign="center" marginBottom={64}>
+            <XStack display="inline-flex" padding={12} borderRadius="var(--radius-xl)" marginBottom={16}>
+              <MainIcon height={32} width={32} color="var(--white)" />
+            </XStack>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               {member.title}
-            </h1>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+            </H1>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" maxWidth="42rem" marginHorizontal="auto">
               {member.description}
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {member.features.map((feature, index) => {
               const FeatureIcon = feature.icon;
               return (
-                <motion.div 
+                <MotionBox 
                   key={index}
                   whileHover={{ y: -5 }}
-                  className={`p-6 rounded-2xl border border-gray-800 ${getGlassClass()}`}
+                  padding={24} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)"
                 >
-                  <FeatureIcon className={`h-8 w-8 ${feature.color} mb-4`} />
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-neutral-400">{feature.description}</p>
-                </motion.div>
+                  <FeatureIcon height={32} width={32} marginBottom={16} />
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>{feature.title}</H3>
+                  <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+                </MotionBox>
               );
             })}
-          </div>
+          </Grid>
 
           <TeamSlack />
 
           {/* Expertise Section */}
-          <div className="mt-16 mb-16">
-            <h2 className="text-2xl font-semibold mb-8 text-center">How {member.name} Works With Our Expert Partners</h2>
+          <Box marginTop={64} marginBottom={64}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={32} textAlign="center">How {member.name} Works With Our Expert Partners</H2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
               {/* Hanzo Agency Card */}
-              <div className="p-6 bg-gradient-to-br from-purple-900/50 to-blue-900/30 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-colors">
-                <div className="p-3 rounded-lg bg-purple-500/20 self-start inline-block mb-4">
-                  <Users className="h-6 w-6 text-purple-400" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Hanzo Agency</h3>
-                <p className="text-neutral-300 mb-5">
+              <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+                <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+                  <Users size={24} color="var(--foreground)" strokeWidth={1.5} />
+                </Box>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Hanzo Agency</H3>
+                <Paragraph color="var(--neutral-300)" marginBottom={20}>
                   {member.name} collaborates with our creative agency to help brands transform their digital 
                   presence using cutting-edge AI-powered design and marketing strategies.
-                </p>
-                <div className="flex flex-wrap gap-4">
+                </Paragraph>
+                <XStack display="flex" flexWrap="wrap" gap={16}>
                   <Button 
                     onClick={handleContactAgency}
-                    className="bg-purple-600 hover:bg-purple-500 text-[var(--white)]"
+                    backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
                   >
                     Work with Hanzo Agency
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                    <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
                   </Button>
-                  <a href="/contact" className="flex items-center gap-2 px-5 py-2.5 border border-purple-500/40 hover:border-purple-500 rounded-md text-purple-400 hover:text-purple-300 transition-colors">
+                  <Anchor href="/contact" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
                     <span>Learn more</span>
                     <Mail size={14} />
-                  </a>
-                </div>
-              </div>
+                  </Anchor>
+                </XStack>
+              </Box>
               
               {/* Sensei Group Card */}
-              <div className="p-6 bg-gradient-to-br from-green-900/50 to-teal-900/30 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-colors">
-                <div className="p-3 rounded-lg bg-green-500/20 self-start inline-block mb-4">
-                  <Shield className="h-6 w-6 text-green-400" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Sensei Group</h3>
-                <p className="text-neutral-300 mb-5">
+              <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+                <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+                  <Shield size={24} color="var(--foreground)" strokeWidth={1.5} />
+                </Box>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Sensei Group</H3>
+                <Paragraph color="var(--neutral-300)" marginBottom={20}>
                   When your project requires human expertise, {member.name} works alongside our collective of 
                   CXOs and industry specialists to implement enterprise-grade solutions.
-                </p>
-                <div className="flex flex-wrap gap-4">
+                </Paragraph>
+                <XStack display="flex" flexWrap="wrap" gap={16}>
                   <Button 
                     onClick={handleContactSensei}
-                    className="bg-green-600 hover:bg-green-500 text-[var(--white)]"
+                    backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
                   >
                     Contact Sensei Group
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                    <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
                   </Button>
-                  <a href="tel:+1234567890" className="flex items-center gap-2 px-5 py-2.5 border border-green-500/40 hover:border-green-500 rounded-md text-green-400 hover:text-green-300 transition-colors">
+                  <Anchor href="tel:+1234567890" display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}>
                     <span>Schedule a call</span>
                     <Phone size={14} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                  </Anchor>
+                </XStack>
+              </Box>
+            </Grid>
+          </Box>
 
           {/* Use Cases Section */}
-          <div className="text-center max-w-3xl mx-auto mt-16">
-            <h2 className="text-2xl font-semibold mb-6">What {member.name} Can Do For You</h2>
-            <p className="text-neutral-400 mb-8">
+          <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginTop={64}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={24}>What {member.name} Can Do For You</H2>
+            <Paragraph color="var(--neutral-400)" marginBottom={32}>
               {member.name} specializes in {specialty} to help you achieve your goals.
               For the best results, consider working with our expert human teams at Hanzo Agency or Sensei Group.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            </Paragraph>
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
               <Button 
                 onClick={handleContactAgency}
-                className={`bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 ${getRoundingClass()}`}
+                backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ opacity: 0.9 }}
               >
                 Creative Services
-                <ExternalLink className="ml-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
               </Button>
               <Button 
                 onClick={handleContactSensei}
-                className={`bg-gradient-to-r from-green-600 to-teal-600 hover:opacity-90 ${getRoundingClass()}`}
+                backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ opacity: 0.9 }}
               >
                 Enterprise Solutions
-                <ExternalLink className="ml-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
               </Button>
-            </div>
-          </div>
-        </motion.div>
-      </main>
+            </Grid>
+          </Box>
+        </MotionBox>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

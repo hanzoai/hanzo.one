@@ -1,3 +1,4 @@
+import { Box, Grid, H3, Paragraph } from '@/gui'
 import React from "react";
 import ModelCategoryCard from "./ModelCategoryCard";
 
@@ -19,11 +20,11 @@ interface ModelCategoryProps {
 
 const ModelCategory = ({ category, categoryIndex }: ModelCategoryProps) => {
   return (
-    <div key={categoryIndex} className="mb-20">
-      <h3 className="text-2xl font-bold text-[var(--white)] mb-4">{category.name}</h3>
-      <p className="text-neutral-300 mb-8">{category.description}</p>
+    <Box key={categoryIndex} marginBottom={80}>
+      <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={16}>{category.name}</H3>
+      <Paragraph color="var(--neutral-300)" marginBottom={32}>{category.description}</Paragraph>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {category.models.map((model, modelIndex) => (
           <ModelCategoryCard 
             key={modelIndex} 
@@ -32,8 +33,8 @@ const ModelCategory = ({ category, categoryIndex }: ModelCategoryProps) => {
             categoryIndex={categoryIndex}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 

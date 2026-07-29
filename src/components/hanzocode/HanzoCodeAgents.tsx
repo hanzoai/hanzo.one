@@ -1,48 +1,49 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Bot, Cpu, GitBranch, Braces, Users, Brain, Server, Maximize } from "lucide-react";
 
 interface FeatureCardProps {
-  icon: React.FC<{ className?: string }>;
+  icon: React.FC<{  }>;
   title: string;
   description: string;
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-gray-800 rounded-xl p-6"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
     >
-      <Icon className="h-10 w-10 text-purple-400 mb-4" />
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-neutral-300">{description}</p>
-    </motion.div>
+      <Icon height={40} width={40} color="var(--foreground)" marginBottom={16} />
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-300)">{description}</Paragraph>
+    </MotionBox>
   );
 };
 
 const HanzoCodeAgents: React.FC = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl font-bold mb-4">Autonomous Agentic Control</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Autonomous Agentic Control</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Harness the full power of intelligent agents that can operate your editor alongside you
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           <FeatureCard 
             icon={Bot}
             title="Superagents"
@@ -66,58 +67,58 @@ const HanzoCodeAgents: React.FC = () => {
             title="Code Generation"
             description="Generate entire modules, components, or services with detailed specifications in plain English"
           />
-        </div>
+        </Grid>
         
-        <div className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-2xl p-8 border border-purple-500/20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <Box borderRadius="var(--radius-2xl)" padding={32} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <div>
-              <h3 className="text-2xl font-bold mb-6">Massively Parallel Development</h3>
-              <p className="text-lg text-neutral-300 mb-8">
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Massively Parallel Development</H3>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32}>
                 Hanzo Code can create up to 1,000,000 parallel instances of your development environment, each with its own agent, to tackle the largest and most complex coding challenges.
-              </p>
+              </Paragraph>
               
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Users className="h-5 w-5 text-purple-400 mr-3 mt-1" />
-                  <p className="text-neutral-300">True pair programming with agents that have full system access</p>
-                </div>
+              <Box rowGap={16}>
+                <XStack display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12} marginTop={4}><Users size={20} color="var(--foreground)" /></Box>
+                  <Paragraph color="var(--neutral-300)">True pair programming with agents that have full system access</Paragraph>
+                </XStack>
                 
-                <div className="flex items-start">
-                  <Brain className="h-5 w-5 text-purple-400 mr-3 mt-1" />
-                  <p className="text-neutral-300">Agents learn your coding style and project patterns over time</p>
-                </div>
+                <XStack display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12} marginTop={4}><Brain size={20} color="var(--foreground)" /></Box>
+                  <Paragraph color="var(--neutral-300)">Agents learn your coding style and project patterns over time</Paragraph>
+                </XStack>
                 
-                <div className="flex items-start">
-                  <Server className="h-5 w-5 text-purple-400 mr-3 mt-1" />
-                  <p className="text-neutral-300">Scale from a single helper to a massive distributed workforce</p>
-                </div>
+                <XStack display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12} marginTop={4}><Server size={20} color="var(--foreground)" /></Box>
+                  <Paragraph color="var(--neutral-300)">Scale from a single helper to a massive distributed workforce</Paragraph>
+                </XStack>
                 
-                <div className="flex items-start">
-                  <Maximize className="h-5 w-5 text-purple-400 mr-3 mt-1" />
-                  <p className="text-neutral-300">Tackle enterprise-scale projects that would normally require entire teams</p>
-                </div>
-              </div>
+                <XStack display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12} marginTop={4}><Maximize size={20} color="var(--foreground)" /></Box>
+                  <Paragraph color="var(--neutral-300)">Tackle enterprise-scale projects that would normally require entire teams</Paragraph>
+                </XStack>
+              </Box>
             </div>
             
-            <div className="bg-[var(--black)]/40 rounded-xl p-6 border border-gray-800">
-              <div className="text-sm font-mono text-neutral-300 space-y-2">
-                <div className="text-purple-400">// Creating a team of agents to refactor an entire codebase</div>
-                <div className="text-[var(--white)]">const project = await HanzoCode.createProject('./my-app');</div>
-                <div className="text-[var(--white)]">const agents = await project.createAgentTeam({"{"}</div>
-                <div className="text-[var(--white)] ml-4">size: 12,</div>
-                <div className="text-[var(--white)] ml-4">task: 'Refactor to React 18 with TypeScript',</div>
-                <div className="text-[var(--white)] ml-4">coordination: 'hierarchical',</div>
-                <div className="text-[var(--white)] ml-4">parallelization: true</div>
-                <div className="text-[var(--white)]">{"}"});</div>
-                <div className="text-[var(--white)]">await agents.execute();</div>
-                <div className="text-[var(--white)]">// Agents will work together, with some focusing on</div>
-                <div className="text-[var(--white)]">// component logic, others on types, others on tests</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            <Box backgroundColor="rgb(0 0 0 / 0.4)" borderRadius="var(--radius-xl)" padding={24} borderWidth={1} borderColor="var(--neutral-800)">
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)" color="var(--neutral-300)" rowGap={8}>
+                <Box color="var(--foreground)">// Creating a team of agents to refactor an entire codebase</Box>
+                <Box color="var(--white)">const project = await HanzoCode.createProject('./my-app');</Box>
+                <Box color="var(--white)">const agents = await project.createAgentTeam({"{"}</Box>
+                <Box color="var(--white)" marginLeft={16}>size: 12,</Box>
+                <Box color="var(--white)" marginLeft={16}>task: 'Refactor to React 18 with TypeScript',</Box>
+                <Box color="var(--white)" marginLeft={16}>coordination: 'hierarchical',</Box>
+                <Box color="var(--white)" marginLeft={16}>parallelization: true</Box>
+                <Box color="var(--white)">{"}"});</Box>
+                <Box color="var(--white)">await agents.execute();</Box>
+                <Box color="var(--white)">// Agents will work together, with some focusing on</Box>
+                <Box color="var(--white)">// component logic, others on types, others on tests</Box>
+              </Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

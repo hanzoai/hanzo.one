@@ -1,10 +1,8 @@
+import { AnimatedHeading, AnimatedSection, AnimatedStaggerContainer, Box, ChromeText, H3, MotionBox, Paragraph, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Bot, Search, BrainCircuit, Image, FileText, Tag } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
-import AnimatedSection, { AnimatedHeading, AnimatedStaggerContainer } from "@/components/ui/animated-section";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
 
 const useCaseVariant = createAnimationVariant("fadeInBlur", {
   duration: 0.35,
@@ -26,52 +24,52 @@ interface UseCaseProps {
 }
 
 const UseCase = ({ icon, title, description }: UseCaseProps) => (
-  <motion.div
+  <MotionBox
     variants={useCaseVariant}
-    className="p-6"
+    padding={24}
     whileHover={{ scale: 1.02 }}
     transition={{ duration: 0.2 }}
   >
-    <motion.div 
+    <MotionBox 
       variants={iconVariant}
-      className="h-14 w-14 rounded-full bg-indigo-900/30 border border-indigo-500/30 flex items-center justify-center mb-4 mx-auto"
+      flexDirection="row" height={56} width={56} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" display="flex" alignItems="center" justifyContent="center" marginBottom={16} marginHorizontal="auto"
     >
       {icon}
-    </motion.div>
-    <h3 className="text-xl font-bold text-[var(--white)] text-center mb-2">{title}</h3>
-    <p className="text-neutral-400 text-center">{description}</p>
-  </motion.div>
+    </MotionBox>
+    <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" textAlign="center" marginBottom={8}>{title}</H3>
+    <Paragraph color="var(--neutral-400)" textAlign="center">{description}</Paragraph>
+  </MotionBox>
 );
 
 const UseCases = () => {
   const useCases = [
     {
-      icon: <Bot className="h-6 w-6 text-indigo-400" />,
+      icon: <Bot size={24} color="var(--foreground)" />,
       title: "Chatbots & RAG",
       description: "Build powerful retrieval-augmented generation systems that search across your knowledge base."
     },
     {
-      icon: <Search className="h-6 w-6 text-indigo-400" />,
+      icon: <Search size={24} color="var(--foreground)" />,
       title: "Semantic Search",
       description: "Implement intuitive search that understands user intent beyond simple keyword matching."
     },
     {
-      icon: <BrainCircuit className="h-6 w-6 text-indigo-400" />,
+      icon: <BrainCircuit size={24} color="var(--foreground)" />,
       title: "Recommendation Systems",
       description: "Create personalized recommendations based on user preferences and behavior."
     },
     {
-      icon: <Image className="h-6 w-6 text-indigo-400" />,
+      icon: <Image size={24} color="var(--foreground)" />,
       title: "Visual Search",
       description: "Enable users to search for visually similar images or products in your catalog."
     },
     {
-      icon: <FileText className="h-6 w-6 text-indigo-400" />,
+      icon: <FileText size={24} color="var(--foreground)" />,
       title: "Document Intelligence",
       description: "Extract insights from documents and connect related information across sources."
     },
     {
-      icon: <Tag className="h-6 w-6 text-indigo-400" />,
+      icon: <Tag size={24} color="var(--foreground)" />,
       title: "Automated Tagging",
       description: "Automatically categorize and tag content based on semantic understanding."
     }
@@ -79,21 +77,21 @@ const UseCases = () => {
 
   return (
     <AnimatedSection 
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-black"
+      paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--neutral-950), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}
       viewportAmount={0.1}
     >
-      <div className="max-w-7xl mx-auto">
-        <AnimatedHeading className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-4">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <AnimatedHeading textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Use Cases
           </ChromeText>
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Powering AI applications across industries
-          </p>
+          </Paragraph>
         </AnimatedHeading>
         
         <AnimatedStaggerContainer 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} 
           delayFactor={0.07}
         >
           {useCases.map((useCase, index) => (
@@ -105,7 +103,7 @@ const UseCases = () => {
             />
           ))}
         </AnimatedStaggerContainer>
-      </div>
+      </Box>
     </AnimatedSection>
   );
 };

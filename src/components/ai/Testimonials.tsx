@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -26,107 +27,107 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -bottom-64 -right-32 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl"></div>
-      </div>
+      <Box position="absolute" top={0} left={0} width="100%" height="100%" overflow="hidden" pointerEvents="none">
+        <Box position="absolute" bottom={-256} right={-128} width={384} height={384} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      </Box>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Experiences from Our Community
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hear from engineering teams who are building the next generation of AI-powered applications
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/20 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/30 transition-colors relative"
+              
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" position="relative" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             >
-              <Quote className="absolute top-6 right-6 h-6 w-6 text-purple-500/40" />
-              <p className="text-neutral-300 mb-8 mt-4">"{testimonial.quote}"</p>
-              <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-purple-900/30 overflow-hidden">
-                  <img 
+              <Box render="span" display="inline-flex" alignItems="center" position="absolute" top={24} right={24}><Quote size={24} color="rgb(255 255 255 / 0.4)" /></Box>
+              <Paragraph color="var(--neutral-300)" marginBottom={32} marginTop={16}>"{testimonial.quote}"</Paragraph>
+              <XStack display="flex" alignItems="center">
+                <Box height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" overflow="hidden">
+                  <Box display="inline-block" 
                     src={testimonial.image} 
                     alt={testimonial.author}
-                    className="h-full w-full object-cover opacity-70" 
+                    render="img" height="100%" width="100%" objectFit="cover" opacity={0.7} 
                   />
-                </div>
-                <div className="ml-4">
-                  <div className="text-[var(--white)] font-medium">{testimonial.author}</div>
-                  <div className="text-neutral-400 text-sm">{testimonial.title}</div>
-                </div>
-              </div>
-            </motion.div>
+                </Box>
+                <Box marginLeft={16}>
+                  <Box color="var(--white)" fontWeight="500">{testimonial.author}</Box>
+                  <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{testimonial.title}</Box>
+                </Box>
+              </XStack>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 bg-gray-900/30 border border-gray-800 rounded-xl p-8 md:p-12"
+          marginTop={80} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} $md={{ padding: 48 }}
         >
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-8 md:mb-0 md:mr-8 md:w-2/3">
-              <h3 className="text-2xl font-bold text-[var(--white)] mb-4">
+          <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" $md={{ flexDirection: "row" }}>
+            <Box marginBottom={32} $md={{ marginBottom: 0, marginRight: 32, width: "66.666667%" }}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={16}>
                 The AI Engineering Community
-              </h3>
-              <p className="text-neutral-300 mb-6">
+              </H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={24}>
                 Join thousands of AI engineers and developers building the future of intelligent applications. 
                 Share experiences, get support, and collaborate on best practices.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                  <span className="text-neutral-300 text-sm">4,500+ community members</span>
-                </div>
-                <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                  <span className="text-neutral-300 text-sm">Weekly office hours</span>
-                </div>
-                <div className="flex items-center bg-gray-800/50 rounded-full px-4 py-2">
-                  <div className="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                  <span className="text-neutral-300 text-sm">Dedicated support team</span>
-                </div>
-              </div>
-            </div>
-            <div className="md:w-1/3 flex justify-center md:justify-end">
-              <div className="flex -space-x-4">
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" gap={16}>
+                <XStack display="flex" alignItems="center" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8}>
+                  <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" marginRight={8}></Box>
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">4,500+ community members</Text>
+                </XStack>
+                <XStack display="flex" alignItems="center" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8}>
+                  <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" marginRight={8}></Box>
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Weekly office hours</Text>
+                </XStack>
+                <XStack display="flex" alignItems="center" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8}>
+                  <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" marginRight={8}></Box>
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Dedicated support team</Text>
+                </XStack>
+              </XStack>
+            </Box>
+            <XStack display="flex" justifyContent="center" $md={{ width: "33.333333%", justifyContent: "flex-end" }}>
+              <XStack display="flex" columnGap={16}>
                 {[...Array(5)].map((_, i) => (
-                  <div 
+                  <XStack 
                     key={i} 
-                    className="h-12 w-12 rounded-full bg-purple-900/50 border-2 border-gray-900 flex items-center justify-center text-purple-300 text-sm font-medium"
+                    height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={2} borderColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500"
                   >
                     {["JS", "MK", "AL", "TN", "RW"][i]}
-                  </div>
+                  </XStack>
                 ))}
-                <div className="h-12 w-12 rounded-full bg-purple-600/30 border-2 border-gray-900 flex items-center justify-center text-[var(--white)] text-sm font-medium">
+                <XStack height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={2} borderColor="var(--neutral-900)" display="flex" alignItems="center" justifyContent="center" color="var(--white)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
                   +2.5k
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                </XStack>
+              </XStack>
+            </XStack>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

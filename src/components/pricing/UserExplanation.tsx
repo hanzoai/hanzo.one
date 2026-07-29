@@ -1,7 +1,6 @@
+import { Box, Button, H4, Paragraph, Popover, PopoverContent, PopoverTrigger, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { User, HelpCircle } from "lucide-react";
 
 const UserExplanation = () => {
@@ -10,28 +9,28 @@ const UserExplanation = () => {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="flex items-center gap-2 text-neutral-400 hover:text-[var(--white)] border-gray-800 bg-transparent"
+          display="flex" alignItems="center" gap={8} color="var(--neutral-400)" borderColor="var(--neutral-800)" backgroundColor="transparent" hoverStyle={{ color: "var(--white)" }}
         >
-          <HelpCircle className="h-4 w-4" />
+          <HelpCircle size={16} />
           What are users?
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 bg-gray-900 border-gray-800 text-[var(--white)] p-4">
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <User className="h-5 w-5 text-neutral-400" />
-            <h4 className="font-medium text-lg">Platform Users</h4>
-          </div>
-          <p className="text-neutral-300 text-sm">
+      <PopoverContent width={320} backgroundColor="var(--neutral-900)" borderColor="var(--neutral-800)" color="var(--white)" padding={16}>
+        <Box rowGap={12}>
+          <XStack display="flex" alignItems="center" gap={8}>
+            <User size={20} color="var(--neutral-400)" />
+            <H4 fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">Platform Users</H4>
+          </XStack>
+          <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
             Users are individuals with login credentials to your platform. 
             Each user can access the platform's features according to your plan. 
             Team plans are billed per user with login access to your workspace.
-          </p>
-          <p className="text-neutral-400 text-xs">
+          </Paragraph>
+          <Paragraph color="var(--neutral-400)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
             Note: End-users of your applications don't count toward this limit 
             unless they need direct access to the platform.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
       </PopoverContent>
     </Popover>
   );

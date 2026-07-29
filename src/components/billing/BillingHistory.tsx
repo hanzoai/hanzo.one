@@ -1,15 +1,7 @@
-
+import { Box, Button, H3, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Text, XStack } from '@/gui'
 import React from 'react';
 import { Download, ArrowLeft, Filter } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from '@/components/ui/table';
+
 import BillingTabsLink from './BillingTabsLink';
 
 const BillingHistory = () => {
@@ -21,35 +13,22 @@ const BillingHistory = () => {
     { id: 'INV-005', date: 'Feb 15, 2024', amount: '$49.00', status: 'Paid', description: 'Pro Plan - Monthly' },
   ];
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Paid':
-        return 'bg-green-900/20 text-green-400';
-      case 'Pending':
-        return 'bg-yellow-900/20 text-yellow-400';
-      case 'Failed':
-        return 'bg-red-900/20 text-red-400';
-      default:
-        return 'bg-gray-900/20 text-neutral-400';
-    }
-  };
-
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <Box rowGap={32}>
+      <XStack display="flex" alignItems="center" justifyContent="space-between">
         <BillingTabsLink tabId="overview" variant="ghost">
-          <ArrowLeft className="h-4 w-4 mr-2" /> Back to Overview
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ArrowLeft size={16} /></Box> Back to Overview
         </BillingTabsLink>
         <Button variant="outline">
-          <Filter className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Filter size={16} /></Box>
           Filter
         </Button>
-      </div>
+      </XStack>
       
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 className="text-xl font-medium mb-6">Invoice History</h3>
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={24}>Invoice History</H3>
         
-        <div className="overflow-x-auto">
+        <Box overflowX="auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -58,24 +37,24 @@ const BillingHistory = () => {
                 <TableHead>Description</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead textAlign="right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {invoices.map(invoice => (
                 <TableRow key={invoice.id}>
-                  <TableCell className="font-medium">{invoice.id}</TableCell>
+                  <TableCell fontWeight="500">{invoice.id}</TableCell>
                   <TableCell>{invoice.date}</TableCell>
                   <TableCell>{invoice.description}</TableCell>
                   <TableCell>{invoice.amount}</TableCell>
                   <TableCell>
-                    <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(invoice.status)}`}>
+                    <Text paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
                       {invoice.status}
-                    </span>
+                    </Text>
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell textAlign="right">
                     <Button variant="ghost" size="sm">
-                      <Download className="h-4 w-4 mr-2" />
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
                       PDF
                     </Button>
                   </TableCell>
@@ -83,9 +62,9 @@ const BillingHistory = () => {
               ))}
             </TableBody>
           </Table>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,10 +1,9 @@
+import { Box, Button, Grid, H3, Link, Text, XStack } from '@/gui'
 import { capabilitiesNav, industriesNav } from "@/constants/navigation-data";
-import { Link } from "react-router-dom";
+
 import NavMenu from "../NavMenu";
 import { Users, Shield, Building2, ArrowRight, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Button } from "@/components/ui/button";
 
 const ITEMS_PER_CATEGORY = 4;
 
@@ -14,292 +13,205 @@ export const SolutionsMenu = () => {
   return (
     <NavMenu label="Solutions">
       {(closeMenu) => (
-        <div className="w-full">
+        <Box width="100%">
           {/* Featured Row */}
-          <div className={cn(
-            "mb-4 pb-4 border-b",
-            isDarkMode ? "border-neutral-800" : "border-neutral-200"
-          )}>
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="h-3.5 w-3.5 text-[#fd4444]" />
-              <span className={cn(
-                "text-xs font-medium uppercase tracking-wider",
-                isDarkMode ? "text-neutral-400" : "text-neutral-500"
-              )}>Featured Solutions</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
+          <Box marginBottom={16} paddingBottom={16} borderBottomWidth={1} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+            <XStack display="flex" alignItems="center" gap={8} marginBottom={8}>
+              <Sparkles size={14} color="var(--foreground)" />
+              <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" textTransform="uppercase" letterSpacing="0.05em" color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-500)"}>Featured Solutions</Text>
+            </XStack>
+            <XStack display="flex" flexWrap="wrap" gap={8}>
               <Link
                 to="/agency"
                 onClick={closeMenu}
-                className={cn(
-                  "flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all group",
-                  isDarkMode
-                    ? "bg-neutral-900/50 border-neutral-800 hover:border-[#fd4444]/50 hover:bg-neutral-800/50"
-                    : "bg-neutral-100 border-neutral-200 hover:border-[#fd4444]/50 hover:bg-neutral-50"
-                )}
+                group display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
               >
-                <Shield className={cn(
-                  "h-3.5 w-3.5 group-hover:text-[#fd4444]",
-                  isDarkMode ? "text-neutral-400" : "text-neutral-500"
-                )} />
-                <span className={cn(
-                  "text-sm font-medium group-hover:text-[#fd4444]",
-                  isDarkMode ? "text-neutral-300" : "text-neutral-700"
-                )}>Hanzo Agency</span>
+                <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><Shield size={14} /></Box>
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"}>Hanzo Agency</Text>
               </Link>
               <Link
                 to="/enterprise"
                 onClick={closeMenu}
-                className={cn(
-                  "flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all group",
-                  isDarkMode
-                    ? "bg-neutral-900/50 border-neutral-800 hover:border-[#fd4444]/50 hover:bg-neutral-800/50"
-                    : "bg-neutral-100 border-neutral-200 hover:border-[#fd4444]/50 hover:bg-neutral-50"
-                )}
+                group display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-lg)" borderWidth={1} transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isDarkMode ? "rgb(255 255 255 / 0.5)" : "var(--neutral-100)"} borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"} hoverStyle={isDarkMode ? { borderColor: "var(--border-strong)", backgroundColor: "var(--surface-card)" } : { borderColor: "var(--border-strong)", backgroundColor: "var(--neutral-50)" }}
               >
-                <Building2 className={cn(
-                  "h-3.5 w-3.5 group-hover:text-[#fd4444]",
-                  isDarkMode ? "text-neutral-400" : "text-neutral-500"
-                )} />
-                <span className={cn(
-                  "text-sm font-medium group-hover:text-[#fd4444]",
-                  isDarkMode ? "text-neutral-300" : "text-neutral-700"
-                )}>Enterprise</span>
+                <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><Building2 size={14} /></Box>
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"}>Enterprise</Text>
               </Link>
-            </div>
-          </div>
+            </XStack>
+          </Box>
 
           {/* Two Column Grid - Capabilities & Industries */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4">
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" columnGap={24} rowGap={16} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {/* Capabilities */}
-            <div className="space-y-1.5">
-              <h3 className={cn(
-                "text-[10px] font-semibold uppercase tracking-wider mb-2",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>
+            <Box rowGap={6}>
+              <H3 fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.05em" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                 Capabilities
-              </h3>
-              <div className="space-y-0.5">
+              </H3>
+              <Box rowGap={2}>
                 {capabilitiesNav[0].items.slice(0, ITEMS_PER_CATEGORY).map((item) => {
                   const Icon = item.icon;
                   return (
-                    <Link
+                    <Link tap
                       key={item.title}
                       to={item.href}
                       onClick={closeMenu}
-                      className="flex items-center gap-1.5 py-0.5 group"
+                      group display="flex" alignItems="center" gap={6} paddingVertical={2}
                     >
-                      {Icon && <Icon className={cn(
-                        "h-3 w-3 group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                      )} />}
-                      <span className={cn(
-                        "text-xs transition-colors group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                      )}>
+                      {Icon && <Icon height={12} width={12} $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} />}
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                         {item.title}
-                      </span>
+                      </Text>
                     </Link>
                   );
                 })}
                 {capabilitiesNav[0].items.length > ITEMS_PER_CATEGORY && (
-                  <Link
+                  <Link tap
                     to="/solutions"
                     onClick={closeMenu}
-                    className={cn(
-                      "flex items-center gap-1 py-0.5 text-[10px] transition-colors hover:text-[#fd4444]",
-                      isDarkMode ? "text-neutral-600" : "text-neutral-500"
-                    )}
+                    display="flex" alignItems="center" gap={4} paddingVertical={2} fontSize="10px" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-600)" : "var(--neutral-500)"}
                   >
                     +{capabilitiesNav[0].items.length - ITEMS_PER_CATEGORY} more
-                    <ArrowRight className="h-2.5 w-2.5" />
+                    <ArrowRight size={10} />
                   </Link>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* Industries - split into two columns */}
-            <div className="space-y-1.5">
-              <h3 className={cn(
-                "text-[10px] font-semibold uppercase tracking-wider mb-2",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>
+            <Box rowGap={6}>
+              <H3 fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.05em" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                 Industries
-              </h3>
-              <div className="space-y-0.5">
+              </H3>
+              <Box rowGap={2}>
                 {industriesNav[0].items.slice(0, ITEMS_PER_CATEGORY).map((item) => {
                   const Icon = item.icon;
                   return (
-                    <Link
+                    <Link tap
                       key={item.title}
                       to={item.href}
                       onClick={closeMenu}
-                      className="flex items-center gap-1.5 py-0.5 group"
+                      group display="flex" alignItems="center" gap={6} paddingVertical={2}
                     >
-                      {Icon && <Icon className={cn(
-                        "h-3 w-3 group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                      )} />}
-                      <span className={cn(
-                        "text-xs transition-colors group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                      )}>
+                      {Icon && <Icon height={12} width={12} $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} />}
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                         {item.title}
-                      </span>
+                      </Text>
                     </Link>
                   );
                 })}
                 {industriesNav[0].items.length > ITEMS_PER_CATEGORY && (
-                  <Link
+                  <Link tap
                     to="/industries"
                     onClick={closeMenu}
-                    className={cn(
-                      "flex items-center gap-1 py-0.5 text-[10px] transition-colors hover:text-[#fd4444]",
-                      isDarkMode ? "text-neutral-600" : "text-neutral-500"
-                    )}
+                    display="flex" alignItems="center" gap={4} paddingVertical={2} fontSize="10px" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-600)" : "var(--neutral-500)"}
                   >
                     +{industriesNav[0].items.length - ITEMS_PER_CATEGORY} more
-                    <ArrowRight className="h-2.5 w-2.5" />
+                    <ArrowRight size={10} />
                   </Link>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* More Industries */}
-            <div className="space-y-1.5">
-              <h3 className={cn(
-                "text-[10px] font-semibold uppercase tracking-wider mb-2",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>
+            <Box rowGap={6}>
+              <H3 fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.05em" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                 More Industries
-              </h3>
-              <div className="space-y-0.5">
+              </H3>
+              <Box rowGap={2}>
                 {industriesNav[0].items.slice(ITEMS_PER_CATEGORY, ITEMS_PER_CATEGORY * 2).map((item) => {
                   const Icon = item.icon;
                   return (
-                    <Link
+                    <Link tap
                       key={item.title}
                       to={item.href}
                       onClick={closeMenu}
-                      className="flex items-center gap-1.5 py-0.5 group"
+                      group display="flex" alignItems="center" gap={6} paddingVertical={2}
                     >
-                      {Icon && <Icon className={cn(
-                        "h-3 w-3 group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-500" : "text-neutral-400"
-                      )} />}
-                      <span className={cn(
-                        "text-xs transition-colors group-hover:text-[#fd4444]",
-                        isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                      )}>
+                      {Icon && <Icon height={12} width={12} $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"} />}
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                         {item.title}
-                      </span>
+                      </Text>
                     </Link>
                   );
                 })}
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* Use Cases */}
-            <div className="space-y-1.5">
-              <h3 className={cn(
-                "text-[10px] font-semibold uppercase tracking-wider mb-2",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>
+            <Box rowGap={6}>
+              <H3 fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.05em" marginBottom={8} color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>
                 Use Cases
-              </h3>
-              <div className="space-y-0.5">
-                <Link
+              </H3>
+              <Box rowGap={2}>
+                <Link tap
                   to="/solutions/automation"
                   onClick={closeMenu}
-                  className="flex items-center gap-1.5 py-0.5 group"
+                  group display="flex" alignItems="center" gap={6} paddingVertical={2}
                 >
-                  <span className={cn(
-                    "text-xs transition-colors group-hover:text-[#fd4444]",
-                    isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                  )}>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                     Automation
-                  </span>
+                  </Text>
                 </Link>
-                <Link
+                <Link tap
                   to="/solutions/analytics"
                   onClick={closeMenu}
-                  className="flex items-center gap-1.5 py-0.5 group"
+                  group display="flex" alignItems="center" gap={6} paddingVertical={2}
                 >
-                  <span className={cn(
-                    "text-xs transition-colors group-hover:text-[#fd4444]",
-                    isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                  )}>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                     Analytics
-                  </span>
+                  </Text>
                 </Link>
-                <Link
+                <Link tap
                   to="/solutions/content"
                   onClick={closeMenu}
-                  className="flex items-center gap-1.5 py-0.5 group"
+                  group display="flex" alignItems="center" gap={6} paddingVertical={2}
                 >
-                  <span className={cn(
-                    "text-xs transition-colors group-hover:text-[#fd4444]",
-                    isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                  )}>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                     Content Generation
-                  </span>
+                  </Text>
                 </Link>
-                <Link
+                <Link tap
                   to="/solutions/customer-support"
                   onClick={closeMenu}
-                  className="flex items-center gap-1.5 py-0.5 group"
+                  group display="flex" alignItems="center" gap={6} paddingVertical={2}
                 >
-                  <span className={cn(
-                    "text-xs transition-colors group-hover:text-[#fd4444]",
-                    isDarkMode ? "text-neutral-400" : "text-neutral-600"
-                  )}>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }} color={isDarkMode ? "var(--neutral-400)" : "var(--neutral-600)"}>
                     Customer Support
-                  </span>
+                  </Text>
                 </Link>
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Grid>
 
           {/* Footer */}
-          <div className={cn(
-            "mt-4 pt-4 border-t flex items-center justify-between",
-            isDarkMode ? "border-neutral-800" : "border-neutral-200"
-          )}>
-            <div className="flex items-center gap-3">
-              <span className={cn(
-                "text-[10px]",
-                isDarkMode ? "text-neutral-500" : "text-neutral-400"
-              )}>Need custom solutions?</span>
-            </div>
-            <div className="flex gap-2">
+          <XStack marginTop={16} paddingTop={16} borderTopWidth={1} display="flex" alignItems="center" justifyContent="space-between" borderColor={isDarkMode ? "var(--neutral-800)" : "var(--neutral-200)"}>
+            <XStack display="flex" alignItems="center" gap={12}>
+              <Text fontSize="10px" color={isDarkMode ? "var(--neutral-500)" : "var(--neutral-400)"}>Need custom solutions?</Text>
+            </XStack>
+            <XStack display="flex" gap={8}>
               <Button
                 size="sm"
                 variant="outline"
-                className={cn(
-                  "h-7 text-xs px-3",
-                  isDarkMode
-                    ? "bg-transparent border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                    : "bg-transparent border-neutral-300 text-neutral-700 hover:bg-neutral-100 hover:text-black"
-                )}
+                height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} backgroundColor={isDarkMode ? "transparent" : "transparent"} borderColor={isDarkMode ? "var(--neutral-700)" : "var(--neutral-300)"} color={isDarkMode ? "var(--neutral-300)" : "var(--neutral-700)"} hoverStyle={isDarkMode ? { backgroundColor: "var(--neutral-800)", color: "var(--foreground)" } : { backgroundColor: "var(--neutral-100)", color: "var(--pure-black)" }}
                 asChild
               >
-                <Link to="/contact" onClick={closeMenu}>
+                <Link tap to="/contact" onClick={closeMenu}>
                   Contact Sales
                 </Link>
               </Button>
               <Button
                 size="sm"
-                className="bg-[#fd4444] text-white hover:bg-[#fd4444]/90 h-7 text-xs px-3"
+                backgroundColor="var(--neutral-800)" color="var(--foreground)" height={28} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" paddingHorizontal={12} hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
                 asChild
               >
                 <Link to="/solutions" onClick={closeMenu}>
                   All Solutions
-                  <ArrowRight className="ml-1 h-3 w-3" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ArrowRight size={12} /></Box>
                 </Link>
               </Button>
-            </div>
-          </div>
-        </div>
+            </XStack>
+          </XStack>
+        </Box>
       )}
     </NavMenu>
   );

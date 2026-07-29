@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,63 +6,63 @@ import { Plug, Code, FileText } from "lucide-react";
 
 const Integrations = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Powerful Integrations & APIs</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Powerful Integrations & APIs</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Connect Hanzo Payments to your existing systems with ease through powerful APIs and pre-built integrations.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-2 bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)" $lg={{ gridColumn: "span 2 / span 2" }}
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <Plug className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-2xl font-bold mb-4">Pre-built Integrations</h3>
-            <p className="text-neutral-400 mb-6">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <Plug size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Pre-built Integrations</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Hundreds of pre-built integrations with popular services, including:
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            </Paragraph>
+            <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12} $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {['Salesforce', 'Adobe', 'SAP', 'QuickBooks', 'Shopify', 'WooCommerce', 'Magento', 'WordPress', 'Squarespace', 'NetSuite', 'Xero', 'HubSpot'].map((integration, index) => (
-                <div key={index} className="py-2 px-3 bg-gray-800 rounded-md text-sm text-center text-neutral-300">
+                <Box key={index} paddingVertical={8} paddingHorizontal={12} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" textAlign="center" color="var(--neutral-300)">
                   {integration}
-                </div>
+                </Box>
               ))}
-            </div>
-            <p className="text-neutral-400 mt-4 text-sm text-center">
+            </Grid>
+            <Paragraph color="var(--neutral-400)" marginTop={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" textAlign="center">
               And many more via the Hanzo App Marketplace
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-3 bg-gray-900/30 border border-gray-800 rounded-lg overflow-hidden"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden" $lg={{ gridColumn: "span 3 / span 3" }}
           >
-            <div className="p-6 border-b border-gray-800">
-              <h3 className="text-2xl font-bold mb-2">Developer-First APIs</h3>
-              <p className="text-neutral-400">
+            <Box padding={24} borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8}>Developer-First APIs</H3>
+              <Paragraph color="var(--neutral-400)">
                 Comprehensive API and detailed developer documentation for custom integrations.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-950 font-mono text-sm overflow-auto" style={{ maxHeight: '300px' }}>
-              <pre className="text-neutral-300">
+              </Paragraph>
+            </Box>
+            <Box padding={24} backgroundColor="var(--neutral-950)" fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" overflow="auto" style={{ maxHeight: '300px' }}>
+              <Box render="pre" color="var(--neutral-300)">
 {`// Create a payment intent
 const paymentIntent = await hanzo.paymentIntents.create({
   amount: 2000,
@@ -85,71 +86,71 @@ const { paymentIntent, error } = await stripe.confirmCardPayment(
     },
   }
 );`}
-              </pre>
-            </div>
-            <div className="p-4 flex justify-between items-center border-t border-gray-800">
-              <span className="text-sm text-neutral-400">API Reference</span>
-              <div className="flex space-x-2">
-                <button className="px-3 py-1 bg-gray-800 rounded text-sm">Copy</button>
-                <button className="px-3 py-1 bg-purple-600 rounded text-sm">Try it</button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+              </Box>
+            </Box>
+            <XStack padding={16} display="flex" justifyContent="space-between" alignItems="center" borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">API Reference</Text>
+              <XStack display="flex" columnGap={8}>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Copy</Box>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-600)" borderRadius="var(--radius)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Try it</Box>
+              </XStack>
+            </XStack>
+          </MotionBox>
+        </Grid>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <Code className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Easy to Implement</h3>
-            <p className="text-neutral-400">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <Code size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Easy to Implement</H3>
+            <Paragraph color="var(--neutral-400)">
               Quick integration with just a few lines of code, with SDKs for all major programming languages.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <FileText className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Comprehensive Documentation</h3>
-            <p className="text-neutral-400">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <FileText size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Comprehensive Documentation</H3>
+            <Paragraph color="var(--neutral-400)">
               Detailed guides, API reference, and code examples to help you integrate Hanzo Payments quickly.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/30 border border-gray-800 p-6 rounded-lg flex flex-col justify-between"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-lg)" display="flex" flexDirection="column" justifyContent="space-between"
           >
             <div>
-              <h3 className="text-xl font-semibold mb-3">Explore Our APIs</h3>
-              <p className="text-neutral-400 mb-4">
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Explore Our APIs</H3>
+              <Paragraph color="var(--neutral-400)" marginBottom={16}>
                 Get started with quickstart guides, examples, and developer tools.
-              </p>
+              </Paragraph>
             </div>
-            <button className="w-full py-2 bg-purple-600 hover:bg-purple-700 rounded-md transition duration-200">
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" width="100%" paddingVertical={8} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" transition="all 200ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
               API Reference
-            </button>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

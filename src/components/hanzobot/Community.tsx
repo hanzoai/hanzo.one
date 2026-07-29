@@ -1,74 +1,74 @@
+import { Anchor, Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, MessageSquare } from "lucide-react";
 
 const Community = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">Community and Support</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Community and Support</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Join us in building the future of autonomous AI agents with Hanzo!
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-500/20 rounded-xl p-8 md:p-12"
+          borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 48 }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <div>
-              <h3 className="text-2xl font-bold text-[var(--white)] mb-4">Next Steps</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <div className="bg-purple-500/20 p-1 rounded text-purple-400 mr-3 mt-0.5">
-                    <div className="w-4 h-4 flex items-center justify-center">1</div>
-                  </div>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={16}>Next Steps</H3>
+              <Box render="ul" rowGap={16}>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Box backgroundColor="rgb(255 255 255 / 0.2)" padding={4} borderRadius="var(--radius)" color="var(--foreground)" marginRight={12} marginTop={2}>
+                    <XStack width={16} height={16} display="flex" alignItems="center" justifyContent="center">1</XStack>
+                  </Box>
                   <div>
-                    <span className="text-[var(--white)] font-medium">Create Your First Agent</span>
-                    <p className="text-neutral-400 text-sm mt-1">Follow our guide to build your first AI agent</p>
+                    <Text color="var(--white)" fontWeight="500">Create Your First Agent</Text>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginTop={4}>Follow our guide to build your first AI agent</Paragraph>
                   </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-purple-500/20 p-1 rounded text-purple-400 mr-3 mt-0.5">
-                    <div className="w-4 h-4 flex items-center justify-center">2</div>
-                  </div>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Box backgroundColor="rgb(255 255 255 / 0.2)" padding={4} borderRadius="var(--radius)" color="var(--foreground)" marginRight={12} marginTop={2}>
+                    <XStack width={16} height={16} display="flex" alignItems="center" justifyContent="center">2</XStack>
+                  </Box>
                   <div>
-                    <span className="text-[var(--white)] font-medium">Understand Core Concepts</span>
-                    <p className="text-neutral-400 text-sm mt-1">Learn about the key components of the Hanzo Bot framework</p>
+                    <Text color="var(--white)" fontWeight="500">Understand Core Concepts</Text>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginTop={4}>Learn about the key components of the Hanzo Bot framework</Paragraph>
                   </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-purple-500/20 p-1 rounded text-purple-400 mr-3 mt-0.5">
-                    <div className="w-4 h-4 flex items-center justify-center">3</div>
-                  </div>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Box backgroundColor="rgb(255 255 255 / 0.2)" padding={4} borderRadius="var(--radius)" color="var(--foreground)" marginRight={12} marginTop={2}>
+                    <XStack width={16} height={16} display="flex" alignItems="center" justifyContent="center">3</XStack>
+                  </Box>
                   <div>
-                    <span className="text-[var(--white)] font-medium">Explore Advanced Features</span>
-                    <p className="text-neutral-400 text-sm mt-1">Discover how to leverage the full potential of your agents</p>
+                    <Text color="var(--white)" fontWeight="500">Explore Advanced Features</Text>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginTop={4}>Discover how to leverage the full potential of your agents</Paragraph>
                   </div>
-                </li>
-              </ul>
+                </XStack>
+              </Box>
             </div>
             
-            <div className="space-y-6">
-              <div className="flex flex-col space-y-4">
+            <Box rowGap={24}>
+              <YStack display="flex" flexDirection="column" rowGap={16}>
                 <Button 
                   size="sm"
-                  className="bg-purple-600 hover:bg-purple-700 text-[var(--white)]"
+                  backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                 >
-                  <Github className="mr-2 h-5 w-5" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box>
                   <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer">
                     Open Source: Contribute on GitHub
                   </a>
@@ -77,30 +77,30 @@ const Community = () => {
                 <Button 
                   size="sm"
                   variant="outline"
-                  className="border-gray-700 text-neutral-300 hover:bg-gray-800"
+                  borderColor="var(--neutral-700)" color="var(--neutral-300)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 >
-                  <MessageSquare className="mr-2 h-5 w-5" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessageSquare size={20} /></Box>
                   <a href="https://discord.gg/XthHQQj" target="_blank" rel="noopener noreferrer">
                     Join Discord Community
                   </a>
                 </Button>
-              </div>
+              </YStack>
               
-              <div className="text-neutral-400 text-sm">
-                <p className="mb-2">Looking for examples?</p>
-                <a href="#" className="text-purple-400 hover:text-purple-300">
+              <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                <Paragraph marginBottom={8}>Looking for examples?</Paragraph>
+                <Anchor tap href="#" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
                   View ready-to-use character templates and implementations →
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+                </Anchor>
+              </Box>
+            </Box>
+          </Grid>
+        </MotionBox>
         
-        <div className="mt-12 text-center text-neutral-500 text-sm">
+        <Box marginTop={48} textAlign="center" color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
           Last updated on Feb 20, 2025 by jin
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

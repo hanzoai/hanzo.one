@@ -1,125 +1,125 @@
+import { Box, Button, Grid, MotionBox, MotionText, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Activity, Radio, Zap, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
+    <Box render="section" paddingTop={128} paddingBottom={64} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), transparent)" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="w-full lg:w-1/2">
-            <motion.div 
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" gap={48} $lg={{ flexDirection: "row" }}>
+          <Box width="100%" $lg={{ width: "50%" }}>
+            <MotionBox 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center px-3 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 mb-6"
+              flexDirection="row" display="inline-flex" alignItems="center" paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" marginBottom={24}
             >
-              <Activity className="h-4 w-4 text-purple-400 mr-2" />
-              <span className="text-sm text-purple-300">Real-time Data Synchronization</span>
-            </motion.div>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Activity size={16} color="var(--foreground)" /></Box>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">Real-time Data Synchronization</Text>
+            </MotionBox>
             
-            <motion.h1 
+            <MotionText 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--white)]"
+              fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} color="var(--white)" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
             >
               Instant data sync <br/>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+              <Text backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))">
                 across all clients
-              </span>
-            </motion.h1>
+              </Text>
+            </MotionText>
             
-            <motion.p 
+            <MotionText 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-neutral-300 mb-8 max-w-xl"
+              fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" marginBottom={32} maxWidth="36rem" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}
             >
               Build collaborative, interactive experiences with Hanzo Realtime. 
               Synchronize data across clients in milliseconds with our reliable 
               WebSocket and pub/sub messaging infrastructure.
-            </motion.p>
+            </MotionText>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
+              flexDirection="row" display="flex" flexWrap="wrap" gap={16}
             >
               <Button 
                 size="lg" 
-                className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-6"
+                backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={24} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
               >
-                Start Building <ArrowRight className="ml-2 h-4 w-4" />
+                Start Building <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-gray-700 text-[var(--white)] hover:bg-gray-800"
+                borderColor="var(--neutral-700)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
               >
                 View Documentation
               </Button>
-            </motion.div>
-          </div>
+            </MotionBox>
+          </Box>
           
-          <div className="w-full lg:w-1/2">
-            <motion.div 
+          <Box width="100%" $lg={{ width: "50%" }}>
+            <MotionBox 
               initial={{ opacity: 0, scale: 0.9 }} 
               animate={{ opacity: 1, scale: 1 }} 
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-[var(--black)]/60 border border-gray-800 p-6 rounded-xl"
+              backgroundColor="rgb(0 0 0 / 0.6)" borderWidth={1} borderColor="var(--neutral-800)" padding={24} borderRadius="var(--radius-xl)"
             >
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center">
-                  <div className="h-3 w-3 rounded-full bg-green-500 mr-3 animate-pulse" />
-                  <span className="text-neutral-300 text-sm">Live connection</span>
-                </div>
-                <div className="flex items-center">
-                  <Radio className="h-4 w-4 text-blue-400 mr-2" />
-                  <span className="text-neutral-300 text-sm">10ms latency</span>
-                </div>
-              </div>
+              <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+                <XStack display="flex" alignItems="center">
+                  <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} height={12} width={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" marginRight={12} />
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Live connection</Text>
+                </XStack>
+                <XStack display="flex" alignItems="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Radio size={16} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">10ms latency</Text>
+                </XStack>
+              </XStack>
               
-              <div className="space-y-4">
-                <div className="h-14 bg-gradient-to-r from-purple-900/40 to-blue-900/40 rounded-lg border border-purple-500/30 p-4 flex items-center">
-                  <Zap className="h-5 w-5 text-purple-400 mr-3" />
-                  <span className="text-neutral-200">Client data synchronized in real-time</span>
-                </div>
+              <Box rowGap={16}>
+                <XStack height={56} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)" padding={16} display="flex" alignItems="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Zap size={20} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-200)">Client data synchronized in real-time</Text>
+                </XStack>
                 
-                <div className="grid grid-cols-3 gap-4">
+                <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16}>
                   {[1, 2, 3].map((i) => (
-                    <div 
+                    <YStack 
                       key={i}
-                      className="h-24 rounded-lg border border-gray-800 p-4 flex flex-col justify-center items-center bg-gradient-to-br from-gray-900 to-gray-950"
+                      height={96} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" padding={16} display="flex" flexDirection="column" justifyContent="center" alignItems="center" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--neutral-950))"
                     >
-                      <div className="h-2 w-2 rounded-full bg-blue-500 mb-2 animate-pulse" />
-                      <span className="text-xs text-neutral-400 text-center">Client {i}</span>
-                      <span className="text-xs text-neutral-500 text-center">Connected</span>
-                    </div>
+                      <MotionBox animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} height={8} width={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" marginBottom={8} />
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" textAlign="center">Client {i}</Text>
+                      <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" textAlign="center">Connected</Text>
+                    </YStack>
                   ))}
-                </div>
+                </Grid>
                 
-                <div className="h-36 bg-gray-900 rounded-lg border border-gray-800 p-3 overflow-hidden font-mono text-xs">
-                  <div className="text-green-400">// Subscribe to real-time updates</div>
-                  <div className="text-neutral-300">const channel = await hanzo.realtime.subscribe(</div>
-                  <div className="text-neutral-300 pl-4">'room-updates',</div>
-                  <div className="text-neutral-300 pl-4">(message) =&gt; {`{`}</div>
-                  <div className="text-neutral-300 pl-8">console.log('New message:', message);</div>
-                  <div className="text-neutral-300 pl-8">updateUIWithData(message.data);</div>
-                  <div className="text-neutral-300 pl-4">{`}`}</div>
-                  <div className="text-neutral-300">);</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </section>
+                <Box height={144} backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" padding={12} overflow="hidden" fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+                  <Box color="var(--foreground)">// Subscribe to real-time updates</Box>
+                  <Box color="var(--neutral-300)">const channel = await hanzo.realtime.subscribe(</Box>
+                  <Box color="var(--neutral-300)" paddingLeft={16}>'room-updates',</Box>
+                  <Box color="var(--neutral-300)" paddingLeft={16}>(message) =&gt; {`{`}</Box>
+                  <Box color="var(--neutral-300)" paddingLeft={32}>console.log('New message:', message);</Box>
+                  <Box color="var(--neutral-300)" paddingLeft={32}>updateUIWithData(message.data);</Box>
+                  <Box color="var(--neutral-300)" paddingLeft={16}>{`}`}</Box>
+                  <Box color="var(--neutral-300)">);</Box>
+                </Box>
+              </Box>
+            </MotionBox>
+          </Box>
+        </YStack>
+      </Box>
+    </Box>
   );
 };
 

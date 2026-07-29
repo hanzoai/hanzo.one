@@ -1,3 +1,4 @@
+import { Box, MotionBox, XStack } from '@/gui'
 
 import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -66,21 +67,21 @@ const FeatureShowcaseSlider: React.FC<FeatureShowcaseSliderProps> = ({ features 
   }, []);
 
   return (
-    <div className="feature-slide-container relative">
+    <Box display="flex" transition="transform 300ms ease" position="relative">
       {/* Add navigation buttons */}
-      <button 
+      <Box minHeight={44} 
         onClick={scrollLeft}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-900/80 hover:bg-gray-900 text-[var(--white)] rounded-full p-2 shadow-lg -ml-4 md:flex hidden"
+        render="button" position="absolute" left={0} top="50%" y="-50%" zIndex={10} backgroundColor="var(--surface-overlay)" color="var(--white)" borderRadius="var(--radius-full)" padding={8} boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" marginLeft={-16} display="none" hoverStyle={{ backgroundColor: "var(--neutral-900)" }} $md={{ display: "flex" }}
         aria-label="Scroll left"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M15 18l-6-6 6-6" />
         </svg>
-      </button>
+      </Box>
       
-      <div 
+      <XStack 
         ref={containerRef}
-        className="flex gap-6 pb-6 overflow-x-auto snap-x snap-mandatory feature-scroll-container scrollbar-hide"
+        display="flex" gap={24} paddingBottom={24} overflowX="auto" scrollbarWidth="none" cursor="grab"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -92,9 +93,9 @@ const FeatureShowcaseSlider: React.FC<FeatureShowcaseSliderProps> = ({ features 
           const isLastFeature = index === features.length - 1;
           
           return (
-            <motion.div 
+            <MotionBox 
               key={index} 
-              className="snap-center flex-shrink-0 w-[350px]"
+              flexShrink={0} width="350px"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -115,27 +116,27 @@ const FeatureShowcaseSlider: React.FC<FeatureShowcaseSliderProps> = ({ features 
                   link={feature.link}
                 />
               )}
-            </motion.div>
+            </MotionBox>
           );
         })}
-      </div>
+      </XStack>
       
-      <button 
+      <Box minHeight={44} 
         onClick={scrollRight}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-900/80 hover:bg-gray-900 text-[var(--white)] rounded-full p-2 shadow-lg -mr-4 md:flex hidden"
+        render="button" position="absolute" right={0} top="50%" y="-50%" zIndex={10} backgroundColor="var(--surface-overlay)" color="var(--white)" borderRadius="var(--radius-full)" padding={8} boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" marginRight={-16} display="none" hoverStyle={{ backgroundColor: "var(--neutral-900)" }} $md={{ display: "flex" }}
         aria-label="Scroll right"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M9 18l6-6-6-6" />
         </svg>
-      </button>
+      </Box>
       
-      <div className="flex justify-center mt-6 gap-2">
-        <div className="bg-gray-700 h-1 w-20 rounded-full overflow-hidden">
-          <div className="bg-purple-500 h-full w-1/3 rounded-full"></div>
-        </div>
-      </div>
-    </div>
+      <XStack display="flex" justifyContent="center" marginTop={24} gap={8}>
+        <Box backgroundColor="var(--neutral-700)" height={4} width={80} borderRadius="var(--radius-full)" overflow="hidden">
+          <Box backgroundColor="var(--neutral-500)" height="100%" width="33.333333%" borderRadius="var(--radius-full)"></Box>
+        </Box>
+      </XStack>
+    </Box>
   );
 };
 

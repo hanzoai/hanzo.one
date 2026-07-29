@@ -1,40 +1,39 @@
+import { Box, Button, ChromeText, Grid, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Cloud, Server, Shield, Zap, Globe, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import ChromeText from "@/components/ui/chrome-text";
 
 const AICloudSection: React.FC = () => {
   const navigate = useNavigate();
   
   const features = [
-    { icon: <Cloud className="h-6 w-6 text-blue-400" />, title: "Global Infrastructure", description: "Deploy AI models across 35+ regions worldwide" },
-    { icon: <Server className="h-6 w-6 text-blue-400" />, title: "Compute Scaling", description: "Automatically scale resources based on demand" },
-    { icon: <Shield className="h-6 w-6 text-blue-400" />, title: "Enterprise Security", description: "SOC 2 Type II, HIPAA, and GDPR compliant" },
-    { icon: <Zap className="h-6 w-6 text-blue-400" />, title: "Low Latency", description: "Sub-100ms response times for AI inference" },
-    { icon: <Globe className="h-6 w-6 text-blue-400" />, title: "Global Edge Network", description: "Serve models from the edge for faster responses" },
-    { icon: <Server className="h-6 w-6 text-blue-400" />, title: "Model Optimization", description: "Automatic optimization for faster performance" }
+    { icon: <Cloud size={24} color="var(--foreground)" />, title: "Global Infrastructure", description: "Deploy AI models across 35+ regions worldwide" },
+    { icon: <Server size={24} color="var(--foreground)" />, title: "Compute Scaling", description: "Automatically scale resources based on demand" },
+    { icon: <Shield size={24} color="var(--foreground)" />, title: "Enterprise Security", description: "SOC 2 Type II, HIPAA, and GDPR compliant" },
+    { icon: <Zap size={24} color="var(--foreground)" />, title: "Low Latency", description: "Sub-100ms response times for AI inference" },
+    { icon: <Globe size={24} color="var(--foreground)" />, title: "Global Edge Network", description: "Serve models from the edge for faster responses" },
+    { icon: <Server size={24} color="var(--foreground)" />, title: "Model Optimization", description: "Automatic optimization for faster performance" }
   ];
   
   return (
-    <section className="py-24 px-4 relative" id="ai-cloud">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" id="ai-cloud">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-4"
+            marginBottom={16}
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-sm font-medium">
+            <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
               Enterprise Scale
-            </span>
-          </motion.div>
+            </Text>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -42,52 +41,52 @@ const AICloudSection: React.FC = () => {
           >
             <ChromeText 
               as="h2" 
-              className="text-3xl md:text-5xl font-bold mb-6"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             >
               AI Cloud Platform
             </ChromeText>
             
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Deploy, manage, and scale AI models with enterprise-grade reliability and security
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginTop={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-gradient-to-br from-blue-900/20 to-blue-900/5 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
+              
+              padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="all 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.05))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
-              <div className="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+              <XStack backgroundColor="rgb(255 255 255 / 0.1)" width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
                 {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-[var(--white)]">{feature.title}</h3>
-              <p className="text-neutral-300">{feature.description}</p>
-            </motion.div>
+              </XStack>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">{feature.title}</H3>
+              <Paragraph color="var(--neutral-300)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 flex justify-center"
+          flexDirection="row" marginTop={64} display="flex" justifyContent="center"
         >
           <Button 
-            className="text-lg px-8 py-6 bg-blue-600 hover:bg-blue-700"
+            fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} paddingVertical={24} backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             onClick={() => navigate('/cloud')}
           >
-            Explore AI Cloud <ArrowRight className="ml-2 h-5 w-5" />
+            Explore AI Cloud <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Button>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

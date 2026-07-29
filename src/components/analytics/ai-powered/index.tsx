@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import AIPoweredHeader from "./AIPoweredHeader";
@@ -6,15 +7,15 @@ import AIAnalysisDemo from "./AIAnalysisDemo";
 
 const AIPowered = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/20 to-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.1), transparent, transparent)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
         <AIPoweredHeader />
         <AIFeatureList />
         <AIAnalysisDemo />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,13 +1,6 @@
-
+import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, Input, XStack } from '@/gui'
 import React, { useState } from "react";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle 
-} from "@/components/ui/radix-dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import TaskDetailContent from "./TaskDetailContent";
 import { Task } from "../data/tasks/task-data";
 
@@ -38,13 +31,13 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
 
   return (
     <Dialog open={!!task} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent maxWidth="42rem">
         <DialogHeader>
           <DialogTitle>
             <Input 
               value={editedTask.title}
               onChange={handleTitleChange}
-              className="text-xl font-semibold mt-2 bg-transparent border-none focus:ring-0 px-0 h-auto"
+              fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginTop={8} backgroundColor="transparent" borderStyle="none" paddingHorizontal={0} height="auto" focusStyle={{ outlineWidth: 0 }}
             />
           </DialogTitle>
         </DialogHeader>
@@ -54,14 +47,14 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
           onTaskChange={handleTaskChange} 
         />
 
-        <div className="flex justify-end gap-2 mt-6">
+        <XStack display="flex" justifyContent="flex-end" gap={8} marginTop={24}>
           <Button variant="ghost" onClick={onClose}>
             Cancel
           </Button>
           <Button onClick={handleSave}>
             Save Changes
           </Button>
-        </div>
+        </XStack>
       </DialogContent>
     </Dialog>
   );

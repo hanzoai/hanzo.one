@@ -1,10 +1,7 @@
+import { AnimatedHeading, AnimatedSection, AnimatedStaggerContainer, Box, Button, ChromeText, MotionBox, MotionText, buttonAnimation, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
-import AnimatedSection, { AnimatedHeading, AnimatedStaggerContainer } from "@/components/ui/animated-section";
-import { createAnimationVariant, curves, buttonAnimation } from "@/components/ui/animation-variants";
 
 const fadeInUpVariant = createAnimationVariant("fadeInBlur", {
   duration: 0.4,
@@ -15,40 +12,40 @@ const fadeInUpVariant = createAnimationVariant("fadeInBlur", {
 
 const HeroSection = () => {
   return (
-    <AnimatedSection className="min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-violet-900/10 opacity-30"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl"></div>
+    <AnimatedSection minHeight="100vh" display="flex" flexDirection="column" justifyContent="center" paddingHorizontal={16} paddingVertical={128} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.1))"></Box>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <AnimatedStaggerContainer className="max-w-5xl mx-auto text-center relative z-10" delayFactor={0.07}>
+      <AnimatedStaggerContainer maxWidth="64rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10} delayFactor={0.07}>
         <AnimatedHeading>
-          <div className="inline-block px-4 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-sm font-medium mb-6">
+          <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
             Vector Database for AI
-          </div>
+          </Box>
         </AnimatedHeading>
         
         <AnimatedHeading>
-          <ChromeText as="h1" className="text-4xl md:text-6xl font-bold mb-6">
+          <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
             Blazing Fast Vector Search
           </ChromeText>
         </AnimatedHeading>
         
-        <motion.p variants={fadeInUpVariant} className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+        <MotionText variants={fadeInUpVariant} fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
           Hanzo Vector is a high-performance vector database designed for AI applications,
           with advanced similarity search and seamless integrations with popular ML frameworks.
-        </motion.p>
+        </MotionText>
         
-        <motion.div 
+        <MotionBox 
           variants={buttonAnimation}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}
         >
-          <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-indigo-700 to-indigo-500 hover:from-indigo-600 hover:to-indigo-400 border-none">
+          <Button size="lg" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} borderStyle="none" backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--foreground))" }}>
             Get Started
           </Button>
-          <Button size="lg" variant="outline" className="text-lg px-8">
+          <Button size="lg" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}>
             Documentation
           </Button>
-        </motion.div>
+        </MotionBox>
       </AnimatedStaggerContainer>
     </AnimatedSection>
   );

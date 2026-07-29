@@ -1,16 +1,17 @@
+import { Anchor, Box, Paragraph } from '@/gui'
 import React from "react";
 
 const StripePricingTable = () => {
   return (
-    <div className="max-w-6xl mx-auto mb-16 text-center py-8">
-      <p className="text-muted-foreground mb-4">Manage your subscription and billing</p>
-      <a
+    <Box maxWidth="var(--container-wide)" marginHorizontal="auto" marginBottom={64} textAlign="center" paddingVertical={32}>
+      <Paragraph color="var(--muted-foreground)" marginBottom={16}>Manage your subscription and billing</Paragraph>
+      <Anchor tap
         href="https://billing.hanzo.ai"
-        className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        display="inline-flex" alignItems="center" gap={8} borderRadius="var(--radius-md)" backgroundColor="var(--primary)" paddingHorizontal={24} paddingVertical={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--primary-foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}
       >
         Go to Billing Portal
-      </a>
-    </div>
+      </Anchor>
+    </Box>
   );
 };
 

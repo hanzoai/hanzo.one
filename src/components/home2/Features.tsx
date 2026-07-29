@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,22 +6,22 @@ import { Terminal, Zap, Shield, Bot } from "lucide-react";
 
 const features = [
   {
-    icon: <Terminal className="h-6 w-6" />,
+    icon: <Terminal size={24} />,
     title: "Developer-First",
     description: "Built by developers, for developers. Simple APIs with complete flexibility."
   },
   {
-    icon: <Zap className="h-6 w-6" />,
+    icon: <Zap size={24} />,
     title: "Lightning Fast",
     description: "Optimized inference with custom routing and advanced caching."
   },
   {
-    icon: <Shield className="h-6 w-6" />,
+    icon: <Shield size={24} />,
     title: "Enterprise Ready",
     description: "SOC 2, GDPR, and HIPAA compliant with 99.9% uptime SLA."
   },
   {
-    icon: <Bot className="h-6 w-6" />,
+    icon: <Bot size={24} />,
     title: "Model Flexibility",
     description: "Use any model from OpenAI, Anthropic, or bring your own models."
   }
@@ -28,46 +29,46 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <Box render="section" paddingVertical={80} position="relative">
+      <Box marginHorizontal="auto" paddingHorizontal={16}>
+        <Box textAlign="center" marginBottom={64}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Everything You Need for AI Engineering
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             A complete platform to build, deploy, and scale AI applications
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-purple-500/30 transition-colors"
+              
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
             >
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
                 {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-neutral-400">{feature.description}</p>
-            </motion.div>
+              </XStack>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{feature.title}</H3>
+              <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <div className="mt-16 bg-gray-900/30 border border-gray-800 rounded-xl p-8 max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="flex-1 mb-8 md:mb-0 md:mr-8">
-              <h3 className="text-2xl font-bold mb-4">Simple API. Powerful Results.</h3>
-              <p className="text-neutral-300 mb-4">
+        <Box marginTop={64} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} maxWidth="64rem" marginHorizontal="auto">
+          <YStack display="flex" flexDirection="column" alignItems="center" $md={{ flexDirection: "row" }}>
+            <Box flex={1} marginBottom={32} $md={{ marginBottom: 0, marginRight: 32 }}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Simple API. Powerful Results.</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Just a few lines of code to integrate state-of-the-art AI into your applications.
-              </p>
-            </div>
-            <div className="flex-1 bg-gray-950 p-4 rounded-lg font-mono text-sm overflow-auto">
-              <pre className="text-neutral-300">
+              </Paragraph>
+            </Box>
+            <Box flex={1} backgroundColor="var(--neutral-950)" padding={16} borderRadius="var(--radius-lg)" fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" overflow="auto">
+              <Box render="pre" color="var(--neutral-300)">
                 <code>
 {`import { HanzoAI } from '@hanzo/ai';
 
@@ -81,12 +82,12 @@ const response = await ai.complete({
   temperature: 0.7
 });`}
                 </code>
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              </Box>
+            </Box>
+          </YStack>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

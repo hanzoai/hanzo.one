@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -26,30 +27,30 @@ const GlobeContainer: React.FC = () => {
   }, []);
 
   return (
-    <motion.div
+    <MotionBox
       ref={containerRef}
-      className="relative w-full h-[500px] bg-[var(--black)] rounded-lg overflow-hidden mt-8 mb-12 border border-blue-900/20"
+      position="relative" width="100%" height="500px" backgroundColor="var(--black)" borderRadius="var(--radius-lg)" overflow="hidden" marginTop={32} marginBottom={48} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-cyan-900/10 opacity-50"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.5} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
       
       {dimensions.width > 0 && dimensions.height > 0 && (
         <GlobeThreeJs width={dimensions.width} height={dimensions.height} />
       )}
       
-      <div className="absolute inset-0 flex items-center justify-center text-center p-4 pointer-events-none">
-        <div className="mt-8 bg-[var(--black)]/30 backdrop-blur-sm rounded-xl p-4 border border-blue-900/20">
-          <h3 className="text-2xl font-semibold text-[var(--white)] mb-2">Global Network</h3>
-          <p className="text-neutral-300 text-sm max-w-md mx-auto">
+      <XStack position="absolute" top={0} right={0} bottom={0} left={0} display="flex" alignItems="center" justifyContent="center" textAlign="center" padding={16} pointerEvents="none">
+        <Box marginTop={32} backgroundColor="rgb(0 0 0 / 0.3)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderRadius="var(--radius-xl)" padding={16} borderWidth={1} borderColor="rgb(255 255 255 / 0.2)">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={8}>Global Network</H3>
+          <Paragraph color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" maxWidth="28rem" marginHorizontal="auto">
             Deploy to 35+ regions around the world with 99.99% uptime SLA and automatic failover.
-          </p>
-        </div>
-      </div>
-    </motion.div>
+          </Paragraph>
+        </Box>
+      </XStack>
+    </MotionBox>
   );
 };
 

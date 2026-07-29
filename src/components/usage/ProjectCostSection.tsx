@@ -1,6 +1,6 @@
+import { Box, Button, H4, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { CostItem } from "./models/project";
 
 interface ProjectCostSectionProps {
@@ -11,34 +11,34 @@ interface ProjectCostSectionProps {
 const ProjectCostSection = ({ costs, currentCost }: ProjectCostSectionProps) => {
   return (
     <div>
-      <div className="flex justify-between mb-4">
-        <h4 className="font-medium">Project Cost</h4>
+      <XStack display="flex" justifyContent="space-between" marginBottom={16}>
+        <H4 fontWeight="500">Project Cost</H4>
         <Button 
           variant="ghost" 
           size="sm"
-          className="text-indigo-400 hover:text-indigo-300 hover:bg-indigo-900/20"
+          color="var(--foreground)" hoverStyle={{ color: "var(--foreground)", backgroundColor: "rgb(255 255 255 / 0.2)" }}
         >
           View Cost by Service
         </Button>
-      </div>
+      </XStack>
       
-      <div className="space-y-4">
+      <Box rowGap={16}>
         {costs.map((cost, index) => (
-          <div key={index} className="flex justify-between">
+          <XStack key={index} display="flex" justifyContent="space-between">
             <div>
-              <div className="font-medium">{cost.name}</div>
-              <div className="text-xs text-neutral-400">{cost.usage}</div>
-              <div className="text-xs text-neutral-400">{cost.rate}</div>
+              <Box fontWeight="500">{cost.name}</Box>
+              <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">{cost.usage}</Box>
+              <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">{cost.rate}</Box>
             </div>
-            <div className="font-medium">{cost.cost}</div>
-          </div>
+            <Box fontWeight="500">{cost.cost}</Box>
+          </XStack>
         ))}
         
-        <div className="pt-4 border-t border-gray-800 flex justify-between">
-          <div className="text-sm">Metrics are shown as minutely accumulated values</div>
-          <div className="font-bold">{currentCost}</div>
-        </div>
-      </div>
+        <XStack paddingTop={16} borderTopWidth={1} borderColor="var(--neutral-800)" display="flex" justifyContent="space-between">
+          <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Metrics are shown as minutely accumulated values</Box>
+          <Box fontWeight="700">{currentCost}</Box>
+        </XStack>
+      </Box>
     </div>
   );
 };

@@ -20,7 +20,7 @@ export interface NodeType {
   type: string;
   position: Position;
   iconType: IconType;
-  iconProps: { className: string };
+  iconProps: { size?: number; color?: string };
   label: string;
   active: boolean;
   status: "pending" | "deployed" | "error";

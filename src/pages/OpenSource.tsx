@@ -1,13 +1,13 @@
+import { Anchor, Box, Helmet, Link, MotionBox, MotionText, Text } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Github, Star, GitFork, Heart, ArrowRight, ExternalLink, Code, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OSSCatalog from "@/components/oss/OSSCatalog";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 const stats = [
   { label: "Open Source Projects", value: "260+", icon: Code },
@@ -18,7 +18,7 @@ const stats = [
 
 const OpenSource = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Open Source - Hanzo AI</title>
         <meta
@@ -31,175 +31,175 @@ const OpenSource = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+        <Box render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+            <Box
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </Box>
 
-          <div className="max-w-5xl mx-auto relative z-10">
-            <div className="text-center">
-              <motion.div
+          <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+            <Box textAlign="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6"
+                flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={24}
                 style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github size={14} />
                 Open Source First
-              </motion.div>
+              </MotionBox>
 
-              <motion.h1
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
               >
-                <span className="text-white">Building in the</span>
+                <Text color="var(--foreground)">Building in the</Text>
                 <br />
-                <span className="text-neutral-400">open.</span>
-              </motion.h1>
+                <Text color="var(--neutral-400)">open.</Text>
+              </MotionText>
 
-              <motion.p
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-10 max-w-3xl mx-auto"
+                fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
               >
                 We believe in the power of open source. Our tools, libraries, and infrastructure
                 are freely available for the developer community.
-              </motion.p>
+              </MotionText>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="flex flex-wrap items-center justify-center gap-4 mb-12"
+                flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16} marginBottom={48}
               >
-                <a
+                <Anchor
                   href="https://github.com/hanzoai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                 >
-                  <Github className="w-4 h-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={16} /></Box>
                   View on GitHub
-                </a>
-                <a
+                </Anchor>
+                <Anchor
                   href="https://github.com/hanzoai/hanzo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
-                  <Star className="w-4 h-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Star size={16} /></Box>
                   Star Our Repos
-                </a>
-              </motion.div>
+                </Anchor>
+              </MotionBox>
 
               {/* Stats */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}
               >
                 {stats.map((stat) => {
                   const Icon = stat.icon;
                   return (
-                    <div
+                    <Box
                       key={stat.label}
-                      className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-4"
+                      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={16}
                     >
-                      <Icon className="w-5 h-5 text-neutral-500 mb-2 mx-auto" />
-                      <div className="text-2xl font-bold text-white">{stat.value}</div>
-                      <div className="text-xs text-neutral-500">{stat.label}</div>
-                    </div>
+                      <Icon width={20} height={20} color="var(--neutral-500)" marginBottom={8} marginHorizontal="auto" />
+                      <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)">{stat.value}</Box>
+                      <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{stat.label}</Box>
+                    </Box>
                   );
                 })}
-              </motion.div>
-            </div>
-          </div>
-        </section>
+              </MotionBox>
+            </Box>
+          </Box>
+        </Box>
 
         {/* OSS Catalog */}
         <OSSCatalog />
 
         {/* CTA Section */}
-        <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/30 to-black relative overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#fd4444]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#fd4444]/5 rounded-full blur-3xl pointer-events-none" />
+        <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+          <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
+          <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.div
+          <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10}>
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6 bg-pink-500/20 text-pink-400"
+              flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={24} backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)"
             >
-              <Heart className="w-3.5 h-3.5" />
+              <Heart size={14} />
               Join the Community
-            </motion.div>
+            </MotionBox>
 
-            <motion.h2
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-white mb-4"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
             >
               Contribute to open source
-            </motion.h2>
+            </MotionText>
 
-            <motion.p
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto"
+              fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto"
             >
               We welcome contributions of all kinds - code, documentation, bug reports, and feature requests.
               Join our community of developers building the future of AI.
-            </motion.p>
+            </MotionText>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex flex-wrap items-center justify-center gap-4"
+              flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16}
             >
-              <a
+              <Anchor
                 href="https://github.com/hanzoai/hanzo/blob/main/CONTRIBUTING.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-all hover:opacity-90 text-base"
+                display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Start Contributing
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+              </Anchor>
+              <Anchor
                 href="https://discord.gg/hanzo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-base text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Join Discord
-                <ExternalLink className="ml-2 h-5 w-5" />
-              </a>
-            </motion.div>
-          </div>
-        </section>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={20} /></Box>
+              </Anchor>
+            </MotionBox>
+          </Box>
+        </Box>
       </main>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

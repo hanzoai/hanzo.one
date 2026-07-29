@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, Paragraph } from '@/gui'
 
 import React from "react";
 import { 
@@ -13,81 +14,81 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
   return (
-    <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-amber-500/50 transition-colors duration-300">
-      <div className="bg-amber-500/10 p-3 rounded-lg w-fit mb-4">
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+      <Box backgroundColor="rgb(255 255 255 / 0.1)" padding={12} borderRadius="var(--radius-lg)" width="fit-content" marginBottom={16}>
         {icon}
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-neutral-400">{description}</p>
-    </div>
+      </Box>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>{title}</H3>
+      <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+    </Box>
   );
 };
 
 const Features = () => {
   const features = [
     {
-      icon: <ShoppingCart className="h-6 w-6 text-amber-500" />,
+      icon: <ShoppingCart size={24} color="var(--neutral-500)" />,
       title: "Headless Shopping Carts",
       description: "Flexible cart management with customizable checkout flows for any frontend."
     },
     {
-      icon: <Package className="h-6 w-6 text-amber-500" />,
+      icon: <Package size={24} color="var(--neutral-500)" />,
       title: "Product Management",
       description: "Powerful catalog management with variants, collections, and custom attributes."
     },
     {
-      icon: <CreditCard className="h-6 w-6 text-amber-500" />,
+      icon: <CreditCard size={24} color="var(--neutral-500)" />,
       title: "Payment Processing",
       description: "Seamless integration with multiple payment gateways and subscription billing."
     },
     {
-      icon: <Gift className="h-6 w-6 text-amber-500" />,
+      icon: <Gift size={24} color="var(--neutral-500)" />,
       title: "Promotions & Discounts",
       description: "Create complex discount rules, coupons, and loyalty programs."
     },
     {
-      icon: <Tags className="h-6 w-6 text-amber-500" />,
+      icon: <Tags size={24} color="var(--neutral-500)" />,
       title: "Dynamic Pricing",
       description: "Implement sophisticated pricing strategies with targeted rules and segmentation."
     },
     {
-      icon: <BarChart className="h-6 w-6 text-amber-500" />,
+      icon: <BarChart size={24} color="var(--neutral-500)" />,
       title: "Analytics & Reporting",
       description: "Real-time insights into sales, inventory, customer behavior, and more."
     },
     {
-      icon: <Truck className="h-6 w-6 text-amber-500" />,
+      icon: <Truck size={24} color="var(--neutral-500)" />,
       title: "Order Management",
       description: "Complete visibility and control over the entire order lifecycle."
     },
     {
-      icon: <Globe className="h-6 w-6 text-amber-500" />,
+      icon: <Globe size={24} color="var(--neutral-500)" />,
       title: "Multi-channel Selling",
       description: "Sell across websites, mobile apps, social media, and marketplaces."
     },
     {
-      icon: <Shield className="h-6 w-6 text-amber-500" />,
+      icon: <Shield size={24} color="var(--neutral-500)" />,
       title: "Fraud Protection",
       description: "Advanced security features to protect your business and customers."
     },
     {
-      icon: <Database className="h-6 w-6 text-amber-500" />,
+      icon: <Database size={24} color="var(--neutral-500)" />,
       title: "Scalable Infrastructure",
       description: "Built for high-volume transactions with enterprise-grade reliability."
     }
   ];
 
   return (
-    <section className="py-16 bg-[var(--black)]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">Powerful E-commerce Features</h2>
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+    <Box render="section" paddingVertical={64} backgroundColor="var(--black)">
+      <Box marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={48}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">Powerful E-commerce Features</H2>
+          <Paragraph marginTop={16} color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Everything you need to build exceptional shopping experiences, all through a simple API-first approach.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
@@ -96,9 +97,9 @@ const Features = () => {
               description={feature.description}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

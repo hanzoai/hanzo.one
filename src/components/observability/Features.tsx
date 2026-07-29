@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -14,42 +15,42 @@ import {
 
 const features = [
   {
-    icon: <History className="h-7 w-7 text-violet-400" />,
+    icon: <History size={28} color="var(--foreground)" />,
     title: "Tracing and Logging",
     description: "End-to-end traces for rapid debugging, detailed logs for every inference request."
   },
   {
-    icon: <BarChart className="h-7 w-7 text-blue-400" />,
+    icon: <BarChart size={28} color="var(--foreground)" />,
     title: "Real-time Metrics",
     description: "Instant visibility into system health, latency, throughput, and cost efficiency."
   },
   {
-    icon: <MessageSquare className="h-7 w-7 text-indigo-400" />,
+    icon: <MessageSquare size={28} color="var(--foreground)" />,
     title: "Prompt Management",
     description: "Collaboratively version, test, and deploy prompts with low-latency retrieval."
   },
   {
-    icon: <Sparkles className="h-7 w-7 text-purple-400" />,
+    icon: <Sparkles size={28} color="var(--foreground)" />,
     title: "Playground",
     description: "Experiment rapidly with different prompts and models directly in the Hanzo interface."
   },
   {
-    icon: <FileBadge className="h-7 w-7 text-pink-400" />,
+    icon: <FileBadge size={28} color="var(--foreground)" />,
     title: "Evaluation & Feedback",
     description: "Collect, annotate, and systematically evaluate model outputs and user feedback."
   },
   {
-    icon: <Database className="h-7 w-7 text-cyan-400" />,
+    icon: <Database size={28} color="var(--foreground)" />,
     title: "Datasets",
     description: "Generate robust datasets from live production data to enhance model training and evaluation."
   },
   {
-    icon: <Users className="h-7 w-7 text-green-400" />,
+    icon: <Users size={28} color="var(--foreground)" />,
     title: "User Journey Analytics",
     description: "Visualize and optimize user paths, retention rates, and conversion funnels."
   },
   {
-    icon: <AlertTriangle className="h-7 w-7 text-amber-400" />,
+    icon: <AlertTriangle size={28} color="var(--foreground)" />,
     title: "Predictive Analytics",
     description: "AI-driven anomaly detection and predictive alerts prevent downtime and performance degradation."
   }
@@ -57,43 +58,43 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900/20 to-black relative">
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.02) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.02) 1px, transparent 1px)" backgroundSize="32px 32px" backgroundColor="size:30px 30px"></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto text-center mb-20"
+          maxWidth="var(--container-prose)" marginHorizontal="auto" textAlign="center" marginBottom={80}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Complete Observability for Your AI Stack</h2>
-          <p className="text-xl text-neutral-300">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Complete Observability for Your AI Stack</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
             Hanzo Observability equips your team with powerful tools for real-time monitoring, comprehensive tracing, and actionable insights.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-gray-900/30 p-6 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors"
+              
+              backgroundColor="var(--surface-card-emphasis)" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
             >
-              <div className="bg-gray-800/60 p-3 rounded-lg w-fit mb-5">
+              <Box backgroundColor="var(--surface-overlay)" padding={12} borderRadius="var(--radius-lg)" width="fit-content" marginBottom={20}>
                 {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-neutral-400">{feature.description}</p>
-            </motion.div>
+              </Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={12}>{feature.title}</H3>
+              <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

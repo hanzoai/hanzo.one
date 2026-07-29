@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,69 +6,69 @@ import { Settings, User, Laptop } from "lucide-react";
 
 const Customization = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox 
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-gray-900/50 p-8 rounded-xl border border-gray-800">
-            <User className="h-10 w-10 text-purple-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-3 text-[var(--white)]">Customized to you</h3>
-            <p className="text-neutral-300">
+          <Box backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><User size={40} color="var(--neutral-500)" /></Box>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12} color="var(--white)">Customized to you</H3>
+            <Paragraph color="var(--neutral-300)">
               Use About Me to tell Hanzo things you want it to consider when it responds
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="bg-gray-900/50 p-8 rounded-xl border border-gray-800">
-            <Laptop className="h-10 w-10 text-purple-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-3 text-[var(--white)]">Sees files & context</h3>
-            <p className="text-neutral-300">
+          <Box backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Laptop size={40} color="var(--neutral-500)" /></Box>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12} color="var(--white)">Sees files & context</H3>
+            <Paragraph color="var(--neutral-300)">
               Set up key shortcuts to quickly access your most-used interactions
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="bg-gray-900/50 p-8 rounded-xl border border-gray-800">
-            <Settings className="h-10 w-10 text-purple-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-3 text-[var(--white)]">Grounded using screen data</h3>
-            <p className="text-neutral-300">
+          <Box backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)">
+            <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Settings size={40} color="var(--neutral-500)" /></Box>
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12} color="var(--white)">Grounded using screen data</H3>
+            <Paragraph color="var(--neutral-300)">
               We ground your requests in the context of your screen
-            </p>
-          </div>
-        </motion.div>
+            </Paragraph>
+          </Box>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          <motion.div 
-            className="bg-gray-900/50 p-8 rounded-xl border border-gray-800"
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginTop={48} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox 
+            backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold mb-3 text-[var(--white)]">Mix Modalities</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12} color="var(--white)">Mix Modalities</H3>
+            <Paragraph color="var(--neutral-300)">
               Apply feedback from your last meeting to your code
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
           
-          <motion.div 
-            className="bg-gray-900/50 p-8 rounded-xl border border-gray-800"
+          <MotionBox 
+            backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="text-2xl font-bold mb-3 text-[var(--white)]">Generate in-context code anywhere</h3>
-            <p className="text-neutral-300">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12} color="var(--white)">Generate in-context code anywhere</H3>
+            <Paragraph color="var(--neutral-300)">
               Create code snippets in any application with the power of Hanzo
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </Paragraph>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

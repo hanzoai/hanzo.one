@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,92 +6,92 @@ import { Activity, Terminal, ChartLine } from "lucide-react";
 
 const ObservabilityView = () => {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-[var(--white)]">AI Observability Dashboard</h3>
-        <div className="flex space-x-2">
-          <button className="px-2 py-1 bg-purple-600/40 rounded-md text-xs text-purple-200 flex items-center">
-            <Activity className="w-3 h-3 mr-1" />
+    <Box rowGap={16}>
+      <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+        <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--white)">AI Observability Dashboard</H3>
+        <XStack display="flex" columnGap={8}>
+          <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Activity size={12} /></Box>
             Real-time
-          </button>
-          <button className="px-2 py-1 bg-gray-800 rounded-md text-xs text-neutral-400 flex items-center">
-            <Terminal className="w-3 h-3 mr-1" />
+          </XStack>
+          <XStack minHeight={44} render="button" paddingHorizontal={8} paddingVertical={4} backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Terminal size={12} /></Box>
             Logs
-          </button>
-        </div>
-      </div>
+          </XStack>
+        </XStack>
+      </XStack>
 
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        <div className="bg-gray-800/40 border border-gray-700/40 rounded-lg p-3">
-          <div className="text-xs text-neutral-400 mb-1">Requests</div>
-          <div className="text-lg font-medium text-[var(--white)]">3,452</div>
-          <div className="mt-1 text-xs text-green-400 flex items-center">
-            <ChartLine className="w-3 h-3 mr-1" />
+      <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={12} marginBottom={16}>
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={12}>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Requests</Box>
+          <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">3,452</Box>
+          <XStack marginTop={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><ChartLine size={12} /></Box>
             +18% from yesterday
-          </div>
-        </div>
-        <div className="bg-gray-800/40 border border-gray-700/40 rounded-lg p-3">
-          <div className="text-xs text-neutral-400 mb-1">Avg. Latency</div>
-          <div className="text-lg font-medium text-[var(--white)]">94ms</div>
-          <div className="mt-1 text-xs text-green-400 flex items-center">
-            <ChartLine className="w-3 h-3 mr-1" />
+          </XStack>
+        </Box>
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={12}>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Avg. Latency</Box>
+          <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">94ms</Box>
+          <XStack marginTop={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><ChartLine size={12} /></Box>
             -12ms from yesterday
-          </div>
-        </div>
-        <div className="bg-gray-800/40 border border-gray-700/40 rounded-lg p-3">
-          <div className="text-xs text-neutral-400 mb-1">Error Rate</div>
-          <div className="text-lg font-medium text-[var(--white)]">0.4%</div>
-          <div className="mt-1 text-xs text-green-400 flex items-center">
-            <ChartLine className="w-3 h-3 mr-1" />
+          </XStack>
+        </Box>
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={12}>
+          <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={4}>Error Rate</Box>
+          <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">0.4%</Box>
+          <XStack marginTop={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><ChartLine size={12} /></Box>
             -0.2% from yesterday
-          </div>
-        </div>
-      </div>
+          </XStack>
+        </Box>
+      </Grid>
 
-      <div className="bg-gray-800/40 border border-gray-700/40 rounded-lg p-3 mb-4">
-        <div className="text-xs text-neutral-400 mb-2">Response Time Trend</div>
-        <div className="h-24 flex items-end space-x-1">
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={12} marginBottom={16}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={8}>Response Time Trend</Box>
+        <XStack height={96} display="flex" alignItems="flex-end" columnGap={4}>
           {[35, 42, 38, 30, 45, 55, 47, 40, 48, 60, 53, 41, 48, 50, 58, 45, 43, 49, 55, 62].map((value, index) => (
-            <motion.div
+            <MotionBox
               key={index}
-              className="bg-purple-500/70 rounded-t w-full"
+              backgroundColor="var(--surface-overlay)" borderTopLeftRadius="var(--radius)" borderTopRightRadius="var(--radius)" width="100%"
               style={{ height: `${value}%` }}
               initial={{ height: 0 }}
               animate={{ height: `${value}%` }}
               transition={{ duration: 0.5, delay: index * 0.03 }}
             />
           ))}
-        </div>
-        <div className="flex justify-between mt-1 text-xs text-neutral-500">
+        </XStack>
+        <XStack display="flex" justifyContent="space-between" marginTop={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">
           <span>00:00</span>
           <span>12:00</span>
           <span>23:59</span>
-        </div>
-      </div>
+        </XStack>
+      </Box>
 
-      <div className="bg-gray-800/40 border border-gray-700/40 rounded-lg p-3">
-        <div className="text-xs text-neutral-400 mb-2">Recent Traces</div>
-        <div className="space-y-2">
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={12}>
+        <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginBottom={8}>Recent Traces</Box>
+        <Box rowGap={8}>
           {[
             { id: "t1", model: "GPT-4o", time: "2m ago", status: "success", duration: "92ms" },
             { id: "t2", model: "Llama 3", time: "5m ago", status: "success", duration: "84ms" },
             { id: "t3", model: "Claude 3", time: "12m ago", status: "error", duration: "176ms" },
             { id: "t4", model: "Mixtral", time: "18m ago", status: "success", duration: "78ms" },
           ].map((trace) => (
-            <div key={trace.id} className="flex items-center justify-between text-xs p-1.5 rounded hover:bg-gray-700/30">
-              <div className="flex items-center">
-                <div className={`w-1.5 h-1.5 rounded-full mr-2 ${trace.status === "success" ? "bg-green-500" : "bg-red-500"}`}></div>
-                <span className="text-neutral-300">{trace.model}</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-neutral-400">{trace.time}</span>
-                <span className={`${trace.status === "success" ? "text-blue-400" : "text-red-400"}`}>{trace.duration}</span>
-              </div>
-            </div>
+            <XStack key={trace.id} display="flex" alignItems="center" justifyContent="space-between" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" padding={6} borderRadius="var(--radius)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box width={6} height={6} borderRadius="var(--radius-full)" marginRight={8} backgroundColor={trace.status === "success" ? "var(--neutral-500)" : "var(--neutral-500)"}></Box>
+                <Text color="var(--neutral-300)">{trace.model}</Text>
+              </XStack>
+              <XStack display="flex" alignItems="center" columnGap={12}>
+                <Text color="var(--neutral-400)">{trace.time}</Text>
+                <Text color={trace.status === "success" ? "var(--foreground)" : "var(--foreground)"}>{trace.duration}</Text>
+              </XStack>
+            </XStack>
           ))}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

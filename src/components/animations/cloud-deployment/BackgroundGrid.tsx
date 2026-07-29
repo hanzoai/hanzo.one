@@ -1,3 +1,4 @@
+import { Box, MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -34,9 +35,9 @@ const BackgroundGrid: React.FC<BackgroundGridProps> = ({ scanPoints }) => {
     <>
       {/* Grid points - reduced opacity */}
       {scanPoints.map((point, idx) => (
-        <motion.div
+        <MotionBox
           key={`point-${idx}`}
-          className="absolute h-1 w-1 rounded-full bg-blue-500/10" // Reduced opacity
+          position="absolute" height={4} width={4} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" // Reduced opacity
           style={{ 
             left: `${point.x}%`, 
             top: `${point.y}%`,
@@ -60,8 +61,8 @@ const BackgroundGrid: React.FC<BackgroundGridProps> = ({ scanPoints }) => {
       {connectionPairs.map((pair, idx) => (
         <React.Fragment key={`connection-${idx}`}>
           {/* Static connection line - more subtle */}
-          <div
-            className="absolute h-px bg-blue-400/5" // Reduced opacity
+          <Box
+            position="absolute" height={1} backgroundColor="rgb(255 255 255 / 0.05)" // Reduced opacity
             style={{
               left: `${pair.from.x}%`,
               top: `${pair.from.y}%`,
@@ -72,8 +73,8 @@ const BackgroundGrid: React.FC<BackgroundGridProps> = ({ scanPoints }) => {
           />
           
           {/* Animated traffic pulse - less frequent */}
-          <motion.div
-            className="absolute h-1 w-1 rounded-full bg-blue-400/30" // Smaller and reduced opacity
+          <MotionBox
+            position="absolute" height={4} width={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" // Smaller and reduced opacity
             style={{
               left: `${pair.from.x}%`,
               top: `${pair.from.y}%`,

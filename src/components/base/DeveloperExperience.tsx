@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -28,71 +29,71 @@ const DeveloperExperience = () => {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-8"
+            rowGap={32}
           >
-            <h2 className="text-3xl font-bold text-[var(--white)]">Developer Experience</h2>
-            <p className="text-xl text-neutral-300">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)">Developer Experience</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               Designed for developers who value simplicity, flexibility, and power.
               Our tools make database and backend development a breeze.
-            </p>
+            </Paragraph>
             
-            <div className="space-y-6">
+            <Box rowGap={24}>
               {features.map((feature, index) => (
-                <div key={index} className="flex">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-md bg-blue-900/30 text-blue-400">
-                      <feature.icon className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium text-[var(--white)]">{feature.title}</h3>
-                    <p className="mt-1 text-neutral-300">{feature.description}</p>
-                  </div>
-                </div>
+                <XStack key={index} display="flex">
+                  <Box flexShrink={0} marginTop={4}>
+                    <XStack display="flex" alignItems="center" justifyContent="center" height={40} width={40} borderRadius="var(--radius-md)" backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)">
+                      <feature.icon height={24} width={24} />
+                    </XStack>
+                  </Box>
+                  <Box marginLeft={16}>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)">{feature.title}</H3>
+                    <Paragraph marginTop={4} color="var(--neutral-300)">{feature.description}</Paragraph>
+                  </Box>
+                </XStack>
               ))}
-            </div>
-          </motion.div>
+            </Box>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:pl-8"
+            $lg={{ paddingLeft: 32 }}
           >
-            <div className="bg-gray-900/30 rounded-xl border border-gray-800 p-1 shadow-xl overflow-hidden">
-              <div className="flex items-center bg-gray-900 rounded-t-lg px-4 py-2">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="mx-auto text-neutral-400 text-sm">Terminal</div>
-              </div>
-              <div className="bg-gray-950 p-4 rounded-b-lg overflow-hidden">
-                <div className="font-mono text-sm">
-                  <p className="text-neutral-400 mb-2">$ npx create-hanzo-app my-project</p>
-                  <p className="text-green-400 mb-2">Initializing Hanzo Base project...</p>
-                  <p className="text-neutral-400 mb-2">$ cd my-project && npm run dev</p>
-                  <p className="text-green-400 mb-2">✓ Hanzo Base server started on http://localhost:3000</p>
-                  <p className="text-green-400 mb-2">✓ Admin UI available at http://localhost:3000/admin</p>
-                  <p className="text-neutral-400 mb-2">$ hanzo deploy</p>
-                  <p className="text-green-400">✓ Project deployed to https://my-project.hanzo.app</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={4} boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" overflow="hidden">
+              <XStack display="flex" alignItems="center" backgroundColor="var(--neutral-900)" borderTopLeftRadius="var(--radius-lg)" borderTopRightRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={8}>
+                <XStack display="flex" columnGap={8}>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                </XStack>
+                <Box marginHorizontal="auto" color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Terminal</Box>
+              </XStack>
+              <Box backgroundColor="var(--neutral-950)" padding={16} borderBottomLeftRadius="var(--radius-lg)" borderBottomRightRadius="var(--radius-lg)" overflow="hidden">
+                <Box fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>$ npx create-hanzo-app my-project</Paragraph>
+                  <Paragraph color="var(--foreground)" marginBottom={8}>Initializing Hanzo Base project...</Paragraph>
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>$ cd my-project && npm run dev</Paragraph>
+                  <Paragraph color="var(--foreground)" marginBottom={8}>✓ Hanzo Base server started on http://localhost:3000</Paragraph>
+                  <Paragraph color="var(--foreground)" marginBottom={8}>✓ Admin UI available at http://localhost:3000/admin</Paragraph>
+                  <Paragraph color="var(--neutral-400)" marginBottom={8}>$ hanzo deploy</Paragraph>
+                  <Paragraph color="var(--foreground)">✓ Project deployed to https://my-project.hanzo.app</Paragraph>
+                </Box>
+              </Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

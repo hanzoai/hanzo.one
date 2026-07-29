@@ -1,6 +1,6 @@
+import { BlueprintLine, Box, GridLines } from '@/gui'
 
 import React from "react";
-import { GridLines, BlueprintLine } from "@/components/ui/architectural-elements";
 
 interface BackgroundProps {
   mousePosition: { x: number; y: number };
@@ -8,7 +8,7 @@ interface BackgroundProps {
 
 const Background: React.FC<BackgroundProps> = ({ mousePosition }) => {
   return (
-    <div className="fixed inset-0 -z-10">
+    <Box position="fixed" top={0} right={0} bottom={0} left={0} zIndex={-10}>
       <div 
         style={{
           transform: `perspective(1000px) rotateX(${(mousePosition.y - 0.5) * 5}deg) rotateY(${(mousePosition.x - 0.5) * -5}deg)`,
@@ -18,14 +18,14 @@ const Background: React.FC<BackgroundProps> = ({ mousePosition }) => {
         <GridLines spacing={60} opacity={0.1} />
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-blue-900/10 opacity-40"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.4} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
       
       {/* Dynamic blueprint lines */}
       <BlueprintLine orientation="vertical" position="20%" color="rgba(147, 51, 234, 0.1)" />
       <BlueprintLine orientation="vertical" position="80%" color="rgba(147, 51, 234, 0.1)" />
       <BlueprintLine orientation="horizontal" position="25%" color="rgba(37, 99, 235, 0.1)" />
       <BlueprintLine orientation="horizontal" position="75%" color="rgba(37, 99, 235, 0.1)" />
-    </div>
+    </Box>
   );
 };
 

@@ -1,8 +1,8 @@
+import { Box, Button, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 // Define a proper type for the presence event
 interface PresenceEvent {
@@ -15,126 +15,126 @@ interface PresenceEvent {
 
 const Integration = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Simple Integration
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Add real-time capabilities to your application with just a few lines of code
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-semibold text-[var(--white)] mb-4">Easy to Implement</h3>
-            <p className="text-neutral-300 mb-6">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={16}>Easy to Implement</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Hanzo Realtime provides a clean, intuitive API that makes it simple to add 
               real-time functionality to any application. With support for multiple platforms 
               and frameworks, you can get started in minutes.
-            </p>
+            </Paragraph>
             
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="text-purple-400 text-sm font-bold">1</span>
-                </div>
+            <Box rowGap={16} marginBottom={32}>
+              <XStack display="flex" alignItems="flex-start">
+                <XStack height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginRight={12} marginTop={2}>
+                  <Text color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="700">1</Text>
+                </XStack>
                 <div>
-                  <h4 className="text-[var(--white)] font-medium mb-1">Initialize the client</h4>
-                  <p className="text-neutral-400 text-sm">Connect to the Hanzo Realtime service with your API key</p>
+                  <H4 color="var(--white)" fontWeight="500" marginBottom={4}>Initialize the client</H4>
+                  <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Connect to the Hanzo Realtime service with your API key</Paragraph>
                 </div>
-              </div>
+              </XStack>
               
-              <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="text-purple-400 text-sm font-bold">2</span>
-                </div>
+              <XStack display="flex" alignItems="flex-start">
+                <XStack height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginRight={12} marginTop={2}>
+                  <Text color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="700">2</Text>
+                </XStack>
                 <div>
-                  <h4 className="text-[var(--white)] font-medium mb-1">Subscribe to channels</h4>
-                  <p className="text-neutral-400 text-sm">Listen for updates on specific channels or topics</p>
+                  <H4 color="var(--white)" fontWeight="500" marginBottom={4}>Subscribe to channels</H4>
+                  <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Listen for updates on specific channels or topics</Paragraph>
                 </div>
-              </div>
+              </XStack>
               
-              <div className="flex items-start">
-                <div className="h-6 w-6 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="text-purple-400 text-sm font-bold">3</span>
-                </div>
+              <XStack display="flex" alignItems="flex-start">
+                <XStack height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginRight={12} marginTop={2}>
+                  <Text color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="700">3</Text>
+                </XStack>
                 <div>
-                  <h4 className="text-[var(--white)] font-medium mb-1">Publish messages</h4>
-                  <p className="text-neutral-400 text-sm">Send updates to all connected clients instantly</p>
+                  <H4 color="var(--white)" fontWeight="500" marginBottom={4}>Publish messages</H4>
+                  <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Send updates to all connected clients instantly</Paragraph>
                 </div>
-              </div>
-            </div>
+              </XStack>
+            </Box>
             
-            <Button className="bg-purple-600 hover:bg-purple-700">
-              View Documentation <ArrowRight className="ml-2 h-4 w-4" />
+            <Button backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+              View Documentation <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-[var(--black)] rounded-xl border border-gray-800 p-6"
+            backgroundColor="var(--black)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={24}
           >
-            <div className="flex items-center mb-4">
-              <Code className="h-5 w-5 text-purple-400 mr-2" />
-              <span className="text-neutral-300">JavaScript Example</span>
-            </div>
+            <XStack display="flex" alignItems="center" marginBottom={16}>
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Code size={20} color="var(--foreground)" /></Box>
+              <Text color="var(--neutral-300)">JavaScript Example</Text>
+            </XStack>
             
-            <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-auto max-h-[400px]">
-              <div className="text-green-400">// Initialize the Hanzo Realtime client</div>
-              <div className="text-neutral-300">import {`{ Realtime }`} from '@hanzo/cloud';</div>
-              <div className="text-neutral-300 mb-4">const realtime = new Realtime('YOUR_API_KEY');</div>
+            <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" overflow="auto" maxHeight="400px">
+              <Box color="var(--foreground)">// Initialize the Hanzo Realtime client</Box>
+              <Box color="var(--neutral-300)">import {`{ Realtime }`} from '@hanzo/cloud';</Box>
+              <Box color="var(--neutral-300)" marginBottom={16}>const realtime = new Realtime('YOUR_API_KEY');</Box>
               
-              <div className="text-green-400">// Subscribe to a channel</div>
-              <div className="text-neutral-300">const channel = await realtime.subscribe('chat-room', {`{`}</div>
-              <div className="text-neutral-300 pl-4">onMessage: (message) {`=>`} {`{`}</div>
-              <div className="text-neutral-300 pl-8">console.log('New message received:', message);</div>
-              <div className="text-neutral-300 pl-8">// Update your UI with the message</div>
-              <div className="text-neutral-300 pl-8">appendMessageToChat(message);</div>
-              <div className="text-neutral-300 pl-4">{`}`},</div>
-              <div className="text-neutral-300 pl-4">onPresence: (event: PresenceEvent) {`=>`} {`{`}</div>
-              <div className="text-neutral-300 pl-8">if (event.action === 'join') {`{`}</div>
-              <div className="text-neutral-300 pl-12">{`console.log(\`\${event.userData.name} joined the chat\`);`}</div>
-              <div className="text-neutral-300 pl-8">{`}`} else {`{`}</div>
-              <div className="text-neutral-300 pl-12">{`console.log(\`\${event.userData.name} left the chat\`);`}</div>
-              <div className="text-neutral-300 pl-8">{`}`}</div>
-              <div className="text-neutral-300 pl-4">{`}`}</div>
-              <div className="text-neutral-300">{`}`});</div>
-              <div className="text-neutral-300 mb-4"></div>
+              <Box color="var(--foreground)">// Subscribe to a channel</Box>
+              <Box color="var(--neutral-300)">const channel = await realtime.subscribe('chat-room', {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>onMessage: (message) {`=>`} {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>console.log('New message received:', message);</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>// Update your UI with the message</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>appendMessageToChat(message);</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>{`}`},</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>onPresence: (event: PresenceEvent) {`=>`} {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>if (event.action === 'join') {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={48}>{`console.log(\`\${event.userData.name} joined the chat\`);`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>{`}`} else {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={48}>{`console.log(\`\${event.userData.name} left the chat\`);`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>{`}`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>{`}`}</Box>
+              <Box color="var(--neutral-300)">{`}`});</Box>
+              <Box color="var(--neutral-300)" marginBottom={16}></Box>
               
-              <div className="text-green-400">// Publish a message to the channel</div>
-              <div className="text-neutral-300">await realtime.publish('chat-room', {`{`}</div>
-              <div className="text-neutral-300 pl-4">user: {`{`}</div>
-              <div className="text-neutral-300 pl-8">id: 'user-123',</div>
-              <div className="text-neutral-300 pl-8">name: 'Alice'</div>
-              <div className="text-neutral-300 pl-4">{`}`},</div>
-              <div className="text-neutral-300 pl-4">text: 'Hello, world!',</div>
-              <div className="text-neutral-300 pl-4">timestamp: new Date().toISOString()</div>
-              <div className="text-neutral-300">{`}`});</div>
-              <div className="text-neutral-300 mb-4"></div>
+              <Box color="var(--foreground)">// Publish a message to the channel</Box>
+              <Box color="var(--neutral-300)">await realtime.publish('chat-room', {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>user: {`{`}</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>id: 'user-123',</Box>
+              <Box color="var(--neutral-300)" paddingLeft={32}>name: 'Alice'</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>{`}`},</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>text: 'Hello, world!',</Box>
+              <Box color="var(--neutral-300)" paddingLeft={16}>timestamp: new Date().toISOString()</Box>
+              <Box color="var(--neutral-300)">{`}`});</Box>
+              <Box color="var(--neutral-300)" marginBottom={16}></Box>
               
-              <div className="text-green-400">// Clean up when done</div>
-              <div className="text-neutral-300">await channel.unsubscribe();</div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              <Box color="var(--foreground)">// Clean up when done</Box>
+              <Box color="var(--neutral-300)">await channel.unsubscribe();</Box>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,137 +1,137 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { FileText, BookOpen, MessageSquare, ExternalLink } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-black to-gray-900/20">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to top, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Explore Further</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Explore Further</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Discover how Hanzo Payments can transform your business with our comprehensive resources.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <motion.div
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-lg p-6 flex flex-col"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24} display="flex" flexDirection="column"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <FileText className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">API Reference</h3>
-            <p className="text-neutral-400 mb-6 flex-grow">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <FileText size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>API Reference</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24} flexGrow={1}>
               Detailed documentation on all Hanzo Payments APIs and integration options.
-            </p>
-            <Button variant="outline" className="w-full justify-center gap-2 border-gray-700 hover:bg-gray-800 text-[var(--white)]">
-              <ExternalLink className="h-4 w-4" />
+            </Paragraph>
+            <Button variant="outline" width="100%" justifyContent="center" gap={8} borderColor="var(--neutral-700)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+              <ExternalLink size={16} />
               <span>View API Docs</span>
             </Button>
-          </motion.div>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-lg p-6 flex flex-col"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24} display="flex" flexDirection="column"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <BookOpen className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Hanzo App Marketplace</h3>
-            <p className="text-neutral-400 mb-6 flex-grow">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <BookOpen size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Hanzo App Marketplace</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24} flexGrow={1}>
               Explore hundreds of pre-built integrations and apps for Hanzo Payments.
-            </p>
-            <Button variant="outline" className="w-full justify-center gap-2 border-gray-700 hover:bg-gray-800 text-[var(--white)]">
-              <ExternalLink className="h-4 w-4" />
+            </Paragraph>
+            <Button variant="outline" width="100%" justifyContent="center" gap={8} borderColor="var(--neutral-700)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+              <ExternalLink size={16} />
               <span>Browse Apps</span>
             </Button>
-          </motion.div>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-lg p-6 flex flex-col"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24} display="flex" flexDirection="column"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <MessageSquare className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Checkout Integration</h3>
-            <p className="text-neutral-400 mb-6 flex-grow">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <MessageSquare size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Checkout Integration</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24} flexGrow={1}>
               Step-by-step guide to integrating Hanzo Payments checkout into your website or app.
-            </p>
-            <Button variant="outline" className="w-full justify-center gap-2 border-gray-700 hover:bg-gray-800 text-[var(--white)]">
-              <ExternalLink className="h-4 w-4" />
+            </Paragraph>
+            <Button variant="outline" width="100%" justifyContent="center" gap={8} borderColor="var(--neutral-700)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+              <ExternalLink size={16} />
               <span>Integration Guide</span>
             </Button>
-          </motion.div>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-900/30 border border-gray-800 rounded-lg p-6 flex flex-col"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24} display="flex" flexDirection="column"
           >
-            <div className="bg-gray-800/50 p-3 rounded-full w-fit mb-4">
-              <BookOpen className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-3">Case Studies</h3>
-            <p className="text-neutral-400 mb-6 flex-grow">
+            <Box backgroundColor="var(--surface-card-emphasis)" padding={12} borderRadius="var(--radius-full)" width="fit-content" marginBottom={16}>
+              <BookOpen size={24} color="var(--foreground)" />
+            </Box>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Case Studies</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24} flexGrow={1}>
               Read success stories from businesses using Hanzo Payments around the world.
-            </p>
-            <Button variant="outline" className="w-full justify-center gap-2 border-gray-700 hover:bg-gray-800 text-[var(--white)]">
-              <ExternalLink className="h-4 w-4" />
+            </Paragraph>
+            <Button variant="outline" width="100%" justifyContent="center" gap={8} borderColor="var(--neutral-700)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+              <ExternalLink size={16} />
               <span>View Case Studies</span>
             </Button>
-          </motion.div>
-        </div>
+          </MotionBox>
+        </Grid>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-500/20 rounded-lg p-8 text-center"
+          borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={32} textAlign="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
         >
-          <h2 className="text-3xl font-bold mb-4">Start Building Your Financial Future Today</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-8">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Start Building Your Financial Future Today</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32}>
             Hanzo Payments helps your team streamline operations, grow faster, and simplify financial complexity.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+              backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}
             >
               Get Started Now
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-gray-600 text-[var(--white)] hover:bg-gray-800"
+              borderColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
               Contact Sales
             </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

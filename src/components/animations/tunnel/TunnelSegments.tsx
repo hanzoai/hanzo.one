@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -9,9 +10,9 @@ const TunnelSegments: React.FC = () => {
     const size = 90 - i * 8; // Gets smaller as it approaches vanishing point
     
     tunnelSegments.push(
-      <motion.div
+      <MotionBox
         key={`tunnel-${i}`}
-        className="absolute bg-transparent"
+        position="absolute" backgroundColor="transparent"
         style={{
           width: `${size}%`,
           height: `${size}%`,

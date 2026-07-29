@@ -1,227 +1,224 @@
+import { Box, Button, ChromeText, Grid, GridLines, H3, Helmet, Link, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ExternalLink, DollarSign, BarChart, Target, Award, Briefcase, BookOpen } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
-import { GridLines } from "@/components/ui/architectural-elements";
-import { Link } from "react-router-dom";
+
 
 const Affiliates = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] relative overflow-hidden">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" position="relative" overflow="hidden">
       <Helmet>
         <title>Affiliate Program - Hanzo AI</title>
         <meta name="description" content="Join Hanzo's Affiliate Program and earn recurring commissions for promoting our AI tools and services to your audience." />
       </Helmet>
       
       {/* Background elements */}
-      <div className="fixed inset-0 -z-10">
+      <Box position="fixed" top={0} right={0} bottom={0} left={0} zIndex={-10}>
         <GridLines spacing={100} opacity={0.07} />
-        <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-blue-900/10 rounded-full blur-3xl transform -translate-x-1/4 -translate-y-1/4"></div>
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-indigo-900/10 rounded-full blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
-      </div>
+        <Box position="absolute" top={0} left={0} width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" x="-25%" y="-25%"></Box>
+        <Box position="absolute" bottom={0} right={0} width="50%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" x="25%" y="25%"></Box>
+      </Box>
       
       <Navbar />
       
-      <main className="pt-20 pb-24">
+      <Box render="main" paddingTop={80} paddingBottom={96}>
         {/* Hero Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              textAlign="center" marginBottom={64}
             >
-              <div className="inline-block p-3 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 mb-6">
-                <Briefcase className="h-8 w-8" />
-              </div>
-              <ChromeText as="h1" className="text-4xl md:text-6xl font-bold mb-6">
+              <Box display="inline-block" padding={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" marginBottom={24}>
+                <Briefcase size={32} />
+              </Box>
+              <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
                 Hanzo Affiliate Program
               </ChromeText>
-              <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Earn recurring commissions by promoting Hanzo's AI tools and services to your audience. Join our growing network of influencers, content creators, and AI enthusiasts.
-              </p>
-              <div className="mt-8">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8">
+              </Paragraph>
+              <Box marginTop={32}>
+                <Button size="lg" backgroundColor="var(--neutral-600)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                   Apply Now
                 </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              </Box>
+            </MotionBox>
+          </Box>
+        </Box>
         
         {/* Commission Structure */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-900/10">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <ChromeText as="h2" className="text-3xl font-bold mb-4">
+              <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
                 Commission Structure
               </ChromeText>
-              <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Earn competitive commissions on all Hanzo products and services
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {[
                 {
-                  icon: <DollarSign className="h-10 w-10 text-blue-400" />,
+                  icon: <DollarSign size={40} color="var(--foreground)" />,
                   title: "30% First Payment",
                   description: "Earn 30% commission on the first payment made by customers you refer"
                 },
                 {
-                  icon: <BarChart className="h-10 w-10 text-blue-400" />,
+                  icon: <BarChart size={40} color="var(--foreground)" />,
                   title: "15% Recurring Revenue",
                   description: "Continue earning 15% on recurring payments for the lifetime of the customer"
                 },
                 {
-                  icon: <Target className="h-10 w-10 text-blue-400" />,
+                  icon: <Target size={40} color="var(--foreground)" />,
                   title: "90-Day Cookie",
                   description: "Our 90-day cookie tracking ensures you get credit for your referrals"
                 }
               ].map((item, index) => (
-                <motion.div
+                <MotionBox
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-900/20 border border-gray-800 rounded-xl p-8 text-center"
+                  backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} textAlign="center"
                 >
-                  <div className="h-20 w-20 rounded-full bg-blue-900/20 border border-blue-500/20 flex items-center justify-center mx-auto mb-6">
+                  <XStack height={80} width={80} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" marginBottom={24}>
                     {item.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-neutral-300">{item.description}</p>
-                </motion.div>
+                  </XStack>
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={12}>{item.title}</H3>
+                  <Paragraph color="var(--neutral-300)">{item.description}</Paragraph>
+                </MotionBox>
               ))}
-            </div>
+            </Grid>
             
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-r from-blue-900/20 to-indigo-900/20 rounded-xl border border-blue-500/20 p-8"
+              borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={32} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
             >
-              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" gap={32} $md={{ flexDirection: "row" }}>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">Revenue Calculator</h3>
-                  <p className="text-neutral-300">
+                  <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={8}>Revenue Calculator</H3>
+                  <Paragraph color="var(--neutral-300)">
                     See how much you could earn as a Hanzo affiliate based on your audience size and conversion rates.
-                  </p>
+                  </Paragraph>
                 </div>
-                <Button className="bg-blue-600 hover:bg-blue-700 px-6">
+                <Button backgroundColor="var(--neutral-600)" paddingHorizontal={24} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                   Calculate Your Earnings
                 </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              </YStack>
+            </MotionBox>
+          </Box>
+        </Box>
         
         {/* Benefits Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <ChromeText as="h2" className="text-3xl font-bold mb-4">
+              <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
                 Why Become an Affiliate
               </ChromeText>
-              <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Join forces with a leading AI technology company and earn while helping others discover powerful AI tools
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {[
                 {
-                  icon: <Award className="h-8 w-8 text-blue-400" />,
+                  icon: <Award size={32} color="var(--foreground)" />,
                   title: "Industry-Leading Commissions",
                   description: "Earn some of the highest commission rates in the AI industry with our tiered structure"
                 },
                 {
-                  icon: <BookOpen className="h-8 w-8 text-blue-400" />,
+                  icon: <BookOpen size={32} color="var(--foreground)" />,
                   title: "Comprehensive Resources",
                   description: "Access marketing materials, banners, product information, and case studies"
                 },
                 {
-                  icon: <DollarSign className="h-8 w-8 text-blue-400" />,
+                  icon: <DollarSign size={32} color="var(--foreground)" />,
                   title: "Timely Payments",
                   description: "Get paid reliably every month via PayPal, Stripe, or bank transfer"
                 },
                 {
-                  icon: <BarChart className="h-8 w-8 text-blue-400" />,
+                  icon: <BarChart size={32} color="var(--foreground)" />,
                   title: "Detailed Analytics",
                   description: "Track your performance with real-time reporting and conversion data"
                 },
                 {
-                  icon: <Target className="h-8 w-8 text-blue-400" />,
+                  icon: <Target size={32} color="var(--foreground)" />,
                   title: "Dedicated Support",
                   description: "Work with our affiliate manager to optimize your campaigns and maximize earnings"
                 },
                 {
-                  icon: <ExternalLink className="h-8 w-8 text-blue-400" />,
+                  icon: <ExternalLink size={32} color="var(--foreground)" />,
                   title: "High-Converting Landing Pages",
                   description: "Direct your traffic to optimized pages designed to convert visitors into customers"
                 }
               ].map((benefit, index) => (
-                <motion.div
+                <MotionBox
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-900/20 border border-gray-800 rounded-xl p-6"
+                  backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24}
                 >
-                  <div className="h-12 w-12 rounded-lg bg-blue-900/20 border border-blue-500/20 flex items-center justify-center mb-4">
+                  <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
                     {benefit.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-neutral-300">{benefit.description}</p>
-                </motion.div>
+                  </XStack>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{benefit.title}</H3>
+                  <Paragraph color="var(--neutral-300)">{benefit.description}</Paragraph>
+                </MotionBox>
               ))}
-            </div>
-          </div>
-        </section>
+            </Grid>
+          </Box>
+        </Box>
         
         {/* How It Works */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-gray-900/10">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <ChromeText as="h2" className="text-3xl font-bold mb-4">
+              <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
                 How It Works
               </ChromeText>
-              <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Get started with Hanzo's Affiliate Program in just a few simple steps
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-500/50 to-indigo-500/50 hidden md:block"></div>
+            <Box position="relative">
+              <Box position="absolute" left="50%" x="-50%" height="100%" width={2} display="none" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ display: "block" }}></Box>
               
-              <div className="space-y-12 relative">
+              <Box rowGap={48} position="relative">
                 {[
                   {
                     number: "01",
@@ -254,53 +251,53 @@ const Affiliates = () => {
                     description: "Receive monthly payments for all qualified conversions"
                   }
                 ].map((step, index) => (
-                  <motion.div
+                  <MotionBox
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}
+                    display="flex" flexDirection="column" alignItems="center" gap={32} $md={index % 2 === 0 ? { flexDirection: "row" } : { flexDirection: "row-reverse" }}
                   >
-                    <div className="md:w-1/2 flex justify-center">
-                      <div className="h-20 w-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-3xl font-bold z-10">
+                    <XStack display="flex" justifyContent="center" $md={{ width: "50%" }}>
+                      <XStack height={80} width={80} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" zIndex={10} backgroundImage="linear-gradient(to bottom right, var(--neutral-600), var(--neutral-600))">
                         {step.number}
-                      </div>
-                    </div>
-                    <div className="md:w-1/2 bg-gray-900/20 border border-gray-800 rounded-xl p-6">
-                      <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                      <p className="text-neutral-300">{step.description}</p>
-                    </div>
-                  </motion.div>
+                      </XStack>
+                    </XStack>
+                    <Box backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} $md={{ width: "50%" }}>
+                      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>{step.title}</H3>
+                      <Paragraph color="var(--neutral-300)">{step.description}</Paragraph>
+                    </Box>
+                  </MotionBox>
                 ))}
-              </div>
-            </div>
-          </div>
-        </section>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
         
         {/* CTA Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto bg-gradient-to-r from-blue-900/20 to-indigo-900/20 rounded-xl border border-blue-500/20 p-10 text-center">
-            <ChromeText as="h2" className="text-3xl font-bold mb-4">
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="64rem" marginHorizontal="auto" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" padding={40} textAlign="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
               Ready to Become an Affiliate?
             </ChromeText>
-            <p className="text-xl text-neutral-300 mb-8 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto">
               Join our affiliate program today and start earning commissions by promoting Hanzo's powerful AI tools and services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button size="lg" backgroundColor="var(--neutral-600)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Apply Now
               </Button>
-              <Button size="lg" variant="outline" className="border-gray-700 hover:bg-gray-800 px-8">
-                <Link to="/contact">Contact Us</Link>
+              <Button size="lg" variant="outline" borderColor="var(--neutral-700)" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
+                <Link tap to="/contact">Contact Us</Link>
               </Button>
-            </div>
-          </div>
-        </section>
-      </main>
+            </YStack>
+          </Box>
+        </Box>
+      </Box>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

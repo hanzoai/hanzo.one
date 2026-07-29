@@ -1,9 +1,8 @@
+import { Box, Button, Grid, H3, MotionBox, Paragraph, Text, XStack, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { CreditCard, Receipt, Clock, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
 
 const cardAnimation = createAnimationVariant("fadeInBlur", {
   duration: 0.4,
@@ -13,79 +12,79 @@ const cardAnimation = createAnimationVariant("fadeInBlur", {
 
 const InvoicesSummary = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <motion.div 
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+      <MotionBox 
         variants={cardAnimation}
-        className="p-6 rounded-xl border border-gray-800 bg-gray-900/20"
+        padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(255 255 255 / 0.2)"
       >
-        <div className="flex items-center gap-3 mb-4">
-          <CreditCard className="h-5 w-5 text-neutral-400" />
-          <h3 className="text-xl font-medium">Active Subscription</h3>
-        </div>
+        <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+          <CreditCard size={20} color="var(--neutral-400)" />
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Active Subscription</H3>
+        </XStack>
         
-        <div className="mb-6">
-          <div className="text-3xl font-bold mb-1">Trial Plan</div>
-          <p className="text-neutral-400">Free credit grant of $5.00</p>
-        </div>
+        <Box marginBottom={24}>
+          <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={4}>Trial Plan</Box>
+          <Paragraph color="var(--neutral-400)">Free credit grant of $5.00</Paragraph>
+        </Box>
         
         <Button 
-          className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] w-full"
+          backgroundColor="var(--neutral-600)" color="var(--white)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
         >
           View Plan Details
         </Button>
-      </motion.div>
+      </MotionBox>
       
-      <motion.div 
+      <MotionBox 
         variants={cardAnimation}
-        className="p-6 rounded-xl border border-gray-800 bg-gray-900/20"
+        padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(255 255 255 / 0.2)"
       >
-        <div className="flex items-center gap-3 mb-4">
-          <Receipt className="h-5 w-5 text-neutral-400" />
-          <h3 className="text-xl font-medium">Payment Summary</h3>
-        </div>
+        <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+          <Receipt size={20} color="var(--neutral-400)" />
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Payment Summary</H3>
+        </XStack>
         
-        <div className="space-y-2 mb-4">
-          <div className="flex justify-between">
-            <span className="text-neutral-400">Current Usage</span>
+        <Box rowGap={8} marginBottom={16}>
+          <XStack display="flex" justifyContent="space-between">
+            <Text color="var(--neutral-400)">Current Usage</Text>
             <span>$0.04</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-neutral-400">Next Invoice</span>
+          </XStack>
+          <XStack display="flex" justifyContent="space-between">
+            <Text color="var(--neutral-400)">Next Invoice</Text>
             <span>$0.00</span>
-          </div>
-          <div className="flex justify-between font-medium">
+          </XStack>
+          <XStack display="flex" justifyContent="space-between" fontWeight="500">
             <span>Credits Available</span>
             <span>$5.00</span>
-          </div>
-        </div>
+          </XStack>
+        </Box>
         
-        <Button className="bg-[var(--white)] hover:bg-gray-200 text-black w-full">
+        <Button backgroundColor="var(--white)" color="var(--pure-black)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}>
           Purchase Credits
         </Button>
-      </motion.div>
+      </MotionBox>
       
-      <motion.div 
+      <MotionBox 
         variants={cardAnimation}
-        className="p-6 rounded-xl border border-gray-800 bg-gray-900/20"
+        padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(255 255 255 / 0.2)"
       >
-        <div className="flex items-center gap-3 mb-4">
-          <Clock className="h-5 w-5 text-neutral-400" />
-          <h3 className="text-xl font-medium">Upcoming Charges</h3>
-        </div>
+        <XStack display="flex" alignItems="center" gap={12} marginBottom={16}>
+          <Clock size={20} color="var(--neutral-400)" />
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Upcoming Charges</H3>
+        </XStack>
         
-        <div className="bg-[var(--black)]/30 p-4 rounded-lg flex items-center gap-3 mb-6">
-          <AlertCircle className="h-5 w-5 text-blue-400" />
-          <p className="text-neutral-300">No upcoming charges. You're on a trial plan.</p>
-        </div>
+        <XStack backgroundColor="rgb(0 0 0 / 0.3)" padding={16} borderRadius="var(--radius-lg)" display="flex" alignItems="center" gap={12} marginBottom={24}>
+          <AlertCircle size={20} color="var(--foreground)" />
+          <Paragraph color="var(--neutral-300)">No upcoming charges. You're on a trial plan.</Paragraph>
+        </XStack>
         
         <Button 
           variant="outline" 
-          className="border-gray-700 w-full"
+          borderColor="var(--neutral-700)" width="100%"
         >
           View Pricing
         </Button>
-      </motion.div>
-    </div>
+      </MotionBox>
+    </Grid>
   );
 };
 

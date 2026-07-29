@@ -1,61 +1,61 @@
+import { Badge, Box, H3, MotionBox, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Kanban, CheckCircle, Bot } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 const ProjectManagementCard = () => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-900/30 border border-purple-900/20 rounded-xl overflow-hidden shadow-xl"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)"
     >
-      <div className="border-b border-gray-800 p-3 flex items-center">
-        <Kanban className="h-5 w-5 text-purple-400 mr-2" />
-        <span className="font-medium">Project Management</span>
-        <Badge variant="outline" className="ml-auto bg-purple-900/30 border-purple-500/30 text-purple-300">
+      <XStack borderBottomWidth={1} borderColor="var(--neutral-800)" padding={12} display="flex" alignItems="center">
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Kanban size={20} color="var(--foreground)" /></Box>
+        <Text fontWeight="500">Project Management</Text>
+        <Badge variant="outline" marginLeft="auto" backgroundColor="var(--surface-card-emphasis)" borderColor="var(--border-strong)" color="var(--foreground)">
           Linear-style
         </Badge>
-      </div>
-      <div className="p-4">
-        <div className="bg-[var(--black)]/60 rounded-lg p-4">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center">
-              <h3 className="font-medium text-[var(--white)]">Website Redesign</h3>
-              <Badge className="ml-2 bg-blue-600/20 text-blue-400 border-blue-500/30">In Progress</Badge>
-            </div>
-            <div className="flex space-x-2">
-              <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold">AI</div>
-              <div className="w-6 h-6 rounded-full bg-gray-600 flex items-center justify-center text-xs">JD</div>
-            </div>
-          </div>
+      </XStack>
+      <Box padding={16}>
+        <Box backgroundColor="rgb(0 0 0 / 0.6)" borderRadius="var(--radius-lg)" padding={16}>
+          <XStack marginBottom={16} display="flex" alignItems="center" justifyContent="space-between">
+            <XStack display="flex" alignItems="center">
+              <H3 fontWeight="500" color="var(--white)">Website Redesign</H3>
+              <Badge marginLeft={8} backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" borderColor="var(--border-strong)">In Progress</Badge>
+            </XStack>
+            <XStack display="flex" columnGap={8}>
+              <XStack width={24} height={24} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="700">AI</XStack>
+              <XStack width={24} height={24} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">JD</XStack>
+            </XStack>
+          </XStack>
           
-          <div className="space-y-3">
-            <div className="flex items-center p-2 bg-gray-800/40 rounded-md border border-gray-700/50">
-              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-              <span className="text-sm">Create wireframes</span>
-              <div className="ml-auto flex items-center space-x-1">
-                <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center text-xs">JD</div>
-              </div>
-            </div>
-            <div className="flex items-center p-2 bg-gray-800/40 rounded-md border border-gray-700/50">
-              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-              <span className="text-sm">Design homepage</span>
-              <div className="ml-auto flex items-center space-x-1">
-                <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-xs">AI</div>
-              </div>
-            </div>
-            <div className="flex items-center p-2 bg-purple-900/20 rounded-md border border-purple-700/50">
-              <Bot className="h-4 w-4 text-purple-400 mr-2" />
-              <span className="text-sm">AI working: Implementing frontend code</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+          <Box rowGap={12}>
+            <XStack display="flex" alignItems="center" padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={16} color="var(--neutral-500)" /></Box>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Create wireframes</Text>
+              <XStack marginLeft="auto" display="flex" alignItems="center" columnGap={4}>
+                <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">JD</XStack>
+              </XStack>
+            </XStack>
+            <XStack display="flex" alignItems="center" padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={16} color="var(--neutral-500)" /></Box>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Design homepage</Text>
+              <XStack marginLeft="auto" display="flex" alignItems="center" columnGap={4}>
+                <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">AI</XStack>
+              </XStack>
+            </XStack>
+            <XStack display="flex" alignItems="center" padding={8} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} color="var(--foreground)" /></Box>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">AI working: Implementing frontend code</Text>
+            </XStack>
+          </Box>
+        </Box>
+      </Box>
+    </MotionBox>
   );
 };
 

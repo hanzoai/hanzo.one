@@ -1,3 +1,4 @@
+import { XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -34,7 +35,7 @@ const StudioLayout = ({
   handleSubmit
 }: StudioLayoutProps) => {
   return (
-    <div className="flex-1 flex overflow-hidden max-w-7xl mx-auto w-full p-4">
+    <XStack flex={1} display="flex" overflow="hidden" maxWidth="var(--container-max)" marginHorizontal="auto" width="100%" padding={16}>
       <Sidebar 
         showSidebar={showSidebar}
         models={models}
@@ -42,7 +43,7 @@ const StudioLayout = ({
         setModelSelection={setModelSelection}
       />
       
-      <div className="flex-1 flex flex-col bg-gray-900/30 border border-gray-800 rounded-lg overflow-hidden">
+      <YStack flex={1} display="flex" flexDirection="column" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden">
         <Toolbar 
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
@@ -57,8 +58,8 @@ const StudioLayout = ({
           setPromptText={setPromptText}
           handleSubmit={handleSubmit}
         />
-      </div>
-    </div>
+      </YStack>
+    </XStack>
   );
 };
 

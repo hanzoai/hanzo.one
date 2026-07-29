@@ -1,3 +1,4 @@
+import { Box, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { MessageInterface } from "./types";
@@ -16,53 +17,49 @@ const Chat = ({
   handleSubmit 
 }: ChatProps) => {
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
+    <YStack flex={1} display="flex" flexDirection="column" overflow="hidden">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <Box flex={1} overflowY="auto" padding={16} rowGap={16}>
         {conversation.map((message, i) => (
-          <div 
+          <XStack 
             key={i} 
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            display="flex" justifyContent={message.role === "user" ? "flex-end" : "flex-start"}
           >
-            <div 
-              className={`max-w-3xl p-3 rounded-lg ${
-                message.role === "user" 
-                  ? "bg-purple-600/30 border border-purple-500/30" 
-                  : "bg-gray-800/60 border border-gray-700/50"
-              }`}
+            <Box 
+              maxWidth="var(--container-prose)" padding={12} borderRadius="var(--radius-lg)" backgroundColor={message.role === "user" ? "rgb(255 255 255 / 0.3)" : "rgb(255 255 255 / 0.6)"} borderWidth={message.role === "user" ? 1 : 1} borderColor={message.role === "user" ? "rgb(255 255 255 / 0.3)" : "rgb(255 255 255 / 0.5)"}
             >
-              <div 
-                className="prose prose-invert text-sm" 
+              <Box 
+                fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" 
                 dangerouslySetInnerHTML={{ 
                   __html: message.content.replace(/```(.+?)```/gs, '<pre><code>$1</code></pre>') 
                 }} 
               />
-            </div>
-          </div>
+            </Box>
+          </XStack>
         ))}
-      </div>
+      </Box>
       
       {/* Input */}
-      <div className="p-4 border-t border-gray-800">
+      <Box padding={16} borderTopWidth={1} borderColor="var(--neutral-800)">
         <form onSubmit={handleSubmit}>
-          <div className="flex items-center">
-            <input
+          <XStack display="flex" alignItems="center">
+            <Box display="inline-block" minHeight={44}
               type="text"
               value={promptText}
               onChange={(e) => setPromptText(e.target.value)}
               placeholder="Send a message..."
-              className="flex-1 bg-gray-800/50 border border-gray-700 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              render="input" flex={1} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-700)" borderTopLeftRadius="var(--radius-md)" borderBottomLeftRadius="var(--radius-md)" paddingHorizontal={16} paddingVertical={8} focusStyle={{ outlineStyle: "solid", outlineWidth: 2, outlineColor: "var(--neutral-500)" }}
             />
-            <button 
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} 
               type="submit" 
-              className="rounded-l-none bg-purple-600 hover:bg-purple-700 px-4 py-2 text-[var(--white)] font-medium"
+              render="button" borderTopLeftRadius="0" borderBottomLeftRadius="0" backgroundColor="var(--neutral-600)" paddingHorizontal={16} paddingVertical={8} color="var(--white)" fontWeight="500" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
               Send
-            </button>
-          </div>
+            </Box>
+          </XStack>
         </form>
-      </div>
-    </div>
+      </Box>
+    </YStack>
   );
 };
 

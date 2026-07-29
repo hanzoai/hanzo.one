@@ -1,8 +1,7 @@
+import { Anchor, Box, Button, Link, Text, XStack } from '@/gui'
 import { useState } from "react";
 import { Menu, X, ChevronRight, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
+
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -154,15 +153,15 @@ export const MobileMenu = ({ isOpen, onToggle, onOpenSearch }: MobileMenuProps) 
 
   return (
     <>
-      <div className="md:hidden flex items-center gap-2">
+      <XStack display="flex" alignItems="center" gap={8} $md={{ display: "none" }}>
         {/* Search button */}
         <Button
           variant="ghost"
           size="icon"
           onClick={onOpenSearch}
-          className="text-neutral-400 hover:text-white"
+          color="var(--neutral-400)" hoverStyle={{ color: "var(--foreground)" }}
         >
-          <Search className="h-5 w-5" />
+          <Search size={20} />
         </Button>
 
         {/* Menu toggle */}
@@ -170,116 +169,113 @@ export const MobileMenu = ({ isOpen, onToggle, onOpenSearch }: MobileMenuProps) 
           variant="ghost"
           size="icon"
           onClick={onToggle}
-          className="text-white"
+          color="var(--foreground)"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </Button>
-      </div>
+      </XStack>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div className="fixed inset-0 bg-black/95 backdrop-blur-md" onClick={onToggle} />
+        <Box position="fixed" top={0} right={0} bottom={0} left={0} zIndex={50} $md={{ display: "none" }}>
+          <Box position="fixed" top={0} right={0} bottom={0} left={0} backgroundColor="rgb(0 0 0 / 0.95)" backdropFilter="blur(12px)" WebkitBackdropFilter="blur(12px)" onClick={onToggle} />
 
-          <div className="fixed inset-0 w-full bg-black pt-[var(--header-height)] h-screen overflow-y-auto">
+          <Box position="fixed" top={0} right={0} bottom={0} left={0} width="100%" backgroundColor="var(--pure-black)" paddingTop="var(--header-height)" height="100vh" overflowY="auto">
             {/* Search / Command palette widget at top */}
-            <div className="px-4 pt-4 pb-2">
-              <button
+            <Box paddingHorizontal={16} paddingTop={16} paddingBottom={8}>
+              <XStack minHeight={44}
                 onClick={() => {
                   onToggle();
                   onOpenSearch?.();
                 }}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800 hover:border-neutral-700 transition-all"
+                render="button" width="100%" display="flex" alignItems="center" gap={12} paddingHorizontal={16} paddingVertical={12} borderRadius="var(--radius-xl)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--neutral-800)", borderColor: "var(--neutral-700)" }}
               >
-                <Search className="h-5 w-5" />
-                <span className="flex-1 text-left text-sm">Search docs, products, pages...</span>
-                <kbd className="inline-flex items-center gap-0.5 px-2 py-1 text-[11px] font-mono bg-neutral-800 border border-neutral-700 rounded text-neutral-500">
-                  <span className="text-xs">⌘</span>K
-                </kbd>
-              </button>
-            </div>
+                <Search size={20} />
+                <Text flex={1} textAlign="left" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Search docs, products, pages...</Text>
+                <Text display="inline-flex" alignItems="center" gap={2} paddingHorizontal={8} paddingVertical={4} fontSize="11px" fontFamily="var(--font-mono)" backgroundColor="var(--neutral-800)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius)" color="var(--neutral-500)">
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">⌘</Text>K
+                </Text>
+              </XStack>
+            </Box>
 
-            <div className="px-4 py-4 space-y-1">
+            <Box paddingHorizontal={16} paddingVertical={16} rowGap={4}>
               {mobileNav.map((item) => (
-                <div key={item.title} className="border-b border-neutral-800/50 pb-2 mb-2">
+                <Box key={item.title} borderBottomWidth={1} borderColor="var(--border-strong)" paddingBottom={8} marginBottom={8}>
                   {item.href ? (
-                    <Link
+                    <Link tap
                       to={item.href}
-                      className="block px-3 py-2.5 text-base font-medium text-neutral-300 hover:text-white hover:bg-neutral-800/50 rounded-lg transition-colors"
+                      display="block" paddingHorizontal={12} paddingVertical={10} fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--neutral-300)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--surface-card)" }}
                       onClick={handleLinkClick}
                     >
                       {item.title}
                     </Link>
                   ) : (
                     <>
-                      <button
-                        className="w-full flex justify-between items-center px-3 py-2.5 text-base font-medium text-neutral-300 hover:text-white hover:bg-neutral-800/50 rounded-lg transition-colors"
+                      <XStack minHeight={44}
+                        render="button" width="100%" display="flex" justifyContent="space-between" alignItems="center" paddingHorizontal={12} paddingVertical={10} fontSize="var(--text-base)" lineHeight="var(--leading-base)" fontWeight="500" color="var(--neutral-300)" borderRadius="var(--radius-lg)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--surface-card)" }}
                         onClick={() => toggleSection(item.title)}
                       >
                         {item.title}
-                        <ChevronRight className={cn(
-                          "h-4 w-4 transition-transform duration-200",
-                          expandedSections[item.title] && "rotate-90"
-                        )} />
-                      </button>
+                        <ChevronRight size={16} />
+                      </XStack>
 
                       {expandedSections[item.title] && item.sections && (
-                        <div className="mt-2 ml-2 space-y-4 bg-neutral-900/50 rounded-lg p-3">
+                        <Box marginTop={8} marginLeft={8} rowGap={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={12}>
                           {item.sections.map((section) => (
                             <div key={section.title}>
-                              <div className="px-2 py-1 text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                              <Box paddingHorizontal={8} paddingVertical={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em">
                                 {section.title}
-                              </div>
-                              <div className="space-y-0.5 mt-1">
+                              </Box>
+                              <Box rowGap={2} marginTop={4}>
                                 {section.items.map((subItem) => (
                                   subItem.external ? (
-                                    <a
+                                    <Anchor tap
                                       key={subItem.title}
                                       href={subItem.href}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="block px-2 py-1.5 text-sm text-neutral-400 hover:text-white hover:bg-neutral-800/50 rounded transition-colors"
+                                      display="block" paddingHorizontal={8} paddingVertical={6} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" borderRadius="var(--radius)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--surface-card)" }}
                                       onClick={handleLinkClick}
                                     >
                                       {subItem.title}
-                                    </a>
+                                    </Anchor>
                                   ) : (
-                                    <Link
+                                    <Link tap
                                       key={subItem.title}
                                       to={subItem.href}
-                                      className="block px-2 py-1.5 text-sm text-neutral-400 hover:text-white hover:bg-neutral-800/50 rounded transition-colors"
+                                      display="block" paddingHorizontal={8} paddingVertical={6} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" borderRadius="var(--radius)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--surface-card)" }}
                                       onClick={handleLinkClick}
                                     >
                                       {subItem.title}
                                     </Link>
                                   )
                                 ))}
-                              </div>
+                              </Box>
                             </div>
                           ))}
-                        </div>
+                        </Box>
                       )}
                     </>
                   )}
-                </div>
+                </Box>
               ))}
-            </div>
+            </Box>
 
             {/* Bottom buttons */}
-            <div className="px-4 py-4 space-y-3 border-t border-neutral-800">
-              <Link to="/contact" onClick={handleLinkClick}>
-                <Button variant="ghost" className="w-full text-neutral-300 hover:text-white hover:bg-neutral-800/50 justify-center">
+            <Box paddingHorizontal={16} paddingVertical={16} rowGap={12} borderTopWidth={1} borderColor="var(--neutral-800)">
+              <Link tap to="/contact" onClick={handleLinkClick}>
+                <Button variant="ghost" width="100%" color="var(--neutral-300)" justifyContent="center" hoverStyle={{ color: "var(--foreground)", backgroundColor: "var(--surface-card)" }}>
                   Contact sales
                 </Button>
               </Link>
-              <a
+              <Anchor tap
                 href="https://cloud.hanzo.ai"
-                className="block w-full bg-white text-black hover:bg-neutral-200 active:bg-neutral-300 rounded-full h-10 flex items-center justify-center text-sm font-medium transition-all duration-200"
+                display="flex" width="100%" backgroundColor="var(--foreground)" color="var(--pure-black)" borderRadius="var(--radius-full)" height={40} alignItems="center" justifyContent="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all 200ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }} pressStyle={{ backgroundColor: "var(--neutral-300)" }}
               >
                 Try Hanzo
-              </a>
-            </div>
-          </div>
-        </div>
+              </Anchor>
+            </Box>
+          </Box>
+        </Box>
       )}
     </>
   );

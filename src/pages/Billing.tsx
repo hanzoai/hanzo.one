@@ -1,9 +1,8 @@
+import { AnimatedHeading, AnimatedSection, Box, Button, H2, XStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
 import BillingOverview from "@/components/billing/BillingOverview";
-import AnimatedSection, { AnimatedHeading } from "@/components/ui/animated-section";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { CreditCard, FileText } from "lucide-react";
 
 const BillingPage = () => {
@@ -13,27 +12,27 @@ const BillingPage = () => {
   return (
     <AnimatedSection>
       <AnimatedHeading>
-        <h2 className="text-2xl font-medium mb-8">Billing</h2>
+        <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" marginBottom={32}>Billing</H2>
       </AnimatedHeading>
 
-      <div className="mb-8 flex flex-wrap gap-4">
+      <XStack marginBottom={32} display="flex" flexWrap="wrap" gap={16}>
         <Button 
           variant="outline" 
           onClick={() => navigate('/account/invoices')}
-          className="bg-[var(--black)] hover:bg-neutral-900 border border-white/10 text-[var(--white)] flex items-center"
+          backgroundColor="var(--black)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" color="var(--white)" display="flex" alignItems="center" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
         >
-          <FileText className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><FileText size={16} /></Box>
           View Billing History
         </Button>
         <Button 
           variant="outline" 
           onClick={() => navigate('/account/billing#payment-methods')}
-          className="bg-[var(--black)] hover:bg-neutral-900 border border-white/10 text-[var(--white)] flex items-center"
+          backgroundColor="var(--black)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" color="var(--white)" display="flex" alignItems="center" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
         >
-          <CreditCard className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CreditCard size={16} /></Box>
           Manage Payment Methods
         </Button>
-      </div>
+      </XStack>
       
       <div>
         <BillingOverview />

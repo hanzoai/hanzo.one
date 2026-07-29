@@ -1,6 +1,6 @@
+import { Box, ChromeText, Grid, MotionBox, Paragraph } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import ChromeText from "@/components/ui/chrome-text";
 
 interface EfficiencyCardProps {
   title: string;
@@ -12,23 +12,23 @@ interface EfficiencyCardProps {
 
 const EfficiencyCard = ({ title, mainText, subText, initialY, delay }: EfficiencyCardProps) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: initialY }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className="bg-gray-900/30 rounded-xl p-8 border border-gray-800 flex flex-col items-center text-center"
+      backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-800)" display="flex" flexDirection="column" alignItems="center" textAlign="center"
     >
-      <ChromeText as="h3" className="text-2xl font-bold mb-4">
+      <ChromeText as="h3" fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>
         {title}
       </ChromeText>
-      <p className="text-neutral-300 mb-4">
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>
         {mainText}
-      </p>
-      <p className="text-neutral-400">
+      </Paragraph>
+      <Paragraph color="var(--neutral-400)">
         {subText}
-      </p>
-    </motion.div>
+      </Paragraph>
+    </MotionBox>
   );
 };
 
@@ -65,18 +65,18 @@ const EfficiencySection = () => {
   ];
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Datastore Efficiency
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-8">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32}>
             Optimized for peak performance at every level
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {efficiencyItems.map((item, index) => (
             <EfficiencyCard
               key={index}
@@ -87,9 +87,9 @@ const EfficiencySection = () => {
               delay={item.delay}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

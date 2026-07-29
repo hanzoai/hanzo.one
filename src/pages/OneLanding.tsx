@@ -1,7 +1,7 @@
+import { Box, Button, Grid, H1, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Users, CreditCard, BarChart3, Calendar, FileText, Mail, MessageSquare, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const features = [
   { icon: Users, name: "Team Management", description: "Manage your entire organization" },
@@ -38,145 +38,137 @@ const plans = [
 
 const OneLanding = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-black to-teal-900/20" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 rounded-full blur-3xl" />
+      <XStack render="section" position="relative" minHeight="100vh" display="flex" alignItems="center" justifyContent="center" overflow="hidden">
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), var(--pure-black), rgb(255 255 255 / 0.08))" />
+        <Box position="absolute" top="33.333333%" left="50%" x="-50%" width="800px" height="400px" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" />
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <motion.div
+        <Box position="relative" zIndex={10} marginHorizontal="auto" paddingHorizontal={24} textAlign="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm mb-8">
-              <Building2 className="w-4 h-4" />
+            <XStack display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={32}>
+              <Building2 size={16} />
               All-in-One Business Suite
-            </div>
+            </XStack>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-200 to-emerald-400 bg-clip-text text-transparent">
+            <H1 fontSize="var(--text-5xl)" lineHeight="var(--leading-5xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground), var(--foreground))" $md={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
               One Platform.
               <br />
               Zero Complexity.
-            </h1>
+            </H1>
 
-            <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto" marginBottom={32}>
               Everything you need to run your business. Team management, billing,
               analytics, documents—all powered by AI.
-            </p>
+            </Paragraph>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8">
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" marginBottom={64} $sm={{ flexDirection: "row" }}>
+              <Button size="lg" backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontWeight="600" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-600)" }}>
                 Start Free Trial
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Button>
-              <Button size="lg" variant="outline" className="border-neutral-700 hover:bg-neutral-800">
+              <Button size="lg" variant="outline" borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
                 Book a Demo
               </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </YStack>
+          </MotionBox>
+        </Box>
+      </XStack>
 
       {/* Features Grid */}
-      <section className="py-24 bg-neutral-950">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Everything in One Place</h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">
+      <Box render="section" paddingVertical={96} backgroundColor="var(--neutral-950)">
+        <Box marginHorizontal="auto" paddingHorizontal={24}>
+          <Box textAlign="center" marginBottom={64}>
+            <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16}>Everything in One Place</H2>
+            <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
               Stop juggling between apps. Hanzo One brings all your business tools together.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
             {features.map((feature, index) => (
-              <motion.div
+              <MotionBox
                 key={feature.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="p-5 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-emerald-500/50 transition-colors"
+                
+                padding={20} borderRadius="var(--radius-xl)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
               >
-                <feature.icon className="w-8 h-8 text-emerald-400 mb-3" />
-                <h3 className="font-semibold mb-1">{feature.name}</h3>
-                <p className="text-sm text-neutral-400">{feature.description}</p>
-              </motion.div>
+                <feature.icon width={32} height={32} color="var(--foreground)" marginBottom={12} />
+                <H3 fontWeight="600" marginBottom={4}>{feature.name}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+              </MotionBox>
             ))}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Pricing */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Simple Pricing</h2>
-            <p className="text-neutral-400">One price for everything. No hidden fees.</p>
-          </div>
+      <Box render="section" paddingVertical={96}>
+        <Box marginHorizontal="auto" paddingHorizontal={24}>
+          <Box textAlign="center" marginBottom={64}>
+            <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16}>Simple Pricing</H2>
+            <Paragraph color="var(--neutral-400)">One price for everything. No hidden fees.</Paragraph>
+          </Box>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <Grid display="grid" gap={32} maxWidth="64rem" marginHorizontal="auto" $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {plans.map((plan, index) => (
-              <motion.div
+              <MotionBox
                 key={plan.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative p-6 rounded-2xl ${
-                  plan.popular
-                    ? "bg-gradient-to-b from-emerald-900/50 to-neutral-900/50 border-2 border-emerald-500"
-                    : "bg-neutral-900/50 border border-neutral-800"
-                }`}
+                position="relative" padding={24} borderRadius="var(--radius-2xl)" borderWidth={plan.popular ? 2 : 1} borderColor={plan.popular ? "var(--neutral-500)" : "var(--neutral-800)"} backgroundImage={plan.popular ? "linear-gradient(to bottom, rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.5))" : undefined} backgroundColor={plan.popular ? undefined : "rgb(255 255 255 / 0.5)"}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-emerald-500 text-black text-xs font-semibold rounded-full">
+                  <Box position="absolute" top={-12} left="50%" x="-50%" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="600" borderRadius="var(--radius-full)">
                     Most Popular
-                  </div>
+                  </Box>
                 )}
-                <h3 className="text-xl font-semibold mb-1">{plan.name}</h3>
-                <p className="text-sm text-neutral-400 mb-4">{plan.description}</p>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.price !== "Custom" && <span className="text-neutral-400">/month</span>}
-                </div>
-                <ul className="space-y-3 mb-6">
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>{plan.name}</H3>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={16}>{plan.description}</Paragraph>
+                <Box marginBottom={24}>
+                  <Text fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700">{plan.price}</Text>
+                  {plan.price !== "Custom" && <Text color="var(--neutral-400)">/month</Text>}
+                </Box>
+                <Box render="ul" rowGap={12} marginBottom={24}>
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-neutral-300">
-                      <Check className="w-4 h-4 text-emerald-400" />
+                    <XStack key={feature} render="li" display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
+                      <Check size={16} color="var(--foreground)" />
                       {feature}
-                    </li>
+                    </XStack>
                   ))}
-                </ul>
+                </Box>
                 <Button
-                  className={`w-full ${
-                    plan.popular
-                      ? "bg-emerald-500 hover:bg-emerald-600 text-black"
-                      : "bg-neutral-800 hover:bg-neutral-700"
-                  }`}
+                  width="100%" backgroundColor={plan.popular ? "var(--neutral-500)" : "var(--neutral-800)"} color={plan.popular ? "var(--pure-black)" : undefined} hoverStyle={plan.popular ? { backgroundColor: "var(--neutral-600)" } : { backgroundColor: "var(--neutral-700)" }}
                 >
                   Get Started
                 </Button>
-              </motion.div>
+              </MotionBox>
             ))}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-b from-neutral-950 to-black">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Simplify?</h2>
-          <p className="text-neutral-400 max-w-xl mx-auto mb-8">
+      <Box render="section" paddingVertical={96} backgroundImage="linear-gradient(to bottom, var(--neutral-950), var(--pure-black))">
+        <Box marginHorizontal="auto" paddingHorizontal={24} textAlign="center">
+          <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16}>Ready to Simplify?</H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="36rem" marginHorizontal="auto" marginBottom={32}>
             Join thousands of businesses running on Hanzo One.
-          </p>
-          <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8">
+          </Paragraph>
+          <Button size="lg" backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontWeight="600" paddingHorizontal={32} hoverStyle={{ backgroundColor: "var(--neutral-600)" }}>
             Start Free Trial
           </Button>
-        </div>
-      </section>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,9 +1,10 @@
+import { Anchor, Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 
-const BRAND_COLOR = "#fd4444";
+
+const BRAND_COLOR = "var(--foreground)";
 
 const GATEWAY_FEATURES = [
   "Choose from more than 60 providers",
@@ -26,99 +27,99 @@ const ALTERNATIVE_FEATURES = [
 
 const OpenPricing = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/50 to-black">
-      <div className="max-w-6xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
         {/* Section header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Open Pricing
-          </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Run AI where you want and pay as you go
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <Grid display="grid" gap={32} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {/* Hanzo Gateway */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-8"
+            backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="px-3 py-1 rounded-full text-xs font-medium"
+            <XStack display="flex" alignItems="center" gap={12} marginBottom={24}>
+              <Box
+                paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500"
                 style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
               >
                 Recommended
-              </div>
-            </div>
+              </Box>
+            </XStack>
 
-            <h3 className="text-2xl font-bold text-white mb-2">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8}>
               Hanzo Gateway
-            </h3>
-            <p className="text-neutral-400 mb-6">Open & transparent</p>
+            </H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>Open & transparent</Paragraph>
 
-            <ul className="space-y-3 mb-8">
+            <Box render="ul" rowGap={12} marginBottom={32}>
               {GATEWAY_FEATURES.map((feature, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#fd4444] shrink-0 mt-0.5" />
-                  <span className="text-sm text-neutral-300">{feature}</span>
-                </li>
+                <XStack key={index} render="li" display="flex" alignItems="flex-start" gap={12}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><Check size={20} color="var(--foreground)" /></Box>
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">{feature}</Text>
+                </XStack>
               ))}
-            </ul>
+            </Box>
 
             <Link
               to="/pricing"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm w-full justify-center"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" justifyContent="center" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
             >
               View Pricing
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Link>
-          </motion.div>
+          </MotionBox>
 
           {/* Alternatives */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-8"
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}
           >
-            <h3 className="text-2xl font-bold text-white mb-2">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={8}>
               Or use any alternative
-            </h3>
-            <p className="text-neutral-400 mb-6">For AI inference</p>
+            </H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>For AI inference</Paragraph>
 
-            <ul className="space-y-3 mb-8">
+            <Box render="ul" rowGap={12} marginBottom={32}>
               {ALTERNATIVE_FEATURES.map((feature, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-neutral-500 shrink-0 mt-0.5" />
-                  <span className="text-sm text-neutral-400">{feature}</span>
-                </li>
+                <XStack key={index} render="li" display="flex" alignItems="flex-start" gap={12}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><Check size={20} color="var(--neutral-500)" /></Box>
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature}</Text>
+                </XStack>
               ))}
-            </ul>
+            </Box>
 
-            <a
+            <Anchor
               href="https://docs.hanzo.ai/byok"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-800 text-sm text-white w-full justify-center"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" width="100%" justifyContent="center" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
             >
               Learn about BYOK
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+            </Anchor>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 import React from "react";
 import PricingPlan from "./PricingPlan";
 import { Code, Zap, Github } from "lucide-react";
@@ -6,7 +7,7 @@ const PersonalPlans = () => {
   const plans = [
     {
       name: "Dev",
-      icon: <Github className="h-6 w-6 text-neutral-400" />,
+      icon: <Github size={24} color="var(--neutral-400)" />,
       price: "Free",
       billingPeriod: " forever",
       description: "Open source tools, run locally and privately",
@@ -24,7 +25,7 @@ const PersonalPlans = () => {
     },
     {
       name: "Pro",
-      icon: <Code className="h-6 w-6 text-neutral-400" />,
+      icon: <Code size={24} color="var(--neutral-400)" />,
       price: "$20",
       billingPeriod: "/month",
       description: "Ideal for hobbyists and occasional use",
@@ -42,7 +43,7 @@ const PersonalPlans = () => {
     },
     {
       name: "Max",
-      icon: <Zap className="h-6 w-6 text-neutral-400" />,
+      icon: <Zap size={24} color="var(--neutral-400)" />,
       price: "$200",
       billingPeriod: "/month",
       description: "For professionals and small businesses",
@@ -61,8 +62,8 @@ const PersonalPlans = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto mb-16">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <Box maxWidth="var(--container-max)" marginHorizontal="auto" marginBottom={64}>
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {plans.map((plan) => (
           <PricingPlan
             key={plan.name}
@@ -76,8 +77,8 @@ const PersonalPlans = () => {
             githubLink={plan.githubLink}
           />
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 

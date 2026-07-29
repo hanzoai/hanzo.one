@@ -1,11 +1,7 @@
+import { AnimatedHeading, AnimatedSection, Box, Button, Input, Label, XStack, toast } from '@/gui'
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useAccount } from '@/contexts/AccountContext';
-import AnimatedSection, { AnimatedHeading } from '@/components/ui/animated-section';
-import { toast } from 'sonner';
 
 const AccountSettings = () => {
   const { user, updateUserProfile } = useAccount();
@@ -19,46 +15,46 @@ const AccountSettings = () => {
     <AnimatedSection>
       <AnimatedHeading>Account Settings</AnimatedHeading>
       
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mt-8">
-        <div className="space-y-2">
+      <Box onSubmit={handleSubmit} render="form" rowGap={24} maxWidth="36rem" marginTop={32}>
+        <Box rowGap={8}>
           <Label htmlFor="email">Email Address</Label>
           <Input
             id="email"
             type="email"
             value={user?.email || ''}
             disabled
-            className="bg-gray-900/20 border-gray-800/30"
+            backgroundColor="rgb(255 255 255 / 0.2)" borderColor="var(--border-strong)"
           />
-        </div>
+        </Box>
 
-        <div className="space-y-2">
+        <Box rowGap={8}>
           <Label htmlFor="notifications">Email Notifications</Label>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <input
+          <Box rowGap={16}>
+            <XStack display="flex" alignItems="center" columnGap={8}>
+              <Box display="inline-block" minHeight={44}
                 type="checkbox"
                 id="marketing"
-                className="rounded border-gray-800/30 bg-gray-900/20"
+                render="input" borderRadius="var(--radius)" borderColor="var(--border-strong)" backgroundColor="rgb(255 255 255 / 0.2)"
                 defaultChecked
               />
               <label htmlFor="marketing">Marketing updates</label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <input
+            </XStack>
+            <XStack display="flex" alignItems="center" columnGap={8}>
+              <Box display="inline-block" minHeight={44}
                 type="checkbox"
                 id="security"
-                className="rounded border-gray-800/30 bg-gray-900/20"
+                render="input" borderRadius="var(--radius)" borderColor="var(--border-strong)" backgroundColor="rgb(255 255 255 / 0.2)"
                 defaultChecked
               />
               <label htmlFor="security">Security alerts</label>
-            </div>
-          </div>
-        </div>
+            </XStack>
+          </Box>
+        </Box>
 
-        <Button type="submit" className="bg-gray-900 hover:bg-gray-800 border-none">
+        <Button type="submit" backgroundColor="var(--neutral-900)" borderStyle="none" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
           Save Changes
         </Button>
-      </form>
+      </Box>
     </AnimatedSection>
   );
 };

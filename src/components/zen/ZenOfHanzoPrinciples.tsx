@@ -1,6 +1,6 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Separator, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Separator } from "@/components/ui/separator";
 import ZenPrincipleCard from "./ZenPrincipleCard";
 import { principles } from "./data/zenPrinciples";
 
@@ -15,60 +15,52 @@ const ZenOfHanzoPrinciples: React.FC = () => {
     : principles;
 
   return (
-    <div className="mt-16 mb-24 px-4" id="principles">
-      <motion.div
+    <Box marginTop={64} marginBottom={96} paddingHorizontal={16} id="principles">
+      <MotionBox
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-center mb-12"
+        textAlign="center" marginBottom={48}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--white)]">Our Principles</h2>
-        <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+        <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} color="var(--white)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Our Principles</H2>
+        <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
           Time-tested principles guiding the development of next-generation AI systems and applications
-        </p>
-        <div className="h-px w-20 bg-gray-700 mx-auto mt-6"></div>
-      </motion.div>
+        </Paragraph>
+        <Box height={1} width={80} backgroundColor="var(--neutral-700)" marginHorizontal="auto" marginTop={24}></Box>
+      </MotionBox>
 
       {/* Sticky Discipline Filter */}
-      <div className="sticky top-0 z-40 bg-[var(--black)]/95 backdrop-blur-sm border-b border-gray-800/50 py-6 mb-8">
-        <div className="flex flex-wrap justify-center gap-2">
-          <button
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-              selectedDiscipline === null 
-                ? "bg-white text-black shadow-lg" 
-                : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-gray-300"
-            }`}
+      <Box position="sticky" top={0} zIndex={40} backgroundColor="rgb(0 0 0 / 0.95)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderBottomWidth={1} borderColor="var(--border-strong)" paddingVertical={24} marginBottom={32}>
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={8}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
+            render="button" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all 200ms cubic-bezier(.4,0,.2,1)" backgroundColor={selectedDiscipline === null ? "var(--foreground)" : "rgb(255 255 255 / 0.5)"} color={selectedDiscipline === null ? "var(--pure-black)" : "var(--neutral-400)"} boxShadow={selectedDiscipline === null ? "0 10px 15px -3px rgb(0 0 0 / .35)" : undefined} hoverStyle={selectedDiscipline === null ? undefined : { backgroundColor: "var(--surface-card)", color: "var(--neutral-300)" }}
             onClick={() => setSelectedDiscipline(null)}
           >
             All Disciplines
-          </button>
+          </Box>
           {disciplines.map(discipline => (
-            <button
+            <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
               key={discipline}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                selectedDiscipline === discipline 
-                  ? "bg-white text-black shadow-lg" 
-                  : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-gray-300"
-              }`}
+              render="button" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="all 200ms cubic-bezier(.4,0,.2,1)" backgroundColor={selectedDiscipline === discipline ? "var(--foreground)" : "rgb(255 255 255 / 0.5)"} color={selectedDiscipline === discipline ? "var(--pure-black)" : "var(--neutral-400)"} boxShadow={selectedDiscipline === discipline ? "0 10px 15px -3px rgb(0 0 0 / .35)" : undefined} hoverStyle={selectedDiscipline === discipline ? undefined : { backgroundColor: "var(--surface-card)", color: "var(--neutral-300)" }}
               onClick={() => setSelectedDiscipline(discipline)}
             >
               {discipline}
-            </button>
+            </Box>
           ))}
-        </div>
+        </XStack>
         
         {/* Display count of displayed principles */}
-        <div className="text-center mt-4 text-neutral-500 text-sm">
+        <Box textAlign="center" marginTop={16} color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
           {selectedDiscipline ? (
             <p>Showing principles from the {selectedDiscipline} discipline</p>
           ) : (
             <p>Showing all engineering principles across {disciplines.length} disciplines</p>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <Grid maxWidth="var(--container-max)" marginHorizontal="auto" display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
         {filteredPrinciples.map((principle, index) => (
           <ZenPrincipleCard 
             key={principle.number} 
@@ -76,41 +68,41 @@ const ZenOfHanzoPrinciples: React.FC = () => {
             index={index} 
           />
         ))}
-      </div>
+      </Grid>
       
-      <div className="text-center mt-16">
-        <div className="bg-white/5 rounded-xl p-8 border border-white/10 max-w-4xl mx-auto">
-          <h3 className="text-2xl font-semibold mb-4">Apply These Principles</h3>
-          <p className="text-neutral-400 mb-6">
+      <Box textAlign="center" marginTop={64}>
+        <Box backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" maxWidth="56rem" marginHorizontal="auto">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Apply These Principles</H3>
+          <Paragraph color="var(--neutral-400)" marginBottom={24}>
             Ready to build with these principles? Explore our documentation, try our models, or dive into our open-source platform.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+          </Paragraph>
+          <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+            <Anchor tap
               href="https://docs.hanzo.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition-all duration-300"
+              paddingHorizontal={24} paddingVertical={12} backgroundColor="var(--foreground)" color="var(--pure-black)" borderRadius="var(--radius-lg)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--neutral-100)" }}
             >
               Read Documentation
-            </a>
-            <a
+            </Anchor>
+            <Anchor tap
               href="/platform"
-              className="px-6 py-3 bg-transparent border border-white/20 text-white hover:bg-white hover:text-black rounded-lg transition-all duration-300"
+              paddingHorizontal={24} paddingVertical={12} backgroundColor="transparent" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" borderRadius="var(--radius-lg)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--foreground)", color: "var(--pure-black)" }}
             >
               Explore Platform
-            </a>
-            <a
+            </Anchor>
+            <Anchor tap
               href="https://github.com/hanzoai"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-transparent border border-white/20 text-white hover:bg-white hover:text-black rounded-lg transition-all duration-300"
+              paddingHorizontal={24} paddingVertical={12} backgroundColor="transparent" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" borderRadius="var(--radius-lg)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "var(--foreground)", color: "var(--pure-black)" }}
             >
               Open Source
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Anchor>
+          </YStack>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

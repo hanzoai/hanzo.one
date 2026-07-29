@@ -1,6 +1,7 @@
+import { Box, Button, Grid, H1, H2, H3, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Clock,
   Mail,
@@ -16,7 +17,6 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 
 export interface BlockchainProductProps {
   name: string;
@@ -73,399 +73,399 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 md:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-15"
+      <Box render="section" paddingTop={96} paddingBottom={64} paddingHorizontal={16} position="relative" overflow="hidden" $md={{ paddingHorizontal: 32 }}>
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+          <Box
+            position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.15}
             style={{
               background: `radial-gradient(circle, ${accentColor} 0%, transparent 70%)`,
               filter: "blur(100px)",
             }}
           />
-        </div>
+        </Box>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+          <Grid display="grid" gap={48} alignItems="flex-start" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {/* Left: Product Info */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               {/* Coming Soon Badge */}
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-6"
+              <XStack
+                display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} marginBottom={24}
                 style={{ borderColor: `${accentColor}4d`, backgroundColor: `${accentColor}1a` }}
               >
-                <Clock className="w-4 h-4" style={{ color: accentColor }} />
-                <span className="text-sm font-medium" style={{ color: accentColor }}>
+                <Clock size={16} style={{ color: accentColor }} />
+                <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" style={{ color: accentColor }}>
                   Private Beta
-                </span>
-              </div>
+                </Text>
+              </XStack>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-4">
-                <span className="text-white">{name}</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-neutral-400 mb-6">{tagline}</p>
-              <p className="text-lg text-neutral-400 mb-8">{description}</p>
+              <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={16} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+                <Text color="var(--foreground)">{name}</Text>
+              </H1>
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" marginBottom={24} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>{tagline}</Paragraph>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32}>{description}</Paragraph>
 
               {/* Quick Features */}
-              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              <Grid display="grid" gap={16} marginBottom={32} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {features.slice(0, 4).map((feature, idx) => {
                   const Icon = feature.icon;
                   return (
-                    <div key={idx} className="flex items-start gap-3">
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                    <XStack key={idx} display="flex" alignItems="flex-start" gap={12}>
+                      <XStack
+                        width={32} height={32} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}
                         style={{ backgroundColor: `${accentColor}1a` }}
                       >
-                        <Icon className="w-4 h-4" style={{ color: accentColor }} />
-                      </div>
+                        <Icon width={16} height={16} style={{ color: accentColor }} />
+                      </XStack>
                       <div>
-                        <h3 className="font-medium text-white text-sm">{feature.title}</h3>
-                        <p className="text-xs text-neutral-500">{feature.description}</p>
+                        <H3 fontWeight="500" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature.title}</H3>
+                        <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{feature.description}</Paragraph>
                       </div>
-                    </div>
+                    </XStack>
                   );
                 })}
-              </div>
+              </Grid>
 
               <Link
                 to="/blockchain"
-                className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+                display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
               >
-                <ArrowRight className="w-4 h-4 rotate-180" />
+                <Box render="span" display="inline-flex" alignItems="center" rotate="180deg"><ArrowRight size={16} /></Box>
                 Back to Web3 Overview
               </Link>
-            </motion.div>
+            </MotionBox>
 
             {/* Right: Signup Form */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-neutral-800 bg-neutral-900/80 p-6 md:p-8"
+              borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" padding={24} $md={{ padding: 32 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+              <XStack display="flex" alignItems="center" gap={12} marginBottom={24}>
+                <XStack
+                  width={48} height={48} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center"
                   style={{ backgroundColor: `${accentColor}1a` }}
                 >
-                  <ProductIcon className="w-6 h-6" style={{ color: accentColor }} />
-                </div>
+                  <ProductIcon width={24} height={24} style={{ color: accentColor }} />
+                </XStack>
                 <div>
-                  <h2 className="text-lg font-semibold text-white">Request Beta Access</h2>
-                  <p className="text-sm text-neutral-400">Limited spots available</p>
+                  <H2 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">Request Beta Access</H2>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Limited spots available</Paragraph>
                 </div>
-              </div>
+              </XStack>
 
               {submitted ? (
-                <motion.div
+                <MotionBox
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8"
+                  textAlign="center" paddingVertical={32}
                 >
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                  <XStack
+                    width={64} height={64} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginHorizontal="auto" marginBottom={16}
                     style={{ backgroundColor: `${accentColor}1a` }}
                   >
-                    <Check className="w-8 h-8" style={{ color: accentColor }} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Application Received!</h3>
-                  <p className="text-neutral-400">
+                    <Check size={32} style={{ color: accentColor }} />
+                  </XStack>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>Application Received!</H3>
+                  <Paragraph color="var(--neutral-400)">
                     We'll review your request and reach out soon.
-                  </p>
-                </motion.div>
+                  </Paragraph>
+                </MotionBox>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                <Box onSubmit={handleSubmit} render="form" rowGap={16}>
+                  <Grid display="grid" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-1.5">Full Name</label>
-                      <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                        <User className="w-4 h-4 text-neutral-600" />
-                        <input
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={6}>Full Name</Text>
+                      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)">
+                        <User size={16} color="var(--neutral-600)" />
+                        <Box display="inline-block" minHeight={44}
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="John Doe"
-                          className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
-                      </div>
+                      </XStack>
                     </div>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-1.5">Work Email</label>
-                      <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                        <Mail className="w-4 h-4 text-neutral-600" />
-                        <input
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={6}>Work Email</Text>
+                      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)">
+                        <Mail size={16} color="var(--neutral-600)" />
+                        <Box display="inline-block" minHeight={44}
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="john@company.com"
-                          className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
-                      </div>
+                      </XStack>
                     </div>
-                  </div>
+                  </Grid>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <Grid display="grid" gap={16} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-1.5">Company</label>
-                      <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                        <Building2 className="w-4 h-4 text-neutral-600" />
-                        <input
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={6}>Company</Text>
+                      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)">
+                        <Building2 size={16} color="var(--neutral-600)" />
+                        <Box display="inline-block" minHeight={44}
                           type="text"
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           placeholder="Acme Inc"
-                          className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
-                      </div>
+                      </XStack>
                     </div>
                     <div>
-                      <label className="block text-xs text-neutral-500 mb-1.5">Role</label>
-                      <div className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                        <Briefcase className="w-4 h-4 text-neutral-600" />
-                        <input
+                      <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={6}>Role</Text>
+                      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)">
+                        <Briefcase size={16} color="var(--neutral-600)" />
+                        <Box display="inline-block" minHeight={44}
                           type="text"
                           value={formData.role}
                           onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                           placeholder="Backend Engineer"
-                          className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
-                      </div>
+                      </XStack>
                     </div>
-                  </div>
+                  </Grid>
 
                   <div>
-                    <label className="block text-xs text-neutral-500 mb-1.5">
+                    <Text render="label" display="block" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginBottom={6}>
                       What are you building? (Use case)
-                    </label>
-                    <div className="flex items-start gap-2 px-3 py-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                      <MessageSquare className="w-4 h-4 text-neutral-600 mt-0.5" />
-                      <textarea
+                    </Text>
+                    <XStack display="flex" alignItems="flex-start" gap={8} paddingHorizontal={12} paddingVertical={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)">
+                      <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><MessageSquare size={16} color="var(--neutral-600)" /></Box>
+                      <Box display="inline-block"
                         value={formData.useCase}
                         onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
                         placeholder="Tell us about your project and how you plan to use this service..."
-                        className="flex-1 bg-transparent text-white placeholder:text-neutral-600 outline-none text-sm resize-none min-h-[80px]"
+                        render="textarea" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" minHeight="80px"
                         required
                       />
-                    </div>
+                    </XStack>
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full py-3 rounded-lg font-medium"
+                    width="100%" paddingVertical={12} borderRadius="var(--radius-lg)" fontWeight="500"
                     style={{ backgroundColor: accentColor }}
                   >
-                    <span className="flex items-center justify-center gap-2">
+                    <Text display="flex" alignItems="center" justifyContent="center" gap={8}>
                       Apply for Beta Access
-                      <Bell className="w-4 h-4" />
-                    </span>
+                      <Bell size={16} />
+                    </Text>
                   </Button>
 
-                  <p className="text-xs text-neutral-500 text-center">
+                  <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" textAlign="center">
                     We'll review your application and email you within 48 hours.
-                  </p>
-                </form>
+                  </Paragraph>
+                </Box>
               )}
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </MotionBox>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Features Section */}
-      <section className="py-24 px-4 md:px-8 bg-neutral-950">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            textAlign="center" marginBottom={64}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Key Capabilities
-            </h2>
-            <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
               Everything you need, nothing you don't.
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.div
+                <MotionBox
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/50"
+                  padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)"
                 >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
+                  <XStack
+                    width={40} height={40} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}
                     style={{ backgroundColor: `${accentColor}1a` }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: accentColor }} />
-                  </div>
-                  <h3 className="font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-sm text-neutral-400">{feature.description}</p>
-                </motion.div>
+                    <Icon width={20} height={20} style={{ color: accentColor }} />
+                  </XStack>
+                  <H3 fontWeight="600" color="var(--foreground)" marginBottom={8}>{feature.title}</H3>
+                  <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{feature.description}</Paragraph>
+                </MotionBox>
               );
             })}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Code Example */}
       {codeExample && (
-        <section className="py-24 px-4 md:px-8">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="56rem" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 Simple to Integrate
-              </h2>
-              <p className="text-lg text-neutral-400">
+              </H2>
+              <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)">
                 Get started with just a few lines of code.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-xl border border-neutral-800 bg-neutral-900/80 overflow-hidden"
+              borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" overflow="hidden"
             >
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                </div>
-                <span className="ml-2 text-xs text-neutral-500 font-mono">{codeExample.filename}</span>
-              </div>
-              <div className="p-4 font-mono text-sm bg-neutral-950 overflow-x-auto">
-                <pre className="text-neutral-300">{codeExample.code}</pre>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+                <XStack display="flex" gap={6}>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                </XStack>
+                <Text marginLeft={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)">{codeExample.filename}</Text>
+              </XStack>
+              <Box padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor="var(--neutral-950)" overflowX="auto">
+                <Box render="pre" color="var(--neutral-300)">{codeExample.code}</Box>
+              </Box>
+            </MotionBox>
+          </Box>
+        </Box>
       )}
 
       {/* Use Cases */}
-      <section className="py-24 px-4 md:px-8 bg-neutral-950">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            textAlign="center" marginBottom={48}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Built For
-            </h2>
-          </motion.div>
+            </H2>
+          </MotionBox>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             {useCases.map((useCase, index) => (
-              <motion.div
+              <MotionBox
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/30"
+                padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)"
               >
-                <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
-                <p className="text-neutral-400">{useCase.description}</p>
-              </motion.div>
+                <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{useCase.title}</H3>
+                <Paragraph color="var(--neutral-400)">{useCase.description}</Paragraph>
+              </MotionBox>
             ))}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Box>
+      </Box>
 
       {/* Supported Chains */}
       {chains && chains.length > 0 && (
-        <section className="py-24 px-4 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
+        <Box render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 Supported Chains
-              </h2>
-            </motion.div>
+              </H2>
+            </MotionBox>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-3"
+              flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={12}
             >
               {chains.map((chain) => (
-                <div
+                <Box
                   key={chain}
-                  className="px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 text-sm text-neutral-300"
+                  paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)"
                 >
                   {chain}
-                </div>
+                </Box>
               ))}
-            </motion.div>
-          </div>
-        </section>
+            </MotionBox>
+          </Box>
+        </Box>
       )}
 
       {/* Bottom CTA */}
-      <section className="py-24 px-4 md:px-8 border-t border-neutral-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
+      <Box render="section" paddingVertical={96} paddingHorizontal={16} borderTopWidth={1} borderColor="var(--neutral-900)" $md={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Ready to Get Started?
-            </h2>
-            <p className="text-lg text-neutral-400 mb-8">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32}>
               Join the private beta and be among the first to build with {name}.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
               <Button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="px-6 py-3 rounded-lg font-medium"
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" fontWeight="500"
                 style={{ backgroundColor: accentColor }}
               >
                 Apply for Beta Access
               </Button>
-              <Link
+              <Link tap
                 to="/blockchain"
-                className="px-6 py-3 rounded-lg font-medium border border-neutral-700 text-white hover:bg-neutral-900 transition-colors"
+                paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" fontWeight="500" borderWidth={1} borderColor="var(--neutral-700)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Explore All Web3 Products
               </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </YStack>
+          </MotionBox>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

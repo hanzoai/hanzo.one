@@ -1,22 +1,22 @@
+import { Button, H3, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { Bot, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const ChatHeader: React.FC = () => {
   return (
-    <div className="bg-gray-900/70 p-4 border-b border-gray-800 flex items-center">
-      <div className="bg-purple-600 h-8 w-8 rounded-full flex items-center justify-center mr-3">
-        <Bot className="h-4 w-4 text-[var(--white)]" />
-      </div>
+    <XStack backgroundColor="var(--surface-overlay)" padding={16} borderBottomWidth={1} borderColor="var(--neutral-800)" display="flex" alignItems="center">
+      <XStack backgroundColor="var(--neutral-600)" height={32} width={32} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
+        <Bot size={16} color="var(--white)" />
+      </XStack>
       <div>
-        <h3 className="font-medium">Hanzo Assistant</h3>
-        <p className="text-xs text-neutral-400">Powered by GPT-4o</p>
+        <H3 fontWeight="500">Hanzo Assistant</H3>
+        <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">Powered by GPT-4o</Paragraph>
       </div>
-      <Button variant="ghost" size="icon" className="ml-auto text-neutral-400 hover:text-[var(--white)]">
-        <Settings className="h-5 w-5" />
+      <Button variant="ghost" size="icon" marginLeft="auto" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+        <Settings size={20} />
       </Button>
-    </div>
+    </XStack>
   );
 };
 

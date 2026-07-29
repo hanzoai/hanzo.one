@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -38,76 +39,76 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Loved by GenAI Developers
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hear what our users say about building with Hanzo Vector
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={80} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 relative"
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} position="relative"
             >
-              <div className="absolute -top-4 left-8 text-5xl text-indigo-500">"</div>
-              <p className="text-neutral-300 mb-8 relative z-10 pt-4">
+              <Box position="absolute" top={-16} left={32} fontSize="var(--text-5xl)" lineHeight="var(--leading-5xl)" color="var(--neutral-500)">"</Box>
+              <Paragraph color="var(--neutral-300)" marginBottom={32} position="relative" zIndex={10} paddingTop={16}>
                 {testimonial.quote}
-              </p>
+              </Paragraph>
               <div>
-                <h4 className="text-[var(--white)] font-semibold">{testimonial.author}</h4>
-                <p className="text-neutral-400 text-sm">{testimonial.position}, {testimonial.company}</p>
+                <H4 color="var(--white)" fontWeight="600">{testimonial.author}</H4>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{testimonial.position}, {testimonial.company}</Paragraph>
               </div>
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          textAlign="center"
         >
-          <h3 className="text-2xl font-semibold text-[var(--white)] mb-8">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={32}>
             Trusted for Production Workloads
-          </h3>
+          </H3>
           
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-6">
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" columnGap={32} rowGap={24}>
             {companyLogos.map((company, index) => (
-              <motion.div
+              <MotionBox
                 key={index}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="text-neutral-500 font-medium text-lg"
+                color="var(--neutral-500)" fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)"
               >
                 {company}
-              </motion.div>
+              </MotionBox>
             ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </XStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

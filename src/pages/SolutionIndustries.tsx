@@ -1,3 +1,4 @@
+import { Anchor, Box, Button, ChromeText, Grid, H2, H3, H4, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -23,10 +24,8 @@ import {
 } from "lucide-react";
 import { getIcon } from "@/constants/iconMappings";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+
 import SectionHeader from "@/components/zen/SectionHeader";
-import ChromeText from "@/components/ui/chrome-text";
 
 const SolutionIndustries: React.FC = () => {
   const [expandedSections, setExpandedSections] = useState<Record<string, number>>({});
@@ -48,72 +47,72 @@ const SolutionIndustries: React.FC = () => {
     const hasMore = industries.length > displayCount;
 
     return (
-      <div className="mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Box marginBottom={64}>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           <AnimatePresence initial={false}>
             {displayItems.map((item, index) => {
               const Icon = getIcon(item);
               return (
-                <motion.div
+                <MotionBox
                   key={item}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.2, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="relative group rounded-xl border border-gray-800 bg-[var(--black)]/50 p-6 backdrop-blur-sm overflow-hidden"
+                  group position="relative" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)" padding={24} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative">
-                    <div className="flex items-center justify-between mb-4">
-                      <Icon className="h-6 w-6 text-blue-400" strokeWidth={1.5} />
-                      <ChevronRight className="h-5 w-5 text-neutral-500 group-hover:text-blue-400 transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors">
+                  <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0} transition="opacity 500ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))" $group-hover={{ opacity: 1 }} />
+                  <Box position="relative">
+                    <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+                      <Icon height={24} width={24} color="var(--foreground)" strokeWidth={1.5} />
+                      <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><ChevronRight size={20} color="var(--neutral-500)" /></Box>
+                    </XStack>
+                    <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                       {item}
-                    </h3>
-                    <p className="text-neutral-400 text-sm mb-4">
+                    </H3>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>
                       Explore our specialized solutions for the {item.toLowerCase()} industry, designed to address 
                       your sector's unique challenges.
-                    </p>
+                    </Paragraph>
                     
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      <button 
+                    <XStack display="flex" flexWrap="wrap" gap={8} marginTop={16}>
+                      <XStack minHeight={44} 
                         onClick={() => setActiveIndustry(item)}
-                        className="text-xs flex items-center text-blue-400 hover:text-blue-300"
+                        render="button" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
                       >
-                        <LinkIcon className="h-3 w-3 mr-1" /> Learn more
-                      </button>
-                      <a href="#" className="text-xs flex items-center text-purple-400 hover:text-purple-300">
-                        <FileText className="h-3 w-3 mr-1" /> Case study
-                      </a>
-                      <a href="#" className="text-xs flex items-center text-green-400 hover:text-green-300">
-                        <BookOpen className="h-3 w-3 mr-1" /> White paper
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><LinkIcon size={12} /></Box> Learn more
+                      </XStack>
+                      <Anchor href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><FileText size={12} /></Box> Case study
+                      </Anchor>
+                      <Anchor href="#" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><BookOpen size={12} /></Box> White paper
+                      </Anchor>
+                    </XStack>
+                  </Box>
+                </MotionBox>
               );
             })}
           </AnimatePresence>
-        </div>
+        </Grid>
         {hasMore && (
-          <motion.div 
-            className="text-center mt-8"
+          <MotionBox 
+            textAlign="center" marginTop={32}
             initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <button
+            <XStack minHeight={44}
               onClick={() => toggleSection("Industries")}
-              className="inline-flex items-center px-6 py-3 rounded-lg border border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-colors"
+              render="button" display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-500)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
               View More Industries
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </button>
-          </motion.div>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
+            </XStack>
+          </MotionBox>
         )}
-      </div>
+      </Box>
     );
   };
 
@@ -131,7 +130,7 @@ const SolutionIndustries: React.FC = () => {
       }
     }> = {
       "Financial Services": {
-        icon: <Building className="h-10 w-10 text-blue-400" />,
+        icon: <Building size={40} color="var(--foreground)" />,
         color: "blue",
         description: "We help banks, insurance companies, and investment firms transform their digital infrastructure, improve security, and deliver innovative customer experiences.",
         challenges: [
@@ -160,7 +159,7 @@ const SolutionIndustries: React.FC = () => {
         }
       },
       "Healthcare": {
-        icon: <Heart className="h-10 w-10 text-pink-400" />,
+        icon: <Heart size={40} color="var(--foreground)" />,
         color: "pink",
         description: "Our healthcare solutions help providers, payers, and life sciences companies improve patient outcomes, optimize operations, and ensure security and compliance.",
         challenges: [
@@ -189,7 +188,7 @@ const SolutionIndustries: React.FC = () => {
         }
       },
       "Retail": {
-        icon: <ShoppingBag className="h-10 w-10 text-green-400" />,
+        icon: <ShoppingBag size={40} color="var(--foreground)" />,
         color: "green",
         description: "We help retailers create seamless omnichannel experiences, optimize supply chains, and leverage data for personalized customer engagement.",
         challenges: [
@@ -218,7 +217,7 @@ const SolutionIndustries: React.FC = () => {
         }
       },
       "Technology": {
-        icon: <ServerCrash className="h-10 w-10 text-indigo-400" />,
+        icon: <ServerCrash size={40} color="var(--foreground)" />,
         color: "indigo",
         description: "We help technology companies innovate faster, scale efficiently, and deliver secure, high-performance products and services.",
         challenges: [
@@ -257,319 +256,315 @@ const SolutionIndustries: React.FC = () => {
     };
     
     return (
-      <motion.div
+      <MotionBox
         key={activeIndustry}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="mb-20"
+        marginBottom={80}
       >
-        <div className={`bg-gradient-to-br ${colorClasses[industry.color as keyof typeof colorClasses]} rounded-xl p-8 mb-10`}>
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="bg-[var(--white)]/10 rounded-full p-6 inline-flex">
+        <Box borderRadius="var(--radius-xl)" padding={32} marginBottom={40}>
+          <YStack display="flex" flexDirection="column" gap={32} $md={{ flexDirection: "row", alignItems: "center" }}>
+            <XStack backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" padding={24} display="inline-flex">
               {industry.icon}
-            </div>
+            </XStack>
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">{activeIndustry} Solutions</h3>
-              <p className="text-neutral-300">{industry.description}</p>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>{activeIndustry} Solutions</H3>
+              <Paragraph color="var(--neutral-300)">{industry.description}</Paragraph>
             </div>
-          </div>
-        </div>
+          </YStack>
+        </Box>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} marginBottom={40} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           <div>
-            <h4 className="text-xl font-semibold mb-6 flex items-center">
-              <span className="bg-gray-800 rounded-full h-8 w-8 inline-flex items-center justify-center mr-3 text-sm">1</span>
+            <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={24} display="flex" alignItems="center">
+              <Text backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" height={32} width={32} display="inline-flex" alignItems="center" justifyContent="center" marginRight={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">1</Text>
               Industry Challenges
-            </h4>
-            <ul className="space-y-4">
+            </H4>
+            <Box render="ul" rowGap={16}>
               {industry.challenges.map((challenge, idx) => (
-                <li key={idx} className="flex items-start gap-3 bg-[var(--black)]/40 p-4 rounded-lg border border-gray-800">
-                  <CheckCircle className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-neutral-300">{challenge}</span>
-                </li>
+                <XStack key={idx} render="li" display="flex" alignItems="flex-start" gap={12} backgroundColor="rgb(0 0 0 / 0.4)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)">
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><CheckCircle size={20} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-300)">{challenge}</Text>
+                </XStack>
               ))}
-            </ul>
+            </Box>
           </div>
           
           <div>
-            <h4 className="text-xl font-semibold mb-6 flex items-center">
-              <span className="bg-gray-800 rounded-full h-8 w-8 inline-flex items-center justify-center mr-3 text-sm">2</span>
+            <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={24} display="flex" alignItems="center">
+              <Text backgroundColor="var(--neutral-800)" borderRadius="var(--radius-full)" height={32} width={32} display="inline-flex" alignItems="center" justifyContent="center" marginRight={12} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">2</Text>
               Our Solutions
-            </h4>
-            <ul className="space-y-4">
+            </H4>
+            <Box render="ul" rowGap={16}>
               {industry.solutions.map((solution, idx) => (
-                <li key={idx} className="flex items-start gap-3 bg-[var(--black)]/40 p-4 rounded-lg border border-gray-800">
-                  <ArrowRight className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-neutral-300">{solution}</span>
-                </li>
+                <XStack key={idx} render="li" display="flex" alignItems="flex-start" gap={12} backgroundColor="rgb(0 0 0 / 0.4)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)">
+                  <Box render="span" display="inline-flex" alignItems="center" marginTop={2}><ArrowRight size={20} color="var(--foreground)" /></Box>
+                  <Text color="var(--neutral-300)">{solution}</Text>
+                </XStack>
               ))}
-            </ul>
+            </Box>
           </div>
-        </div>
+        </Grid>
         
-        <div className="bg-gradient-to-br from-gray-900/50 to-black/90 rounded-xl border border-gray-800 p-8 mb-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            <div className="lg:col-span-3">
-              <h4 className="text-xl font-semibold mb-4">Case Study: {industry.caseStudy.title}</h4>
-              <p className="text-neutral-300 mb-6">{industry.caseStudy.description}</p>
-              <Button className="mb-8">Read Full Case Study <ArrowUpRight className="ml-2 h-4 w-4" /></Button>
+        <Box borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={32} marginBottom={40} backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $lg={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
+            <Box $lg={{ gridColumn: "span 3 / span 3" }}>
+              <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>Case Study: {industry.caseStudy.title}</H4>
+              <Paragraph color="var(--neutral-300)" marginBottom={24}>{industry.caseStudy.description}</Paragraph>
+              <Button marginBottom={32}>Read Full Case Study <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowUpRight size={16} /></Box></Button>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {industry.caseStudy.results.map((result, idx) => (
-                  <div key={idx} className="bg-[var(--black)]/40 p-4 rounded-lg border border-gray-800">
-                    <CheckCircle className="h-5 w-5 text-green-400 mb-2" />
-                    <p className="text-neutral-300">{result}</p>
-                  </div>
+                  <Box key={idx} backgroundColor="rgb(0 0 0 / 0.4)" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginBottom={8}><CheckCircle size={20} color="var(--foreground)" /></Box>
+                    <Paragraph color="var(--neutral-300)">{result}</Paragraph>
+                  </Box>
                 ))}
-              </div>
-            </div>
-            <div className="lg:col-span-2 flex items-center justify-center">
-              <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-xl border border-gray-700 flex flex-col items-center">
-                <Briefcase className="h-16 w-16 text-blue-400 mb-4" />
-                <span className="text-3xl font-bold text-[var(--white)] mb-2">25+</span>
-                <span className="text-blue-300">{activeIndustry} Clients</span>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Grid>
+            </Box>
+            <XStack display="flex" alignItems="center" justifyContent="center" $lg={{ gridColumn: "span 2 / span 2" }}>
+              <YStack padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" display="flex" flexDirection="column" alignItems="center" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+                <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Briefcase size={64} color="var(--foreground)" /></Box>
+                <Text fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={8}>25+</Text>
+                <Text color="var(--foreground)">{activeIndustry} Clients</Text>
+              </YStack>
+            </XStack>
+          </Grid>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <a 
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <Anchor 
             href="#" 
-            className="block p-6 bg-gradient-to-br from-gray-900/70 to-black/90 rounded-xl border border-gray-800 hover:border-blue-500/30 transition-colors"
+            display="block" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))" hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <FileText className="h-5 w-5 text-blue-400" />
-              <h4 className="font-medium">White Paper</h4>
-            </div>
-            <p className="text-neutral-400">
+            <XStack display="flex" alignItems="center" gap={12} marginBottom={12}>
+              <FileText size={20} color="var(--foreground)" />
+              <H4 fontWeight="500">White Paper</H4>
+            </XStack>
+            <Paragraph color="var(--neutral-400)">
               Download our industry trends report: The Future of {activeIndustry} Technology
-            </p>
-            <div className="mt-4 text-blue-400 flex items-center gap-1.5">
+            </Paragraph>
+            <XStack marginTop={16} color="var(--foreground)" display="flex" alignItems="center" gap={6}>
               Download Now <ArrowRight size={16} />
-            </div>
-          </a>
+            </XStack>
+          </Anchor>
           
-          <a 
+          <Anchor 
             href="#" 
-            className="block p-6 bg-gradient-to-br from-gray-900/70 to-black/90 rounded-xl border border-gray-800 hover:border-purple-500/30 transition-colors"
+            display="block" padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))" hoverStyle={{ borderColor: "var(--border-strong)" }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <BookOpen className="h-5 w-5 text-purple-400" />
-              <h4 className="font-medium">Webinar</h4>
-            </div>
-            <p className="text-neutral-400">
+            <XStack display="flex" alignItems="center" gap={12} marginBottom={12}>
+              <BookOpen size={20} color="var(--foreground)" />
+              <H4 fontWeight="500">Webinar</H4>
+            </XStack>
+            <Paragraph color="var(--neutral-400)">
               Register for our upcoming webinar: Digital Transformation in {activeIndustry}
-            </p>
-            <div className="mt-4 text-purple-400 flex items-center gap-1.5">
+            </Paragraph>
+            <XStack marginTop={16} color="var(--foreground)" display="flex" alignItems="center" gap={6}>
               Register Now <ArrowRight size={16} />
-            </div>
-          </a>
-        </div>
-      </motion.div>
+            </XStack>
+          </Anchor>
+        </Grid>
+      </MotionBox>
     );
   };
 
   const renderExpertiseSection = () => (
-    <div className="mb-20">
+    <Box marginBottom={80}>
       <SectionHeader 
         title="Industry Insights"
         description="Gain a competitive edge with our industry-specific expertise and proven methodologies tailored to your sector's unique challenges."
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
-        <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/20 p-8 rounded-xl border border-blue-500/20">
-          <h3 className="text-2xl font-bold mb-4 text-[var(--white)]">Case Studies</h3>
-          <p className="text-neutral-300 mb-6">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} marginBottom={40} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <Box padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16} color="var(--white)">Case Studies</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={24}>
             See how we've helped organizations like yours achieve their goals through innovative solutions.
-          </p>
-          <div className="space-y-4">
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <FileText className="h-5 w-5 text-blue-400 mr-3" />
-                <span className="text-[var(--white)]">Financial Services Digital Transformation</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <FileText className="h-5 w-5 text-blue-400 mr-3" />
-                <span className="text-[var(--white)]">Healthcare AI Implementation</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <FileText className="h-5 w-5 text-blue-400 mr-3" />
-                <span className="text-[var(--white)]">Retail Analytics Platform</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-          </div>
-          <div className="mt-6 text-center">
-            <Button variant="outline" className="border-blue-500/40 text-blue-400 hover:bg-blue-500/10">
-              View all case studies <ChevronRight className="ml-2 h-4 w-4" />
+          </Paragraph>
+          <Box rowGap={16}>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">Financial Services Digital Transformation</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">Healthcare AI Implementation</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><FileText size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">Retail Analytics Platform</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+          </Box>
+          <Box marginTop={24} textAlign="center">
+            <Button variant="outline" borderColor="var(--border-strong)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+              View all case studies <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>
             </Button>
-          </div>
-        </div>
+          </Box>
+        </Box>
         
-        <div className="bg-gradient-to-br from-indigo-900/30 to-purple-900/20 p-8 rounded-xl border border-indigo-500/20">
-          <h3 className="text-2xl font-bold mb-4 text-[var(--white)]">White Papers</h3>
-          <p className="text-neutral-300 mb-6">
+        <Box padding={32} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16} color="var(--white)">White Papers</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={24}>
             Access our thought leadership and research on the latest industry trends and technologies.
-          </p>
-          <div className="space-y-4">
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <BookOpen className="h-5 w-5 text-indigo-400 mr-3" />
-                <span className="text-[var(--white)]">The Future of AI in Financial Services</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <BookOpen className="h-5 w-5 text-indigo-400 mr-3" />
-                <span className="text-[var(--white)]">Healthcare Interoperability Challenges</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-            <a href="#" className="flex items-center justify-between p-3 rounded-lg bg-[var(--black)]/40 hover:bg-[var(--black)]/60 transition-colors">
-              <div className="flex items-center">
-                <BookOpen className="h-5 w-5 text-indigo-400 mr-3" />
-                <span className="text-[var(--white)]">Digital Transformation in Retail</span>
-              </div>
-              <ExternalLink className="h-4 w-4 text-neutral-400" />
-            </a>
-          </div>
-          <div className="mt-6 text-center">
-            <Button variant="outline" className="border-indigo-500/40 text-indigo-400 hover:bg-indigo-500/10">
-              View all white papers <ChevronRight className="ml-2 h-4 w-4" />
+          </Paragraph>
+          <Box rowGap={16}>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">The Future of AI in Financial Services</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">Healthcare Interoperability Challenges</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+            <Anchor href="#" display="flex" alignItems="center" justifyContent="space-between" padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(0 0 0 / 0.4)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(0 0 0 / 0.6)" }}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)">Digital Transformation in Retail</Text>
+              </XStack>
+              <ExternalLink size={16} color="var(--neutral-400)" />
+            </Anchor>
+          </Box>
+          <Box marginTop={24} textAlign="center">
+            <Button variant="outline" borderColor="var(--border-strong)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}>
+              View all white papers <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></Box>
             </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Grid>
+    </Box>
   );
 
   const renderPartnerSection = () => (
-    <div className="mb-20 bg-gradient-to-br from-gray-900/70 to-black/90 p-10 rounded-2xl border border-gray-800">
+    <Box marginBottom={80} padding={40} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))">
       <SectionHeader 
         title="Expert Partners" 
         description="Access our specialized agencies and expert talent to accelerate your success"
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="p-6 bg-gradient-to-br from-purple-900/50 to-blue-900/30 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-colors">
-          <div className="p-3 rounded-lg bg-purple-500/20 self-start inline-block mb-4">
-            <Users className="h-6 w-6 text-purple-400" strokeWidth={1.5} />
-          </div>
-          <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Hanzo Agency</h3>
-          <p className="text-neutral-300 mb-5">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+            <Users size={24} color="var(--foreground)" strokeWidth={1.5} />
+          </Box>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Hanzo Agency</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={20}>
             Our AI-powered creative agency helps brands transform their digital presence with cutting-edge design, 
             content, and marketing strategies powered by artificial intelligence.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a 
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={16}>
+            <Anchor 
               href="https://hanzo.agency" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-md text-[var(--white)] transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" color="var(--white)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
             >
               <span>Visit Hanzo Agency</span>
               <ExternalLink size={14} />
-            </a>
-            <a 
+            </Anchor>
+            <Anchor 
               href="/contact" 
-              className="flex items-center gap-2 px-5 py-2.5 border border-purple-500/40 hover:border-purple-500 rounded-md text-purple-400 hover:text-purple-300 transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
               <span>Contact us</span>
               <Mail size={14} />
-            </a>
-          </div>
-        </div>
-        <div className="p-6 bg-gradient-to-br from-green-900/50 to-teal-900/30 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-colors">
-          <div className="p-3 rounded-lg bg-green-500/20 self-start inline-block mb-4">
-            <Shield className="h-6 w-6 text-green-400" strokeWidth={1.5} />
-          </div>
-          <h3 className="text-2xl font-bold text-[var(--white)] mb-3">Sensei Group</h3>
-          <p className="text-neutral-300 mb-5">
+            </Anchor>
+          </XStack>
+        </Box>
+        <Box padding={24} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" hoverStyle={{ borderColor: "var(--border-strong)" }}>
+          <Box padding={12} borderRadius="var(--radius-lg)" backgroundColor="rgb(255 255 255 / 0.2)" alignSelf="flex-start" display="inline-block" marginBottom={16}>
+            <Shield size={24} color="var(--foreground)" strokeWidth={1.5} />
+          </Box>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={12}>Sensei Group</H3>
+          <Paragraph color="var(--neutral-300)" marginBottom={20}>
             Our collective of fractional CXOs and industry experts help enterprises implement transformative 
             technology solutions and drive strategic growth initiatives.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a 
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={16}>
+            <Anchor 
               href="https://sensei.group" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-500 rounded-md text-[var(--white)] transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" color="var(--white)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-500)" }}
             >
               <span>Visit Sensei Group</span>
               <ExternalLink size={14} />
-            </a>
-            <a 
+            </Anchor>
+            <Anchor 
               href="tel:+1234567890" 
-              className="flex items-center gap-2 px-5 py-2.5 border border-green-500/40 hover:border-green-500 rounded-md text-green-400 hover:text-green-300 transition-colors"
+              display="flex" alignItems="center" gap={8} paddingHorizontal={20} paddingVertical={10} borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-500)", color: "var(--foreground)" }}
             >
               <span>Schedule a call</span>
               <Phone size={14} />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Anchor>
+          </XStack>
+        </Box>
+      </Grid>
+    </Box>
   );
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block mb-4">
-              <Link to="/solutions" className="text-sm text-neutral-400 hover:text-[var(--white)] flex items-center gap-1">
-                <ChevronRight className="h-4 w-4 rotate-180" /> Back to Solutions
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+          <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+            <Box display="inline-block" marginBottom={16}>
+              <Link to="/solutions" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" display="flex" alignItems="center" gap={4} hoverStyle={{ color: "var(--white)" }}>
+                <Box render="span" display="inline-flex" alignItems="center" rotate="180deg"><ChevronRight size={16} /></Box> Back to Solutions
               </Link>
-            </div>
-            <ChromeText as="h1" className="text-4xl sm:text-5xl font-bold mb-6">
+            </Box>
+            <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               Industry Solutions
             </ChromeText>
-            <p className="text-neutral-400 text-lg">
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">
               We deliver specialized solutions across a wide range of industries, tailored to address your unique 
               challenges and opportunities.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
 
-          <div className="mb-12">
-            <div className="flex overflow-x-auto pb-4 scrollbar-hide gap-2 justify-center">
+          <Box marginBottom={48}>
+            <XStack display="flex" overflowX="auto" paddingBottom={16} scrollbarWidth="none" gap={8} justifyContent="center">
               {["Financial Services", "Healthcare", "Retail", "Technology"].map((industry) => (
-                <button
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   key={industry}
                   onClick={() => setActiveIndustry(industry)}
-                  className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
-                    activeIndustry === industry
-                      ? "bg-blue-600 text-[var(--white)]"
-                      : "bg-gray-900 text-neutral-300 hover:bg-gray-800"
-                  }`}
+                  render="button" paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" whiteSpace="nowrap" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={activeIndustry === industry ? "var(--neutral-600)" : "var(--neutral-900)"} color={activeIndustry === industry ? "var(--white)" : "var(--neutral-300)"} hoverStyle={activeIndustry === industry ? undefined : { backgroundColor: "var(--neutral-800)" }}
                 >
                   {industry}
-                </button>
+                </Box>
               ))}
-            </div>
-          </div>
+            </XStack>
+          </Box>
 
           {/* Active Industry Section */}
           {renderIndustryContent()}
           
           {/* All Industries Grid */}
-          <div className="mb-20">
+          <Box marginBottom={80}>
             <SectionHeader 
               title="Explore All Industries" 
               description="Comprehensive solutions for every sector"
             />
             {renderIndustryGrid()}
-          </div>
+          </Box>
           
           {/* Resources Section */}
           {renderExpertiseSection()}
@@ -578,35 +573,35 @@ const SolutionIndustries: React.FC = () => {
           {renderPartnerSection()}
           
           {/* CTA Section */}
-          <div className="mt-20 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Industry-Specific Solutions</h2>
-              <p className="text-neutral-400 mb-8">
+          <Box marginTop={80} textAlign="center">
+            <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24}>Industry-Specific Solutions</H2>
+              <Paragraph color="var(--neutral-400)" marginBottom={32}>
                 Discover how our tailored industry solutions can address your specific challenges and opportunities.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
+                <Anchor
                   href="/contact"
-                  className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-[var(--white)] font-medium transition-colors"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-600)" color="var(--white)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                 >
                   Get Started
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </a>
-                <a
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
+                </Anchor>
+                <Anchor
                   href="mailto:solutions@hanzo.ai"
-                  className="inline-flex items-center px-6 py-3 rounded-lg border border-blue-500 text-blue-400 hover:bg-blue-500/10 transition-colors"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-500)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
                 >
                   Email Us
-                  <Mail className="ml-2 h-5 w-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Mail size={20} /></Box>
+                </Anchor>
+              </XStack>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

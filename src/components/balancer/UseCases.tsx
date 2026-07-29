@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -36,46 +37,46 @@ const useCases = [
 
 const UseCaseCard = ({ useCase }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800/30 border border-gray-700 rounded-lg p-6"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" padding={24}
     >
-      <div className="bg-purple-800/30 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-        <useCase.icon className="h-6 w-6 text-purple-400" />
-      </div>
-      <h3 className="text-xl font-semibold mb-3">{useCase.title}</h3>
-      <p className="text-neutral-300 mb-4">{useCase.description}</p>
-      <a href={useCase.learnMoreLink} className="text-purple-400 hover:text-purple-300">
+      <XStack backgroundColor="var(--surface-card-emphasis)" width={48} height={48} borderRadius="var(--radius-full)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+        <useCase.icon height={24} width={24} color="var(--foreground)" />
+      </XStack>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>{useCase.title}</H3>
+      <Paragraph color="var(--neutral-300)" marginBottom={16}>{useCase.description}</Paragraph>
+      <Anchor tap href={useCase.learnMoreLink} color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
         Learn more
-      </a>
-    </motion.div>
+      </Anchor>
+    </MotionBox>
   );
 };
 
 const UseCases = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Hanzo Balancer Use Cases</h2>
-        </motion.div>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Hanzo Balancer Use Cases</H2>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => (
             <UseCaseCard key={useCase.id} useCase={useCase} />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

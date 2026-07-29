@@ -1,300 +1,299 @@
+import { Box, Button, ChromeText, Grid, H1, H2, H3, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { User, UserCheck, Shield, Lock, UserCog, Key, Fingerprint, History } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 
 const Identity = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-950/20 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="bg-violet-500/10 border border-violet-500/20 rounded-full px-4 py-1 inline-block mb-4">
-              <span className="text-violet-400 text-sm font-medium">Identity Management</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-indigo-400">
+      <Box render="section" paddingVertical={80} position="relative" $lg={{ paddingVertical: 128 }}>
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), transparent)"></Box>
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={4} display="inline-block" marginBottom={16}>
+              <Text color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Identity Management</Text>
+            </Box>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))" $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
               Hanzo Identity
-            </h1>
-            <p className="text-xl text-neutral-300 mb-8">
+            </H1>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
               Secure, scalable identity and access management for your applications.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-violet-600 hover:bg-violet-700 text-[var(--white)] px-8 py-6 text-lg">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Get Started
               </Button>
-              <Button variant="outline" className="border-violet-500/30 text-[var(--white)] hover:bg-violet-900/20 px-8 py-6 text-lg">
+              <Button variant="outline" borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}>
                 View Documentation
               </Button>
-            </div>
-          </div>
+            </YStack>
+          </Box>
           
           {/* Hero Visual */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-1 bg-violet-900/20 border border-violet-500/20 rounded-xl p-6 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-violet-800/30 flex items-center justify-center mb-4">
-                <User className="h-10 w-10 text-violet-300" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">User Authentication</h3>
-              <p className="text-neutral-300 text-center">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <YStack backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center" $md={{ gridColumn: "span 1 / span 1" }}>
+              <XStack width={80} height={80} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <User size={40} color="var(--foreground)" />
+              </XStack>
+              <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700" marginBottom={8}>User Authentication</H3>
+              <Paragraph color="var(--neutral-300)" textAlign="center">
                 Multi-factor authentication, social logins, and passwordless options
-              </p>
-            </div>
+              </Paragraph>
+            </YStack>
             
-            <div className="md:col-span-1 bg-violet-900/20 border border-violet-500/20 rounded-xl p-6 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-violet-800/30 flex items-center justify-center mb-4">
-                <Shield className="h-10 w-10 text-violet-300" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Access Control</h3>
-              <p className="text-neutral-300 text-center">
+            <YStack backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center" $md={{ gridColumn: "span 1 / span 1" }}>
+              <XStack width={80} height={80} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <Shield size={40} color="var(--foreground)" />
+              </XStack>
+              <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700" marginBottom={8}>Access Control</H3>
+              <Paragraph color="var(--neutral-300)" textAlign="center">
                 Role-based access control, custom claims, and fine-grained permissions
-              </p>
-            </div>
+              </Paragraph>
+            </YStack>
             
-            <div className="md:col-span-1 bg-violet-900/20 border border-violet-500/20 rounded-xl p-6 flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-violet-800/30 flex items-center justify-center mb-4">
-                <Lock className="h-10 w-10 text-violet-300" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Enterprise SSO</h3>
-              <p className="text-neutral-300 text-center">
+            <YStack backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center" $md={{ gridColumn: "span 1 / span 1" }}>
+              <XStack width={80} height={80} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <Lock size={40} color="var(--foreground)" />
+              </XStack>
+              <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="700" marginBottom={8}>Enterprise SSO</H3>
+              <Paragraph color="var(--neutral-300)" textAlign="center">
                 SAML, OIDC, and enterprise identity provider integrations
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+              </Paragraph>
+            </YStack>
+          </Grid>
+        </Box>
+      </Box>
       
       {/* Features */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ChromeText as="h2" className="text-3xl font-bold mb-4">
+      <Box render="section" paddingVertical={80} position="relative">
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" marginBottom={64}>
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
               Key Features & Capabilities
             </ChromeText>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Complete identity management solutions for every authentication and authorization need
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <motion.div 
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <UserCheck className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Multi-factor Authentication</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><UserCheck size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Multi-factor Authentication</H3>
+              <Paragraph color="var(--neutral-300)">
                 Secure access with SMS, email, authenticator apps, and biometric verification.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <UserCog className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">User Management</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><UserCog size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>User Management</H3>
+              <Paragraph color="var(--neutral-300)">
                 Comprehensive tools for user creation, profile management, and account recovery.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Key className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Single Sign-On (SSO)</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Key size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Single Sign-On (SSO)</H3>
+              <Paragraph color="var(--neutral-300)">
                 Seamless authentication across multiple applications with SAML and OIDC support.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Shield className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Role-Based Access Control</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Shield size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Role-Based Access Control</H3>
+              <Paragraph color="var(--neutral-300)">
                 Define and manage permissions with customizable roles and user groups.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <Fingerprint className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Passwordless Authentication</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Fingerprint size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Passwordless Authentication</H3>
+              <Paragraph color="var(--neutral-300)">
                 Secure login options without passwords using magic links, WebAuthn, and biometrics.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
             
-            <motion.div 
+            <MotionBox 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="bg-violet-900/20 border border-violet-500/30 rounded-xl p-6"
+              backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-xl)" padding={24}
             >
-              <History className="h-10 w-10 text-violet-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Audit & Compliance</h3>
-              <p className="text-neutral-300">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><History size={40} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>Audit & Compliance</H3>
+              <Paragraph color="var(--neutral-300)">
                 Comprehensive logging and reporting for user activities and access attempts.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+              </Paragraph>
+            </MotionBox>
+          </Grid>
+        </Box>
+      </Box>
       
       {/* Enterprise Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-violet-950/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ChromeText as="h2" className="text-3xl font-bold mb-4">
+      <Box render="section" paddingVertical={80} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))">
+        <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box textAlign="center" marginBottom={64}>
+            <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>
               Enterprise-Ready Solutions
             </ChromeText>
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Secure identity management that meets the highest compliance standards
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-violet-900/10 border border-violet-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Compliance & Security</h3>
-              <p className="text-neutral-300 mb-4">
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Compliance & Security</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Meet regulatory requirements with built-in compliance features.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>SOC 2, GDPR, HIPAA, and PCI DSS compliance</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Data residency controls and regional isolation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Automated security assessments</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-violet-900/10 border border-violet-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Enterprise Identity</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Enterprise Identity</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Seamlessly integrate with your existing identity infrastructure.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Active Directory and LDAP integration</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Enterprise SSO with major identity providers</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Custom branding and white-labeling</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-violet-900/10 border border-violet-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Customer Identity</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Customer Identity</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Create seamless authentication experiences for your customers.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Social login integrations (Google, Facebook, Apple, etc.)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Progressive profiling and user segmentation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Consent management for privacy compliance</span>
-                </li>
-              </ul>
-            </div>
+                </XStack>
+              </Box>
+            </Box>
             
-            <div className="bg-violet-900/10 border border-violet-500/20 rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Developer Experience</h3>
-              <p className="text-neutral-300 mb-4">
+            <Box backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" padding={32}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Developer Experience</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Extensive SDKs and tools for seamless integration.
-              </p>
-              <ul className="space-y-2 text-neutral-300">
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+              </Paragraph>
+              <Box render="ul" rowGap={8} color="var(--neutral-300)">
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>SDKs for all major languages and frameworks</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Comprehensive API documentation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-violet-400 mr-2">•</span>
+                </XStack>
+                <XStack render="li" display="flex" alignItems="flex-start">
+                  <Text color="var(--foreground)" marginRight={8}>•</Text>
                   <span>Pre-built UI components for auth flows</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+                </XStack>
+              </Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
       
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-violet-900/20 to-indigo-900/20 rounded-2xl p-8 md:p-12 border border-violet-500/30">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">Secure Your Applications</h2>
-              <p className="text-xl text-neutral-300 mb-8 max-w-3xl mx-auto">
+      <Box render="section" paddingVertical={80}>
+        <Box maxWidth="64rem" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box borderRadius="var(--radius-2xl)" padding={32} borderWidth={1} borderColor="var(--border-strong)" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 48 }}>
+            <Box textAlign="center">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Secure Your Applications</H2>
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto">
                 Get started with Hanzo Identity today and implement secure authentication in minutes.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-violet-600 hover:bg-violet-700 text-[var(--white)] px-8 py-6 text-lg">
+              </Paragraph>
+              <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+                <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                   Sign Up Free
                 </Button>
-                <Button variant="outline" className="border-violet-500/30 text-[var(--white)] hover:bg-violet-900/20 px-8 py-6 text-lg">
+                <Button variant="outline" borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}>
                   Read Documentation
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </YStack>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
       
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Grid } from '@/gui'
 
 import React from "react";
 import PricingPlan from "./PricingPlan";
@@ -6,7 +7,7 @@ import { Shield, Code } from "lucide-react";
 const EnterpriseFreePlans = () => {
   const enterprisePlan = {
     name: "Enterprise",
-    icon: <Shield className="h-6 w-6 text-neutral-400" />,
+    icon: <Shield size={24} color="var(--neutral-400)" />,
     price: "Custom",
     description: "For large businesses requiring enterprise-grade security",
     features: [
@@ -24,7 +25,7 @@ const EnterpriseFreePlans = () => {
 
   const freePlan = {
     name: "Open Source",
-    icon: <Code className="h-6 w-6 text-neutral-400" />,
+    icon: <Code size={24} color="var(--neutral-400)" />,
     price: "Free",
     billingPeriod: "Forever",
     description: "For individuals wanting full control",
@@ -39,7 +40,7 @@ const EnterpriseFreePlans = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+    <Grid maxWidth="var(--container-max)" marginHorizontal="auto" display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
       <PricingPlan
         name={enterprisePlan.name}
         icon={enterprisePlan.icon}
@@ -56,7 +57,7 @@ const EnterpriseFreePlans = () => {
         features={freePlan.features}
         customColor="gray"
       />
-    </div>
+    </Grid>
   );
 };
 

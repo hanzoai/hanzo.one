@@ -1,7 +1,7 @@
+import { Box, Button, MotionBox, MotionText, Text } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +13,10 @@ const CallToAction: React.FC = () => {
   };
   
   return (
-    <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-black to-purple-950/20 relative overflow-hidden">
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $md={{ paddingHorizontal: 32 }}>
       {/* Background animation elements */}
-      <motion.div 
-        className="absolute inset-0 opacity-20"
+      <MotionBox 
+        position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.2}
         initial={{ backgroundPosition: "0% 0%" }}
         animate={{ backgroundPosition: "100% 100%" }}
         transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
@@ -26,62 +26,62 @@ const CallToAction: React.FC = () => {
         }}
       />
       
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <motion.h2
+      <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10}>
+        <MotionText
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl md:text-4xl font-bold mb-6 text-[var(--white)] leading-tight"
+          fontSize="var(--text-3xl)" lineHeight="var(--leading-tight)" fontWeight="700" marginBottom={24} color="var(--white)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
         >
           Ready to Transform Your AI Development?
-        </motion.h2>
+        </MotionText>
         
-        <motion.p
+        <MotionText
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-lg text-neutral-300 mb-10 leading-relaxed"
+          fontSize="var(--text-lg)" lineHeight="var(--leading-relaxed)" color="var(--neutral-300)" marginBottom={40}
         >
           Join thousands of developers and companies building the future with Hanzo AI.
-        </motion.p>
+        </MotionText>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-wrap justify-center gap-4"
+          flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={16}
         >
-          <motion.div
+          <MotionBox
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <Button 
               size="lg" 
-              className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-8 py-6 text-lg relative overflow-hidden group rounded-full"
+              group backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" position="relative" overflow="hidden" borderRadius="var(--radius-full)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
               onClick={handleGetStarted}
             >
-              <span className="relative z-10 flex items-center py-1 leading-relaxed">
+              <Text position="relative" zIndex={10} display="flex" alignItems="center" paddingVertical={4} lineHeight="var(--leading-relaxed)">
                 Get Started for Free 
-                <motion.span
+                <MotionText render="span"
                   initial={{ x: 0 }}
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", ease: "easeInOut", repeatDelay: 1 }}
                 >
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </motion.span>
-              </span>
-              <motion.span 
-                className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+                </MotionText>
+              </Text>
+              <MotionText 
+                position="absolute" top={0} right={0} bottom={0} left={0} opacity={0} transition="opacity 300ms cubic-bezier(.4,0,.2,1)" backgroundImage="linear-gradient(to right, var(--neutral-500), var(--neutral-600))" $group-hover={{ opacity: 1 }} 
               />
             </Button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+          </MotionBox>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

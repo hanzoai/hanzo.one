@@ -1,8 +1,8 @@
+import { Box, Button, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Laptop, Server, Cloud, Workflow } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const DeploymentOptions = () => {
   const deploymentOptions = [
@@ -88,60 +88,60 @@ const DeploymentOptions = () => {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-950 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--neutral-950)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Deployment Options to Match Your Journey
-            </h2>
-            <p className="text-xl text-neutral-300">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               From local development to global-scale production, Hanzo Vector offers flexible deployment options to fit your needs.
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {deploymentOptions.map((option, index) => {
             const { bg, text, border } = getColorClasses(option.color);
             return (
-              <motion.div
+              <MotionBox
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`${bg} border ${border} rounded-xl p-6 flex flex-col h-full transition-all duration-300 hover:transform hover:translate-y-[-4px] hover:shadow-lg hover:shadow-indigo-900/20`}
+                
+                borderWidth={1} borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" height="100%" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ y: "-4px", boxShadow: "0 10px 15px -3px rgb(0 0 0 / .35)", shadowColor: "rgb(255 255 255 / 0.2)" }}
               >
-                <div className={`h-12 w-12 rounded-lg ${bg} flex items-center justify-center mb-4`}>
-                  <option.icon className={`h-6 w-6 ${text}`} />
-                </div>
-                <h3 className="text-xl font-bold text-[var(--white)] mb-2">{option.title}</h3>
-                <p className="text-neutral-300 mb-6">{option.description}</p>
+                <XStack height={48} width={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                  <option.icon height={24} width={24} />
+                </XStack>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)" marginBottom={8}>{option.title}</H3>
+                <Paragraph color="var(--neutral-300)" marginBottom={24}>{option.description}</Paragraph>
                 
-                <ul className="space-y-2 mb-8 flex-grow">
+                <Box render="ul" rowGap={8} marginBottom={32} flexGrow={1}>
                   {option.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-start">
-                      <span className={`mr-2 ${text}`}>•</span>
-                      <span className="text-neutral-400 text-sm">{feature}</span>
-                    </li>
+                    <XStack key={fIndex} render="li" display="flex" alignItems="flex-start">
+                      <Text marginRight={8}>•</Text>
+                      <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+                    </XStack>
                   ))}
-                </ul>
+                </Box>
                 
-                <Button variant="outline" className={`mt-auto ${text} border-gray-700 hover:bg-gray-800`}>
+                <Button variant="outline" marginTop="auto" borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}>
                   {option.cta}
                 </Button>
-              </motion.div>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

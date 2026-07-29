@@ -1,3 +1,4 @@
+import { Box, H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,26 +6,26 @@ import HexagramsGrid from "./HexagramsGrid";
 
 const HexagramsSection = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8" id="principles">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }} id="principles">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          textAlign="center" marginBottom={32}
         >
-          <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/70">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to bottom, var(--foreground), rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
             Zen of Hanzo
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Engineering principles for building next-generation AI systems
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
         <HexagramsGrid />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

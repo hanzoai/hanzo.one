@@ -1,3 +1,4 @@
+import { Box, Grid, H2, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -6,57 +7,57 @@ import { Scale, Network, Shield } from "lucide-react";
 const PlatformVision = () => {
   const visionPoints = [
     {
-      icon: <Scale className="h-10 w-10 text-purple-400" />,
+      icon: <Scale size={40} color="var(--foreground)" />,
       title: "Intelligent Load Distribution",
       description: "Hanzo Balancer dynamically routes traffic based on real-time service health, load, and AI-driven insights to ensure optimal performance and resource utilization."
     },
     {
-      icon: <Network className="h-10 w-10 text-purple-400" />,
+      icon: <Network size={40} color="var(--foreground)" />,
       title: "Global Edge Network",
       description: "Deploy your services globally with our planetary-scale edge network, providing ultra-low latency and instant scaling for AI workloads anywhere in the world."
     },
     {
-      icon: <Shield className="h-10 w-10 text-purple-400" />,
+      icon: <Shield size={40} color="var(--foreground)" />,
       title: "Always-On Security",
       description: "Built-in Web Application Firewall (WAF), DDoS protection, and AI-powered threat detection ensure your services are secured against evolving cyber threats."
     }
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/30">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Platform Vision</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Platform Vision</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hanzo Balancer represents the next evolution in intelligent traffic management, designed for the AI-first era
             of cloud computing where millisecond performance and dynamic scaling are non-negotiable.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {visionPoints.map((point, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800/30 p-8 rounded-lg"
+              backgroundColor="var(--surface-card-emphasis)" padding={32} borderRadius="var(--radius-lg)"
             >
-              <div className="mb-4">{point.icon}</div>
-              <h3 className="text-xl font-semibold mb-3">{point.title}</h3>
-              <p className="text-neutral-300">{point.description}</p>
-            </motion.div>
+              <Box marginBottom={16}>{point.icon}</Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>{point.title}</H3>
+              <Paragraph color="var(--neutral-300)">{point.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

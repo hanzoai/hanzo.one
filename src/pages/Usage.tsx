@@ -1,3 +1,4 @@
+import { AnimatedHeading, AnimatedSection, Box, H2, XStack } from '@/gui'
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -5,25 +6,24 @@ import UsageOverview from "@/components/usage/UsageOverview";
 import ProjectUsage from "@/components/usage/ProjectUsage";
 import ResourceBreakdown from "@/components/usage/ResourceBreakdown";
 import DateRangePicker from "@/components/usage/DateRangePicker";
-import AnimatedSection, { AnimatedHeading } from "@/components/ui/animated-section";
 
 const Usage = () => {
   const [dateRange, setDateRange] = useState({ start: "Mar 7", end: "Mar 8" });
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
           <AnimatedSection>
-            <div className="flex justify-between items-center mb-8">
+            <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={32}>
               <AnimatedHeading>Usage</AnimatedHeading>
               <DateRangePicker 
                 dateRange={dateRange} 
                 onDateRangeChange={setDateRange} 
               />
-            </div>
+            </XStack>
 
             <UsageOverview 
               dateRange={dateRange}
@@ -35,21 +35,21 @@ const Usage = () => {
               creditsRequired="0.00"
             />
             
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-6">Usage by Project</h2>
+            <Box marginTop={48}>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Usage by Project</H2>
               <ProjectUsage />
-            </div>
+            </Box>
 
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-6">Resource Breakdown</h2>
+            <Box marginTop={48}>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={24}>Resource Breakdown</H2>
               <ResourceBreakdown />
-            </div>
+            </Box>
           </AnimatedSection>
-        </div>
-      </main>
+        </Box>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

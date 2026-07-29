@@ -1,7 +1,7 @@
+import { Box, ChromeText, Grid, MotionBox, Paragraph } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
 import { Activity, BarChart, Clock, ShoppingCart, Shield, Lightbulb, Signal, LineChart, Gamepad2, Cpu, Network, Users } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const UseCasesSection = () => {
   const useCases = [
@@ -20,39 +20,39 @@ const UseCasesSection = () => {
   ];
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 to-blue-900/10 opacity-30 pointer-events-none"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.3} pointerEvents="none" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"></Box>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <ChromeText as="h2" className="text-3xl md:text-5xl font-bold mb-6">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box textAlign="center" marginBottom={64}>
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Datastore at Scale
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-8">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={32}>
             Powering a wide range of applications across industries with unmatched performance
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={24} $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {useCases.map((useCase, index) => {
             const Icon = useCase.icon;
             return (
-              <motion.div
+              <MotionBox
                 key={useCase.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-gray-900/20 border border-gray-800 rounded-lg p-6 text-center flex flex-col items-center hover:bg-gray-900/40 hover:border-gray-700 transition-all"
+                
+                backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24} textAlign="center" display="flex" flexDirection="column" alignItems="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)", borderColor: "var(--neutral-700)" }}
               >
-                <Icon className="h-8 w-8 text-purple-400 mb-3" />
-                <p className="text-neutral-300">{useCase.name}</p>
-              </motion.div>
+                <Icon height={32} width={32} color="var(--foreground)" marginBottom={12} />
+                <Paragraph color="var(--neutral-300)">{useCase.name}</Paragraph>
+              </MotionBox>
             );
           })}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

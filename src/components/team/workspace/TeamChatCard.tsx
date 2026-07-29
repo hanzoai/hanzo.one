@@ -1,75 +1,75 @@
+import { Badge, Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, FileText } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 const TeamChatCard = () => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="bg-gray-900/30 border border-purple-900/20 rounded-xl overflow-hidden shadow-xl"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)"
     >
-      <div className="border-b border-gray-800 p-3 flex items-center">
-        <MessageSquare className="h-5 w-5 text-purple-400 mr-2" />
-        <span className="font-medium">Team Chat</span>
-        <Badge variant="outline" className="ml-auto bg-purple-900/30 border-purple-500/30 text-purple-300">
+      <XStack borderBottomWidth={1} borderColor="var(--neutral-800)" padding={12} display="flex" alignItems="center">
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><MessageSquare size={20} color="var(--foreground)" /></Box>
+        <Text fontWeight="500">Team Chat</Text>
+        <Badge variant="outline" marginLeft="auto" backgroundColor="var(--surface-card-emphasis)" borderColor="var(--border-strong)" color="var(--foreground)">
           Slack-style
         </Badge>
-      </div>
-      <div className="p-4">
-        <div className="bg-[var(--black)]/60 rounded-lg p-4">
-          <div className="mb-4">
-            <h3 className="font-medium text-[var(--white)]">#project-website</h3>
-            <div className="text-xs text-neutral-400">3 humans, 2 AI agents</div>
-          </div>
+      </XStack>
+      <Box padding={16}>
+        <Box backgroundColor="rgb(0 0 0 / 0.6)" borderRadius="var(--radius-lg)" padding={16}>
+          <Box marginBottom={16}>
+            <H3 fontWeight="500" color="var(--white)">#project-website</H3>
+            <Box fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">3 humans, 2 AI agents</Box>
+          </Box>
           
-          <div className="space-y-4">
-            <div className="flex">
-              <div className="w-8 h-8 rounded-full bg-gray-600 flex-shrink-0 flex items-center justify-center text-xs mr-3">JD</div>
+          <Box rowGap={16}>
+            <XStack display="flex">
+              <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" flexShrink={0} display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginRight={12}>JD</XStack>
               <div>
-                <div className="flex items-center">
-                  <span className="font-medium">John Doe</span>
-                  <span className="text-xs text-neutral-400 ml-2">10:45 AM</span>
-                </div>
-                <p className="text-sm text-neutral-300">Can someone help review the landing page design?</p>
+                <XStack display="flex" alignItems="center">
+                  <Text fontWeight="500">John Doe</Text>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginLeft={8}>10:45 AM</Text>
+                </XStack>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">Can someone help review the landing page design?</Paragraph>
               </div>
-            </div>
+            </XStack>
             
-            <div className="flex">
-              <div className="w-8 h-8 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-xs mr-3">AI</div>
+            <XStack display="flex">
+              <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" flexShrink={0} display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginRight={12}>AI</XStack>
               <div>
-                <div className="flex items-center">
-                  <span className="font-medium">DesignBot</span>
-                  <span className="text-xs text-neutral-400 ml-2">10:47 AM</span>
-                </div>
-                <p className="text-sm text-neutral-300">I'll review it right away. I see a few opportunities to improve the visual hierarchy and call-to-action placement.</p>
+                <XStack display="flex" alignItems="center">
+                  <Text fontWeight="500">DesignBot</Text>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginLeft={8}>10:47 AM</Text>
+                </XStack>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">I'll review it right away. I see a few opportunities to improve the visual hierarchy and call-to-action placement.</Paragraph>
               </div>
-            </div>
+            </XStack>
             
-            <div className="flex">
-              <div className="w-8 h-8 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-xs mr-3">AI</div>
+            <XStack display="flex">
+              <XStack width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" flexShrink={0} display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginRight={12}>AI</XStack>
               <div>
-                <div className="flex items-center">
-                  <span className="font-medium">DesignBot</span>
-                  <span className="text-xs text-neutral-400 ml-2">10:49 AM</span>
-                </div>
-                <div className="bg-gray-800/70 p-2 rounded-md text-sm text-neutral-300 border border-gray-700/50">
+                <XStack display="flex" alignItems="center">
+                  <Text fontWeight="500">DesignBot</Text>
+                  <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" marginLeft={8}>10:49 AM</Text>
+                </XStack>
+                <Box backgroundColor="var(--surface-overlay)" padding={8} borderRadius="var(--radius-md)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)" borderWidth={1} borderColor="var(--border-strong)">
                   <p>I've created some alternative layouts based on our brand guidelines. You can view them here:</p>
-                  <div className="bg-purple-900/20 text-purple-300 p-1 mt-1 rounded flex items-center text-xs">
-                    <FileText className="h-3 w-3 mr-1" />
+                  <XStack backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" padding={4} marginTop={4} borderRadius="var(--radius)" display="flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+                    <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><FileText size={12} /></Box>
                     design-alternatives.figma
-                  </div>
-                </div>
+                  </XStack>
+                </Box>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+            </XStack>
+          </Box>
+        </Box>
+      </Box>
+    </MotionBox>
   );
 };
 

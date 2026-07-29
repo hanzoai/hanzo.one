@@ -1,71 +1,71 @@
+import { Badge, Box, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { FileText, Calendar, Bot } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 const KnowledgeBaseCard = () => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, x: 20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="bg-gray-900/30 border border-purple-900/20 rounded-xl overflow-hidden shadow-xl"
+      backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-xl)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)"
     >
-      <div className="border-b border-gray-800 p-3 flex items-center">
-        <FileText className="h-5 w-5 text-purple-400 mr-2" />
-        <span className="font-medium">Knowledge Base</span>
-        <Badge variant="outline" className="ml-auto bg-purple-900/30 border-purple-500/30 text-purple-300">
+      <XStack borderBottomWidth={1} borderColor="var(--neutral-800)" padding={12} display="flex" alignItems="center">
+        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><FileText size={20} color="var(--foreground)" /></Box>
+        <Text fontWeight="500">Knowledge Base</Text>
+        <Badge variant="outline" marginLeft="auto" backgroundColor="var(--surface-card-emphasis)" borderColor="var(--border-strong)" color="var(--foreground)">
           Notion-style
         </Badge>
-      </div>
-      <div className="p-4">
-        <div className="bg-[var(--black)]/60 rounded-lg p-4">
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-medium text-[var(--white)]">Company Wiki</h3>
-            <div className="flex items-center space-x-2">
-              <div className="text-xs text-green-400 flex items-center">
-                <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-xs mr-1">AI</div>
+      </XStack>
+      <Box padding={16}>
+        <Box backgroundColor="rgb(0 0 0 / 0.6)" borderRadius="var(--radius-lg)" padding={16}>
+          <XStack marginBottom={16} display="flex" alignItems="center" justifyContent="space-between">
+            <H3 fontWeight="500" color="var(--white)">Company Wiki</H3>
+            <XStack display="flex" alignItems="center" columnGap={8}>
+              <XStack fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)" display="flex" alignItems="center">
+                <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-600)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginRight={4}>AI</XStack>
                 <span>Updating</span>
-              </div>
-            </div>
-          </div>
+              </XStack>
+            </XStack>
+          </XStack>
           
-          <div className="space-y-3">
-            <div className="p-2 bg-gray-800/40 rounded-md border border-gray-700/50">
-              <div className="flex items-center mb-1">
-                <Calendar className="h-4 w-4 text-purple-400 mr-2" />
-                <span className="font-medium">Onboarding Process</span>
-              </div>
-              <p className="text-xs text-neutral-400">
+          <Box rowGap={12}>
+            <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <XStack display="flex" alignItems="center" marginBottom={4}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Calendar size={16} color="var(--foreground)" /></Box>
+                <Text fontWeight="500">Onboarding Process</Text>
+              </XStack>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">
                 Step-by-step guide for new employees, updated automatically by HR Bot.
-              </p>
-            </div>
+              </Paragraph>
+            </Box>
             
-            <div className="p-2 bg-gray-800/40 rounded-md border border-gray-700/50">
-              <div className="flex items-center mb-1">
-                <FileText className="h-4 w-4 text-purple-400 mr-2" />
-                <span className="font-medium">Technical Documentation</span>
-              </div>
-              <p className="text-xs text-neutral-400">
+            <Box padding={8} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <XStack display="flex" alignItems="center" marginBottom={4}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><FileText size={16} color="var(--foreground)" /></Box>
+                <Text fontWeight="500">Technical Documentation</Text>
+              </XStack>
+              <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)">
                 API references and architectural diagrams maintained by DevBot.
-              </p>
-            </div>
+              </Paragraph>
+            </Box>
             
-            <div className="p-2 bg-purple-900/20 rounded-md border border-purple-700/50">
-              <div className="flex items-center mb-1">
-                <Bot className="h-4 w-4 text-purple-400 mr-2" />
-                <span className="font-medium">AI Activity: Adding Marketing Guidelines</span>
-              </div>
-              <div className="flex items-center text-xs text-purple-300">
+            <Box padding={8} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-md)" borderWidth={1} borderColor="var(--border-strong)">
+              <XStack display="flex" alignItems="center" marginBottom={4}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Bot size={16} color="var(--foreground)" /></Box>
+                <Text fontWeight="500">AI Activity: Adding Marketing Guidelines</Text>
+              </XStack>
+              <XStack display="flex" alignItems="center" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--foreground)">
                 <span>ContentBot is updating brand guidelines based on latest team meeting</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+              </XStack>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </MotionBox>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, H3, Paragraph, XStack } from '@/gui'
 
 import { LucideIcon } from "lucide-react";
 
@@ -11,15 +12,15 @@ interface PlatformCardProps {
 
 const PlatformCard = ({ name, role, description, icon: Icon, gradient }: PlatformCardProps) => {
   return (
-    <div className="relative group rounded-2xl border border-gray-800 bg-[var(--black)]/50 p-8 backdrop-blur-sm overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500 ease-in-out" />
-      <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${gradient} mb-4`}>
-        <Icon className="h-6 w-6 text-[var(--white)]" />
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{name}</h3>
-      <p className="text-neutral-400 font-medium mb-3">{role}</p>
-      <p className="text-neutral-400">{description}</p>
-    </div>
+    <Box group position="relative" borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)" padding={32} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} opacity={0} transition="opacity 500ms ease-in-out" $group-hover={{ opacity: 0.1 }} />
+      <XStack display="inline-flex" padding={12} borderRadius="var(--radius-xl)" marginBottom={16}>
+        <Icon height={24} width={24} color="var(--white)" />
+      </XStack>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>{name}</H3>
+      <Paragraph color="var(--neutral-400)" fontWeight="500" marginBottom={12}>{role}</Paragraph>
+      <Paragraph color="var(--neutral-400)">{description}</Paragraph>
+    </Box>
   );
 };
 

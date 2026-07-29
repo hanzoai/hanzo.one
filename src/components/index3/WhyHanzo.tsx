@@ -1,73 +1,73 @@
+import { Box, ChromeText, Grid, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Scale, Leaf, Shield, Code } from "lucide-react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const WhyHanzo = () => {
   const features = [
     {
-      icon: <Brain className="h-6 w-6 text-purple-400" />,
+      icon: <Brain size={24} color="var(--foreground)" />,
       title: "AI-Native",
       description: "Purpose-built for AI-driven software development and deployment."
     },
     {
-      icon: <Code className="h-6 w-6 text-purple-400" />,
+      icon: <Code size={24} color="var(--foreground)" />,
       title: "Autonomous",
       description: "Delegate complex tasks to intelligent AI agents."
     },
     {
-      icon: <Scale className="h-6 w-6 text-purple-400" />,
+      icon: <Scale size={24} color="var(--foreground)" />,
       title: "Scalable",
       description: "Grow seamlessly from startup to enterprise-level demands."
     },
     {
-      icon: <Leaf className="h-6 w-6 text-purple-400" />,
+      icon: <Leaf size={24} color="var(--foreground)" />,
       title: "Sustainable",
       description: "Operate with 100% renewable energy at planet-scale efficiency."
     },
     {
-      icon: <Shield className="h-6 w-6 text-purple-400" />,
+      icon: <Shield size={24} color="var(--foreground)" />,
       title: "Open and Secure",
       description: "Fully open-source options ensuring transparency and control."
     }
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
           <ChromeText 
             as="h2" 
-            className="text-3xl md:text-5xl font-bold mb-6"
+            fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             preHeading="Innovative Technology"
           >
             Why Visionary Teams Choose Hanzo
           </ChromeText>
-        </div>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-gray-900/30 rounded-xl p-6 border border-gray-800"
+              backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={24} borderWidth={1} borderColor="var(--neutral-800)"
             >
-              <div className="h-12 w-12 bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+              <XStack height={48} width={48} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
                 {feature.icon}
-              </div>
-              <ChromeText as="h3" className="text-xl font-bold mb-2">
+              </XStack>
+              <ChromeText as="h3" fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8}>
                 {feature.title}
               </ChromeText>
-              <p className="text-neutral-400">{feature.description}</p>
-            </motion.div>
+              <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,19 +1,19 @@
+import { Box, ChromeText, Paragraph } from '@/gui'
 
 import React from "react";
-import ChromeText from "@/components/ui/chrome-text";
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 py-10 px-4">
-      <div className="max-w-7xl mx-auto">
-        <ChromeText as="h1" className="text-4xl font-bold mb-2">
+    <Box paddingVertical={40} paddingHorizontal={16} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={8}>
           Hanzo AI Studio
         </ChromeText>
-        <p className="text-neutral-300 max-w-xl">
+        <Paragraph color="var(--neutral-300)" maxWidth="36rem">
           Your workspace for AI model experimentation, prompt engineering, and creating agent-based applications.
-        </p>
-      </div>
-    </div>
+        </Paragraph>
+      </Box>
+    </Box>
   );
 };
 

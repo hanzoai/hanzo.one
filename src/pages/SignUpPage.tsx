@@ -1,7 +1,7 @@
+import { Helmet } from '@/gui'
 
 import React from 'react';
 import SignUp from '@/components/auth/SignUp';
-import { Helmet } from 'react-helmet';
 
 const SignUpPage = () => {
   return (

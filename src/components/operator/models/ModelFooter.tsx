@@ -1,16 +1,17 @@
+import { Anchor, Box, Paragraph } from '@/gui'
 
 import React from "react";
 
 const ModelFooter = () => {
   return (
-    <div className="mt-12 text-center">
-      <p className="text-neutral-400">
+    <Box marginTop={48} textAlign="center">
+      <Paragraph color="var(--neutral-400)">
         New models are continuously being added. Check the 
-        <a href="https://docs.hanzo.ai/operative/models" className="text-purple-400 hover:text-purple-300 ml-1">
+        <Anchor tap href="https://docs.hanzo.ai/operative/models" color="var(--foreground)" marginLeft={4} hoverStyle={{ color: "var(--foreground)" }}>
           documentation
-        </a> for the latest information.
-      </p>
-    </div>
+        </Anchor> for the latest information.
+      </Paragraph>
+    </Box>
   );
 };
 

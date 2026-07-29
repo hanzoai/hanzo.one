@@ -1,96 +1,95 @@
+import { Box, Button, ChromeText, Grid, Link, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
+
 
 const MainCards: React.FC = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-24">
-      <motion.div
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} marginBottom={96} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
-        className="bg-gradient-to-br from-purple-900/30 to-blue-900/20 rounded-2xl border border-purple-500/20 overflow-hidden"
+        borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" overflow="hidden" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
       >
-        <div className="h-64 bg-gradient-to-r from-purple-800/30 to-blue-800/30 flex items-center justify-center">
-          <ChromeText as="h2" className="text-3xl font-bold">
+        <XStack height={256} display="flex" alignItems="center" justifyContent="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">
             Capabilities
           </ChromeText>
-        </div>
-        <div className="p-8">
-          <p className="text-neutral-300 mb-6">
+        </XStack>
+        <Box padding={32}>
+          <Paragraph color="var(--neutral-300)" marginBottom={24}>
             Discover our comprehensive suite of technical capabilities that empower your organization to innovate
             and transform. From AI and cloud infrastructure to custom development solutions, we provide everything
             you need to stay ahead.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-8">
-            <span className="px-3 py-1 bg-purple-900/40 rounded-full text-sm text-purple-300 border border-purple-500/30">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={12} marginBottom={32}>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               AI Engineering
-            </span>
-            <span className="px-3 py-1 bg-blue-900/40 rounded-full text-sm text-blue-300 border border-blue-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Cloud Infrastructure
-            </span>
-            <span className="px-3 py-1 bg-green-900/40 rounded-full text-sm text-green-300 border border-green-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Data Analytics
-            </span>
-            <span className="px-3 py-1 bg-pink-900/40 rounded-full text-sm text-pink-300 border border-pink-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Digital Experiences
-            </span>
-          </div>
-          <Button asChild className="w-full bg-purple-600 hover:bg-purple-700">
+            </Text>
+          </XStack>
+          <Button asChild width="100%" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
             <Link to="/solutions/capabilities">
-              Explore Our Capabilities <ChevronRight className="ml-2 h-5 w-5" />
+              Explore Our Capabilities <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
             </Link>
           </Button>
-        </div>
-      </motion.div>
+        </Box>
+      </MotionBox>
 
-      <motion.div
+      <MotionBox
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3, delay: 0.1 }}
-        className="bg-gradient-to-br from-blue-900/30 to-indigo-900/20 rounded-2xl border border-blue-500/20 overflow-hidden"
+        borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" overflow="hidden" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))"
       >
-        <div className="h-64 bg-gradient-to-r from-blue-800/30 to-indigo-800/30 flex items-center justify-center">
-          <ChromeText as="h2" className="text-3xl font-bold">
+        <XStack height={256} display="flex" alignItems="center" justifyContent="center" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+          <ChromeText as="h2" fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">
             Industries
           </ChromeText>
-        </div>
-        <div className="p-8">
-          <p className="text-neutral-300 mb-6">
+        </XStack>
+        <Box padding={32}>
+          <Paragraph color="var(--neutral-300)" marginBottom={24}>
             Our industry-specific expertise helps organizations across sectors overcome unique challenges and seize
             opportunities. We combine deep domain knowledge with cutting-edge technology to deliver tailored
             solutions for your business.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-8">
-            <span className="px-3 py-1 bg-indigo-900/40 rounded-full text-sm text-indigo-300 border border-indigo-500/30">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" gap={12} marginBottom={32}>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Financial Services
-            </span>
-            <span className="px-3 py-1 bg-green-900/40 rounded-full text-sm text-green-300 border border-green-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Healthcare
-            </span>
-            <span className="px-3 py-1 bg-amber-900/40 rounded-full text-sm text-amber-300 border border-amber-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Retail
-            </span>
-            <span className="px-3 py-1 bg-teal-900/40 rounded-full text-sm text-teal-300 border border-teal-500/30">
+            </Text>
+            <Text paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" borderWidth={1} borderColor="var(--border-strong)">
               Technology
-            </span>
-          </div>
-          <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
+            </Text>
+          </XStack>
+          <Button asChild width="100%" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
             <Link to="/solutions/industries">
-              Explore Our Industry Solutions <ChevronRight className="ml-2 h-5 w-5" />
+              Explore Our Industry Solutions <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={20} /></Box>
             </Link>
           </Button>
-        </div>
-      </motion.div>
-    </div>
+        </Box>
+      </MotionBox>
+    </Grid>
   );
 };
 

@@ -1,6 +1,7 @@
+import { Anchor, Box as GuiBox, Grid, H2, H3, Link, MotionBox, Paragraph, XStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   Brain,
   Sparkles,
@@ -64,7 +65,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 interface Product {
   name: string;
@@ -252,155 +253,149 @@ const ProductCatalog = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   return (
-    <section className="py-24 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <GuiBox render="section" paddingVertical={96} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+      <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto">
         {/* Section header */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Complete Cloud Platform
-          </h2>
-          <p className="text-neutral-400 max-w-2xl mx-auto">
+          </H2>
+          <Paragraph color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Everything you need to build, deploy, and scale modern applications.
             90+ managed services, one unified platform.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Category grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {CATEGORIES.map((category, index) => {
             const CategoryIcon = category.icon;
             const isExpanded = activeCategory === category.id;
 
             return (
-              <motion.div
+              <MotionBox
                 key={category.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className={`bg-neutral-900/50 border rounded-xl overflow-hidden transition-all duration-300 ${
-                  isExpanded
-                    ? "border-neutral-700 ring-1 ring-neutral-700"
-                    : "border-neutral-800 hover:border-neutral-700"
-                }`}
+                
+                backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderRadius="var(--radius-xl)" overflow="hidden" transition="all 300ms cubic-bezier(.4,0,.2,1)" borderColor={isExpanded ? "var(--neutral-700)" : "var(--neutral-800)"} outlineWidth={isExpanded ? 1 : undefined} outlineColor={isExpanded ? "var(--neutral-700)" : undefined} outlineStyle={isExpanded ? "solid" : undefined} hoverStyle={isExpanded ? undefined : { borderColor: "var(--neutral-700)" }}
               >
                 {/* Category header */}
-                <button
+                <XStack minHeight={44}
                   onClick={() =>
                     setActiveCategory(isExpanded ? null : category.id)
                   }
-                  className="w-full p-6 text-left flex items-start gap-4"
+                  render="button" width="100%" padding={24} textAlign="left" display="flex" alignItems="flex-start" gap={16}
                 >
-                  <div
-                    className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
+                  <XStack
+                    width={48} height={48} borderRadius="var(--radius-lg)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}
                     style={{ backgroundColor: `${category.color}20` }}
                   >
                     <CategoryIcon
-                      className="w-6 h-6"
+                      width={24} height={24}
                       style={{ color: category.color }}
                     />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-white">
+                  </XStack>
+                  <GuiBox flex={1} minWidth={0}>
+                    <XStack display="flex" alignItems="center" justifyContent="space-between">
+                      <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">
                         {category.name}
-                      </h3>
+                      </H3>
                       <ChevronRight
-                        className={`w-5 h-5 text-neutral-500 transition-transform ${
-                          isExpanded ? "rotate-90" : ""
-                        }`}
+                        size={20} color="var(--neutral-500)"
                       />
-                    </div>
-                    <p className="text-sm text-neutral-400 mt-1">
+                    </XStack>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginTop={4}>
                       {category.description}
-                    </p>
-                    <div className="text-xs text-neutral-500 mt-2">
+                    </Paragraph>
+                    <GuiBox fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" marginTop={8}>
                       {category.products.length} services
-                    </div>
-                  </div>
-                </button>
+                    </GuiBox>
+                  </GuiBox>
+                </XStack>
 
                 {/* Expanded products list */}
                 {isExpanded && (
-                  <motion.div
+                  <MotionBox
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="border-t border-neutral-800"
+                    borderTopWidth={1} borderColor="var(--neutral-800)"
                   >
-                    <div className="p-4 grid grid-cols-3 gap-2">
+                    <Grid padding={16} display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={8}>
                       {category.products.map((product) => {
                         const ProductIcon = product.icon;
                         const content = (
-                          <div className="p-3 rounded-lg bg-neutral-950/50 hover:bg-neutral-800/50 transition-colors text-center group">
+                          <GuiBox group padding={12} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" textAlign="center" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
                             <ProductIcon
-                              className="w-5 h-5 mx-auto mb-2 text-neutral-400 group-hover:text-white transition-colors"
+                              width={20} height={20} marginHorizontal="auto" marginBottom={8} color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}
                               style={{
                                 color: product.href ? category.color : undefined,
                               }}
                             />
-                            <div className="text-xs font-medium text-white truncate">
+                            <GuiBox fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" color="var(--foreground)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                               {product.name}
-                            </div>
-                            <div className="text-[10px] text-neutral-500 truncate">
+                            </GuiBox>
+                            <GuiBox fontSize="10px" color="var(--neutral-500)" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
                               {product.description}
-                            </div>
-                          </div>
+                            </GuiBox>
+                          </GuiBox>
                         );
 
                         return product.href ? (
-                          <Link key={product.name} to={product.href}>
+                          <Link tap key={product.name} to={product.href}>
                             {content}
                           </Link>
                         ) : (
                           <div key={product.name}>{content}</div>
                         );
                       })}
-                    </div>
-                  </motion.div>
+                    </Grid>
+                  </MotionBox>
                 )}
-              </motion.div>
+              </MotionBox>
             );
           })}
-        </div>
+        </Grid>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          marginTop={64} textAlign="center"
         >
-          <p className="text-neutral-400 mb-6">
+          <Paragraph color="var(--neutral-400)" marginBottom={24}>
             All services available via API, CLI, Console, and SDKs
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          </Paragraph>
+          <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
             <Link
               to="/pricing"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
               style={{ backgroundColor: BRAND_COLOR, color: "#fff" }}
             >
               View Pricing
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></GuiBox>
             </Link>
-            <a
+            <Anchor
               href="https://docs.hanzo.ai/cloud"
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+              display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
             >
               Read Documentation
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+              <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ChevronRight size={16} /></GuiBox>
+            </Anchor>
+          </XStack>
+        </MotionBox>
+      </GuiBox>
+    </GuiBox>
   );
 };
 

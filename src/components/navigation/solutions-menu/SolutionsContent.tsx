@@ -1,3 +1,4 @@
+import { Box, Grid, YStack } from '@/gui'
 
 import { solutions } from "@/constants/navigation";
 import { SolutionCategory } from "./SolutionCategory";
@@ -13,8 +14,8 @@ export const SolutionsContent = ({ onCloseMenu }: SolutionsContentProps) => {
   const isMobile = useIsMobile();
   
   return (
-    <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-6`}>
-      <div className={`${isMobile ? 'w-full' : 'flex-1'} grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-8`}>
+    <YStack display="flex" gap={24} flexDirection={isMobile ? "column" : "row"}>
+      <Grid display="grid" gap={32} width={isMobile ? "100%" : undefined} flex={isMobile ? undefined : 1} gridTemplateColumns={isMobile ? "repeat(1, minmax(0, 1fr))" : "repeat(2, minmax(0, 1fr))"}>
         {solutions.map((category, idx) => (
           <SolutionCategory
             key={idx}
@@ -23,12 +24,12 @@ export const SolutionsContent = ({ onCloseMenu }: SolutionsContentProps) => {
             onItemClick={onCloseMenu}
           />
         ))}
-      </div>
+      </Grid>
 
-      <div className={`${isMobile ? 'w-full' : 'w-80'} space-y-4 shrink-0`}>
+      <Box rowGap={16} flexShrink={0} width={isMobile ? "100%" : 320}>
         <AgencyCard onCardClick={onCloseMenu} />
         <SenseiCard onCardClick={onCloseMenu} />
-      </div>
-    </div>
+      </Box>
+    </YStack>
   );
 };

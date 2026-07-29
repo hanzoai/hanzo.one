@@ -1,17 +1,8 @@
-
+import { Box, Button, H3, MotionBox, Paragraph, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Text, XStack, YStack, createAnimationVariant, curves } from '@/gui'
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Download, Filter, Calendar, FileText } from "lucide-react";
 import { motion } from "framer-motion";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
-import { 
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table";
+
 
 const cardAnimation = createAnimationVariant("fadeInBlur", {
   duration: 0.4,
@@ -68,64 +59,64 @@ const InvoicesList = () => {
   };
 
   return (
-    <motion.div 
+    <MotionBox 
       variants={cardAnimation}
-      className="rounded-xl border border-gray-800 bg-[var(--black)]/60 overflow-hidden"
+      borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.6)" overflow="hidden"
     >
-      <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="flex items-center gap-3">
-          <Calendar className="h-5 w-5 text-neutral-400" />
-          <div className="space-y-1">
-            <h3 className="text-xl font-medium">Invoice History</h3>
-            <p className="text-sm text-neutral-400">View and download past invoices</p>
-          </div>
-        </div>
+      <YStack padding={24} borderBottomWidth={1} borderColor="var(--neutral-800)" display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start" gap={16} $sm={{ flexDirection: "row", alignItems: "center" }}>
+        <XStack display="flex" alignItems="center" gap={12}>
+          <Calendar size={20} color="var(--neutral-400)" />
+          <Box rowGap={4}>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500">Invoice History</H3>
+            <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">View and download past invoices</Paragraph>
+          </Box>
+        </XStack>
         
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="border-gray-700 bg-[var(--black)] hover:bg-gray-900">
-            <Filter className="h-4 w-4 mr-2" />
+        <XStack display="flex" alignItems="center" gap={8}>
+          <Button variant="outline" size="sm" borderColor="var(--neutral-700)" backgroundColor="var(--black)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Filter size={16} /></Box>
             Filter
           </Button>
           
-          <Button className="bg-[var(--white)] hover:bg-gray-200 text-black">
-            <Download className="h-4 w-4 mr-2" />
+          <Button backgroundColor="var(--white)" color="var(--pure-black)" hoverStyle={{ backgroundColor: "var(--neutral-200)" }}>
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
             Export All
           </Button>
-        </div>
-      </div>
+        </XStack>
+      </YStack>
       
       {filteredInvoices.length > 0 ? (
-        <div className="overflow-x-auto">
+        <Box overflowX="auto">
           <Table>
-            <TableHeader className="bg-[var(--black)]">
-              <TableRow className="border-b border-gray-800 hover:bg-transparent">
-                <TableHead className="text-neutral-400 font-medium py-3 px-6">Invoice</TableHead>
-                <TableHead className="text-neutral-400 font-medium py-3 px-6">Date</TableHead>
-                <TableHead className="text-neutral-400 font-medium py-3 px-6">Due Date</TableHead>
-                <TableHead className="text-neutral-400 font-medium py-3 px-6">Amount</TableHead>
-                <TableHead className="text-neutral-400 font-medium py-3 px-6">Status</TableHead>
-                <TableHead className="text-right text-neutral-400 font-medium py-3 px-6">Actions</TableHead>
+            <TableHeader backgroundColor="var(--black)">
+              <TableRow borderBottomWidth={1} borderColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "transparent" }}>
+                <TableHead color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Invoice</TableHead>
+                <TableHead color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Date</TableHead>
+                <TableHead color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Due Date</TableHead>
+                <TableHead color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Amount</TableHead>
+                <TableHead color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Status</TableHead>
+                <TableHead textAlign="right" color="var(--neutral-400)" fontWeight="500" paddingVertical={12} paddingHorizontal={24}>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredInvoices.map((invoice) => (
-                <TableRow key={invoice.id} className="border-t border-gray-800 hover:bg-gray-900/30">
-                  <TableCell className="py-4 px-6">{invoice.id}</TableCell>
-                  <TableCell className="py-4 px-6">{invoice.date}</TableCell>
-                  <TableCell className="py-4 px-6">{invoice.dueDate}</TableCell>
-                  <TableCell className="py-4 px-6">{invoice.amount}</TableCell>
-                  <TableCell className="py-4 px-6">
-                    <span className={`inline-block px-2 py-1 rounded-full text-xs ${statusColors[invoice.status]}`}>
+                <TableRow key={invoice.id} borderTopWidth={1} borderColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+                  <TableCell paddingVertical={16} paddingHorizontal={24}>{invoice.id}</TableCell>
+                  <TableCell paddingVertical={16} paddingHorizontal={24}>{invoice.date}</TableCell>
+                  <TableCell paddingVertical={16} paddingHorizontal={24}>{invoice.dueDate}</TableCell>
+                  <TableCell paddingVertical={16} paddingHorizontal={24}>{invoice.amount}</TableCell>
+                  <TableCell paddingVertical={16} paddingHorizontal={24}>
+                    <Text display="inline-block" paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
                       {invoice.status}
-                    </span>
+                    </Text>
                   </TableCell>
-                  <TableCell className="py-4 px-6 text-right">
+                  <TableCell paddingVertical={16} paddingHorizontal={24} textAlign="right">
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      className="text-neutral-400 hover:text-[var(--white)] hover:bg-gray-800"
+                      color="var(--neutral-400)" hoverStyle={{ color: "var(--white)", backgroundColor: "var(--neutral-800)" }}
                     >
-                      <Download className="h-4 w-4 mr-2" />
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
                       Download
                     </Button>
                   </TableCell>
@@ -133,17 +124,17 @@ const InvoicesList = () => {
               ))}
             </TableBody>
           </Table>
-        </div>
+        </Box>
       ) : (
-        <div className="py-16 text-center">
-          <FileText className="h-12 w-12 mx-auto mb-4 text-neutral-600" />
-          <h3 className="text-xl font-medium mb-2">No Invoices Found</h3>
-          <p className="text-neutral-400 max-w-md mx-auto">
+        <Box paddingVertical={64} textAlign="center">
+          <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto" marginBottom={16}><FileText size={48} color="var(--neutral-600)" /></Box>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={8}>No Invoices Found</H3>
+          <Paragraph color="var(--neutral-400)" maxWidth="28rem" marginHorizontal="auto">
             Once you start using our services, your invoices will appear here.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
       )}
-    </motion.div>
+    </MotionBox>
   );
 };
 

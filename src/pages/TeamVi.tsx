@@ -1,11 +1,10 @@
+import { Box, Button, Grid, H1, H2, H3, MotionBox, Paragraph, XStack, toast } from '@/gui'
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Lightbulb, MessagesSquare, Bot, Globe, Server, Lock } from "lucide-react";
 import TeamSlack from "@/components/TeamSlack";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 
 const TeamVi = () => {
   const handleContactSensei = () => {
@@ -17,90 +16,90 @@ const TeamVi = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Navbar />
       
-      <main className="pt-32 pb-16 px-4">
-        <motion.div 
+      <Box render="main" paddingTop={128} paddingBottom={64} paddingHorizontal={16}>
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-7xl mx-auto"
+          maxWidth="var(--container-max)" marginHorizontal="auto"
         >
           {/* Hero Section */}
-          <div className="text-center mb-16">
-            <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 mb-4">
-              <Lightbulb className="h-8 w-8 text-[var(--white)]" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+          <Box textAlign="center" marginBottom={64}>
+            <XStack display="inline-flex" padding={12} borderRadius="var(--radius-xl)" marginBottom={16} backgroundImage="linear-gradient(to bottom right, var(--neutral-500), var(--neutral-500))">
+              <Lightbulb size={32} color="var(--white)" />
+            </XStack>
+            <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={24} $sm={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               Meet Vi, Your Visionary Leader
-            </h1>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+            </H1>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" maxWidth="42rem" marginHorizontal="auto">
               Your innovative AI visionary leader, guiding the team towards excellence with strategic 
               insights and forward-thinking leadership.
-            </p>
-          </div>
+            </Paragraph>
+          </Box>
 
           {/* Integration Platforms */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <motion.div 
+          <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            <MotionBox 
               whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl border border-gray-800 bg-[var(--black)]/50"
+              padding={24} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)"
             >
-              <MessagesSquare className="h-8 w-8 text-purple-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Strategic Vision</h3>
-              <p className="text-neutral-400">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><MessagesSquare size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>Strategic Vision</H3>
+              <Paragraph color="var(--neutral-400)">
                 Develops comprehensive strategies and roadmaps for sustainable growth
                 and innovation.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
 
-            <motion.div 
+            <MotionBox 
               whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl border border-gray-800 bg-[var(--black)]/50"
+              padding={24} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)"
             >
-              <Bot className="h-8 w-8 text-blue-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Team Leadership</h3>
-              <p className="text-neutral-400">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Bot size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>Team Leadership</H3>
+              <Paragraph color="var(--neutral-400)">
                 Coordinates and guides the AI team to achieve optimal performance
                 and collaboration.
-              </p>
-            </motion.div>
+              </Paragraph>
+            </MotionBox>
 
-            <motion.div 
+            <MotionBox 
               whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl border border-gray-800 bg-[var(--black)]/50"
+              padding={24} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(0 0 0 / 0.5)"
             >
-              <Lock className="h-8 w-8 text-green-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Innovation Drive</h3>
-              <p className="text-neutral-400">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Lock size={32} color="var(--foreground)" /></Box>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>Innovation Drive</H3>
+              <Paragraph color="var(--neutral-400)">
                 Promotes cutting-edge solutions and encourages creative problem-solving
                 across all projects.
-              </p>
-            </motion.div>
-          </div>
+              </Paragraph>
+            </MotionBox>
+          </Grid>
 
           {/* Demo Chat Interface */}
           <TeamSlack />
 
           {/* Contact Section */}
-          <div className="text-center max-w-2xl mx-auto mt-16">
-            <h2 className="text-2xl font-semibold mb-4">Need Human Assistance?</h2>
-            <p className="text-neutral-400 mb-6">
+          <Box textAlign="center" maxWidth="42rem" marginHorizontal="auto" marginTop={64}>
+            <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={16}>Need Human Assistance?</H2>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               While Vi is highly capable, sometimes you might need human expertise.
               Contact Sensei Group for dedicated support and consultation.
-            </p>
+            </Paragraph>
             <Button 
               onClick={handleContactSensei}
-              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
+              backgroundImage="linear-gradient(to right, var(--neutral-500), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--neutral-600))" }}
             >
               Contact Sensei Group
             </Button>
-          </div>
-        </motion.div>
-      </main>
+          </Box>
+        </MotionBox>
+      </Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

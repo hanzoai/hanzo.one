@@ -1,13 +1,12 @@
+import { Anchor, Box, Button, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CalendarIcon, User, Tag, ArrowRight, Rss, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Sample blog post data
 const blogPosts = [
@@ -55,7 +54,7 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Blog - Hanzo AI</title>
         <meta
@@ -68,235 +67,235 @@ const Blog = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-10"
+        <Box render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+            <Box
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.1}
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </Box>
 
-          <div className="max-w-5xl mx-auto relative z-10">
-            <div className="text-center">
-              <motion.div
+          <Box maxWidth="64rem" marginHorizontal="auto" position="relative" zIndex={10}>
+            <Box textAlign="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6"
+                flexDirection="row" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" marginBottom={24}
                 style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
               >
-                <BookOpen className="w-3.5 h-3.5" />
+                <BookOpen size={14} />
                 Engineering Blog
-              </motion.div>
+              </MotionBox>
 
-              <motion.h1
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.05 }}
-                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
               >
-                <span className="text-white">Insights from</span>
+                <Text color="var(--foreground)">Insights from</Text>
                 <br />
-                <span className="text-neutral-400">the team.</span>
-              </motion.h1>
+                <Text color="var(--neutral-400)">the team.</Text>
+              </MotionText>
 
-              <motion.p
+              <MotionText
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-10 max-w-3xl mx-auto"
+                fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={40} maxWidth="var(--container-prose)" marginHorizontal="auto" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
               >
                 Tutorials, product updates, and deep dives into AI development
                 from the Hanzo engineering team.
-              </motion.p>
+              </MotionText>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="flex flex-wrap items-center justify-center gap-4"
+                flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" justifyContent="center" gap={16}
               >
-                <a
+                <Anchor
                   href="#posts"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                 >
                   Latest Posts
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-                <button className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white">
-                  <Rss className="w-4 h-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+                </Anchor>
+                <XStack minHeight={44} render="button" display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Rss size={16} /></Box>
                   Subscribe to RSS
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+                </XStack>
+              </MotionBox>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Blog Content */}
-        <section id="posts" className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
+        <Box id="posts" render="section" paddingVertical={64} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-max)" marginHorizontal="auto">
             {/* Featured Post */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-16"
+              marginBottom={64}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-gradient-to-br from-[#fd4444]/10 to-neutral-900/50 rounded-xl overflow-hidden border border-neutral-800">
-                <div className="p-8 flex flex-col justify-center">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <span
-                      className="px-3 py-1 rounded-full text-sm"
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.08))" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                <YStack padding={32} display="flex" flexDirection="column" justifyContent="center">
+                  <XStack display="flex" alignItems="center" columnGap={16} marginBottom={16}>
+                    <Text
+                      paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                       style={{ backgroundColor: `${BRAND_COLOR}20`, color: BRAND_COLOR }}
                     >
                       Featured
-                    </span>
-                    <span className="text-neutral-400 text-sm flex items-center">
-                      <CalendarIcon className="h-4 w-4 mr-1" />
+                    </Text>
+                    <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center">
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><CalendarIcon size={16} /></Box>
                       {blogPosts[0].date}
-                    </span>
-                  </div>
+                    </Text>
+                  </XStack>
 
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">{blogPosts[0].title}</h2>
-                  <p className="text-neutral-300 mb-6">{blogPosts[0].excerpt}</p>
+                  <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16} color="var(--foreground)" $md={{ fontSize: "var(--text-3xl)", lineHeight: "var(--leading-3xl)" }}>{blogPosts[0].title}</H2>
+                  <Paragraph color="var(--neutral-300)" marginBottom={24}>{blogPosts[0].excerpt}</Paragraph>
 
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="flex items-center">
-                      <User className="h-4 w-4 text-neutral-400 mr-2" />
-                      <span className="text-neutral-400 text-sm">{blogPosts[0].author}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Tag className="h-4 w-4 text-neutral-400 mr-2" />
-                      <span className="text-neutral-400 text-sm">{blogPosts[0].category}</span>
-                    </div>
-                  </div>
+                  <XStack display="flex" alignItems="center" columnGap={16} marginBottom={24}>
+                    <XStack display="flex" alignItems="center">
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><User size={16} color="var(--neutral-400)" /></Box>
+                      <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{blogPosts[0].author}</Text>
+                    </XStack>
+                    <XStack display="flex" alignItems="center">
+                      <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Tag size={16} color="var(--neutral-400)" /></Box>
+                      <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{blogPosts[0].category}</Text>
+                    </XStack>
+                  </XStack>
 
-                  <button
-                    className="inline-flex items-center w-fit px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                  <XStack minHeight={44}
+                    render="button" display="inline-flex" alignItems="center" width="fit-content" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                     style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                   >
                     Read Article
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                </div>
+                    <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
+                  </XStack>
+                </YStack>
 
-                <div className="relative h-64 md:h-auto">
-                  <img
+                <Box position="relative" height={256} $md={{ height: "auto" }}>
+                  <Box display="inline-block"
                     src={blogPosts[0].imageUrl}
                     alt={blogPosts[0].title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    render="img" position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%" objectFit="cover"
                   />
-                </div>
-              </div>
-            </motion.div>
+                </Box>
+              </Grid>
+            </MotionBox>
 
             {/* Blog Post Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
               {blogPosts.slice(1).map((post, index) => (
-                <motion.div
+                <MotionBox
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-neutral-900/50 rounded-xl overflow-hidden border border-neutral-800 hover:border-neutral-700 transition-colors"
+                  
+                  backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
                 >
-                  <div className="relative h-48">
-                    <img
+                  <Box position="relative" height={192}>
+                    <Box display="inline-block"
                       src={post.imageUrl}
                       alt={post.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      render="img" position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%" objectFit="cover"
                     />
-                  </div>
+                  </Box>
 
-                  <div className="p-6">
-                    <div className="flex items-center space-x-4 mb-3">
-                      <span className="text-neutral-400 text-sm flex items-center">
-                        <CalendarIcon className="h-4 w-4 mr-1" />
+                  <Box padding={24}>
+                    <XStack display="flex" alignItems="center" columnGap={16} marginBottom={12}>
+                      <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center">
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><CalendarIcon size={16} /></Box>
                         {post.date}
-                      </span>
-                      <span className="text-neutral-400 text-sm flex items-center">
-                        <Tag className="h-4 w-4 mr-1" />
+                      </Text>
+                      <Text color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" display="flex" alignItems="center">
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Tag size={16} /></Box>
                         {post.category}
-                      </span>
-                    </div>
+                      </Text>
+                    </XStack>
 
-                    <h3 className="text-xl font-bold mb-3 text-white">{post.title}</h3>
-                    <p className="text-neutral-400 mb-4 line-clamp-3">{post.excerpt}</p>
+                    <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={12} color="var(--foreground)">{post.title}</H3>
+                    <Paragraph color="var(--neutral-400)" marginBottom={16} WebkitLineClamp={3} display="-webkit-box" WebkitBoxOrient="vertical" overflow="hidden">{post.excerpt}</Paragraph>
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <User className="h-4 w-4 text-neutral-500 mr-2" />
-                        <span className="text-neutral-500 text-sm">{post.author}</span>
-                      </div>
-                      <button
-                        className="text-sm font-medium transition-colors"
+                    <XStack display="flex" alignItems="center" justifyContent="space-between">
+                      <XStack display="flex" alignItems="center">
+                        <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><User size={16} color="var(--neutral-500)" /></Box>
+                        <Text color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{post.author}</Text>
+                      </XStack>
+                      <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
+                        render="button" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))"
                         style={{ color: BRAND_COLOR }}
                       >
                         Read More →
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
+                      </Box>
+                    </XStack>
+                  </Box>
+                </MotionBox>
               ))}
-            </div>
-          </div>
-        </section>
+            </Grid>
+          </Box>
+        </Box>
 
         {/* Newsletter CTA Section */}
-        <section className="py-24 px-4 md:px-8 bg-gradient-to-b from-neutral-900/30 to-black relative overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#fd4444]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#fd4444]/5 rounded-full blur-3xl pointer-events-none" />
+        <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))" $md={{ paddingHorizontal: 32 }}>
+          <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
+          <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)" pointerEvents="none" />
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <motion.h2
+          <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center" position="relative" zIndex={10}>
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-white mb-4"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}
             >
               Stay up to date
-            </motion.h2>
+            </MotionText>
 
-            <motion.p
+            <MotionText
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-neutral-400 mb-10 max-w-2xl mx-auto"
+              fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={40} maxWidth="42rem" marginHorizontal="auto"
             >
               Get the latest Hanzo news, product updates, and tutorials delivered directly to your inbox.
-            </motion.p>
+            </MotionText>
 
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+              display="flex" flexDirection="column" gap={12} maxWidth="32rem" marginHorizontal="auto" $sm={{ flexDirection: "row" }}
             >
-              <input
+              <Box display="inline-block" minHeight={44}
                 type="email"
                 placeholder="Enter your email"
-                className="flex-grow px-4 py-3 bg-neutral-900 border border-neutral-800 rounded-full text-white placeholder:text-neutral-500 focus:outline-none focus:border-neutral-600"
+                render="input" flexGrow={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-full)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
               />
-              <button
-                className="inline-flex items-center justify-center px-8 py-3 rounded-full font-medium transition-all hover:opacity-90 text-base"
+              <XStack minHeight={44}
+                render="button" display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Subscribe
-              </button>
-            </motion.div>
-          </div>
-        </section>
+              </XStack>
+            </MotionBox>
+          </Box>
+        </Box>
       </main>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 

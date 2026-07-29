@@ -1,62 +1,62 @@
+import { Box, Button, H1, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <Box render="section" position="relative" paddingVertical={80} overflow="hidden" $md={{ paddingVertical: 128 }}>
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black"></div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.08), var(--pure-black))"></Box>
       
       {/* Animated orbs */}
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" top={-160} right={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom={-160} left={-160} width={320} height={320} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
+      <Box marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10}>
+        <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+            <H1 fontSize="var(--text-5xl)" lineHeight="var(--leading-5xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--neutral-300))" $md={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
               The AI Engineering Platform
-            </h1>
+            </H1>
             
-            <p className="text-xl md:text-2xl text-neutral-300 mb-10">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={40} $md={{ fontSize: "var(--text-2xl)", lineHeight: "var(--leading-2xl)" }}>
               Build, deploy, and scale AI applications with unprecedented speed
-            </p>
+            </Paragraph>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-[var(--white)] px-8 py-6 text-lg rounded-full"
+                color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderRadius="var(--radius-full)" backgroundImage="linear-gradient(to right, var(--neutral-600), var(--neutral-600))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-700), var(--neutral-700))" }}
               >
                 Get Started Free
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-[var(--white)] border-gray-700 hover:bg-[var(--white)]/10 px-8 py-6 text-lg rounded-full"
+                color="var(--white)" borderColor="var(--neutral-700)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderRadius="var(--radius-full)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
               >
                 See Demo
               </Button>
-            </div>
+            </YStack>
             
-            <div className="mt-16 text-sm text-neutral-400 flex flex-wrap justify-center gap-x-8 gap-y-2">
+            <XStack marginTop={64} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" display="flex" flexWrap="wrap" justifyContent="center" columnGap={32} rowGap={8}>
               <div>3.2B+ Downloads</div>
               <div>47k+ GitHub Stars</div>
               <div>900+ Contributors</div>
               <div>10k+ Active Developers</div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </XStack>
+          </MotionBox>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

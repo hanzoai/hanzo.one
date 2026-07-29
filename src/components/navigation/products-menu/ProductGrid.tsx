@@ -1,5 +1,6 @@
+import { Box, Grid, Link, XStack } from '@/gui'
 
-import { Link } from "react-router-dom";
+
 import { ProductItem } from "./types";
 import { useState } from "react";
 
@@ -11,28 +12,26 @@ const ProductGrid = ({ items }: ProductGridProps) => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[360px] overflow-y-auto pr-2">
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} maxHeight="360px" overflowY="auto" paddingRight={8} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
       {items.map((item) => (
-        <div
+        <XStack
           key={item.name}
-          className="flex items-start space-x-3 group"
+          group display="flex" alignItems="flex-start" columnGap={12}
           onMouseEnter={() => setHoveredItem(item.name)}
           onMouseLeave={() => setHoveredItem(null)}
         >
           <item.icon 
-            className={`h-6 w-6 mt-1 transition-colors duration-200 ${
-              hoveredItem === item.name ? 'text-purple-400' : 'text-neutral-400 group-hover:text-[var(--white)]'
-            }`} 
+            height={24} width={24} marginTop={4} transition="color, background-color, border-color, fill, stroke 200ms cubic-bezier(.4,0,.2,1)" color={hoveredItem === item.name ? "var(--foreground)" : "var(--neutral-400)"} $group-hover={hoveredItem === item.name ? undefined : { color: "var(--white)" }} 
           />
-          <div className="flex-1">
-            <Link to={item.link} className="text-neutral-300 group-hover:text-[var(--white)] font-medium">
+          <Box flex={1}>
+            <Link tap to={item.link} color="var(--neutral-300)" fontWeight="500" $group-hover={{ color: "var(--white)" }}>
               {item.name}
             </Link>
-            <div className="text-sm text-neutral-500">{item.description}</div>
-          </div>
-        </div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">{item.description}</Box>
+          </Box>
+        </XStack>
       ))}
-    </div>
+    </Grid>
   );
 };
 

@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, H1, H2, H3, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import {
@@ -27,7 +28,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Integration categories
 const categories = [
@@ -158,192 +159,188 @@ const Automations = () => {
   const popularIntegrations = integrations.filter((i) => i.popular);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <Box minHeight="100vh" backgroundColor="var(--pure-black)" color="var(--foreground)">
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-4 md:px-8 overflow-hidden">
+        <Box render="section" position="relative" paddingTop={128} paddingBottom={80} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }}>
           {/* Background glow */}
-          <div className="absolute inset-0 overflow-hidden">
-            <motion.div
+          <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden">
+            <MotionBox
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.15 }}
               transition={{ duration: 1.5 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)"
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </Box>
 
-          <div className="max-w-6xl mx-auto relative z-10">
-            <motion.div
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <p
-                className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
+              <Paragraph
+                display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
                 style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}4d` }}
               >
                 Integrations & Automation
-              </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6">
-                <span className="text-white">Connect with</span>{" "}
+              </Paragraph>
+              <H1 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="500" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $lg={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+                <Text color="var(--foreground)">Connect with</Text>{" "}
                 <span style={{ color: BRAND_COLOR }}>500+ apps</span>
-              </h1>
-              <p className="text-xl text-neutral-400 max-w-2xl mx-auto mb-8">
+              </H1>
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto" marginBottom={32}>
                 Hanzo Automations connects your AI agents to the tools you use every day. Build powerful workflows without code.
-              </p>
+              </Paragraph>
 
               {/* Search */}
-              <div className="relative max-w-md mx-auto">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500" />
-                <input
+              <Box position="relative" maxWidth="28rem" marginHorizontal="auto">
+                <Box render="span" display="inline-flex" alignItems="center" position="absolute" left={16} top="50%" y="-50%"><Search size={20} color="var(--neutral-500)" /></Box>
+                <Box display="inline-block" minHeight={44}
                   type="text"
                   placeholder="Search integrations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 focus:outline-none focus:border-[#fd4444]/50 transition-colors"
+                  render="input" width="100%" paddingLeft={48} paddingRight={16} paddingVertical={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
                 />
-              </div>
-            </motion.div>
+              </Box>
+            </MotionBox>
 
             {/* Popular Integrations */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-16"
+              marginBottom={64}
             >
-              <h2 className="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-4 text-center">
+              <H2 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em" marginBottom={16} textAlign="center">
                 Popular Integrations
-              </h2>
-              <div className="flex flex-wrap justify-center gap-3">
+              </H2>
+              <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={12}>
                 {popularIntegrations.slice(0, 12).map((integration) => (
-                  <motion.a
+                  <MotionBox
                     key={integration.name}
                     href={`#${integration.name.toLowerCase().replace(/\s+/g, "-")}`}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-colors"
+                    flexDirection="row" display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--neutral-700)" }}
                   >
-                    <span className="text-lg">{integration.icon}</span>
-                    <span className="text-sm text-white">{integration.name}</span>
-                  </motion.a>
+                    <Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{integration.icon}</Text>
+                    <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">{integration.name}</Text>
+                  </MotionBox>
                 ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+              </XStack>
+            </MotionBox>
+          </Box>
+        </Box>
 
         {/* Category Filter */}
-        <section className="py-8 px-4 md:px-8 border-y border-neutral-800 bg-neutral-950 sticky top-16 z-20">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        <Box render="section" paddingVertical={32} paddingHorizontal={16} borderVerticalWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)" position="sticky" top={64} zIndex={20} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <XStack display="flex" gap={8} overflowX="auto" paddingBottom={8} scrollbarWidth="none">
               {categories.map((category) => {
                 const Icon = category.icon;
                 const isActive = activeCategory === category.id;
                 return (
-                  <button
+                  <XStack minHeight={44}
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                      isActive
-                        ? "bg-[#fd4444] text-white"
-                        : "bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800"
-                    }`}
+                    render="button" display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" whiteSpace="nowrap" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={isActive ? "var(--foreground)" : "var(--neutral-900)"} color={isActive ? "var(--foreground)" : "var(--neutral-400)"} hoverStyle={isActive ? undefined : { color: "var(--foreground)", backgroundColor: "var(--neutral-800)" }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon width={16} height={16} />
                     {category.name}
-                  </button>
+                  </XStack>
                 );
               })}
-            </div>
-          </div>
-        </section>
+            </XStack>
+          </Box>
+        </Box>
 
         {/* Integrations Grid */}
-        <section className="py-16 px-4 md:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-medium text-white">
+        <Box render="section" paddingVertical={64} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+            <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={32}>
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="500" color="var(--foreground)">
                 {activeCategory === "all"
                   ? "All Integrations"
                   : categories.find(c => c.id === activeCategory)?.name}
-              </h2>
-              <span className="text-sm text-neutral-500">
+              </H2>
+              <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">
                 {filteredIntegrations.length} integrations
-              </span>
-            </div>
+              </Text>
+            </XStack>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} $sm={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(5, minmax(0, 1fr))" }}>
               {filteredIntegrations.map((integration, index) => (
-                <motion.div
+                <MotionBox
                   key={integration.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.02 }}
-                  className="group p-4 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:border-neutral-700 transition-all cursor-pointer"
+                  
+                  group padding={16} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-card-emphasis)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" cursor="pointer" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-700)" }}
                 >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-3"
+                  <XStack
+                    width={48} height={48} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" marginBottom={12}
                     style={{ backgroundColor: integration.color + "20" }}
                   >
                     {integration.icon}
-                  </div>
-                  <h3 className="text-sm font-medium text-white group-hover:text-[#fd4444] transition-colors">
+                  </XStack>
+                  <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
                     {integration.name}
-                  </h3>
+                  </H3>
                   {integration.popular && (
-                    <span className="text-[10px] text-[#fd4444] font-medium">Popular</span>
+                    <Text fontSize="10px" color="var(--foreground)" fontWeight="500">Popular</Text>
                   )}
-                </motion.div>
+                </MotionBox>
               ))}
-            </div>
+            </Grid>
 
             {filteredIntegrations.length === 0 && (
-              <div className="text-center py-16">
-                <p className="text-neutral-500">No integrations found matching your search.</p>
-              </div>
+              <Box textAlign="center" paddingVertical={64}>
+                <Paragraph color="var(--neutral-500)">No integrations found matching your search.</Paragraph>
+              </Box>
             )}
-          </div>
-        </section>
+          </Box>
+        </Box>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 md:px-8 border-t border-neutral-800">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">
+        <Box render="section" paddingVertical={80} paddingHorizontal={16} borderTopWidth={1} borderColor="var(--neutral-800)" $md={{ paddingHorizontal: 32 }}>
+          <Box maxWidth="56rem" marginHorizontal="auto" textAlign="center">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Don't see your app?
-            </h2>
-            <p className="text-lg text-neutral-400 mb-8">
+            </H2>
+            <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)" marginBottom={32}>
               We add new integrations every week. Request an integration or build your own with our SDK.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                 style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
               >
                 Request Integration
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
               </Link>
-              <a
+              <Anchor
                 href="https://docs.hanzo.ai/automations/sdk"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
               >
                 Build Custom Integration
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </section>
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
+              </Anchor>
+            </YStack>
+          </Box>
+        </Box>
       </main>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

@@ -1,20 +1,21 @@
+import { Box, Grid, H2, H3, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { CheckCircle } from "lucide-react";
 
 const IntegrationCategory = ({ title, items }: { title: string, items: string[] }) => {
   return (
-    <div className="mb-8">
-      <h3 className="text-xl font-semibold mb-4">{title}</h3>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2">
+    <Box marginBottom={32}>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={16}>{title}</H3>
+      <Grid render="ul" display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" columnGap={24} rowGap={8} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
         {items.map((item, index) => (
-          <li key={index} className="flex items-center">
-            <CheckCircle className="h-5 w-5 text-amber-400 mr-2 flex-shrink-0" />
-            <span className="text-neutral-300">{item}</span>
-          </li>
+          <XStack key={index} render="li" display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={20} color="var(--foreground)" /></Box>
+            <Text color="var(--neutral-300)">{item}</Text>
+          </XStack>
         ))}
-      </ul>
-    </div>
+      </Grid>
+    </Box>
   );
 };
 
@@ -39,16 +40,16 @@ const Integrations = () => {
   ];
 
   return (
-    <section className="py-16 bg-[var(--black)]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">Integrations</h2>
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+    <Box render="section" paddingVertical={64} backgroundColor="var(--black)">
+      <Box marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={48}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">Integrations</H2>
+          <Paragraph marginTop={16} color="var(--neutral-400)" maxWidth="42rem" marginHorizontal="auto">
             Connect seamlessly with your existing technology stack and third-party services.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8">
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32}>
           {integrationCategories.map((category, index) => (
             <IntegrationCategory 
               key={index}
@@ -56,9 +57,9 @@ const Integrations = () => {
               items={category.items}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

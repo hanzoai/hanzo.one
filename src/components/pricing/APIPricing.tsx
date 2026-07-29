@@ -1,5 +1,5 @@
+import { Anchor, Box, Button, Grid, H2, H3, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
-import { Button } from "@/components/ui/button";
 
 const APIPricing = () => {
   const hanzoModels = [
@@ -67,29 +67,29 @@ const APIPricing = () => {
   ];
 
   const ModelCard = ({ model, isThirdParty = false }) => (
-    <div className="bg-gray-900/30 rounded-xl p-6 border border-gray-800/50 mb-6">
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex-1">
-          <h3 className="text-2xl font-semibold mb-2">{model.fullName || model.name}</h3>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={24} borderWidth={1} borderColor="var(--border-strong)" marginBottom={24}>
+      <XStack display="flex" justifyContent="space-between" alignItems="flex-start" marginBottom={16}>
+        <Box flex={1}>
+          <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" marginBottom={8}>{model.fullName || model.name}</H3>
           {model.description && (
-            <p className="text-neutral-400 mb-4 text-lg">{model.description}</p>
+            <Paragraph color="var(--neutral-400)" marginBottom={16} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{model.description}</Paragraph>
           )}
           
           {model.features && (
-            <div className="mb-6">
+            <Box marginBottom={24}>
               {model.features.map((feature, index) => (
-                <div key={index} className="flex items-center text-sm text-neutral-400 mb-2">
-                  <span className="w-2 h-2 bg-neutral-400 rounded-full mr-3"></span>
+                <XStack key={index} display="flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={8}>
+                  <Text width={8} height={8} backgroundColor="var(--neutral-400)" borderRadius="var(--radius-full)" marginRight={12}></Text>
                   {feature}
-                </div>
+                </XStack>
               ))}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
         
-        <div className="ml-6">
+        <Box marginLeft={24}>
           <Button 
-            className="bg-[var(--white)] text-black border border-gray-300 hover:bg-transparent hover:text-[var(--white)] hover:border-[var(--white)] transition-all duration-300"
+            backgroundColor="var(--white)" color="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-300)" transition="all 300ms cubic-bezier(.4,0,.2,1)" hoverStyle={{ backgroundColor: "transparent", color: "var(--white)", borderColor: "var(--white)" }}
             onClick={() => {
               // Link to cloud signup or checkout
               window.open('https://cloud.hanzo.ai/signup', '_blank');
@@ -97,110 +97,110 @@ const APIPricing = () => {
           >
             Start Using {model.name}
           </Button>
-        </div>
-      </div>
+        </Box>
+      </XStack>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-black/20 rounded-lg p-4">
+      <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" backgroundColor="rgb(0 0 0 / 0.2)" borderRadius="var(--radius-lg)" padding={16} $md={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
         <div>
-          <span className="text-neutral-500 block mb-1">Input</span>
-          <div className="font-medium text-lg">{model.pricing.input}</div>
+          <Text color="var(--neutral-500)" display="block" marginBottom={4}>Input</Text>
+          <Box fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{model.pricing.input}</Box>
         </div>
         <div>
-          <span className="text-neutral-500 block mb-1">Output</span>
-          <div className="font-medium text-lg">{model.pricing.output}</div>
+          <Text color="var(--neutral-500)" display="block" marginBottom={4}>Output</Text>
+          <Box fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{model.pricing.output}</Box>
         </div>
         <div>
-          <span className="text-neutral-500 block mb-1">Cache Write</span>
-          <div className="font-medium text-lg">{model.pricing.promptCachingWrite}</div>
+          <Text color="var(--neutral-500)" display="block" marginBottom={4}>Cache Write</Text>
+          <Box fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{model.pricing.promptCachingWrite}</Box>
         </div>
         <div>
-          <span className="text-neutral-500 block mb-1">Cache Read</span>
-          <div className="font-medium text-lg">{model.pricing.promptCachingRead}</div>
+          <Text color="var(--neutral-500)" display="block" marginBottom={4}>Cache Read</Text>
+          <Box fontWeight="500" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)">{model.pricing.promptCachingRead}</Box>
         </div>
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 
   const ToolCard = ({ tool }) => (
-    <div className="bg-gray-900/30 rounded-xl p-6 border border-gray-800/50">
-      <h3 className="text-xl font-semibold mb-2">{tool.name}</h3>
-      <p className="text-neutral-400 mb-4">{tool.description}</p>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={24} borderWidth={1} borderColor="var(--border-strong)">
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8}>{tool.name}</H3>
+      <Paragraph color="var(--neutral-400)" marginBottom={16}>{tool.description}</Paragraph>
       
       {tool.details && (
-        <div className="flex items-center text-sm text-neutral-400 mb-3">
-          <span className="w-2 h-2 bg-neutral-400 rounded-full mr-2"></span>
+        <XStack display="flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={12}>
+          <Text width={8} height={8} backgroundColor="var(--neutral-400)" borderRadius="var(--radius-full)" marginRight={8}></Text>
           {tool.details}
-        </div>
+        </XStack>
       )}
 
-      <div className="text-right">
-        <span className="text-neutral-500">Cost</span>
-        <div className="font-medium">{tool.cost}</div>
-      </div>
-    </div>
+      <Box textAlign="right">
+        <Text color="var(--neutral-500)">Cost</Text>
+        <Box fontWeight="500">{tool.cost}</Box>
+      </Box>
+    </Box>
   );
 
   return (
-    <div className="max-w-7xl mx-auto mb-16">
+    <Box maxWidth="var(--container-max)" marginHorizontal="auto" marginBottom={64}>
       {/* Hanzo Models Section */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold mb-4">Hanzo Foundational Models</h2>
-        <p className="text-neutral-400 text-lg mb-8">Our flagship AI models built from the ground up for next-generation applications</p>
-        <div className="space-y-6 mb-8">
+      <Box marginBottom={64}>
+        <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Hanzo Foundational Models</H2>
+        <Paragraph color="var(--neutral-400)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={32}>Our flagship AI models built from the ground up for next-generation applications</Paragraph>
+        <Box rowGap={24} marginBottom={32}>
           {hanzoModels.map((model) => (
             <ModelCard key={model.name} model={model} />
           ))}
-        </div>
+        </Box>
         
-        <div className="text-sm text-neutral-500 mb-6">
-          *Learn more about <a href="#" className="text-blue-400 hover:underline">batch processing</a>
-        </div>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginBottom={24}>
+          *Learn more about <Anchor tap href="#" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>batch processing</Anchor>
+        </Box>
         
-        <div className="text-sm text-neutral-500 mb-6">
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginBottom={24}>
           Customers can purchase prioritized API capacity with Priority Tier
-        </div>
+        </Box>
         
-        <div className="text-sm text-neutral-500 mb-8">
-          Prompt caching pricing is for our standard 5-minute TTL; <a href="#" className="text-blue-400 hover:underline">extended prompt caching</a> is available at an additional cost
-        </div>
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginBottom={32}>
+          Prompt caching pricing is for our standard 5-minute TTL; <Anchor tap href="#" color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}>extended prompt caching</Anchor> is available at an additional cost
+        </Box>
 
-        <div className="flex justify-center">
-          <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3">
+        <XStack display="flex" justifyContent="center">
+          <Button size="lg" backgroundColor="var(--foreground)" color="var(--pure-black)" paddingHorizontal={32} paddingVertical={12} hoverStyle={{ backgroundColor: "var(--neutral-100)" }}>
             Start building
           </Button>
-        </div>
-      </div>
+        </XStack>
+      </Box>
 
       {/* Tools Section */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8">Explore pricing for tools</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <Box marginBottom={64}>
+        <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32}>Explore pricing for tools</H2>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {tools.map((tool) => (
             <ToolCard key={tool.name} tool={tool} />
           ))}
-        </div>
+        </Grid>
         
-        <div className="text-sm text-neutral-500 mb-8">
+        <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)" marginBottom={32}>
           *Does not include input and output tokens required to process requests
-        </div>
+        </Box>
 
-        <div className="flex justify-center">
-          <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3">
+        <XStack display="flex" justifyContent="center">
+          <Button size="lg" backgroundColor="var(--foreground)" color="var(--pure-black)" paddingHorizontal={32} paddingVertical={12} hoverStyle={{ backgroundColor: "var(--neutral-100)" }}>
             Start building
           </Button>
-        </div>
-      </div>
+        </XStack>
+      </Box>
 
       {/* Third-party Models Section */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8">Explore third-party models</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Box marginBottom={64}>
+        <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32}>Explore third-party models</H2>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {thirdPartyModels.map((model) => (
             <ModelCard key={model.name} model={model} isThirdParty={true} />
           ))}
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

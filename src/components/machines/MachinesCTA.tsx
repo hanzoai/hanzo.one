@@ -1,29 +1,29 @@
+import { Box, Button, H2, Paragraph, YStack } from '@/gui'
 
 import React from 'react';
-import { Button } from "@/components/ui/button";
 
 const MachinesCTA = () => {
   return (
-    <section className="py-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 rounded-2xl p-8 md:p-12 border border-green-500/30">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">Power Your AI Workloads</h2>
-            <p className="text-xl text-neutral-300 mb-8 max-w-3xl mx-auto">
+    <Box render="section" paddingVertical={80}>
+      <Box maxWidth="64rem" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box borderRadius="var(--radius-2xl)" padding={32} borderWidth={1} borderColor="var(--border-strong)" backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))" $md={{ padding: 48 }}>
+          <Box textAlign="center">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16}>Power Your AI Workloads</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32} maxWidth="var(--container-prose)" marginHorizontal="auto">
               Get started with Hanzo Machines today and experience high-performance AI infrastructure.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-green-600 hover:bg-green-700 text-[var(--white)] px-8 py-6 text-lg">
+            </Paragraph>
+            <YStack display="flex" flexDirection="column" gap={16} justifyContent="center" $sm={{ flexDirection: "row" }}>
+              <Button backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Sign Up Free
               </Button>
-              <Button variant="outline" className="border-green-500/30 text-[var(--white)] hover:bg-green-900/20 px-8 py-6 text-lg">
+              <Button variant="outline" borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.2)" }}>
                 Contact Sales
               </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </YStack>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,12 +1,7 @@
-
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Box, H2, MotionBox } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 
 const FAQ = () => {
   const faqs = [
@@ -41,45 +36,45 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          className="text-center mb-12"
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <MotionBox
+          textAlign="center" marginBottom={48}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[var(--white)]">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} color="var(--white)" $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Common Questions
-          </h2>
-        </motion.div>
+          </H2>
+        </MotionBox>
         
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible rowGap={16}>
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-gray-800 rounded-lg overflow-hidden bg-gray-900/50"
+                borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" overflow="hidden" backgroundColor="var(--surface-card-emphasis)"
               >
-                <AccordionTrigger className="px-6 py-4 text-left text-lg font-medium text-[var(--white)] hover:no-underline">
+                <AccordionTrigger paddingHorizontal={24} paddingVertical={16} textAlign="left" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" color="var(--white)" hoverStyle={{ textDecorationLine: "none" }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-neutral-300">
+                <AccordionContent paddingHorizontal={24} paddingBottom={16} color="var(--neutral-300)">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
-      </div>
-    </section>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

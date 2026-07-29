@@ -1,3 +1,4 @@
+import { YStack } from '@/gui'
 
 import React, { useState, useRef, useEffect } from "react";
 import ChatHeader from "./ChatHeader";
@@ -64,7 +65,7 @@ const ChatInterface: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-gray-900/90 border border-gray-800 rounded-xl shadow-lg backdrop-blur-lg overflow-hidden flex flex-col h-[600px] my-10">
+    <YStack maxWidth="56rem" marginHorizontal="auto" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" backdropFilter="blur(16px)" WebkitBackdropFilter="blur(16px)" overflow="hidden" display="flex" flexDirection="column" height="600px" marginVertical={40}>
       <ChatHeader />
       
       <ChatMessages 
@@ -80,7 +81,7 @@ const ChatInterface: React.FC = () => {
         handleSendMessage={handleSendMessage} 
         isTyping={isTyping}
       />
-    </div>
+    </YStack>
   );
 };
 

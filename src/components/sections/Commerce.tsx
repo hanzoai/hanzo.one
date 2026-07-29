@@ -1,10 +1,10 @@
+import { Box, Button, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 import { motion } from "framer-motion";
 import { ShoppingCart, CreditCard, DollarSign, BarChart } from "lucide-react";
-import { Button } from "@/components/ui/button";
 const Commerce = () => {
-  return <section className="py-20 bg-gradient-to-b from-black to-gray-900 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{
+  return <Box render="section" paddingVertical={80} backgroundColor="var(--black)" backgroundImage="linear-gradient(to bottom, var(--pure-black), var(--neutral-900))">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <MotionBox initial={{
         opacity: 0,
         y: 20
       }} whileInView={{
@@ -12,19 +12,19 @@ const Commerce = () => {
         y: 0
       }} viewport={{
         once: true
-      }} className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-[var(--white)]/10 px-4 py-1 rounded-full mb-6">
-            <ShoppingCart className="h-4 w-4 text-[var(--white)]" />
-            <span className="text-sm text-[var(--white)]">E-commerce Platform</span>
-          </div>
-          <h2 className="text-4xl font-display text-[var(--white)] mb-4">Complete Commerce Stack</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+      }} textAlign="center" marginBottom={64}>
+          <XStack display="inline-flex" alignItems="center" columnGap={8} backgroundColor="rgb(255 255 255 / 0.1)" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" marginBottom={24}>
+            <ShoppingCart size={16} color="var(--white)" />
+            <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--white)">E-commerce Platform</Text>
+          </XStack>
+          <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontFamily="var(--font-display)" color="var(--white)" marginBottom={16}>Complete Commerce Stack</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Everything you need to build and scale your e-commerce business.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <motion.div initial={{
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -32,20 +32,20 @@ const Commerce = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="bg-gradient-to-br from-white/5 to-transparent p-8 rounded-xl ring-1 ring-white/10">
-            <h3 className="text-2xl font-semibold text-[var(--white)] mb-6">One-Line Integration</h3>
-            <div className="bg-[var(--black)]/50 p-6 rounded-lg mb-6">
-              <pre className="text-sm text-neutral-300">
+        }} padding={32} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.05), transparent)">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginBottom={24}>One-Line Integration</H3>
+            <Box backgroundColor="rgb(0 0 0 / 0.5)" padding={24} borderRadius="var(--radius-lg)" marginBottom={24}>
+              <Box render="pre" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
                 <code>{`import { createStore } from '@hanzo/commerce';
 
 // Complete store in one line
 const store = createStore();`}</code>
-              </pre>
-            </div>
-            <p className="text-neutral-300">Launch your store with just one line of code. Includes products, cart, checkout, and more.</p>
-          </motion.div>
+              </Box>
+            </Box>
+            <Paragraph color="var(--neutral-300)">Launch your store with just one line of code. Includes products, cart, checkout, and more.</Paragraph>
+          </MotionBox>
 
-          <motion.div initial={{
+          <MotionBox initial={{
           opacity: 0,
           y: 20
         }} whileInView={{
@@ -53,36 +53,36 @@ const store = createStore();`}</code>
           y: 0
         }} viewport={{
           once: true
-        }} className="grid grid-cols-2 gap-4">
-            <div className="p-6 bg-gradient-to-br from-white/5 to-transparent rounded-xl ring-1 ring-white/10">
-              <CreditCard className="h-8 w-8 text-[var(--white)] mb-4" />
-              <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Payments</h4>
-              <p className="text-neutral-300">Global payment processing with 100+ methods</p>
-            </div>
-            <div className="p-6 bg-gradient-to-br from-white/5 to-transparent rounded-xl ring-1 ring-white/10">
-              <ShoppingCart className="h-8 w-8 text-[var(--white)] mb-4" />
-              <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Store</h4>
-              <p className="text-neutral-300">Product management and inventory tracking</p>
-            </div>
-            <div className="p-6 bg-gradient-to-br from-white/5 to-transparent rounded-xl ring-1 ring-white/10">
-              <DollarSign className="h-8 w-8 text-[var(--white)] mb-4" />
-              <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Pricing</h4>
-              <p className="text-neutral-300">Flexible pricing and subscription management</p>
-            </div>
-            <div className="p-6 bg-gradient-to-br from-white/5 to-transparent rounded-xl ring-1 ring-white/10">
-              <BarChart className="h-8 w-8 text-[var(--white)] mb-4" />
-              <h4 className="text-lg font-semibold text-[var(--white)] mb-2">Analytics</h4>
-              <p className="text-neutral-300">Real-time sales and customer insights</p>
-            </div>
-          </motion.div>
-        </div>
+        }} display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16}>
+            <Box padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.05), transparent)">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><CreditCard size={32} color="var(--white)" /></Box>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Payments</H4>
+              <Paragraph color="var(--neutral-300)">Global payment processing with 100+ methods</Paragraph>
+            </Box>
+            <Box padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.05), transparent)">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><ShoppingCart size={32} color="var(--white)" /></Box>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Store</H4>
+              <Paragraph color="var(--neutral-300)">Product management and inventory tracking</Paragraph>
+            </Box>
+            <Box padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.05), transparent)">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><DollarSign size={32} color="var(--white)" /></Box>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Pricing</H4>
+              <Paragraph color="var(--neutral-300)">Flexible pricing and subscription management</Paragraph>
+            </Box>
+            <Box padding={24} borderRadius="var(--radius-xl)" outlineWidth={1} outlineColor="rgb(255 255 255 / 0.1)" outlineStyle="solid" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.05), transparent)">
+              <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><BarChart size={32} color="var(--white)" /></Box>
+              <H4 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--white)" marginBottom={8}>Analytics</H4>
+              <Paragraph color="var(--neutral-300)">Real-time sales and customer insights</Paragraph>
+            </Box>
+          </MotionBox>
+        </Grid>
 
-        <div className="text-center">
-          <Button className="bg-[var(--white)]/5 hover:bg-[var(--white)]/10 text-[var(--white)] px-8 py-6 text-lg rounded-xl border border-white/10 hover:border-white/20">
+        <Box textAlign="center">
+          <Button backgroundColor="rgb(255 255 255 / 0.05)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)", borderColor: "rgb(255 255 255 / 0.2)" }}>
             Start Building with Commerce
           </Button>
-        </div>
-      </div>
-    </section>;
+        </Box>
+      </Box>
+    </Box>;
 };
 export default Commerce;

@@ -1,126 +1,126 @@
+import { Anchor, Box, Button, H2, H3, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Code, BookOpen, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const CallToAction = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-950 relative overflow-hidden">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, var(--pure-black), var(--neutral-950))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-2/3 h-1/2 bg-purple-900/5 rounded-full blur-3xl transform -translate-x-1/4 -translate-y-1/4"></div>
-        <div className="absolute bottom-0 right-0 w-full h-1/2 bg-blue-900/5 rounded-full blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
-      </div>
+      <Box position="absolute" top={0} left={0} width="100%" height="100%" overflow="hidden" pointerEvents="none">
+        <Box position="absolute" top={0} left={0} width="66.666667%" height="50%" backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)" x="-25%" y="-25%"></Box>
+        <Box position="absolute" bottom={0} right={0} width="100%" height="50%" backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)" x="25%" y="25%"></Box>
+      </Box>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <YStack display="flex" flexDirection="column" alignItems="center" textAlign="center" maxWidth="56rem" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-[var(--white)] mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
               Start Building the Future of AI
-            </h2>
-            <p className="text-xl text-neutral-300 mb-8">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
               Join thousands of developers and companies who are building intelligent, 
               scalable applications with Hanzo's AI Engineering Platform
-            </p>
-          </motion.div>
+            </Paragraph>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4"
+            display="flex" flexDirection="column" gap={16} $sm={{ flexDirection: "row" }}
           >
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
+            <Button size="lg" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
               Get Started Free
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
             </Button>
-            <Button size="lg" variant="outline" className="text-[var(--white)]">
+            <Button size="lg" variant="outline" color="var(--white)">
               Schedule a Demo
             </Button>
-          </motion.div>
-        </div>
+          </MotionBox>
+        </YStack>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
         >
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/40 transition-colors">
-            <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-6">
-              <BookOpen className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-3">Documentation</h3>
-            <p className="text-neutral-400 mb-6">
+          <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+            <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={24}>
+              <BookOpen size={24} color="var(--foreground)" />
+            </XStack>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={12}>Documentation</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Comprehensive guides, tutorials, and API references to help you build with Hanzo AI.
-            </p>
-            <a href="#" className="flex items-center text-purple-400 hover:text-purple-300 group">
+            </Paragraph>
+            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Explore Docs
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
+            </Anchor>
+          </Box>
 
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/40 transition-colors">
-            <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-6">
-              <Code className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-3">Quickstart</h3>
-            <p className="text-neutral-400 mb-6">
+          <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+            <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={24}>
+              <Code size={24} color="var(--foreground)" />
+            </XStack>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={12}>Quickstart</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Get up and running quickly with our step-by-step quickstart guides and example projects.
-            </p>
-            <a href="#" className="flex items-center text-purple-400 hover:text-purple-300 group">
+            </Paragraph>
+            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Try Quickstart
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
+            </Anchor>
+          </Box>
 
-          <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-8 hover:bg-gray-900/40 transition-colors">
-            <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-6">
-              <MessageCircle className="h-6 w-6 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-[var(--white)] mb-3">Community</h3>
-            <p className="text-neutral-400 mb-6">
+          <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={32} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}>
+            <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={24}>
+              <MessageCircle size={24} color="var(--foreground)" />
+            </XStack>
+            <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={12}>Community</H3>
+            <Paragraph color="var(--neutral-400)" marginBottom={24}>
               Join our growing community of AI engineers, get support, and share your experiences.
-            </p>
-            <a href="#" className="flex items-center text-purple-400 hover:text-purple-300 group">
+            </Paragraph>
+            <Anchor href="#" group display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}>
               Join Community
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </motion.div>
+              <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
+            </Anchor>
+          </Box>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 border border-gray-800 rounded-xl p-6 bg-gradient-to-r from-purple-900/10 to-blue-900/10"
+          marginTop={80} borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-6 md:mb-0">
-              <h3 className="text-2xl font-bold text-[var(--white)] mb-2">Ready to get started?</h3>
-              <p className="text-neutral-300">Sign up for free and start building with Hanzo AI today.</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
+          <YStack display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" $md={{ flexDirection: "row" }}>
+            <Box marginBottom={24} $md={{ marginBottom: 0 }}>
+              <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={8}>Ready to get started?</H3>
+              <Paragraph color="var(--neutral-300)">Sign up for free and start building with Hanzo AI today.</Paragraph>
+            </Box>
+            <YStack display="flex" flexDirection="column" gap={16} $sm={{ flexDirection: "row" }}>
+              <Button size="lg" backgroundColor="var(--neutral-600)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
                 Create Free Account
               </Button>
-              <Button size="lg" variant="outline" className="text-[var(--white)]">
+              <Button size="lg" variant="outline" color="var(--white)">
                 Contact Sales
               </Button>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            </YStack>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

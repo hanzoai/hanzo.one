@@ -1,21 +1,20 @@
+import { Anchor, Box, Button, ChromeText, Grid, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 import { ArrowRight, LineChart } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-[var(--black)] z-0" />
+    <XStack render="section" position="relative" minHeight="100vh" display="flex" alignItems="center" justifyContent="center" paddingHorizontal={16} paddingVertical={128} overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundColor="var(--black)" zIndex={0} />
       
       {/* Animated dots/points background */}
-      <div className="absolute inset-0 overflow-hidden opacity-30">
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" opacity={0.3}>
         {Array(20).fill(0).map((_, i) => (
-          <motion.div
+          <MotionBox
             key={i}
-            className="absolute h-1 w-1 rounded-full bg-purple-500"
+            position="absolute" height={4} width={4} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -31,70 +30,70 @@ const HeroSection = () => {
             }}
           />
         ))}
-      </div>
+      </Box>
       
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.div
+      <Box position="relative" zIndex={10} maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8 text-center"
+          marginBottom={32} textAlign="center"
         >
-          <div className="inline-block px-4 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
+          <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
             AI-Powered Analytics for Next-Generation Growth
-          </div>
-          <ChromeText as="h1" className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          </Box>
+          <ChromeText as="h1" fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" letterSpacing="var(--tracking-tight)" marginBottom={24} $md={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
             Hanzo Analytics
           </ChromeText>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Precise, real-time insights into user behavior, product performance, and business outcomes, 
             enabling you to optimize faster, smarter, and at scale.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+          display="flex" flexDirection="column" gap={16} justifyContent="center" marginTop={40} $sm={{ flexDirection: "row" }}
         >
-          <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-600 hover:to-purple-400 border-none">
+          <Button size="lg" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32} borderStyle="none" backgroundImage="linear-gradient(to right, var(--neutral-700), var(--neutral-500))" hoverStyle={{ backgroundImage: "linear-gradient(to right, var(--neutral-600), var(--foreground))" }}>
             <a href="#start-free-trial">Start Free Trial</a>
           </Button>
-          <Button size="lg" variant="outline" className="text-lg px-8">
-            <a href="#request-demo" className="flex items-center">
-              Request Demo <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+          <Button size="lg" variant="outline" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" paddingHorizontal={32}>
+            <Anchor href="#request-demo" display="flex" alignItems="center">
+              Request Demo <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+            </Anchor>
           </Button>
-        </motion.div>
+        </MotionBox>
         
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 max-w-5xl mx-auto relative"
+          marginTop={64} maxWidth="64rem" marginHorizontal="auto" position="relative"
         >
-          <div className="bg-gradient-to-br from-gray-900 to-black p-4 rounded-xl border border-gray-800 shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
-              <div className="flex items-center">
-                <LineChart className="h-5 w-5 text-purple-400 mr-2" />
-                <span className="text-[var(--white)] font-medium">Hanzo Analytics Dashboard</span>
-              </div>
-              <div className="flex space-x-1">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="col-span-2 bg-gray-800/50 rounded-lg p-4 h-64">
+          <Box padding={16} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))">
+            <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16} borderBottomWidth={1} borderColor="var(--neutral-800)" paddingBottom={8}>
+              <XStack display="flex" alignItems="center">
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><LineChart size={20} color="var(--foreground)" /></Box>
+                <Text color="var(--white)" fontWeight="500">Hanzo Analytics Dashboard</Text>
+              </XStack>
+              <XStack display="flex" columnGap={4}>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+              </XStack>
+            </XStack>
+            <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16}>
+              <Box gridColumn="span 2 / span 2" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} height={256}>
                 {/* Animated chart lines */}
-                <div className="h-full w-full relative">
-                  <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gray-700"></div>
-                  <div className="absolute left-0 top-0 h-full w-[1px] bg-gray-700"></div>
+                <Box height="100%" width="100%" position="relative">
+                  <Box position="absolute" bottom={0} left={0} width="100%" height="1px" backgroundColor="var(--neutral-700)"></Box>
+                  <Box position="absolute" left={0} top={0} height="100%" width="1px" backgroundColor="var(--neutral-700)"></Box>
                   
                   {/* Chart line */}
-                  <svg className="h-full w-full" viewBox="0 0 100 50">
+                  <Box display="inline-block" render="svg" height="100%" width="100%" viewBox="0 0 100 50">
                     <motion.path
                       d="M0,50 L10,40 L20,45 L30,35 L40,38 L50,25 L60,30 L70,20 L80,15 L90,10 L100,5"
                       fill="none"
@@ -113,52 +112,52 @@ const HeroSection = () => {
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 2, delay: 0.8 }}
                     />
-                  </svg>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-gray-800/50 rounded-lg p-4 h-[30%]">
-                  <div className="text-sm text-neutral-400">Users</div>
-                  <motion.div 
-                    className="text-2xl font-bold text-[var(--white)] mt-1"
+                  </Box>
+                </Box>
+              </Box>
+              <Box rowGap={16}>
+                <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} height="30%">
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Users</Box>
+                  <MotionBox 
+                    fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginTop={4}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
                   >
                     127,543
-                  </motion.div>
-                  <div className="text-green-400 text-xs mt-1">+12.4% vs last week</div>
-                </div>
-                <div className="bg-gray-800/50 rounded-lg p-4 h-[30%]">
-                  <div className="text-sm text-neutral-400">Conversion Rate</div>
-                  <motion.div 
-                    className="text-2xl font-bold text-[var(--white)] mt-1"
+                  </MotionBox>
+                  <Box color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginTop={4}>+12.4% vs last week</Box>
+                </Box>
+                <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} height="30%">
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Conversion Rate</Box>
+                  <MotionBox 
+                    fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginTop={4}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                   >
                     4.87%
-                  </motion.div>
-                  <div className="text-green-400 text-xs mt-1">+0.8% vs last week</div>
-                </div>
-                <div className="bg-gray-800/50 rounded-lg p-4 h-[30%]">
-                  <div className="text-sm text-neutral-400">Revenue</div>
-                  <motion.div 
-                    className="text-2xl font-bold text-[var(--white)] mt-1"
+                  </MotionBox>
+                  <Box color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginTop={4}>+0.8% vs last week</Box>
+                </Box>
+                <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" padding={16} height="30%">
+                  <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Revenue</Box>
+                  <MotionBox 
+                    fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginTop={4}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.4 }}
                   >
                     $45,892
-                  </motion.div>
-                  <div className="text-green-400 text-xs mt-1">+15.2% vs last week</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+                  </MotionBox>
+                  <Box color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" marginTop={4}>+15.2% vs last week</Box>
+                </Box>
+              </Box>
+            </Grid>
+          </Box>
+        </MotionBox>
+      </Box>
+    </XStack>
   );
 };
 

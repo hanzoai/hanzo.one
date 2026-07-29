@@ -1,3 +1,4 @@
+import { Box, Button, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,10 +13,9 @@ import {
   CheckSquare,
   Square,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
-const BRAND_COLOR = "#fd4444";
+
+const BRAND_COLOR = "var(--foreground)";
 
 // Quick action presets
 const chatPresets = [
@@ -42,169 +42,169 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden">
+    <YStack render="section" position="relative" minHeight="85vh" display="flex" flexDirection="column" alignItems="center" justifyContent="center" overflow="hidden">
       {/* Subtle background gradient */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#fd4444]/5 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-neutral-800/30 rounded-full blur-[100px]"></div>
-      </div>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} pointerEvents="none">
+        <Box position="absolute" top="33.333333%" left="25%" width="600px" height="600px" backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(120px)"></Box>
+        <Box position="absolute" bottom="33.333333%" right="25%" width="400px" height="400px" backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" filter="blur(100px)"></Box>
+      </Box>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto">
+      <Box marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }}>
+        <Box maxWidth="var(--container-prose)" marginHorizontal="auto">
           {/* Main headline */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-8"
+            textAlign="center" marginBottom={32}
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
+            <H1 fontSize="var(--text-5xl)" lineHeight="var(--leading-5xl)" fontWeight="700" color="var(--foreground)" marginBottom={16} letterSpacing="var(--tracking-tight)" $md={{ fontSize: "var(--text-7xl)", lineHeight: "var(--leading-7xl)" }}>
               Meet your
               <br />
               <span style={{ color: BRAND_COLOR }}>thinking partner.</span>
-            </h1>
-          </motion.div>
+            </H1>
+          </MotionBox>
 
           {/* Subtitle */}
-          <motion.p
+          <MotionText
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl text-neutral-400 text-center mb-10 max-w-xl mx-auto"
+            fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)" textAlign="center" marginBottom={40} maxWidth="36rem" marginHorizontal="auto"
           >
             Tackle any big, bold, bewildering challenge with Hanzo AI.
-          </motion.p>
+          </MotionText>
 
           {/* Chat input */}
-          <motion.form
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleChatSubmit}
-            className="mb-6"
+            marginBottom={24}
           >
-            <div className="relative flex items-center">
-              <input
+            <XStack position="relative" display="flex" alignItems="center">
+              <Box display="inline-block" minHeight={44}
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="How can I help you today?"
-                className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-5 py-4 pr-36 text-base text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
+                render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-xl)" paddingHorizontal={20} paddingVertical={16} paddingRight={144} fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
               />
               <Button
                 type="submit"
-                className="absolute right-2 px-5 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+                position="absolute" right={8} paddingHorizontal={20} paddingVertical={8} borderRadius="var(--radius-lg)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" display="flex" alignItems="center" gap={8}
                 style={{ backgroundColor: BRAND_COLOR }}
               >
                 Ask Hanzo
-                <ArrowUp className="w-4 h-4" />
+                <ArrowUp size={16} />
               </Button>
-            </div>
-          </motion.form>
+            </XStack>
+          </MotionBox>
 
           {/* Quick action buttons */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center gap-3"
+            flexDirection="row" display="flex" justifyContent="center" gap={12}
           >
             {chatPresets.map((preset) => {
               const Icon = preset.icon;
               return (
-                <button
+                <XStack minHeight={44}
                   key={preset.label}
                   onClick={() => handlePresetClick(preset.label)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 text-sm font-medium hover:bg-neutral-800 hover:text-white transition-colors"
+                  render="button" display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)", color: "var(--foreground)" }}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon width={16} height={16} />
                   {preset.label}
-                </button>
+                </XStack>
               );
             })}
-          </motion.div>
-        </div>
-      </div>
+          </MotionBox>
+        </Box>
+      </Box>
 
       {/* macOS Download Promo - Bottom right popup */}
       <AnimatePresence>
         {showMacOSPromo && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, delay: 1 }}
-            className="fixed bottom-6 right-6 z-50 max-w-sm"
+            position="fixed" bottom={24} right={24} zIndex={50} maxWidth="24rem"
           >
-            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 shadow-2xl">
+            <Box backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" padding={20} boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
               {/* Header with close button */}
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2 text-neutral-500 text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-500"></span>
+              <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={12}>
+                <XStack display="flex" alignItems="center" gap={8} color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">
+                  <Text width={6} height={6} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Text>
                   Preview
-                </div>
-                <button
+                </XStack>
+                <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
                   onClick={() => setShowMacOSPromo(false)}
-                  className="text-neutral-500 hover:text-white transition-colors"
+                  render="button" color="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
+                  <X size={16} />
+                </Box>
+              </XStack>
 
-              <div className="flex gap-4">
+              <XStack display="flex" gap={16}>
                 {/* Text content */}
-                <div className="flex-1">
-                  <h3 className="text-white font-semibold text-lg mb-2">
+                <Box flex={1}>
+                  <H3 color="var(--foreground)" fontWeight="600" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={8}>
                     Some tasks just work better on macOS
-                  </h3>
-                  <p className="text-neutral-400 text-sm mb-4">
+                  </H3>
+                  <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>
                     With Hanzo Dev, AI can now work directly with your local files and tools. Available in the macOS app.
-                  </p>
+                  </Paragraph>
 
                   {/* Action buttons */}
-                  <div className="flex gap-2">
-                    <Link to="/download">
+                  <XStack display="flex" gap={8}>
+                    <Link tap to="/download">
                       <Button
                         size="sm"
                         variant="outline"
-                        className="text-white border-neutral-700 hover:bg-neutral-800"
+                        color="var(--foreground)" borderColor="var(--neutral-700)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                       >
                         Download
                       </Button>
                     </Link>
-                    <Link to="/dev">
+                    <Link tap to="/dev">
                       <Button
                         size="sm"
-                        className="text-white"
+                        color="var(--foreground)"
                         style={{ backgroundColor: BRAND_COLOR }}
                       >
                         Learn more
                       </Button>
                     </Link>
-                  </div>
-                </div>
+                  </XStack>
+                </Box>
 
                 {/* Visual - Checklist illustration */}
-                <div className="w-24 h-24 bg-[#fd4444]/10 rounded-xl flex flex-col items-start justify-center p-3 shrink-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <CheckSquare className="w-4 h-4 text-[#fd4444]" />
-                    <div className="w-10 h-1.5 bg-neutral-700 rounded"></div>
-                  </div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Square className="w-4 h-4 text-neutral-600" />
-                    <div className="w-8 h-1.5 bg-neutral-700 rounded"></div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Square className="w-4 h-4 text-neutral-600" />
-                    <div className="w-6 h-1.5 bg-neutral-700 rounded"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+                <YStack width={96} height={96} backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-xl)" display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center" padding={12} flexShrink={0}>
+                  <XStack display="flex" alignItems="center" gap={8} marginBottom={8}>
+                    <CheckSquare size={16} color="var(--foreground)" />
+                    <Box width={40} height={6} backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                  </XStack>
+                  <XStack display="flex" alignItems="center" gap={8} marginBottom={8}>
+                    <Square size={16} color="var(--neutral-600)" />
+                    <Box width={32} height={6} backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                  </XStack>
+                  <XStack display="flex" alignItems="center" gap={8}>
+                    <Square size={16} color="var(--neutral-600)" />
+                    <Box width={24} height={6} backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                  </XStack>
+                </YStack>
+              </XStack>
+            </Box>
+          </MotionBox>
         )}
       </AnimatePresence>
-    </section>
+    </YStack>
   );
 };
 

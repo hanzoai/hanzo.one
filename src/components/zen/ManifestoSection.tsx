@@ -1,3 +1,4 @@
+import { Box } from '@/gui'
 
 import React from "react";
 import SectionHeader from "./SectionHeader";
@@ -7,16 +8,16 @@ import { manifestoDescription } from "./data/manifestoText";
 
 const ManifestoSection = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black/50 to-purple-900/10">
-      <div className="max-w-7xl mx-auto">
+    <Box render="section" paddingVertical={64} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(0 0 0 / 0.5), rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
         <SectionHeader 
           title="Our Manifesto" 
           description={manifestoDescription}
         />
         
         <ZenPrinciplesList principles={principles} groupByDiscipline={true} />
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

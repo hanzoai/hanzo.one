@@ -1,3 +1,4 @@
+import { Box, Grid, H2, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,47 +6,47 @@ import { Twitter } from "lucide-react";
 
 const HanzoCodeTestimonials = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
-          className="text-center mb-16"
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--neutral-900), var(--pure-black))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox 
+          textAlign="center" marginBottom={64}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={16} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Loved by world-class devs
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Engineers all around the world reach for Hanzo Code by choice.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <Grid display="grid" gap={24} marginBottom={64} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {/* Just showing one testimonial for example, but you can replicate this */}
-          <motion.div 
-            className="bg-gray-800/30 border border-gray-700/50 rounded-lg p-6 hover:bg-gray-800/50 transition-colors"
+          <MotionBox 
+            backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" padding={24} hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gray-700"></div>
+            <XStack display="flex" alignItems="flex-start" gap={16} marginBottom={16}>
+              <Box width={48} height={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-700)"></Box>
               <div>
-                <div className="font-medium">Sarah Chen</div>
-                <div className="text-neutral-400 flex items-center">
-                  <Twitter className="h-3.5 w-3.5 mr-1 text-blue-400" />
+                <Box fontWeight="500">Sarah Chen</Box>
+                <XStack color="var(--neutral-400)" display="flex" alignItems="center">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Twitter size={14} color="var(--foreground)" /></Box>
                   @sarahcodes
-                </div>
+                </XStack>
               </div>
-            </div>
-            <p className="text-neutral-300">Hanzo Code has completely changed how I approach coding. The AI suggestions are spot-on and save me hours every day.</p>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            </XStack>
+            <Paragraph color="var(--neutral-300)">Hanzo Code has completely changed how I approach coding. The AI suggestions are spot-on and save me hours every day.</Paragraph>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

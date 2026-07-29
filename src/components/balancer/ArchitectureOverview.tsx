@@ -1,68 +1,69 @@
+import { Anchor, Box, H2, H3, MotionBox, Paragraph, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 const ArchitectureOverview = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Hanzo Balancer Architecture Overview</h2>
-          <p className="text-xl text-neutral-300 max-w-4xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Hanzo Balancer Architecture Overview</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="56rem" marginHorizontal="auto">
             Unlike a traditional reverse proxy, which requires manual configuration, Hanzo Balancer uses service 
             discovery to dynamically configure routing. Hanzo Balancer supports all major protocols, leveraging a rich set 
             of middleware for load balancing, rate-limiting, circuit-breakers, mirroring, authentication, and more.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-          <motion.div
+        <YStack display="flex" flexDirection="column" alignItems="center" gap={48} marginBottom={64} $md={{ flexDirection: "row" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="w-full md:w-1/2"
+            width="100%" $md={{ width: "50%" }}
           >
-            <div className="bg-gray-800/30 border border-gray-700 rounded-lg p-4 aspect-video flex items-center justify-center">
-              <p className="text-xl text-neutral-400">Hanzo Balancer Architecture Diagram</p>
+            <XStack backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" padding={16} aspectRatio={1.7777777777777777} display="flex" alignItems="center" justifyContent="center">
+              <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)">Hanzo Balancer Architecture Diagram</Paragraph>
               {/* Replace with actual diagram image when available */}
-            </div>
-          </motion.div>
+            </XStack>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="w-full md:w-1/2"
+            width="100%" $md={{ width: "50%" }}
           >
-            <p className="text-neutral-300 mb-6">
+            <Paragraph color="var(--neutral-300)" marginBottom={24}>
               Hanzo Balancer also supports SSL termination and works with ACME providers (like Let's Encrypt) 
               for automatic certificate generation. Hanzo Balancer's extensive features and capabilities make it 
               the comprehensive gateway to all your applications.
-            </p>
-            <div className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-500/20 rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-3">Maximize Uptime, Solve Issues Quickly</h3>
-              <p className="text-neutral-300 mb-4">
+            </Paragraph>
+            <Box borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={24} backgroundImage="linear-gradient(to right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={12}>Maximize Uptime, Solve Issues Quickly</H3>
+              <Paragraph color="var(--neutral-300)" marginBottom={16}>
                 Need support with Hanzo Balancer? Our team of experts is here to help 24/7/365!
-              </p>
-              <a 
+              </Paragraph>
+              <Anchor tap 
                 href="#support" 
-                className="inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-md font-medium transition-colors"
+                display="inline-block" paddingHorizontal={16} paddingVertical={8} backgroundColor="var(--neutral-600)" borderRadius="var(--radius-md)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
               >
                 REQUEST COMMERCIAL SUPPORT
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </Anchor>
+            </Box>
+          </MotionBox>
+        </YStack>
+      </Box>
+    </Box>
   );
 };
 

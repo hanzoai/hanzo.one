@@ -1,3 +1,4 @@
+import { Box, Grid, XStack } from '@/gui'
 
 import React from 'react';
 import { Mail, User, DollarSign, Clock } from 'lucide-react';
@@ -9,55 +10,55 @@ interface ReferralStatsProps {
 
 const ReferralStatsComponent = ({ referralStats }: ReferralStatsProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <Mail className="h-6 w-6 text-neutral-400" />
-          </div>
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <XStack display="flex" alignItems="center" gap={16}>
+          <XStack height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+            <Mail size={24} color="var(--neutral-400)" />
+          </XStack>
           <div>
-            <div className="text-sm text-neutral-400">Total Invited</div>
-            <div className="text-2xl font-bold">{referralStats.totalInvited}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Total Invited</Box>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">{referralStats.totalInvited}</Box>
           </div>
-        </div>
-      </div>
+        </XStack>
+      </Box>
       
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <User className="h-6 w-6 text-neutral-400" />
-          </div>
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <XStack display="flex" alignItems="center" gap={16}>
+          <XStack height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+            <User size={24} color="var(--neutral-400)" />
+          </XStack>
           <div>
-            <div className="text-sm text-neutral-400">Signed Up</div>
-            <div className="text-2xl font-bold">{referralStats.signedUp}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Signed Up</Box>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">{referralStats.signedUp}</Box>
           </div>
-        </div>
-      </div>
+        </XStack>
+      </Box>
       
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <DollarSign className="h-6 w-6 text-neutral-400" />
-          </div>
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <XStack display="flex" alignItems="center" gap={16}>
+          <XStack height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+            <DollarSign size={24} color="var(--neutral-400)" />
+          </XStack>
           <div>
-            <div className="text-sm text-neutral-400">Credits Earned</div>
-            <div className="text-2xl font-bold">${referralStats.creditsEarned}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Credits Earned</Box>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">${referralStats.creditsEarned}</Box>
           </div>
-        </div>
-      </div>
+        </XStack>
+      </Box>
       
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <Clock className="h-6 w-6 text-neutral-400" />
-          </div>
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <XStack display="flex" alignItems="center" gap={16}>
+          <XStack height={48} width={48} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+            <Clock size={24} color="var(--neutral-400)" />
+          </XStack>
           <div>
-            <div className="text-sm text-neutral-400">Pending</div>
-            <div className="text-2xl font-bold">{referralStats.pending}</div>
+            <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Pending</Box>
+            <Box fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">{referralStats.pending}</Box>
           </div>
-        </div>
-      </div>
-    </div>
+        </XStack>
+      </Box>
+    </Grid>
   );
 };
 

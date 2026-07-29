@@ -1,3 +1,4 @@
+import { Anchor, Box, Grid, H2, H3, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -38,62 +39,62 @@ const OperativeFeatures = () => {
   ];
 
   return (
-    <section className="py-24 bg-gray-950 relative overflow-hidden">
+    <Box render="section" paddingVertical={96} backgroundColor="var(--neutral-950)" position="relative" overflow="hidden">
       {/* Background gradient */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1/2 bg-purple-900/10 rounded-full blur-3xl"></div>
+      <Box position="absolute" bottom={0} left="50%" x="-50%" width="75%" height="50%" backgroundColor="rgb(255 255 255 / 0.1)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} position="relative" zIndex={10} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
               Key Capabilities
-            </h2>
-            <p className="text-xl text-neutral-300">
+            </H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)">
               Hanzo Operative gives AI models the ability to interact with computers
               the same way humans do
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {features.map((feature, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900/30 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/50 transition-colors"
+              
+              backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--surface-card)" }}
             >
-              <div className="h-12 w-12 rounded-lg bg-purple-900/30 flex items-center justify-center mb-4">
-                <feature.icon className="h-6 w-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-[var(--white)] mb-2">{feature.title}</h3>
-              <p className="text-neutral-400">{feature.description}</p>
-            </motion.div>
+              <XStack height={48} width={48} borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" display="flex" alignItems="center" justifyContent="center" marginBottom={16}>
+                <feature.icon height={24} width={24} color="var(--foreground)" />
+              </XStack>
+              <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={8}>{feature.title}</H3>
+              <Paragraph color="var(--neutral-400)">{feature.description}</Paragraph>
+            </MotionBox>
           ))}
-        </div>
+        </Grid>
 
-        <div className="mt-16 flex justify-center">
-          <motion.div
+        <XStack marginTop={64} display="flex" justifyContent="center">
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex items-center space-x-3 bg-gray-900/50 border border-gray-800 rounded-full px-6 py-3"
+            flexDirection="row" display="flex" alignItems="center" columnGap={12} backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-full)" paddingHorizontal={24} paddingVertical={12}
           >
-            <Github className="h-5 w-5 text-neutral-400" />
-            <span className="text-neutral-300">Open Source on</span>
-            <a href="https://github.com/hanzo-ai/operative" className="text-[var(--white)] font-semibold hover:text-purple-400 transition-colors">GitHub</a>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+            <Github size={20} color="var(--neutral-400)" />
+            <Text color="var(--neutral-300)">Open Source on</Text>
+            <Anchor tap href="https://github.com/hanzo-ai/operative" color="var(--white)" fontWeight="600" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}>GitHub</Anchor>
+          </MotionBox>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

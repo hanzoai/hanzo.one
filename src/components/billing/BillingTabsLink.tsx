@@ -1,7 +1,7 @@
+import { Button } from '@/gui'
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 interface BillingTabsLinkProps {
   tabId: 'overview' | 'payment-methods' | 'history';
@@ -24,7 +24,7 @@ const BillingTabsLink: React.FC<BillingTabsLinkProps> = ({
     <Button 
       variant={variant} 
       onClick={handleClick}
-      className="bg-[var(--black)] hover:bg-neutral-900 border border-white/10 text-[var(--white)]"
+      backgroundColor="var(--black)" borderWidth={1} borderColor="rgb(255 255 255 / 0.1)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
     >
       {children}
     </Button>

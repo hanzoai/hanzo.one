@@ -1,3 +1,4 @@
+import { MotionBox } from '@/gui'
 
 import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
@@ -8,8 +9,8 @@ interface TunnelContainerProps {
 
 const TunnelContainer: React.FC<TunnelContainerProps> = ({ children }) => {
   return (
-    <motion.div 
-      className="absolute inset-0 w-full h-full"
+    <MotionBox 
+      position="absolute" top={0} right={0} bottom={0} left={0} width="100%" height="100%"
       style={{ 
         transformStyle: "preserve-3d",
         perspective: "1000px",
@@ -26,7 +27,7 @@ const TunnelContainer: React.FC<TunnelContainerProps> = ({ children }) => {
       }}
     >
       {children}
-    </motion.div>
+    </MotionBox>
   );
 };
 

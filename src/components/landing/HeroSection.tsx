@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, H1, H3, Link, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Copy,
@@ -21,7 +22,7 @@ import {
 } from "lucide-react";
 
 // Brand color
-const BRAND_COLOR = "#fd4444";
+const BRAND_COLOR = "var(--foreground)";
 
 // Proof chips data - communicates the vertical stack
 const PROOF_CHIPS = [
@@ -95,305 +96,294 @@ const HeroSection = () => {
   };
 
   // Dashboard Mock Component
-  const DashboardMock = ({ className = "" }: { className?: string }) => (
-    <div className={`rounded-xl border border-neutral-700 bg-neutral-900/95 backdrop-blur-sm overflow-hidden shadow-2xl ${className}`}>
+  const DashboardMock = ({ ...styleProps }: {  }) => (
+    <Box {...styleProps} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-neutral-800 bg-neutral-900">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-red-500/80" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-          <div className="w-3 h-3 rounded-full bg-green-500/80" />
-        </div>
-        <div className="flex-1 mx-4">
-          <div className="bg-neutral-800 rounded-md px-3 py-1 text-xs text-neutral-400 text-center max-w-[200px] mx-auto">
+      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={10} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-900)">
+        <XStack display="flex" gap={6}>
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        </XStack>
+        <Box flex={1} marginHorizontal={16}>
+          <Box backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" paddingHorizontal={12} paddingVertical={4} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)" textAlign="center" maxWidth="200px" marginHorizontal="auto">
             cloud.hanzo.ai
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </XStack>
 
       {/* Dashboard content */}
-      <div className="flex min-h-[320px]">
+      <XStack display="flex" minHeight="320px">
         {/* Left nav */}
-        <div className="w-[140px] lg:w-[160px] border-r border-neutral-800 bg-neutral-950 p-2 hidden sm:block">
-          <div className="flex items-center gap-2 px-2 py-2 mb-3">
-            <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#fd4444] to-[#fd4444]/60 flex items-center justify-center">
-              <span className="text-white text-[10px] font-bold">H</span>
-            </div>
-            <span className="text-white text-xs font-medium">Hanzo</span>
-          </div>
-          <nav className="space-y-0.5">
+        <Box width="140px" borderRightWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)" padding={8} display="none" $lg={{ width: "160px" }} $sm={{ display: "block" }}>
+          <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={8} paddingVertical={8} marginBottom={12}>
+            <XStack width={24} height={24} borderRadius="var(--radius-md)" display="flex" alignItems="center" justifyContent="center" backgroundImage="linear-gradient(to bottom right, var(--foreground), rgb(255 255 255 / 0.08))">
+              <Text color="var(--foreground)" fontSize="10px" fontWeight="700">H</Text>
+            </XStack>
+            <Text color="var(--foreground)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500">Hanzo</Text>
+          </XStack>
+          <Box render="nav" rowGap={2}>
             {DASHBOARD_NAV.map((item) => (
-              <div
+              <XStack
                 key={item.label}
-                className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-[11px] cursor-pointer transition-colors ${
-                  item.active
-                    ? "bg-[#fd4444]/20 text-[#fd4444]"
-                    : "text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300"
-                }`}
+                display="flex" alignItems="center" gap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius-md)" fontSize="11px" cursor="pointer" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" backgroundColor={item.active ? "rgb(255 255 255 / 0.2)" : undefined} color={item.active ? "var(--foreground)" : "var(--neutral-400)"} hoverStyle={item.active ? undefined : { backgroundColor: "var(--neutral-800)", color: "var(--neutral-300)" }}
               >
-                <item.icon className="w-3 h-3" />
+                <item.icon width={12} height={12} />
                 {item.label}
-              </div>
+              </XStack>
             ))}
-          </nav>
-        </div>
+          </Box>
+        </Box>
 
         {/* Main content */}
-        <div className="flex-1 p-4 bg-neutral-950">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-white text-sm font-medium">Project Overview</h3>
-            <div className="flex items-center gap-2">
-              <div className="px-2 py-1 rounded-md bg-green-500/20 text-green-400 text-[10px] flex items-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+        <Box flex={1} padding={16} backgroundColor="var(--neutral-950)">
+          <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={16}>
+            <H3 color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">Project Overview</H3>
+            <XStack display="flex" alignItems="center" gap={8}>
+              <XStack paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-md)" backgroundColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" fontSize="10px" display="flex" alignItems="center" gap={4}>
+                <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
                 All systems operational
-              </div>
-            </div>
-          </div>
+              </XStack>
+            </XStack>
+          </XStack>
 
           {/* Stats cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-            <div className="bg-neutral-900 rounded-lg p-3 border border-neutral-800">
-              <div className="flex items-center gap-2 mb-1">
-                <Rocket className="w-3 h-3 text-neutral-500" />
-                <span className="text-[10px] text-neutral-500">Deployments</span>
-              </div>
-              <div className="text-lg font-semibold text-white">24</div>
-              <div className="text-[10px] text-green-400">+3 this week</div>
-            </div>
-            <div className="bg-neutral-900 rounded-lg p-3 border border-neutral-800">
-              <div className="flex items-center gap-2 mb-1">
-                <Bot className="w-3 h-3 text-neutral-500" />
-                <span className="text-[10px] text-neutral-500">Agent Runs</span>
-              </div>
-              <div className="text-lg font-semibold text-white">1.2K</div>
-              <div className="text-[10px] text-neutral-400">Today</div>
-            </div>
-            <div className="bg-neutral-900 rounded-lg p-3 border border-neutral-800">
-              <div className="flex items-center gap-2 mb-1">
-                <Database className="w-3 h-3 text-neutral-500" />
-                <span className="text-[10px] text-neutral-500">Vector Indexes</span>
-              </div>
-              <div className="text-lg font-semibold text-white">8</div>
-              <div className="text-[10px] text-neutral-400">2.4M vectors</div>
-            </div>
-            <div className="bg-neutral-900 rounded-lg p-3 border border-neutral-800">
-              <div className="flex items-center gap-2 mb-1">
-                <Key className="w-3 h-3 text-neutral-500" />
-                <span className="text-[10px] text-neutral-500">Keys/Secrets</span>
-              </div>
-              <div className="text-lg font-semibold text-white">47</div>
-              <div className="text-[10px] text-neutral-400">Encrypted</div>
-            </div>
-          </div>
+          <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={12} marginBottom={16} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+            <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={12} borderWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={8} marginBottom={4}>
+                <Rocket size={12} color="var(--neutral-500)" />
+                <Text fontSize="10px" color="var(--neutral-500)">Deployments</Text>
+              </XStack>
+              <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">24</Box>
+              <Box fontSize="10px" color="var(--foreground)">+3 this week</Box>
+            </Box>
+            <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={12} borderWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={8} marginBottom={4}>
+                <Bot size={12} color="var(--neutral-500)" />
+                <Text fontSize="10px" color="var(--neutral-500)">Agent Runs</Text>
+              </XStack>
+              <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">1.2K</Box>
+              <Box fontSize="10px" color="var(--neutral-400)">Today</Box>
+            </Box>
+            <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={12} borderWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={8} marginBottom={4}>
+                <Database size={12} color="var(--neutral-500)" />
+                <Text fontSize="10px" color="var(--neutral-500)">Vector Indexes</Text>
+              </XStack>
+              <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">8</Box>
+              <Box fontSize="10px" color="var(--neutral-400)">2.4M vectors</Box>
+            </Box>
+            <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={12} borderWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" alignItems="center" gap={8} marginBottom={4}>
+                <Key size={12} color="var(--neutral-500)" />
+                <Text fontSize="10px" color="var(--neutral-500)">Keys/Secrets</Text>
+              </XStack>
+              <Box fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)">47</Box>
+              <Box fontSize="10px" color="var(--neutral-400)">Encrypted</Box>
+            </Box>
+          </Grid>
 
           {/* Recent deployments */}
-          <div className="space-y-2">
-            <div className="text-[11px] text-neutral-500 mb-2">Recent Deployments</div>
+          <Box rowGap={8}>
+            <Box fontSize="11px" color="var(--neutral-500)" marginBottom={8}>Recent Deployments</Box>
             {[
               { name: "docs-api", status: "live", region: "us-east-1", time: "2m ago" },
               { name: "chat-service", status: "live", region: "eu-west-1", time: "1h ago" },
               { name: "ml-pipeline", status: "building", region: "us-west-2", time: "now" },
             ].map((deploy) => (
-              <div key={deploy.name} className="flex items-center justify-between p-2.5 rounded-lg bg-neutral-900 border border-neutral-800">
-                <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full ${deploy.status === "live" ? "bg-green-500" : "bg-yellow-500 animate-pulse"}`} />
-                  <span className="text-sm text-white">{deploy.name}</span>
-                  <span className="text-[10px] text-neutral-500 px-1.5 py-0.5 bg-neutral-800 rounded">{deploy.region}</span>
-                </div>
-                <span className="text-xs text-neutral-500">{deploy.time}</span>
-              </div>
+              <XStack key={deploy.name} display="flex" alignItems="center" justifyContent="space-between" padding={10} borderRadius="var(--radius-lg)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)">
+                <XStack display="flex" alignItems="center" gap={8}>
+                  <Box width={8} height={8} borderRadius="var(--radius-full)" backgroundColor={deploy.status === "live" ? "var(--neutral-500)" : "var(--neutral-500)"} />
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">{deploy.name}</Text>
+                  <Text fontSize="10px" color="var(--neutral-500)" paddingHorizontal={6} paddingVertical={2} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)">{deploy.region}</Text>
+                </XStack>
+                <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)">{deploy.time}</Text>
+              </XStack>
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </XStack>
+    </Box>
   );
 
   // Terminal Mock Component - fixed height with scrolling content
-  const TerminalMock = ({ className = "" }: { className?: string }) => (
-    <div className={`rounded-xl border border-neutral-700 bg-neutral-900/95 backdrop-blur-sm overflow-hidden shadow-2xl ${className}`}>
+  const TerminalMock = ({ ...styleProps }: {  }) => (
+    <Box {...styleProps} borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
       {/* Terminal header */}
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-neutral-800 bg-neutral-900 shrink-0">
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-        </div>
-        <span className="ml-2 text-[10px] text-neutral-500 font-mono">terminal</span>
-        <div className="ml-auto flex items-center gap-2">
-          <button
+      <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={8} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-900)" flexShrink={0}>
+        <XStack display="flex" gap={6}>
+          <Box width={10} height={10} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={10} height={10} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+          <Box width={10} height={10} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+        </XStack>
+        <Text marginLeft={8} fontSize="10px" color="var(--neutral-500)" fontFamily="var(--font-mono)">terminal</Text>
+        <XStack marginLeft="auto" display="flex" alignItems="center" gap={8}>
+          <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
             onClick={handleCopy}
-            className="p-1 rounded hover:bg-neutral-800 transition-colors"
+            render="button" padding={4} borderRadius="var(--radius)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
           >
             {copied ? (
-              <Check className="h-3 w-3 text-green-500" />
+              <Check size={12} color="var(--neutral-500)" />
             ) : (
-              <Copy className="h-3 w-3 text-neutral-500" />
+              <Copy size={12} color="var(--neutral-500)" />
             )}
-          </button>
-        </div>
-      </div>
+          </Box>
+        </XStack>
+      </XStack>
       {/* Terminal content - fixed height with scroll */}
-      <div className="p-4 font-mono text-xs bg-neutral-950 h-[220px] overflow-y-auto">
+      <Box padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" backgroundColor="var(--neutral-950)" height="220px" overflowY="auto">
         {TERMINAL_LINES.slice(0, terminalStep).map((line, idx) => (
-          <motion.div
+          <MotionBox
             key={idx}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.15 }}
-            className={`mb-1 ${
-              line.type === "command" ? "text-neutral-300" :
-              line.type === "success" ? "text-neutral-400" :
-              line.type === "prompt" ? "text-yellow-400" : "text-neutral-400"
-            }`}
+            marginBottom={4}
+            color={line.type === "command" ? "var(--neutral-300)" : line.type === "prompt" ? "var(--foreground)" : "var(--neutral-400)"}
           >
             {line.type === "success" && (
-              <span className="text-green-500">✓ </span>
+              <Text color="var(--neutral-500)">✓ </Text>
             )}
             {line.type === "prompt" && (
-              <span className="text-yellow-500">? </span>
+              <Text color="var(--neutral-500)">? </Text>
             )}
-            <span className={line.highlight ? "text-[#fd4444]" : ""}>
+            <Text color={line.highlight ? "var(--foreground)" : undefined}>
               {line.text.replace(/^[✓?]\s*/, "")}
-            </span>
-          </motion.div>
+            </Text>
+          </MotionBox>
         ))}
         {terminalStep < TERMINAL_LINES.length && (
-          <div className="flex items-center gap-1">
-            <span className="text-neutral-500">$</span>
-            <span className="w-2 h-4 bg-white/80 animate-pulse" />
-          </div>
+          <XStack display="flex" alignItems="center" gap={4}>
+            <Text color="var(--neutral-500)">$</Text>
+            <MotionText render="span" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} width={8} height={16} backgroundColor="var(--surface-overlay)" />
+          </XStack>
         )}
         {terminalStep >= TERMINAL_LINES.length && (
-          <div className="flex items-center gap-1 mt-2">
-            <span className="text-neutral-500">$</span>
-            <span className="w-2 h-4 bg-white/80 animate-pulse" />
-          </div>
+          <XStack display="flex" alignItems="center" gap={4} marginTop={8}>
+            <Text color="var(--neutral-500)">$</Text>
+            <MotionText render="span" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} width={8} height={16} backgroundColor="var(--surface-overlay)" />
+          </XStack>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 
   // Mobile Device Mock Component - iPhone 15 Pro dimensions (71.6mm x 146.6mm = ~2.05:1 ratio)
   // Using w-[150px] = h-[308px] for proper iPhone proportions
-  const MobileDeviceMock = ({ className = "" }: { className?: string }) => (
-    <div className={`w-[150px] h-[308px] rounded-[32px] border-[3px] border-neutral-600 bg-neutral-900 overflow-hidden shadow-2xl flex flex-col ${className}`}>
+  const MobileDeviceMock = ({ ...styleProps }: {  }) => (
+    <YStack {...styleProps} width="150px" height="308px" borderRadius="32px" borderColor="var(--neutral-600)" backgroundColor="var(--neutral-900)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" display="flex" flexDirection="column">
       {/* Dynamic Island */}
-      <div className="bg-neutral-950 pt-2 pb-1 flex justify-center shrink-0">
-        <div className="w-[60px] h-[18px] bg-black rounded-full" />
-      </div>
+      <XStack backgroundColor="var(--neutral-950)" paddingTop={8} paddingBottom={4} display="flex" justifyContent="center" flexShrink={0}>
+        <Box width="60px" height="18px" backgroundColor="var(--pure-black)" borderRadius="var(--radius-full)" />
+      </XStack>
       {/* App content */}
-      <div className="bg-neutral-950 p-2.5 flex-1 overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between mb-2 shrink-0">
-          <div className="flex items-center gap-1.5">
-            <div className="w-5 h-5 rounded-md bg-[#fd4444] flex items-center justify-center">
-              <span className="text-white text-[7px] font-bold">H</span>
-            </div>
-            <span className="text-white text-[10px] font-medium">Hanzo</span>
-          </div>
-          <Bell className="w-3.5 h-3.5 text-neutral-500" />
-        </div>
+      <YStack backgroundColor="var(--neutral-950)" padding={10} flex={1} overflow="hidden" display="flex" flexDirection="column">
+        <XStack display="flex" alignItems="center" justifyContent="space-between" marginBottom={8} flexShrink={0}>
+          <XStack display="flex" alignItems="center" gap={6}>
+            <XStack width={20} height={20} borderRadius="var(--radius-md)" backgroundColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+              <Text color="var(--foreground)" fontSize="7px" fontWeight="700">H</Text>
+            </XStack>
+            <Text color="var(--foreground)" fontSize="10px" fontWeight="500">Hanzo</Text>
+          </XStack>
+          <Bell size={14} color="var(--neutral-500)" />
+        </XStack>
 
         {/* Push notification style */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: -10, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 1.5, duration: 0.3 }}
-          className="bg-neutral-900 rounded-lg p-2 border border-neutral-800 mb-2 shrink-0"
+          backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={8} borderWidth={1} borderColor="var(--neutral-800)" marginBottom={8} flexShrink={0}
         >
-          <div className="flex items-center gap-1.5 mb-0.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            <span className="text-[9px] text-green-400 font-medium">Deploy Complete</span>
-          </div>
-          <div className="text-[10px] text-white">docs-api is now live</div>
-          <div className="text-[8px] text-neutral-500 mt-0.5 truncate">https://docs-api.acme.dev</div>
-        </motion.div>
+          <XStack display="flex" alignItems="center" gap={6} marginBottom={2}>
+            <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+            <Text fontSize="9px" color="var(--foreground)" fontWeight="500">Deploy Complete</Text>
+          </XStack>
+          <Box fontSize="10px" color="var(--foreground)">docs-api is now live</Box>
+          <Box fontSize="8px" color="var(--neutral-500)" marginTop={2} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">https://docs-api.acme.dev</Box>
+        </MotionBox>
 
-        <div className="space-y-1.5 flex-1 overflow-hidden">
-          <div className="bg-neutral-900 rounded-lg p-1.5 border border-neutral-800">
-            <div className="text-[8px] text-neutral-500">Status</div>
-            <div className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              <span className="text-[9px] text-green-400">All systems operational</span>
-            </div>
-          </div>
-          <div className="bg-neutral-900 rounded-lg p-1.5 border border-neutral-800">
-            <div className="text-[8px] text-neutral-500">Active Deployments</div>
-            <div className="text-[10px] text-white">24 services</div>
-          </div>
-        </div>
-      </div>
+        <Box rowGap={6} flex={1} overflow="hidden">
+          <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={6} borderWidth={1} borderColor="var(--neutral-800)">
+            <Box fontSize="8px" color="var(--neutral-500)">Status</Box>
+            <XStack display="flex" alignItems="center" gap={4}>
+              <Box width={6} height={6} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" />
+              <Text fontSize="9px" color="var(--foreground)">All systems operational</Text>
+            </XStack>
+          </Box>
+          <Box backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={6} borderWidth={1} borderColor="var(--neutral-800)">
+            <Box fontSize="8px" color="var(--neutral-500)">Active Deployments</Box>
+            <Box fontSize="10px" color="var(--foreground)">24 services</Box>
+          </Box>
+        </Box>
+      </YStack>
       {/* Home indicator */}
-      <div className="bg-neutral-950 py-1.5 flex justify-center shrink-0">
-        <div className="w-[40px] h-[4px] bg-neutral-600 rounded-full" />
-      </div>
-    </div>
+      <XStack backgroundColor="var(--neutral-950)" paddingVertical={6} display="flex" justifyContent="center" flexShrink={0}>
+        <Box width="40px" height="4px" backgroundColor="var(--neutral-600)" borderRadius="var(--radius-full)" />
+      </XStack>
+    </YStack>
   );
 
   // Mobile Tab Selector
   const MobileTabSelector = () => (
-    <div className="flex bg-neutral-900 rounded-lg p-1 border border-neutral-800">
+    <XStack display="flex" backgroundColor="var(--neutral-900)" borderRadius="var(--radius-lg)" padding={4} borderWidth={1} borderColor="var(--neutral-800)">
       {(["dashboard", "terminal", "mobile"] as MobileTab[]).map((tab) => (
-        <button
+        <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}
           key={tab}
           onClick={() => setMobileTab(tab)}
-          className={`flex-1 px-3 py-2 text-xs font-medium rounded-md transition-colors capitalize ${
-            mobileTab === tab
-              ? "bg-[#fd4444] text-white"
-              : "text-neutral-400 hover:text-white"
-          }`}
+          render="button" flex={1} paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-md)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" textTransform="capitalize" backgroundColor={mobileTab === tab ? "var(--foreground)" : undefined} color={mobileTab === tab ? "var(--foreground)" : "var(--neutral-400)"} hoverStyle={mobileTab === tab ? undefined : { color: "var(--foreground)" }}
         >
           {tab}
-        </button>
+        </Box>
       ))}
-    </div>
+    </XStack>
   );
 
   return (
-    <section className="pt-20 pb-8 px-4 md:px-8 lg:px-12">
+    <Box render="section" paddingTop={80} paddingBottom={32} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
       {/* Main Hero Container */}
-      <div className="relative mx-auto w-full max-w-[1400px] min-h-[700px] rounded-2xl border border-neutral-800 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950">
+      <Box position="relative" marginHorizontal="auto" width="100%" maxWidth="1400px" minHeight="700px" borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden" backgroundImage="linear-gradient(to bottom right, var(--neutral-950), var(--neutral-900), var(--neutral-950))">
 
         {/* Background gradients - z-0 */}
-        <div className="absolute inset-0 overflow-hidden z-0">
+        <Box position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0}>
           {/* Red accent glow - center */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: mounted ? 0.15 : 0 }}
             transition={{ duration: 1.5 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+            position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)"
             style={{
               background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
               filter: "blur(100px)",
             }}
           />
           {/* Secondary red glow - top right */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: mounted ? 0.1 : 0 }}
             transition={{ duration: 1.5, delay: 0.2 }}
-            className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full"
+            position="absolute" top={-128} right={-128} width="500px" height="500px" borderRadius="var(--radius-full)"
             style={{
               background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
               filter: "blur(80px)",
             }}
           />
           {/* Subtle white glow - bottom left */}
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0 }}
             animate={{ opacity: mounted ? 0.04 : 0 }}
             transition={{ duration: 1.5, delay: 0.3 }}
-            className="absolute -bottom-48 -left-48 w-[600px] h-[600px] rounded-full"
+            position="absolute" bottom={-192} left={-192} width="600px" height="600px" borderRadius="var(--radius-full)"
             style={{
               background: "radial-gradient(circle, #ffffff 0%, transparent 70%)",
               filter: "blur(100px)",
             }}
           />
-        </div>
+        </Box>
 
         {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02] z-0"
+        <Box
+          position="absolute" top={0} right={0} bottom={0} left={0} opacity={0.02} zIndex={0}
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
                              linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)`,
@@ -402,344 +392,344 @@ const HeroSection = () => {
         />
 
         {/* Content - z-10 */}
-        <div className="relative z-10 h-full px-6 md:px-10 lg:px-12 py-10 lg:py-12">
+        <Box position="relative" zIndex={10} height="100%" paddingHorizontal={24} paddingVertical={40} $md={{ paddingHorizontal: 40 }} $lg={{ paddingHorizontal: 48, paddingVertical: 48 }}>
 
           {/* Desktop Layout: Two-column grid */}
-          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-12 h-full">
+          <Box display="none" height="100%" $lg={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }} $xl={{ gap: 48 }}>
 
             {/* Left Column: Copy */}
-            <div className="flex flex-col justify-center">
-              <motion.div
+            <YStack display="flex" flexDirection="column" justifyContent="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
                 {/* Badge */}
-                <p
-                  className="inline-flex text-xs font-medium rounded-full px-4 py-2 border w-fit mb-6"
+                <Paragraph
+                  display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} width="fit-content" marginBottom={24}
                   style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}40` }}
                 >
                   Open-source AI Cloud for builders.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 {/* Main Headline */}
-                <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6">
-                  <span className="text-white">A vertically integrated</span>
+                <H1 fontSize="var(--text-4xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $xl={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $2xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}>
+                  <Text color="var(--foreground)">A vertically integrated</Text>
                   <br />
                   <span style={{ color: BRAND_COLOR }}>AI platform.</span>
-                </h1>
-              </motion.div>
+                </H1>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
               >
                 {/* Subhead */}
-                <p className="text-base xl:text-lg text-neutral-400 leading-relaxed mb-8 max-w-[500px]">
+                <Paragraph fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={32} maxWidth="500px" $xl={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>
                   Agents, models, data, and deployment—with Team, IAM, KMS, and Audit built in. One platform from identity to production.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-row items-center gap-4 flex-wrap mb-8"
+                display="flex" flexDirection="row" alignItems="center" gap={16} flexWrap="wrap" marginBottom={32}
               >
                 <Link
                   to="/products"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-all hover:opacity-90 text-sm"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <a
+                <Anchor
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 hover:border-neutral-600 text-sm"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </motion.div>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
+                </Anchor>
+              </MotionBox>
 
               {/* Proof Chips */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
-                className="flex flex-wrap gap-2"
+                flexDirection="row" display="flex" flexWrap="wrap" gap={8}
               >
                 {PROOF_CHIPS.map((chip) => (
-                  <div
+                  <XStack
                     key={chip.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 text-xs text-neutral-400"
+                    display="inline-flex" alignItems="center" gap={6} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)"
                   >
-                    <chip.icon className="w-3 h-3" />
+                    <chip.icon width={12} height={12} />
                     {chip.label}
-                  </div>
+                  </XStack>
                 ))}
-              </motion.div>
-            </div>
+              </MotionBox>
+            </YStack>
 
             {/* Right Column: Demo Stack */}
-            <div className="relative flex flex-col justify-center">
+            <YStack position="relative" display="flex" flexDirection="column" justifyContent="center">
               {/* Dashboard - Primary/Large */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: mounted ? 1 : 0, x: mounted ? 0 : 20 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative z-20"
+                position="relative" zIndex={20}
               >
                 <DashboardMock />
-              </motion.div>
+              </MotionBox>
 
               {/* Terminal - Below dashboard */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="relative z-20 mt-4 w-full max-w-[400px]"
+                position="relative" zIndex={20} marginTop={16} width="100%" maxWidth="400px"
               >
                 <TerminalMock />
-              </motion.div>
+              </MotionBox>
 
               {/* Mobile Device - Floating/overlapping right */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, x: 20, y: 20 }}
                 animate={{ opacity: mounted ? 1 : 0, x: mounted ? 0 : 20, y: mounted ? 0 : 20 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-30"
+                position="absolute" right={0} top="50%" y="-50%" x={16} zIndex={30}
               >
                 <MobileDeviceMock />
-              </motion.div>
-            </div>
-          </div>
+              </MotionBox>
+            </YStack>
+          </Box>
 
           {/* Tablet Layout (md): Stack vertically */}
-          <div className="hidden md:flex lg:hidden flex-col gap-8">
+          <Box display="none" flexDirection="column" gap={32} $md={{ display: "flex" }} $lg={{ display: "none" }}>
             {/* Copy section */}
-            <div className="text-center">
-              <motion.div
+            <Box textAlign="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <p
-                  className="inline-flex text-xs font-medium rounded-full px-4 py-2 border w-fit mb-6"
+                <Paragraph
+                  display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} width="fit-content" marginBottom={24}
                   style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}40` }}
                 >
                   Open-source AI Cloud for builders.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h1 className="text-4xl font-medium tracking-tight leading-[1.1] mb-6">
-                  <span className="text-white">A vertically integrated</span>
+                <H1 fontSize="var(--text-4xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24}>
+                  <Text color="var(--foreground)">A vertically integrated</Text>
                   <br />
                   <span style={{ color: BRAND_COLOR }}>AI platform.</span>
-                </h1>
-              </motion.div>
+                </H1>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
               >
-                <p className="text-base text-neutral-400 leading-relaxed mb-6 max-w-[500px] mx-auto">
+                <Paragraph fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={24} maxWidth="500px" marginHorizontal="auto">
                   Agents, models, data, and deployment—with Team, IAM, KMS, and Audit built in.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-row items-center justify-center gap-4 flex-wrap mb-6"
+                display="flex" flexDirection="row" alignItems="center" justifyContent="center" gap={16} flexWrap="wrap" marginBottom={24}
               >
                 <Link
                   to="/products"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-all hover:opacity-90 text-sm"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <a
+                <Anchor
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 hover:border-neutral-600 text-sm"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </motion.div>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
+                </Anchor>
+              </MotionBox>
 
               {/* Proof Chips */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
-                className="flex flex-wrap justify-center gap-2"
+                flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={8}
               >
                 {PROOF_CHIPS.map((chip) => (
-                  <div
+                  <XStack
                     key={chip.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 text-xs text-neutral-400"
+                    display="inline-flex" alignItems="center" gap={6} paddingHorizontal={12} paddingVertical={6} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-400)"
                   >
-                    <chip.icon className="w-3 h-3" />
+                    <chip.icon width={12} height={12} />
                     {chip.label}
-                  </div>
+                  </XStack>
                 ))}
-              </motion.div>
-            </div>
+              </MotionBox>
+            </Box>
 
             {/* Demo stack - tablet */}
-            <div className="space-y-4">
-              <motion.div
+            <Box rowGap={16}>
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <DashboardMock />
-              </motion.div>
+              </MotionBox>
 
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
+              <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16}>
+                <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   <TerminalMock />
-                </motion.div>
-                <motion.div
+                </MotionBox>
+                <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="flex justify-center"
+                  flexDirection="row" display="flex" justifyContent="center"
                 >
                   <MobileDeviceMock />
-                </motion.div>
-              </div>
-            </div>
-          </div>
+                </MotionBox>
+              </Grid>
+            </Box>
+          </Box>
 
           {/* Mobile Layout (sm): Segmented control */}
-          <div className="md:hidden flex flex-col gap-6">
+          <YStack display="flex" flexDirection="column" gap={24} $md={{ display: "none" }}>
             {/* Copy section */}
-            <div className="text-center">
-              <motion.div
+            <Box textAlign="center">
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <p
-                  className="inline-flex text-[11px] font-medium rounded-full px-3 py-1.5 border w-fit mb-4"
+                <Paragraph
+                  display="inline-flex" fontSize="11px" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={12} paddingVertical={6} borderWidth={1} width="fit-content" marginBottom={16}
                   style={{ color: BRAND_COLOR, borderColor: `${BRAND_COLOR}40` }}
                 >
                   Open-source AI Cloud for builders.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h1 className="text-2xl font-medium tracking-tight leading-[1.1] mb-4">
-                  <span className="text-white">A vertically integrated</span>
+                <H1 fontSize="var(--text-2xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={16}>
+                  <Text color="var(--foreground)">A vertically integrated</Text>
                   <br />
                   <span style={{ color: BRAND_COLOR }}>AI platform.</span>
-                </h1>
-              </motion.div>
+                </H1>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
               >
-                <p className="text-sm text-neutral-400 leading-relaxed mb-4">
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={16}>
                   Agents, models, data, and deployment—with Team, IAM, KMS, and Audit built in.
-                </p>
-              </motion.div>
+                </Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-col items-center gap-3 mb-4"
+                display="flex" flexDirection="column" alignItems="center" gap={12} marginBottom={16}
               >
                 <Link
                   to="/products"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-all hover:opacity-90 text-sm w-full max-w-[200px]"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: '#ffffff' }}
                 >
                   Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></Box>
                 </Link>
-                <a
+                <Anchor
                   href="https://docs.hanzo.ai"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex justify-center items-center px-6 py-3 rounded-full font-medium tracking-tight transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 hover:border-neutral-600 text-sm w-full max-w-[200px]"
+                  display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" letterSpacing="var(--tracking-tight)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" width="100%" maxWidth="200px" hoverStyle={{ backgroundColor: "var(--neutral-900)", borderColor: "var(--neutral-600)" }}
                 >
                   Documentation
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </motion.div>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ExternalLink size={16} /></Box>
+                </Anchor>
+              </MotionBox>
 
               {/* Proof Chips - scrollable on mobile */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
-                className="flex flex-wrap justify-center gap-2"
+                flexDirection="row" display="flex" flexWrap="wrap" justifyContent="center" gap={8}
               >
                 {PROOF_CHIPS.slice(0, 4).map((chip) => (
-                  <div
+                  <XStack
                     key={chip.label}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-neutral-900/80 border border-neutral-800 text-[10px] text-neutral-400"
+                    display="inline-flex" alignItems="center" gap={4} paddingHorizontal={8} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--neutral-800)" fontSize="10px" color="var(--neutral-400)"
                   >
-                    <chip.icon className="w-2.5 h-2.5" />
+                    <chip.icon width={10} height={10} />
                     {chip.label}
-                  </div>
+                  </XStack>
                 ))}
-              </motion.div>
-            </div>
+              </MotionBox>
+            </Box>
 
             {/* Mobile Tab Selector */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.35 }}
             >
               <MobileTabSelector />
-            </motion.div>
+            </MotionBox>
 
             {/* Tab Content */}
-            <motion.div
+            <MotionBox
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="min-h-[300px]"
+              minHeight="300px"
             >
               <AnimatePresence mode="wait">
                 {mobileTab === "dashboard" && (
-                  <motion.div
+                  <MotionBox
                     key="dashboard"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -747,10 +737,10 @@ const HeroSection = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <DashboardMock />
-                  </motion.div>
+                  </MotionBox>
                 )}
                 {mobileTab === "terminal" && (
-                  <motion.div
+                  <MotionBox
                     key="terminal"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -758,26 +748,26 @@ const HeroSection = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <TerminalMock />
-                  </motion.div>
+                  </MotionBox>
                 )}
                 {mobileTab === "mobile" && (
-                  <motion.div
+                  <MotionBox
                     key="mobile"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="flex justify-center"
+                    flexDirection="row" display="flex" justifyContent="center"
                   >
                     <MobileDeviceMock />
-                  </motion.div>
+                  </MotionBox>
                 )}
               </AnimatePresence>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </MotionBox>
+          </YStack>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

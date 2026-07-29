@@ -1,9 +1,8 @@
+import { Box, Button, ChromeText, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Play, Terminal, RefreshCw } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ChromeText from "@/components/ui/chrome-text";
 
 const DemoSection: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -34,10 +33,10 @@ const DemoSection: React.FC = () => {
   };
   
   return (
-    <section className="py-24 px-4 relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} position="relative">
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto">
+        <Box textAlign="center" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -45,104 +44,104 @@ const DemoSection: React.FC = () => {
           >
             <ChromeText 
               as="h2" 
-              className="text-3xl md:text-5xl font-bold mb-6"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             >
               See it in Action
             </ChromeText>
             
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Watch how simple it is to build AI applications with Hanzo
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative"
+          position="relative"
         >
-          <div className="bg-gray-900/50 rounded-xl border border-gray-800 p-4 backdrop-blur-sm">
-            <div className="bg-[var(--black)]/70 rounded-lg overflow-hidden shadow-xl">
-              <div className="flex items-center bg-gray-900 py-2 px-4 border-b border-gray-800">
-                <div className="flex space-x-2 mr-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="text-neutral-400 text-sm font-mono">
+          <Box backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={16} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)">
+            <Box backgroundColor="rgb(0 0 0 / 0.7)" borderRadius="var(--radius-lg)" overflow="hidden" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)">
+              <XStack display="flex" alignItems="center" backgroundColor="var(--neutral-900)" paddingVertical={8} paddingHorizontal={16} borderBottomWidth={1} borderColor="var(--neutral-800)">
+                <XStack display="flex" columnGap={8} marginRight={16}>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                  <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                </XStack>
+                <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontFamily="var(--font-mono)">
                   hanzo-ai-terminal
-                </div>
-                <div className="ml-auto flex items-center space-x-3">
+                </Box>
+                <XStack marginLeft="auto" display="flex" alignItems="center" columnGap={12}>
                   {!isPlaying ? (
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="text-sm gap-2 bg-gray-800 hover:bg-gray-700"
+                      fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" gap={8} backgroundColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                       onClick={playDemo}
                     >
-                      <Play className="h-4 w-4" /> Run Demo
+                      <Play size={16} /> Run Demo
                     </Button>
                   ) : (
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="text-sm gap-2 bg-gray-800 hover:bg-gray-700"
+                      fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" gap={8} backgroundColor="var(--neutral-800)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
                       disabled
                     >
-                      <RefreshCw className="h-4 w-4 animate-spin" /> Running...
+                      <RefreshCw size={16} /> Running...
                     </Button>
                   )}
-                </div>
-              </div>
+                </XStack>
+              </XStack>
               
-              <div className="p-6 font-mono text-sm h-[300px] overflow-hidden">
-                <div className="flex items-start">
-                  <Terminal className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                  <div className="text-neutral-400">
-                    <span className="text-green-400">hanzo@ai</span>:<span className="text-blue-400">~/projects/demo</span>$ <span className="text-[var(--white)]"> {isPlaying ? "node demo.js" : "node demo.js"}</span>
-                  </div>
-                </div>
+              <Box padding={24} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" height="300px" overflow="hidden">
+                <XStack display="flex" alignItems="flex-start">
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8} marginTop={4}><Terminal size={20} color="var(--neutral-500)" /></Box>
+                  <Box color="var(--neutral-400)">
+                    <Text color="var(--foreground)">hanzo@ai</Text>:<Text color="var(--foreground)">~/projects/demo</Text>$ <Text color="var(--white)"> {isPlaying ? "node demo.js" : "node demo.js"}</Text>
+                  </Box>
+                </XStack>
                 
                 {(isPlaying || demoStep > 0) && (
-                  <motion.div
+                  <MotionBox
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="mt-4 border border-gray-800 rounded-md p-3 bg-gray-900/50"
+                    marginTop={16} borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={12} backgroundColor="var(--surface-card-emphasis)"
                   >
-                    <div className="text-purple-300 mb-2">// Execute code</div>
-                    <div className="text-[var(--white)] whitespace-pre">{demoSteps[demoStep].code}</div>
-                  </motion.div>
+                    <Box color="var(--foreground)" marginBottom={8}>// Execute code</Box>
+                    <Box color="var(--white)" whiteSpace="pre">{demoSteps[demoStep].code}</Box>
+                  </MotionBox>
                 )}
                 
                 {(isPlaying || demoStep > 0) && (
-                  <motion.div
+                  <MotionBox
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="mt-4"
+                    marginTop={16}
                   >
-                    <div className="flex">
-                      <span className="text-neutral-500">// Output:</span>
-                    </div>
-                    <div className="mt-2 text-green-300 italic">
+                    <XStack display="flex">
+                      <Text color="var(--neutral-500)">// Output:</Text>
+                    </XStack>
+                    <Box marginTop={8} color="var(--foreground)" fontStyle="italic">
                       {demoSteps[demoStep].output}
-                    </div>
-                  </motion.div>
+                    </Box>
+                  </MotionBox>
                 )}
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
           
           {/* Decorative glows */}
-          <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600/20 rounded-full blur-[100px]"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-600/20 rounded-full blur-[100px]"></div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          <Box position="absolute" zIndex={-10} top="50%" left="50%" x="-50%" y="-50%" width="100%" height="100%">
+            <Box position="absolute" top="25%" left="25%" width={256} height={256} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" filter="blur(100px)"></Box>
+            <Box position="absolute" bottom="25%" right="25%" width={256} height={256} backgroundColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-full)" filter="blur(100px)"></Box>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, Grid, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -32,22 +33,22 @@ const principles = [
 
 const ZenPrinciples: React.FC = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
       {principles.map((principle, index) => (
-        <motion.div
+        <MotionBox
           key={principle.title}
-          className="bg-[var(--black)]/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6 flex flex-col"
+          backgroundColor="rgb(0 0 0 / 0.3)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={24} display="flex" flexDirection="column"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <div className="text-4xl text-purple-400 mb-2 font-bold">{principle.japanese}</div>
-          <h3 className="text-xl font-bold mb-2 text-[var(--white)]">{principle.title}</h3>
-          <p className="text-neutral-300">{principle.description}</p>
-        </motion.div>
+          <Box fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" color="var(--foreground)" marginBottom={8} fontWeight="700">{principle.japanese}</Box>
+          <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={8} color="var(--white)">{principle.title}</H3>
+          <Paragraph color="var(--neutral-300)">{principle.description}</Paragraph>
+        </MotionBox>
       ))}
-    </div>
+    </Grid>
   );
 };
 

@@ -1,26 +1,26 @@
+import { Box, Button, Grid, H2, MotionBox, MotionText, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, Star, Download, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const statsItems = [
   { 
-    icon: <Download className="h-6 w-6 text-green-400" />,
+    icon: <Download size={24} color="var(--foreground)" />,
     value: 17,
     suffix: "M+",
     label: "Downloads",
     countUpDuration: 2
   },
   { 
-    icon: <Star className="h-6 w-6 text-yellow-400" />,
+    icon: <Star size={24} color="var(--foreground)" />,
     value: 25,
     suffix: "K+",
     label: "GitHub Stars",
     countUpDuration: 2.2
   },
   { 
-    icon: <Users className="h-6 w-6 text-blue-400" />,
+    icon: <Users size={24} color="var(--foreground)" />,
     value: 280,
     suffix: "+",
     label: "Contributors",
@@ -32,25 +32,25 @@ const OpenSource = () => {
   const [isInView, setIsInView] = useState(false);
   
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/20 relative">
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.02) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.02) 1px, transparent 1px)" backgroundSize="32px 32px" backgroundColor="size:30px 30px"></Box>
       
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
+      <Box maxWidth="var(--container-wide)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={64} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Open Source at Our Core</h2>
-            <p className="text-xl text-neutral-300 mb-8">
+            <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Open Source at Our Core</H2>
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" marginBottom={32}>
               Hanzo Analytics is fully open-source, fostering innovation and collaboration among thousands of global developers.
-            </p>
+            </Paragraph>
             
-            <div className="grid grid-cols-3 gap-6 mb-8">
+            <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={24} marginBottom={32}>
               {statsItems.map((item, index) => (
-                <motion.div
+                <MotionBox
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{
@@ -62,138 +62,138 @@ const OpenSource = () => {
                     }
                   }}
                   viewport={{ once: true }}
-                  className="text-center p-4"
+                  textAlign="center" padding={16}
                   onViewportEnter={() => {
                     if (!isInView) {
                       setIsInView(true);
                     }
                   }}
                 >
-                  <div className="flex justify-center mb-2">{item.icon}</div>
-                  <div className="flex justify-center items-baseline">
-                    <motion.span
+                  <XStack display="flex" justifyContent="center" marginBottom={8}>{item.icon}</XStack>
+                  <XStack display="flex" justifyContent="center" alignItems="baseline">
+                    <MotionText
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : {}}
                       transition={{ duration: item.countUpDuration }}
-                      className="text-3xl font-bold"
+                      fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700"
                     >
                       {isInView ? (
                         <CountUp end={item.value} duration={item.countUpDuration} />
                       ) : (
                         0
                       )}
-                    </motion.span>
-                    <span className="text-3xl font-bold">{item.suffix}</span>
-                  </div>
-                  <div className="text-neutral-400 text-sm mt-1">{item.label}</div>
-                </motion.div>
+                    </MotionText>
+                    <Text fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">{item.suffix}</Text>
+                  </XStack>
+                  <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginTop={4}>{item.label}</Box>
+                </MotionBox>
               ))}
-            </div>
+            </Grid>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" className="flex items-center gap-2" size="sm">
-                <Github className="h-4 w-4" />
+            <YStack display="flex" flexDirection="column" gap={16} $sm={{ flexDirection: "row" }}>
+              <Button variant="outline" display="flex" alignItems="center" gap={8} size="sm">
+                <Github size={16} />
                 <a href="https://docs.hanzo.ai" target="_blank" rel="noopener noreferrer">
                   View Docs
                 </a>
               </Button>
-              <Button variant="outline" className="flex items-center gap-2" size="sm">
-                <Github className="h-4 w-4" />
+              <Button variant="outline" display="flex" alignItems="center" gap={8} size="sm">
+                <Github size={16} />
                 <a href="https://github.com/hanzoai" target="_blank" rel="noopener noreferrer">
                   View Repository
                 </a>
               </Button>
-            </div>
-          </motion.div>
+            </YStack>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden border border-gray-800 shadow-xl"
+            borderRadius="var(--radius-xl)" overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--pure-black))"
           >
-            <div className="flex items-center p-4 bg-gray-900 border-b border-gray-800">
-              <div className="flex space-x-2 mr-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="flex-1 text-center text-neutral-300 text-sm">analytics.js</div>
-            </div>
+            <XStack display="flex" alignItems="center" padding={16} backgroundColor="var(--neutral-900)" borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <XStack display="flex" columnGap={8} marginRight={16}>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+              </XStack>
+              <Box flex={1} textAlign="center" color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">analytics.js</Box>
+            </XStack>
             
-            <div className="p-6 text-left font-mono text-sm text-neutral-400 overflow-x-auto">
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">1</div>
+            <Box padding={24} textAlign="left" fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" overflowX="auto">
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">1</Box>
                 <div>
-                  <span className="text-blue-400">import</span> <span className="text-green-400">{'{'}</span> <span className="text-yellow-300">HanzoAnalytics</span> <span className="text-green-400">{'}'}</span> <span className="text-blue-400">from</span> <span className="text-orange-400">'hanzo-analytics'</span>;
+                  <Text color="var(--foreground)">import</Text> <Text color="var(--foreground)">{'{'}</Text> <Text color="var(--foreground)">HanzoAnalytics</Text> <Text color="var(--foreground)">{'}'}</Text> <Text color="var(--foreground)">from</Text> <Text color="var(--foreground)">'hanzo-analytics'</Text>;
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">2</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">2</Box>
                 <div></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">3</div>
-                <div><span className="text-purple-400">// Initialize analytics with your project ID</span></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">4</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">3</Box>
+                <div><Text color="var(--foreground)">// Initialize analytics with your project ID</Text></div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">4</Box>
                 <div>
-                  <span className="text-blue-400">const</span> analytics <span className="text-[var(--white)]">=</span> <span className="text-blue-400">new</span> <span className="text-yellow-300">HanzoAnalytics</span><span className="text-[var(--white)]">(</span><span className="text-orange-400">'YOUR_PROJECT_ID'</span><span className="text-[var(--white)]">);</span>
+                  <Text color="var(--foreground)">const</Text> analytics <Text color="var(--white)">=</Text> <Text color="var(--foreground)">new</Text> <Text color="var(--foreground)">HanzoAnalytics</Text><Text color="var(--white)">(</Text><Text color="var(--foreground)">'YOUR_PROJECT_ID'</Text><Text color="var(--white)">);</Text>
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">5</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">5</Box>
                 <div></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">6</div>
-                <div><span className="text-purple-400">// Track page views automatically</span></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">7</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">6</Box>
+                <div><Text color="var(--foreground)">// Track page views automatically</Text></div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">7</Box>
                 <div>
-                  <span className="text-[var(--white)]">analytics.trackPageViews();</span>
+                  <Text color="var(--white)">analytics.trackPageViews();</Text>
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">8</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">8</Box>
                 <div></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">9</div>
-                <div><span className="text-purple-400">// Track custom events</span></div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">10</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">9</Box>
+                <div><Text color="var(--foreground)">// Track custom events</Text></div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">10</Box>
                 <div>
-                  <span className="text-[var(--white)]">analytics.track(</span><span className="text-orange-400">'button_click'</span><span className="text-[var(--white)]">, {'{'}</span>
+                  <Text color="var(--white)">analytics.track(</Text><Text color="var(--foreground)">'button_click'</Text><Text color="var(--white)">, {'{'}</Text>
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">11</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">11</Box>
                 <div>
-                  <span className="text-[var(--white)]">  buttonId: </span><span className="text-orange-400">'signup_button'</span><span className="text-[var(--white)]">,</span>
+                  <Text color="var(--white)">  buttonId: </Text><Text color="var(--foreground)">'signup_button'</Text><Text color="var(--white)">,</Text>
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">12</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">12</Box>
                 <div>
-                  <span className="text-[var(--white)]">  page: </span><span className="text-orange-400">'/home'</span>
+                  <Text color="var(--white)">  page: </Text><Text color="var(--foreground)">'/home'</Text>
                 </div>
-              </div>
-              <div className="flex">
-                <div className="mr-4 text-neutral-600">13</div>
+              </XStack>
+              <XStack display="flex">
+                <Box marginRight={16} color="var(--neutral-600)">13</Box>
                 <div>
-                  <span className="text-[var(--white)]">{'}'});</span>
+                  <Text color="var(--white)">{'}'});</Text>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </XStack>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

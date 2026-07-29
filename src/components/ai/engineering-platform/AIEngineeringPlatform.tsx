@@ -1,3 +1,4 @@
+import { Box, Grid, H2, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -8,27 +9,27 @@ import { featureData } from "@/components/base/ai-engineering/featureData";
 
 const AIEngineeringPlatform: React.FC = () => {
   return (
-    <section className="py-16 lg:py-24 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+    <Box render="section" paddingVertical={64} position="relative" $lg={{ paddingVertical: 96 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <Box textAlign="center" marginBottom={64}>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} backgroundClip="text" color="transparent" backgroundImage="linear-gradient(to right, var(--foreground), var(--foreground))" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             AI Engineering Platform
-          </h2>
-          <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Build, deploy, and scale AI applications with an integrated suite of tools designed for modern engineering teams.
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} marginBottom={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           <div>
             <CloudInfrastructure />
           </div>
           <div>
             <PlatformDashboard />
           </div>
-        </div>
+        </Grid>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
           {featureData.map((feature, index) => (
             <FeatureCard
               key={feature.title}
@@ -42,9 +43,9 @@ const AIEngineeringPlatform: React.FC = () => {
               bulletColor={feature.bulletColor}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

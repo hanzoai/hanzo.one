@@ -1,6 +1,6 @@
+import { Box, Command, Text, XStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
-import { Command } from "cmdk";
 import { 
   Search, 
   Bot, 
@@ -74,151 +74,151 @@ const CommandPalette: React.FC = () => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[var(--black)]/60 backdrop-blur-sm flex items-start justify-center pt-[20vh]">
-      <div className="w-full max-w-2xl bg-[var(--black)] border border-gray-800 rounded-lg shadow-xl overflow-hidden">
+    <XStack position="fixed" top={0} right={0} bottom={0} left={0} zIndex={50} backgroundColor="rgb(0 0 0 / 0.6)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" display="flex" alignItems="flex-start" justifyContent="center" paddingTop="20vh">
+      <Box width="100%" maxWidth="42rem" backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" boxShadow="0 20px 25px -5px rgb(0 0 0 / .4)" overflow="hidden">
         <Command
-          className="bg-[var(--black)] text-[var(--white)] border-none"
+          backgroundColor="var(--black)" color="var(--white)" borderStyle="none"
           filter={(value, search, keywords) => {
             if (value.includes(search.toLowerCase())) return 1;
             if (keywords?.some(keyword => keyword.includes(search.toLowerCase()))) return 1;
             return 0;
           }}
         >
-          <div className="border-b border-gray-800 p-2 flex items-center">
-            <Search className="ml-2 h-4 w-4 text-neutral-500" />
+          <XStack borderBottomWidth={1} borderColor="var(--neutral-800)" padding={8} display="flex" alignItems="center">
+            <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><Search size={16} color="var(--neutral-500)" /></Box>
             <Command.Input 
               value={search}
               onValueChange={setSearch}
-              className="w-full bg-transparent border-none focus:outline-none px-2 py-1.5 text-neutral-200 placeholder-gray-500" 
+              width="100%" backgroundColor="transparent" borderStyle="none" paddingHorizontal={8} paddingVertical={6} color="var(--neutral-200)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none" }} 
               placeholder="Search commands..." 
               autoFocus
             />
-            <kbd className="mr-2 px-1.5 py-0.5 text-xs rounded bg-gray-800 text-neutral-400">
+            <Text marginRight={8} paddingHorizontal={6} paddingVertical={2} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" borderRadius="var(--radius)" backgroundColor="var(--neutral-800)" color="var(--neutral-400)">
               Esc
-            </kbd>
-          </div>
+            </Text>
+          </XStack>
           
-          <Command.List className="max-h-80 overflow-auto p-2">
-            <Command.Empty className="py-6 text-center text-neutral-500">
+          <Command.List maxHeight={320} overflow="auto" padding={8}>
+            <Command.Empty paddingVertical={24} textAlign="center" color="var(--neutral-500)">
               No results found.
             </Command.Empty>
             
-            <Command.Group heading="Navigation" className="pb-2">
+            <Command.Group heading="Navigation" paddingBottom={8}>
               <Command.Item 
                 id="view-board" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["kanban", "board", "tasks"]}
               >
-                <LayoutGrid className="h-4 w-4 text-neutral-400" />
+                <LayoutGrid size={16} color="var(--neutral-400)" />
                 <span>View Kanban Board</span>
               </Command.Item>
               <Command.Item 
                 id="view-agents" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["agents", "ai", "list"]}
               >
-                <Bot className="h-4 w-4 text-neutral-400" />
+                <Bot size={16} color="var(--neutral-400)" />
                 <span>View Agents</span>
               </Command.Item>
               <Command.Item 
                 id="view-analytics" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["analytics", "stats", "metrics"]}
               >
-                <ChartBar className="h-4 w-4 text-neutral-400" />
+                <ChartBar size={16} color="var(--neutral-400)" />
                 <span>View Analytics</span>
               </Command.Item>
             </Command.Group>
             
-            <Command.Group heading="Actions" className="pb-2">
+            <Command.Group heading="Actions" paddingBottom={8}>
               <Command.Item 
                 id="new-agent" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["create", "agent", "new", "add"]}
               >
-                <PlusCircle className="h-4 w-4 text-neutral-400" />
+                <PlusCircle size={16} color="var(--neutral-400)" />
                 <span>Create New Agent</span>
               </Command.Item>
               <Command.Item 
                 id="new-task" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["create", "task", "new", "add"]}
               >
-                <PlusCircle className="h-4 w-4 text-neutral-400" />
+                <PlusCircle size={16} color="var(--neutral-400)" />
                 <span>Create New Task</span>
               </Command.Item>
               <Command.Item 
                 id="refresh" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["refresh", "reload", "update"]}
               >
-                <RefreshCw className="h-4 w-4 text-neutral-400" />
+                <RefreshCw size={16} color="var(--neutral-400)" />
                 <span>Refresh Dashboard</span>
               </Command.Item>
               <Command.Item 
                 id="settings" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["settings", "preferences", "config"]}
               >
-                <Settings className="h-4 w-4 text-neutral-400" />
+                <Settings size={16} color="var(--neutral-400)" />
                 <span>Open Settings</span>
               </Command.Item>
             </Command.Group>
             
-            <Command.Group heading="Manage Agents" className="pb-2">
+            <Command.Group heading="Manage Agents" paddingBottom={8}>
               {DummyAgentData.map((agent) => (
                 <Command.Item 
                   key={agent.id}
                   id={`toggle-agent-${agent.id}`}
                   onSelect={handleSelect}
-                  className="flex items-center justify-between px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                  display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                   keywords={[agent.name, agent.type, agent.status, "toggle", "agent"]}
                 >
-                  <div className="flex items-center space-x-2">
-                    <Bot className="h-4 w-4 text-neutral-400" />
+                  <XStack display="flex" alignItems="center" columnGap={8}>
+                    <Bot size={16} color="var(--neutral-400)" />
                     <span>{agent.name}</span>
-                    <span className="text-neutral-500 text-xs">{`(${agent.type})`}</span>
-                  </div>
+                    <Text color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">{`(${agent.type})`}</Text>
+                  </XStack>
                   {agent.status === "running" ? (
-                    <PauseCircle className="h-4 w-4 text-green-500" />
+                    <PauseCircle size={16} color="var(--neutral-500)" />
                   ) : (
-                    <PlayCircle className="h-4 w-4 text-neutral-400" />
+                    <PlayCircle size={16} color="var(--neutral-400)" />
                   )}
                 </Command.Item>
               ))}
             </Command.Group>
             
-            <Command.Group heading="Resources" className="pb-2">
+            <Command.Group heading="Resources" paddingBottom={8}>
               <Command.Item 
                 id="data-sources" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["data", "sources", "database", "vector", "rag"]}
               >
-                <Database className="h-4 w-4 text-neutral-400" />
+                <Database size={16} color="var(--neutral-400)" />
                 <span>Manage Data Sources</span>
               </Command.Item>
               <Command.Item 
                 id="infrastructure" 
                 onSelect={handleSelect} 
-                className="flex items-center space-x-2 px-2 py-1.5 rounded cursor-pointer hover:bg-gray-800 text-neutral-200"
+                display="flex" alignItems="center" columnGap={8} paddingHorizontal={8} paddingVertical={6} borderRadius="var(--radius)" cursor="pointer" color="var(--neutral-200)" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                 keywords={["infrastructure", "server", "deploy", "resources"]}
               >
-                <Server className="h-4 w-4 text-neutral-400" />
+                <Server size={16} color="var(--neutral-400)" />
                 <span>View Infrastructure</span>
               </Command.Item>
             </Command.Group>
           </Command.List>
         </Command>
-      </div>
-    </div>
+      </Box>
+    </XStack>
   );
 };
 

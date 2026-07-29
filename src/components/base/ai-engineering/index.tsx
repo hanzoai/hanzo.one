@@ -1,3 +1,4 @@
+import { Box, Grid } from '@/gui'
 
 import React from "react";
 import AIEngineeringHeader from "./AIEngineeringHeader";
@@ -6,11 +7,11 @@ import { featureData } from "./featureData";
 
 const AIEngineering = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)]">
-      <div className="max-w-7xl mx-auto">
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
         <AIEngineeringHeader />
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={48} $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
           {featureData.map((feature, index) => (
             <ExpandableFeatureCard
               key={index}
@@ -24,9 +25,9 @@ const AIEngineering = () => {
               bulletColor={feature.bulletColor}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

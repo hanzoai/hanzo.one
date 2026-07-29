@@ -1,6 +1,6 @@
+import { Box, Helmet, Toaster } from '@/gui'
 
 import React from "react";
-import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DesktopAppBanner from "@/components/DesktopAppBanner";
@@ -13,11 +13,10 @@ import Regions from "@/components/cloud/Regions";
 import Security from "@/components/cloud/Security";
 import TechStack from "@/components/cloud/TechStack";
 import CallToAction from "@/components/cloud/CallToAction";
-import { Toaster } from "@/components/ui/toaster";
 
 const Cloud = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)] overflow-x-hidden">
+    <Box minHeight="100vh" backgroundColor="var(--black)" color="var(--white)" overflowX="hidden">
       <Helmet>
         <title>Hanzo Cloud - Complete Cloud Platform</title>
         <meta name="description" content="90+ managed services for AI, databases, compute, and more. Build, deploy, and scale modern applications on a unified platform." />
@@ -43,7 +42,7 @@ const Cloud = () => {
       <Footer />
       <Toaster />
       <DesktopAppBanner />
-    </div>
+    </Box>
   );
 };
 

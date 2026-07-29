@@ -1,26 +1,26 @@
+import { Anchor, Box, Button, Grid, H2, H3, H4, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Github, ExternalLink, Users, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const statsItems = [
   { 
-    icon: <Github className="h-6 w-6" />,
+    icon: <Github size={24} />,
     value: 17,
     suffix: "M+",
     label: "Downloads",
     countUpDuration: 2
   },
   { 
-    icon: <Github className="h-6 w-6" />,
+    icon: <Github size={24} />,
     value: 25,
     suffix: "K+",
     label: "GitHub Stars",
     countUpDuration: 2.2
   },
   { 
-    icon: <Users className="h-6 w-6" />,
+    icon: <Users size={24} />,
     value: 280,
     suffix: "+",
     label: "Contributors",
@@ -71,120 +71,120 @@ const Community = () => {
   };
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/30 relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]"></div>
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} position="relative" overflow="hidden" backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.02) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.02) 1px, transparent 1px)" backgroundSize="32px 32px" backgroundColor="size:20px 20px"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          textAlign="center" marginBottom={80}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Powered by Community, Improved by Collaboration</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>Powered by Community, Improved by Collaboration</H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Join thousands of developers building the future of analytics together.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
         
         <div ref={ref}>
-          <motion.div
+          <MotionBox
             variants={containerVariants}
             initial="hidden"
             animate={controls}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} marginBottom={64} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
           >
             {statsItems.map((item, index) => (
-              <motion.div
+              <MotionBox
                 key={index}
                 variants={itemVariants}
-                className="bg-gray-900/50 rounded-xl p-8 border border-gray-800 text-center"
+                backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={32} borderWidth={1} borderColor="var(--neutral-800)" textAlign="center"
               >
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-purple-900/30 rounded-full border border-purple-900/30 text-purple-400">
+                <XStack display="flex" justifyContent="center" marginBottom={16}>
+                  <Box padding={12} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-full)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)">
                     {item.icon}
-                  </div>
-                </div>
+                  </Box>
+                </XStack>
                 
-                <div className="text-4xl font-bold mb-2">
+                <Box fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={8}>
                   {isInView ? (
                     <CountUp end={item.value} duration={item.countUpDuration} />
                   ) : (
                     0
                   )}
                   <span>{item.suffix}</span>
-                </div>
+                </Box>
                 
-                <div className="text-neutral-400">{item.label}</div>
-              </motion.div>
+                <Box color="var(--neutral-400)">{item.label}</Box>
+              </MotionBox>
             ))}
-          </motion.div>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             variants={containerVariants}
             initial="hidden"
             animate={controls}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
           >
-            <motion.div
+            <MotionBox
               variants={itemVariants}
-              className="bg-gray-900/50 rounded-xl border border-gray-800 p-8"
+              backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={32}
             >
-              <div className="flex items-center mb-6">
-                <Github className="h-6 w-6 text-purple-400 mr-3" />
-                <h3 className="text-2xl font-bold">Open Source</h3>
-              </div>
+              <XStack display="flex" alignItems="center" marginBottom={24}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><Github size={24} color="var(--foreground)" /></Box>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Open Source</H3>
+              </XStack>
               
-              <p className="text-neutral-400 mb-6">
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Hanzo Analytics is fully open source, with a vibrant community of developers contributing from around the world. Join us on GitHub to collaborate on the future of analytics.
-              </p>
+              </Paragraph>
               
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
-                  <div className="flex-1">
-                    <div className="h-2 w-3/4 bg-gray-700 rounded"></div>
-                    <div className="h-2 w-1/2 bg-gray-700 rounded mt-2"></div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
-                  <div className="flex-1">
-                    <div className="h-2 w-3/4 bg-gray-700 rounded"></div>
-                    <div className="h-2 w-1/2 bg-gray-700 rounded mt-2"></div>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
-                  <div className="flex-1">
-                    <div className="h-2 w-3/4 bg-gray-700 rounded"></div>
-                    <div className="h-2 w-1/2 bg-gray-700 rounded mt-2"></div>
-                  </div>
-                </div>
-              </div>
+              <Box rowGap={16} marginBottom={32}>
+                <XStack display="flex" alignItems="center">
+                  <Box width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-700)" marginRight={12}></Box>
+                  <Box flex={1}>
+                    <Box height={8} width="75%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                    <Box height={8} width="50%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)" marginTop={8}></Box>
+                  </Box>
+                </XStack>
+                <XStack display="flex" alignItems="center">
+                  <Box width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-700)" marginRight={12}></Box>
+                  <Box flex={1}>
+                    <Box height={8} width="75%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                    <Box height={8} width="50%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)" marginTop={8}></Box>
+                  </Box>
+                </XStack>
+                <XStack display="flex" alignItems="center">
+                  <Box width={32} height={32} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-700)" marginRight={12}></Box>
+                  <Box flex={1}>
+                    <Box height={8} width="75%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)"></Box>
+                    <Box height={8} width="50%" backgroundColor="var(--neutral-700)" borderRadius="var(--radius)" marginTop={8}></Box>
+                  </Box>
+                </XStack>
+              </Box>
               
-              <Button variant="outline" className="flex items-center gap-2">
-                <Github className="h-4 w-4" />
+              <Button variant="outline" display="flex" alignItems="center" gap={8}>
+                <Github size={16} />
                 GitHub Repo
-                <ExternalLink className="h-3 w-3 ml-1" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ExternalLink size={12} /></Box>
               </Button>
-            </motion.div>
+            </MotionBox>
             
-            <motion.div
+            <MotionBox
               variants={itemVariants}
-              className="bg-gray-900/50 rounded-xl border border-gray-800 p-8"
+              backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" padding={32}
             >
-              <div className="flex items-center mb-6">
-                <BookOpen className="h-6 w-6 text-blue-400 mr-3" />
-                <h3 className="text-2xl font-bold">Resources</h3>
-              </div>
+              <XStack display="flex" alignItems="center" marginBottom={24}>
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={12}><BookOpen size={24} color="var(--foreground)" /></Box>
+                <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700">Resources</H3>
+              </XStack>
               
-              <p className="text-neutral-400 mb-6">
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Access comprehensive documentation, tutorials, and examples to help you make the most of Hanzo Analytics.
-              </p>
+              </Paragraph>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={32} $sm={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
                 {[
                   { 
                     title: "Documentation", 
@@ -207,26 +207,26 @@ const Community = () => {
                     link: "#support" 
                   }
                 ].map((resource, i) => (
-                  <a 
+                  <Anchor 
                     key={i} 
                     href={resource.link} 
-                    className="block p-4 bg-gray-800/50 hover:bg-gray-800 rounded-lg border border-gray-700 transition-colors"
+                    display="block" padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-700)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ backgroundColor: "var(--neutral-800)" }}
                   >
-                    <h4 className="font-medium text-[var(--white)] mb-1">{resource.title}</h4>
-                    <p className="text-sm text-neutral-400">{resource.description}</p>
-                  </a>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={4}>{resource.title}</H4>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">{resource.description}</Paragraph>
+                  </Anchor>
                 ))}
-              </div>
+              </Grid>
               
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" display="flex" alignItems="center" gap={8}>
                 Browse All Resources
-                <ExternalLink className="h-3 w-3 ml-1" />
+                <Box render="span" display="inline-flex" alignItems="center" marginLeft={4}><ExternalLink size={12} /></Box>
               </Button>
-            </motion.div>
-          </motion.div>
+            </MotionBox>
+          </MotionBox>
         </div>
-      </div>
-    </section>
+      </Box>
+    </Box>
   );
 };
 

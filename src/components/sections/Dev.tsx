@@ -1,3 +1,4 @@
+import { Anchor, Box, Button, Grid, H1, H2, H3, H4, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -16,18 +17,16 @@ import {
   ExternalLink,
   Bot
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 // Sidebar navigation items
 const sidebarItems = [
-  { label: "Getting Started", icon: <BookOpen className="h-4 w-4" />, active: true },
-  { label: "API Reference", icon: <Code className="h-4 w-4" /> },
-  { label: "Models & Pricing", icon: <Database className="h-4 w-4" /> },
-  { label: "Security", icon: <Shield className="h-4 w-4" /> },
-  { label: "Tool Use", icon: <Settings className="h-4 w-4" /> },
-  { label: "Deployment", icon: <Server className="h-4 w-4" /> },
-  { label: "Examples", icon: <FileText className="h-4 w-4" /> },
+  { label: "Getting Started", icon: <BookOpen size={16} />, active: true },
+  { label: "API Reference", icon: <Code size={16} /> },
+  { label: "Models & Pricing", icon: <Database size={16} /> },
+  { label: "Security", icon: <Shield size={16} /> },
+  { label: "Tool Use", icon: <Settings size={16} /> },
+  { label: "Deployment", icon: <Server size={16} /> },
+  { label: "Examples", icon: <FileText size={16} /> },
 ];
 
 // Setup steps for the getting started section
@@ -58,226 +57,218 @@ const Dev = () => {
   const [activeTab, setActiveTab] = useState<string>("getting-started");
   
   return (
-    <section className="py-20 bg-[var(--white)] dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+    <Box render="section" paddingVertical={80} backgroundColor="var(--neutral-950)" borderTopWidth={1} borderColor="var(--neutral-800)">
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" paddingHorizontal={16} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <YStack display="flex" flexDirection="column" gap={32} $lg={{ flexDirection: "row" }}>
           {/* Sidebar */}
-          <motion.div 
+          <MotionBox 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:w-64 flex-shrink-0"
+            flexShrink={0} $lg={{ width: 256 }}
           >
-            <div className="sticky top-24">
-              <div className="mb-8">
-                <h2 className="text-lg font-medium mb-2 text-neutral-900 dark:text-[var(--white)]">Hanzo Dev</h2>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <Box position="sticky" top={96}>
+              <Box marginBottom={32}>
+                <H2 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={8} color="var(--white)">Hanzo Dev</H2>
+                <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                   Documentation and resources for developers
-                </p>
-              </div>
+                </Paragraph>
+              </Box>
               
-              <div className="flex lg:hidden mb-6">
-                <Button variant="outline" className="w-full flex items-center justify-between">
+              <XStack display="flex" marginBottom={24} $lg={{ display: "none" }}>
+                <Button variant="outline" width="100%" display="flex" alignItems="center" justifyContent="space-between">
                   <span>Navigate</span>
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRight size={16} />
                 </Button>
-              </div>
+              </XStack>
               
-              <nav className="hidden lg:block space-y-1">
+              <Box render="nav" display="none" rowGap={4} $lg={{ display: "block" }}>
                 {sidebarItems.map((item, index) => (
-                  <a 
+                  <Anchor 
                     key={index}
                     href={`#${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                    className={cn(
-                      "flex items-center px-3 py-2 text-sm rounded-md group",
-                      item.active 
-                        ? "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300" 
-                        : "text-neutral-700 hover:bg-gray-50 dark:text-neutral-300 dark:hover:bg-gray-800/50"
-                    )}
+                    group display="flex" alignItems="center" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" borderRadius="var(--radius-md)" backgroundColor={item.active ? "rgb(255 255 255 / 0.2)" : undefined} color={item.active ? "var(--foreground)" : "var(--neutral-300)"} hoverStyle={item.active ? undefined : { backgroundColor: "var(--surface-card)" }}
                   >
-                    <span className={cn(
-                      "mr-3", 
-                      item.active ? "text-purple-500 dark:text-purple-400" : "text-neutral-500 dark:text-neutral-400"
-                    )}>
+                    <Text marginRight={12} color={item.active ? "var(--foreground)" : "var(--neutral-400)"}>
                       {item.icon}
-                    </span>
+                    </Text>
                     <span>{item.label}</span>
-                  </a>
+                  </Anchor>
                 ))}
-              </nav>
-            </div>
-          </motion.div>
+              </Box>
+            </Box>
+          </MotionBox>
           
           {/* Main Content */}
-          <motion.div 
+          <MotionBox 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex-1 min-w-0"
+            flex={1} minWidth={0}
           >
-            <div className="prose prose-blue max-w-none dark:prose-invert">
-              <h1 className="text-3xl font-bold text-neutral-900 dark:text-[var(--white)] mb-6">
+            <Box maxWidth="none">
+              <H1 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24}>
                 Hanzo Dev Documentation
-              </h1>
+              </H1>
               
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30 rounded-md p-4 mb-8">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <Bot className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div className="ml-3">
-                    <h3 className="text-sm font-medium text-blue-800 dark:text-blue-300">
+              <Box backgroundColor="rgb(255 255 255 / 0.2)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-md)" padding={16} marginBottom={32}>
+                <XStack display="flex">
+                  <Box flexShrink={0}>
+                    <Bot size={20} color="var(--foreground)" />
+                  </Box>
+                  <Box marginLeft={12}>
+                    <H3 fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">
                       Beta Release
-                    </h3>
-                    <div className="mt-2 text-sm text-blue-700 dark:text-blue-400">
+                    </H3>
+                    <Box marginTop={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)">
                       <p>
                         Hanzo Dev is currently in beta. We're gathering developer feedback to improve the experience.
                         Please report any issues directly through our GitHub repository.
                       </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </Box>
+                  </Box>
+                </XStack>
+              </Box>
               
-              <h2 className="text-2xl font-semibold text-neutral-900 dark:text-[var(--white)] mt-8 mb-4" id="getting-started">
+              <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600" color="var(--white)" marginTop={32} marginBottom={16} id="getting-started">
                 Getting Started
-              </h2>
+              </H2>
               
-              <p className="text-neutral-600 dark:text-neutral-400 mb-6">
+              <Paragraph color="var(--neutral-400)" marginBottom={24}>
                 Hanzo Dev is an AI developer tool that lives in your terminal, understands your codebase, 
                 and helps you code faster through natural language commands.
-              </p>
+              </Paragraph>
               
               {/* System Requirements */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-[var(--white)] mb-4">
+              <Box marginBottom={32}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>
                   System Requirements
-                </h3>
+                </H3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Operating Systems</h4>
-                    <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc ml-4">
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} marginBottom={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Operating Systems</H4>
+                    <Box render="ul" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" rowGap={4} listStyleType="disc" marginLeft={16}>
                       <li>macOS 10.15+</li>
                       <li>Ubuntu 20.04+/Debian 10+</li>
                       <li>Windows via WSL</li>
-                    </ul>
-                  </div>
+                    </Box>
+                  </Box>
                   
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Software</h4>
-                    <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc ml-4">
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Software</H4>
+                    <Box render="ul" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" rowGap={4} listStyleType="disc" marginLeft={16}>
                       <li>Node.js 18+</li>
                       <li>git 2.23+ (optional)</li>
                       <li>GitHub or GitLab CLI (optional)</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Box>
               
               {/* Installation Steps */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-[var(--white)] mb-4">
+              <Box marginBottom={32}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>
                   Install and Set Up
-                </h3>
+                </H3>
                 
-                <div className="space-y-4">
+                <Box rowGap={16}>
                   {setupSteps.map((step, index) => (
-                    <div key={index} className="border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden">
-                      <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-6 w-6 rounded-full bg-purple-500 text-[var(--white)] flex items-center justify-center text-sm font-medium">
+                    <Box key={index} borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" overflow="hidden">
+                      <Box backgroundColor="var(--neutral-900)" paddingHorizontal={16} paddingVertical={8} borderBottomWidth={1} borderColor="var(--neutral-800)">
+                        <XStack display="flex" alignItems="center">
+                          <XStack flexShrink={0} height={24} width={24} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)" color="var(--white)" display="flex" alignItems="center" justifyContent="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
                             {index + 1}
-                          </div>
-                          <h4 className="ml-3 font-medium text-neutral-900 dark:text-[var(--white)]">{step.title}</h4>
-                        </div>
-                      </div>
-                      <div className="px-4 py-3">
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{step.description}</p>
+                          </XStack>
+                          <H4 marginLeft={12} fontWeight="500" color="var(--white)">{step.title}</H4>
+                        </XStack>
+                      </Box>
+                      <Box paddingHorizontal={16} paddingVertical={12}>
+                        <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" marginBottom={12}>{step.description}</Paragraph>
                         {step.code && (
-                          <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                          <Box backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" padding={12} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" overflowX="auto">
                             {step.code}
-                          </div>
+                          </Box>
                         )}
-                      </div>
-                    </div>
+                      </Box>
+                    </Box>
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
               
               {/* Core Features */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-[var(--white)] mb-4">
+              <Box marginBottom={32}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>
                   Core Features
-                </h3>
+                </H3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <Code className="h-5 w-5 text-purple-500 mb-2" />
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Understand Code</h4>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={16} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginBottom={8}><Code size={20} color="var(--neutral-500)" /></Box>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Understand Code</H4>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                       Ask questions about your codebase architecture, logic, and functions to get immediate insights.
-                    </p>
-                  </div>
+                    </Paragraph>
+                  </Box>
                   
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <Terminal className="h-5 w-5 text-green-500 mb-2" />
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Execute Commands</h4>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginBottom={8}><Terminal size={20} color="var(--neutral-500)" /></Box>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Execute Commands</H4>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                       Run tests, linting, and other commands with natural language instructions.
-                    </p>
-                  </div>
+                    </Paragraph>
+                  </Box>
                   
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <FileText className="h-5 w-5 text-blue-500 mb-2" />
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Edit Files</h4>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginBottom={8}><FileText size={20} color="var(--neutral-500)" /></Box>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Edit Files</H4>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                       Make changes to your code across multiple files with simple natural language requests.
-                    </p>
-                  </div>
+                    </Paragraph>
+                  </Box>
                   
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-md p-4">
-                    <Search className="h-5 w-5 text-amber-500 mb-2" />
-                    <h4 className="font-medium text-neutral-900 dark:text-[var(--white)] mb-2">Search & Navigate</h4>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <Box borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16}>
+                    <Box render="span" display="inline-flex" alignItems="center" marginBottom={8}><Search size={20} color="var(--neutral-500)" /></Box>
+                    <H4 fontWeight="500" color="var(--white)" marginBottom={8}>Search & Navigate</H4>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
                       Quickly search through git history, find files, and navigate complex codebases.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                    </Paragraph>
+                  </Box>
+                </Grid>
+              </Box>
               
               {/* Example Usage */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-neutral-900 dark:text-[var(--white)] mb-4">
+              <Box marginBottom={32}>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--white)" marginBottom={16}>
                   Example Usage
-                </h3>
+                </H3>
                 
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-md p-4 font-mono text-sm mb-6 overflow-x-auto">
-                  <div className="text-neutral-500 dark:text-neutral-400"># Ask about your codebase</div>
-                  <div className="text-neutral-900 dark:text-neutral-100">hanzo</div>
-                  <div className="text-purple-600 dark:text-purple-400">&gt; how does our authentication system work?</div>
-                  <div className="mt-2 text-neutral-500 dark:text-neutral-400"># Fix issues across files</div>
-                  <div className="text-purple-600 dark:text-purple-400">&gt; fix the type errors in the auth module</div>
-                  <div className="mt-2 text-neutral-500 dark:text-neutral-400"># Create a commit</div>
-                  <div className="text-purple-600 dark:text-purple-400">&gt; commit my changes</div>
-                </div>
-              </div>
+                <Box backgroundColor="var(--neutral-800)" borderRadius="var(--radius-md)" padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={24} overflowX="auto">
+                  <Box color="var(--neutral-400)"># Ask about your codebase</Box>
+                  <Box color="var(--neutral-100)">hanzo</Box>
+                  <Box color="var(--foreground)">&gt; how does our authentication system work?</Box>
+                  <Box marginTop={8} color="var(--neutral-400)"># Fix issues across files</Box>
+                  <Box color="var(--foreground)">&gt; fix the type errors in the auth module</Box>
+                  <Box marginTop={8} color="var(--neutral-400)"># Create a commit</Box>
+                  <Box color="var(--foreground)">&gt; commit my changes</Box>
+                </Box>
+              </Box>
               
-              <div className="flex justify-center mt-12">
-                <Button className="bg-purple-600 hover:bg-purple-700 text-[var(--white)]">
-                  <Download className="mr-2 h-4 w-4" />
+              <XStack display="flex" justifyContent="center" marginTop={48}>
+                <Button backgroundColor="var(--neutral-600)" color="var(--white)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Download size={16} /></Box>
                   <a href="#download">Install Hanzo Dev</a>
                 </Button>
-                <Button variant="outline" className="ml-4">
-                  <ExternalLink className="mr-2 h-4 w-4" />
+                <Button variant="outline" marginLeft={16}>
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={16} /></Box>
                   <a href="https://github.com/hanzoai/dev" target="_blank" rel="noopener noreferrer">View on GitHub</a>
                 </Button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </XStack>
+            </Box>
+          </MotionBox>
+        </YStack>
+      </Box>
+    </Box>
   );
 };
 

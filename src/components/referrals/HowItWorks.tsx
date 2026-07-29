@@ -1,49 +1,50 @@
+import { Box, Grid, H2, H3, Paragraph, XStack } from '@/gui'
 
 import React from 'react';
 
 const HowItWorks = () => {
   return (
-    <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-      <h2 className="text-xl font-medium mb-4">How It Works</h2>
+    <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+      <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="500" marginBottom={16}>How It Works</H2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-4 bg-gray-900/50 rounded-lg">
-          <div className="flex items-center mb-3">
-            <div className="h-8 w-8 rounded-full bg-purple-900/30 text-purple-300 flex items-center justify-center mr-3">
+      <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+        <Box padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)">
+          <XStack display="flex" alignItems="center" marginBottom={12}>
+            <XStack height={32} width={32} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
               1
-            </div>
-            <h3 className="font-medium">Share Your Link</h3>
-          </div>
-          <p className="text-sm text-neutral-400">
+            </XStack>
+            <H3 fontWeight="500">Share Your Link</H3>
+          </XStack>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
             Share your unique referral link with friends and colleagues via email or social media
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="p-4 bg-gray-900/50 rounded-lg">
-          <div className="flex items-center mb-3">
-            <div className="h-8 w-8 rounded-full bg-purple-900/30 text-purple-300 flex items-center justify-center mr-3">
+        <Box padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)">
+          <XStack display="flex" alignItems="center" marginBottom={12}>
+            <XStack height={32} width={32} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
               2
-            </div>
-            <h3 className="font-medium">Friends Sign Up</h3>
-          </div>
-          <p className="text-sm text-neutral-400">
+            </XStack>
+            <H3 fontWeight="500">Friends Sign Up</H3>
+          </XStack>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
             When your friends use your link to sign up and subscribe to any paid plan
-          </p>
-        </div>
+          </Paragraph>
+        </Box>
         
-        <div className="p-4 bg-gray-900/50 rounded-lg">
-          <div className="flex items-center mb-3">
-            <div className="h-8 w-8 rounded-full bg-purple-900/30 text-purple-300 flex items-center justify-center mr-3">
+        <Box padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)">
+          <XStack display="flex" alignItems="center" marginBottom={12}>
+            <XStack height={32} width={32} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)" display="flex" alignItems="center" justifyContent="center" marginRight={12}>
               3
-            </div>
-            <h3 className="font-medium">Earn Credits</h3>
-          </div>
-          <p className="text-sm text-neutral-400">
+            </XStack>
+            <H3 fontWeight="500">Earn Credits</H3>
+          </XStack>
+          <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">
             You receive $5 in credits for each successful referral that can be used toward your subscription
-          </p>
-        </div>
-      </div>
-    </div>
+          </Paragraph>
+        </Box>
+      </Grid>
+    </Box>
   );
 };
 

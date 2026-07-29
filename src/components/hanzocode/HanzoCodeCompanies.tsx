@@ -1,3 +1,4 @@
+import { Box, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -12,38 +13,38 @@ const HanzoCodeCompanies = () => {
   ];
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[var(--black)]/60">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={48} paddingHorizontal={16} backgroundColor="rgb(0 0 0 / 0.6)" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          textAlign="center" marginBottom={32}
         >
-          <p className="text-xl text-neutral-400">Trusted by engineers at</p>
-        </motion.div>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-400)">Trusted by engineers at</Paragraph>
+        </MotionBox>
         
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <XStack display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" gap={32} $md={{ gap: 64 }}>
           {companies.map((company, index) => (
-            <motion.div
+            <MotionBox
               key={index}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="h-8 w-24 flex items-center justify-center"
+              flexDirection="row" height={32} width={96} display="flex" alignItems="center" justifyContent="center"
             >
-              <img
+              <Box display="inline-block"
                 src={company.logo}
                 alt={company.name}
-                className="h-8 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                render="img" height={32} objectFit="contain" opacity={0.7} transition="opacity var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ opacity: 1 }}
               />
-            </motion.div>
+            </MotionBox>
           ))}
-        </div>
-      </div>
-    </section>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

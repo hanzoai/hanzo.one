@@ -1,33 +1,33 @@
+import { Box, ChromeText, MotionBox, Paragraph, Text } from '@/gui'
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import ChromeText from "@/components/ui/chrome-text";
 import DXPlatformGrid from "./dx-platform/DXPlatformGrid";
 
 const DXPlatform = () => {
   const [isHovered, setIsHovered] = useState<string | null>(null);
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
+    <Box render="section" paddingVertical={128} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
       {/* Decorative elements */}
-      <div className="absolute top-1/4 right-0 w-1/3 h-1/3 bg-blue-900/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-0 w-1/3 h-1/3 bg-purple-900/5 rounded-full blur-3xl"></div>
+      <Box position="absolute" top="25%" right={0} width="33.333333%" height="33.333333%" backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
+      <Box position="absolute" bottom="25%" left={0} width="33.333333%" height="33.333333%" backgroundColor="rgb(255 255 255 / 0.05)" borderRadius="var(--radius-full)" filter="blur(64px)"></Box>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <motion.div
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <Box textAlign="center" marginBottom={64}>
+          <MotionBox
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-4"
+            marginBottom={16}
           >
-            <span className="inline-block px-4 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-sm font-medium">
+            <Text display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500">
               Developer Experience
-            </span>
-          </motion.div>
+            </Text>
+          </MotionBox>
           
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -35,32 +35,32 @@ const DXPlatform = () => {
           >
             <ChromeText 
               as="h2" 
-              className="text-3xl md:text-5xl font-bold mb-6"
+              fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}
             >
               The DX Platform
             </ChromeText>
             
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+            <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
               Unify your development workflow with tools designed to increase productivity, enable collaboration, and accelerate innovation.
-            </p>
-          </motion.div>
-        </div>
+            </Paragraph>
+          </MotionBox>
+        </Box>
         
         <DXPlatformGrid isHovered={isHovered} setIsHovered={setIsHovered} />
         
-        <motion.div 
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-20 text-center"
+          marginTop={80} textAlign="center"
         >
-          <p className="text-neutral-400 mb-6 max-w-3xl mx-auto">
+          <Paragraph color="var(--neutral-400)" marginBottom={24} maxWidth="var(--container-prose)" marginHorizontal="auto">
             Join thousands of developers who build faster and ship more reliable software with the Hanzo DX Platform.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+          </Paragraph>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

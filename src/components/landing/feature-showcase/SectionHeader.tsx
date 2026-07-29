@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -11,23 +12,23 @@ interface SectionHeaderProps {
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ badge, badgeColor, title, description }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="text-center mb-12"
+      textAlign="center" marginBottom={48}
     >
-      <div className={`inline-block px-4 py-1 rounded-full ${badgeColor} text-sm font-medium mb-6`}>
+      <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
         {badge}
-      </div>
-      <h3 className="text-3xl font-bold text-[var(--white)] mb-6">
+      </Box>
+      <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24}>
         {title}
-      </h3>
-      <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
+      </H3>
+      <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
         {description}
-      </p>
-    </motion.div>
+      </Paragraph>
+    </MotionBox>
   );
 };
 

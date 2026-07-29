@@ -1,32 +1,32 @@
+import { Box, Button, H2, MotionBox, Paragraph, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
 
 const CallToAction = () => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-900/10 to-blue-900/10">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.1))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="64rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-black/50 border border-purple-500/20 rounded-lg p-10 text-center"
+          backgroundColor="rgb(0 0 0 / 0.5)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)" borderRadius="var(--radius-lg)" padding={40} textAlign="center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} color="var(--foreground)" $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Ready to Get Started?
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto mb-10">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" marginBottom={40}>
             Upgrade your projects to Tailwind v4 and React 19 today and take advantage
             of the latest features and improvements.
-          </p>
+          </Paragraph>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <YStack display="flex" flexDirection="column" justifyContent="center" gap={16} $sm={{ flexDirection: "row" }}>
             <Button 
               size="lg" 
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              backgroundColor="var(--neutral-600)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
               Get Started Guide
             </Button>
@@ -34,25 +34,25 @@ const CallToAction = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-white/20 text-white hover:bg-white/10"
+              borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
             >
-              <Github className="mr-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Github size={20} /></Box>
               Star on GitHub
             </Button>
             
             <Button 
               size="lg" 
               variant="outline"
-              className="border-white/20 text-white hover:bg-white/10"
+              borderColor="rgb(255 255 255 / 0.2)" color="var(--foreground)" hoverStyle={{ backgroundColor: "rgb(255 255 255 / 0.1)" }}
               onClick={() => window.open("https://ui.shadcn.com", "_blank")}
             >
-              <ExternalLink className="mr-2 h-5 w-5" />
+              <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={20} /></Box>
               Documentation
             </Button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+          </YStack>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

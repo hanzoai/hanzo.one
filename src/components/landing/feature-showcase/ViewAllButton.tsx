@@ -1,8 +1,7 @@
+import { Anchor, Box, Button, MotionBox, XStack } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface ViewAllButtonProps {
@@ -34,29 +33,24 @@ const ViewAllButton: React.FC<ViewAllButtonProps> = ({ href, text, hoverColor })
   const colorClasses = hoverColorMap[hoverColor] || hoverColorMap.blue;
   
   return (
-    <div className="flex justify-center mb-12">
-      <motion.div
+    <XStack display="flex" justifyContent="center" marginBottom={48}>
+      <MotionBox
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
         <Button 
           variant="outline" 
           size="sm"
-          className={cn(
-            "group border-gray-700 transition-all duration-300",
-            colorClasses.bg,
-            colorClasses.border,
-            colorClasses.text
-          )}
+          group borderColor="var(--neutral-700)" transition="all 300ms cubic-bezier(.4,0,.2,1)"
           asChild
         >
-          <a href={href} className="flex items-center gap-2">
+          <Anchor href={href} display="flex" alignItems="center" gap={8}>
             <span>{text}</span>
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+            <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ x: 4 }}><ArrowRight size={16} /></Box>
+          </Anchor>
         </Button>
-      </motion.div>
-    </div>
+      </MotionBox>
+    </XStack>
   );
 };
 

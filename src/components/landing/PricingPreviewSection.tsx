@@ -1,6 +1,7 @@
+import { Anchor, Box, Grid, H2, H3, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Check, ArrowRight, Sparkles } from "lucide-react";
 
 const freeFeatures = [
@@ -14,119 +15,119 @@ const freeFeatures = [
 
 const PricingPreviewSection = () => {
   return (
-    <section className="py-24 px-4 md:px-8 bg-black">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--pure-black)" $md={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          textAlign="center" marginBottom={48}
         >
-          <p
-            className="inline-flex text-xs font-medium rounded-full px-4 py-2 border mb-6"
-            style={{ color: "#fd4444", borderColor: "rgba(253, 68, 68, 0.3)" }}
+          <Paragraph
+            display="inline-flex" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderRadius="var(--radius-full)" paddingHorizontal={16} paddingVertical={8} borderWidth={1} marginBottom={24}
+            style={{ color: "var(--foreground)", borderColor: "rgba(253, 68, 68, 0.3)" }}
           >
             Pricing
-          </p>
-          <h2 className="text-3xl md:text-5xl font-medium text-white mb-6">
+          </Paragraph>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="500" color="var(--foreground)" marginBottom={24} $md={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }}>
             Scale forever
-          </h2>
-          <p className="text-lg text-neutral-400">
+          </H2>
+          <Paragraph fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-400)">
             No credit card required. Upgrade when you're ready.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
         {/* Pricing card */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative"
+          position="relative"
         >
           {/* Glow effect */}
-          <div
-            className="absolute inset-0 rounded-2xl blur-xl opacity-20"
-            style={{ background: "linear-gradient(135deg, #fd4444, #8b5cf6)" }}
+          <Box
+            position="absolute" top={0} right={0} bottom={0} left={0} borderRadius="var(--radius-2xl)" filter="blur(24px)" opacity={0.2}
+            style={{ background: "linear-gradient(135deg, var(--foreground), #8b5cf6)" }}
           />
 
-          <div className="relative p-8 md:p-12 rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-sm">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+          <Box position="relative" padding={32} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" $md={{ padding: 48 }}>
+            <Grid display="grid" gap={32} alignItems="center" $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
               {/* Left: Free tier info */}
               <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Sparkles className="w-5 h-5 text-[#fd4444]" />
-                  <span className="text-sm font-medium text-[#fd4444]">Free Forever</span>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  $0<span className="text-lg font-normal text-neutral-500">/month</span>
-                </h3>
-                <p className="text-neutral-400 mb-6">
+                <XStack display="flex" alignItems="center" gap={8} marginBottom={16}>
+                  <Sparkles size={20} color="var(--foreground)" />
+                  <Text fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" color="var(--foreground)">Free Forever</Text>
+                </XStack>
+                <H3 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={8} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
+                  $0<Text fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="400" color="var(--neutral-500)">/month</Text>
+                </H3>
+                <Paragraph color="var(--neutral-400)" marginBottom={24}>
                   Everything you need to start building. No strings attached.
-                </p>
+                </Paragraph>
 
-                <ul className="space-y-3">
+                <Box render="ul" rowGap={12}>
                   {freeFeatures.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-[#fd4444]/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-[#fd4444]" />
-                      </div>
-                      <span className="text-neutral-300 text-sm">{feature}</span>
-                    </li>
+                    <XStack key={feature} render="li" display="flex" alignItems="center" gap={12}>
+                      <XStack width={20} height={20} borderRadius="var(--radius-full)" backgroundColor="rgb(255 255 255 / 0.2)" display="flex" alignItems="center" justifyContent="center" flexShrink={0}>
+                        <Check size={12} color="var(--foreground)" />
+                      </XStack>
+                      <Text color="var(--neutral-300)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{feature}</Text>
+                    </XStack>
                   ))}
-                </ul>
+                </Box>
               </div>
 
               {/* Right: CTAs */}
-              <div className="flex flex-col items-center md:items-end gap-4">
-                <a
+              <YStack display="flex" flexDirection="column" alignItems="center" gap={16} $md={{ alignItems: "flex-end" }}>
+                <Anchor
                   href="https://iam.hanzo.ai/sign-up"
-                  className="w-full md:w-auto inline-flex justify-center items-center px-8 py-4 rounded-full font-medium text-white transition-all hover:opacity-90"
-                  style={{ backgroundColor: "#fd4444" }}
+                  width="100%" display="inline-flex" justifyContent="center" alignItems="center" paddingHorizontal={32} paddingVertical={16} borderRadius="var(--radius-full)" fontWeight="500" color="var(--foreground)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $md={{ width: "auto" }} hoverStyle={{ opacity: 0.9 }}
+                  style={{ backgroundColor: "var(--neutral-800)" }}
                 >
                   Start Building Free
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                  <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
+                </Anchor>
 
-                <Link
+                <Link tap
                   to="/pricing"
-                  className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+                  display="inline-flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
                 >
                   View all plans
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight size={16} />
                 </Link>
 
-                <p className="text-xs text-neutral-600 text-center md:text-right mt-4">
+                <Paragraph fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-600)" textAlign="center" marginTop={16} $md={{ textAlign: "right" }}>
                   No credit card required
                   <br />
                   Cancel anytime
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+                </Paragraph>
+              </YStack>
+            </Grid>
+          </Box>
+        </MotionBox>
 
         {/* Enterprise callout */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-8 text-center"
+          marginTop={32} textAlign="center"
         >
-          <p className="text-neutral-500">
+          <Paragraph color="var(--neutral-500)">
             Need custom limits, SLAs, or dedicated support?{" "}
-            <Link
+            <Link tap
               to="/enterprise"
-              className="text-[#fd4444] hover:underline"
+              color="var(--foreground)" hoverStyle={{ textDecorationLine: "underline" }}
             >
               Talk to sales
             </Link>
-          </p>
-        </motion.div>
-      </div>
-    </section>
+          </Paragraph>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

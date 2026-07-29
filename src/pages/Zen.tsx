@@ -1,9 +1,9 @@
+import { Anchor, Box as GuiBox, Grid, H2, H3, Helmet, Link, MotionBox, MotionText, Paragraph, Text, XStack } from '@/gui'
 import React from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   Code2,
@@ -85,7 +85,7 @@ const QUICK_STATS = [
 
 const Zen = () => {
   return (
-    <div className="min-h-screen bg-[var(--black)] text-[var(--white)]">
+    <GuiBox minHeight="100vh" backgroundColor="var(--black)" color="var(--white)">
       <Helmet>
         <title>Zen LM - Open Foundation Models for Agentic AI | Hanzo AI</title>
         <meta
@@ -97,343 +97,343 @@ const Zen = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-24 pb-16 px-4 md:px-8 lg:px-12 overflow-hidden">
+        <GuiBox render="section" position="relative" paddingTop={96} paddingBottom={64} paddingHorizontal={16} overflow="hidden" $md={{ paddingHorizontal: 32 }} $lg={{ paddingHorizontal: 48 }}>
           {/* Background gradient */}
-          <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-20"
+          <GuiBox position="absolute" top={0} right={0} bottom={0} left={0} overflow="hidden" zIndex={0} pointerEvents="none">
+            <GuiBox
+              position="absolute" top="50%" left="50%" x="-50%" y="-50%" width="800px" height="800px" borderRadius="var(--radius-full)" opacity={0.2}
               style={{
                 background: `radial-gradient(circle, ${BRAND_COLOR} 0%, transparent 70%)`,
                 filter: "blur(100px)",
               }}
             />
-          </div>
+          </GuiBox>
 
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+            <Grid display="grid" gap={48} alignItems="center" $lg={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 64 }}>
               {/* Left Column */}
               <div>
-                <motion.div
+                <MotionBox
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="mb-6"
+                  marginBottom={24}
                 >
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                    <Zap className="w-3 h-3" />
+                  <Text display="inline-flex" alignItems="center" gap={8} paddingHorizontal={12} paddingVertical={4} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" backgroundColor="rgb(255 255 255 / 0.1)" color="var(--foreground)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)">
+                    <Zap size={12} />
                     Open Source AI
-                  </span>
-                </motion.div>
+                  </Text>
+                </MotionBox>
 
-                <motion.h1
+                <MotionText
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.05 }}
-                  className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-[1.1] mb-6"
+                  fontSize="var(--text-3xl)" lineHeight="1.1" fontWeight="500" letterSpacing="var(--tracking-tight)" marginBottom={24} $sm={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }} $lg={{ fontSize: "var(--text-5xl)", lineHeight: "var(--leading-5xl)" }} $xl={{ fontSize: "var(--text-6xl)", lineHeight: "var(--leading-6xl)" }}
                 >
-                  <span className="text-white">Real-Time Hyper-Modal AI</span>
+                  <Text color="var(--foreground)">Real-Time Hyper-Modal AI</Text>
                   <br />
-                  <span className="text-neutral-400">for XR/VR/Robotics</span>
-                </motion.h1>
+                  <Text color="var(--neutral-400)">for XR/VR/Robotics</Text>
+                </MotionText>
 
-                <motion.p
+                <MotionText
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
-                  className="text-base lg:text-lg text-neutral-400 leading-relaxed mb-8 max-w-xl"
+                  fontSize="var(--text-base)" lineHeight="var(--leading-relaxed)" color="var(--neutral-400)" marginBottom={32} maxWidth="36rem" $lg={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}
                 >
                   Zen LM powers next-generation XR/VR applications and robotic systems with real-time multimodal
                   understanding. Sub-10ms latency for seamless human-AI interaction.
-                </motion.p>
+                </MotionText>
 
                 {/* CTAs */}
-                <motion.div
+                <MotionBox
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 }}
-                  className="flex flex-wrap items-center gap-4 mb-8"
+                  flexDirection="row" display="flex" flexWrap="wrap" alignItems="center" gap={16} marginBottom={32}
                 >
                   <Link
                     to="/zen/models"
-                    className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                    display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                     style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                   >
                     Explore Models
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
                   </Link>
-                  <a
+                  <Anchor
                     href="https://zenlm.org/research"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                    display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                   >
-                    <ExternalLink className="mr-2 h-4 w-4" />
+                    <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><ExternalLink size={16} /></GuiBox>
                     Read Research
-                  </a>
-                </motion.div>
+                  </Anchor>
+                </MotionBox>
 
                 {/* Quick links */}
-                <motion.div
+                <MotionBox
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
-                  className="flex flex-wrap gap-3"
+                  flexDirection="row" display="flex" flexWrap="wrap" gap={12}
                 >
-                  <a
+                  <Anchor tap
                     href="https://huggingface.co/zenlm"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                    display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                   >
                     🤗 HuggingFace
-                  </a>
-                  <a
+                  </Anchor>
+                  <Anchor tap
                     href="https://github.com/zenlm"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                    display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                   >
-                    <Globe className="w-4 h-4" />
+                    <Globe size={16} />
                     GitHub
-                  </a>
-                  <a
+                  </Anchor>
+                  <Anchor tap
                     href="https://zenlm.org"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-700 transition-all"
+                    display="inline-flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={8} borderRadius="var(--radius-full)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--neutral-400)" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)", borderColor: "var(--neutral-700)" }}
                   >
-                    <Globe className="w-4 h-4" />
+                    <Globe size={16} />
                     zenlm.org
-                  </a>
-                </motion.div>
+                  </Anchor>
+                </MotionBox>
               </div>
 
               {/* Right Column: Stats Demo */}
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.25 }}
               >
-                <div className="rounded-xl border border-neutral-700 bg-neutral-900/95 backdrop-blur-sm overflow-hidden shadow-2xl">
-                  <div className="flex items-center gap-2 px-4 py-3 border-b border-neutral-800 bg-neutral-950">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                    </div>
-                    <span className="text-xs text-neutral-500 font-mono ml-2">zen-models</span>
-                  </div>
-                  <div className="p-6 bg-neutral-950">
-                    <div className="grid grid-cols-2 gap-4 mb-6">
+                <GuiBox borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="var(--surface-overlay)" backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" overflow="hidden" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)">
+                  <XStack display="flex" alignItems="center" gap={8} paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)" backgroundColor="var(--neutral-950)">
+                    <XStack display="flex" gap={6}>
+                      <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                      <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                      <GuiBox width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--surface-overlay)" />
+                    </XStack>
+                    <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" fontFamily="var(--font-mono)" marginLeft={8}>zen-models</Text>
+                  </XStack>
+                  <GuiBox padding={24} backgroundColor="var(--neutral-950)">
+                    <Grid display="grid" gridTemplateColumns="repeat(2, minmax(0, 1fr))" gap={16} marginBottom={24}>
                       {QUICK_STATS.map((stat) => (
-                        <div key={stat.label} className="p-4 bg-neutral-900/50 rounded-lg border border-neutral-800 text-center">
-                          <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                          <div className="text-xs text-neutral-500 uppercase tracking-wider">{stat.label}</div>
-                        </div>
+                        <GuiBox key={stat.label} padding={16} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--neutral-800)" textAlign="center">
+                          <GuiBox fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--foreground)" marginBottom={4}>{stat.value}</GuiBox>
+                          <GuiBox fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" color="var(--neutral-500)" textTransform="uppercase" letterSpacing="0.05em">{stat.label}</GuiBox>
+                        </GuiBox>
                       ))}
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Brain className="w-4 h-4 text-purple-400" />
-                        <span className="text-neutral-300">Language • Vision • Audio • Video • 3D</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Code2 className="w-4 h-4 text-purple-400" />
-                        <span className="text-neutral-300">Agentic coding with tool use</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
-                        <Shield className="w-4 h-4 text-purple-400" />
-                        <span className="text-neutral-300">Apache 2.0 • Open weights & training</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+                    </Grid>
+                    <GuiBox rowGap={12}>
+                      <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                        <Brain size={16} color="var(--foreground)" />
+                        <Text color="var(--neutral-300)">Language • Vision • Audio • Video • 3D</Text>
+                      </XStack>
+                      <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                        <Code2 size={16} color="var(--foreground)" />
+                        <Text color="var(--neutral-300)">Agentic coding with tool use</Text>
+                      </XStack>
+                      <XStack display="flex" alignItems="center" gap={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">
+                        <Shield size={16} color="var(--foreground)" />
+                        <Text color="var(--neutral-300)">Apache 2.0 • Open weights & training</Text>
+                      </XStack>
+                    </GuiBox>
+                  </GuiBox>
+                </GuiBox>
+              </MotionBox>
+            </Grid>
+          </GuiBox>
+        </GuiBox>
 
         {/* Complete AI Stack Section */}
-        <section className="py-20 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
+        <GuiBox render="section" paddingVertical={80} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={12} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 Complete AI Stack for Immersive Computing
-              </h2>
-            </motion.div>
+              </H2>
+            </MotionBox>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
               {MODEL_CATEGORIES.map((category, idx) => {
                 const Icon = category.icon;
                 return (
-                  <motion.div
+                  <MotionBox
                     key={category.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="p-6 bg-neutral-950 border border-neutral-800 rounded-xl text-center hover:border-purple-500/30 transition-all hover:-translate-y-1"
+                    
+                    padding={24} backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", y: -4 }}
                   >
-                    <div className="mx-auto w-12 h-12 mb-4 flex items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
-                      <Icon className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-1">{category.title}</h3>
-                    <p className="text-sm text-purple-400 mb-2">{category.count}</p>
-                    <p className="text-neutral-500 text-sm">{category.description}</p>
-                  </motion.div>
+                    <XStack marginHorizontal="auto" width={48} height={48} marginBottom={16} display="flex" alignItems="center" justifyContent="center" borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)">
+                      <Icon width={24} height={24} color="var(--foreground)" />
+                    </XStack>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={4}>{category.title}</H3>
+                    <Paragraph fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" marginBottom={8}>{category.count}</Paragraph>
+                    <Paragraph color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{category.description}</Paragraph>
+                  </MotionBox>
                 );
               })}
-            </div>
-          </div>
-        </section>
+            </Grid>
+          </GuiBox>
+        </GuiBox>
 
         {/* Why Zen Section */}
-        <section className="py-20 px-4 md:px-8 bg-neutral-950/50">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
+        <GuiBox render="section" paddingVertical={80} paddingHorizontal={16} backgroundColor="var(--surface-card-emphasis)" $md={{ paddingHorizontal: 32 }}>
+          <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={12} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
                 Why Zen for XR/VR/Robotics?
-              </h2>
-            </motion.div>
+              </H2>
+            </MotionBox>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
               {BENEFITS.map((benefit, idx) => {
                 const Icon = benefit.icon;
                 return (
-                  <motion.div
+                  <MotionBox
                     key={benefit.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="p-6 bg-black border border-neutral-800 rounded-xl text-center hover:border-purple-500/30 transition-all"
+                    
+                    padding={24} backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)" }}
                   >
-                    <div className="mx-auto w-12 h-12 mb-4 flex items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
-                      <Icon className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
-                    <p className="text-neutral-400 text-sm">{benefit.description}</p>
-                  </motion.div>
+                    <XStack marginHorizontal="auto" width={48} height={48} marginBottom={16} display="flex" alignItems="center" justifyContent="center" borderRadius="var(--radius-xl)" backgroundColor="rgb(255 255 255 / 0.1)" borderWidth={1} borderColor="rgb(255 255 255 / 0.2)">
+                      <Icon width={24} height={24} color="var(--foreground)" />
+                    </XStack>
+                    <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="600" color="var(--foreground)" marginBottom={8}>{benefit.title}</H3>
+                    <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{benefit.description}</Paragraph>
+                  </MotionBox>
                 );
               })}
-            </div>
-          </div>
-        </section>
+            </Grid>
+          </GuiBox>
+        </GuiBox>
 
         {/* Get Started Section */}
-        <section className="py-20 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
+        <GuiBox render="section" paddingVertical={80} paddingHorizontal={16} $md={{ paddingHorizontal: 32 }}>
+          <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              textAlign="center" marginBottom={48}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Get Started</h2>
-            </motion.div>
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={12} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>Get Started</H2>
+            </MotionBox>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <motion.a
+            <Grid display="grid" gap={24} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+              <MotionBox
                 href="https://huggingface.co/zenlm"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-6 bg-neutral-950 border border-neutral-800 rounded-xl text-center hover:border-purple-500/30 transition-all hover:-translate-y-1"
+                padding={24} backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", y: -4 }}
               >
-                <div className="text-3xl mb-4">🤗</div>
-                <h3 className="text-xl font-semibold text-white mb-2">HuggingFace</h3>
-                <p className="text-neutral-400 text-sm">Access all 30+ models via HuggingFace Hub</p>
-              </motion.a>
+                <GuiBox fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" marginBottom={16}>🤗</GuiBox>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>HuggingFace</H3>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Access all 30+ models via HuggingFace Hub</Paragraph>
+              </MotionBox>
 
-              <motion.a
+              <MotionBox
                 href="https://github.com/zenlm"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="p-6 bg-neutral-950 border border-neutral-800 rounded-xl text-center hover:border-purple-500/30 transition-all hover:-translate-y-1"
+                
+                padding={24} backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", y: -4 }}
               >
-                <div className="text-3xl mb-4">💻</div>
-                <h3 className="text-xl font-semibold text-white mb-2">GitHub</h3>
-                <p className="text-neutral-400 text-sm">Training code, datasets, and documentation</p>
-              </motion.a>
+                <GuiBox fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" marginBottom={16}>💻</GuiBox>
+                <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>GitHub</H3>
+                <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Training code, datasets, and documentation</Paragraph>
+              </MotionBox>
 
-              <motion.div
+              <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="p-6 bg-neutral-950 border border-neutral-800 rounded-xl text-center hover:border-purple-500/30 transition-all hover:-translate-y-1"
+                
+                padding={24} backgroundColor="var(--neutral-950)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" textAlign="center" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ borderColor: "var(--border-strong)", y: -4 }}
               >
-                <Link to="/zen/models" className="block">
-                  <div className="text-3xl mb-4">📚</div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Models</h3>
-                  <p className="text-neutral-400 text-sm">Full catalog with specs and downloads</p>
+                <Link to="/zen/models" display="block">
+                  <GuiBox fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" marginBottom={16}>📚</GuiBox>
+                  <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" color="var(--foreground)" marginBottom={8}>Models</H3>
+                  <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Full catalog with specs and downloads</Paragraph>
                 </Link>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+              </MotionBox>
+            </Grid>
+          </GuiBox>
+        </GuiBox>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 md:px-8 border-t border-neutral-800">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
+        <GuiBox render="section" paddingVertical={80} paddingHorizontal={16} borderTopWidth={1} borderColor="var(--neutral-800)" $md={{ paddingHorizontal: 32 }}>
+          <GuiBox maxWidth="var(--container-max)" marginHorizontal="auto">
+            <MotionBox
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center"
+              textAlign="center"
             >
-              <h2 className="text-3xl font-bold text-white mb-4">Ready to build with Zen?</h2>
-              <p className="text-neutral-400 mb-8 max-w-2xl mx-auto">
+              <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--foreground)" marginBottom={16}>Ready to build with Zen?</H2>
+              <Paragraph color="var(--neutral-400)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto">
                 All models are open source under Apache 2.0 or MIT license. Start building today.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              </Paragraph>
+              <XStack display="flex" flexWrap="wrap" justifyContent="center" gap={16}>
                 <Link
                   to="/zen/models"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 text-sm"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" hoverStyle={{ opacity: 0.9 }}
                   style={{ backgroundColor: BRAND_COLOR, color: "#ffffff" }}
                 >
                   Explore All Models
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <GuiBox render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={16} /></GuiBox>
                 </Link>
-                <Link
+                <Link tap
                   to="/dev"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
                   Try Hanzo Dev
                 </Link>
-                <a
+                <Anchor
                   href="https://zenlm.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-full font-medium transition-colors border border-neutral-700 bg-transparent hover:bg-neutral-900 text-sm text-white"
+                  display="inline-flex" alignItems="center" paddingHorizontal={24} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" borderWidth={1} borderColor="var(--neutral-700)" backgroundColor="transparent" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" hoverStyle={{ backgroundColor: "var(--neutral-900)" }}
                 >
-                  <Globe className="mr-2 h-4 w-4" />
+                  <GuiBox render="span" display="inline-flex" alignItems="center" marginRight={8}><Globe size={16} /></GuiBox>
                   Visit zenlm.org
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+                </Anchor>
+              </XStack>
+            </MotionBox>
+          </GuiBox>
+        </GuiBox>
       </main>
 
       <Footer />
-    </div>
+    </GuiBox>
   );
 };
 

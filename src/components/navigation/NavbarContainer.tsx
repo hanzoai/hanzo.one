@@ -1,6 +1,6 @@
+import { Box, XStack } from '@/gui'
 import React, { ReactNode } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { cn } from "@/lib/utils";
 
 interface NavbarContainerProps {
   children: ReactNode;
@@ -11,19 +11,15 @@ const NavbarContainer = ({ children, isScrolled }: NavbarContainerProps) => {
   const { isDarkMode, getGlassClass } = useTheme();
   
   return (
-    <nav
-      className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        isScrolled ? "backdrop-blur-md shadow-sm" : "backdrop-blur-sm",
-        getGlassClass()
-      )}
+    <Box
+      render="nav" position="fixed" width="100%" zIndex={50} transition="all 300ms cubic-bezier(.4,0,.2,1)" backdropFilter={isScrolled ? "blur(12px)" : "blur(4px)"} WebkitBackdropFilter={isScrolled ? "blur(12px)" : "blur(4px)"} boxShadow={isScrolled ? "0 1px 2px 0 rgb(0 0 0 / .3)" : undefined}
     >
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex items-center h-[var(--header-height)]">
+      <Box width="100%" maxWidth="1440px" marginHorizontal="auto" paddingHorizontal={16} $md={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+        <XStack display="flex" alignItems="center" height="var(--header-height)">
           {children}
-        </div>
-      </div>
-    </nav>
+        </XStack>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Box, H3, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -5,35 +6,35 @@ import TaijiSymbol from "./svg/TaijiSymbol";
 
 const FinalQuoteSection = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-900/30">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundImage="linear-gradient(to bottom, var(--pure-black), rgb(255 255 255 / 0.08))" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="56rem" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          textAlign="center"
         >
-          <div className="relative p-12 bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-lg border border-gray-800/50 rounded-lg">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <TaijiSymbol size={64} className="text-[var(--white)]/90" animate={true} />
-            </div>
+          <Box position="relative" padding={48} backdropFilter="blur(16px)" WebkitBackdropFilter="blur(16px)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius-lg)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(0 0 0 / 0.9))">
+            <Box position="absolute" top={0} left="50%" x="-50%" y="-50%">
+              <TaijiSymbol size={64} color="rgb(255 255 255 / 0.9)" animate={true} />
+            </Box>
             
-            <h3 className="text-2xl font-bold text-[var(--white)] mb-6">The Zen of Hanzo</h3>
-            <p className="text-neutral-300 md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" color="var(--white)" marginBottom={24}>The Zen of Hanzo</H3>
+            <Paragraph color="var(--neutral-300)" lineHeight="var(--leading-relaxed)" marginBottom={32} maxWidth="42rem" marginHorizontal="auto" $md={{ fontSize: "var(--text-lg)", lineHeight: "var(--leading-lg)" }}>
               "Before code, there is concept. Before concept, there is principle. 
               Before principle, there is emptiness. From emptiness, all possibility."
-            </p>
+            </Paragraph>
             
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mx-auto mb-6"></div>
+            <Box width={96} height={1} marginHorizontal="auto" marginBottom={24} backgroundImage="linear-gradient(to right, transparent, var(--neutral-600), transparent)"></Box>
             
-            <p className="text-neutral-500 text-sm italic">
+            <Paragraph color="var(--neutral-500)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontStyle="italic">
               Ancient wisdom meets modern engineering
-            </p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+            </Paragraph>
+          </Box>
+        </MotionBox>
+      </Box>
+    </Box>
   );
 };
 

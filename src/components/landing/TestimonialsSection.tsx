@@ -1,3 +1,4 @@
+import { Box, Grid, H2, MotionBox, Paragraph } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -12,20 +13,20 @@ interface TestimonialProps {
 
 const Testimonial: React.FC<TestimonialProps> = ({ quote, name, title, delay }) => {
   return (
-    <motion.div
+    <MotionBox
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-xl p-6 shadow-lg"
+      borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" padding={24} boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" backgroundImage="linear-gradient(to bottom right, var(--neutral-900), var(--neutral-950))"
     >
-      <Quote className="h-8 w-8 text-purple-400 mb-4" />
-      <p className="text-neutral-300 text-lg mb-6">{quote}</p>
+      <Box render="span" display="inline-flex" alignItems="center" marginBottom={16}><Quote size={32} color="var(--foreground)" /></Box>
+      <Paragraph color="var(--neutral-300)" fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" marginBottom={24}>{quote}</Paragraph>
       <div>
-        <p className="font-bold text-[var(--white)]">{name}</p>
-        <p className="text-neutral-400 text-sm">{title}</p>
+        <Paragraph fontWeight="700" color="var(--white)">{name}</Paragraph>
+        <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">{title}</Paragraph>
       </div>
-    </motion.div>
+    </MotionBox>
   );
 };
 
@@ -49,27 +50,27 @@ const TestimonialsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
+    <Box render="section" paddingVertical={80} paddingHorizontal={16} position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto">
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <div className="inline-block px-4 py-1 rounded-full bg-emerald-900/30 border border-emerald-500/30 text-emerald-300 text-sm font-medium mb-6">
+          <Box display="inline-block" paddingHorizontal={16} paddingVertical={4} borderRadius="var(--radius-full)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--border-strong)" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" fontWeight="500" marginBottom={24}>
             Testimonials
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--white)] mb-6">
+          </Box>
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--white)" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Trusted by Leading AI Teams
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Hear from developers and teams who are building the future with Hanzo.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           {testimonials.map((testimonial, index) => (
             <Testimonial
               key={index}
@@ -79,9 +80,9 @@ const TestimonialsSection: React.FC = () => {
               delay={index * 0.1}
             />
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

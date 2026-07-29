@@ -1,24 +1,24 @@
+import { Box, Button, Link } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
+
 
 const ExploreAllButton: React.FC = () => {
   return (
-    <div className="text-center mt-8">
+    <Box textAlign="center" marginTop={32}>
       <Button 
         variant="outline" 
-        className="group px-6" 
+        group paddingHorizontal={24} 
         radius="full"
         asChild
       >
         <Link to="/platform">
           Explore All Platform Tools
-          <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <Box render="span" display="inline-flex" alignItems="center" marginLeft={8} $group-hover={{ x: 4 }}><ExternalLink size={16} /></Box>
         </Link>
       </Button>
-    </div>
+    </Box>
   );
 };
 

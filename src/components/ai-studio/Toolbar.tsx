@@ -1,7 +1,7 @@
+import { Box, Button, XStack } from '@/gui'
 
 import React from "react";
 import { PanelLeft, MessageSquare, Layers, Terminal, Save, Play, Share2, Download, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface ToolbarProps {
   showSidebar: boolean;
@@ -17,61 +17,61 @@ const Toolbar = ({
   setActiveTab 
 }: ToolbarProps) => {
   return (
-    <div className="bg-gray-900/70 p-2 border-b border-gray-800 flex items-center">
+    <XStack backgroundColor="var(--surface-overlay)" padding={8} borderBottomWidth={1} borderColor="var(--neutral-800)" display="flex" alignItems="center">
       <Button 
         variant="ghost" 
         size="icon"
         onClick={() => setShowSidebar(!showSidebar)}
-        className="text-neutral-400 hover:text-[var(--white)] mr-2"
+        color="var(--neutral-400)" marginRight={8} hoverStyle={{ color: "var(--white)" }}
       >
-        <PanelLeft className="h-5 w-5" />
+        <PanelLeft size={20} />
       </Button>
       
-      <div className="flex space-x-1 mx-2">
+      <XStack display="flex" columnGap={4} marginHorizontal={8}>
         <Button 
           variant={activeTab === "chat" ? "secondary" : "ghost"} 
           size="sm"
           onClick={() => setActiveTab("chat")}
-          className="text-sm"
+          fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
         >
-          <MessageSquare className="h-4 w-4 mr-1" /> Chat
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><MessageSquare size={16} /></Box> Chat
         </Button>
         <Button 
           variant={activeTab === "playground" ? "secondary" : "ghost"}
           size="sm" 
           onClick={() => setActiveTab("playground")}
-          className="text-sm"
+          fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
         >
-          <Layers className="h-4 w-4 mr-1" /> Playground
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Layers size={16} /></Box> Playground
         </Button>
         <Button 
           variant={activeTab === "terminal" ? "secondary" : "ghost"} 
           size="sm"
           onClick={() => setActiveTab("terminal")}
-          className="text-sm"
+          fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
         >
-          <Terminal className="h-4 w-4 mr-1" /> Terminal
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><Terminal size={16} /></Box> Terminal
         </Button>
-      </div>
+      </XStack>
       
-      <div className="ml-auto flex items-center space-x-1">
-        <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-[var(--white)]">
-          <Save className="h-4 w-4" />
+      <XStack marginLeft="auto" display="flex" alignItems="center" columnGap={4}>
+        <Button variant="ghost" size="icon" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+          <Save size={16} />
         </Button>
-        <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-[var(--white)]">
-          <Play className="h-4 w-4" />
+        <Button variant="ghost" size="icon" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+          <Play size={16} />
         </Button>
-        <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-[var(--white)]">
-          <Share2 className="h-4 w-4" />
+        <Button variant="ghost" size="icon" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+          <Share2 size={16} />
         </Button>
-        <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-[var(--white)]">
-          <Download className="h-4 w-4" />
+        <Button variant="ghost" size="icon" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+          <Download size={16} />
         </Button>
-        <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-[var(--white)]">
-          <Settings className="h-4 w-4" />
+        <Button variant="ghost" size="icon" color="var(--neutral-400)" hoverStyle={{ color: "var(--white)" }}>
+          <Settings size={16} />
         </Button>
-      </div>
-    </div>
+      </XStack>
+    </XStack>
   );
 };
 

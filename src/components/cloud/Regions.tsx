@@ -1,80 +1,81 @@
+import { Box, Grid, H2, H3, H4, MotionBox, Paragraph, Text, XStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
 
 const Regions = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[var(--black)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-white/5 bg-[size:30px_30px] pointer-events-none" />
+    <Box render="section" paddingVertical={96} paddingHorizontal={16} backgroundColor="var(--black)" position="relative" overflow="hidden" $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32 }}>
+      <Box position="absolute" top={0} right={0} bottom={0} left={0} backgroundImage="linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px)" backgroundSize="32px 32px" backgroundColor="size:30px 30px" pointerEvents="none" />
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div 
+      <Box maxWidth="var(--container-max)" marginHorizontal="auto" position="relative" zIndex={10}>
+        <MotionBox 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          textAlign="center" marginBottom={64}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <H2 fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" marginBottom={24} $md={{ fontSize: "var(--text-4xl)", lineHeight: "var(--leading-4xl)" }}>
             Serverful JavaScript Without the Hassle of Serverless
-          </h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          </H2>
+          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto">
             Imagine if a server could boot as fast as a serverless function? That's Hanzo Machines—serverless compute is a trade-off you no longer need to make. Graduate to a full-stack cloud to regain control over your stack & hosting bill.
-          </p>
-        </motion.div>
+          </Paragraph>
+        </MotionBox>
 
-        <div className="grid md:grid-cols-2 gap-16">
-          <motion.div
+        <Grid display="grid" gap={64} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <MotionBox
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold mb-4">Boots in 250ms or Less</h3>
-            <p className="text-neutral-300 mb-8">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Boots in 250ms or Less</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={32}>
               Functions and apps boot and respond to web requests in 250ms or less with Hanzo Machines. You decide to keep them running or automatically put them to sleep.
-            </p>
+            </Paragraph>
             
-            <div className="rounded-lg bg-gray-900/50 border border-gray-800 overflow-hidden">
-              <div className="bg-gray-800 py-2 px-4 flex items-center space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <div className="text-neutral-400 text-sm">Terminal</div>
-              </div>
-              <div className="p-4 font-mono text-sm text-neutral-300">
-                <div className="text-green-400">$ hanzo deploy</div>
-                <div className="text-neutral-400">Initializing deployment...</div>
-                <div className="text-neutral-400">Deploying to region: us-east-1</div>
-                <div className="text-neutral-400">Building container image...</div>
-                <div className="text-neutral-400">Pushing to registry...</div>
-                <div className="text-purple-400">✓ Deployed in 250ms</div>
-                <div className="text-neutral-400">Your app is live at: <span className="text-blue-400">https://myapp.hanzo.cloud</span></div>
-              </div>
-            </div>
-          </motion.div>
+            <Box borderRadius="var(--radius-lg)" backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" overflow="hidden">
+              <XStack backgroundColor="var(--neutral-800)" paddingVertical={8} paddingHorizontal={16} display="flex" alignItems="center" columnGap={8}>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Terminal</Box>
+              </XStack>
+              <Box padding={16} fontFamily="var(--font-mono)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-300)">
+                <Box color="var(--foreground)">$ hanzo deploy</Box>
+                <Box color="var(--neutral-400)">Initializing deployment...</Box>
+                <Box color="var(--neutral-400)">Deploying to region: us-east-1</Box>
+                <Box color="var(--neutral-400)">Building container image...</Box>
+                <Box color="var(--neutral-400)">Pushing to registry...</Box>
+                <Box color="var(--foreground)">✓ Deployed in 250ms</Box>
+                <Box color="var(--neutral-400)">Your app is live at: <Text color="var(--foreground)">https://myapp.hanzo.cloud</Text></Box>
+              </Box>
+            </Box>
+          </MotionBox>
 
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold mb-4">Built for JavaScript Developers</h3>
-            <p className="text-neutral-300 mb-8">
+            <H3 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={16}>Built for JavaScript Developers</H3>
+            <Paragraph color="var(--neutral-300)" marginBottom={32}>
               JavaScript, TypeScript, Bun, Deno—whatever your flavor, Hanzo Launch automatically detects your runtime and generates a VM with everything you need to run your app.
-            </p>
+            </Paragraph>
             
-            <div className="p-6 rounded-lg bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-800/30">
-              <h4 className="text-xl font-bold mb-4">Real GPUs & CPUs on the Edge</h4>
-              <p className="text-neutral-300">
+            <Box padding={24} borderRadius="var(--radius-lg)" borderWidth={1} borderColor="var(--border-strong)" backgroundImage="linear-gradient(to bottom right, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08))">
+              <H4 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={16}>Real GPUs & CPUs on the Edge</H4>
+              <Paragraph color="var(--neutral-300)">
                 Run workloads that require GPUs or lots of CPUs, memory, and storage in over 30 regions around the world—all interconnected by a private, encrypted WireGuard network that works out of the box.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+              </Paragraph>
+            </Box>
+          </MotionBox>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 

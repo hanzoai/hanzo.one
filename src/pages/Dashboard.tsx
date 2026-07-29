@@ -1,9 +1,9 @@
+import { Box, Button, Grid, H1, H3, Paragraph, XStack, YStack } from '@/gui'
 
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import KanbanBoard from "@/components/dashboard/KanbanBoard";
 import AgentsList from "@/components/dashboard/AgentsList";
-import { Button } from "@/components/ui/button";
 import { PlusCircle, LayoutGrid, Users, ChartBar, X, Plus, Database, Bot, Activity, Server } from "lucide-react";
 import CommandPalette from "@/components/dashboard/CommandPalette";
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -23,72 +23,72 @@ const Dashboard = () => {
     {
       id: "tab-1",
       title: "Board",
-      icon: <LayoutGrid className="h-4 w-4" />,
+      icon: <LayoutGrid size={16} />,
       content: <KanbanBoard />
     },
     {
       id: "tab-2",
       title: "Agents",
-      icon: <Bot className="h-4 w-4" />,
+      icon: <Bot size={16} />,
       content: <AgentsList />
     },
     {
       id: "tab-3",
       title: "Analytics",
-      icon: <ChartBar className="h-4 w-4" />,
+      icon: <ChartBar size={16} />,
       content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-[var(--black)] border border-gray-800 rounded-lg p-6">
-            <h3 className="text-lg font-medium mb-4">Usage Overview</h3>
-            <p className="text-2xl font-semibold">24.5K</p>
-            <p className="text-neutral-400 text-sm">Total tokens used today</p>
-            <div className="h-40 mt-4 flex items-end">
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+          <Box backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Usage Overview</H3>
+            <Paragraph fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600">24.5K</Paragraph>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Total tokens used today</Paragraph>
+            <XStack height={160} marginTop={16} display="flex" alignItems="flex-end">
               {[45, 35, 65, 50, 75, 55, 70].map((height, index) => (
-                <div 
+                <Box 
                   key={index} 
-                  className="w-full bg-gray-800 rounded-t-sm mx-0.5"
+                  width="100%" backgroundColor="var(--neutral-800)" borderTopLeftRadius="var(--radius-sm)" borderTopRightRadius="var(--radius-sm)" marginHorizontal={2}
                   style={{ height: `${height}%` }}
-                ></div>
+                ></Box>
               ))}
-            </div>
-          </div>
+            </XStack>
+          </Box>
           
-          <div className="bg-[var(--black)] border border-gray-800 rounded-lg p-6">
-            <h3 className="text-lg font-medium mb-4">Agent Activity</h3>
-            <p className="text-2xl font-semibold">8</p>
-            <p className="text-neutral-400 text-sm">Active agents</p>
-            <div className="h-40 mt-4 flex items-center justify-center">
-              <div className="w-40 h-40 relative rounded-full border-4 border-gray-800 flex items-center justify-center">
-                <div className="w-28 h-28 rounded-full bg-gray-800"></div>
-                <div className="absolute top-0 right-0 w-4 h-4 rounded-full bg-green-500"></div>
-                <div className="absolute bottom-4 left-4 w-4 h-4 rounded-full bg-blue-500"></div>
-                <div className="absolute top-10 left-0 w-3 h-3 rounded-full bg-yellow-500"></div>
-              </div>
-            </div>
-          </div>
+          <Box backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Agent Activity</H3>
+            <Paragraph fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600">8</Paragraph>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Active agents</Paragraph>
+            <XStack height={160} marginTop={16} display="flex" alignItems="center" justifyContent="center">
+              <XStack width={160} height={160} position="relative" borderRadius="var(--radius-full)" borderWidth={4} borderColor="var(--neutral-800)" display="flex" alignItems="center" justifyContent="center">
+                <Box width={112} height={112} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-800)"></Box>
+                <Box position="absolute" top={0} right={0} width={16} height={16} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box position="absolute" bottom={16} left={16} width={16} height={16} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+                <Box position="absolute" top={40} left={0} width={12} height={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-500)"></Box>
+              </XStack>
+            </XStack>
+          </Box>
           
-          <div className="bg-[var(--black)] border border-gray-800 rounded-lg p-6">
-            <h3 className="text-lg font-medium mb-4">Cost Tracking</h3>
-            <p className="text-2xl font-semibold">$12.85</p>
-            <p className="text-neutral-400 text-sm">Spent this month</p>
-            <div className="h-40 mt-4">
-              <div className="h-full flex flex-col justify-between">
-                <div className="w-full bg-gray-900 h-4 rounded-full overflow-hidden">
-                  <div className="bg-blue-600 h-full rounded-full" style={{ width: '65%' }}></div>
-                </div>
-                <div className="w-full bg-gray-900 h-4 rounded-full overflow-hidden">
-                  <div className="bg-purple-600 h-full rounded-full" style={{ width: '42%' }}></div>
-                </div>
-                <div className="w-full bg-gray-900 h-4 rounded-full overflow-hidden">
-                  <div className="bg-green-600 h-full rounded-full" style={{ width: '28%' }}></div>
-                </div>
-                <div className="w-full bg-gray-900 h-4 rounded-full overflow-hidden">
-                  <div className="bg-yellow-600 h-full rounded-full" style={{ width: '13%' }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <Box backgroundColor="var(--black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+            <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Cost Tracking</H3>
+            <Paragraph fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600">$12.85</Paragraph>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)">Spent this month</Paragraph>
+            <Box height={160} marginTop={16}>
+              <YStack height="100%" display="flex" flexDirection="column" justifyContent="space-between">
+                <Box width="100%" backgroundColor="var(--neutral-900)" height={16} borderRadius="var(--radius-full)" overflow="hidden">
+                  <Box backgroundColor="var(--neutral-600)" height="100%" borderRadius="var(--radius-full)" style={{ width: '65%' }}></Box>
+                </Box>
+                <Box width="100%" backgroundColor="var(--neutral-900)" height={16} borderRadius="var(--radius-full)" overflow="hidden">
+                  <Box backgroundColor="var(--neutral-600)" height="100%" borderRadius="var(--radius-full)" style={{ width: '42%' }}></Box>
+                </Box>
+                <Box width="100%" backgroundColor="var(--neutral-900)" height={16} borderRadius="var(--radius-full)" overflow="hidden">
+                  <Box backgroundColor="var(--neutral-600)" height="100%" borderRadius="var(--radius-full)" style={{ width: '28%' }}></Box>
+                </Box>
+                <Box width="100%" backgroundColor="var(--neutral-900)" height={16} borderRadius="var(--radius-full)" overflow="hidden">
+                  <Box backgroundColor="var(--neutral-600)" height="100%" borderRadius="var(--radius-full)" style={{ width: '13%' }}></Box>
+                </Box>
+              </YStack>
+            </Box>
+          </Box>
+        </Grid>
       )
     }
   ]);
@@ -97,28 +97,28 @@ const Dashboard = () => {
     const tabOptions = [
       { 
         title: "New Board", 
-        icon: <LayoutGrid className="h-4 w-4" />, 
+        icon: <LayoutGrid size={16} />, 
         content: <KanbanBoard /> 
       },
       { 
         title: "Agents", 
-        icon: <Bot className="h-4 w-4" />, 
+        icon: <Bot size={16} />, 
         content: <AgentsList /> 
       },
       { 
         title: "Analytics", 
-        icon: <ChartBar className="h-4 w-4" />, 
+        icon: <ChartBar size={16} />, 
         content: tabs[2].content 
       },
       { 
         title: "Data Sources", 
-        icon: <Database className="h-4 w-4" />, 
-        content: <div className="p-4">Data Sources content</div> 
+        icon: <Database size={16} />, 
+        content: <Box padding={16}>Data Sources content</Box> 
       },
       { 
         title: "Infrastructure", 
-        icon: <Server className="h-4 w-4" />, 
-        content: <div className="p-4">Infrastructure content</div> 
+        icon: <Server size={16} />, 
+        content: <Box padding={16}>Infrastructure content</Box> 
       }
     ];
 
@@ -136,18 +136,18 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full">
-        <div className="flex justify-between items-center mb-4">
+      <YStack display="flex" flexDirection="column" height="100%">
+        <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
           <div>
-            <h1 className="text-2xl font-semibold">Workspace</h1>
-            <p className="text-neutral-400 text-sm mt-1">Manage your AI tasks and agents</p>
+            <H1 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="600">Workspace</H1>
+            <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginTop={4}>Manage your AI tasks and agents</Paragraph>
           </div>
-        </div>
+        </XStack>
 
-        <div className="flex-1 overflow-hidden border border-gray-800 rounded-lg bg-[var(--black)]">
+        <Box flex={1} overflow="hidden" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" backgroundColor="var(--black)">
           <TabsManager initialTabs={tabs} onAddTab={addNewTab} />
-        </div>
-      </div>
+        </Box>
+      </YStack>
       
       <CommandPalette />
     </DashboardLayout>

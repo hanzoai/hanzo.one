@@ -1,3 +1,4 @@
+import { Box, H2, Text } from '@/gui'
 
 import React from "react";
 import { Check, X } from "lucide-react";
@@ -47,52 +48,52 @@ const FeatureComparison = () => {
   const renderFeatureValue = (value: boolean | string) => {
     if (typeof value === "boolean") {
       return value ? (
-        <Check className="h-5 w-5 text-neutral-300 mx-auto" />
+        <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto"><Check size={20} color="var(--neutral-300)" /></Box>
       ) : (
-        <X className="h-5 w-5 text-neutral-600 mx-auto" />
+        <Box render="span" display="inline-flex" alignItems="center" marginHorizontal="auto"><X size={20} color="var(--neutral-600)" /></Box>
       );
     }
-    return <span className="text-neutral-300 text-center block">{value}</span>;
+    return <Text color="var(--neutral-300)" textAlign="center" display="block">{value}</Text>;
   };
 
   return (
-    <div className="max-w-7xl mx-auto my-16 px-4">
-      <h2 className="text-2xl font-bold mb-8 text-center">Compare Features Across Plans</h2>
+    <Box maxWidth="var(--container-max)" marginHorizontal="auto" marginVertical={64} paddingHorizontal={16}>
+      <H2 fontSize="var(--text-2xl)" lineHeight="var(--leading-2xl)" fontWeight="700" marginBottom={32} textAlign="center">Compare Features Across Plans</H2>
       
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+      <Box overflowX="auto">
+        <Box render="table" display="table" width="100%" borderCollapse="collapse">
           <thead>
-            <tr className="border-b border-gray-800">
-              <th className="py-4 px-4 text-left">Feature</th>
-              <th className="py-4 px-6 text-center">Pro</th>
-              <th className="py-4 px-6 text-center">Max</th>
-              <th className="py-4 px-6 text-center">Team</th>
-              <th className="py-4 px-6 text-center">Enterprise</th>
-            </tr>
+            <Box render="tr" display="table-row" borderBottomWidth={1} borderColor="var(--neutral-800)">
+              <Box render="th" display="table-cell" paddingVertical={16} paddingHorizontal={16} textAlign="left">Feature</Box>
+              <Box render="th" display="table-cell" paddingVertical={16} paddingHorizontal={24} textAlign="center">Pro</Box>
+              <Box render="th" display="table-cell" paddingVertical={16} paddingHorizontal={24} textAlign="center">Max</Box>
+              <Box render="th" display="table-cell" paddingVertical={16} paddingHorizontal={24} textAlign="center">Team</Box>
+              <Box render="th" display="table-cell" paddingVertical={16} paddingHorizontal={24} textAlign="center">Enterprise</Box>
+            </Box>
           </thead>
           <tbody>
             {featureCategories.map((category) => (
               <React.Fragment key={category.name}>
-                <tr className="bg-gray-900/30">
-                  <td colSpan={5} className="py-3 px-4 font-medium text-neutral-300">
+                <Box render="tr" display="table-row" backgroundColor="var(--surface-card-emphasis)">
+                  <Box colSpan={5} render="td" display="table-cell" paddingVertical={12} paddingHorizontal={16} fontWeight="500" color="var(--neutral-300)">
                     {category.name}
-                  </td>
-                </tr>
+                  </Box>
+                </Box>
                 {category.features.map((feature) => (
-                  <tr key={feature.name} className="border-b border-gray-800/50">
-                    <td className="py-3 px-4 text-neutral-400">{feature.name}</td>
-                    <td className="py-3 px-6">{renderFeatureValue(feature.pro)}</td>
-                    <td className="py-3 px-6">{renderFeatureValue(feature.max)}</td>
-                    <td className="py-3 px-6">{renderFeatureValue(feature.team)}</td>
-                    <td className="py-3 px-6">{renderFeatureValue(feature.enterprise)}</td>
-                  </tr>
+                  <Box key={feature.name} render="tr" display="table-row" borderBottomWidth={1} borderColor="var(--border-strong)">
+                    <Box render="td" display="table-cell" paddingVertical={12} paddingHorizontal={16} color="var(--neutral-400)">{feature.name}</Box>
+                    <Box render="td" display="table-cell" paddingVertical={12} paddingHorizontal={24}>{renderFeatureValue(feature.pro)}</Box>
+                    <Box render="td" display="table-cell" paddingVertical={12} paddingHorizontal={24}>{renderFeatureValue(feature.max)}</Box>
+                    <Box render="td" display="table-cell" paddingVertical={12} paddingHorizontal={24}>{renderFeatureValue(feature.team)}</Box>
+                    <Box render="td" display="table-cell" paddingVertical={12} paddingHorizontal={24}>{renderFeatureValue(feature.enterprise)}</Box>
+                  </Box>
                 ))}
               </React.Fragment>
             ))}
           </tbody>
-        </table>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

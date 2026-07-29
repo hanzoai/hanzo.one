@@ -1,8 +1,7 @@
+import { Box, Button, Grid, H2, MotionBox, Text, XStack, YStack, createAnimationVariant, curves } from '@/gui'
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { createAnimationVariant, curves } from "@/components/ui/animation-variants";
 
 interface UsageOverviewProps {
   dateRange: {
@@ -33,57 +32,57 @@ const UsageOverview = ({
   creditsRequired
 }: UsageOverviewProps) => {
   return (
-    <motion.div 
+    <MotionBox 
       variants={cardAnimation}
-      className="rounded-xl border border-gray-800 bg-gray-900/20 overflow-hidden"
+      borderRadius="var(--radius-xl)" borderWidth={1} borderColor="var(--neutral-800)" backgroundColor="rgb(255 255 255 / 0.2)" overflow="hidden"
     >
-      <div className="p-6 border-b border-gray-800">
-        <h2 className="text-xl font-semibold mb-1">
+      <Box padding={24} borderBottomWidth={1} borderColor="var(--neutral-800)">
+        <H2 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={4}>
           {dateRange.start} to {dateRange.end} Credit Usage
-        </h2>
-      </div>
+        </H2>
+      </Box>
       
-      <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-400">Current Usage</span>
+      <Box padding={24}>
+        <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={32} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+          <Box rowGap={16}>
+            <XStack display="flex" justifyContent="space-between" alignItems="center">
+              <Text color="var(--neutral-400)">Current Usage</Text>
               <span>{currentUsage}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-400">Discounts</span>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between" alignItems="center">
+              <Text color="var(--neutral-400)">Discounts</Text>
               <span>{discounts}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-400">Credits Used</span>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between" alignItems="center">
+              <Text color="var(--neutral-400)">Credits Used</Text>
               <span>{creditsUsed}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-400">Estimated Month's Cost</span>
+            </XStack>
+            <XStack display="flex" justifyContent="space-between" alignItems="center">
+              <Text color="var(--neutral-400)">Estimated Month's Cost</Text>
               <span>{estimatedCost}</span>
-            </div>
-          </div>
+            </XStack>
+          </Box>
           
-          <div className="bg-gray-900/30 rounded-xl p-6 flex flex-col items-center justify-center text-center">
-            <div className="mb-2">
-              <div className="text-sm text-neutral-400">Credits Available</div>
-              <div className="text-3xl font-bold">{creditsAvailable}</div>
-            </div>
+          <YStack backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-xl)" padding={24} display="flex" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center">
+            <Box marginBottom={8}>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Credits Available</Box>
+              <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700">{creditsAvailable}</Box>
+            </Box>
             
-            <div className="mb-6">
-              <div className="text-sm text-green-500">Est Credits Required</div>
-              <div className="text-3xl font-bold text-green-500">{creditsRequired}</div>
-            </div>
+            <Box marginBottom={24}>
+              <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-500)">Est Credits Required</Box>
+              <Box fontSize="var(--text-3xl)" lineHeight="var(--leading-3xl)" fontWeight="700" color="var(--neutral-500)">{creditsRequired}</Box>
+            </Box>
             
             <Button 
-              className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] w-full"
+              backgroundColor="var(--neutral-600)" color="var(--white)" width="100%" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             >
               Purchase Credits
             </Button>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+          </YStack>
+        </Grid>
+      </Box>
+    </MotionBox>
   );
 };
 

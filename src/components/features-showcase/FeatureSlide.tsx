@@ -1,3 +1,4 @@
+import { Anchor, Box, H3, MotionBox, Paragraph, XStack } from '@/gui'
 
 import React from "react";
 import { LucideIcon } from "lucide-react";
@@ -25,8 +26,8 @@ const FeatureSlide: React.FC<FeatureSlideProps> = ({
     if (!category) return null;
     
     const badgeStyles = {
-      'ai-cloud': 'bg-blue-900/30 border-blue-500/30 text-blue-300',
-      'dx-platform': 'bg-emerald-900/30 border-emerald-500/30 text-emerald-300'
+      'ai-cloud': 'var(--white-10)',
+      'dx-platform': 'var(--white-10)'
     };
     
     const badgeText = {
@@ -35,15 +36,15 @@ const FeatureSlide: React.FC<FeatureSlideProps> = ({
     };
     
     return (
-      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-medium border ${badgeStyles[category]}`}>
+      <Box position="absolute" top={12} right={12} paddingHorizontal={8} paddingVertical={2} borderRadius="var(--radius-full)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="500" borderWidth={1}>
         {badgeText[category]}
-      </div>
+      </Box>
     );
   };
 
   return (
-    <motion.div 
-      className="feature-card backdrop-blur-sm bg-[var(--black)]/30 border border-gray-800 p-6 rounded-xl relative group"
+    <MotionBox 
+      group borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-xl)" backgroundColor="rgb(0 0 0 / 0.3)" hoverStyle={{ borderColor: "var(--border-strong)" }} backdropFilter="blur(4px)" WebkitBackdropFilter="blur(4px)" padding={24} position="relative"
       whileHover={{ 
         y: -5,
         borderColor: "rgba(139, 92, 246, 0.5)",
@@ -53,31 +54,31 @@ const FeatureSlide: React.FC<FeatureSlideProps> = ({
     >
       {getCategoryBadge()}
       
-      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${color} transform transition-transform group-hover:scale-110 duration-300`}>
-        <Icon className="h-7 w-7 text-[var(--white)]" />
-      </div>
+      <XStack width={56} height={56} borderRadius="var(--radius-xl)" display="flex" alignItems="center" justifyContent="center" marginBottom={24} transition="transform 300ms cubic-bezier(.4,0,.2,1)" $group-hover={{ scale: 1.1 }}>
+        <Icon height={28} width={28} color="var(--white)" />
+      </XStack>
       
-      <h3 className="text-xl font-bold mb-3 text-[var(--white)]">{title}</h3>
+      <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" marginBottom={12} color="var(--white)">{title}</H3>
       
-      <p className="text-neutral-300 mb-6">
+      <Paragraph color="var(--neutral-300)" marginBottom={24}>
         {description}
-      </p>
+      </Paragraph>
       
-      <a 
+      <Anchor 
         href={link} 
-        className="inline-flex items-center text-sm text-purple-300 hover:text-purple-100 transition-colors"
+        display="inline-flex" alignItems="center" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" hoverStyle={{ color: "var(--foreground)" }}
       >
         Learn More
-        <svg 
-          className="ml-1 w-4 h-4 transform transition-transform group-hover:translate-x-1 duration-300" 
+        <Box display="inline-block" 
+          render="svg" marginLeft={4} width={16} height={16} transition="transform 300ms cubic-bezier(.4,0,.2,1)" $group-hover={{ x: 4 }} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
-    </motion.div>
+        </Box>
+      </Anchor>
+    </MotionBox>
   );
 };
 

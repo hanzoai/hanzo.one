@@ -1,10 +1,7 @@
+import { Box, Button, Grid, H3, Input, Label, Text, XStack, toast } from '@/gui'
 
 import React, { useState } from 'react';
 import { CreditCard, Plus, Trash2, CheckCircle, Edit, ArrowLeft, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
 import BillingTabsLink from './BillingTabsLink';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,11 +24,11 @@ const PaymentMethods = () => {
   const getCardIcon = (type: string) => {
     switch (type) {
       case 'visa':
-        return <div className="text-blue-500 font-bold text-xs">VISA</div>;
+        return <Box color="var(--neutral-500)" fontWeight="700" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">VISA</Box>;
       case 'mastercard':
-        return <div className="text-red-500 font-bold text-xs">MC</div>;
+        return <Box color="var(--neutral-500)" fontWeight="700" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">MC</Box>;
       default:
-        return <CreditCard className="h-4 w-4 text-neutral-400" />;
+        return <CreditCard size={16} color="var(--neutral-400)" />;
     }
   };
 
@@ -102,31 +99,31 @@ const PaymentMethods = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
+    <Box rowGap={32}>
+      <XStack display="flex" alignItems="center" justifyContent="space-between">
+        <XStack display="flex" alignItems="center">
           <BillingTabsLink tabId="overview" variant="ghost">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Back to Overview
+            <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><ArrowLeft size={16} /></Box> Back to Overview
           </BillingTabsLink>
-        </div>
+        </XStack>
         <Button onClick={handleAddCard}>
-          <Plus className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Plus size={16} /></Box>
           Add Payment Method
         </Button>
-      </div>
+      </XStack>
       
       {/* Add new card form */}
       {showAddCard && (
-        <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-medium">Add Payment Method</h3>
+        <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+          <XStack display="flex" justifyContent="space-between" alignItems="center" marginBottom={16}>
+            <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500">Add Payment Method</H3>
             <Button variant="ghost" size="sm" onClick={handleCloseAddCard}>
-              <X className="h-4 w-4" />
+              <X size={16} />
             </Button>
-          </div>
+          </XStack>
           
-          <form onSubmit={handleSubmitCard} className="space-y-4">
-            <div className="space-y-2">
+          <Box onSubmit={handleSubmitCard} render="form" rowGap={16}>
+            <Box rowGap={8}>
               <Label htmlFor="cardName">Name on Card</Label>
               <Input
                 id="cardName"
@@ -134,11 +131,11 @@ const PaymentMethods = () => {
                 placeholder="John Doe"
                 value={newCard.cardName}
                 onChange={handleCardInputChange}
-                className="bg-gray-800 border-gray-700"
+                backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)"
               />
-            </div>
+            </Box>
             
-            <div className="space-y-2">
+            <Box rowGap={8}>
               <Label htmlFor="cardNumber">Card Number</Label>
               <Input
                 id="cardNumber"
@@ -146,12 +143,12 @@ const PaymentMethods = () => {
                 placeholder="4242 4242 4242 4242"
                 value={newCard.cardNumber}
                 onChange={handleCardInputChange}
-                className="bg-gray-800 border-gray-700"
+                backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)"
               />
-            </div>
+            </Box>
             
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-2">
+            <Grid display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))" gap={16}>
+              <Box rowGap={8}>
                 <Label htmlFor="expMonth">Month</Label>
                 <Input
                   id="expMonth"
@@ -160,11 +157,11 @@ const PaymentMethods = () => {
                   maxLength={2}
                   value={newCard.expMonth}
                   onChange={handleCardInputChange}
-                  className="bg-gray-800 border-gray-700"
+                  backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)"
                 />
-              </div>
+              </Box>
               
-              <div className="space-y-2">
+              <Box rowGap={8}>
                 <Label htmlFor="expYear">Year</Label>
                 <Input
                   id="expYear"
@@ -173,11 +170,11 @@ const PaymentMethods = () => {
                   maxLength={2}
                   value={newCard.expYear}
                   onChange={handleCardInputChange}
-                  className="bg-gray-800 border-gray-700"
+                  backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)"
                 />
-              </div>
+              </Box>
               
-              <div className="space-y-2">
+              <Box rowGap={8}>
                 <Label htmlFor="cvc">CVC</Label>
                 <Input
                   id="cvc"
@@ -186,88 +183,84 @@ const PaymentMethods = () => {
                   maxLength={3}
                   value={newCard.cvc}
                   onChange={handleCardInputChange}
-                  className="bg-gray-800 border-gray-700"
+                  backgroundColor="var(--neutral-800)" borderColor="var(--neutral-700)"
                 />
-              </div>
-            </div>
+              </Box>
+            </Grid>
             
-            <Button type="submit" className="w-full mt-4">
+            <Button type="submit" width="100%" marginTop={16}>
               Add Payment Method
             </Button>
-          </form>
-        </div>
+          </Box>
+        </Box>
       )}
       
       {/* Cards list */}
-      <div className="space-y-4">
+      <Box rowGap={16}>
         {cards.map(card => (
-          <div 
+          <XStack 
             key={card.id} 
-            className={`flex items-center justify-between p-4 rounded-lg border ${
-              card.isDefault 
-                ? 'border-purple-500 bg-purple-900/10' 
-                : 'border-gray-800 bg-gray-900/30'
-            }`}
+            display="flex" alignItems="center" justifyContent="space-between" padding={16} borderRadius="var(--radius-lg)" borderWidth={1} borderColor={card.isDefault ? "var(--neutral-500)" : "var(--neutral-800)"} backgroundColor={card.isDefault ? "rgb(255 255 255 / 0.1)" : "rgb(255 255 255 / 0.3)"}
           >
-            <div className="flex items-center">
-              <div className="h-10 w-14 bg-gray-800 rounded flex items-center justify-center mr-4">
+            <XStack display="flex" alignItems="center">
+              <XStack height={40} width={56} backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" display="flex" alignItems="center" justifyContent="center" marginRight={16}>
                 {getCardIcon(card.type)}
-              </div>
+              </XStack>
               <div>
-                <div className="font-medium">
+                <Box fontWeight="500">
                   {card.type.charAt(0).toUpperCase() + card.type.slice(1)} ending in {card.last4}
                   {card.isDefault && (
-                    <span className="ml-2 text-xs bg-purple-900/50 text-purple-300 px-2 py-0.5 rounded-full">
+                    <Text marginLeft={8} fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" backgroundColor="var(--surface-card-emphasis)" color="var(--foreground)" paddingHorizontal={8} paddingVertical={2} borderRadius="var(--radius-full)">
                       Default
-                    </span>
+                    </Text>
                   )}
-                </div>
-                <div className="text-sm text-neutral-400">Expires {card.expMonth}/{card.expYear}</div>
+                </Box>
+                <Box fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--neutral-400)">Expires {card.expMonth}/{card.expYear}</Box>
               </div>
-            </div>
+            </XStack>
             
-            <div className="flex items-center space-x-2">
+            <XStack display="flex" alignItems="center" columnGap={8}>
               {!card.isDefault && (
                 <Button 
                   variant="ghost" 
                   size="sm" 
                   onClick={() => setDefaultCard(card.id)}
                 >
-                  <CheckCircle className="h-4 w-4 mr-2" />
+                  <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><CheckCircle size={16} /></Box>
                   Set Default
                 </Button>
               )}
               <Button variant="ghost" size="sm">
-                <Edit className="h-4 w-4 mr-2" />
+                <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Edit size={16} /></Box>
                 Edit
               </Button>
               <Button 
                 variant="ghost" 
                 size="sm" 
-                className="text-red-400 hover:text-red-300 hover:bg-red-900/20"
+                color="var(--foreground)" hoverStyle={{ color: "var(--foreground)", backgroundColor: "rgb(255 255 255 / 0.2)" }}
                 onClick={() => handleDeleteCard(card.id)}
               >
-                <Trash2 className="h-4 w-4" />
+                <Trash2 size={16} />
               </Button>
-            </div>
-          </div>
+            </XStack>
+          </XStack>
         ))}
-      </div>
+      </Box>
       
-      <div className="bg-gray-900/30 border border-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-medium mb-4">Billing Address</h3>
-        <div className="space-y-1 mb-4">
+      <Box backgroundColor="var(--surface-card-emphasis)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" padding={24}>
+        <H3 fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" fontWeight="500" marginBottom={16}>Billing Address</H3>
+        <Box rowGap={4} marginBottom={16}>
           <div>Jane Doe</div>
           <div>123 Main St</div>
           <div>San Francisco, CA 94105</div>
           <div>United States</div>
-        </div>
+        </Box>
         <Button variant="outline" size="sm">
-          <Edit className="h-4 w-4 mr-2" />
+          <Box render="span" display="inline-flex" alignItems="center" marginRight={8}><Edit size={16} /></Box>
           Edit Address
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

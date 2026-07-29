@@ -1,7 +1,7 @@
+import { Box, Button, MotionBox, MotionText, YStack } from '@/gui'
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import HeroTitle from "@/components/hero/HeroTitle";
@@ -49,10 +49,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section ref={containerRef} className="pt-32 pb-20 px-4 md:px-8 min-h-[90vh] flex flex-col justify-center relative">
-      <motion.div
+    <YStack ref={containerRef} render="section" paddingTop={128} paddingBottom={80} paddingHorizontal={16} minHeight="90vh" display="flex" flexDirection="column" justifyContent="center" position="relative" $md={{ paddingHorizontal: 32 }}>
+      <MotionBox
         style={{ scale, opacity }}
-        className="max-w-6xl mx-auto text-center"
+        maxWidth="var(--container-wide)" marginHorizontal="auto" textAlign="center"
       >
         <HeroTitle 
           mousePosition={mousePosition}
@@ -62,40 +62,40 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           onTitleAnimationComplete={onTitleAnimationComplete}
         />
 
-        <motion.p 
+        <MotionText 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: titleAnimationComplete ? 1 : 0, y: titleAnimationComplete ? 0 : 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 mb-8 text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto"
+          marginTop={24} marginBottom={32} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" color="var(--neutral-300)" maxWidth="var(--container-prose)" marginHorizontal="auto" $md={{ fontSize: "var(--text-xl)", lineHeight: "var(--leading-xl)" }}
         >
           Your AI future belongs in your hands. With Hanzo, pioneer a new era of intelligence with customizable, private, transparent, and trusted AI solutions.
-        </motion.p>
+        </MotionText>
         
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: titleAnimationComplete ? 1 : 0, y: titleAnimationComplete ? 0 : 20 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 flex flex-wrap justify-center gap-4"
+          flexDirection="row" marginTop={32} display="flex" flexWrap="wrap" justifyContent="center" gap={16}
         >
           <Button 
             size="lg" 
-            className="bg-purple-600 hover:bg-purple-700 text-[var(--white)] px-8 py-6 text-lg"
+            backgroundColor="var(--neutral-600)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ backgroundColor: "var(--neutral-700)" }}
             onClick={handleGetStarted}
           >
-            Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
+            Get Started for Free <Box render="span" display="inline-flex" alignItems="center" marginLeft={8}><ArrowRight size={20} /></Box>
           </Button>
           
           <Button 
             size="lg" 
             variant="outline"
-            className="border-purple-500/30 hover:border-purple-500/70 text-[var(--white)] hover:text-[var(--white)] px-8 py-6 text-lg"
+            borderColor="var(--border-strong)" color="var(--white)" paddingHorizontal={32} paddingVertical={24} fontSize="var(--text-lg)" lineHeight="var(--leading-lg)" hoverStyle={{ borderColor: "var(--border-strong)", color: "var(--white)" }}
             onClick={() => navigate('/platform')}
           >
             Explore Platform
           </Button>
-        </motion.div>
-      </motion.div>
-    </section>
+        </MotionBox>
+      </MotionBox>
+    </YStack>
   );
 };
 
