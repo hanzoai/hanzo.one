@@ -107,7 +107,10 @@ const AuthButtons = ({ user, onOpenCommandPalette }: AuthButtonsProps) => {
       >
         <Search size={16} />
         <Text display="none" color="var(--neutral-500)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" $lg={{ display: "inline" }}>Search...</Text>
-        <Text display="inline-flex" alignItems="center" gap={2} paddingHorizontal={6} paddingVertical={2} fontSize="10px" fontFamily="var(--font-mono)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--border-strong)" borderRadius="var(--radius)" color="var(--neutral-500)">
+        {/* The search box around this IS a control, so it keeps --border-strong.
+            The ⌘K chip inside it is a legend for that control, not another one —
+            a second strong edge 1px inside the first only reads as noise. */}
+        <Text display="inline-flex" alignItems="center" gap={2} paddingHorizontal={6} paddingVertical={2} fontSize="10px" fontFamily="var(--font-mono)" backgroundColor="var(--surface-overlay)" borderWidth={1} borderColor="var(--border-hairline)" borderRadius="var(--radius)" color="var(--neutral-500)">
           <Text fontSize="var(--text-xs)" lineHeight="var(--leading-xs)">⌘</Text>K
         </Text>
       </XStack>

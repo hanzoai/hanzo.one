@@ -258,7 +258,7 @@ const GlobalChatWidget = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            flexDirection="row" position="fixed" bottom={24} right={24} zIndex={50} width={56} height={56} borderRadius="var(--radius-full)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" display="flex" alignItems="center" justifyContent="center" backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)"
+            flexDirection="row" position="fixed" bottom="calc(24px + var(--safe-bottom))" right="calc(24px + var(--safe-right))" zIndex={50} width={56} height={56} borderRadius="var(--radius-full)" boxShadow="0 10px 15px -3px rgb(0 0 0 / .35)" display="flex" alignItems="center" justifyContent="center" backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)"
           >
             <Box display="inline-block" src="/zen-logo.png" alt="Zen AI" render="img" width={32} height={32} />
             {/* Pulse animation */}
@@ -275,7 +275,7 @@ const GlobalChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            position="fixed" zIndex={50} backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" display="flex" flexDirection="column" top={isExpanded ? 16 : undefined} right={isExpanded ? 16 : 24} bottom={isExpanded ? 16 : 24} left={isExpanded ? 16 : undefined} width={isExpanded ? undefined : "380px"} maxWidth={isExpanded ? undefined : "calc(100vw-48px)"} height={isExpanded ? undefined : "520px"} maxHeight={isExpanded ? undefined : "80vh"} $md={isExpanded ? { top: 32, right: 32, bottom: 32, left: 32 } : undefined}
+            position="fixed" zIndex={50} backgroundColor="var(--pure-black)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-2xl)" boxShadow="0 25px 50px -12px rgb(0 0 0 / .5)" overflow="hidden" display="flex" flexDirection="column" top={isExpanded ? "calc(16px + var(--safe-top))" : undefined} right={isExpanded ? "calc(16px + var(--safe-right))" : "calc(24px + var(--safe-right))"} bottom={isExpanded ? "calc(16px + var(--safe-bottom))" : "calc(24px + var(--safe-bottom))"} left={isExpanded ? "calc(16px + var(--safe-left))" : undefined} width={isExpanded ? undefined : "380px"} maxWidth={isExpanded ? undefined : "calc(100vw-48px)"} height={isExpanded ? undefined : "520px"} maxHeight={isExpanded ? undefined : "80vh"} $md={isExpanded ? { top: "calc(32px + var(--safe-top))", right: "calc(32px + var(--safe-right))", bottom: "calc(32px + var(--safe-bottom))", left: "calc(32px + var(--safe-left))" } : undefined}
           >
             {/* Header */}
             <XStack display="flex" alignItems="center" justifyContent="space-between" paddingHorizontal={16} paddingVertical={12} borderBottomWidth={1} borderColor="var(--neutral-800)">

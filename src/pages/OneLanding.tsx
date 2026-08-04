@@ -127,7 +127,18 @@ const OneLanding = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                position="relative" padding={24} borderRadius="var(--radius-2xl)" borderWidth={plan.popular ? 2 : 1} borderColor={plan.popular ? "var(--neutral-500)" : "var(--neutral-800)"} backgroundImage={plan.popular ? "linear-gradient(to bottom, rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.5))" : undefined} backgroundColor={plan.popular ? undefined : "rgb(255 255 255 / 0.5)"}
+                /* Both fills were `rgb(255 255 255 / 0.5)` — 50% white, which on a
+                   #050505 page painted these three cards as light-grey slabs
+                   instead of dark ones (the popular card said it twice, as a
+                   gradient between two identical stops). That is a `bg-white/5`
+                   that lost its zero on the way over: the surface ladder this
+                   site actually runs on tops out at 0.2. @hanzo/design already
+                   names both rungs a pricing grid needs, so they are used here
+                   rather than restated — and the featured card is marked by a
+                   brighter HAIRLINE rather than the 2px var(--neutral-500)
+                   (#737373) ring it wore, which was the heaviest border on the
+                   page and read as a wireframe. */
+                position="relative" padding={24} borderRadius="var(--radius-2xl)" borderWidth={1} borderColor={plan.popular ? "var(--white-20)" : "var(--neutral-800)"} backgroundColor={plan.popular ? "var(--surface-card-emphasis)" : "var(--surface-card)"}
               >
                 {plan.popular && (
                   <Box position="absolute" top={-12} left="50%" x="-50%" paddingHorizontal={12} paddingVertical={4} backgroundColor="var(--neutral-500)" color="var(--pure-black)" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" fontWeight="600" borderRadius="var(--radius-full)">

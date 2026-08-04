@@ -191,8 +191,13 @@ const Footer = () => {
     }
   };
 
+  /* --border-strong (#737373) is the token @hanzo/design reserves for a boundary
+     that IS an affordance — an input edge, a control. The two rules below (page
+     to footer, and footer to its bottom bar) are decorative, so they take the
+     hairline the other 68 borders on this page already use; at 1280 the strong
+     rung drew a bright grey line the full width of the viewport. */
   return (
-    <Box render="footer" backgroundColor="var(--pure-black)" borderTopWidth={1} borderColor="var(--border-strong)">
+    <Box render="footer" backgroundColor="var(--pure-black)" borderTopWidth={1} borderColor="var(--border-hairline)">
       <Box maxWidth="1400px" marginHorizontal="auto" paddingHorizontal={16} paddingVertical={48} $sm={{ paddingHorizontal: 24 }} $lg={{ paddingHorizontal: 32, paddingVertical: 64 }}>
         {/* Main footer content */}
         <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={40} $lg={{ gridTemplateColumns: "repeat(12, minmax(0, 1fr))", gap: 32 }}>
@@ -267,7 +272,7 @@ const Footer = () => {
         </Grid>
 
         {/* Bottom bar */}
-        <Box marginTop={48} paddingTop={24} borderTopWidth={1} borderColor="var(--border-strong)">
+        <Box marginTop={48} paddingTop={24} borderTopWidth={1} borderColor="var(--border-hairline)">
           <YStack display="flex" flexDirection="column" alignItems="flex-start" justifyContent="space-between" gap={16} $sm={{ flexDirection: "row", alignItems: "center" }}>
             {/* Copyright */}
             <Box rowGap={2}>

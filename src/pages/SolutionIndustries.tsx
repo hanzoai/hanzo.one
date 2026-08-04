@@ -50,11 +50,15 @@ const SolutionIndustries: React.FC = () => {
       <Box marginBottom={64}>
         <Grid display="grid" gridTemplateColumns="repeat(1, minmax(0, 1fr))" gap={24} $md={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }} $lg={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
           <AnimatePresence initial={false}>
-            {displayItems.map((item, index) => {
-              const Icon = getIcon(item);
+            {/* `items` in constants/navigation are `{ name, href, description }`
+                objects; this grid was written when they were bare strings and
+                still called `item.toLowerCase()`, which threw and took the whole
+                route to a white screen. Read the field. */}
+            {displayItems.map(({ name }, index) => {
+              const Icon = getIcon(name);
               return (
                 <MotionBox
-                  key={item}
+                  key={name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
@@ -69,16 +73,16 @@ const SolutionIndustries: React.FC = () => {
                       <Box render="span" display="inline-flex" alignItems="center" $group-hover={{ color: "var(--foreground)" }}><ChevronRight size={20} color="var(--neutral-500)" /></Box>
                     </XStack>
                     <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={8} transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" $group-hover={{ color: "var(--foreground)" }}>
-                      {item}
+                      {name}
                     </H3>
                     <Paragraph color="var(--neutral-400)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" marginBottom={16}>
-                      Explore our specialized solutions for the {item.toLowerCase()} industry, designed to address 
+                      Explore our specialized solutions for the {name.toLowerCase()} industry, designed to address 
                       your sector's unique challenges.
                     </Paragraph>
                     
                     <XStack display="flex" flexWrap="wrap" gap={8} marginTop={16}>
                       <XStack minHeight={44} 
-                        onClick={() => setActiveIndustry(item)}
+                        onClick={() => setActiveIndustry(name)}
                         render="button" fontSize="var(--text-xs)" lineHeight="var(--leading-xs)" display="flex" alignItems="center" color="var(--foreground)" hoverStyle={{ color: "var(--foreground)" }}
                       >
                         <Box render="span" display="inline-flex" alignItems="center" marginRight={4}><LinkIcon size={12} /></Box> Learn more

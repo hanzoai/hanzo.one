@@ -8,6 +8,20 @@
 
 @import '@hanzo/design/styles.css';
 
+/* `index.html` asks for `viewport-fit=cover`, so on a device with a display
+   cutout the viewport now extends underneath the notch and the home indicator.
+   That is what a full-bleed dark surface wants for its BACKGROUND and never for
+   its CONTENT. `env()` is only legible to CSS, so the four insets are named here
+   once and then read as `var(--safe-top)` wherever a box has to step out of
+   them — the same way every other value on this site travels as a custom
+   property. Each falls back to 0px, so a screen without a cutout is untouched. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+
 html {
   background-color: var(--background);
   color-scheme: dark;
@@ -25,6 +39,11 @@ body {
   -webkit-font-smoothing: antialiased;
   /* A page never scrolls sideways — a narrow viewport clips, it does not pan. */
   overflow-x: hidden;
+  /* Landscape on a notched phone puts the cutout beside the page, not above it.
+     Normal flow is inset here; a fixed box is positioned against the viewport
+     rather than against this padding, so the fixed chrome states its own. */
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
 }
 
 #root {
@@ -37,14 +56,25 @@ body {
   color: var(--foreground);
 }
 
-/* Form controls do not inherit the document typeface — the user agent sets
-   `font: 400 13.33px Arial` on them. Every control on this site is a control,
-   so the correction belongs here, once, not on each of them. */
+/* A control arrives wearing a whole user-agent box, not just a user-agent
+   typeface: `font: 400 13.33px Arial`, `padding: 1px 6px`, a `2px outset`
+   bevel and a `buttonface` fill. @hanzo/design states half the correction —
+   `*{border-color:var(--border)}` in tokens/base.css — but never
+   `border-style` or `border-width`, so the bevel survived every control that
+   does not set a width of its own (103 of this site's 122 `render="button"`
+   boxes), merely recoloured to #1f1f1f; the fill and the padding were never
+   addressed at all. A control's box belongs to the component that renders it,
+   so the rest of the correction lives here, once, beside the typeface. */
 button,
 input,
 select,
 textarea {
   font: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0 solid var(--border);
 }
 
 /* Placeholder text. `placeholderTextColor` is a React-Native prop: on a web

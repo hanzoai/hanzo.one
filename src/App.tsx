@@ -1,107 +1,108 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import GlobalChatWidget from "./components/GlobalChatWidget";
 import PageTransition from "./components/PageTransition";
 import KonamiCode from "./components/KonamiCode";
-import Index from "./pages/Index";
-import OneLanding from "./pages/OneLanding";
-import Home2 from "./pages/Home2";
-import Pricing from "./pages/Pricing";
+const Index = lazy(() => import("./pages/Index"));
+const OneLanding = lazy(() => import("./pages/OneLanding"));
+const Home2 = lazy(() => import("./pages/Home2"));
+const Pricing = lazy(() => import("./pages/Pricing"));
 import AccountLayout from "./components/account/AccountLayout";
-import Account from "./pages/Account";
-import Organization from "./pages/Organization";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import BillingPage from "./pages/Billing";
+const Account = lazy(() => import("./pages/Account"));
+const Organization = lazy(() => import("./pages/Organization"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const BillingPage = lazy(() => import("./pages/Billing"));
 import { BillingProvider } from "./contexts/BillingContext";
 import { AccountProvider } from "./contexts/AccountContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import ScrollToTop from "./components/ScrollToTop";
-import PurchaseCredits from "./pages/PurchaseCredits";
-import BillingPlans from "./pages/BillingPlans";
-import UserProfile from "./pages/UserProfile";
-import OrganizationProfile from "./pages/OrganizationProfile";
-import ReferralProgram from "./pages/ReferralProgram";
-import Usage from "./pages/Usage";
-import AccountSettings from "./pages/AccountSettings";
-import Invoices from "./pages/Invoices";
-import StatusPage from "./pages/Status";
-import Dashboard from "./pages/Dashboard";
-import Referrals from "./pages/Referrals";
-import OpenSource from "./pages/OpenSource";
-import Solutions from "./pages/Solutions";
-import SolutionCapabilities from "./pages/SolutionCapabilities";
-import SolutionIndustries from "./pages/SolutionIndustries";
-import Security from "./pages/Security";
-import ZenOfHanzo from "./pages/ZenOfHanzo";
-import Zen from "./pages/Zen";
-import ZenModels from "./pages/ZenModels";
-import Contact from "./pages/Contact";
-import Enterprise from "./pages/Enterprise";
-import Brand from "./pages/Brand";
-import Press from "./pages/Press";
+const PurchaseCredits = lazy(() => import("./pages/PurchaseCredits"));
+const BillingPlans = lazy(() => import("./pages/BillingPlans"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const OrganizationProfile = lazy(() => import("./pages/OrganizationProfile"));
+const ReferralProgram = lazy(() => import("./pages/ReferralProgram"));
+const Usage = lazy(() => import("./pages/Usage"));
+const AccountSettings = lazy(() => import("./pages/AccountSettings"));
+const Invoices = lazy(() => import("./pages/Invoices"));
+const StatusPage = lazy(() => import("./pages/Status"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Referrals = lazy(() => import("./pages/Referrals"));
+const OpenSource = lazy(() => import("./pages/OpenSource"));
+const Solutions = lazy(() => import("./pages/Solutions"));
+const SolutionCapabilities = lazy(() => import("./pages/SolutionCapabilities"));
+const SolutionIndustries = lazy(() => import("./pages/SolutionIndustries"));
+const Security = lazy(() => import("./pages/Security"));
+const ZenOfHanzo = lazy(() => import("./pages/ZenOfHanzo"));
+const Zen = lazy(() => import("./pages/Zen"));
+const ZenModels = lazy(() => import("./pages/ZenModels"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Enterprise = lazy(() => import("./pages/Enterprise"));
+const Brand = lazy(() => import("./pages/Brand"));
+const Press = lazy(() => import("./pages/Press"));
 
-import AI from "./pages/AI";
-import Datastore from "./pages/Datastore";
-import Commerce from "./pages/Commerce";
-import Extension from "./pages/Extension";
-import Base from "./pages/Base";
-import Download from "./pages/Download";
-import Analytics from "./pages/Analytics";
-import Cloud from "./pages/Cloud";
-import AIStudio from "./pages/AIStudio";
-import Operative from "./pages/Operative";
-import HanzoApp from "./pages/HanzoApp";
-import HanzoBot from "./pages/HanzoBot";
-import HanzoCode from "./pages/HanzoCode";
-import HanzoDev from "./pages/HanzoDev";
-import Blockchain from "./pages/Blockchain";
-import HanzoNodes from "./pages/blockchain/HanzoNodes";
-import HanzoIndexer from "./pages/blockchain/HanzoIndexer";
-import HanzoWallet from "./pages/blockchain/HanzoWallet";
-import HanzoSafe from "./pages/blockchain/HanzoSafe";
-import HanzoID from "./pages/blockchain/HanzoID";
-import HanzoPay from "./pages/blockchain/HanzoPay";
-import HanzoBridge from "./pages/blockchain/HanzoBridge";
-import HanzoDeFi from "./pages/blockchain/HanzoDeFi";
-import HanzoOracle from "./pages/blockchain/HanzoOracle";
-import HanzoStorage from "./pages/blockchain/HanzoStorage";
-import HanzoExplorer from "./pages/blockchain/HanzoExplorer";
-import HanzoQuest from "./pages/blockchain/HanzoQuest";
-import Vector from "./pages/Vector";
-import Payments from "./pages/Payments";
-import Platform from "./pages/Platform";
-import Functions from "./pages/Functions";
-import Identity from "./pages/Identity";
-import Machines from "./pages/Machines";
-import Edge from "./pages/Edge";
-import Realtime from "./pages/Realtime";
-import Automations from "./pages/Automations";
-import NotFound from "./pages/NotFound";
-import Leadership from "./pages/Leadership";
-import Team from "./pages/Team";
+const AI = lazy(() => import("./pages/AI"));
+const Datastore = lazy(() => import("./pages/Datastore"));
+const Commerce = lazy(() => import("./pages/Commerce"));
+const Extension = lazy(() => import("./pages/Extension"));
+const Base = lazy(() => import("./pages/Base"));
+const Download = lazy(() => import("./pages/Download"));
+const Analytics = lazy(() => import("./pages/Analytics"));
+const Cloud = lazy(() => import("./pages/Cloud"));
+const AIStudio = lazy(() => import("./pages/AIStudio"));
+const Operative = lazy(() => import("./pages/Operative"));
+const HanzoApp = lazy(() => import("./pages/HanzoApp"));
+const HanzoBot = lazy(() => import("./pages/HanzoBot"));
+const HanzoCode = lazy(() => import("./pages/HanzoCode"));
+const HanzoDev = lazy(() => import("./pages/HanzoDev"));
+const Blockchain = lazy(() => import("./pages/Blockchain"));
+const HanzoNodes = lazy(() => import("./pages/blockchain/HanzoNodes"));
+const HanzoIndexer = lazy(() => import("./pages/blockchain/HanzoIndexer"));
+const HanzoWallet = lazy(() => import("./pages/blockchain/HanzoWallet"));
+const HanzoSafe = lazy(() => import("./pages/blockchain/HanzoSafe"));
+const HanzoID = lazy(() => import("./pages/blockchain/HanzoID"));
+const HanzoPay = lazy(() => import("./pages/blockchain/HanzoPay"));
+const HanzoBridge = lazy(() => import("./pages/blockchain/HanzoBridge"));
+const HanzoDeFi = lazy(() => import("./pages/blockchain/HanzoDeFi"));
+const HanzoOracle = lazy(() => import("./pages/blockchain/HanzoOracle"));
+const HanzoStorage = lazy(() => import("./pages/blockchain/HanzoStorage"));
+const HanzoExplorer = lazy(() => import("./pages/blockchain/HanzoExplorer"));
+const HanzoQuest = lazy(() => import("./pages/blockchain/HanzoQuest"));
+const Vector = lazy(() => import("./pages/Vector"));
+const Payments = lazy(() => import("./pages/Payments"));
+const Platform = lazy(() => import("./pages/Platform"));
+const Functions = lazy(() => import("./pages/Functions"));
+const Identity = lazy(() => import("./pages/Identity"));
+const Machines = lazy(() => import("./pages/Machines"));
+const Edge = lazy(() => import("./pages/Edge"));
+const Realtime = lazy(() => import("./pages/Realtime"));
+const Automations = lazy(() => import("./pages/Automations"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Leadership = lazy(() => import("./pages/Leadership"));
+const Team = lazy(() => import("./pages/Team"));
 
 // New product taxonomy pages
-import Products from "./pages/Products";
-import CategoryPage from "./pages/products/CategoryPage";
-import ProductPage from "./pages/products/ProductPage";
-import Integrations from "./pages/products/Integrations";
+const Products = lazy(() => import("./pages/Products"));
+const CategoryPage = lazy(() => import("./pages/products/CategoryPage"));
+const ProductPage = lazy(() => import("./pages/products/ProductPage"));
+const Integrations = lazy(() => import("./pages/products/Integrations"));
 
-import TeamDev from "./pages/TeamDev";
-import TeamVi from "./pages/TeamVi";
-import TeamOpera from "./pages/TeamOpera";
-import TeamChat from "./pages/TeamChat";
-import TeamDb from "./pages/TeamDb";
+const TeamDev = lazy(() => import("./pages/TeamDev"));
+const TeamVi = lazy(() => import("./pages/TeamVi"));
+const TeamOpera = lazy(() => import("./pages/TeamOpera"));
+const TeamChat = lazy(() => import("./pages/TeamChat"));
+const TeamDb = lazy(() => import("./pages/TeamDb"));
 import TeamSu from "./pages/TeamSu"; 
-import TeamArt from "./pages/TeamArt";
-import TeamMu from "./pages/TeamMu";
-import TeamData from "./pages/TeamData";
-import TeamCore from "./pages/TeamCore";
-import TeamFin from "./pages/TeamFin";
-import TeamSec from "./pages/TeamSec";
-import TeamAlgo from "./pages/TeamAlgo";
-import TeamDes from "./pages/TeamDes";
-import TeamMark from "./pages/TeamMark";
-import TeamCal from "./pages/TeamCal";
+const TeamArt = lazy(() => import("./pages/TeamArt"));
+const TeamMu = lazy(() => import("./pages/TeamMu"));
+const TeamData = lazy(() => import("./pages/TeamData"));
+const TeamCore = lazy(() => import("./pages/TeamCore"));
+const TeamFin = lazy(() => import("./pages/TeamFin"));
+const TeamSec = lazy(() => import("./pages/TeamSec"));
+const TeamAlgo = lazy(() => import("./pages/TeamAlgo"));
+const TeamDes = lazy(() => import("./pages/TeamDes"));
+const TeamMark = lazy(() => import("./pages/TeamMark"));
+const TeamCal = lazy(() => import("./pages/TeamCal"));
 
 const AccountRoutes = () => {
   return (
@@ -236,13 +237,20 @@ const App = () => {
     <BrowserRouter>
       <ThemeProvider>
         <ScrollToTop />
-        <PageTransition>
-          {isAccountRoute(window.location.pathname) ? (
-            <AccountRoutes />
-          ) : (
-            <MarketingRoutes />
-          )}
-        </PageTransition>
+        {/* Every page is a lazy chunk, so one boundary at the one place a route
+            is chosen covers all 90 of them — a Suspense per <Routes> would be
+            the same boundary written twice. The entry chunk carried all 98
+            routes before this: opening the homepage downloaded the team pages,
+            the account pages and the blockchain pages to render none of them. */}
+        <Suspense fallback={null}>
+          <PageTransition>
+            {isAccountRoute(window.location.pathname) ? (
+              <AccountRoutes />
+            ) : (
+              <MarketingRoutes />
+            )}
+          </PageTransition>
+        </Suspense>
         {/* Global chat widget on all pages */}
         <GlobalChatWidget />
         {/* Easter egg - Konami code for secret menu */}

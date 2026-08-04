@@ -153,9 +153,17 @@ const Logo = () => {
 
   return (
     <>
+      {/* No `group`: it compiles to `container-type: inline-size`, and inline-size
+          containment sizes a box as though it had no contents, so the anchor's
+          max-content width was 0 and it laid out 0px wide with the whole lockup
+          hanging outside its own link box (the mark still painted, because the
+          overflow is visible — which is why a screenshot never showed it). The
+          prop bought nothing here: the wordmark reveal is React state, and
+          nothing inside Logo styles on `$group`. `display` is left to `tap`,
+          whose `inline-flex` is what sizes the anchor to the mark it wraps. */}
       <Link tap
         to="/"
-        group position="relative" display="flex" 
+        position="relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onContextMenu={handleContextMenu}
