@@ -71,7 +71,7 @@ const CallToAction = () => {
               <Box display="inline-block" minHeight={44}
                 type="email"
                 placeholder="Enter your email"
-                render="input" flex={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
+                render="input" flex={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" color="var(--foreground)" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
               />
               <Button paddingHorizontal={24}
                 style={FILL}

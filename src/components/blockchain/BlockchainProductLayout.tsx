@@ -192,7 +192,7 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="John Doe"
-                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
                       </XStack>
@@ -206,7 +206,7 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="john@company.com"
-                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
                       </XStack>
@@ -223,7 +223,7 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           placeholder="Acme Inc"
-                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
                       </XStack>
@@ -237,7 +237,7 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                           value={formData.role}
                           onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                           placeholder="Backend Engineer"
-                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                          render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                           required
                         />
                       </XStack>
@@ -254,7 +254,7 @@ const BlockchainProductLayout: React.FC<BlockchainProductProps> = ({
                         value={formData.useCase}
                         onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
                         placeholder="Tell us about your project and how you plan to use this service..."
-                        render="textarea" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" minHeight="80px"
+                        render="textarea" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" minHeight="80px"
                         required
                       />
                     </XStack>

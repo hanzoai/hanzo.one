@@ -247,7 +247,7 @@ const Blockchain = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                    render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                     required
                   />
                 </XStack>
@@ -640,7 +640,7 @@ await agent.run(\`
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" placeholderTextColor="var(--neutral-600)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
+                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" outlineStyle="none" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)"
                   required
                 />
               </XStack>

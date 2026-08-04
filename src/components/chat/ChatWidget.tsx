@@ -258,7 +258,7 @@ const ChatWidget = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything..."
-                  render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
+                  render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={12} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
                   disabled={isLoading}
                 />
                 <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44}

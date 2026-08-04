@@ -207,7 +207,7 @@ const Automations = () => {
                   placeholder="Search integrations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  render="input" width="100%" paddingLeft={48} paddingRight={16} paddingVertical={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
+                  render="input" width="100%" paddingLeft={48} paddingRight={16} paddingVertical={12} borderRadius="var(--radius-full)" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--border-strong)" }}
                 />
               </Box>
             </MotionBox>

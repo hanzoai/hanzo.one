@@ -89,7 +89,7 @@ const HeroSection = () => {
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="How can I help you today?"
-                render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-xl)" paddingHorizontal={20} paddingVertical={16} paddingRight={144} fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
+                render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-xl)" paddingHorizontal={20} paddingVertical={16} paddingRight={144} fontSize="var(--text-base)" lineHeight="var(--leading-base)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
               />
               <Button
                 type="submit"

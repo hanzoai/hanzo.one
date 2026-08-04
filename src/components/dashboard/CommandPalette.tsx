@@ -89,7 +89,7 @@ const CommandPalette: React.FC = () => {
             <Command.Input 
               value={search}
               onValueChange={setSearch}
-              width="100%" backgroundColor="transparent" borderStyle="none" paddingHorizontal={8} paddingVertical={6} color="var(--neutral-200)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none" }} 
+              width="100%" backgroundColor="transparent" borderStyle="none" paddingHorizontal={8} paddingVertical={6} color="var(--neutral-200)" focusStyle={{ outlineStyle: "none" }} 
               placeholder="Search commands..." 
               autoFocus
             />

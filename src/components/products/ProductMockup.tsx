@@ -406,7 +406,7 @@ const ChatMockup: React.FC<{ product: Product }> = ({ product }) => (
         <Box display="inline-block" minHeight={44}
           type="text"
           placeholder="Type a message..."
-          render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
+          render="input" flex={1} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-700)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={8} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
         />
         <Box display="inline-flex" alignItems="center" justifyContent="center" minHeight={44} render="button" padding={8} backgroundColor="var(--neutral-800)" color="var(--foreground)" borderRadius="var(--radius-lg)" hoverStyle={{ backgroundColor: "var(--surface-card-emphasis)" }}>
           <Box display="inline-block" render="svg" width={20} height={20} fill="none" stroke="currentColor" viewBox="0 0 24 24">

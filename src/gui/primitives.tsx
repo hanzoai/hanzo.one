@@ -39,7 +39,15 @@ type WebExtras = {
   title?: string
   WebkitBackdropFilter?: string
   onSubmit?: React.FormEventHandler
+  onChange?: React.ChangeEventHandler<HTMLInputElement & HTMLTextAreaElement>
+  /* The DOM node, not gui's `GuiTextElement`: every ref on this site comes from
+     `useRef<HTMLDivElement>` and measures a real element. `RefObject` is
+     invariant in its element, so no single named type covers div/input/canvas
+     /svg at once. */
   ref?: unknown
+  required?: boolean
+  checked?: boolean
+  defaultChecked?: boolean
   /* DOM attributes the site hands to a box it `render`s as an img, iframe,
      textarea, input or svg. gui does not model them; the element does. */
   id?: string
@@ -53,9 +61,16 @@ type WebExtras = {
   loading?: 'lazy' | 'eager'
   decoding?: 'async' | 'auto' | 'sync'
   viewBox?: string
+  xmlns?: string
+  preserveAspectRatio?: string
   fill?: string
   stroke?: string
   d?: string
+  href?: string
+  colSpan?: number
+  rowSpan?: number
+  align?: string
+  draggable?: boolean
 }
 
 /* The CSS values gui's React-Native enums do not admit — `display:inline-block`,
@@ -76,11 +91,22 @@ type WebLoose = {
   whiteSpace?: string
   textOverflow?: string
   cursor?: string
+  /* CSS gui has no React-Native counterpart for — the web box owns them. */
+  WebkitLineClamp?: number
+  WebkitBoxOrient?: string
+  scrollbarWidth?: string
+  listStyleType?: string
+  gridTemplateRows?: string
+  borderCollapse?: string
 }
 
+/* Both sets REPLACE the base's declaration, so they are omitted before the
+   intersection: an intersection would keep gui's narrow type alongside the web
+   one and every value would have to satisfy both (`Ref<GuiTextElement> &
+   RefObject<HTMLDivElement>` is uninhabited). */
 type WebProps<Base> = Omit<
   ComponentProps<Base extends ComponentType<infer _P> ? Base : never>,
-  keyof WebLoose
+  keyof WebLoose | keyof WebExtras
 > &
   WebLoose &
   WebExtras
@@ -93,12 +119,20 @@ const text = <E,>(c: unknown) => c as Derived<typeof GuiText, E>
  * The same repair for a component derived from any gui base: keep the base's
  * own non-style props (`value`, `onValueChange`, `href`, …), add the web box
  * vocabulary and the component's declared variants. Same delete condition.
+ *
+ * `V` REPLACES the base's declaration of the same prop rather than intersecting
+ * with it. gui's Card declares `variant?: 'outlined'` and this site's Card
+ * declares `variant?: 'default' | 'outline' | …`; intersected, the only value
+ * both admit is none, so every call site read `string is not assignable to
+ * never`. Omitting `keyof V` first is what makes a re-declared variant mean the
+ * new set. (`keyof unknown` is `never`, so a component with no extras is
+ * unaffected.)
  */
 export const asWeb = <B, V = unknown>(c: unknown) =>
   c as ComponentType<
     Omit<
       ComponentProps<B extends ComponentType<infer _P> ? B : never>,
-      keyof WebProps<typeof GuiText>
+      keyof WebProps<typeof GuiText> | keyof V
     > &
       WebProps<typeof GuiText> &
       V

@@ -46,3 +46,12 @@ select,
 textarea {
   font: inherit;
 }
+
+/* Placeholder text. `placeholderTextColor` is a React-Native prop: on a web
+   input it reaches the DOM as an unknown attribute and paints nothing, so the
+   colour is stated here as the CSS the browser actually reads — once, for every
+   field on the site. */
+::placeholder {
+  color: var(--neutral-500);
+  opacity: 1;
+}

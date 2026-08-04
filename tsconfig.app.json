@@ -21,7 +21,8 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false,
 
-    "baseUrl": ".",
+    /* No `baseUrl`: TypeScript 7 removed it, and a relative `paths` target has
+       resolved against this file's own directory since TS 5. */
     "paths": {
       "@/*": ["./src/*"]
     }

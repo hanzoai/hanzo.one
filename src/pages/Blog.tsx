@@ -281,7 +281,7 @@ const Blog = () => {
               <Box display="inline-block" minHeight={44}
                 type="email"
                 placeholder="Enter your email"
-                render="input" flexGrow={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-full)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
+                render="input" flexGrow={1} paddingHorizontal={16} paddingVertical={12} backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-full)" color="var(--foreground)" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-600)" }}
               />
               <XStack minHeight={44}
                 render="button" display="inline-flex" alignItems="center" justifyContent="center" paddingHorizontal={32} paddingVertical={12} borderRadius="var(--radius-full)" fontWeight="500" transition="all var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" fontSize="var(--text-base)" lineHeight="var(--leading-base)" hoverStyle={{ opacity: 0.9 }}

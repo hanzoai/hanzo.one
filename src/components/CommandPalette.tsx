@@ -200,7 +200,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                   onChange={(e) => setSearch(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Search pages, products, docs..."
-                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" placeholderTextColor="var(--neutral-500)" outlineStyle="none"
+                  render="input" flex={1} backgroundColor="transparent" color="var(--foreground)" fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" outlineStyle="none"
                 />
                 <Text paddingHorizontal={8} paddingVertical={4} fontSize="10px" fontFamily="var(--font-mono)" backgroundColor="var(--neutral-800)" borderRadius="var(--radius)" color="var(--neutral-500)">
                   ESC

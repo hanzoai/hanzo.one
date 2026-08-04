@@ -213,7 +213,7 @@ const Footer = () => {
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   placeholder="How can I help you today?"
-                  render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={10} paddingRight={40} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" placeholderTextColor="var(--neutral-500)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
+                  render="input" width="100%" backgroundColor="var(--neutral-900)" borderWidth={1} borderColor="var(--neutral-800)" borderRadius="var(--radius-lg)" paddingHorizontal={16} paddingVertical={10} paddingRight={40} fontSize="var(--text-sm)" lineHeight="var(--leading-sm)" color="var(--foreground)" transition="color, background-color, border-color, fill, stroke var(--duration-fast, 150ms) var(--ease-in-out, cubic-bezier(.4,0,.2,1))" focusStyle={{ outlineStyle: "none", borderColor: "var(--neutral-700)" }}
                 />
                 <XStack
                   type="submit"
