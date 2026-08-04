@@ -66,7 +66,10 @@ type WebExtras = {
   fill?: string
   stroke?: string
   d?: string
+  strokeWidth?: number | string
   href?: string
+  rel?: string
+  target?: string
   colSpan?: number
   rowSpan?: number
   align?: string
@@ -88,6 +91,7 @@ type WebLoose = {
   borderStyle?: string
   position?: string
   transition?: string
+  animation?: string
   whiteSpace?: string
   textOverflow?: string
   cursor?: string

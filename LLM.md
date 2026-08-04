@@ -4,13 +4,20 @@ Marketing site for Hanzo One, the all-in-one AI-powered business suite (hanzo.on
 
 ## Stack
 
-- React 19 + TypeScript (Vite 5, SWC)
+- React 19 + TypeScript (Vite 5, SWC); `pnpm typecheck` runs **tsgo**, the Go
+  compiler from `@typescript/native-preview` — 23s of `tsc` became 1.8s
 - React Router v6 (client-side routing)
-- **@hanzo/ui components on the @hanzo/gui backend** (the Tamagui fork) —
-  no Tailwind, no shadcn, no Radix, no `className` anywhere in the JSX
-- **@hanzo/design** tokens (the only stylesheet), **@hanzo/logo** mark,
-  **@hanzo/brand** identity
+- **@hanzo/ui components on the @hanzo/gui backend** (the Tamagui fork), the
+  published 8.x line — no Tailwind, no shadcn, no Radix, no `className`
+  anywhere in the JSX, and none of the three in the lockfile or the bundle
+- **@hanzo/design** tokens (the only stylesheet), **@hanzo/logo** mark
 - Framer Motion (animations), Three.js (3D)
+
+Every dependency here is imported by `src`. `react-native-svg` is the exception
+that is not: `@hanzogui/lucide-icons-2` (a dependency of `@hanzo/ui`) imports it
+without declaring it, so rollup cannot resolve the package unless this site
+supplies it. It is declared for that reason alone and reaches the bundle through
+nothing.
 
 ## The UI layer — one surface, `src/gui`
 
@@ -77,9 +84,18 @@ src/
 pnpm install
 pnpm dev            # Vite dev server
 pnpm build          # Production build to dist/
+pnpm typecheck      # tsgo, the Go compiler
 pnpm preview
 pnpm lint
 ```
+
+`pnpm build` does not typecheck — vite/SWC strips types without reading them, so
+a green build says nothing about `pnpm typecheck`. Both are still red on debt
+this migration did not clear: ~205 type errors and 68 lint errors, down from 632
+and 69. What remains is one shape, repeated: a lucide icon handed gui style props
+(`<Rocket marginBottom={16}/>`), which the SVG ignores, so the spacing the author
+asked for is not on the page. Each fix is a wrapper box and a visual decision,
+which is why they were not made blind.
 
 ## OneLanding Focus
 
@@ -107,11 +123,11 @@ push to main
 ```
 
 `hanzoai/static` is a Go binary on scratch, run with `-spa` because this is a
-98-route `BrowserRouter`: without the fallback every deep link 404s instead of
+95-route `BrowserRouter`: without the fallback every deep link 404s instead of
 reaching `index.html` for the router (and for the app's own `path="*"`
-NotFound). `HANZO_STATIC_CSP` in the CR allows `fonts.googleapis.com` /
-`fonts.gstatic.com` for the Inter stylesheet `index.html` links, and
-`api.hanzo.ai` in `connect-src` for the chat widgets.
+NotFound). `HANZO_STATIC_CSP` in the CR needs `api.hanzo.ai` in `connect-src`
+for the chat widgets, and nothing else — the fonts are self-hosted by
+@hanzo/design, so no `fonts.googleapis.com` / `fonts.gstatic.com`.
 
 ## Nothing serves hanzo.one today — DNS is the blocker
 
@@ -142,15 +158,20 @@ correction and can be dropped.
 ## Notes
 
 - Shares the same component library and routes as hanzo.app, hanzo.id, hanzo.network, and sensei.group. Only `OneLanding.tsx` and `index.html` metadata are unique.
-- `index.html` now links the real `@hanzo/logo` favicon (`public/favicon.svg`),
-  not the `lovable-uploads` PNG, and no longer pulls Inter from Google Fonts —
-  @hanzo/design ships Geist. The static server's CSP no longer needs
-  `fonts.googleapis.com` / `fonts.gstatic.com`.
-- `/shadcn-v4` is a marketing page *about* shadcn; its copy still names Tailwind
-  and Radix. That is page content, not a dependency — the site itself ships
-  neither (`grep radix dist/assets/*.js` → 0).
-- `@hanzo/ui` is pinned `^8.0.26`, and the site imports only `@hanzo/ui/product`
-  — the gui-backend half, which pulls no Radix into the bundle. 8.0.27 (the
-  release that drops the shadcn backend and all 18 Radix deps from the package
-  itself) is on `hanzoai/ui@blue2/gui-backend-flip` and not yet published; the
-  caret range picks it up on the next install with no change here.
+- `index.html` links the real `@hanzo/logo` favicon (`public/favicon.svg`), not
+  the `lovable-uploads` PNG, and pulls no Inter from Google Fonts —
+  @hanzo/design ships Geist.
+- `@hanzo/ui` is `^8.0.39` — the published line that dropped the shadcn backend
+  and all 18 Radix dependencies from the package itself. `grep -c radix
+  pnpm-lock.yaml` → 0, and so is `grep -c tailwind`. The site imports only
+  `@hanzo/ui/product`, the gui-backend half.
+- The `/shadcn-v4` page and its six sections are gone. They were never routed —
+  `App.tsx` has no such path — and they were the last text in the repo naming
+  Tailwind, shadcn or Radix.
+- 268 of `src`'s 691 files are unreachable from `src/main.tsx`, including whole
+  alternate landings (`index3`–`index6`, `landing/`, `zen/`, `observability/`)
+  and pages `/privacy`, `/terms`, `/blog` and `/careers` link to but `App.tsx`
+  never routes. They were left in place: this component library is shared by
+  copy with hanzo.app, hanzo.id, hanzo.network and sensei.group, so deleting
+  here diverges four other sites. Deciding that is a fleet call, not a
+  repo call.
