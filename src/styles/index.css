@@ -6,6 +6,12 @@
  * document-level defaults. Dark is the default theme, as on every Hanzo
  * surface. */
 
+/* `gui.css` is written by the @hanzogui/vite-plugin compiler from
+   `src/gui/config.ts` (its `outputCSS` option) — the theme layer the gui
+   runtime would otherwise inject into a <style> tag on every page load. It is
+   build output, not source: gitignored, rewritten on every build, and pulled in
+   here so vite hashes it into the one cacheable `dist/assets/*.css`. */
+@import './gui.css';
 @import '@hanzo/design/styles.css';
 
 /* `index.html` asks for `viewport-fit=cover`, so on a device with a display

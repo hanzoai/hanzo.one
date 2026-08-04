@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import { hanzoguiPlugin } from "@hanzogui/vite-plugin";
 import path from "path";
 import { createRequire } from "node:module";
 
@@ -8,10 +9,13 @@ const require = createRequire(import.meta.url);
 // specifier — esbuild's dependency prebundle does not re-run vite's resolver.
 const reactNativeWeb = path.dirname(require.resolve("react-native-web/package.json"));
 
-// hanzo.one runs @hanzo/ui components on the @hanzo/gui backend. gui is
-// consumed at runtime — no compile-time style extraction — so this config is
-// only the knobs a gui/Tamagui app needs on the web (same shape as
-// ~/work/hanzo/world, the reference gui-on-Vite surface):
+// hanzo.one runs @hanzo/ui components on the @hanzo/gui backend, and gui's
+// atomic CSS is EXTRACTED AT BUILD TIME by the standard compiler plugin —
+// @hanzogui/vite-plugin, the same one ~/work/hanzo/admin builds every SPA with.
+// Extraction turns each styled element into a plain className plus a rule in
+// `dist/assets/*.css`, which the browser caches once instead of re-parsing an
+// injected sheet on every document. The rest is the knobs a gui/Tamagui app
+// needs on the web:
 //
 //   1. react-native -> react-native-web, the substrate gui primitives use
 //   2. one React instance (dedupe), or the runtime splits and hooks break
@@ -28,7 +32,26 @@ export default defineConfig({
     __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
   },
 
-  plugins: [react()],
+  plugins: [
+    hanzoguiPlugin({
+      // The umbrella the optimizing compiler scans for styled components.
+      components: ["@hanzo/gui"],
+      // Absolute: the extractor copies the config into a `.hanzogui/` temp dir
+      // and re-resolves imports from there.
+      config: path.resolve(__dirname, "src/gui/config.ts"),
+      // The theme layer — every `--var` and `.t_*` rule the config declares.
+      // Without this the gui runtime injects those ~146KB into a <style> tag on
+      // every document; written to a file, vite hashes it into the one
+      // `dist/assets/*.css` the browser caches, and the runtime scans that sheet
+      // on boot and skips what is already there.
+      outputCSS: path.resolve(__dirname, "src/styles/gui.css"),
+      // This config already states the react-native/`.web.js` resolution the
+      // plugin would otherwise supply; leaving both on gives vite two aliases
+      // for `react-native` and two copies of react-native-web in the graph.
+      disableResolveConfig: true,
+    }),
+    react(),
+  ],
 
   resolve: {
     alias: {

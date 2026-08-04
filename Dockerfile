@@ -5,7 +5,11 @@
 FROM node:22 AS build
 WORKDIR /src
 RUN npm i -g pnpm@9
-COPY package.json pnpm-lock.yaml ./
+# .npmrc belongs in THIS layer, not with the sources: it carries the
+# public-hoist-pattern the gui compiler needs, and pnpm reads it during install.
+# Copied after the install it configures, it has no effect at all — the tree is
+# already laid out — and the build then dies resolving @hanzogui/* .
+COPY package.json pnpm-lock.yaml .npmrc ./
 RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build

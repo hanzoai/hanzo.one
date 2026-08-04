@@ -70,9 +70,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     document.documentElement.dataset.typographySize = typographySize;
     document.documentElement.dataset.typographySpacing = typographySpacing;
     document.documentElement.dataset.typographyWeight = typographyWeight;
-    document.documentElement.classList.toggle('dark', isDarkMode);
-    document.documentElement.classList.toggle('light', !isDarkMode);
-    
+    // No `dark`/`light` class on <html>. Those were Tailwind's dark-variant
+    // hook; Tailwind is gone and nothing in this repo, in @hanzo/design or in
+    // any delivered sheet has ever had a `.dark` or `.light` selector, so the
+    // classes styled nothing. gui's ThemeProvider adds the real one, `t_dark`,
+    // and that is what themes the page. (Found by @hanzo/gui's css-check: 763
+    // of 764 classes in the rendered markup had a rule; `dark` was the one.)
+
     // Apply typography variables
     const root = document.documentElement;
     

@@ -10,7 +10,10 @@ Marketing site for Hanzo One, the all-in-one AI-powered business suite (hanzo.on
 - **@hanzo/ui components on the @hanzo/gui backend** (the Tamagui fork), the
   published 8.x line — no Tailwind, no shadcn, no Radix, no `className`
   anywhere in the JSX, and none of the three in the lockfile or the bundle
-- **@hanzo/design** tokens (the only stylesheet), **@hanzo/logo** mark
+- **@hanzogui/vite-plugin** — the gui compiler. Extracts gui's atomic CSS at
+  build time and writes the theme layer to a file, so the whole stylesheet is
+  one hashed, cached `dist/assets/*.css` (see "The stylesheet" below)
+- **@hanzo/design** tokens, **@hanzo/logo** mark
 - Framer Motion (animations), Three.js (3D)
 
 Every dependency here is imported by `src`. `react-native-svg` is the exception
@@ -58,9 +61,54 @@ House rules, in one place each:
 Vite needs four knobs for gui on the web (see `vite.config.ts`): the
 `react-native` → `react-native-web` alias (absolute — pnpm nests), React
 de-duplication, `TAMAGUI_TARGET`/`__DEV__`, and `.web.js` resolve extensions.
+The compiler plugin would supply its own set; it is started with
+`disableResolveConfig` so there is one alias for `react-native`, not two.
 `build.rollupOptions.output.manualChunks` is deliberately absent: hoisting the
 gui/react vendors into sibling eager chunks reordered module initialisation and
 the runtime threw a TDZ error before first paint.
+
+## The stylesheet — one cached file, 100% of the classes
+
+gui styles by minting atomic classes (`_bg-card`, `_fs-14`). Something has to
+author the rules behind them, and there are exactly two candidates: the runtime
+injects them, or the compiler extracts them at build time. Neither is automatic,
+and when neither runs the page renders completely unstyled through a green
+build — that is what happened on hanzo.app.
+
+Here the compiler runs. `@hanzogui/vite-plugin` does two jobs:
+
+- **extraction** — flattens gui elements into classNames and emits their rules
+  into the bundled CSS, hashed and cached like any other asset
+- **`outputCSS`** — writes the theme layer (`config.getCSS()`: every `--var`,
+  every `.t_*` rule) to `src/styles/gui.css`, which `styles/index.css` imports.
+  Build output, gitignored, rewritten every build — never edit it. Without it
+  `GuiProvider` renders those 138KB into a `<style>` tag on every document.
+
+`main.tsx` then passes `disableInjectCSS`, which turns off that `<style>` tag
+and nothing else — atomic rules still reach `#_hanzogui-styles` at runtime for
+anything extraction could not flatten. **That flag is safe only while the
+compiler is configured.** Setting it with no extractor is precisely the
+hanzo.app bug.
+
+Measured on the built site, 8 routes rendered in a browser
+(`node ~/work/hanzo/gui/pkgs/ui/hanzogui/css-check.mjs --render <url> …`):
+
+| | cached sheet | injected per document | classes covered |
+|---|---|---|---|
+| runtime injection only | 10KB | 313KB | 763/764 |
+| compiler + `outputCSS` | 150KB (17KB gzip) | 28KB | **763/763 (100%)** |
+
+The honest cost is +14KB gzipped on a first visit, in exchange for never
+rebuilding 313KB of CSS in JavaScript again, on any route. 97% of that sheet is
+themes the site never applies — it uses six of the 248 `t_*` classes the v4
+preset declares — so a `createGui({themes})` subset is the next real saving.
+
+`.npmrc` sets `public-hoist-pattern[]=@hanzogui/*`. The compiler bundles the gui
+config into `.hanzogui/` and re-resolves its externals from there with plain node
+resolution; pnpm's default layout exposes only DIRECT dependencies at the root,
+so `@hanzogui/web` — reached through `@hanzo/gui`, never named in
+`package.json` — was invisible and extraction silently produced nothing. The
+`Dockerfile` copies `.npmrc` in the install layer for the same reason.
 
 ## Structure
 

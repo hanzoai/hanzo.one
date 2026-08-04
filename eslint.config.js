@@ -5,7 +5,9 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  // Build output, both of them: `dist` and the gui compiler's scratch dir,
+  // where it writes the bundled config it hands its extraction worker.
+  { ignores: ["dist", ".hanzogui"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],

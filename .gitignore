@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 CLAUDE.md
+
+# Compiler output: `.hanzogui/` is the extractor's scratch dir and
+# `src/styles/gui.css` is the theme sheet it writes there from src/gui/config.ts
+# (vite.config's `outputCSS`). Both are rebuilt by every `pnpm build`.
+.hanzogui
+src/styles/gui.css

@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@hanzogui/vite-plugin": "8.0.1",
     "@types/node": "^22.5.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
