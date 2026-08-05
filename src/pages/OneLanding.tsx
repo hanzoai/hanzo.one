@@ -175,11 +175,13 @@ const OneLanding = () => {
         <Box marginHorizontal="auto" paddingHorizontal={24} textAlign="center">
           <H2 fontSize="var(--text-4xl)" lineHeight="var(--leading-4xl)" fontWeight="700" marginBottom={16}>Ready to Simplify?</H2>
           <Paragraph color="var(--neutral-400)" maxWidth="36rem" marginHorizontal="auto" marginBottom={32}>
-            Join thousands of businesses running on Hanzo One.
+            One login, one bill, one place to run the whole business.
           </Paragraph>
-          <Button size="lg" variant="default" fontWeight="600" paddingHorizontal={32}>
-            Start Free Trial
-          </Button>
+          <XStack display="flex" justifyContent="center">
+            <Button size="lg" variant="default" fontWeight="600" paddingHorizontal={32}>
+              Start Free Trial
+            </Button>
+          </XStack>
         </Box>
       </Box>
       <Footer />

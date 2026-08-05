@@ -194,14 +194,28 @@ domain). Until DNS is fixed the ingress host in the CR cannot answer.
 
 Promotion order: publish an image -> set `spec.image.tag` in `crs/hanzo-one.yaml`
 -> add `- hanzo-one.yaml` to `crs/kustomization.yaml` -> confirm the pod is
-Running and a deep link returns 200 -> re-delegate DNS. The CR is committed INERT
-(empty tag, absent from `kustomization.yaml`); promoting an App with no image tag
-takes the host down instead of leaving it alone.
+Running and a deep link returns 200 -> re-delegate DNS.
 
-The wrong-brand favicon is fixed here: `index.html` links `public/favicon.svg`
-copied from `@hanzo/logo`, and the footer renders `<HanzoLogo/>` instead of the
-`lovable-uploads` PNG. `origin/fix/broken-links` (`eaf948d`) carried the same
-correction and can be dropped.
+**The CR was never committed.** An earlier draft of this file claimed it was
+"committed INERT"; that was aspirational. On `hanzoai/universe` at the forge
+(`git.hanzo.ai` — `origin` in most local clones is stale and 404s) there is no
+`operator/crs/` directory at all and no `hanzo-one` among the 105 files in
+`charts/app/values/hanzo/`. The image was never published either: an anonymous
+GHCR token for `hanzoai/hanzo-one` returns DENIED while the same request for
+`hanzoai/static` returns a tag list. So step one of the promotion order is
+still step one, and a competing half-path exists —
+`universe/deploy/cf-pages-sites/build.sh` stages this site to
+`_sites/hanzo.one/` behind the live `lattice-network.pages.dev`, which the
+`Dockerfile` comment says does not exist. Pick one before promoting either.
+
+The favicon is correct and is not a thing to re-fix: `public/favicon.svg`
+(md5 `82b66e3073f0b6175e3be44e9bc4f169`) and `public/favicon.ico`
+(`2b734c3be92658f9d07149a23c7ce83c`) are **byte-identical to the published
+`@hanzo/logo` `dist/`**, verified against the installed 1.0.14 and re-verified
+over the wire from the built `dist/`. Do not hand-edit them; they change when
+`@hanzo/logo` publishes, and nowhere else. The footer renders `<HanzoLogo/>`.
+`origin/fix/broken-links` (`eaf948d`) carried the same correction and can be
+dropped.
 
 ## Notes
 
@@ -216,10 +230,70 @@ correction and can be dropped.
 - The `/shadcn-v4` page and its six sections are gone. They were never routed —
   `App.tsx` has no such path — and they were the last text in the repo naming
   Tailwind, shadcn or Radix.
-- 268 of `src`'s 691 files are unreachable from `src/main.tsx`, including whole
-  alternate landings (`index3`–`index6`, `landing/`, `zen/`, `observability/`)
-  and pages `/privacy`, `/terms`, `/blog` and `/careers` link to but `App.tsx`
-  never routes. They were left in place: this component library is shared by
-  copy with hanzo.app, hanzo.id, hanzo.network and sensei.group, so deleting
-  here diverges four other sites. Deciding that is a fleet call, not a
-  repo call.
+- 253 of `src`'s 662 TS files are unreachable from `src/main.tsx`, including
+  whole alternate landings (`index3`–`index6`, `zen/`) and pages `/privacy`,
+  `/terms`, `/blog` and `/careers` link to but `App.tsx` never routes. They were
+  left in place: this component library is shared by copy with hanzo.app,
+  hanzo.id, hanzo.network and sensei.group, so deleting here diverges four other
+  sites. Deciding that is a fleet call, not a repo call.
+
+## The social proof was invented — all of it is gone
+
+Every "trusted by" and testimonial block on this site was fabricated, and the
+audit that found it only saw two of them because it rendered two of 95 routes.
+Walking the import graph from each route found the rest. Removed, because there
+is no honest version of a testimonial you do not have:
+
+- **Real people, invented quotes** — `platform/TrustedBy` (`/platform`) put
+  words in the mouths of six named executives at real companies (Jay Giraud at
+  Damon, Marcus Weller at SKULLY, Sandro Mur at Bellabeat, and three more).
+  `platform/DeveloperLove` (`/platform`) took real tweets praising **Coolify**
+  — real handles, `@heybobjones`, `@fccoelho7`, `@BenjaminKlieger` — and
+  swapped the product name to `@Hanzo`. `hanzodev/Testimonials` carried
+  Anthropic's **Claude Code** testimonials (Anton Biryukov/Ramp, Fergal
+  Reid/Intercom, Simon Last/Notion) with the product renamed. That class is a
+  false-endorsement problem, not a copy problem.
+- **Invented people** — `ai/Testimonials` (`/ai`), `home2/Testimonials`,
+  `vector/Testimonials` (`/vector`), `hanzocode/HanzoCodeTestimonials`
+  (`/code`, which still carried its scaffold comment "Just showing one
+  testimonial for example").
+- **Invented customers** — `ai/TrustedBy` claimed Microsoft/Airbnb/Netflix/
+  Stripe/Amazon (its own comment admitted "Example logos — in a real
+  implementation, these would be actual logo images"); `base/TrustedBy` claimed
+  Mozilla/GitHub/1Password/PwC; `vector/TrustedBy` claimed OpenAI/Anthropic/
+  Bloomberg; `analytics/TrustedBy` claimed AMD/Accenture/GM/Intel;
+  `hanzocode/HanzoCodeCompanies` rendered one Lovable PNG five times as five
+  distinct "Company N"; `cloud/Security` had "Trusted by teams at" over four
+  empty grey rectangles.
+- `landing/TrustedBySection` went too — its only verifiable fact is Techstars
+  '17, which the About and History pages already carry, and it labelled
+  NVIDIA/Google Cloud/Amazon/DigitalOcean/Nebius "Partners & Investors" when
+  `Products.tsx` in this same repo lists Nebius as a compute vendor.
+- The homepage CTA said "Join thousands of businesses running on Hanzo One" on
+  a domain that has never once resolved.
+
+The live canonical surface, hanzo.ai, ships no social proof at all, so this
+also converges the two. **These components are copied into hanzo.app,
+hanzo.id, hanzo.network and sensei.group — the same fabrications ship there
+and need the same removal.**
+
+## MotionText was inline, so every hero ran together
+
+`MotionText` was declared `display: 'inline'` while `Paragraph` and `H1`-`H6`
+right above it were declared `block` for exactly the stated reason ("reading
+order breaks if they are not"). It was missed by that pass. Because inline
+boxes ignore `marginBottom` and share a line, the eyebrow badge, the `H1` and
+the lede collapsed onto one another in every hero built on the shared template
+— measured as **18 colliding heading runs across 11 routed pages** (`/platform`,
+`/base`, `/cloud`, `/dev`, `/app`, `/security`, `/status`, `/zen`,
+`/open-source`, `/realtime`). One line in `src/gui/primitives.tsx` fixes all of
+them; after it, 0. The two call sites that genuinely want inline flow already
+say so themselves (`display="inline-flex"`), and the two `render="span"`
+terminal cursors are flex children, which blockify either way.
+
+`/base` also hotlinked its Hanzo mark from **uxwing.com**, a third-party
+stock-icon site, and the image 404ed. It renders `<HanzoLogo/>` now. Two
+external hotlinks remain and should go the same way if their pages are ever
+routed: a giphy GIF in `LastSupper` (unreachable) and an Unsplash photo in
+`operator/OperativeDemo` (`/operator`, decorative, loads today but is one CSP
+tightening from breaking).

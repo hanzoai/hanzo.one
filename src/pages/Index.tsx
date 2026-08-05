@@ -3,7 +3,6 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/landing/HeroSection";
-import TrustedBySection from "@/components/landing/TrustedBySection";
 import PlatformOverviewSection from "@/components/landing/PlatformOverviewSection";
 import UseCasesSection from "@/components/landing/UseCasesSection";
 import DeveloperExperienceSection from "@/components/landing/DeveloperExperienceSection";
@@ -24,7 +23,6 @@ const Index = () => {
 
       <main>
         <HeroSection />
-        <TrustedBySection />
         <PlatformOverviewSection />
         <UseCasesSection />
         <DeveloperExperienceSection />

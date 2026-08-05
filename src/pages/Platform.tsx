@@ -4,8 +4,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PlatformHero from "@/components/platform/PlatformHero";
 import PaaSCapabilities from "@/components/platform/PaaSCapabilities";
-import TrustedBy from "@/components/platform/TrustedBy";
-import DeveloperLove from "@/components/platform/DeveloperLove";
 import CallToAction from "@/components/platform/CallToAction";
 import ZenBackground from "@/components/zen/ZenBackground";
 import ZenQuoteSection from "@/components/zen/ZenQuoteSection";
@@ -239,8 +237,6 @@ const Platform = () => {
         />
         <DeploymentOptions />
         <OpenSourceBenefits />
-        <TrustedBy />
-        <DeveloperLove />
         <CallToAction />
       </main>
 

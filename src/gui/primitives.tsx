@@ -201,8 +201,13 @@ type Motion = Omit<MotionProps, 'transition' | 'style'> & {
 export const MotionBox = motion.create(Box) as ComponentType<
   Omit<ComponentProps<typeof Box>, 'transition' | 'style'> & Motion
 >
+// Block for the same reason Paragraph and H1-H6 are: every MotionText on this
+// site is a heading or a paragraph stacked above the next one. Inline collapsed
+// them onto one line and dropped their marginBottom, so the badge, the H1 and
+// the lede all ran together in every hero. Call sites that want inline flow say
+// so (`display="inline-flex"`), and flex children blockify regardless.
 export const MotionText = motion.create(
-  box(styled(View, { name: 'MotionText', display: 'inline', ...web })),
+  box(styled(View, { name: 'MotionText', display: 'block', ...web })),
 ) as ComponentType<Omit<ComponentProps<typeof Box>, 'transition' | 'style'> & Motion>
 
 /**

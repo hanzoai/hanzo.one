@@ -1,4 +1,4 @@
-import { Box, Button, Grid, H2, H3, H4, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
+import { Box, Button, Grid, H2, H3, H4, HanzoLogo, Link, MotionBox, Paragraph, Text, XStack, YStack } from '@/gui'
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ const Compliance = () => {
             
             <XStack display="flex" alignItems="center">
               <Box height={48} width={48} marginRight={16}>
-                <Box display="inline-block" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/hanzo-ai-icon.png" alt="Hanzo Base Logo" render="img" width="100%" height="100%" objectFit="contain" />
+                <HanzoLogo size={48} />
               </Box>
               <div>
                 <H3 fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="700" color="var(--white)">Hanzo Base</H3>

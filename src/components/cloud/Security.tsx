@@ -68,22 +68,6 @@ const Security = () => {
             </Box>
           </MotionBox>
         </YStack>
-
-        <MotionBox
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          marginTop={80} textAlign="center"
-        >
-          <Paragraph fontSize="var(--text-xl)" lineHeight="var(--leading-xl)" fontWeight="600" marginBottom={32}>Trusted by teams at</Paragraph>
-          <XStack display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" gap={48}>
-            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
-            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
-            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
-            <Box height={48} width={128} backgroundColor="var(--surface-card-emphasis)" borderRadius="var(--radius-md)"></Box>
-          </XStack>
-        </MotionBox>
       </Box>
     </Box>
   );
