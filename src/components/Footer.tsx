@@ -207,11 +207,7 @@ const Footer = () => {
           <div className="lg:col-span-3 space-y-6">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <img
-                src="/lovable-uploads/28d53ec4-328f-4812-862b-b9a760bbabae.png"
-                alt="Hanzo"
-                className="h-8 w-8"
-              />
+              <img src="/logo.svg" alt="Hanzo" className="h-8 w-8" />
               <span className="text-white font-semibold text-xl">Hanzo</span>
             </Link>
 
