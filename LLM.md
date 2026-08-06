@@ -88,10 +88,12 @@ Running and a deep link returns 200 -> re-delegate DNS. The CR is committed INER
 (empty tag, absent from `kustomization.yaml`); promoting an App with no image tag
 takes the host down instead of leaving it alone.
 
-Note also that `origin/fix/broken-links` (`eaf948d`) carries the real
-@hanzo/brand blocky-H logo and favicon and was never merged; `main`'s
-`index.html` still links `lovable-uploads/28d53ec4-….png`. Land it before pinning
-a tag, so the first image is not the wrong brand.
+Branding is settled on `main`: `index.html` links `/favicon.svg` with
+`/favicon.ico` behind it, and the footer uses `/logo.svg` — all three the
+canonical blocky-H from `@hanzo/logo`. The placeholder PNG the site was
+scaffolded with is gone. `origin/fix/broken-links` reached the same place
+independently and is still unmerged; take its link fixes if you want them, but
+its branding is already here.
 
 ## Notes
 
