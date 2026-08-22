@@ -1,0 +1,8 @@
+# pnpm 11 refuses a dependency's build script unless the repo names it, and
+# stops the install with ERR_PNPM_IGNORED_BUILDS rather than continuing quietly.
+# Both of these ship their platform binary as an optional dependency, so the
+# postinstall is a fallback and not the source of the binary — the same call the
+# docs monorepo makes.
+allowBuilds:
+  '@swc/core': false
+  esbuild: false
