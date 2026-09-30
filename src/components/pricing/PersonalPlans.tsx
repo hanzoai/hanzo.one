@@ -1,6 +1,7 @@
 import React from "react";
 import PricingPlan from "./PricingPlan";
-import { Code, Zap, Github } from "lucide-react";
+import { Code, Zap } from "lucide-react";
+import { Github } from "@/components/icons/brands";
 
 const PersonalPlans = () => {
   const plans = [

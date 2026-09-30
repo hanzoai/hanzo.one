@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
+import { Github } from "@/components/icons/brands";
 
 const PricingFooterLinks = () => {
   return (

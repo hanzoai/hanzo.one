@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, MessageCircle } from "lucide-react";
+import { ExternalLink, MessageCircle } from "lucide-react";
+import { Github } from "@/components/icons/brands";
 
 const BRAND_COLOR = "#fd4444";
 
